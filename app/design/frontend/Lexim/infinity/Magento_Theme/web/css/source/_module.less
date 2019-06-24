@@ -3,6 +3,14 @@
 //  * See COPYING.txt for license details.
 //  */
 
+// Break points
+//@screen__xxs: 320px;
+//@screen__xs: 480px;
+//@screen__s: 640px;
+//@screen__m: 768px;
+//@screen__l: 992px;
+//@screen__xl: 1440px;
+
 //
 //  Theme variables
 //  _____________________________________________
@@ -62,16 +70,18 @@
         .lib-vendor-prefix-flex-grow(1);
     }
 
+
+
+
     //
     //  Header
     //  ---------------------------------------------
 
     .page-header {
-        .lib-css(background-color, @header__background-color);
+        background: red;
         border-bottom: 1px solid @border-color__base;
         margin-bottom: @indent__base;
     }
-
     .header {
         &.content {
             &:extend(.abs-add-clearfix all);
@@ -283,6 +293,7 @@
         }
     }
 }
+
 
 //
 //  Desktop
