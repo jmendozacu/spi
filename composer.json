@@ -2,40 +2,39 @@
     "name": "magento/project-enterprise-edition",
     "description": "eCommerce Platform for Growth (Enterprise Edition)",
     "type": "project",
-    "version": "2.3.1",
+    "version": "2.2.5",
     "license": [
         "OSL-3.0",
         "AFL-3.0"
     ],
-    "config": {
-        "preferred-install": "dist",
-        "sort-packages": true
-    },
-    "repositories": {
-        "repo": {
-            "type": "composer",
-            "url": "https://repo.magento.com"
-        }
-    },
     "require": {
-        "magento/magento-cloud-metapackage": ">=2.3.1 <2.3.2"
+	"magento/magento-cloud-metapackage": ">=2.2.5 <2.2.6",
+        "composer/composer": "@alpha",
+        "binaryanvil/job-manager": "^1.1",
+        "binaryanvil/module-federation-facebook": "^1.2"
     },
-    "suggest": {
-        "ext-pcntl": "Need for run processes in parallel mode"
+    "config": {
+        "use-include-path": true
     },
-    "conflict": {
-        "gene/bluefoot": "*"
+    "require-dev": {
+        "phpunit/phpunit": "~6.2.0",
+        "squizlabs/php_codesniffer": "3.2.2",
+        "phpmd/phpmd": "@stable",
+        "pdepend/pdepend": "2.5.2",
+        "sjparkinson/static-review": "~4.1",
+        "friendsofphp/php-cs-fixer": "~2.2.1",
+        "lusitanian/oauth": "~0.8.10",
+        "sebastian/phpcpd": "2.0.4"
     },
     "autoload": {
         "psr-4": {
+            "Magento\\Framework\\": "lib/internal/Magento/Framework/",
             "Magento\\Setup\\": "setup/src/Magento/Setup/",
-            "Magento\\": "app/code/Magento/",
-            "Zend\\Mvc\\Controller\\": "setup/src/Zend/Mvc/Controller/"
+            "Magento\\": "app/code/Magento/"
         },
         "psr-0": {
             "": [
-                "app/code/",
-                "generated/code/"
+                "app/code/"
             ]
         },
         "files": [
@@ -53,28 +52,22 @@
             "Magento\\Tools\\": "dev/tools/Magento/Tools/",
             "Magento\\Tools\\Sanity\\": "dev/build/publication/sanity/Magento/Tools/Sanity/",
             "Magento\\TestFramework\\Inspection\\": "dev/tests/static/framework/Magento/TestFramework/Inspection/",
-            "Magento\\TestFramework\\Utility\\": "dev/tests/static/framework/Magento/TestFramework/Utility/"
+            "Magento\\TestFramework\\Utility\\": "dev/tests/static/framework/Magento/TestFramework/Utility/",
+            "Magento\\ToolkitFramework\\": "dev/tools/performance-toolkit/framework/Magento/ToolkitFramework/"
         }
     },
-    "minimum-stability": "alpha",
-    "prefer-stable": true,
-    "extra": {
-        "component_paths": {
-            "trentrichardson/jquery-timepicker-addon": "lib/web/jquery/jquery-ui-timepicker-addon.js",
-            "components/jquery": [
-                "lib/web/jquery.js",
-                "lib/web/jquery/jquery.min.js",
-                "lib/web/jquery/jquery-migrate.js"
-            ],
-            "blueimp/jquery-file-upload": "lib/web/jquery/fileUploader",
-            "components/jqueryui": [
-                "lib/web/jquery/jquery-ui.js"
-            ],
-            "twbs/bootstrap": [
-                "lib/web/jquery/jquery.tabs.js"
-            ],
-            "tinymce/tinymce": "lib/web/tiny_mce_4"
+    "minimum-stability": "stable",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://repo.magento.com/"
         },
+        {
+            "type": "path",
+            "url": "packages/*/*"
+        }
+    ],
+    "extra": {
         "magento-force": true,
         "magento-deploystrategy": "copy"
     }
