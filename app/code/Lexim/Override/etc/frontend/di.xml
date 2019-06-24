@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @company Lexim Global
+ * @author Samuel Kong
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <!-- Override block -->
+    <preference for="Magento\Newsletter\Block\Subscribe" type="Lexim\Override\Block\Magento\Newsletter\Subscribe" />
+    <preference for="Magento\Customer\Block\Account\Customer" type="Lexim\Override\Block\Magento\Customer\Customer" />
+
+</config>

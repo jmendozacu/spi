@@ -1,0 +1,165 @@
+<?php
+/**
+ * Binary Anvil, Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Binary Anvil, Inc. Software Agreement
+ * that is bundled with this package in the file LICENSE_BAS.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.binaryanvil.com/software/license/
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@binaryanvil.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this software to
+ * newer versions in the future. If you wish to customize this software for
+ * your needs please refer to http://www.binaryanvil.com/software for more
+ * information.
+ *
+ * @category    BinaryAnvil
+ * @package     Infinity
+ * @copyright   Copyright (c) 2018-2019 Binary Anvil,Inc. (http://www.binaryanvil.com)
+ * @license     http://www.binaryanvil.com/software/license
+ */
+
+// @codingStandardsIgnoreFile
+
+use Magento\Framework\App\Action\Action;
+
+?>
+<?php
+/**
+ * Template for displaying new products widget
+ *
+ * @var $block \Magento\Catalog\Block\Product\Widget\NewWidget
+ */
+
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
+$catalogHelper = $this->helper('BinaryAnvil\InfinityTheme\Helper\Catalog');
+if ($exist = ($block->getProductCollection() && $block->getProductCollection()->getSize())) {
+
+    /** @var \BinaryAnvil\InfinityTheme\Helper\Catalog $catalogHelper */
+    $catalogHelper = $this->helper('BinaryAnvil\InfinityTheme\Helper\Catalog');
+
+    /** @var \Magento\Catalog\Model\ResourceModel\Product\Collection $productCollection */
+    $productCollection = $block->getProductCollection();
+    if ($categpryId = $block->getData('category')) {
+        $category = $catalogHelper->getCategoryById($categpryId);
+        if ($category) {
+            $productCollection->addCategoryFilter($category);
+        }
+    }
+}
+
+$viewMode = 'grid';
+$image = 'category_page_grid';
+$showDescription = false;
+$templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+$pos = $block->getPositioned();
+?>
+
+<?php if ($exist):?>
+<div class="first-two-product">
+    <div class="products wrapper grid products-grid">
+        <ol class="products list items product-items">
+            <?php foreach ($productCollection as $_product): ?>
+                <?php
+                $catalogHelper->setNewProduct($_product->getId());
+                $labels = $catalogHelper->getProductLabels($_product);
+                ?>
+                <li class="item product product-item <?php foreach ($labels as $label) echo $label . ' '?>">
+                    <div class="product-item-info" data-container="product-grid">
+                        <?php if ($labels) :?>
+                        <div class="product-item-info-label">
+                                <ul class="labels">
+                                    <?php foreach ($labels as $label):?>
+                                        <li class="<?= $label?>"><?= $label?></li>
+                                    <?php endforeach;?>
+                                </ul>
+                        </div>
+                        <?php endif;?>
+                        <?php
+                        $productImage = $block->getImage($_product, $image);
+                        if ($pos != null) {
+                            $position = ' style="left:' . $productImage->getWidth() . 'px;'
+                                . 'top:' . $productImage->getHeight() . 'px;"';
+                        }
+                        ?>
+
+                        <?php
+                        $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
+                        $productImage = $_imagehelper->init($_product, $image)->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->getUrl();
+                        ?>
+
+                        <?php // Product Image ?>
+                        <a title="<?php /* @escapeNotVerified */ echo __('Go to') ?> <?php /* @escapeNotVerified */ echo $_helper->productAttribute($_product, $_product->getName(), 'name'); ?>" href="<?php /* @escapeNotVerified */ echo $_product->getProductUrl() ?>" class="product photo product-item-photo" style='background-image: url("<?php  echo $productImage; ?>");'>
+                            <img class="photo image" src="<?php echo $block->getViewFileUrl('images/placeholder/small.png'); ?>" alt="<?php /* @escapeNotVerified */ echo $_helper->productAttribute($_product, $_product->getName(), 'name'); ?>" />
+                        </a>
+
+
+                        <div class="product details product-item-details">
+                            <?php /* @escapeNotVerified */ echo $block->getProductPrice($_product) ?>
+                            <?php
+                            $_productNameStripped = $block->stripTags($_product->getName(), null, true);
+                            ?>
+                            <strong class="product name product-item-name">
+                                <a class="product-item-link"
+                                   href="<?php /* @escapeNotVerified */ echo $_product->getProductUrl() ?>" title="<?php /* @escapeNotVerified */ echo $_helper->productAttribute($_product, $_product->getName(), 'name'); ?>">
+                                    <?php /* @escapeNotVerified */ echo $_helper->productAttribute($_product, $_product->getName(), 'name'); ?>
+                                </a>
+                            </strong>
+
+                            <?php echo $block->getReviewsSummaryHtml($_product, $templateType); ?>
+
+                            <div class="product-item-inner">
+                                <div class="product actions product-item-actions"<?php echo strpos($pos, $viewMode . '-actions') ? $position : ''; ?>>
+                                    <div class="actions-primary"<?php echo strpos($pos, $viewMode . '-primary') ? $position : ''; ?>>
+                                        <?php if ($_product->isSaleable()): ?>
+                                            <?php $postParams = $block->getAddToCartPostParams($_product); ?>
+                                            <form data-role="tocart-form" action="<?php /* @escapeNotVerified */ echo $postParams['action']; ?>" method="post">
+                                                <input type="hidden" name="product" value="<?php /* @escapeNotVerified */ echo $postParams['data']['product']; ?>">
+                                                <input type="hidden" name="<?php /* @escapeNotVerified */ echo Action::PARAM_NAME_URL_ENCODED; ?>" value="<?php /* @escapeNotVerified */ echo $postParams['data'][Action::PARAM_NAME_URL_ENCODED]; ?>">
+                                                <?php echo $block->getBlockHtml('formkey')?>
+                                            </form>
+                                        <?php else: ?>
+                                            <?php if ($_product->getIsSalable()): ?>
+                                                <div class="stock available"><span><?php /* @escapeNotVerified */ echo __('In stock') ?></span></div>
+                                            <?php else: ?>
+                                                <div class="stock unavailable"><span><?php /* @escapeNotVerified */ echo __('Out of stock') ?></span></div>
+                                            <?php endif; ?>
+                                        <?php endif; ?>
+                                    </div>
+                                    <div data-role="add-to-links" class="actions-secondary"<?php echo strpos($pos, $viewMode . '-secondary') ? $position : ''; ?>>
+                                        <?php if ($addToBlock = $block->getChildBlock('addto')): ?>
+                                            <?php echo $addToBlock->setProduct($_product)->getChildHtml(); ?>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                                <?php if ($showDescription):?>
+                                    <div class="product description product-item-description">
+                                        <?php /* @escapeNotVerified */ echo $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?>
+                                        <a href="<?php /* @escapeNotVerified */ echo $_product->getProductUrl() ?>" title="<?php /* @escapeNotVerified */ echo $_productNameStripped ?>"
+                                           class="action more"><?php /* @escapeNotVerified */ echo __('Learn More') ?></a>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                            <?php
+                            $color = $catalogHelper->getOptionCountByAttributeCode($_product,'is_manufacturer_color');
+                            ?>
+                            <?php if ($color): ?>
+                                <span class="total"><?= ($color == 1) ? '' : $color . ' ' . __('Colors') ?></span>
+                            <?php endif ?>
+                        </div>
+                    </div>
+                </li>
+            <?php endforeach ?>
+        </ol>
+        <?= $block->getPagerHtml() ?>
+    </div>
+</div>
+<?php endif;?>
+

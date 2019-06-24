@@ -1,0 +1,94 @@
+/**
+ * Binary Anvil, Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Binary Anvil, Inc. Software Agreement
+ * that is bundled with this package in the file LICENSE_BAS.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.binaryanvil.com/software/license/
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@binaryanvil.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this software to
+ * newer versions in the future. If you wish to customize this software for
+ * your needs please refer to http://www.binaryanvil.com/software for more
+ * information.
+ *
+ * @category    BinaryAnvil
+ * @package     Infinity
+ * @copyright   Copyright (c) 2018-2019 Binary Anvil,Inc. (http://www.binaryanvil.com)
+ * @license     http://www.binaryanvil.com/software/license
+ */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .checkout-agreements-block {
+        .checkout-agreements-title {
+            .lib-font-size(24);
+            margin: 0;
+            padding-top: @indent__base;
+            border-top: 1px solid @minicart__border-color;
+            text-transform: none;
+        }
+
+        .action-show {
+            .lib-font-size(20);
+            text-transform: none;
+            color: @primary__color;
+            outline: none;
+
+            &:hover {
+                outline: none;
+            }
+        }
+
+        .checkout-agreements {
+            margin-bottom: @indent__base;
+        }
+
+        .action-show {
+            &:extend(.abs-action-button-as-link all);
+            vertical-align: baseline;
+        }
+    }
+
+    //  Checkout Agreements in popup
+    .checkout-agreements-items {
+        &:extend(.abs-reset-list all);
+        padding-bottom: @indent__l;
+
+        .checkout-agreements-item {
+            margin-bottom: @indent__base;
+        }
+
+        .checkout-agreements-item-title {
+            &:extend(.abs-checkout-title all);
+            border-bottom: 0;
+        }
+    }
+
+    //  Checkout Agreements
+    .checkout-agreement-item-content {
+        overflow: auto;
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .checkout-agreements-block {
+        .action-show {
+            text-align: left;
+        }
+    }
+}

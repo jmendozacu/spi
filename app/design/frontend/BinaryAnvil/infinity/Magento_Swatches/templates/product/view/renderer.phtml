@@ -1,0 +1,72 @@
+<?php
+/**
+ * Binary Anvil, Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Binary Anvil, Inc. Software Agreement
+ * that is bundled with this package in the file LICENSE_BAS.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.binaryanvil.com/software/license/
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@binaryanvil.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this software to
+ * newer versions in the future. If you wish to customize this software for
+ * your needs please refer to http://www.binaryanvil.com/software for more
+ * information.
+ *
+ * @category    BinaryAnvil
+ * @package     Infinity
+ * @copyright   Copyright (c) 2018-2019 Binary Anvil,Inc. (http://www.binaryanvil.com)
+ * @license     http://www.binaryanvil.com/software/license
+ */
+
+// @codingStandardsIgnoreFile
+$helper = $this->helper('BinaryAnvil\SizeChart\Helper\Image');
+$attributeName = $helper->showInAttribute();
+?>
+<?php /** @var $block \Magento\Swatches\Block\Product\Renderer\Configurable */ ?>
+<div class="swatch-opt" data-role="swatch-options"></div>
+
+<?php if($sizeChar = $helper->getSizeChart($block->getProduct())): ?>
+    <div class="size-chart">
+        <img src="<?= /* @escapeNotVerified */ $sizeChar ?>" />
+    </div>
+<?php endif; ?>
+
+<script type="text/x-magento-init">
+    {
+        "[data-role=swatch-options]": {
+            "Magento_Swatches/js/swatch-renderer": {
+                "jsonConfig": <?= /* @escapeNotVerified */ $swatchOptions = $block->getJsonConfig() ?>,
+                "jsonSwatchConfig": <?php /* @noEscape */ echo $block->getJsonSwatchConfig(); ?>,
+                "mediaCallback": "<?= /* @escapeNotVerified */ $block->getMediaCallback() ?>",
+                "gallerySwitchStrategy": "<?php /* @escapeNotVerified */ echo $block->getVar('gallery_switch_strategy',
+                    'Magento_ConfigurableProduct') ?: 'replace'; ?>",
+                "sizeChartAttribute": "<?= /* @escapeNotVerified */ $attributeName ?>",
+                "sizeChartLink": "<?= /* @escapeNotVerified */ $sizeChar ?>",
+                "sizeChartLabel": "<?= /* @escapeNotVerified */ __('Size Chart') ?>"
+            },
+            "Magento_Swatches/js/configurable-customer-data": {
+                    "swatchOptions": <?php /* @noEscape */ echo $swatchOptions ?>
+            }
+        },
+        "*": {
+            "Magento_Swatches/js/rise-length-switch": "",
+            "BinaryAnvil_SizeChart/js/sizechart/popup": "",
+            "Magento_Swatches/js/add-to-cart-scroll": {
+                "addtocartButton": "#product-addtocart-button",
+                "addtocartForm": "#product_addtocart_form"
+            },
+            "Magento_Swatches/js/swatch-select": {
+                "swatchAttribute": ".swatch-attribute",
+                "swatchOption": ".swatch-attribute-options .swatch-option"
+            }
+        }
+    }
+</script>

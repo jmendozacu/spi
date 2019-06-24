@@ -1,0 +1,33 @@
+{
+  "name": "binaryanvil/module-ratings",
+  "description": "Binary Anvil Ratings",
+  "type": "magento2-module",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "Binary Anvil Team",
+      "homepage": "http://www.binaryanvil.com"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://packages.binaryanvil.tools"
+    }
+  ],
+  "require": {
+    "php": "~7.0.13|~7.1.0",
+    "magento/module-review": "100.2.*"
+  },
+  "config": {
+    "preferred-install": "dist"
+  },
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "BinaryAnvil\\Ratings\\": ""
+    }
+  }
+}

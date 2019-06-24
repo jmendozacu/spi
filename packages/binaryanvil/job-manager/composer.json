@@ -1,0 +1,35 @@
+{
+  "name": "binaryanvil/job-manager",
+  "description": "Binary Anvil Job Manager",
+  "type": "magento2-module",
+  "version": "1.1.2",
+  "license": [
+    "proprietary"
+  ],
+  "authors": [
+    {
+      "name": "Binary Anvil Team",
+      "homepage": "http://www.binaryanvil.com"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://packages.binaryanvil.tools/repo/private/"
+    }
+  ],
+  "require": {
+    "binaryanvil/base": "*"
+  },
+  "config": {
+    "preferred-install": "dist"
+  },
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "BinaryAnvil\\JobManager\\": ""
+    }
+  }
+}

@@ -1,0 +1,68 @@
+<?php
+/**
+ * Binary Anvil, Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Binary Anvil, Inc. Software Agreement
+ * that is bundled with this package in the file LICENSE_BAS.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.binaryanvil.com/software/license/
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@binaryanvil.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this software to
+ * newer versions in the future. If you wish to customize this software for
+ * your needs please refer to http://www.binaryanvil.com/software for more
+ * information.
+ *
+ * @category    BinaryAnvil
+ * @package     Infinity
+ * @copyright   Copyright (c) 2018-2019 Binary Anvil,Inc. (http://www.binaryanvil.com)
+ * @license     http://www.binaryanvil.com/software/license
+ */
+
+/** @var \BinaryAnvil\Customer\Block\AccountData $block */
+
+$savedAddress = $block->getSavedAddress();
+$savedAddressUrl = $block->getAddressEditUrl();
+$recentOrderData = $block->getRecentOrderData()
+?>
+
+<?php if ($savedAddress): ?>
+    <div class="container">
+        <div class="wrap">
+            <h2><?= $block->escapeHtml(__('Saved Address')) ?></h2>
+            <span><?= $savedAddress ?></span>
+            <button onclick="window.location.href='<?= $savedAddressUrl ?>'">
+                <span><?= $block->escapeHtml(__('Edit')) ?></span>
+            </button>
+        </div>
+    </div>
+<?php endif ?>
+
+<?= $block->getChildHtml('my_account_payments_data') ?>
+
+
+<div class="container">
+    <div class="wrap">
+        <h2><?= __('Recent Order')?></h2>
+        <?php if($recentOrderData): ?>
+            <span class="data"><?= $block->escapeHtml($recentOrderData['date']) ?></span><br />
+            <span class="order-number"><?= $block->escapeHtml(__('Order # %1', $recentOrderData['id'])) ?></span><br />
+            <span class="shipped"><?= $block->escapeHtml(__('Updated: %1', $recentOrderData['updated'])) ?></span><br />
+            <?php if($recentOrderData['status']) : ?>
+                <span class="shipped"><?= $block->escapeHtml(__('Status: %1', $recentOrderData['status'])) ?></span>
+            <?php endif; ?>
+            <button onclick="window.location.href='<?= $recentOrderData['url'] ?>'">
+                <span><?= $block->escapeHtml(__('Track Order')) ?></span>
+            </button>
+        <?php else:; ?>
+            <span class="info"><?= __('There is no order') ?></span>
+        <?php endif; ?>
+    </div>
+</div>

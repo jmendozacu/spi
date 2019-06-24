@@ -1,0 +1,245 @@
+<?php
+/**
+ * Binary Anvil, Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Binary Anvil, Inc. Software Agreement
+ * that is bundled with this package in the file LICENSE_BAS.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.binaryanvil.com/software/license/
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@binaryanvil.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this software to
+ * newer versions in the future. If you wish to customize this software for
+ * your needs please refer to http://www.binaryanvil.com/software for more
+ * information.
+ *
+ * @category    BinaryAnvil
+ * @package     Infinity
+ * @copyright   Copyright (c) 2018-2019 Binary Anvil,Inc. (http://www.binaryanvil.com)
+ * @license     http://www.binaryanvil.com/software/license
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Catalog\Block\Product\View */
+?>
+<?php $_product = $block->getProduct(); ?>
+<?php $buttonTitle = __('Add to Bag'); ?>
+<?php if ($_product->isSaleable()): ?>
+<div class="box-tocart">
+    <div class="fieldset">
+        <?php if ($block->shouldRenderQuantity()): ?>
+        <div class="field qty">
+            <div class="control">
+                <span class="product-cart-control product-cart-control-minus-qty minus" title="<?= /* @escapeNotVerified */ __('Decrease Quantity') ?>"><?= /* @escapeNotVerified */ __('-') ?></span>
+                <label class="label" for="qty"><span><?= /* @escapeNotVerified */ __('Qty') ?></span></label>
+                <input type="number"
+                       name="qty"
+                       id="qty"
+                       value="<?= /* @escapeNotVerified */ $block->getProductDefaultQty() * 1 ?>"
+                       title="<?= /* @escapeNotVerified */ __('Qty') ?>"
+                       class="input-text qty"
+                       data-validate="<?= $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
+                       max="9999"
+                       />
+                <span class="product-cart-control product-cart-control-add-qty plus" title="<?= /* @escapeNotVerified */ __('Increase Quantity') ?>"><?= /* @escapeNotVerified */ __('+') ?></span>
+            </div>
+        </div>
+        <?php endif; ?>
+        <div class="actions">
+            <button type="submit"
+                    title="<?= /* @escapeNotVerified */ $buttonTitle ?>"
+                    class="action primary tocart"
+                    id="product-addtocart-button">
+                <span><?= /* @escapeNotVerified */ $buttonTitle ?></span>
+            </button>
+            <?php if ($this->helper('Magento\Wishlist\Helper\Data')->isAllow()): ?>
+                <a href="#"
+                   data-post='<?php /* @escapeNotVerified */ echo $block->getAddToWishlistParams($_product); ?>'
+                   class="action towishlist" data-action="add-to-wishlist"
+                   title="<?php /* @escapeNotVerified */ echo __('Add to Wish List') ?>">
+                    <span><?php /* @escapeNotVerified */ echo __('Add to Wish List') ?></span>
+                </a>
+            <?php endif; ?>
+            <?= $block->getChildHtml('', true) ?>
+        </div>
+    </div>
+</div>
+<?php endif; ?>
+<script type="text/x-magento-init">
+    {
+        "#product_addtocart_form": {
+            "Magento_Catalog/js/validate-product": {
+                 "catalogAddToCart": {
+                    "addToCartButtonTextDefault": "Add"
+                }
+            }
+        }
+    }
+</script>
+<script>
+    require(['jquery', 'qtyHandlerCatalog'], function($) {
+        $(function() {
+            qtyHandler(".catalog-product-view", ".product-cart-control-minus-qty", ".product-cart-control-add-qty");
+        });
+    });
+</script>
+
+<script>
+    require(['jquery',
+        'matchMedia',
+        'jquery/ui',
+        'jquery/validate',
+        'mage/translate',
+        'Magento_Swatches/js/swatch-renderer',
+        'domReady!'
+    ], function($, mediaCheck) {
+        $(function() {
+            var cloneForm = '.product-add-form',
+                clickByForm = $(cloneForm),
+                form = $('#product_addtocart_form'),
+                image = $('.product.media'),
+                swatchLength = 'is_apparel_rise_length',
+                swatchWidth = 'is_footwear_width',
+                errorMessage;
+
+            mediaCheck({
+                media: '(max-width: 767px)',
+                entry: function () {
+
+                    form.on('checkValidationFalse', function() {
+                        var textFiled = $('.product-add-form > .is_apparel_rise_length .super-attribute-select, .product-add-form > .is_footwear_width .super-attribute-select');
+
+                        if (!errorMessage) {
+                            errorMessage = true;
+                            textFiled.addClass('mage-error');
+                            textFiled.after($('<div class="mage-error" generated="true">This is a required field.</div>'));
+                        }
+                    });
+
+                    form.on('checkValidationTrue', function() {
+                        var textFiled = $('.product-add-form > .is_apparel_rise_length .super-attribute-select, .product-add-form > .is_footwear_width .super-attribute-select');
+
+                        if (errorMessage) {
+                            errorMessage = false;
+                            textFiled.removeClass('mage-error');
+                            textFiled.next('.mage-error').remove();
+                        }
+                    });
+
+                    $(document).on('swatch.initialized', function() {
+                        var length =  $('.swatch-attribute.is_apparel_rise_length, .swatch-attribute.is_footwear_width');
+                        length.clone().prependTo($('.product-add-form'));
+                        length.find('.swatch-option:first-child').trigger('emulateClick');
+                    });
+
+                    clickByForm.on('click', '.swatch-attribute-label', function(e) {
+                        var parent = $(this).parent(),
+                            additionalName = $('<div class="attribute-label-name"></div>'),
+                            additionalClose = $('<div class="attribute-label-close"></div>'),
+                            AdditionalWrapper = $('<div class="additional-wrapper"></div>'),
+                            wrapper = $('.swatch-attribute-options'),
+                            sizeChartLink = $('#size-chart-link');
+
+                        if(!(wrapper[0].childNodes[0].className === 'additional-wrapper')) {
+                            additionalName.html(e.target.childNodes[0].nodeValue);
+                            additionalClose.html();
+                            AdditionalWrapper.prepend(additionalName);
+                            AdditionalWrapper.prepend(additionalClose);
+                            wrapper.prepend(AdditionalWrapper);
+                        } else {
+                            $('.attribute-label-name').html(e.target.childNodes[0].nodeValue);
+                        }
+
+
+                        if(parent.hasClass(swatchLength) || parent.hasClass(swatchWidth)) {
+                            parent.toggleClass('active');
+                        } else if ( !parent.hasClass('active') && (!parent.hasClass(swatchLength) && !parent.hasClass(swatchWidth)) ){
+                            var $activeSwatchAttribute = $(this).siblings('.swatch-attribute-options'),
+                                $productOptionsWrapper = $('#product-options-wrapper');
+
+                            sizeChartLinkBottom = $activeSwatchAttribute.outerHeight() + $productOptionsWrapper.outerHeight() - 21;
+                            sizeChartLinkLeft = $(this).outerWidth();
+                            sizeChartLink.css({
+                                'bottom': sizeChartLinkBottom,
+                                'left': sizeChartLinkLeft
+                            });
+                            parent.addClass('active')
+                                .siblings()
+                                .removeClass('active');
+                        } else {
+                            parent.removeClass('active');
+                        }
+                    });
+
+                    $(document).on('click', function(e) {
+                        var target = e.target;
+
+                        if ($(target)[0].classList.value === 'attribute-label-close') {
+                            $('.swatch-opt .swatch-attribute').removeClass('active');
+                        }
+
+                        if (!$(e.target).closest("#product_addtocart_form").length) {
+                            $('.swatch-opt .swatch-attribute').removeClass('active');
+                        }
+                        e.stopPropagation();
+                    });
+
+                    clickByForm.on('click', '.swatch-option', function(e) {
+                        var wrapper = $(this).parent().parent(),
+                            swatchLabel =  wrapper.find('.swatch-attribute-label'),
+                            tabTitle = wrapper.parent().find('.swatch-attribute');
+
+                        if (wrapper.hasClass(swatchLength) || wrapper.hasClass(swatchWidth)) {
+                            var optionId = $(this)[0].attributes['option-id'].nodeValue,
+                                nativeOption = $('div[option-id='+ optionId +']'),
+                                labelName = wrapper.find('.swatch-attribute-label'),
+                                target = e.target,
+                                nativeOptionParent = nativeOption.parent();
+
+                            labelName.text(target.textContent);
+                            $('form  .is_apparel_rise_length .swatch-attribute-label, form .is_footwear_width .swatch-attribute-label').text(target.textContent);
+
+                            if(labelName.text !== 'Rise Length' || labelName.text !== 'Width') {
+                                nativeOptionParent.parent().find('.mage-error').remove();
+                            }
+
+                            nativeOption.siblings().removeClass('selected').attr('aria-checked', false);
+                            nativeOption.trigger('emulateClick');
+                            nativeOption.addClass('selected').attr('aria-checked',true);
+                            nativeOptionParent.next().attr('data-attr-name', wrapper[0].attributes['attribute-code'].value);
+                            nativeOptionParent.attr('aria-labelledby', nativeOption.attr('aria-describedby')).attr('aria-activedescendant',  nativeOption.attr('id'));
+                            tabTitle.removeClass('active');
+
+                        } else {
+                            $('.product-add-form > .is_apparel_rise_length, .product-add-form > .is_footwear_width').remove();
+                            var length =  $('.swatch-attribute.is_apparel_rise_length, .swatch-attribute.is_footwear_width');
+                            length.clone().prependTo($('.product-add-form'));
+                            tabTitle.siblings().removeClass('active');
+                        }
+
+                        if($(this).hasClass('selected')) {
+                            swatchLabel.css('background-image', $(this)[0].style.backgroundImage);
+                        } else {
+                            swatchLabel.css('background-image', 'none');
+                        }
+                    });
+                },
+                exit: function () {
+                    form.off('checkValidationFalse');
+                    form.off('checkValidationTrue');
+                    $(document).off('swatch.initialized');
+                    image.off('click');
+                    clickByForm.off('click');
+                }
+            });
+        });
+    });
+</script>

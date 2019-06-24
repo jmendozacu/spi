@@ -1,0 +1,114 @@
+<?php
+/**
+ * Binary Anvil, Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Binary Anvil, Inc. Software Agreement
+ * that is bundled with this package in the file LICENSE_BAS.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.binaryanvil.com/software/license/
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@binaryanvil.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this software to
+ * newer versions in the future. If you wish to customize this software for
+ * your needs please refer to http://www.binaryanvil.com/software for more
+ * information.
+ *
+ * @category    BinaryAnvil
+ * @package     LayeredNavigation
+ * @copyright   Copyright (c) 2018-2019 Binary Anvil,Inc. (http://www.binaryanvil.com)
+ * @license     http://www.binaryanvil.com/software/license
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \BinaryAnvil\LayeredNavigation\Block\LayeredNavigation\RenderLayered */
+?>
+<?php $swatchData = $block->getSwatchData(); ?>
+<?php $allPrintLink = $block->getAllPrintLink() ?>
+<div class="swatch-attribute swatch-layered <?= /* @escapeNotVerified */ $swatchData['attribute_code'] ?>"
+     attribute-code="<?= /* @escapeNotVerified */ $swatchData['attribute_code'] ?>"
+     attribute-id="<?= /* @escapeNotVerified */ $swatchData['attribute_id'] ?>">
+    <div class="title clearfix"><p><b><?=  __('Solid Colors'); ?></p></b></div>
+    <div class="swatch-attribute-options clearfix">
+        <?php foreach ($swatchData['options'] as $option => $label): ?>
+            <?php if($block->checkCustomViewOption($option)): ?>
+                <?php continue; ?>
+            <?php endif; ?>
+            <a href="<?= /* @escapeNotVerified */ $label['link'] ?>"
+               aria-label="<?= /* @escapeNotVerified */ $label['label'] ?>"
+               class="swatch-option-link-layered <?= $label['active'] ? 'active' : '' ?>">
+                <?php if (isset($swatchData['swatches'][$option]['type'])) { ?>
+                    <?php switch ($swatchData['swatches'][$option]['type']) {
+                        case '3':
+                            ?>
+                            <div class="swatch-option <?= /* @escapeNotVerified */ $label['custom_style'] ?>"
+                                 tabindex="-1"
+                                 option-type="3"
+                                 option-id="<?= /* @escapeNotVerified */ $option ?>"
+                                 option-label="<?= /* @escapeNotVerified */ $label['label'] ?>"
+                                 option-tooltip-thumb=""
+                                 option-tooltip-value=""
+                                ></div>
+                            <?php    break;
+                        case '2':
+                            ?>
+                            <?php $swatchThumbPath = $block->getSwatchPath('swatch_thumb',
+                            $swatchData['swatches'][$option]['value']); ?>
+                            <?php $swatchImagePath = $block->getSwatchPath('swatch_image',
+                            $swatchData['swatches'][$option]['value']); ?>
+                            <div class="swatch-option image <?= /* @escapeNotVerified */ $label['custom_style'] ?>"
+                                 tabindex="-1"
+                                 option-type="2"
+                                 option-id="<?= /* @escapeNotVerified */ $option ?>"
+                                 option-label="<?= /* @escapeNotVerified */ $label['label'] ?>"
+                                 option-tooltip-thumb="<?= /* @escapeNotVerified */ $swatchThumbPath ?>"
+                                 option-tooltip-value=""
+                                 style="background: url(<?= /* @escapeNotVerified */ $swatchImagePath ?>) no-repeat center; background-size: initial;"></div>
+                            <?php    break;
+                        case '1':
+                            ?>
+                            <div class="swatch-option color <?= /* @escapeNotVerified */ $label['custom_style'] ?>"
+                                 tabindex="-1"
+                                 option-type="1"
+                                 option-id="<?= /* @escapeNotVerified */ $option ?>"
+                                 option-label="<?= /* @escapeNotVerified */ $label['label'] ?>"
+                                 option-tooltip-thumb=""
+                                 option-tooltip-value="<?= /* @escapeNotVerified */ $swatchData['swatches'][$option]['value'] ?>"
+                                 style="background: <?= /* @escapeNotVerified */ $swatchData['swatches'][$option]['value'] ?> no-repeat center; background-size: initial;"></div>
+                            <?php    break;
+                        case '0':
+                        default:
+                            ?>
+                                <div class="swatch-option text <?= /* @escapeNotVerified */ $label['custom_style'] ?>"
+                                     tabindex="-1"
+                                     option-type="0"
+                                     option-id="<?= /* @escapeNotVerified */ $option ?>"
+                                     option-label="<?= /* @escapeNotVerified */ $label['label'] ?>"
+                                     option-tooltip-thumb=""
+                                     option-tooltip-value=""
+                                    ><?= /* @escapeNotVerified */ $swatchData['swatches'][$option]['value'] ?></div>
+                            <?php    break;
+                    } ?>
+                <?php } ?>
+            </a>
+        <?php endforeach; ?>
+    </div>
+    <div class="all-print">
+        <a href="<?= /* @escapeNotVerified */ $allPrintLink['link'] ?>"><span class="<?= /* @escapeNotVerified */ $allPrintLink['active'] ? 'active' : ''?>"><?= /* @escapeNotVerified */ __($allPrintLink['label']); ?></span></a>
+    </div>
+</div>
+
+<script>
+    require(["jquery", "jquery/ui", "Magento_Swatches/js/swatch-renderer"], function ($) {
+        $('.swatch-layered.<?= /* @escapeNotVerified */ $swatchData['attribute_code'] ?>')
+            .find('[option-type="1"], [option-type="2"], [option-type="0"], [option-type="3"]')
+            .SwatchRendererTooltip();
+    });
+</script>

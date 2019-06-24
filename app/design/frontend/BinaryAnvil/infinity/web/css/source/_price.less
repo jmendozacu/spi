@@ -1,0 +1,98 @@
+/**
+ * Binary Anvil, Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Binary Anvil, Inc. Software Agreement
+ * that is bundled with this package in the file LICENSE_BAS.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.binaryanvil.com/software/license/
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@binaryanvil.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this software to
+ * newer versions in the future. If you wish to customize this software for
+ * your needs please refer to http://www.binaryanvil.com/software for more
+ * information.
+ *
+ * @category    BinaryAnvil
+ * @package     Infinity
+ * @copyright   Copyright (c) 2017-2018 Binary Anvil,Inc. (http://www.binaryanvil.com)
+ * @license     http://www.binaryanvil.com/software/license
+ */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    //  Prices
+    .price-style-1() {
+        .price {
+            &-tier_price .price-excluding-tax,
+            &-tier_price .price-including-tax {
+                display: inline;
+            }
+        }
+    }
+
+    .price-style-2() {
+        .price {
+            &-including-tax,
+            &-excluding-tax {
+                display: inline !important;
+            }
+
+            &-including-tax:before {
+                content: ' / ';
+            }
+
+            &-including-tax:after {
+                content: '('attr(data-label)')';
+            }
+        }
+    }
+
+    .price-style-3() {
+        .price-including-tax,
+        .price-excluding-tax {
+            display: block;
+            .lib-font-size(18);
+            line-height: 1;
+
+            .price {
+                font-weight: @font-weight__regular;
+            }
+
+            .cart-tax-total {
+                &:extend(.abs-tax-total all);
+                &-expanded {
+                    &:extend(.abs-tax-total-expanded all);
+                }
+            }
+        }
+
+        .price-including-tax + .price-excluding-tax,
+        .weee[data-label] {
+            display: block;
+            .lib-font-size(18);
+
+            &:before {
+                content: attr(data-label) ': ';
+                .lib-font-size(11);
+            }
+
+            .price {
+                .lib-font-size(11);
+            }
+        }
+    }
+
+    .price-style-1();
+    .price-style-3();
+}

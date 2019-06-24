@@ -1,0 +1,108 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Binary Anvil, Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Binary Anvil, Inc. Software Agreement
+ * that is bundled with this package in the file LICENSE_BAS.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.binaryanvil.com/software/license/
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@binaryanvil.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this software to
+ * newer versions in the future. If you wish to customize this software for
+ * your needs please refer to http://www.binaryanvil.com/software for more
+ * information.
+ *
+ * @category    BinaryAnvil
+ * @package     Infinity
+ * @copyright   Copyright (c) 2018-2019 Binary Anvil,Inc. (http://www.binaryanvil.com)
+ * @license     http://www.binaryanvil.com/software/license
+ */
+-->
+<view xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Config/etc/view.xsd">
+    <media>
+        <images module="Magento_Catalog">
+            <image id="mini_cart_product_thumbnail" type="thumbnail">
+                <width>130</width>
+                <height>130</height>
+            </image>
+            <image id="cart_page_product_thumbnail" type="small_image">
+                <width>155</width>
+                <height>225</height>
+            </image>
+            <image id="new_products_content_widget_grid" type="small_image">
+                <width>380</width>
+                <height>490</height>
+            </image>
+
+            <image id="swatch_image" type="swatch_image">
+                <width>70</width>
+                <height>70</height>
+            </image>
+            <image id="swatch_thumb" type="swatch_thumb">
+                <width>110</width>
+                <height>90</height>
+            </image>
+            <image id="swatch_image_base" type="swatch_image">
+                <width>70</width>
+                <height>70</height>
+            </image>
+            <image id="swatch_thumb_base" type="swatch_thumb">
+                <width>110</width>
+                <height>90</height>
+            </image>
+            <image id="category_page_grid" type="small_image">
+                <width>380</width>
+                <height>490</height>
+            </image>
+            <image id="product_page_image_small" type="thumbnail">
+                <width>150</width>
+                <height>190</height>
+            </image>
+            <image id="wishlist_thumbnail" type="small_image">
+                <width>380</width>
+                <height>490</height>
+            </image>
+        </images>
+    </media>
+    <vars module="Magento_Catalog">
+
+        <!-- Gallery and magnifier theme settings. Start -->
+        <var name="gallery">
+            <var name="allowfullscreen">false</var> <!-- Turn on/off fullscreen (true/false) -->
+            <var name="allowfullscreen">true</var> <!-- Turn on/off fullscreen (true/false) -->
+            <var name="arrows">false</var> <!-- Turn on/off arrows on the sides preview in fullscreen (true/false/null) -->
+            <var name="navarrows">false</var> <!-- Turn on/off on the thumbs navigation sides arrows(true/false) -->
+
+            <var name="fullscreen">
+                <var name="arrows">false</var> <!-- Turn on/off arrows on the sides preview in fullscreen (true/false/null) -->
+                <var name="navarrows">false</var> <!-- Turn on/off on the thumbs navigation sides arrows(true/false) -->
+            </var>
+        </var>
+
+        <var name="breakpoints">
+            <var name="mobile">
+                <var name="conditions">
+                    <var name="max-width">767px</var>
+                </var>
+                <var name="options">
+                    <var name="options">
+                        <var name="allowfullscreen">false</var> <!-- Turn on/off fullscreen (true/false) -->
+                    </var>
+                </var>
+            </var>
+        </var>
+        <!-- end. Gallery and magnifier theme settings -->
+    </vars>
+    <vars module="Magento_ConfigurableProduct">
+        <var name="gallery_switch_strategy">replace</var>
+    </vars>
+</view>

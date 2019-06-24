@@ -1,0 +1,464 @@
+/**
+ * Binary Anvil, Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Binary Anvil, Inc. Software Agreement
+ * that is bundled with this package in the file LICENSE_BAS.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.binaryanvil.com/software/license/
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@binaryanvil.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this software to
+ * newer versions in the future. If you wish to customize this software for
+ * your needs please refer to http://www.binaryanvil.com/software for more
+ * information.
+ *
+ * @category    BinaryAnvil
+ * @package     JobManager
+ * @copyright   Copyright (c) 2016-present Binary Anvil,Inc. (http://www.binaryanvil.com)
+ * @license     http://www.binaryanvil.com/software/license
+ */
+
+/****************************
+ * Vars
+ ****************************/
+@background-highest: #ecc8c8;
+@background-high: #fbd7c4;
+@background-medium: #faefc8;
+@background-low:  #bbe1f0;
+@background-lowest: #cff0ff;
+
+@color-highest: #bf4953;
+@color-high: #f17a3b;
+@color-medium: #cf975a;
+@color-low:  #2787aa;
+@color-lowest: #69c0e0;
+
+@background-error: @background-highest;
+@color-error: @color-highest;
+@background-executed: #d8edd2;
+@color-executed: #3e884b;
+@background-pending: @background-low;
+@color-pending: @color-low;
+@background-running: @background-medium;
+@color-running: @color-medium;
+
+@table-border-color: #dee2e6;
+
+.jobmanager-text-center {
+  text-align: center !important;
+}
+
+@meter-height: 25px;
+
+.qs-clearfix { display:block; content:"."; clear:both; font-size:0; line-height:0; height:0; overflow:hidden; }
+
+/****************************
+ * Priority
+ ****************************/
+.jobmanager-priority-highest {
+  background-color: @background-highest !important;
+  color: @color-highest !important;
+  .jobmanager-text-center;
+}
+.jobmanager-priority-high {
+  background-color: @background-high !important;
+  color: @color-high !important;
+  .jobmanager-text-center;
+}
+.jobmanager-priority-medium {
+  background-color: @background-medium !important;
+  color: @color-medium !important;
+  .jobmanager-text-center;
+}
+.jobmanager-priority-low {
+  background-color: @background-low !important;
+  color: @color-low !important;
+  .jobmanager-text-center;
+}
+.jobmanager-priority-lowest {
+  background-color: @background-lowest !important;
+  color: @color-lowest !important;
+  .jobmanager-text-center;
+}
+
+/****************************
+ * Status
+ ****************************/
+.jobmanager-status-error {
+  background-color: @background-error !important;
+  color: @color-error !important;
+  .jobmanager-text-center;
+}
+.jobmanager-status-executed {
+  background-color: @background-executed !important;
+  color: @color-executed !important;
+  .jobmanager-text-center;
+}
+.jobmanager-status-pending {
+  background-color: @background-pending !important;
+  color: @color-pending !important;
+  .jobmanager-text-center;
+}
+.jobmanager-status-running {
+  background-color: @background-running !important;
+  color: @color-running !important;
+  .jobmanager-text-center;
+}
+
+/****************************
+ * Messages type
+ ****************************/
+.job-history {
+  span.jobhitory-message {
+    display: inline-block;
+    padding: 5px 20px;
+    border-radius: 4px;
+    font-weight: bold;
+  }
+  .jobhitory-message-error {
+    background-color: @background-error;
+    color: @color-error;
+    .jobmanager-text-center;
+  }
+  .jobhitory-message-success {
+    background-color: @background-executed;
+    color: @color-executed;
+    .jobmanager-text-center;
+  }
+  .jobhitory-message-notice {
+    background-color: @background-medium;
+    color: @color-medium;
+    .jobmanager-text-center;
+  }
+  .jobhitory-message-request {
+    background-color: @background-low;
+    color: @color-low;
+    .jobmanager-text-center;
+  }
+  .jobhitory-message-response {
+    background-color: @background-lowest;
+    color: @color-lowest;
+    .jobmanager-text-center;
+  }
+  .thead-dark {
+    th {
+      color: #fff;
+      background-color: #000;
+      border-color: #000;
+    }
+  }
+  th, td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 2px solid @table-border-color;
+    vertical-align: top;
+    &.msg {
+      text-align: left;
+      pre {
+        margin: 0;
+        display: block;
+        white-space: pre-wrap;
+        padding: 10px 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background: #eee;
+        overflow: auto;
+        max-height: 800px;
+      }
+    }
+    &.nowrap {
+      white-space: nowrap;
+    }
+  }
+
+  width:100%;
+  max-width: 100%;
+}
+
+/****************************
+ * Grid
+ ****************************/
+.data-grid-cell-content .has-error {
+  display: inline-block;
+  margin-left: 5px;
+  color: #be4a4c;
+}
+
+/****************************
+ * Quick stats
+ ****************************/
+.quick-stats {
+  .quick-stats-container {
+    position: relative;
+    &:after {
+      .qs-clearfix;
+    }
+    h3 {
+      line-height: @meter-height;
+      position: absolute;
+      font-size: 1.4rem;
+    }
+  }
+  .quick-stats-block {
+    margin-left: 70px;
+    margin-bottom: 15px;
+    &:after {
+      .qs-clearfix;
+    }
+  }
+  .quick-stats-segment {
+    float: left;
+    position: relative;
+  }
+
+  .quick-stats-meter {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    background: #eee;
+    height: @meter-height;
+    -webkit-transition: 0.4s linear;
+    -moz-transition: 0.4s linear;
+    -ms-transition: 0.4s linear;
+    -o-transition: 0.4s linear;
+    transition: 0.4s linear;
+    -webkit-transition-property: width, background-color;
+    -moz-transition-property: width, background-color;
+    -ms-transition-property: width, background-color;
+    -o-transition-property: width, background-color;
+    transition-property: width, background-color;
+  }
+
+  .quick-stats-meter-title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-weight: bold;
+    font-size: 0.7rem;
+  }
+
+  .quick-stats-meter-title span {
+    display: block;
+    padding: 0 6px;
+    height: @meter-height;
+    line-height: @meter-height;
+  }
+
+  .quick-stats-meter-bar {
+    height: @meter-height;
+    width: 0;
+    border-radius: 0;
+  }
+
+  .quick-stats-meter-percent {
+    position: absolute;
+    right: 5px;
+    bottom: 4px;
+    font-size: 1rem;
+    height: auto;
+    line-height: 1rem;
+    color: rgba(0, 0, 0, 0.4);
+    min-width: 50px;
+    text-align: right;
+  }
+
+  .quick-stats-tooltip {
+    font-size: 0.7rem;
+    position: absolute;
+    top:0;
+    padding: 2px 5px;
+  }
+
+  .quick-stats-hint {
+    width: 130px;
+    z-index: 1;
+    height: @meter-height;
+    padding: 5px;
+    position: absolute;
+    top: -@meter-height;
+    left: 50%;
+    margin-left: -65px;
+    display: none;
+    font-size: 0.9rem;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .meter-priority-highest {
+    .quick-stats-meter-bar, .quick-stats-hint {
+      background-color: @background-highest;
+      color: @color-highest;
+    }
+    .quick-stats-tooltip {
+      color: darken(@color-highest, 10%);
+    }
+    .quick-stats-meter-title {
+      background-color: darken(@background-highest, 10%);
+      color: darken(@color-highest, 10%);
+    }
+  }
+  .meter-priority-high {
+    .quick-stats-meter-bar, .quick-stats-hint {
+      background-color: @background-high;
+      color: @color-high;
+    }
+    .quick-stats-tooltip {
+      color: darken(@color-high, 10%);
+    }
+    .quick-stats-meter-title {
+      background-color: darken(@background-high, 10%);
+      color: darken(@color-high, 10%);
+    }
+  }
+  .meter-priority-medium {
+    .quick-stats-meter-bar, .quick-stats-hint {
+      background-color: @background-medium;
+      color: @color-medium;
+    }
+    .quick-stats-tooltip {
+      color: darken(@color-medium, 10%);
+    }
+    .quick-stats-meter-title {
+      background-color: darken(@background-medium, 10%);
+      color: darken(@color-medium, 10%);
+    }
+  }
+  .meter-priority-low {
+    .quick-stats-meter-bar, .quick-stats-hint {
+      background-color: @background-low;
+      color: @color-low;
+    }
+    .quick-stats-tooltip {
+      color: darken(@color-low, 10%);
+    }
+    .quick-stats-meter-title {
+      background-color: darken(@background-low, 10%);
+      color: darken(@color-low, 10%);
+    }
+  }
+  .meter-priority-lowest {
+    .quick-stats-meter-bar, .quick-stats-hint {
+      background-color: @background-lowest;
+      color: @color-lowest;
+    }
+    .quick-stats-tooltip {
+      color: darken(@color-lowest, 10%);
+    }
+    .quick-stats-meter-title {
+      background-color: darken(@background-lowest, 10%);
+      color: darken(@color-lowest, 10%);
+    }
+    .quick-stats-hint {
+      color: darken(@color-lowest, 10%);
+    }
+  }
+
+  .meter-status-pending {
+    .quick-stats-meter-bar, .quick-stats-hint {
+      background-color: @background-pending;
+      color: @color-pending;
+    }
+    .quick-stats-tooltip {
+      color: darken(@color-pending, 10%);
+    }
+    .quick-stats-meter-title {
+      background-color: darken(@background-pending, 10%);
+      color: darken(@color-pending, 10%);
+    }
+  }
+  .meter-status-running {
+    .quick-stats-meter-bar, .quick-stats-hint {
+      background-color: @background-running;
+      color: @color-running;
+    }
+    .quick-stats-tooltip {
+      color: darken(@color-running, 10%);
+    }
+    .quick-stats-meter-title {
+      background-color: darken(@background-running, 10%);
+      color: darken(@color-running, 10%);
+    }
+  }
+  .meter-status-executed {
+    .quick-stats-meter-bar, .quick-stats-hint {
+      background-color: @background-executed;
+      color: @color-executed;
+    }
+    .quick-stats-tooltip {
+      color: darken(@color-executed, 10%);
+    }
+    .quick-stats-meter-title {
+      background-color: darken(@background-executed, 10%);
+      color: darken(@color-executed, 10%);
+    }
+  }
+  .meter-status-error {
+    .quick-stats-meter-bar, .quick-stats-hint {
+      background-color: @background-error;
+      color: @color-error;
+    }
+    .quick-stats-tooltip {
+      color: darken(@color-error, 10%);
+    }
+    .quick-stats-meter-title {
+      background-color: darken(@background-error, 10%);
+      color: darken(@color-error, 10%);
+    }
+  }
+
+  &:after {
+    .qs-clearfix;
+  }
+}
+
+/****************************
+ * View Job
+ ****************************/
+.jobmanager-view-job {
+  .col2-set {
+    ul {
+      &.col-1 {
+        width:45%;
+        float: left;
+      }
+      &.col-2 {
+        width:45%;
+        float: right;
+      }
+      list-style-type: none;
+      margin: 0 30px 30px;
+      li {
+        margin: 10px 15px;
+      }
+    }
+    &:after {
+      .qs-clearfix;
+    }
+  }
+  span.jobmanager-statuses, span.jobmanager-priorities {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: bold;
+  }
+  .jobmanager-job-details {
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #eee;
+    overflow: auto;
+    max-height: 800px;
+  }
+}
+.job-manager-status-cell-tooltip {
+  .lib-tooltip(left);
+}

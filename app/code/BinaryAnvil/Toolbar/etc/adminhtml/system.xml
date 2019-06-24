@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Binary Anvil, Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Binary Anvil, Inc. Software Agreement
+ * that is bundled with this package in the file LICENSE_BAS.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.binaryanvil.com/software/license/
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@binaryanvil.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this software to
+ * newer versions in the future. If you wish to customize this software for
+ * your needs please refer to http://www.binaryanvil.com/software for more
+ * information.
+ *
+ * @category    BinaryAnvil
+ * @package     BinaryAnvil_Toolbar
+ * @copyright   Copyright (c) 2018-2019 Binary Anvil,Inc. (http://www.binaryanvil.com)
+ * @license     http://www.binaryanvil.com/software/license
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="binaryanvil_toolbar" translate="label" type="text" sortOrder="65"
+                 showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Toolbar</label>
+            <tab>binaryanvil</tab>
+            <resource>BinaryAnvil_Toolbar::binaryanvil_toolbar</resource>
+            <group id="sort_by" translate="label" type="text" sortOrder="10"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Sort By</label>
+                <field id="action" translate="label" type="select" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Action</label>
+                    <source_model>BinaryAnvil\Toolbar\Model\Config\Source\Action</source_model>
+                </field>
+                <field id="insert" translate="label" type="select" sortOrder="20"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Insert</label>
+                    <source_model>BinaryAnvil\Toolbar\Model\Config\Source\Insert</source_model>
+                    <depends>
+                        <field id="action">1</field>
+                    </depends>
+                </field>
+                <field id="options" translate="label" type="multiselect" sortOrder="30"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Options</label>
+                    <source_model>BinaryAnvil\Toolbar\Model\Config\Source\SortBy</source_model>
+                    <depends>
+                        <field id="action" separator=",">1,2</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

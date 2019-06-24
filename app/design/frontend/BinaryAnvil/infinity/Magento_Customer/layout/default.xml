@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Binary Anvil, Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Binary Anvil, Inc. Software Agreement
+ * that is bundled with this package in the file LICENSE_BAS.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.binaryanvil.com/software/license/
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@binaryanvil.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this software to
+ * newer versions in the future. If you wish to customize this software for
+ * your needs please refer to http://www.binaryanvil.com/software for more
+ * information.
+ *
+ * @category    BinaryAnvil
+ * @package     Infinity
+ * @copyright   Copyright (c) 2017-2018 Binary Anvil,Inc. (http://www.binaryanvil.com)
+ * @license     http://www.binaryanvil.com/software/license
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="register-link" remove="true" />
+
+        <container name="head.container" htmlTag="div" htmlClass="header-container" />
+        <move element="head.container"  destination="header-wrapper" after="logo" />
+        <move element="page.main.title" destination="columns" before="-"/>
+
+        <container name="account.info" htmlTag="div" htmlClass="account info" />
+        <move element="account.info"  destination="head.container" after="logo" />
+
+        <move element="header.panel" destination="account.info" />
+        <move element="minicart" destination="account.info" after="header.panel" />
+        <move element="top.search" destination="account.info" after="-" />
+        <referenceBlock name="catalog.compare.link" remove="true" />
+
+        <move element="logo" destination="head.container" />
+
+        <block class="Magento\Framework\View\Element\Template" name="header.wishlist" template="Magento_Customer::header-wishlist.phtml" />
+        <move element="header.wishlist" destination="account.info" after="minicart" />
+
+        <referenceBlock name="customer">
+            <block class="BinaryAnvil\InfinityTheme\Block\Customer\Form\Login" name="customer_form_login_popup" template="Magento_Customer::form/login.phtml">
+                <block class="BinaryAnvil\FederationFacebook\Block\Facebook" name="federation.facebook.button.popup" as="federation.facebook.button"
+                       template="BinaryAnvil_FederationFacebook::facebook.phtml"/>
+                <container name="form.additional.info" as="form_additional_info"/>
+            </block>
+        </referenceBlock>
+
+    </body>
+</page>

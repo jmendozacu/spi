@@ -1,0 +1,316 @@
+//
+//  Common
+//  _____________________________________________
+
+// TODO: Note: Maintain 3-level nesting. Remove this comment after.
+& when (@media-common = true) {
+    .cms-lookbook {
+        padding: 0;
+        margin: 0;
+        font-family: "ProximaNova","Helvetica Neue",Helvetica,Arial,sans-serif;
+        -webkit-font-smoothing: antialiased;
+
+        h1 {
+            font-family: "ProximaNova","Helvetica Neue",Helvetica,Arial,sans-serif;
+        }
+
+        img {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        img {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .column.main p {
+            margin-bottom: 0;
+            font-weight: 600;
+            font-size: 1.2em;
+        }
+
+        .flex-col {
+            flex: 1 0 auto;
+        }
+        .flex-col .flex-col {
+            flex: 1;
+        }
+
+        .flex-30 {
+            flex:30%;
+        }
+        .flex-40 {
+            flex: 40%;
+        }
+        .flex-50 {
+            flex:50%;
+        }
+        .flex-60 {
+            flex: 60%;
+        }
+        .flex-70 {
+            flex:70%;
+        }
+
+        .flex-col.has-child {
+            display: flex;
+        }
+
+        .hero,
+        .women-row,
+        .men-row,
+        .limited-row{
+            margin-bottom: 80px;
+        }
+        /*
+        Hero
+        */
+        .hero {
+            background: url(https://i.infinityscrubs.com/infinity/images/lookbook/hero_bg.png) center right no-repeat;
+            display: flex;
+            padding: 50px 0;
+        }
+
+        .hero img.img-responsive {
+            width: 100%;
+            max-width: 475px;
+        }
+
+        .hero .flex-col.has-child {
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero > .flex-col > .flex-col:first-child {
+            margin-right: 10px;
+        }
+
+        /*
+        Hero Text
+        */
+        .hero-txt {
+            background: #fff;
+            max-width: 600px;
+            width: 100%;
+            padding: 65px 0;
+            text-align: center;
+        }
+        .txt-teal.txt-uppercase {
+            font-weight: 800;
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        /*
+        Women's Row
+        */
+        .women-bg {
+            position: relative;
+        }
+        .women-bg img {
+            width: 100%;
+        }
+        .women-bg h1 {
+            font-weight: 800;
+            font-size: 2em;
+            position: absolute;
+            top: 50%;
+            left: 100px;
+            transform: translateY(-50%);
+        }
+        .women-txt {
+            text-align: center;
+        }
+        .women-txt h1{
+            display: none;
+            font-weight: 800;
+            font-size: 2em;
+        }
+        .column.main .women-txt p {
+            padding: 15px 0;
+        }
+
+        /*
+        Men's Row
+        */
+        .men-row,
+        .limited-row,
+        .footwear-row{
+            display: flex;
+        }
+        .men-row .flex-30 img{
+            margin-top: 40px;
+            width: 100%;
+        }
+        .men-row .video-container video {
+            max-width: none;
+        }
+        .men-row .flex-70 {
+            margin-right: 30px;
+        }
+        .vid-txt {
+            text-align: center;
+        }
+        .men-row h1 {
+            padding: 15px 0 0;
+        }
+        .column.main .vid-txt  p,
+        .column.main .txt-col p{
+            margin-bottom: 15px;
+        }
+
+        /*
+        Limited Row
+        */
+        .limited-row .flex-70 {
+            margin-right: 30px;
+        }
+        .limited-row .flex-30 {
+            align-items: center;
+            display: flex;
+        }
+        .limited-row .txt-col {
+            text-align: center;
+        }
+
+        /*
+        Footwear's Row
+        */
+        .footwear-row {
+            background: url(https://i.infinityscrubs.com/infinity/images/lookbook/footwear_bg.png) 30% center no-repeat;
+            padding: 40px 0;
+
+            .flex-40 {
+                display: flex;
+                text-align: center;
+                align-items: center;
+            }
+
+            .flex-60 {
+                padding: 0 30px;
+            }
+        }
+
+        /*
+        Button
+        */
+        .btn-teal-outline {
+            padding: 0 55px;
+            font-size: 1em;
+            height: 45px;
+            font-family: "ProximaNova","Helvetica Neue",Helvetica,Arial,sans-serif;
+            font-weight: 800;
+        }
+
+    }
+
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+// TODO: Remove this breakpoint if not needed.
+// TODO: Note: Maintain 3-level nesting. Remove this comment after.
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break =  @screen__992) {
+    .cms-lookbook {
+
+    }
+
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+// TODO: Remove this breakpoint if not needed.
+// TODO: Note: Maintain 3-level nesting. Remove this comment after.
+
+// 992px
+.media-width(@extremum, @break) when (@extremum = 'view_max') and (@break = @screen__992) {
+    .cms-lookbook {
+        .column.main p {
+            font-size: 1em;
+        }
+        .hero {
+            display: block;
+            background-position: center 25px;
+            background-size: cover;
+            min-height: auto;
+            margin-bottom: 0;
+            padding: 0;
+        }
+        .flex-30,
+        .flex-40,
+        .flex-50,
+        .flex-60,
+        .flex-70{
+            width: 100%;
+        }
+        .hero-txt {
+            padding: 40px 0;
+            max-width: none;
+
+            &.mobile {
+                padding: 15px 0;
+
+                h1 {
+                    display: block;
+                }
+            }
+        }
+        .hero .flex-col.has-child:first-child {
+            padding: 0 20px;
+        }
+        .hero > .flex-col > .flex-col:first-child {
+            margin-right: 5px;
+        }
+
+        .women-bg h1 {
+            display: none;
+        }
+        .women-txt h1,
+        h1.txt-teal.txt-uppercase{
+            font-size: 1.3em;
+            margin-bottom: 0;
+            padding: 15px 0;
+        }
+
+        .men-row,
+        .limited-row,
+        .footwear-row{
+            display: block;
+        }
+        .men-row .flex-30 img {
+            display: none;
+        }
+
+        .footwear-row {
+            background-position: top;
+            padding: 0;
+            background-size: contain;
+        }
+
+        .footwear-row .flex-60 {
+            padding: 30px 30px 10px;
+        }
+
+        .footwear-row .flex-40 h1 {
+            padding: 0 0 15px;
+        }
+    }
+}
+
+// TODO: Remove this breakpoint if not needed.
+// TODO: Note: Maintain 3-level nesting. Remove this comment after.
+// 767px
+.media-width(@extremum, @break) when (@extremum = 'view_max') and (@break = @screen__m) {
+    .cms-lookbook {
+
+    }
+}

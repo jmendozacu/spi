@@ -1,0 +1,180 @@
+/**
+ * Binary Anvil, Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Binary Anvil, Inc. Software Agreement
+ * that is bundled with this package in the file LICENSE_BAS.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.binaryanvil.com/software/license/
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@binaryanvil.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this software to
+ * newer versions in the future. If you wish to customize this software for
+ * your needs please refer to http://www.binaryanvil.com/software for more
+ * information.
+ *
+ * @category    BinaryAnvil
+ * @package     Infinity
+ * @copyright   Copyright (c) 2018-2019 Binary Anvil,Inc. (http://www.binaryanvil.com)
+ * @license     http://www.binaryanvil.com/software/license
+ */
+
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .block-product-link,
+    .block-category-link {
+        &.widget {
+            display: block;
+            margin-bottom: @indent__base;
+        }
+    }
+
+    .block-product-link-inline {
+        &.widget {
+            margin: 0;
+        }
+    }
+
+    .block.widget {
+        .product-item-info {
+            width: auto;
+        }
+
+        .pager {
+            padding: 0;
+
+            .toolbar-amount {
+                float: none;
+                .lib-font-size(12);
+            }
+
+            .pages-item-previous {
+                padding-left: 0;
+            }
+
+            .pages-item-next {
+                position: relative;
+            }
+
+            .items {
+                white-space: nowrap;
+            }
+        }
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__s) {
+    .block.widget .products-grid .product-item,
+    .page-layout-1column .block.widget .products-grid .product-item,
+    .page-layout-3columns .block.widget .products-grid .product-item {
+        width: 100%/3;
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .block.widget .products-grid .product-item {
+        width: 100%/3;
+
+        .sidebar & {
+            margin-left: 0;
+            width: 100%;
+
+            .actions-secondary {
+                display: block;
+                padding: 10px 0;
+            }
+        }
+    }
+
+    .page-layout-1column .block.widget .products-grid .product-item {
+        width: 100%/4;
+    }
+
+    .page-layout-3columns .block.widget .products-grid .product-item {
+        width: 100%/2;
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    .block.widget .products-grid .product-item {
+        width: 100%/5;
+    }
+
+    .page-layout-1column .block.widget .products-grid .product-item {
+        margin-left: calc(~'(100% - 5 * (100%/6)) / 4');
+        width: 100%/6;
+
+        &:nth-child(4n + 1) {
+            margin-left: calc(~'(100% - 5 * (100%/6)) / 4');
+        }
+
+        &:nth-child(5n + 1) {
+            margin-left: 0;
+        }
+    }
+
+    .cms-index-index.page-layout-1column .block.widget .products-grid .product-item {
+        margin-left: calc(~'(100% - 5 * (100%/6)) / 4');
+        width: 45%;
+
+        &:nth-child(4n + 1) {
+            margin-left: calc(~'(100% - 5 * (100%/6)) / 4');
+        }
+
+        &:nth-child(5n + 1) {
+            margin-left: 5%;
+        }
+    }
+
+    .page-layout-3columns .block.widget .products-grid .product-item {
+        width: 100%/4;
+    }
+
+    .block.widget .products-grid .product-items {
+        margin: 0;
+    }
+
+    .block.widget .products-grid .product-item {
+        margin-left: calc(~'(100% - 4 * 24.439%) / 3');
+        padding: 0;
+        width: 24.439%;
+
+        &:nth-child(4n + 1) {
+            margin-left: 0;
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .sidebar .block.widget .pager {
+        .item:not(.pages-item-next):not(.pages-item-previous) {
+            &:extend(.abs-no-display-desktop all);
+        }
+
+        .pages-item-next {
+            padding: 0;
+
+            .action {
+                margin: 0;
+            }
+        }
+    }
+}

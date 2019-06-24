@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Binary Anvil, Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Binary Anvil, Inc. Software Agreement
+ * that is bundled with this package in the file LICENSE_BAS.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.binaryanvil.com/software/license/
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@binaryanvil.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this software to
+ * newer versions in the future. If you wish to customize this software for
+ * your needs please refer to http://www.binaryanvil.com/software for more
+ * information.
+ *
+ * @category    BinaryAnvil
+ * @package     JobManager
+ * @copyright   Copyright (c) 2016-present Binary Anvil,Inc. (http://www.binaryanvil.com)
+ * @license     http://www.binaryanvil.com/software/license
+ */
+-->
+<logging xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Logging:etc/logging.xsd">
+    <actions>
+        <action id="delete">
+            <label translate="true">Delete</label>
+        </action>
+        <action id="inlineEdit">
+            <label translate="true">Save</label>
+        </action>
+        <action id="massDelete">
+            <label translate="true">Mass Delete</label>
+        </action>
+        <action id="massUpdate">
+            <label translate="true">Mass Update</label>
+        </action>
+    </actions>
+    <groups>
+        <group name="binaryanvil_jobmanager_job">
+            <label translate="true">Job Manager</label>
+            <expected_models>
+                <expected_model class="BinaryAnvil\JobManager\Api\Data\JobInterface" />
+            </expected_models>
+            <events>
+                <event controller_action="binaryanvil_jobmanager_job_inlineEdit"
+                       action_alias="inlineEdit"
+                       post_dispatch="BinaryAnvil\JobManager\Model\Logging::postDispatchJobChanges">
+                </event>
+                <event controller_action="binaryanvil_jobmanager_job_massDelete"
+                       action_alias="massDelete"
+                       post_dispatch="BinaryAnvil\JobManager\Model\Logging::postDispatchJobChanges">
+                </event>
+                <event controller_action="binaryanvil_jobmanager_job_massUpdate"
+                       action_alias="massUpdate"
+                       post_dispatch="BinaryAnvil\JobManager\Model\Logging::postDispatchJobChanges">
+                </event>
+                <event controller_action="binaryanvil_jobmanager_job_delete"
+                       action_alias="delete"
+                       post_dispatch="BinaryAnvil\JobManager\Model\Logging::postDispatchJobChanges">
+                </event>
+            </events>
+        </group>
+    </groups>
+</logging>

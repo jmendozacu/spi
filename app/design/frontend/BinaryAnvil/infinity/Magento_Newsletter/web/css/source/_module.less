@@ -1,0 +1,152 @@
+/**
+ * Binary Anvil, Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Binary Anvil, Inc. Software Agreement
+ * that is bundled with this package in the file LICENSE_BAS.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.binaryanvil.com/software/license/
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@binaryanvil.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this software to
+ * newer versions in the future. If you wish to customize this software for
+ * your needs please refer to http://www.binaryanvil.com/software for more
+ * information.
+ *
+ * @category    BinaryAnvil
+ * @package     Infinity
+ * @copyright   Copyright (c) 2018-2019 Binary Anvil,Inc. (http://www.binaryanvil.com)
+ * @license     http://www.binaryanvil.com/software/license
+ */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    //  Newsletter subscription
+    .block.newsletter {
+        margin-bottom: 20px;
+
+        .form.subscribe {
+            display: table;
+            width: 100%;
+        }
+
+        .fieldset {
+            display: table-cell;
+            margin: 0;
+            padding: 0;
+            vertical-align: top;
+        }
+
+        .field {
+            margin: 0;
+
+            .control {
+                .lib-vendor-prefix-display();
+                .lib-vendor-box-align(center);
+                .lib-vendor-prefix-flex-wrap();
+                .lib-css(justify-content, center, 1);
+
+                div.mage-error {
+                    .lib-vendor-prefix-order(3);
+                    .lib-vendor-prefix-flex-grow(1);
+                    .lib-vendor-prefix-flex-shrink(1);
+                    .lib-vendor-prefix-flex-basis(100%);
+                    text-align: left;
+                }
+
+                .actions {
+                    .lib-vendor-prefix-order(2);
+                }
+
+                + p {
+                    margin-top: 10px;
+                    .lib-font-size(16);
+
+                    a {
+                        color: @dove-grey;
+                        text-decoration: underline;
+
+                        &:hover {
+                            text-decoration: none;
+                        }
+                    }
+                }
+            }
+        }
+
+        input {
+            .lib-vendor-prefix-order(1);
+            .lib-font-size(23);
+            width: 63%;
+            padding-left: 0;
+            border-width: 0 0 2px 0;
+            margin: 0 28px 0 0;
+        }
+
+        > .title {
+            display: none;
+        }
+
+        .action.subscribe {
+            color: @dove-grey;
+            .lib-font-size(16);
+            width: 256px;
+            height: 67px;
+            border-color: @dove-grey;
+            border-width: 2px;
+            white-space: nowrap;
+        }
+
+        .content {
+            text-align: center;
+            color: @dove-grey;
+
+            .title {
+                .lib-font-size(30);
+                font-family: @font-family__secondary;
+                font-weight: @font-weight__bolder;
+                text-transform: uppercase;
+                margin-bottom: 0;
+            }
+
+            .description {
+                margin-bottom: 20px;
+            }
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .block.newsletter {
+        width: 780px;
+        margin: 0 auto;
+    }
+}
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__l) {
+    .block.newsletter {
+        width: 600px;
+        margin: 0 auto;
+    }
+    .block.newsletter .action.subscribe {
+        width: auto;
+        height: auto;
+    }
+}

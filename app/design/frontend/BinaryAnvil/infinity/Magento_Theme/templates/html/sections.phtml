@@ -1,0 +1,60 @@
+<?php
+/**
+ * Binary Anvil, Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Binary Anvil, Inc. Software Agreement
+ * that is bundled with this package in the file LICENSE_BAS.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.binaryanvil.com/software/license/
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@binaryanvil.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this software to
+ * newer versions in the future. If you wish to customize this software for
+ * your needs please refer to http://www.binaryanvil.com/software for more
+ * information.
+ *
+ * @category    BinaryAnvil
+ * @package     Infinity
+ * @copyright   Copyright (c) 2018-2019 Binary Anvil,Inc. (http://www.binaryanvil.com)
+ * @license     http://www.binaryanvil.com/software/license
+ */
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+
+/**
+*  General template for displaying group of blocks devided into sections
+*/
+
+$group = $block->getGroupName();
+$groupCss = $block->getGroupCss();
+$groupBehavior = $block->getGroupBehaviour() ? $block->getGroupBehaviour() : '{"tabs":{"openedState":"active"}}';
+?>
+<?php if ($detailedInfoGroup = $block->getGroupChildNames($group, 'getChildHtml')):?>
+    <div class="sections <?= /* @escapeNotVerified */ $groupCss ?>">
+        <button class="close toggle-nav" data-action="toggle-nav"></button>
+        <?php $layout = $block->getLayout(); ?>
+        <div class="section-items <?= /* @escapeNotVerified */ $groupCss ?>-items" data-mage-init='<?= /* @escapeNotVerified */ $groupBehavior ?>'>
+            <?php foreach ($detailedInfoGroup as $name):?>
+                <?php
+                    $html = $layout->renderElement($name);
+                    if (!trim($html) && ($block->getUseForce() != true)) {
+                        continue;
+                    }
+                    $alias = $layout->getElementAlias($name);
+                    $label = $block->getChildData($alias, 'title');
+                ?>
+                <div class="section-item-content <?= /* @escapeNotVerified */ $groupCss ?>-item-content" id="<?= /* @escapeNotVerified */ $alias ?>" data-role="content"><?= /* @escapeNotVerified */ $html ?></div>
+            <?php endforeach;?>
+            <?= $block->getChildHtml('form.subscribe.mobile') ?>
+        </div>
+    </div>
+<?php endif; ?>

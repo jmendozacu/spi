@@ -1,0 +1,497 @@
+/**
+ * Binary Anvil, Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Binary Anvil, Inc. Software Agreement
+ * that is bundled with this package in the file LICENSE_BAS.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.binaryanvil.com/software/license/
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@binaryanvil.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this software to
+ * newer versions in the future. If you wish to customize this software for
+ * your needs please refer to http://www.binaryanvil.com/software for more
+ * information.
+ *
+ * @category    BinaryAnvil
+ * @package     default
+ * @copyright   Copyright (c) 2017-2018 Binary Anvil,Inc. (http://www.binaryanvil.com)
+ * @license     http://www.binaryanvil.com/software/license
+ */
+
+//
+//  Common
+//  _____________________________________________
+
+// TODO: Note: Maintain 3-level nesting. Remove this comment after.
+& when (@media-common = true) {
+    .cms-home {
+        padding: 0;
+        margin: 0;
+        font-family: 'Proxima Nova', sans-serif;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    /*
+    =====================
+        Buttons
+    =====================
+    */
+    button.btn-teal-outline,
+    button.btn-blue-outline.primary {
+        border: 2px solid #3bc1cc;
+        font-size: 1.2em;
+        height: 70px;
+        margin: 0 auto;
+        display: block;
+    }
+
+    button.btn-blue-outline.primary {
+        border-color: #98d4f0;
+        background: transparent;
+        color: #98d4f0;
+
+        &:hover {
+            outline: 1px solid #98d4f0;
+        }
+    }
+
+    /*
+    =====================
+    Hero
+    =====================
+    */
+    .inf-hero {
+        position: relative;
+        margin-bottom: 10px;
+    }
+    .img-txt h1 {
+        color: #75706c;
+        margin-bottom: 0;
+        font-size: 4rem;
+    }
+    .img-txt p {
+        color: #bcbdc1;
+    }
+    .text-center {
+        text-align: center;
+    }
+
+    /* 
+    =====================
+    Video Column 
+    =====================
+    */
+    .video-container {
+        position: relative;
+    }
+    .video-container video {
+        display: block;
+        margin: 0 auto;
+        cursor: pointer;
+        max-width: 60%;
+        width: 100%;
+    }
+    .video-container .play-btn {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        cursor: pointer;
+    }
+    .video-container .play-btn img {
+        display: block;
+        margin: 0 auto;
+        width: 80%;
+    }
+
+    /*
+    =====================
+    Bootstrap 4 Styles
+    =====================
+    */
+
+    .container-fluid {
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    .row {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;
+        margin-bottom: 40px;
+    }
+    .col-12, .col-md-4, .col-md-6 {
+        position: relative;
+        width: 100%;
+        min-height: 1px;
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+
+    /*
+    =====================
+    Hide For Desktop
+    =====================
+    */
+    .mobile,
+    .shop-local img.img-natural.mobile {
+        display: none;
+    }
+
+    // Show
+    .shop-local img.img-natural {
+        display: block;
+        margin: 0 auto;
+    }
+
+    /* 
+    =====================
+    Text styles
+    =====================
+    */
+    .col-txt {
+        font-family: 'ProximaNova','Helvetica Neue',Helvetica,Arial,sans-serif;
+        font-weight: 900;
+        font-size: 8rem;
+        text-transform: initial;
+        margin-bottom: 0;
+    }
+    .txt-teal {
+        color: #3ac1cc;
+    }
+    .txt-blue {
+        color: #98d4f0;
+    }
+
+    /* 
+    =====================
+    Custom Columns
+    =====================
+    */
+
+    .joggers {
+        margin: 0 auto;
+
+        .col-md-6 {
+            max-width: 80%;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .jog-txt-col {
+            text-align: center;
+            min-width: 440px;
+            position: absolute;
+            top: 50%;
+            left: 45%;
+            transform: translate(-50%,-50%);
+
+            p, ul {
+                color: #a7a7a7
+            }
+
+            ul {
+                list-style: none;
+                text-transform: uppercase;
+                font-size: 1.3em;
+                padding-top: 20px;
+            }
+
+            .btn-teal-outline,
+            .btn-blue-outline {
+                border-width: 2px;
+            }
+        }
+
+        img {
+            margin: 0 auto;
+            width: 100%;
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+// TODO: Remove this breakpoint if not needed.
+// TODO: Note: Maintain 3-level nesting. Remove this comment after.
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+    .cms-home {
+
+    }
+}
+
+// TODO: Remove this breakpoint if not needed.
+// TODO: Note: Maintain 3-level nesting. Remove this comment after.
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break =  @screen__992) {
+    .cms-home {
+
+    }
+     /*
+    =====================
+    Custom Columns / Classes
+    =====================
+    */
+    .offset-top-01 {
+        margin-top: 40px;
+    }
+    .offset-top-02 {
+        margin-top: 80px;
+    }
+    /*
+    =====================
+    Dynamic Product Columns
+    =====================
+    */
+    .dynamic-column .products {
+        margin: 0;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .dynamic-column .products > a {
+        display: inline-block;
+        color: #46443d;
+        max-width: 100%;
+    }
+    .col-md-6.dynamic-column .products > a {
+        width: 45%;
+    }
+    .col-md-6.dynamic-column .products > a:first-child {
+        margin-right: 8%;
+    }
+    .dynamic-column .products > a > span {
+        display: inline-block;
+    }
+    .dynamic-column .products .product-title {
+        display: inline-block;
+        max-width: 70%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    /*
+    =====================
+    Bootstrap 4 Styles
+    =====================
+    */
+    .col-md-4 {
+        -ms-flex: 0 0 33.333333%;
+        flex: 0 0 33.333333%;
+        max-width: 33.333333%;
+    }
+    .col-md-6 {
+        -ms-flex: 0 0 50%;
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    .shop-local img.img-natural {
+        display: block;
+        margin: 0 auto;
+    }
+
+}
+
+// TODO: Remove this breakpoint if not needed.
+// TODO: Note: Maintain 3-level nesting. Remove this comment after.
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    .cms-home {
+
+    }
+}
+
+// TODO: Remove this breakpoint if not needed.
+// TODO: Note: Maintain 3-level nesting. Remove this comment after.
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .cms-home {
+
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+// TODO: Remove this breakpoint if not needed.
+// TODO: Note: Maintain 3-level nesting. Remove this comment after.
+
+// 992px
+.media-width(@extremum, @break) when (@extremum = 'view_max') and (@break = @screen__992) {
+    .desktop{
+        display: none !important;
+    }
+    .mobile,
+    .shop-local img.img-natural.mobile {
+        display: block;
+    }
+    .shop-local img.img-natural.mobile {
+        margin-bottom: 10px;
+    }
+    .container-fluid {
+        padding: 0;
+        margin: 0;
+    }
+    .row {
+        margin: 0;
+        margin-bottom: 20px;
+    }
+    #home-video {
+        max-width: 100%
+    }
+    .row.shoes .col-md-7 img {
+        max-width: 100%;
+        margin: 0 auto 20px;
+        display: block !important;
+    }
+    .txt-col img {
+        max-width: 100%;
+    }
+    .row.shoes .col-md-5 .txt-col img {
+        max-width: 90%;
+        margin: 0 auto;
+        display: block;
+    }
+    .img-txt {
+        max-width: 90%;
+        margin: 0 auto;
+    }
+    .img-txt h1 {
+        font-size: 3rem;
+    }
+    .col-md-6.dynamic-column .products > a:first-child {
+        float: left;
+        margin-right: 0;
+    }
+    .col-md-6.dynamic-column .products > a:nth-child(2) {
+        float: right;
+    }
+    .col-12.video-column,
+    .row .col-md-4,
+    .row .col-md-6,
+    .row .col-12{
+        padding: 0;
+    }
+    .video-container .play-btn img {
+        width: 22vw;
+    }
+    button.btn-teal-outline,
+    button.btn-blue-outline.primary {
+        width: 100%;
+        transform: none;
+        left: auto;
+        margin-bottom: 25px;
+        font-size: 1em;
+    }
+    .col-md-4 img {
+        width: 100%;
+    }
+    .offset-top-01,
+    .offset-top-02{
+        margin-top: auto;
+    }
+
+    /* 
+    =====================
+    Collection Column 
+    =====================
+    */
+    .row.collections {
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        .col-md-4 {
+            -ms-flex: 0 0 50%;
+            flex: 0 0 50%;
+            max-width: 50%;
+            padding-right: 10px;
+
+            &:last-child {
+                -ms-flex: 0 0 65%;
+                flex: 0 0 65%;
+                max-width: 65%;
+            }
+        }
+    }
+    .joggers {
+        border: 3px solid #b9b9b9;
+        padding: 15px 30px;
+
+        .jog-txt-col {
+            position: relative;
+            top: auto;
+            left: auto;
+            transform: none;
+            min-width: auto;
+
+            .col-txt {
+                font-size:6rem;
+            }
+
+            p {
+                margin-bottom: 25px;
+            }
+        }
+
+        img {
+            max-width: 400px;
+        }
+    }
+
+    /* 
+    =====================
+    Footwear Column 
+    =====================
+    */
+    .shoes-txt {
+        h1 {
+            font-family: 'ProximaNova','Helvetica Neue',Helvetica,Arial,sans-serif;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 0;
+            font-size: 4.5rem;
+        }
+    }
+}
+
+// 767px
+.media-width(@extremum, @break) when (@extremum = 'view_max') and (@break = @screen__m) {
+    .cms-home {
+
+    }
+}
+
+// TODO: Remove this breakpoint if not needed.
+// TODO: Note: Maintain 3-level nesting. Remove this comment after.
+.media-width(@extremum, @break) when (@extremum = 'view_max') and (@break = @screen__s) {
+    .cms-home {
+
+    }
+    button.btn-teal-outline,
+    button.btn-blue-outline.primary {
+        font-size: .7em;
+        height: auto;
+    }
+
+}
+
+// TODO: Remove this breakpoint if not needed.
+// TODO: Note: Maintain 3-level nesting. Remove this comment after.
+.media-width(@extremum, @break) when (@extremum = 'view_max') and (@break = @screen__xs) {
+    .cms-home {
+
+    }
+}

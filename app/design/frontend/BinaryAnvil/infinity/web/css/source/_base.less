@@ -1,0 +1,182 @@
+/**
+ * Binary Anvil, Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Binary Anvil, Inc. Software Agreement
+ * that is bundled with this package in the file LICENSE_BAS.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.binaryanvil.com/software/license/
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@binaryanvil.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this software to
+ * newer versions in the future. If you wish to customize this software for
+ * your needs please refer to http://www.binaryanvil.com/software for more
+ * information.
+ *
+ * @category    BinaryAnvil
+ * @package     Infinity
+ * @copyright   Copyright (c) 2017-2018 Binary Anvil,Inc. (http://www.binaryanvil.com)
+ * @license     http://www.binaryanvil.com/software/license
+ */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    html {
+        //  Font Smoothing
+        .font-smoothing(antialiased);
+        text-rendering: optimizeLegibility;
+        -moz-osx-font-smoothing: grayscale;
+
+        //  Font Varient
+        font-variant-ligatures: none;
+        -webkit-font-variant-ligatures: none;
+    }
+
+    body {
+        min-width: 320px;
+        font-weight: normal;
+
+        &._visible {
+            visibility: visible;
+        }
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        text-transform: uppercase;
+    }
+
+    p {
+        line-height: 1.4;
+    }
+
+    *,
+    *:before,
+    *:after {
+        .box-sizing(@border-box);
+        margin: 0;
+        padding: 0;
+    }
+
+    ._keyfocus *:focus,
+    input:focus:not([disabled]),
+    textarea:focus:not([disabled]),
+    select:focus:not([disabled]) {
+        .box-shadow(none);
+    }
+
+    //
+    //  Links
+    //  _____________________________________________
+
+    a,
+    .alink {
+        .transition(.2s);
+        color: @link__color;
+
+        &:hover {
+            color: lighten(@link__color, 10%);
+            text-decoration: none;
+        }
+    }
+
+    //
+    //  Misc
+    //  _____________________________________________
+
+    //  Text alignment and capitalization
+    .text-center {
+        .text-center;
+    }
+
+    .text-left {
+        .text-left;
+    }
+
+    .text-right {
+        .text-right;
+    }
+
+    .text-lowercase {
+        .text-lowercase;
+    }
+
+    .text-uppercase {
+        .text-uppercase;
+    }
+
+    //  Element visibility
+    .hide {
+        .hide;
+    }
+
+    .hidden {
+        .hidden;
+    }
+
+    .visible {
+        .visible;
+    }
+
+    .body-loader {
+        visibility: visible;
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+// TODO: Remove this breakpoint if not needed. Remove this comment after.
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+
+}
+
+// TODO: Remove this breakpoint if not needed. Remove this comment after.
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .page.messages {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    //  IE Fix for wide gap between content and footer
+    .ie11 .page-main {
+        .flex-grow(0);
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+// TODO: Remove this breakpoint if not needed. Remove this comment after.
+.media-width(@extremum, @break) when (@extremum = 'view_max') and (@break = @screen__m) {
+
+}
+
+// TODO: Remove this breakpoint if not needed. Remove this comment after.
+.media-width(@extremum, @break) when (@extremum = 'view_max') and (@break = @screen__s) {
+
+}
+
+// TODO: Remove this breakpoint if not needed. Remove this comment after.
+.media-width(@extremum, @break) when (@extremum = 'view_max') and (@break = @screen__xs) {
+
+}

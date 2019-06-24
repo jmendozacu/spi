@@ -1,0 +1,32 @@
+{
+  "name": "binaryanvil/module-federation",
+  "description": "Binary Anvil Federation",
+  "type": "magento2-module",
+  "version": "1.2.0",
+  "authors": [
+    {
+      "name": "Binary Anvil Team",
+      "homepage": "http://www.binaryanvil.com"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://packages.binaryanvil.tools"
+    }
+  ],
+  "require": {
+    "binaryanvil/base": "*"
+  },
+  "config": {
+    "preferred-install": "dist"
+  },
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "BinaryAnvil\\Federation\\": ""
+    }
+  }
+}

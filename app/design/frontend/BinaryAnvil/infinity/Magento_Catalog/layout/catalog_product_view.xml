@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Binary Anvil, Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Binary Anvil, Inc. Software Agreement
+ * that is bundled with this package in the file LICENSE_BAS.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.binaryanvil.com/software/license/
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@binaryanvil.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this software to
+ * newer versions in the future. If you wish to customize this software for
+ * your needs please refer to http://www.binaryanvil.com/software for more
+ * information.
+ *
+ * @category    BinaryAnvil
+ * @package     Infinity
+ * @copyright   Copyright (c) 2017-2018 Binary Anvil,Inc. (http://www.binaryanvil.com)
+ * @license     http://www.binaryanvil.com/software/license
+ */
+-->
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="breadcrumbs" remove="true" />
+        <referenceBlock name="view.addto.compare" remove="true" />
+        <referenceBlock name="product.info.mailto" remove="true" />
+        <referenceBlock name="view.addto.wishlist" remove="true" />
+        <referenceBlock name="product.info.overview" remove="true" />
+
+        <referenceBlock name="product.info.description" template="Magento_Catalog::product/view/attribute.phtml">
+            <arguments>
+                <argument name="title" translate="true" xsi:type="string">Description</argument>
+            </arguments>
+        </referenceBlock>
+        <!--<referenceBlock  name="product.info.details">-->
+            <!--<block class="Magento\Framework\View\Element\Template" name="product.info.specification" as="specification"  group="detailed_info"  template="Magento_Catalog::product/view/specification.phtml">-->
+                <!--<arguments>-->
+                    <!--<argument name="at_call" xsi:type="string">getSpecification</argument>-->
+                    <!--<argument name="at_code" xsi:type="string">specification</argument>-->
+                    <!--<argument name="css_class" xsi:type="string">specification</argument>-->
+                    <!--<argument name="at_label" xsi:type="string">none</argument>-->
+                    <!--<argument name="title" translate="true" xsi:type="string">Specification</argument>-->
+                <!--</arguments>-->
+            <!--</block>-->
+        <!--</referenceBlock>-->
+        <referenceBlock name="product.attributes" >
+            <arguments>
+                <argument translate="true" name="title" xsi:type="string">Specification</argument>
+            </arguments>
+        </referenceBlock>
+
+        <move element="catalog.product.related"  destination="product.info.main" after="-" />
+        <move element="product.info.details"  destination="product.info.main" before="catalog.product.related" />
+
+        <referenceContainer name="main" label="Main Content Container" htmlTag="div" htmlClass="column main">
+            <container name="pdp.wrapper" htmlTag="div" htmlClass="pdp-wrapper" />
+            <block class="BinaryAnvil\Ratings\Block\RatingList" name="review.custom" template="Magento_Catalog::product/view/review-custom.phtml">
+                <block class="Magento\Framework\View\Element\Template" name="product.item.review.custom" template="Magento_Catalog::product/view/review-title.phtml" />
+                <block class="Magento\Catalog\Block\Product\View" name="product.info.review.custom" template="Magento_Catalog::product/view/review.phtml" />
+
+                <container name="review-wrapper" htmlTag="div" htmlClass="review-wrapper">
+                    <block class="BinaryAnvil\Ratings\Block\RatingList" name="product.item.review.statistic" template="Magento_Catalog::product/view/rating-statistics.phtml" />
+                    <container name="review.list.custom" htmlTag="div" htmlClass="review-list">
+                        <block class="Magento\Framework\View\Element\Template" name="product.info.product_additional_data" as="product_additional_data" template="Magento_Review::product/view/list.phtml" cacheable="false">
+                            <block class="BinaryAnvil\Ratings\Block\ReviewList" name="product.info.product_additional_data.items" as="review_items" template="Magento_Review::product/view/list/items.phtml" />
+                        </block>
+                    </container>
+                </container>
+            </block>
+        </referenceContainer>
+
+        <move element="product.info.main" destination="pdp.wrapper" before="-" />
+        <move element="product.info.media" destination="pdp.wrapper" after="-" />
+        <move element="reviews.tab" destination="review.list.custom" after="-" />
+
+    </body>
+</page>

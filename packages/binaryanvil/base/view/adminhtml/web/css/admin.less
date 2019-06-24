@@ -1,0 +1,47 @@
+/**
+ * Binary Anvil, Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Binary Anvil, Inc. Software Agreement
+ * that is bundled with this package in the file LICENSE_BAS.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.binaryanvil.com/software/license/
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@binaryanvil.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this software to
+ * newer versions in the future. If you wish to customize this software for
+ * your needs please refer to http://www.binaryanvil.com/software for more
+ * information.
+ *
+ * @category    BinaryAnvil
+ * @package     Base
+ * @copyright   Copyright (c) 2015-2016 Binary Anvil,Inc. (http://www.binaryanvil.com)
+ * @license     http://www.binaryanvil.com/software/license
+ */
+
+#row_binaryanvil_base_base_intro .label {
+  visibility: hidden;
+}
+.admin__menu .item-binaryanvil-base.level-0 > a {
+  &:before {
+    content: '' !important;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGwAAABsCAYAAACPZlfNAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo1QzBFRTQ3NkQwNDUxMUU2OEY5NkFDQzlCNjVGQ0NDRCIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDo1QzBFRTQ3N0QwNDUxMUU2OEY5NkFDQzlCNjVGQ0NDRCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDQ0VFNDZCRDAyQTExRTY4Rjk2QUNDOUI2NUZDQ0NEIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkZDQ0VFNDZDRDAyQTExRTY4Rjk2QUNDOUI2NUZDQ0NEIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+OgaK1QAACCdJREFUeNrsXQmM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)
+      no-repeat
+      50% 20%;
+    background-size: 25px 25px;
+    opacity: 0.7;
+  }
+}
+.admin__menu .item-binaryanvil-base.level-0._active > a,
+.admin__menu .item-binaryanvil-base.level-0 > a:hover {
+  &:before {
+    opacity: 1;
+  }
+}
+

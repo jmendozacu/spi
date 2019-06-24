@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Binary Anvil, Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Binary Anvil, Inc. Software Agreement
+ * that is bundled with this package in the file LICENSE_BAS.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.binaryanvil.com/software/license/
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@binaryanvil.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this software to
+ * newer versions in the future. If you wish to customize this software for
+ * your needs please refer to http://www.binaryanvil.com/software for more
+ * information.
+ *
+ * @category    BinaryAnvil
+ * @package     Infinity
+ * @copyright   Copyright (c) 2019-2020 Binary Anvil,Inc. (http://www.binaryanvil.com)
+ * @license     http://www.binaryanvil.com/software/license
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="checkout_cart_item_renderers"/>
+    <body>
+        <referenceBlock name="page.main.title">
+            <action method="setPageTitle">
+                <argument translate="true" name="title" xsi:type="string">Shopping Bag</argument>
+            </action>
+        </referenceBlock>
+        <referenceContainer name="cart.summary" >
+            <block class="Magento\Cms\Block\Block" name="infnt_need-help" before="infnt_faqs_checkout">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">checkout_page_block_need_help</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Cms\Block\Block" name="infnt_faqs_checkout" after="-">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">checkout_page_block_faqs</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+        <referenceBlock name="checkout.cart.summary.title">
+            <arguments>
+                <argument translate="true" name="text" xsi:type="string">Order Summary</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceContainer name="checkout.cart.container">
+            <block class="Magento\Framework\View\Element\Template" name="checkout.cart.estimation" template="Magento_Checkout::cart/estimation.phtml">
+                <arguments>
+                    <argument name="jsLayout" xsi:type="array">
+                        <item name="types" xsi:type="array"/>
+                        <item name="components" xsi:type="array">
+                            <item name="estimation" xsi:type="array">
+                                <item name="sortOrder" xsi:type="string">10</item>
+                                <item name="component" xsi:type="string">Magento_Checkout/js/view/estimation</item>
+                                <item name="displayArea" xsi:type="string">estimation</item>
+                                <item name="config" xsi:type="array">
+                                    <item name="template" xsi:type="string">Magento_Checkout/estimation</item>
+                                </item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+            <block class="Magento\Checkout\Block\Onepage\Link" name="checkout.cart.methods.onepage.top.mobile" template="Magento_Checkout::onepage/link.phtml" after="checkout.cart.estimation"/>
+        </referenceContainer>
+        <referenceBlock name="checkout.cart.order.actions">
+            <block class="Magento\GiftMessage\Block\Cart\GiftOptions" name="checkout.cart.order.actions.gift_options" template="Magento_GiftMessage::cart/gift_options.phtml" cacheable="false">
+                <arguments>
+                    <argument name="jsLayout" xsi:type="array">
+                        <item name="types" xsi:type="array"/>
+                        <item name="components" xsi:type="array">
+                            <item name="giftOptionsCart" xsi:type="array">
+                                <item name="component" xsi:type="string">Magento_GiftMessage/js/view/gift-message</item>
+                                <item name="config" xsi:type="array">
+                                    <item name="componentDisabled" xsi:type="boolean">true</item>
+                                </item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+
+        <referenceBlock name="checkout.cart.giftcardaccount" remove="true" />
+    </body>
+</page>

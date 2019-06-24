@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="carriers" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+          <group id="matrixrate" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Matrix Rate</label>
+                <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Title</label>
+				</field>
+				<field id="condition_name" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Condition</label>
+					<source_model>Magecomp\Matrixrate\Model\System\Config\Source\Shipping\Matrixrate</source_model>
+                </field>
+				<field id="import" translate="label" type="Magecomp\Matrixrate\Block\Adminhtml\System\Config\Form\Field\Import" sortOrder="4" showInDefault="0" showInWebsite="1" showInStore="0">
+                    <label>Import</label>
+                    <backend_model>Magecomp\Matrixrate\Model\System\Config\Backend\Shipping\Matrixrate</backend_model>
+                </field>
+				<field id="export" translate="label" type="Magecomp\Matrixrate\Block\Adminhtml\System\Config\Form\Field\Export" sortOrder="5" showInDefault="0" showInWebsite="1" showInStore="0">
+                    <label>Export</label>
+                </field>
+				<field id="zip_range" translate="label" type="select" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Use Numeric Zipcode Ranges</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<comment>You should only set this to Yes if you use purely numeric zipcodes (e.g. USA/AUS clients)</comment>
+                </field>
+				<field id="allow_free_shipping_promotions" translate="label" type="select" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Free Shipping Promotions</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+					<comment>Allow free shipping promotions to apply to matrixrate</comment>
+                </field>
+				<field id="show_only_free" translate="label" type="select" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Only Display Free Shipping</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<comment>If free shipping applies dont show other shipping rates</comment>
+                </field>
+				<field id="free_method_text" translate="label" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Free Shipping Display Text</label>
+					<comment>What to show the shipping as when the price of shipping is 0. I.e "FREE SHIPPING"</comment>
+                </field>
+				<field id="free_shipping_threshold" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Minimum Order Amount For Free Shipping</label>
+					<comment>Apply free shipping if this amount is exceeded</comment>
+                </field>
+				<field id="include_free_ship_items" translate="label" type="select" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Include Free Shipping Items in Rate Calculation</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<comment>Include weight, qty of Free Shipping Products in calculation of shipping rates</comment>
+                </field>
+				<field id="include_virtual_price" translate="label" type="select" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Include Virtual Products in Rate Calculation</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+					<comment>Include price, qty of Virtual Products in calculation of shipping rates</comment>
+                </field>
+				<field id="handling_type" translate="label" type="select" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Calculate Handling Fee</label>
+					<source_model>Magento\Shipping\Model\Source\HandlingType</source_model>
+				</field>
+				<field id="handling_fee" translate="label" type="text" sortOrder="14" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Handling Fee</label>
+                    <validate>validate-number validate-zero-or-greater</validate>
+				</field>
+				<field id="sallowspecific" translate="label" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Ship to Applicable Countries</label>
+                    <frontend_class>shipping-applicable-country</frontend_class>
+                    <source_model>Magento\Shipping\Model\Config\Source\Allspecificcountries</source_model>
+				</field>
+                <field id="specificcountry" translate="label" type="multiselect" sortOrder="16" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Ship to Specific Countries</label>
+                    <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                    <can_be_empty>1</can_be_empty>
+				</field>
+                <field id="showmethod" translate="label" type="select" sortOrder="17" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Show Method if Not Applicable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+				<field id="specificerrmsg" translate="label" type="textarea" sortOrder="18" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Displayed Error Message</label>
+				</field>
+				<field id="sort_order" translate="label" type="text" sortOrder="100" showInDefault="19" showInWebsite="1" showInStore="0">
+                    <label>Sort Order</label>
+				</field>
+			</group>
+		</section>
+    </system>
+</config>

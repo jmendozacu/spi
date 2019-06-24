@@ -1,0 +1,272 @@
+/**
+ * Binary Anvil, Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Binary Anvil, Inc. Software Agreement
+ * that is bundled with this package in the file LICENSE_BAS.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.binaryanvil.com/software/license/
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@binaryanvil.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this software to
+ * newer versions in the future. If you wish to customize this software for
+ * your needs please refer to http://www.binaryanvil.com/software for more
+ * information.
+ *
+ * @category    BinaryAnvil
+ * @package     Infinity
+ * @copyright   Copyright (c) 2018-2019 Binary Anvil,Inc. (http://www.binaryanvil.com)
+ * @license     http://www.binaryanvil.com/software/license
+ */
+
+
+//
+//  Variables
+//  _____________________________________________
+
+@collapsible-nav-background: @sidebar__background-color;
+@collapsible-nav-color: @mountain-mist;
+@collapsible-nav-current-border: 3px solid transparent;
+@collapsible-nav-current-border-color: @medium-turquoise;
+@collapsible-nav-current-color: @medium-turquoise;
+@collapsible-nav-current-font-weight: @font-weight__bold;
+@collapsible-nav-delimiter__border-color: @color-gray82;
+@collapsible-nav-item-hover: @color-white;
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    //
+    //  Collapsible navigation
+    //  -----------------------------------------
+
+    .block-collapsible-nav {
+        .content {
+            .lib-css(background, @collapsible-nav-background);
+            padding: 15px 0;
+        }
+
+        .items {
+            border-bottom: 1px solid #878380;
+        }
+
+        .item {
+            margin: 3px 1.6% 0;
+            display: inline-block;
+
+            &:first-child {
+                margin-left: 0;
+            }
+
+            &:last-child {
+                margin-right: 0;
+            }
+
+            a,
+            > strong {
+                text-transform: uppercase;
+                font-weight: @font-weight__bold;
+                border-bottom: 3px solid transparent;
+                .lib-css(color, @collapsible-nav-color);
+                display: block;
+                padding: 5px 18px 5px 15px;
+            }
+
+            a {
+                text-decoration: none;
+                .transition(all ease 0.3s);
+
+                &:hover {
+                    .lib-css(color, @medium-turquoise);
+                    .lib-css(background, @collapsible-nav-item-hover);
+                    position: relative;
+
+                    &:after {
+                        content: '';
+                        position: absolute;
+                        width: 100%;
+                        left: 0;
+                        bottom: -4px;
+                        .lib-css(border-bottom, 7px solid @collapsible-nav-current-border-color);
+                    }
+                }
+            }
+
+            &.current {
+                a,
+                > strong {
+                    position: relative;
+                    .lib-css(color, @collapsible-nav-current-color);
+                    .lib-css(font-weight, @collapsible-nav-current-font-weight);
+
+                    &:after {
+                        content: '';
+                        position: absolute;
+                        width: 100%;
+                        left: 0;
+                        bottom: -4px;
+                        .lib-css(border-bottom, 7px solid @collapsible-nav-current-border-color);
+                    }
+                }
+
+                a {
+                    .lib-css(border-color, @collapsible-nav-current-border-color);
+                }
+            }
+
+            .delimiter {
+                border-top: 1px solid @collapsible-nav-delimiter__border-color;
+                display: block;
+                margin: @indent__s 1.8rem;
+            }
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    .block-collapsible-nav {
+        .title {
+            display: none;
+        }
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .sidebar.sidebar-main {
+        .lib-vendor-prefix-order(0);
+    }
+
+    .block-collapsible-nav {
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 5;
+
+        .title {
+            &:extend(.abs-toggling-title-mobile all);
+        }
+
+        .content {
+            border-bottom: @border-width__base solid @border-color__base;
+            display: none;
+
+            &.active {
+                display: block;
+            }
+        }
+
+        .item {
+            display: block;
+            margin: 0;
+            text-align: center;
+
+            strong,
+            a {
+                display: inline-block;
+
+                &:hover {
+                    color: @collapsible-nav-color;
+
+                    &:after {
+                        content: none;
+                    }
+                }
+            }
+        }
+
+        .items {
+            border: none;
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__l) {
+    .sidebar.sidebar-main {
+        .lib-vendor-prefix-order(0);
+    }
+    .page-main {
+        position: relative;
+    }
+
+    .block-collapsible-nav {
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 5;
+
+        .title {
+            border-top: 1px solid @color-gray80;
+            cursor: pointer;
+            margin-bottom: 0;
+            position: relative;
+            border-bottom: 1px solid @color-gray80;
+            padding: 14px 56px 14px 15px;
+            display: block;
+            text-decoration: none;
+
+            .lib-icon-font(
+                @icon-down,
+                @_icon-font-size: 16px,
+                @_icon-font-text-hide: false,
+                @_icon-font-margin: 3px 0 0 0,
+                @_icon-font-position: after,
+                @_icon-font-display: block
+            );
+
+            &:after {
+                position: absolute;
+                right: 28px;
+                top: 16px;
+            }
+
+            &.active {
+                .lib-icon-font-symbol(
+                    @_icon-font-content: @icon-up,
+                    @_icon-font-position: after
+                );
+            }
+        }
+
+        .content {
+            border-bottom: @border-width__base solid @border-color__base;
+            display: none;
+
+            &.active {
+                display: block;
+            }
+        }
+
+        .item {
+            display: block;
+            margin: 0;
+            text-align: center;
+
+            strong {
+                display: inline-block;
+            }
+        }
+
+        .items {
+            border: none;
+        }
+    }
+}

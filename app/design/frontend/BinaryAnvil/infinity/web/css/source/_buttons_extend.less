@@ -1,0 +1,92 @@
+//
+//  Common
+//  _____________________________________________
+
+/**
+ * Binary Anvil, Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Binary Anvil, Inc. Software Agreement
+ * that is bundled with this package in the file LICENSE_BAS.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.binaryanvil.com/software/license/
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@binaryanvil.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this software to
+ * newer versions in the future. If you wish to customize this software for
+ * your needs please refer to http://www.binaryanvil.com/software for more
+ * information.
+ *
+ * @category    BinaryAnvil
+ * @package     Infinity
+ * @copyright   Copyright (c) 2017-2018 Binary Anvil,Inc. (http://www.binaryanvil.com)
+ * @license     http://www.binaryanvil.com/software/license
+ */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    // Buttons
+
+    button,
+    a.action.primary {
+        .lib-css(text-transform, uppercase);
+        .lib-css(outline, 1px solid transparent);
+        .transition(all ease 0.3s);
+
+        &:hover {
+            .lib-css(outline, 1px solid @kilamanjaro);
+        }
+
+        &:focus {
+            .lib-css(background, @kilamanjaro);
+            .lib-css(color, @color-white);
+            .lib-css(border,1px solid @kilamanjaro);
+        }
+    }
+
+    button {
+        &:not(.primary) {
+            .lib-css(box-shadow, none);
+            .lib-css(background, transparent);
+            .lib-css(border,1px solid @medium-turquoise);
+            .lib-css(color, @medium-turquoise);
+            .lib-css(outline, 1px solid transparent);
+            .transition(all ease 0.3s);
+
+            &:hover {
+                .lib-css(outline, 1px solid @medium-turquoise);
+                .lib-css(background, transparent);
+                .lib-css(border,1px solid @medium-turquoise);
+                .lib-css(color, @medium-turquoise);
+            }
+        }
+    }
+}
+
+//
+//  Override native large buttons
+//  _____________________________________________
+
+.lib-button-l(
+    @_button-l-font-size: @button__font-size__s,
+    @_button-l-height: @button__line-height__s,
+    @_button-l-padding: @button__padding__l
+) {
+    .lib-button-size(
+        @_button-line-height: @_button-l-height,
+        @_button-padding: @_button-l-padding
+    );
+    .lib-font-size(@_button-l-font-size);
+}
+
+

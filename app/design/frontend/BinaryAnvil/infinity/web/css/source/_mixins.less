@@ -1,0 +1,326 @@
+/**
+ * Binary Anvil, Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Binary Anvil, Inc. Software Agreement
+ * that is bundled with this package in the file LICENSE_BAS.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.binaryanvil.com/software/license/
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@binaryanvil.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this software to
+ * newer versions in the future. If you wish to customize this software for
+ * your needs please refer to http://www.binaryanvil.com/software for more
+ * information.
+ *
+ * @category    BinaryAnvil
+ * @package     Infinity
+ * @copyright   Copyright (c) 2017-2018 Binary Anvil,Inc. (http://www.binaryanvil.com)
+ * @license     http://www.binaryanvil.com/software/license
+ */
+
+//
+//  Flex Layout
+//  _____________________________________________
+
+.flex-layout() {
+    display: -webkit-flex;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -moz-box;
+    display: flex;
+}
+
+.flex-align(@flex-align) {
+    -webkit-align-items: @flex-align;
+    align-items: @flex-align;
+}
+
+.flex-align-content(@flex-align-content) {
+    -webkit-align-content: @flex-align-content;
+    align-content: @flex-align-content;
+}
+
+
+.flex-basis(@flex-basis) {
+    -webkit-flex-basis: @flex-basis;
+    flex-basis: @flex-basis;
+}
+
+.flex-direction(@flex-direction) {
+    -webkit-flex-direction: @flex-direction;
+    -ms-flex-direction: @flex-direction;
+    flex-direction: @flex-direction;
+}
+
+.flex-flow(@flex-flow) {
+    -webkit-flex-flow: @flex-flow;
+    flex-flow: @flex-flow;
+}
+
+.flex-grow(@flex-grow) {
+    -webkit-flex-grow: @flex-grow;
+    flex-grow: @flex-grow;
+}
+
+.flex-justify-content(@justify-content) {
+    -webkit-justify-content: @justify-content;
+    justify-content: @justify-content;
+}
+
+.flex-order(@order) {
+    -webkit-order: @order;
+    -ms-flex-order: @order;
+    order: @order;
+}
+
+.flex-shrink(@shrink) {
+    -webkit-flex-shrink: @shrink;
+    flex-shrink: @shrink;
+}
+
+.flex-value(@flex) {
+    -webkit-flex: @flex;
+    -ms-flex: @flex;
+    flex: @flex;
+}
+
+.flex-wrap(@flex-wrap) {
+    -webkit-flex-wrap: @flex-wrap;
+    -ms-flex-wrap: @flex-wrap;
+    flex-wrap: @flex-wrap;
+}
+
+//
+//  Angled Edges
+//  _____________________________________________
+
+.angled(@angled) {
+    -webkit-transform: rotate(~"@{angled}deg");
+    -moz-transform: rotate(~"@{angled}deg");
+    -ms-transform: rotate(~"@{angled}deg");
+    transform: rotate(~"@{angled}deg");
+}
+
+//
+//  Animation
+//  _____________________________________________
+
+.animation (@duration) {
+    -webkit-animation-duration: @duration;
+    animation-duration: @duration;
+}
+
+.animation-fill(@fill) {
+    -webkit-animation-fill-mode: @fill;
+    animation-fill-mode: @fill;
+}
+
+.animation-name(@name) {
+    -webkit-animation-name: @name;
+    animation-name: @name;
+}
+
+
+//
+//  Border Radius
+//  _____________________________________________
+
+.round-borders(@radius) {
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    border-radius: @radius;
+}
+
+.round-borders-top-left(@radius) {
+    -webkit-border-top-left-radius: @radius;
+    -moz-border-radius-topleft: @radius;
+    border-top-left-radius: @radius;
+}
+
+.round-borders-top-right(@radius) {
+    -webkit-border-top-right-radius: @radius;
+    -moz-border-radius-topright: @radius;
+    border-top-right-radius: @radius;
+}
+
+.round-borders-bottom-left(@radius) {
+    -webkit-border-bottom-left-radius: @radius;
+    -moz-border-radius-bottomleft: @radius;
+    border-bottom-left-radius: @radius;
+}
+
+.round-borders-bottom-right(@radius) {
+    -webkit-border-bottom-right-radius: @radius;
+    -moz-border-radius-bottomright: @radius;
+    border-bottom-right-radius: @radius;
+}
+
+//
+//  Box Sizing
+//  _____________________________________________
+
+.box-sizing(@box-value) {
+    -webkit-box-sizing: @box-value;
+    -moz-box-sizing: @box-value;
+    box-sizing: @box-value;
+}
+
+//
+//  Box Shadow
+//  _____________________________________________
+
+.box-shadow(@box-shadow) {
+    -webkit-box-shadow: @box-shadow;
+    -moz-box-shadow: @box-shadow;
+    box-shadow: @box-shadow;
+}
+
+//
+//  Background Image
+//  _____________________________________________
+
+.clip-bg (){
+    display: block;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+//
+//  Disable User Select
+//  _____________________________________________
+
+.disable-select() {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+//
+//  Font Size Generator
+//  _____________________________________________
+
+.font-size(@sizeValue) {
+    @remValue: (@sizeValue / @root-font_size);
+    font-size: ~"@{remValue}rem";
+}
+
+//
+//  Right Arrow
+//  ---------------------------------------------
+
+.right-arrow (@space, @border-top, @border-right, @border-bottom, @border-left, @color) {
+    &:after {
+        display: inline-block;
+        width: 0;
+        height: 0;
+        margin-left: @space;
+        border-style: solid;
+        border-width: @border-top @border-right @border-bottom @border-left;
+        border-color: transparent transparent transparent @color;
+        content: '';
+    }
+}
+
+//
+//  Rotate
+//  _____________________________________________
+
+.transform(@transform) {
+    -webkit-transform: @transform;
+    -moz-transform: @transform;
+    -ms-transform: @transform;
+    -o-transform: @transform;
+    transform: @transform;
+}
+
+//
+//  Transition Effect
+//  _____________________________________________
+
+.transition(@transition) {
+    -webkit-transition: @transition;
+    -moz-transition: @transition;
+    -o-transition: @transition;
+    transition: @transition;
+}
+
+//
+//  Misc
+//  _____________________________________________
+
+.hyphens(@hypen) {
+    -webkit-hyphens: @hypen;
+    -moz-hyphens: @hypen;
+    -ms-hyphens: @hypen;
+    hyphens: @hypen;
+}
+
+.clearfix(){
+    &:after {
+        display: block;
+        height: 0;
+        font-size: 0;
+        content: " ";
+        clear: both;
+    }
+}
+
+//
+//  Text alignment, capitalization and font smoothing
+//  _____________________________________________
+
+.font-smoothing(@smoothing) {
+    font-smoothing: @smoothing;
+    -webkit-font-smoothing: @smoothing;
+}
+
+.text-center() {
+    text-align: center;
+}
+
+.text-left() {
+    text-align: left;
+}
+
+.text-right() {
+    text-align: right;
+}
+
+.text-lowercase() {
+    text-transform: lowercase;
+}
+
+.text-uppercase() {
+    text-transform: uppercase;
+}
+
+//
+//  Element visibility
+//  _____________________________________________
+
+.hide() {
+    display: none;
+}
+
+.hidden() {
+    visibility: hidden;
+}
+
+.visible() {
+    visibility: visible;
+}
+
+.body-loader {
+    visibility: visible;
+}

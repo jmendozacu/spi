@@ -1,0 +1,115 @@
+<?php
+/**
+ * Binary Anvil, Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Binary Anvil, Inc. Software Agreement
+ * that is bundled with this package in the file LICENSE_BAS.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.binaryanvil.com/software/license/
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@binaryanvil.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this software to
+ * newer versions in the future. If you wish to customize this software for
+ * your needs please refer to http://www.binaryanvil.com/software for more
+ * information.
+ *
+ * @category    BinaryAnvil
+ * @package     Infinity
+ * @copyright   Copyright (c) 2018-2019 Binary Anvil,Inc. (http://www.binaryanvil.com)
+ * @license     http://www.binaryanvil.com/software/license
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Template for displaying new products widget
+ *
+ * @var $block \Magento\Catalog\Block\Product\Widget\NewWidget
+ */
+if ($exist = ($block->getProductCollection() && $block->getProductCollection()->getSize())) {
+    $type = 'widget-new-grid';
+
+    $mode = 'grid';
+
+    $image = 'new_products_content_widget_grid';
+    $title = __('New Products');
+
+    /** @var \BinaryAnvil\InfinityTheme\Helper\Catalog $catalogHelper */
+    $catalogHelper = $this->helper('BinaryAnvil\InfinityTheme\Helper\Catalog');
+
+    /** @var \Magento\Catalog\Model\ResourceModel\Product\Collection $productCollection */
+    $productCollection = $block->getProductCollection();
+    if ($categpryId = $block->getData('category')) {
+
+        $category = $catalogHelper->getCategoryById($categpryId);
+        if ($category) {
+            $productCollection->addCategoryFilter($category);
+        }
+    }
+
+    $items = $productCollection->getItems();
+
+    $showWishlist = true;
+    $showCompare = true;
+    $showCart = true;
+    $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::DEFAULT_VIEW;
+    $description = false;
+}
+?>
+
+<?php if ($exist):?>
+    <div class="block widget block-new-products <?= /* @escapeNotVerified */ $mode ?>">
+        <div class="block-content">
+            <?= /* @escapeNotVerified */ '<!-- ' . $image . '-->' ?>
+            <div class="products-<?= /* @escapeNotVerified */ $mode ?> <?= /* @escapeNotVerified */ $mode ?>">
+                <ol class="product-items <?= /* @escapeNotVerified */ $type ?>">
+                    <?php $iterator = 1; ?>
+                    <?php foreach ($items as $_item): ?>
+                        <?= /* @escapeNotVerified */ ($iterator++ == 1) ? '<li class="product-item">' : '</li><li class="product-item">' ?>
+                        <div class="product-item-info">
+                            <a href="<?= /* @escapeNotVerified */ $block->getProductUrl($_item) ?>" class="product-item-photo">
+                                <?= $block->getImage($_item, $image)->toHtml() ?>
+                            </a>
+                            <div class="product-item-details">
+                                <strong class="product-item-name">
+                                    <a title="<?= $block->escapeHtml($_item->getName()) ?>"
+                                       href="<?= /* @escapeNotVerified */ $block->getProductUrl($_item) ?>"
+                                       class="product-item-link">
+                                        <?php
+                                        $labels = $catalogHelper->getProductLabels($_item);
+                                        ?>
+                                        <?php if ($labels) :?>
+                                            <?php foreach ($labels as $label):?>
+                                                <span class="product-label <?= /* @escapeNotVerified */ $label ?>"><?= /* @escapeNotVerified */ $label ?></span>
+                                            <?php endforeach;?>
+                                        <?php endif;?>
+                                        <?= $block->escapeHtml($_item->getName()) ?>
+                                    </a>
+                                </strong>
+                                <?php
+                                echo $block->getProductPriceHtml($_item, $type);
+                                ?>
+
+                                <?php if ($templateType): ?>
+                                    <?= $block->getReviewsSummaryHtml($_item, $templateType) ?>
+                                <?php endif; ?>
+
+                            </div>
+                        </div>
+                        <?= ($iterator == count($items)+1) ? '</li>' : '' ?>
+                    <?php endforeach ?>
+                </ol>
+            </div>
+            <?= $block->getPagerHtml() ?>
+        </div>
+    </div>
+<?php endif;?>

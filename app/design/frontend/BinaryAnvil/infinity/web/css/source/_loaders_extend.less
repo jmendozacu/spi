@@ -1,0 +1,123 @@
+/**
+ * Binary Anvil, Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Binary Anvil, Inc. Software Agreement
+ * that is bundled with this package in the file LICENSE_BAS.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.binaryanvil.com/software/license/
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@binaryanvil.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this software to
+ * newer versions in the future. If you wish to customize this software for
+ * your needs please refer to http://www.binaryanvil.com/software for more
+ * information.
+ *
+ * @category    BinaryAnvil
+ * @package     Infinity
+ * @copyright   Copyright (c) 2017-2018 Binary Anvil,Inc. (http://www.binaryanvil.com)
+ * @license     http://www.binaryanvil.com/software/license
+ */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    //
+    //  Loader
+    //  _____________________________________________
+
+    // TODO: Choose loaders from http://freefrontend.com/css-loaders/ and https://loading.io/. We can use custom image loaders from designers when needed. Remove this comment after.
+
+    .loader-sitewide {
+        &._hidden {
+            display: none;
+        }
+    }
+
+    .loading-mask {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: 0;
+    }
+
+    .loader {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        display: inline-block;
+        margin: -15px 0 0 -15px;
+        height: 30px;
+        width: 30px;
+        //border: 4px solid @color-value; // TODO: Add border color if needed. Remove this comment after.
+        //background: @color-value; // TODO: Add background color if needed. Remove this comment after.
+        animation: loader 2s infinite ease;
+        //outline: @color-value solid thick; TODO: Add outline color if needed. Remove this comment after.
+
+        img {
+            display: none;
+        }
+    }
+
+    .loader-inner {
+        vertical-align: top;
+        display: inline-block;
+        width: 100%;
+        //background-color: @color-value; TODO: Add background color if needed. Remove this comment after.
+        animation: loader-inner 2s infinite ease-in;
+    }
+
+    @keyframes loader {
+        0% {
+            .transform(rotate(0deg));
+        }
+
+        25% {
+            .transform(rotate(180deg));
+        }
+
+        50% {
+            .transform(rotate(180deg));
+        }
+
+        75% {
+            .transform(rotate(360deg));
+        }
+
+        100% {
+            .transform(rotate(360deg));
+        }
+    }
+
+    @keyframes loader-inner {
+        0% {
+            height: 0;
+        }
+
+        25% {
+            height: 0;
+        }
+
+        50% {
+            height: 100%;
+        }
+
+        75% {
+            height: 100%;
+        }
+
+        100% {
+            height: 0;
+        }
+    }
+}

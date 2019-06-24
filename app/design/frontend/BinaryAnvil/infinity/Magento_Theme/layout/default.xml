@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Binary Anvil, Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Binary Anvil, Inc. Software Agreement
+ * that is bundled with this package in the file LICENSE_BAS.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.binaryanvil.com/software/license/
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@binaryanvil.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this software to
+ * newer versions in the future. If you wish to customize this software for
+ * your needs please refer to http://www.binaryanvil.com/software for more
+ * information.
+ *
+ * @category    BinaryAnvil
+ * @package     Infinity
+ * @copyright   Copyright (c) 2018-2019 Binary Anvil,Inc. (http://www.binaryanvil.com)
+ * @license     http://www.binaryanvil.com/software/license
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="search-term-popular-link" remove="true" />
+        <referenceBlock name="contact-us-link" remove="true" />
+        <referenceBlock name="catalog-search-advanced-link" remove="true" />
+        <referenceBlock name="sales-guest-form-link" remove="true" />
+
+        <referenceBlock name="logo">
+            <arguments>
+                <argument name="logo_file" xsi:type="string">images/logo.svg</argument>
+                <argument name="logo_img_width" xsi:type="number">148</argument>
+                <argument name="logo_img_height" xsi:type="number">43</argument>
+            </arguments>
+        </referenceBlock>
+
+        <referenceContainer name="before.body.end">
+            <block class="Magento\Framework\View\Element\Template" name="footer.script" after="-" template="Magento_Theme::footer_script.phtml"/>
+        </referenceContainer>
+
+        <referenceBlock name="copyright" template="Magento_Theme::html/copyright.phtml">
+            <block class="Magento\Framework\View\Element\Html\Links" name="footer_links" />
+            <block class="Magento\Newsletter\Block\Subscribe" name="form.subscribe" as="subscribe" template="Magento_Newsletter::subscribe.phtml"/>
+        </referenceBlock>
+
+        <referenceBlock name="navigation.sections">
+            <block class="Magento\Newsletter\Block\Subscribe" name="form.subscribe.mobile" template="Magento_Theme::html/mobile_newsletter.phtml"/>
+        </referenceBlock>
+    </body>
+</page>

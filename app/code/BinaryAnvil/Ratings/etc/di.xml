@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Binary Anvil, Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Binary Anvil, Inc. Software Agreement
+ * that is bundled with this package in the file LICENSE_BAS.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.binaryanvil.com/software/license/
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@binaryanvil.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this software to
+ * newer versions in the future. If you wish to customize this software for
+ * your needs please refer to http://www.binaryanvil.com/software for more
+ * information.
+ *
+ * @category    BinaryAnvil
+ * @package     BinaryAnvil_Ratings
+ * @copyright   Copyright (c) 2018-2019 Binary Anvil,Inc. (http://www.binaryanvil.com)
+ * @license     http://www.binaryanvil.com/software/license
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Review\Model\Review" type="BinaryAnvil\Ratings\Preference\Magento\Review\Model\Review" />
+    <preference for="Magento\Review\Model\Rating" type="BinaryAnvil\Ratings\Preference\Magento\Review\Model\Rating" />
+    <preference for="Magento\Review\Model\ResourceModel\Review"
+                type="BinaryAnvil\Ratings\Preference\Magento\Review\Model\ResourceModel\Review" />
+    <preference for="Magento\Review\Model\ResourceModel\Rating"
+                type="BinaryAnvil\Ratings\Preference\Magento\Review\Model\ResourceModel\Rating" />
+    <preference for="Magento\Review\Model\ResourceModel\Review\Collection"
+                type="BinaryAnvil\Ratings\Preference\Magento\Review\Model\ResourceModel\Review\Collection" />
+    <preference for="Magento\Review\Controller\Adminhtml\Rating\Save"
+                type="BinaryAnvil\Ratings\Preference\Magento\Review\Controller\Adminhtml\Rating\Save" />
+    <type name="Magento\Review\Block\Adminhtml\Rating\Edit\Tab\Form">
+        <plugin name="add_fields_to_rating_form"
+                type="BinaryAnvil\Ratings\Plugin\Magento\Review\Block\Adminhtml\Rating\Edit\Tab\Form"
+                sortOrder="1" />
+    </type>
+
+    <preference for="BinaryAnvil\Ratings\Api\Data\ReviewHelpfulInterface"
+                type="BinaryAnvil\Ratings\Model\ReviewHelpful" />
+    <preference for="BinaryAnvil\Ratings\Api\ReviewHelpfulRepositoryInterface"
+                type="BinaryAnvil\Ratings\Model\ReviewHelpfulRepository" />
+
+    <type name="Magento\Review\Model\ResourceModel\Rating\Option\Vote\Collection">
+        <plugin name="filter_retings"
+                type="BinaryAnvil\Ratings\Plugin\Magento\Review\Model\ResourceModel\Rating\Option\Vote\Collection"
+                sortOrder="1" />
+    </type>
+</config>
