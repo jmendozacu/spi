@@ -141,151 +141,47 @@
     //    position: relative;
     //}
 
-    //
-    //  Global notice
-    //  ---------------------------------------------
 
-    //.message.global {
-    //    p {
-    //        margin: 0;
-    //    }
-    //
-    //    &.noscript,
-    //    &.cookie {
-    //        margin: 0;
-    //    }
-    //
-    //    &.cookie {
-    //        bottom: 0;
-    //        left: 0;
-    //        position: fixed;
-    //        right: 0;
-    //        z-index: 3;
-    //
-    //        .actions {
-    //        }
-    //    }
-    //
-    //    &.demo {
-    //        margin-bottom: 0;
-    //        text-align: center;
-    //    }
-    //}
+
 
 
     //
     //  Footer
     //  ---------------------------------------------
+    .fa-facebook-f:before, .fa-facebook:before {
+        content: "\f09a";
+    }
+    .fa-instagram:before {
+        content: "\f16d";
+    }
+
+    .page-footer {
+
+        .footer-inner {
+
+            .block {
+                margin: 0;
+                p, a {
+                    color: @gray;
+                    font-size: 14px;
+                }
+                p.footer-heading {
+                    font-weight: bold;
+                }
+            }
+        }
+
+        .copyright {
+            width: 100%;
+            text-align: center;
+            display: block;
+            padding: 0;
+            margin: 0;
+        }
+    }
 
 
 
-    //.page-footer {
-    //    .lib-css(background-color, @footer__background-color);
-    //    margin-top: auto;
-    //}
-    //
-    //.footer {
-    //    &.content {
-    //        border-top: 1px solid @border-color__base;
-    //        margin-top: 25px;
-    //        padding-bottom: 25px;
-    //        padding-top: 25px;
-    //
-    //        ul {
-    //            &:extend(.abs-reset-list all);
-    //        }
-    //
-    //        .links {
-    //            > li {
-    //                margin: 0 0 8px;
-    //            }
-    //        }
-    //
-    //        .switcher-store {
-    //            margin: 0 0 30px;
-    //        }
-    //    }
-    //
-    //    .copyright,
-    //    .bugs {
-    //        display: block;
-    //        margin: 20px 0 0;
-    //    }
-    //}
-
-    //.page-header,
-    //.page-footer {
-    //    .switcher {
-    //        margin-right: 10px;
-    //
-    //        .options {
-    //            .lib-dropdown(
-    //            @_dropdown-actions-padding: 0,
-    //            @_dropdown-list-item-padding: 0,
-    //            @_dropdown-toggle-icon-content: @icon-down,
-    //            @_dropdown-toggle-active-icon-content: @icon-up,
-    //            @_icon-font-text-hide: true,
-    //            @_icon-font-size: 22px,
-    //            @_icon-font-line-height: 22px,
-    //            @_dropdown-list-min-width: 160px
-    //            );
-    //
-    //            ul.dropdown {
-    //                a {
-    //                    display: block;
-    //                    padding: 8px;
-    //
-    //                    &:hover {
-    //                        text-decoration: none;
-    //                    }
-    //                }
-    //            }
-    //        }
-    //
-    //        li {
-    //            font-size: @font-size__s;
-    //            margin: 0;
-    //        }
-    //
-    //        .label {
-    //            &:extend(.abs-visually-hidden all);
-    //        }
-    //
-    //        strong {
-    //            font-weight: @font-weight__regular;
-    //        }
-    //    }
-    //}
-
-    //
-    //  Widgets
-    //  ---------------------------------------------
-
-    //.sidebar {
-    //    .widget.block:not(:last-child),
-    //    .widget:not(:last-child) {
-    //        &:extend(.abs-margin-for-blocks-and-widgets all);
-    //    }
-    //}
-    //
-    //.widget {
-    //    clear: both;
-    //
-    //    .block-title {
-    //        &:extend(.abs-block-title all);
-    //    }
-    //}
-    //
-    //.page-header,
-    //.page-footer {
-    //    .widget.block {
-    //        .lib-css(margin, @indent__base 0);
-    //    }
-    //}
-    //
-    //.no-display {
-    //    &:extend(.abs-no-display all);
-    //}
 
 
 }
