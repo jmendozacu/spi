@@ -19,6 +19,41 @@
         <move element="navigation.sections" destination="header-wrapper"  />
 
 
+        <!-- Footer -->
+        <referenceContainer name="footer">
+            <container name="footer.inner" htmlTag="div" htmlClass="footer-inner" before="-">
+                <!-- WE ARE -->
+                <container name="footer.we-are" htmlTag="div" htmlClass="block" before="-">
+                    <block class="Magento\Cms\Block\Block" name="footer-block.we-are">
+                        <arguments>
+                            <argument name="block_id" xsi:type="string">footer_we_are</argument>
+                        </arguments>
+                    </block>
+                </container>
+                <!-- HELP -->
+                <container name="footer.help" htmlTag="div" htmlClass="block" after="footer.we-are">
+                    <block class="Magento\Cms\Block\Block" name="footer-block.help">
+                        <arguments>
+                            <argument name="block_id" xsi:type="string">footer_help</argument>
+                        </arguments>
+                    </block>
+                </container>
+                <!-- FOLLOW US -->
+                <container name="footer.social" htmlTag="div" htmlClass="block" after="-">
+                    <block class="Magento\Cms\Block\Block" name="footer-block.social">
+                        <arguments>
+                            <argument name="block_id" xsi:type="string">footer_social</argument>
+                        </arguments>
+                    </block>
+                </container>
+            </container>
+        </referenceContainer>
+        <referenceBlock name="footer_links" remove="true" />
+        <referenceBlock name="report.bugs" remove="true" />
+        <referenceBlock name="store_switcher" remove="true" />
+        <move element="form.subscribe" destination="footer.inner" after="footer.help" />
+
+
 
     </body>
 </page>
