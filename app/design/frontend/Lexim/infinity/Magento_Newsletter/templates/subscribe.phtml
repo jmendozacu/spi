@@ -1,0 +1,92 @@
+<?php
+
+// @codingStandardsIgnoreFile
+
+/** @var \Magento\Newsletter\Block\Subscribe $block */
+
+?>
+<div class="block newsletter">
+    <p class="footer-heading">KEEP IN TOUCH</p>
+    <p>Let's be friends. Sign up for our emails.</p>
+    <div class="content">
+        <form class="form subscribe"
+              novalidate
+              data-mage-init='{"validation": {"errorClass": "mage-error"}}'
+              id="newsletter-validate-detail">
+            <div class="field newsletter">
+                <div class="control">
+                    <label class="">
+                        <input name="email" type="email" id="newsletter" class="email"
+                               placeholder="<?= $block->escapeHtmlAttr(__('enter email')) ?>"
+                               data-validate="{required:true, 'validate-email':true}"/>
+                        <span>email address</span>
+                    </label>
+
+                    <div class="actions">
+                        <button class="action subscribe primary" title="<?= $block->escapeHtmlAttr(__('SIGN UP')) ?>">
+                            <span><?= $block->escapeHtml(__('SIGN UP')) ?></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script type="text/javascript">
+    (function () {
+        require(["jquery"], function ($) {
+            $(document).ready(function () {
+                function emailValidation(email) {
+                    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+                    return regex.test(email);
+                }
+
+                $('.block.newsletter .action.subscribe').on('click', function (e) {
+                    e.preventDefault();
+
+                    var messageHTML = '',
+                        newsletterVal = $('#newsletter').val(),
+                        postURL = 'https://spi-functions.azurewebsites.net/api/InfinitySalesForceNewsletterSignUp';
+
+                    if (window.location.href.indexOf('local') > -1 || window.location.href.indexOf('mcstaging') > -1) {
+                        postURL = 'https://spi-functions-dev.azurewebsites.net/api/InfinitySalesForceNewsletterSignUp';
+                    }
+
+                    if (newsletterVal.length > 5 && emailValidation(newsletterVal)) {
+
+                        $.ajax({
+                            url: postURL,
+                            data: JSON.stringify({
+                                'source': 'InfinityWeb_subscriber',
+                                'emailAddress': newsletterVal
+                            }),
+                            type: 'POST',
+                            contentType: 'application/json;charset=utf-8',
+                            success: function (data) {
+                                jQuery('button.action.subscribe.primary').fadeOut();
+                                jQuery('#newsletter').fadeOut();
+                                jQuery('<p>Thank you. You\'re signed up!</p>').insertBefore('.actions button');
+                            },
+                            error: function (err) {
+                                console.log('Error occured:', err)
+                            }
+                        });
+                    } else if (newsletterVal.length <= 5) {
+                        messageHTML += '<div role="alert" data-bind="foreach: { data. messages().messages, as: \'message\' }" class="messages">';
+                        messageHTML += '<div data-bind="attr: { class: \'message-\' + message.type + \' \' + message.type + \' message\', \'data-ui-id\': \'message-\' + message.type }" class="message-error error message" data-ui-id="message-error"> <div data-bind="html: message.text">Email cannot be less than 5 characters. Please try again.</div></div>';
+                        jQuery('.page.messages').html(messageHTML);
+                        jQuery("html, body").animate({scrollTop: 0}, 'slow');
+                    } else if (!emailValidation(newsletterVal)) {
+                        messageHTML += '<div role="alert" data-bind="foreach: { data. messages().messages, as: \'message\' }" class="messages">';
+                        messageHTML += '<div data-bind="attr: { class: \'message-\' + message.type + \' \' + message.type + \' message\', \'data-ui-id\': \'message-\' + message.type }" class="message-error error message" data-ui-id="message-error"> <div data-bind="html: message.text">Email format is invalid. Please try again.</div></div>';
+                        jQuery('.page.messages').html(messageHTML);
+                        jQuery("html, body").animate({scrollTop: 0}, 'slow');
+                    }
+
+                    $('#newsletter').val('');
+                });
+            });
+        });
+    })();
+</script>

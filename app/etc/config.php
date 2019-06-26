@@ -67,7 +67,7 @@ return [
             ],
             'dev' => [
                 'static' => [
-                    'sign' => '1'
+                    'sign' => '0'
                 ],
                 'front_end_development_workflow' => [
                     'type' => 'server_side_compilation'

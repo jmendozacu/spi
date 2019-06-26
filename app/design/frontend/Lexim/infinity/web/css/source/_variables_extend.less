@@ -1,0 +1,67 @@
+
+// Break points
+@screen__xxs: 320px;
+@screen__xs: 480px;
+@screen__s: 640px;
+@screen__m: 768px;
+@screen__l: 992px;
+@screen__xl: 1440px;
+
+// layout
+@layout__max-width: 100%;
+
+// Color
+@aqua: #48c1cb;
+@gray: #3e3935;
+
+// Fonts
+@main-font: 'Proxima Nova', Hind, sans-serif;
+
+// function
+.display-flex() {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+}
+
+.flex-wrap(@flex_wrap) {
+    -webkit-flex-wrap: @flex_wrap;
+    -ms-flex-wrap: @flex_wrap;
+    flex-wrap: @flex_wrap;
+}
+
+.flex-direction(@flex_direction) {
+    -webkit-flex-direction: @flex_direction;
+    -ms-flex-direction: @flex_direction;
+    flex-direction: @flex_direction;
+}
+
+.justify-content(@justify_content) {
+    -webkit-justify-content: @justify_content;
+    justify-content: @justify_content;
+}
+
+.align-items(@align_item) {
+    -webkit-align-items: @align_item;
+    align-items: @align_item;
+}
+
+.box-sizing(@box_sizing) {
+    -webkit-box-sizing: @box_sizing;
+    -moz-box-sizing: @box_sizing;
+    box-sizing: @box_sizing;
+}
+
+* {
+    .box-sizing(border-box);
+}
+
+body {
+    font-family: @main-font;
+    line-height: 1.4;
+    font-size: 14px;
+    color: @gray;
+}
+
