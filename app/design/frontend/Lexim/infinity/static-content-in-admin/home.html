@@ -1,0 +1,107 @@
+
+<section class="home-hero">
+    <div class="home-hero-inner">
+        <div class="hero-item left">
+            <div class="hero-item-inner" style="background-image: url({{view url='images/home/home_hero_left.jpg'}});">
+                <div class="hero-text-wrap">
+                    <div class="slogan-text">
+                        <span>Cool</span>
+                        <span>Confident</span>
+                        <span>Comfortable</span>
+                    </div>
+                    <h2>Keep calm and look smart <br>in summer styles for men.</h2>
+                    <div class="link-button"><a href="/men.html">SHOP MEN'S</a></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-item right">
+            <div class="hero-item-inner" style="background-image: url({{view url='images/home/home_hero_right.jpg'}});">
+                <div class="hero-text-wrap">
+                    <div class="slogan-text">
+                        <span>Let</span>
+                        <span>The Sun</span>
+                        <span>Shine In</span>
+                    </div>
+                    <h2>Invigorate your wardrobe with <br>summer pieces for women.</h2>
+                    <div class="link-button"><a href="/women.html">SHOP WOMEN'S</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="home-dream">
+    <h2 class="section-title">DREAMING IN COLOR</h2>
+    <h3 class="sub-title">Seasonal hues Lovely Lemon and Blue Lilac, coordinated with Navy and Black for carefree summer style.</h3>
+    <div class="link-button"><a href="/women.html">SHOP WOMENS</a></div>
+    <div class="flex-3-images">
+        <div class=""></div>
+    </div>
+</section>
+
+
+<section class="home-video">
+    <div class="home-video-inner">
+        <div class="left-image-hv"></div>
+        <div class="right-video-hv">
+            <video id="home-video" width="320" height="240"
+                   poster="https://i.infinityscrubs.com/infinity/images/home/desktop/homepage_desktop_05.jpg">
+                <source src="https://i.infinityscrubs.com/infinity/videos/INFScrubs_HomepageVideo_desktop.mp4"
+                        type="video/mp4"/>
+                <object id="home-video2" width="320" height="240"
+                        data="http://spi.local/pub/static/adminhtml/Magento/backend/en_US/tiny_mce/plugins/media/moxieplayer.swf"
+                        type="application/x-shockwave-flash">
+                    <param name="src"
+                           value="http://spi.local/pub/static/adminhtml/Magento/backend/en_US/tiny_mce/plugins/media/moxieplayer.swf"/>
+                    <param name="flashvars"
+                           value="url=https%3A//i.infinityscrubs.com/infinity/videos/INFScrubs_HomepageVideo_desktop.mp4&amp;poster=https%3A//i.infinityscrubs.com/infinity/images/home/desktop/homepage_desktop_05.jpg"/>
+                    <param name="allowfullscreen" value="true"/>
+                    <param name="allowscriptaccess" value="true"/>
+                </object>
+            </video>
+        </div>
+    </div>
+</section>
+
+
+<section class="home-mix">
+    <h2 class="section-title">MIX, MATCH, LAYER, LOVE.</h2>
+    <h3 class="sub-title">Versatile pieces to wear any way you like.</h3>
+    <div class="flex-center-images">
+        <div class=""></div>
+    </div>
+</section>
+
+
+
+<!-- For responsive image maps and custom js -->
+<script type="text/javascript">
+    (function () {
+        require(["jquery"], function ($) {
+            $(document).ready(function () {
+                // mp4 video
+                // let video = document.getElementById('home-video'),
+                //     windowSize = $(window).width(),
+                //     mobileVideoSrc = 'https://i.infinityscrubs.com/infinity/videos/INFScrubs_HomepageVideo_mobile.mp4';
+                //
+                //
+                // $('#home-video').on('click touchstart', function () {
+                //     if (video.paused === true) {
+                //         video.play();
+                //     } else {
+                //         video.pause();
+                //     }
+                // }).on('ended', function () {
+                //     video.autoplay = false;
+                //     video.load();
+                // });
+                //
+                // if (windowSize < 768) {
+                //     $('#home-video source').attr('src', mobileVideoSrc);
+                // }
+            });
+        });
+    })();
+</script>
