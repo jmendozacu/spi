@@ -23,7 +23,7 @@
         </referenceContainer>
 
         <!-- Move the menu to the middle of header -->
-        <move element="navigation.sections" destination="header-wrapper"  />
+        <move element="navigation.sections" destination="header-wrapper" after="logo" />
 
 
         <!-- Footer -->
