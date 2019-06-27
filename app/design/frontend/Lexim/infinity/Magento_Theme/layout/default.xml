@@ -9,6 +9,13 @@
     <update handle="default_head_blocks"/>
     <body>
 
+        <!-- Logo -->
+        <referenceBlock name="logo">
+            <arguments>
+                <argument name="logo_img_width" xsi:type="number">105</argument>
+                <argument name="logo_img_height" xsi:type="number">52</argument>
+            </arguments>
+        </referenceBlock>
 
         <!-- Move message "Sale off" in top header  -->
         <referenceContainer name="header.container">
