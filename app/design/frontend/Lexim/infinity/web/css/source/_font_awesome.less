@@ -5,14 +5,15 @@
 /* FONT PATH
  * -------------------------- */
 
+@aws-font-path: '@{baseDir}font-awesome/';
 @font-face {
     font-family: 'FontAwesome';
-    src: url('../font-awesome/fontawesome-webfont.eot?v=4.7.0');
-    src: url('../font-awesome/fontawesome-webfont.eot?#iefix&v=4.7.0') format('embedded-opentype'),
-    url('../font-awesome/fontawesome-webfont.woff2?v=4.7.0') format('woff2'),
-    url('../font-awesome/fontawesome-webfont.woff?v=4.7.0') format('woff'),
-    url('../font-awesome/fontawesome-webfont.ttf?v=4.7.0') format('truetype'),
-    url('../font-awesome/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular') format('svg');
+    src: url('@{aws-font-path}fontawesome-webfont.eot?v=4.7.0');
+    src: url('@{aws-font-path}fontawesome-webfont.eot?#iefix&v=4.7.0') format('embedded-opentype'),
+    url('@{aws-font-path}fontawesome-webfont.woff2?v=4.7.0') format('woff2'),
+    url('@{aws-font-path}fontawesome-webfont.woff?v=4.7.0') format('woff'),
+    url('@{aws-font-path}fontawesome-webfont.ttf?v=4.7.0') format('truetype'),
+    url('@{aws-font-path}fontawesome-webfont.svg?v=4.7.0#fontawesomeregular') format('svg');
     font-weight: normal;
     font-style: normal;
 }

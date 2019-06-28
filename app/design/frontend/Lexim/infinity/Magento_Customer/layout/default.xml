@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+
+        <referenceBlock name="register-link" remove="true" />
+        <referenceBlock name="catalog.compare.link" remove="true" />
+        <referenceBlock name="skip_to_content" remove="true" />
+
+        <!-- wrapper -->
+        <container name="right.header.wrapper" htmlTag="div" htmlClass="rightHeader" />
+        <move element="right.header.wrapper"  destination="header-wrapper" after="-" />
+
+        <!-- account -->
+        <move element="header.panel" destination="right.header.wrapper" before="-"/>
+        <!-- search -->
+        <move element="top.search" destination="right.header.wrapper" after="header.panel" />
+        <!-- Wish-list -->
+        <block class="Magento\Framework\View\Element\Template" name="header.wishlist" template="Magento_Customer::header-wishlist.phtml" />
+        <move element="header.wishlist" destination="right.header.wrapper" after="top.search" />
+        <!-- mini-cart -->
+        <move element="minicart" destination="right.header.wrapper" after="-" />
+
+
+    </body>
+</page>
