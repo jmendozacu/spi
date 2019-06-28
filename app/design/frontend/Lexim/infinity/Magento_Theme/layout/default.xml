@@ -9,6 +9,9 @@
     <update handle="default_head_blocks"/>
     <body>
 
+        <!-- remove breadcrumbs -->
+        <referenceBlock name="breadcrumbs" remove="true" />
+
         <!-- Logo -->
         <referenceBlock name="logo">
             <arguments>

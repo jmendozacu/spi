@@ -11,6 +11,7 @@
 
 // Color
 @aqua: #48c1cb;
+@light-aqua: #d6eef1;
 @gray: #3e3935;
 
 // Fonts
@@ -76,7 +77,6 @@
     }
 
     @import '_font_awesome.less';
-
 
     @font-face {
         font-family: 'acs-icon-font';
@@ -170,9 +170,23 @@
     box-sizing: @box_sizing;
 }
 
+.flex(@flex_content) {
+    -ms-flex: @flex_content;
+    -webkit-flex: @flex_content;
+    flex: @flex_content;
+}
+
 .flex-grow(@flex-grow) {
     -webkit-flex-grow: @flex-grow;
     flex-grow: @flex-grow;
+}
+
+.transform(@value) {
+    -moz-transform: @value;
+    -webkit-transform: @value;
+    -ms-transform: @value;
+    -o-transform: @value;
+    transform: @value;
 }
 
 * {
