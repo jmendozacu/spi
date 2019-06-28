@@ -93,6 +93,7 @@
             .display-flex();
             .flex(1);
             min-width: -webkit-min-content;
+            padding: 10px 0;
 
             img {
                 height: min-content;
@@ -118,6 +119,7 @@
                     color: @gray;
                     font-size: 14px;
                     line-height: 50px;
+
                     > a {
                         line-height: 1;
                         padding: 0 15px;
@@ -125,11 +127,13 @@
                         border: none !important;
                         text-decoration: none;
                         background: transparent !important;
+
                         > span:not(.ui-icon) {
                             padding-bottom: 3px;
                             border: 0 solid @aqua;
                         }
                     }
+
                     &:hover .submenu {
                         .display-flex();
                     }
@@ -157,17 +161,21 @@
                         text-transform: capitalize;
                         font-size: 12px;
                         font-weight: normal;
+
                         span:not(.ui-icon) {
                             border: none;
                         }
 
                         &.active, &:hover {
                             text-shadow: 0 0 .65px @gray, 0 0 .65px @gray;
+
+                            > a > span:not(.ui-icon) {
+                                color: @gray;
+                            }
                         }
                     }
                 }
             }
-
 
         }
 
