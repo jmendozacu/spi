@@ -156,6 +156,7 @@
                     left: 50% !important;
                     margin-left: 0 !important;
                     .transform(translateX(-50%));
+                    min-width: 0;
 
                     li {
                         text-transform: capitalize;
@@ -184,14 +185,21 @@
             .flex(1);
             min-width: -webkit-min-content;
             .justify-content(flex-end);
+            .align-items(flex-end);
 
             .panel.header {
 
             }
 
+
             .header.links {
                 position: absolute;
                 display: none;
+            }
+
+            // wish-list
+            .header-wishlist {
+                padding: 0 15px;
             }
         }
 
