@@ -89,6 +89,14 @@
             .align-items(center);
         }
 
+        &.sticky .header.content {
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: #ffffff;
+            z-index: 99;
+        }
+
         .logo {
             .display-flex();
             .flex(1);
@@ -190,7 +198,6 @@
             .panel.header {
 
             }
-
 
             .header.links {
                 position: absolute;
@@ -452,7 +459,7 @@
 
     .home-sub-title {
         font-size: 14px;
-        color: #3E3935;
+        color: #3e3935;
         text-align: center;
     }
 
@@ -531,14 +538,14 @@
     }
 
     .home-support {
-        background-color: #3E3935;
+        background-color: #3e3935;
         text-align: center;
         clear: both;
         margin-top: 20px;
 
         .home-support-title {
             font-size: 14px;
-            color: #A7A4A3;
+            color: #a7a4a3;
             font-weight: 900;
             padding-top: 20px;
             padding-bottom: 5px;
@@ -546,7 +553,7 @@
 
         .home-support-sub {
             font-size: 10px;
-            color: #3BAFB8;
+            color: #3bafb8;
             font-weight: bold;
             padding-bottom: 20px;
         }
