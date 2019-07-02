@@ -191,7 +191,6 @@
 
             }
 
-
             .header.links {
                 position: absolute;
                 display: none;
@@ -343,6 +342,11 @@
     //
     //  Home page
     //  ---------------------------------------------
+
+    .cms-home .page-title {
+        display: none;
+    }
+
     .home-hero {
         .hero-item {
             width: 100%;
@@ -484,7 +488,12 @@
     }
 
     .home-video {
+        margin-left: -3.7vw;
+        margin-right: -3.7vw;
+
         .home-video-inner {
+            position: relative;
+
             .left-image-hv {
                 padding-bottom: 10px;
 
@@ -495,6 +504,10 @@
             }
 
             .right-video-hv {
+                position: absolute;
+                left: 50%;
+                transform: translate(-50%, -50%);
+
                 video {
                     display: block;
                     margin: 0 auto;
@@ -509,7 +522,7 @@
 
         .home-section-title {
             margin: 0;
-            padding-top: 30px;
+            padding-top: 90px;
         }
 
         .home-sub-title {
@@ -598,10 +611,16 @@
                 padding-left: 10px;
                 padding-right: 10px;
 
+                img {
+                    width: 100%;
+                }
+
                 &:nth-child(1) {
-                    img {
-                        float: right;
-                    }
+                    padding-left: 10vw;
+                }
+
+                &:nth-child(2) {
+                    padding-right: 10vw;
                 }
             }
 
@@ -678,12 +697,12 @@
         .hero-item.left {
             padding-bottom: unset;
             padding-left: 0;
-            padding-right: 20px;
+            padding-right: 2vw;
         }
 
         .hero-item.right {
             padding-right: 0;
-            padding-left: 20px;
+            padding-left: 2vw;
         }
     }
     .home-dream {
@@ -718,17 +737,25 @@
             .dream-item.big {
                 width: 34%;
                 float: left;
+
+                img {
+                    width: 100%;
+                }
             }
         }
     }
     .home-video {
-        margin-left: -3.7vw;
+        margin-right: unset;
 
         .home-video-inner {
             position: relative;
 
             .left-image-hv {
                 width: 60%;
+
+                img {
+                    width: 100%;
+                }
             }
 
             .right-video-hv {
@@ -736,6 +763,10 @@
                 top: 50%;
                 left: 50%;
                 transform: translate(0, -50%);
+
+                video {
+                    width: 100%;
+                }
             }
         }
     }
@@ -857,14 +888,6 @@
             }
         }
 
-        .hero-item.left {
-            padding-right: 40px;
-
-        }
-
-        .hero-item.right {
-            padding-left: 40px;
-        }
     }
     .home-dream {
         padding-bottom: 60px;
