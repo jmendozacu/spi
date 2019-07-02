@@ -475,12 +475,6 @@
     .home-dream {
         clear: both;
         overflow: hidden;
-        padding-bottom: 40px;
-
-        .home-section-title {
-            padding-top: 30px;
-            margin: 0;
-        }
 
         .link-button {
             padding-top: 10px;
@@ -530,22 +524,12 @@
         clear: both;
         overflow: hidden;
 
-        .home-section-title {
-            margin: 0;
-            padding-top: 90px;
-        }
-
-        .home-sub-title {
-            margin: 0;
-            padding-top: 10px;
-            padding-bottom: 25px;
-        }
-
         .flex-center-images {
             .mix-item {
-                padding-bottom: 10px;
+                padding-bottom: 15px;
 
                 img {
+                    width: 100%;
                     display: block;
                     margin: 0 auto;
                 }
@@ -699,25 +683,13 @@
 
     .home-mix {
         .flex-center-images {
+            padding: 0 18%;
+
             .mix-item {
                 width: 50%;
                 float: left;
-                padding-left: 10px;
-                padding-right: 10px;
-
-                img {
-                    width: 100%;
-                }
-
-                &:nth-child(1) {
-                    padding-left: 10%;
-                }
-
-                &:nth-child(2) {
-                    padding-right: 10%;
-                }
+                padding: 0 10px;
             }
-
         }
     }
 
@@ -823,8 +795,8 @@
 
     .home-dream {
         .flex-3-images {
-            display: flex;
-            align-items: center;
+            .display-flex();
+            .align-items(center);
 
             .dream-item {
                 &:nth-child(1) {
@@ -891,20 +863,7 @@
         }
     }
 
-    .home-mix {
-        .flex-center-images {
-            .mix-item {
-                img {
-                    display: unset;
-                }
-            }
-
-        }
-    }
-
     .home-support {
-        margin-top: 40px;
-
         .home-support-title {
             font-size: 20px;
         }
@@ -1012,27 +971,11 @@
 
     }
     .home-dream {
-        padding-bottom: 60px;
-
-        .home-section-title {
-            padding-top: 55px;
-        }
-
         .link-button {
             padding-top: 15px;
             padding-bottom: 45px;
         }
 
-    }
-    .home-mix {
-
-        .home-section-title {
-            padding-top: 50px;
-        }
-
-        .home-sub-title {
-            padding-bottom: 40px;
-        }
     }
 
     //
