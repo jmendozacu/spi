@@ -665,12 +665,22 @@
         .hero-item {
             width: 50%;
             float: left;
-            padding-left: 10px;
-            padding-right: 10px;
+        }
+        .hero-item.left{
+            padding-bottom:unset;
+            padding-left: 0;
+            padding-right: 20px;
+        }
+        .hero-item.right{
+            padding-right: 0;
+            padding-left: 20px;
         }
     }
     .home-dream {
         .flex-3-images {
+            display: flex;
+            align-items: center;
+
             .dream-item {
                 &:nth-child(1) {
                     img {
@@ -687,7 +697,6 @@
 
             .dream-item.small {
                 width: 33%;
-                padding-top: 3%;
                 float: left;
 
                 img {
@@ -703,6 +712,8 @@
         }
     }
     .home-video {
+        margin-left: -3.7vw;
+
         .home-video-inner {
             position: relative;
 
@@ -739,9 +750,6 @@
             font-size: 14px;
         }
     }
-    //
-    // Button
-    // ----------------------------------------------
 
     //
     //  Footer
@@ -838,12 +846,19 @@
                 }
             }
         }
+        .hero-item.left{
+            padding-right: 40px;
+
+        }
+        .hero-item.right{
+            padding-left: 40px;
+        }
     }
     .home-dream {
         padding-bottom: 60px;
 
         .home-section-title {
-            padding-top: 40px;
+            padding-top: 55px;
         }
 
         .link-button {
@@ -851,15 +866,25 @@
             padding-bottom: 45px;
         }
 
-        .flex-3-images {
-            .dream-item {
-                padding-bottom: 10px;
+    }
+    .home-mix {
 
-                img {
-                    display: block;
-                    margin: 0 auto;
-                }
-            }
+        .home-section-title {
+            padding-top: 50px;
+        }
+
+        .home-sub-title {
+            padding-bottom: 40px;
+        }
+    }
+
+    //
+    // Button
+    // ----------------------------------------------
+    .link-button {
+        a {
+            font-size: 14px;
+            width: 185px;
         }
     }
 
