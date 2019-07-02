@@ -349,7 +349,6 @@ Accept',
         'Magento_Worldpay' => 0,
         'ParadoxLabs_Authnetcim' => 1,
         'BinaryAnvil_ExtendAuthnetcim' => 1,
-        'Searchanise_SearchAutocomplete' => 0,
         'Shopial_Facebook' => 0,
         'Aheadworks_OneStepCheckout' => 1,
         'Vertex_Tax' => 1
