@@ -114,6 +114,18 @@
                 if (windowSize < 768) {
                     $('#home-video source').attr('src', mobileVideoSrc);
                 }
+
+                // auto play video when scroll to video section
+                $(window).scroll(function () {
+                    let currentTop = $(window).scrollTop();
+                    let videoPosition =  jQuery('.home-video')[0].offsetHeight;
+
+                    if(currentTop > videoPosition && video.paused) {
+                        video.play();
+                    }
+
+                });
+
             });
         });
     })();

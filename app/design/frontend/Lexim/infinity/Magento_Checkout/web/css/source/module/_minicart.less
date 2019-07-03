@@ -99,6 +99,18 @@
         position: relative;
         float: right;
 
+        .block-minicart {
+            display: none;
+            position: absolute;
+            width: 390px;
+            right: 0;
+            top: 49px;
+            z-index: 99;
+            background: #ffffff;
+            padding: 20px;
+            border: 1px solid #999999;
+        }
+
         .action {
             &.close {
                 height: 40px;
@@ -275,15 +287,16 @@
 // min 768px
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
     .minicart-wrapper {
-        .block-minicart {
-            position: absolute;
-            width: 390px;
-            right: 0;
-            top: 49px;
-            z-index: 99;
-            background: #ffffff;
-            padding: 20px;
-            border: 1px solid #999999;
-        }
+        //.block-minicart {
+        //    display: none;
+        //    position: absolute;
+        //    width: 390px;
+        //    right: 0;
+        //    top: 49px;
+        //    z-index: 99;
+        //    background: #ffffff;
+        //    padding: 20px;
+        //    border: 1px solid #999999;
+        //}
     }
 }
