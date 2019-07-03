@@ -1,4 +1,4 @@
-<section class="home-hero">
+<section class="home-section home-hero">
     <div class="home-hero-inner">
         <div class="hero-item left">
             <div class="hero-item-inner" style="background-image: url({{view url='images/home/home_hero_left.jpg'}});">
@@ -31,7 +31,7 @@
 </section>
 
 
-<section class="home-dream">
+<section class="home-section home-dream">
     <h2 class="home-section-title">DREAMING IN COLOR</h2>
     <h3 class="home-sub-title">Seasonal hues Lovely Lemon and Blue Lilac, coordinated with Navy and Black for carefree
         summer style.</h3>
@@ -50,7 +50,7 @@
 </section>
 
 
-<section class="home-video">
+<section class="home-section home-video">
     <div class="home-video-inner">
         <div class="left-image-hv">
             <img src="{{view url='images/home/home_dream_04.jpg'}}"/>
@@ -67,7 +67,7 @@
 </section>
 
 
-<section class="home-mix">
+<section class="home-section home-mix">
     <h2 class="home-section-title">MIX, MATCH, LAYER, LOVE.</h2>
     <h3 class="home-sub-title">Versatile pieces to wear any way you like.</h3>
     <div class="flex-center-images">
@@ -80,12 +80,12 @@
     </div>
 </section>
 
-<div class="home-support">
-    <div class="home-support-title">SUPPORT YOUR LOCAL RETAILERS. SHOP LOCAL.</div>
-    <div class="home-support-sub">| FIND YOUR NEAREST RETAILER |</div>
-</div>
-
-
+<section class="home-section home-support">
+    <div class="home-support-inner">
+        <div class="home-support-title">SUPPORT YOUR LOCAL RETAILERS. SHOP LOCAL.</div>
+        <div class="home-support-sub">| FIND YOUR NEAREST RETAILER |</div>
+    </div>
+</section>
 
 <!-- Video js -->
 <script type="text/javascript">
@@ -98,7 +98,7 @@
                     videoSelector = $('#home-video'),
                     mobileVideoSrc = 'https://i.infinityscrubs.com/infinity/videos/INFScrubs_HomepageVideo_mobile.mp4';
 
-                videoSelector.click(function(){
+                videoSelector.click(function () {
                     if (video.paused === true) {
                         video.play();
                     } else {

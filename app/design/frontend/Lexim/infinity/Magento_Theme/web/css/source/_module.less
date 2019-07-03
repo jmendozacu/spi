@@ -235,12 +235,19 @@
         clear: both;
 
         .footer.content {
-            padding: 5%;
+            padding-top: 40px;
+            padding-bottom: 15px;
+            border-top: 1px solid #999999;
 
             .footer-inner {
+                .display-flex();
+                .flex-wrap(wrap);
 
                 .block {
-                    margin: 0 0 5%;
+                    margin: 0;
+                    width: 33.3333%;
+                    order: 2;
+                    padding-bottom: 30px;
 
                     p, a {
                         color: @gray;
@@ -251,11 +258,13 @@
 
                     p.footer-heading {
                         font-weight: bold;
-
                     }
                 }
 
                 .block.newsletter {
+                    width: 100%;
+                    order: 1;
+
                     input {
                         height: 40px;
                         margin-bottom: 2%;
@@ -312,6 +321,7 @@
                     ul > li {
                         display: inline-block;
                         padding: 5px;
+                        margin: 0;
                     }
                 }
             }
@@ -333,6 +343,9 @@
     // Button
     // ----------------------------------------------
     .link-button {
+        width: 150px;
+        margin: 0 auto;
+
         a {
             width: 150px;
             height: 50px;
@@ -363,7 +376,31 @@
         display: none;
     }
 
+    .home-section-title {
+        font-size: 20px;
+        color: @aqua;
+        text-align: center;
+        font-weight: bold;
+        margin: 0;
+        padding: 0;
+    }
+
+    .home-sub-title {
+        font-size: 14px;
+        color: #3e3935;
+        text-align: center;
+        margin: 0;
+        padding: 10px 0;
+    }
+
+    .home-section {
+        padding-bottom: 40px;
+    }
+
     .home-hero {
+        position: relative;
+        overflow: hidden;
+
         .hero-item {
             width: 100%;
             float: left;
@@ -463,24 +500,13 @@
 
     }
 
-    .home-section-title {
-        font-size: 20px;
-        color: @aqua;
-        text-align: center;
-        font-weight: bold;
-    }
-
-    .home-sub-title {
-        font-size: 14px;
-        color: #3e3935;
-        text-align: center;
-        margin: 0;
-        padding: 10px 0;
-    }
-
     .home-dream {
         clear: both;
         overflow: hidden;
+
+        .link-button {
+            margin-bottom: 10px;
+        }
 
         .flex-3-images {
             .display-flex();
@@ -495,6 +521,10 @@
 
                 &:first-child {
                     padding-right: 2%;
+                }
+
+                &:last-child {
+                    padding-bottom: 0;
                 }
 
                 img {
@@ -543,7 +573,7 @@
 
         .flex-center-images {
             .mix-item {
-                padding-bottom: 15px;
+                padding-top: 15px;
 
                 img {
                     width: 100%;
@@ -555,24 +585,24 @@
     }
 
     .home-support {
-        background-color: #3e3935;
-        text-align: center;
-        clear: both;
-        margin-top: 20px;
+        .home-support-inner {
+            background-color: #3e3935;
+            text-align: center;
+            clear: both;
+            padding: 20px;
+        }
 
         .home-support-title {
             font-size: 14px;
             color: #a7a4a3;
             font-weight: 900;
-            padding-top: 20px;
             padding-bottom: 5px;
         }
 
         .home-support-sub {
             font-size: 10px;
-            color: #3bafb8;
+            color: @aqua;
             font-weight: bold;
-            padding-bottom: 20px;
         }
     }
 
@@ -582,8 +612,7 @@
 //  Mobile
 //  _____________________________________________
 // max 767px
-//.media-width(@extremum, @break) when (@extremum = 'max') and (@break = 767px) {
-.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+@media only screen and (max-width: 767px) {
     // Header
     .page-header {
         .header.content {
@@ -678,6 +707,10 @@
     //
     //  Home page
     //  ---------------------------------------------
+    .home-section {
+        padding-bottom: 5%;
+    }
+
     .home-hero {
         .hero-text-wrap {
             left: 10%;
@@ -740,23 +773,15 @@
     //  Footer
     //  ---------------------------------------------
     .page-footer {
-
         .footer.content {
-
             .footer-inner {
-
                 .block {
-                    width: 50%;
-                    float: left;
-
                     p, a {
                         font-size: 13px;
                     }
                 }
 
                 .block.newsletter {
-                    width: 100%;
-
                     .control {
                         label > span {
                             font-size: 12px;
@@ -767,14 +792,8 @@
                                 font-size: 12px;
                             }
                         }
-
                     }
                 }
-
-                .block.social {
-                    width: 100%;
-                }
-
             }
 
             .copyright {
@@ -871,6 +890,8 @@
     }
 
     .home-support {
+        padding-bottom: 0;
+
         .home-support-title {
             font-size: 20px;
         }
@@ -885,20 +906,20 @@
     //  ---------------------------------------------
     .page-footer {
         .footer.content {
-            padding-bottom: 20px;
-
             .footer-inner {
-                overflow: hidden;
-                padding-bottom: 20px;
+                padding-left: 5%;
+                padding-right: 5%;
+                padding-bottom: 30px;
 
                 .block {
                     width: 17%;
-                    padding-right: 20px;
                     margin: 0;
+                    padding: 0;
                 }
 
                 .block.newsletter {
                     width: auto;
+                    order: 2;
 
                     .control {
                         label > span {
@@ -926,8 +947,8 @@
 
                 .block.social {
                     width: auto;
-                    float: right;
                     padding: 0;
+                    margin-left: auto;
 
                     a {
                         font-size: 20px;
@@ -998,12 +1019,9 @@
     //
     //  Footer
     //  ---------------------------------------------
-    .page-footer {
-        .footer.content {
-            padding-top: 40px;
-            padding-left: 10%;
-            padding-right: 10%;
-
-        }
+    .page-footer .footer.content .footer-inner {
+        padding-left: 12%;
+        padding-right: 12%;
     }
+
 }
