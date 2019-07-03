@@ -1,6 +1,7 @@
 <div class="on-top-header one-col">
     <div class="on-top-header-inner">
         <?= $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('on_top_header')->toHtml(); ?>
+        <i class="far fa-times" id="closeTopHeader"></i>
     </div>
 </div>
 
@@ -23,6 +24,10 @@
             });
 
             checkSticky();
+
+            $('#closeTopHeader').click(function () {
+                $('.on-top-header').hide();
+            });
         });
     });
 </script>

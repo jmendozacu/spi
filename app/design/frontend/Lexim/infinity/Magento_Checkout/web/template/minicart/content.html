@@ -7,39 +7,14 @@
 
 <div class="block-title">
     <strong>
-        <span class="text" translate="'Your Shopping Bag'"/>
-        <!--
-        <span class="qty empty"
-              text="getCartParam('summary_count')"
-              data-bind="css: { empty: !!getCartParam('summary_count') == false },
-                       attr: { title: $t('Items in Cart') }">
-        </span> -->
+        <span class="text" translate="'Your shopping bag'"/>
     </strong>
 </div>
 
 <div class="block-content">
-    <button type="button" id="btn-minicart-close" class="action close"
-            data-action="close" data-bind="attr: { title: $t('Close') }">
-        <span translate="'Close'"/>
-    </button>
 
+    <!-- cart items -->
     <if args="getCartParam('summary_count')">
-        <div class="items-total">
-            <span class="count" if="maxItemsToDisplay < getCartLineItemsCount()" text="maxItemsToDisplay"/>
-            <translate args="'of'" if="maxItemsToDisplay < getCartLineItemsCount()"/>
-            <span class="count" text="getCartLineItemsCount()"/>
-            <translate args="'Item in Cart'" if="getCartLineItemsCount() === 1"/>
-            <translate args="'Items in Cart'" if="getCartLineItemsCount() > 1"/>
-        </div>
-
-        <each args="getRegion('subtotalContainer')" render=""/>
-        <each args="getRegion('extraInfo')" render=""/>
-
-
-    </if>
-
-    <if args="getCartParam('summary_count')">
-        <strong class="subtitle" translate="'Recently added item(s)'"/>
         <div data-action="scroll" class="minicart-items-wrapper">
             <ol id="mini-cart" class="minicart-items" data-bind="foreach: { data: getCartItems(), as: 'item' }">
                 <each args="$parent.getRegion($parent.getItemRenderer(item.product_type))"
@@ -49,6 +24,8 @@
         </div>
     </if>
 
+
+    <!-- no items -->
     <ifnot args="getCartParam('summary_count')">
         <strong class="subtitle empty"
                 data-bind="visible: closeSidebar()"
@@ -67,29 +44,27 @@
     </ifnot>
 
 
-    <div class="actions" if="getCartParam('possible_onepage_checkout')">
-        <div class="primary">
-            <button id="top-cart-btn-checkout" type="button"
-                    class="action primary checkout" data-action="close"
-                    data-bind="
-                            attr: {
-                                title: $t('Proceed to Checkout')
-                            },
-                            click: closeMinicart()
-                        "
-                    translate="'Proceed to Checkout'"
-            />
-            <div data-bind="html: getCartParam('extra_actions')"></div>
-        </div>
-    </div>
+    <!-- sub total -->
+    <if args="getCartParam('summary_count')">
+        <each args="getRegion('subtotalContainer')" render=""/>
+        <each args="getRegion('extraInfo')" render=""/>
+    </if>
 
+
+    <!-- button -->
     <div class="actions" if="getCartParam('summary_count')">
-        <div class="secondary">
-            <a class="action viewcart" data-bind="attr: {href: shoppingCartUrl}">
-                <span translate="'View and Edit Cart'"/>
+        <div class="primary viewBagButton">
+            <a class="action viewcart primary" data-bind="attr: {href: shoppingCartUrl}">
+                <span>View Bag (<!-- ko text: getCartParam('summary_count') --><!-- /ko -->)</span>
+            </a>
+        </div>
+        <div class="primary checkOutButton">
+            <a class="action viewcart primary" href="/checkout/">
+                <span translate="'Checkout'"/>
             </a>
         </div>
     </div>
+
 
     <div id="minicart-widgets" class="minicart-widgets">
         <each args="getRegion('promotion')" render=""/>
