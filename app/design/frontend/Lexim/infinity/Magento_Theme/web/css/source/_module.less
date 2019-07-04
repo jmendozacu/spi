@@ -424,6 +424,40 @@
             &.left {
                 padding-bottom: 15px;
             }
+
+            .slogan-text {
+                clear: both;
+                position: relative;
+                white-space: nowrap;
+
+                span {
+                    float: left;
+                    clear: both;
+                    font-size: 9vw;
+                    font-weight: 900;
+                    color: @aqua;
+                    letter-spacing: -0.04em;
+                    line-height: 0.6;
+
+                    &:nth-child(2n+1) {
+                        color: #ffffff;
+                    }
+
+                    &:nth-child(2n) {
+                        padding-left: 15%;
+                    }
+                }
+            }
+
+            &.right .slogan-text {
+                span:nth-child(2n+1) {
+                    color: @aqua;
+                }
+
+                span:nth-child(2n) {
+                    color: #ffffff;
+                }
+            }
         }
 
         .hero-item-inner {
@@ -436,7 +470,7 @@
         .hero-text-wrap {
             position: absolute;
             left: 7%;
-            bottom: 20%;
+            bottom: 15%;
 
             h2 {
                 font-size: 12px;
@@ -460,60 +494,6 @@
                 }
             }
         }
-
-        .slogan-text {
-            clear: both;
-            position: relative;
-            white-space: nowrap;
-
-            span {
-                float: left;
-                clear: both;
-                font-size: 45px;
-                font-weight: 900;
-                color: @aqua;
-                letter-spacing: -0.06em;
-                line-height: 1;
-
-                &:nth-child(1) {
-                    color: #ffffff;
-                }
-
-                &:nth-child(2) {
-                    position: absolute;
-                    top: 23px;
-                    left: 35px;
-                    z-index: 9;
-                }
-
-                &:nth-child(3) {
-                    color: #ffffff;
-                    position: relative;
-                    z-index: 99;
-                }
-
-            }
-        }
-
-        .hero-item.right {
-            .slogan-text {
-                span {
-                    &:nth-child(1) {
-                        color: @aqua;;
-                    }
-
-                    &:nth-child(2) {
-                        color: #ffffff;
-                    }
-
-                    &:nth-child(3) {
-                        color: @aqua;
-                    }
-
-                }
-            }
-        }
-
     }
 
     .home-dream {
@@ -718,6 +698,7 @@
         .header.content {
             width: 92.6%;
         }
+
         &.sticky .header.content {
             width: 100%;
             padding: 0 3.7%;
@@ -734,26 +715,14 @@
 
     .home-hero {
         .hero-text-wrap {
-            left: 10%;
-
             h2 {
                 font-size: 16px;
+                padding: 20px 0;
             }
 
             .link-button {
                 a {
                     font-size: 14px;
-                }
-            }
-        }
-
-        .slogan-text {
-            span {
-                font-size: 70px;
-
-                &:nth-child(2) {
-                    top: 35px;
-                    left: 40px;
                 }
             }
         }
@@ -843,6 +812,10 @@
         .hero-item {
             width: 50%;
             float: left;
+
+            .slogan-text span {
+                font-size: 4vw;
+            }
         }
 
         .hero-item.left {
@@ -997,7 +970,7 @@
         .hero-text-wrap {
             h2 {
                 font-size: 18px;
-                padding-bottom: 30px;
+                padding: 30px 0;
             }
 
             .link-button {
@@ -1007,24 +980,15 @@
             }
         }
 
-        .slogan-text {
-            span {
-                font-size: 77px;
-
-                &:nth-child(2) {
-                    top: 43px;
-                    left: 61px;
-                }
-            }
+        .hero-item .slogan-text span {
+            font-size: 77px;
         }
-
     }
     .home-dream {
         .link-button {
             padding-top: 15px;
             padding-bottom: 45px;
         }
-
     }
 
     //
