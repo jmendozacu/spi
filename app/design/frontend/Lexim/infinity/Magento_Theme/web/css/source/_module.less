@@ -98,7 +98,6 @@
     //
     //  Header
     //  ---------------------------------------------
-
     .page-header {
         .header.content {
             .display-flex();
@@ -107,17 +106,6 @@
             margin: 0 auto 3%;
             padding: 0;
             width: calc(~'100% - 30px');
-        }
-
-        &.sticky .header.content {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: #ffffff;
-            z-index: 9999;
-            max-width: 2000px;
-            margin: 0 auto;
         }
 
         .logo {
@@ -132,84 +120,27 @@
             }
         }
 
-        .nav-sections {
-            display: block;
-            height: auto;
-            background: transparent;
-            min-height: 0;
-            margin: 0;
-            padding: 0;
+        &.sticky .header.content {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #ffffff;
+            z-index: 9999;
+            max-width: 2000px;
+            margin: 0 auto;
+            width: 100%;
+            padding: 0 15px;
+            border: none;
 
-            .navigation {
-                background: transparent;
+            .logo {
+                padding: 0;
 
-                li {
-                    text-transform: uppercase;
-                    border: none;
-                    color: @gray;
-                    font-size: 12px;
-                    line-height: 50px;
-                    margin: 0;
-
-                    > a {
-                        line-height: 1;
-                        padding: 0 15px;
-                        color: @gray;
-                        border: none !important;
-                        text-decoration: none;
-                        background: transparent !important;
-
-                        > span:not(.ui-icon) {
-                            padding-bottom: 3px;
-                            border: 0 solid @aqua;
-                        }
-                    }
-
-                    &:hover .submenu {
-                        .display-flex();
-                    }
-
-                    &.has-active > a > span:not(.ui-icon),
-                    &:hover > a > span:not(.ui-icon) {
-                        border-width: 0 0 4px;
-                        color: @aqua;
-                    }
-                }
-
-                .level0 .submenu {
-                    height: 50px;
-                    padding: 20px;
-                    box-shadow: none;
-                    border: none;
-                    background: @light-aqua;
-                    .align-items(center);
-                    bottom: -55px !important;
-                    left: 50% !important;
-                    margin-left: 0 !important;
-                    .transform(translateX(-50%));
-                    min-width: 0;
-
-                    li {
-                        text-transform: capitalize;
-                        font-size: 12px;
-                        font-weight: normal;
-                        white-space: nowrap;
-
-                        span:not(.ui-icon) {
-                            border: none;
-                        }
-
-                        &.active, &:hover {
-                            text-shadow: 0 0 .65px @gray, 0 0 .65px @gray;
-
-                            > a > span:not(.ui-icon) {
-                                color: @gray;
-                            }
-                        }
-                    }
+                img {
+                    height: 0;
+                    width: 0;
                 }
             }
-
         }
 
         .rightHeader {
@@ -218,10 +149,6 @@
             min-width: -webkit-min-content;
             .justify-content(flex-end);
             .align-items(flex-end);
-
-            .panel.header {
-
-            }
 
             .header.links {
                 position: absolute;
@@ -387,7 +314,6 @@
     //
     //  Home page
     //  ---------------------------------------------
-
     .cms-home .page-title {
         display: none;
     }
@@ -611,78 +537,17 @@
 @media only screen and (max-width: 767px) {
     // Header
     .page-header {
-        .header.content {
-        }
-
-        &.sticky .header.content {
-        }
-
-        .nav-toggle {
-            .display-flex();
-            .flex(1);
-            min-width: -webkit-min-content;
-            position: relative;
-            top: 0;
-            left: 0;
-
-        }
+        position: relative;
 
         .logo {
             display: block;
+            text-align: center;
 
             img {
                 height: 35px;
                 width: auto;
             }
         }
-
-        .nav-sections {
-            .navigation {
-
-                li {
-                    > a {
-
-                        > span:not(.ui-icon) {
-                        }
-                    }
-
-                    &:hover .submenu {
-                    }
-
-                    &.has-active > a > span:not(.ui-icon),
-                    &:hover > a > span:not(.ui-icon) {
-                    }
-                }
-
-                .level0 .submenu {
-                    li {
-
-                        span:not(.ui-icon) {
-                        }
-
-                        &.active, &:hover {
-                            > a > span:not(.ui-icon) {
-                            }
-                        }
-                    }
-                }
-            }
-
-        }
-
-        .rightHeader {
-            .panel.header {
-
-            }
-
-            .header.links {
-            }
-
-            // wish-list
-            .header-wishlist {
-            }
-        }
-
     }
 }
 
@@ -700,9 +565,7 @@
         }
 
         &.sticky .header.content {
-            width: 100%;
-            padding: 0 3.7%;
-            border: none;
+            padding: 5px 3.7%;
         }
     }
 
