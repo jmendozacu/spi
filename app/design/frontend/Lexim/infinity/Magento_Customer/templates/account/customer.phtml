@@ -1,0 +1,126 @@
+<?php
+// @codingStandardsIgnoreFile
+/** @var Magento\Customer\Block\Account\Customer $block */
+?>
+
+<?php if ($block->customerLoggedIn()): ?>
+
+    <li class="customer-welcome" data-block="customer-block">
+        <span class="customer-name"
+              role="link"
+              tabindex="0"
+              data-trigger-keypress-button="true"
+              data-bind="scope: 'customer'">
+            <span class="customer-txt">Hello</span><span>&nbsp;</span><span
+                    data-bind="text: customer().firstname"></span>
+        </span>
+
+        <script type="text/x-magento-init">
+        {
+            "*": {
+                "Magento_Ui/js/core/app": {
+                    "components": {
+                        "customer": {
+                            "component": "Magento_Customer/js/view/customer"
+                        }
+                    }
+                }
+            }
+        }
+
+        </script>
+
+        <div class="customer-menu">
+            <ul class="header links logged-out"
+                data-role="dropdownDialog"
+                data-mage-init='{"dropdownDialog":{
+                "appendTo":"[data-block=customer-block]",
+                "triggerTarget":".customer-name",
+                "timeout": "2000",
+                "closeOnMouseLeave": false,
+                "closeOnEscape": true,
+                "triggerClass":"active",
+                "parentClass":"active",
+                "bodyClass":"_has-customer_active",
+                "buttons":[]}}'>
+                <li>
+                    <a href="<?= $block->getUrl('customer/account/'); ?>" title="My Account">
+                        My Account
+                    </a>
+                </li>
+                <li>
+                    <a href="<?= $block->getUrl('sales/order/history/'); ?>" title="My Orders">
+                        My Orders
+                    </a>
+                </li>
+                <li>
+                    <a href="<?= $block->getUrl('customer/account/logout/'); ?>" title="Sign Out">
+                        Sign Out
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </li>
+
+
+<?php else: ?>
+    <li class="customer-welcome" data-block="customer-block">
+        <span class="customer-name"
+              role="link"
+              tabindex="0"
+              data-trigger-keypress-button="true"
+              data-bind="scope: 'customer'">
+            <span class="customer-txt">LOGIN/SIGN UP</span>
+        </span>
+
+        <script type="text/x-magento-init">
+        {
+            "*": {
+                "Magento_Ui/js/core/app": {
+                    "components": {
+                        "customer": {
+                            "component": "Magento_Customer/js/view/customer"
+                        }
+                    }
+                }
+            }
+        }
+
+
+        </script>
+
+        <!--        <div class="customer-menu2">-->
+        <div class="fixed-pop-up" style="display: none">
+            <div class="pop-up-container">
+                <?= $block->getChildHtml('customer_form_login'); ?>
+                <div class="register">
+                    <div class="register-inner">
+                        <div class="field header">SIGN UP</div>
+                        <p>Create an account: see your order history, check out faster, save your favorite items and get
+                            the latest news about Infinity by Cherokee.
+                        </p>
+                        <a class="create-an-account" title="Create an Account"
+                           href="<?= $block->getUrl('customer/account/login/'); ?>">CREATE AN ACCOUNT</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--        </div>-->
+    </li>
+
+<?php endif; ?>
+
+<script>
+    require(['jquery', 'matchMedia'], function ($, mediaCheck) {
+        var listItem = $('li.customer-welcome');
+        mediaCheck({
+            media: '(max-width: 767px)',
+            entry: function () {
+                listItem.attr('data-block', "");
+            },
+            exit: function () {
+                listItem.attr('data-block', "customer-block");
+            }
+        });
+    })
+</script>

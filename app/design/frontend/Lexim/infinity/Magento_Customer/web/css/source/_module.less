@@ -115,13 +115,14 @@
 
             .toolbar {
                 text-align: center;
+
                 .limiter-options {
                     width: auto;
                 }
             }
 
             .limiter {
-                >.label {
+                > .label {
                 }
             }
 
@@ -218,6 +219,7 @@
 
     .block {
         &:extend(.abs-margin-for-blocks-and-widgets all);
+
         .column.main & {
             &:last-child {
                 margin-bottom: 0;
@@ -228,6 +230,7 @@
 
             strong {
                 .lib-heading(h4);
+
                 .column.main & {
                 }
             }
@@ -309,6 +312,109 @@
             vertical-align: middle;
         }
     }
+
+    //
+    //  Pop up login form
+    //  ---------------------------------------------
+    .fixed-pop-up {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        background: rgba(255, 255, 255, 0.5);
+    }
+
+    .pop-up-container {
+        display: none;
+        position: relative;
+        width: 400px;
+        margin: 0 auto 0;
+        top: 20%;
+        background: rgba(255, 255, 255, 0.96);
+        padding: 50px;
+        border: 1px solid #999999;
+        max-height: 80vh;
+        overflow-y: auto;
+
+        .field.header {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            height: 50px;
+            margin: 0;
+            border-radius: 0;
+            text-transform: uppercase;
+            font-weight: normal;
+            font-size: 16px;
+            color: #ffffff;
+            font-family: @main-font;
+
+            &.login {
+                background: @aqua;
+            }
+        }
+
+        .actions-toolbar {
+            .secondary {
+                float: left;
+                margin-bottom: 20px;
+
+                .remind {
+                    margin: 0;
+                    color: @gray;
+                    text-decoration: none;
+                    border-bottom: 1px solid;
+                    font-size: 12px;
+                    font-weight: bold;
+                }
+            }
+
+            .primary {
+                clear: both;
+                width: 100%;
+
+                button.primary {
+                    width: 100%;
+                    margin: 0;
+                }
+            }
+        }
+
+        .create-an-account {
+            display: block;
+            width: 100%;
+            height: 50px;
+            line-height: 46px;
+            padding: 0;
+            font-size: 16px;
+            color: @aqua;
+            background: #ffffff;
+            border: 2px solid @aqua;
+            text-decoration: none;
+            text-align: center;
+            font-weight: bold;
+
+            &:hover {
+                background: @aqua;
+                color: #ffffff;
+            }
+        }
+
+        .register-inner {
+            p {
+                margin: 0;
+                padding: 15px 0 20px;
+            }
+        }
+
+    }
+
 }
 
 //
@@ -366,6 +472,7 @@
 
         .block {
             &:extend(.abs-blocks-2columns all);
+
             &.login {
                 .actions-toolbar {
                     > .primary {

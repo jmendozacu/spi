@@ -1,0 +1,219 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Variables
+//  _____________________________________________
+
+@form-field__vertical-indent__desktop: 0px;
+@form-calendar-icon__color: @gray;
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    input::-webkit-input-placeholder {
+        background: #ffffff;
+    }
+
+    input:-moz-placeholder {
+        background: #ffffff;
+    }
+
+    input::-moz-placeholder {
+        background: #ffffff;
+    }
+
+    input:-ms-input-placeholder {
+        background: #ffffff;
+    }
+
+    input[type="text"], input[type="password"], input[type="url"], input[type="tel"],
+    input[type="search"], input[type="number"], input[type="datetime"], input[type="email"] {
+        font-family: @main-font;
+        .border-radius(0);
+        line-height: 1;
+        padding: 0 15px;
+        border: 1px solid #999999;
+        height: 50px;
+        color: @gray;
+        outline: 0;
+        -moz-box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+        -o-box-shadow: none !important;
+        box-shadow: none !important;
+
+    }
+
+    .fieldset {
+        .lib-form-fieldset();
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        > .field,
+        > .fields > .field {
+            position: relative;
+            margin: 0 0 20px;
+
+            &._required > .label:after,
+            &.required > .label:after {
+                content: '*';
+                color: #ff0000;
+                font-size: 10px;
+                line-height: 1;
+                margin: 0 0 0 3px;
+            }
+
+            &.no-label {
+                > .label {
+                    &:extend(.abs-visually-hidden all);
+                }
+            }
+
+            &.choice {
+                .label {
+                    display: inline;
+                    font-weight: normal;
+                }
+            }
+
+            .label {
+                position: absolute;
+                top: -6px;
+                left: 10px;
+                padding: 0 5px;
+                font-weight: normal;
+                line-height: 1;
+                height: 12px;
+                background: #fff;
+                font-size: 12px;
+                text-transform: lowercase;
+
+                .column:not(.main) & {
+                    font-weight: normal;
+                }
+            }
+
+            .field.choice {
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+
+            input[type=file] {
+                margin: 0;
+            }
+        }
+    }
+
+    .legend + .fieldset,
+    .legend + div {
+        clear: both;
+    }
+
+    fieldset.field {
+        border: 0;
+        padding: 0;
+    }
+
+    .field {
+        &.date {
+            &:extend(.abs-field-date all);
+
+            .time-picker {
+                display: inline-block;
+                white-space: nowrap;
+            }
+        }
+
+        .message {
+            &.warning {
+            }
+        }
+    }
+
+    .field-error,
+    div.mage-error[generated] {
+    }
+
+    .field-error {
+        .lib-form-validation-note();
+    }
+
+    .field .tooltip {
+        .lib-tooltip(right);
+
+        .tooltip-content {
+            min-width: 200px;
+            white-space: normal;
+        }
+    }
+
+    input:focus ~ .tooltip .tooltip-content,
+    select:focus ~ .tooltip .tooltip-content {
+        display: block;
+    }
+
+    ._has-datepicker {
+        ~ .ui-datepicker-trigger {
+            .lib-button-reset();
+            .lib-icon-font(
+                @_icon-font-content: @icon-calendar,
+                @_icon-font-color: @primary__color__lighter,
+                @_icon-font-size: @icon-calendar__font-size,
+                @_icon-font-line-height: @icon-calendar__font-size,
+                @_icon-font-display: block,
+                @_icon-font-text-hide: true
+            );
+            display: inline-block;
+            vertical-align: middle;
+
+            &:focus {
+                .box-shadow(none);
+                outline: 0;
+            }
+        }
+    }
+
+    //
+    //  Sidebar forms
+    //  -----------------------------------------
+
+    .sidebar {
+        .fieldset {
+            margin: 0;
+
+            > .field:not(.choice) >,
+            .fields > .field {
+                &:not(:last-child) {
+                    margin: 0;
+                }
+
+                .label {
+                    margin: 0;
+                    padding: 0;
+                    text-align: left;
+                    width: 100%;
+                }
+
+                .control {
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+}
