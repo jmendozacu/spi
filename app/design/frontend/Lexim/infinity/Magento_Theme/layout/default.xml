@@ -63,7 +63,8 @@
         <referenceBlock name="store_switcher" remove="true" />
         <move element="form.subscribe" destination="footer.inner" after="footer.help" />
 
-
+        <!-- Remove compare  -->
+        <referenceBlock name="compare" remove="true" />
 
     </body>
 </page>
