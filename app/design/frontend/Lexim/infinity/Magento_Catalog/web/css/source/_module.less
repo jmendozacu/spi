@@ -21,14 +21,14 @@
 @product-grid-items-per-row-layout-3-screen-m: '';
 @product-grid-items-per-row-layout-3-screen-l: '';
 
-@product-grid-items-padding: 0 @indent__base @indent__base;
-@product-grid-items-margin: 0 0 @indent__s;
+@product-grid-items-padding: 0 ;
+@product-grid-items-margin: 0;
 
 @product-name-text-decoration: none;
 @product-name-text-decoration-hover: @link__hover__text-decoration;
 
 @toolbar-mode-icon-font-size: 26px;
-@product-h1-margin-bottom-desktop: @indent__base;
+@product-h1-margin-bottom-desktop: 0;
 
 @import 'module/_listings.less';
 @import 'module/_toolbar.less';
@@ -66,7 +66,6 @@
                 display: inline;
 
                 .price {
-                    .lib-font-size(11);
                 }
 
                 &:before {
@@ -77,15 +76,20 @@
     }
 
     .actual-price {
-        font-weight: @font-weight__bold;
+        font-weight: bold;
     }
 
     .product.name a {
         &:extend(.abs-product-link all);
     }
 
+    .category-view {
+        position: relative;
+    }
+    
     .category-image {
         .image {
+            width: 100%;
             display: block;
             height: auto;
             max-width: 100%;
@@ -94,7 +98,6 @@
 
     .category-image,
     .category-description {
-        margin-bottom: @indent__base;
     }
 
     //
@@ -140,18 +143,14 @@
         }
 
         .notice {
-            .lib-css(color, @text__color__muted);
-            .lib-font-size(@font-size__s);
-            margin: @indent__s 0;
+            margin: 0;
         }
 
         .product.thumbs {
-            margin: @indent__base 0 @indent__l;
+            margin: 0;
         }
 
         .items.thumbs {
-            .lib-list-inline();
-
             .active {
                 display: block;
                 line-height: 1;
@@ -161,7 +160,6 @@
 
     .product.info.detailed {
         clear: both;
-        margin-bottom: 30px;
 
         .additional-attributes {
             width: auto;
@@ -177,8 +175,6 @@
     .product-info-main {
         .page-title-wrapper {
             .page-title {
-                line-height: @line-height__base;
-                margin-bottom: @indent__s;
             }
         }
 
@@ -186,8 +182,7 @@
             &.available,
             &.unavailable {
                 display: inline-block;
-                font-weight: @font-weight__bold;
-                margin-right: @indent__base;
+                font-weight: bold;
                 text-transform: uppercase;
                 vertical-align: top;
             }
@@ -212,17 +207,16 @@
                 }
 
                 &.overview {
-                    margin: @indent__base 0;
+                    margin: 0;
                 }
             }
 
             &.alert {
-                margin: @indent__s 0;
+                margin: 0;
             }
         }
 
         .price-box {
-            margin-top: @indent__s;
         }
 
         .product-reviews-summary .reviews-actions {
@@ -233,7 +227,7 @@
     .product-options-wrapper {
         .fieldset-product-options-inner {
             .legend {
-                .lib-css(font-weight, @font-weight__bold);
+                .lib-css(font-weight, bold);
                 .lib-css(margin, 0 0 @indent__xs);
                 .lib-font-size(14px);
                 border: none;
@@ -287,17 +281,16 @@
             .weee {
                 .lib-font-size(12);
                 line-height: 14px;
-                margin-bottom: @indent__xs;
 
                 .price {
                     .lib-font-size(12);
-                    font-weight: @font-weight__bold;
+                    font-weight: bold;
                 }
             }
 
             .price-wrapper .price {
                 .lib-font-size(18);
-                font-weight: @font-weight__bold;
+                font-weight: bold;
             }
 
             .price {
@@ -307,7 +300,7 @@
 
         .special-price {
             display: block;
-            margin: @indent__s 0;
+            margin: 0;
 
             .price-container {
                 .lib-font-size(14);
@@ -377,7 +370,7 @@
 
             .price {
                 .lib-font-size(14);
-                font-weight: @font-weight__bold;
+                font-weight: bold;
             }
         }
     }
@@ -399,7 +392,6 @@
     .sidebar {
         .product-items {
             .product-item {
-                margin-bottom: @indent__base;
                 position: relative;
             }
 
@@ -489,7 +481,6 @@
         .product-items-names {
             .product-item {
                 display: flex;
-                margin-bottom: @indent__s;
             }
 
             .product-item-name {
@@ -652,7 +643,6 @@
 
     .product.media {
         float: left;
-        margin-bottom: @indent__m;
     }
 
     .page-layout-1column {

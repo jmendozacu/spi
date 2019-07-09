@@ -39,7 +39,6 @@
             .products-grid & {
                 display: inline-block;
                 padding: 0;
-                width: calc(~'(100% - 2%) / 2');
             }
 
             &:nth-child(2n + 1) {
@@ -58,11 +57,7 @@
 
             &-info {
                 max-width: 100%;
-                width: 152px;
-
-                .page-products & {
-                    width: 240px;
-                }
+                width: 100%;
             }
 
             &-actions {
@@ -140,7 +135,6 @@
             }
 
             .special-price {
-                display: block;
             }
 
             .old-price {
@@ -157,14 +151,6 @@
             .minimal-price {
                 .price-container {
                     display: block;
-                }
-            }
-
-            .minimal-price-link {
-                .price-label {
-                }
-
-                .price {
                 }
             }
 
@@ -187,21 +173,6 @@
     }
 
     .price-container {
-        .price {
-        }
-
-        .price-including-tax + .price-excluding-tax,
-        .weee {
-        }
-
-        .price-including-tax + .price-excluding-tax,
-        .weee,
-        .price-including-tax + .price-excluding-tax .price,
-        .weee .price,
-        .weee + .price-excluding-tax:before,
-        .weee + .price-excluding-tax .price {
-        }
-
         .weee {
             &:before {
                 content: '(' attr(data-label) ': ';
@@ -220,31 +191,15 @@
     }
 
     .products-list {
-        .product {
-            &-item {
-                display: table;
-                width: 100%;
+        .product-item {
+            display: table;
+            width: 100%;
 
-                &-info {
-                    display: table-row;
-                }
-
-                &-photo {
-                    display: table-cell;
-                    padding: 0;
-                    vertical-align: top;
-                }
-
-                &-details {
-                    display: table-cell;
-                    vertical-align: top;
-                }
-            }
         }
+    }
 
-        .product-image-wrapper {
-            &:extend(.abs-reset-image-wrapper all);
-        }
+    .product-image-wrapper {
+
     }
 }
 
@@ -265,11 +220,9 @@
     .page-products {
         .products-grid {
             .product-item {
-                padding: 0;
                 width: 33.3333%;
-
-                &:nth-child(3n + 1) {
-                }
+                padding: 2vw;
+                margin: 0;
             }
         }
     }

@@ -1,0 +1,147 @@
+<?php
+/**
+ * Category layered navigation
+ *
+ * @var $block \Magento\LayeredNavigation\Block\Navigation
+ */
+$categoryFilter = false;
+$category = $block->getLayer()->getCurrentCategory();
+$categoryRootID = $block->getLayer()->getCurrentStore()->getRootCategoryId();
+$categoryCurrentID = $category->getId();
+$categoryParentID = $category->getParentCategory()->getId();
+
+
+
+?>
+
+<?php if ($block->canShowBlock()): ?>
+    <div class="block filter" id="layered-filter-block"
+         data-mage-init='{"collapsible":{"openedState": "active", "collapsible": true, "active": false, "collateral": { "openedState": "filter-active", "element": "body" } }}'>
+        <?php $filtered = count($block->getLayer()->getState()->getFilters()) ?>
+
+        <div class="block-content filter-content">
+            <div class="filter-wrapper">
+                <?= $block->getChildHtml('state') ?>
+
+                <?php /**
+                 * if ($block->getLayer()->getState()->getFilters()): ?>
+                 * <div class="block-actions filter-actions">
+                 * <a href="<?= $block->getClearUrl() ?>"
+                 * class="action clear filter-clear"><span><?= __('Clear All') ?></span></a>
+                 * </div>
+                 * <?php endif; **/ ?>
+            </div>
+
+            <div class="filter-options-wrapper">
+                <div class="filter-heading" data-count="<?= $filtered ?>">
+                    <strong>FILTER</strong>
+                </div>
+
+                <div class="filter-content-wrapper">
+                    <?php foreach ($block->getFilters() as $filter): ?>
+
+                        <div class="filter-options">
+                            <?php /** if ($filter->getRequestVar() == 'cat'): ?>
+                             * <?php $categoryFilter = $filter; ?>
+                             * <?php continue; ?>
+                             * <?php endif; **/ ?>
+
+                            <div class="filter-options-title">
+                                <span><?= $filter->getName() ?></span>
+                            </div>
+                            <div class="filter-options-item">
+                                <div class="filter-options-content">
+                                    <?= $block->getChildBlock('renderer')->render($filter) ?>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+
+                    <div class="filter-options" id="sort-by-wrapper">
+                        <div class="filter-options-title">
+                            <span>SORT</span>
+                        </div>
+                        <div class="filter-options-item">
+                            <div class="filter-options-content">
+                                <div class="">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <?php /**
+                     * if ($category && $categoryRootID === $categoryParentID): ?>
+                     * <div id="category-wrapper" class="filter-options filter-title category-wrapper"
+                     * data-mage-init='{"accordion":{"openedState": "active", "collapsible": true, "active": false, "multipleCollapsible": false}}'>
+                     * <div data-role="title" class="filter-options-title filter-category">
+                     * <span class="filters-name"><?= $category->getName() ?></span>
+                     * </div>
+                     * <div data-role="collapsible" class="filter-options-item">
+                     * <div data-role="content" class="filter-options-content">
+                     * <div id="category-filter" class="filter-options-content-inner">
+                     * <div class="filter-category-title">
+                     * <span><?= $category->getName() ?></span>
+                     * </div>
+                     * <ul class="items">
+                     * <?php foreach ($category->getChildrenCategories() as $subCategory) : ?>
+                     * <li class="item">
+                     * <a href="<?= $subCategory->getRequestPath() ?>">
+                     * <span><?= $subCategory->getName() ?></span>
+                     * </a>
+                     * </li>
+                     * <?php endforeach; ?>
+                     * </ul>
+                     * </div>
+                     * </div>
+                     * </div>
+                     * </div>
+                     * <?php else: ?>
+                     * <div id="category-wrapper" class="filter-options filter-title category-wrapper"
+                     * data-mage-init='{"accordion":{"openedState": "active", "collapsible": true, "active": false, "multipleCollapsible": false}}'>
+                     * <?php
+                     * $category = $category->getParentCategory();
+                     * $baseUrl = $block->escapeUrl($block->getBaseUrl());
+                     * ?>
+                     * <div data-role="title" class="filter-options-title filter-category">
+                     * <span class="filters-name"><?= $category->getName() ?></span>
+                     * </div>
+                     * <div data-role="collapsible" class="filter-options-item">
+                     * <div data-role="content" class="filter-options-content">
+                     * <div id="category-filter" class="filter-options-content-inner">
+                     * <div class="filter-category-title">
+                     * <a href="<?= $category->getUrl() ?>">
+                     * <span><?= $category->getName() ?></span>
+                     * </a>
+                     * </div>
+                     * <ul class="items">
+                     * <?php foreach ($category->getChildrenCategories() as $subCategory) : ?>
+                     * <?php if ($categoryCurrentID === $subCategory->getId()): ?>
+                     * <li class="item active">
+                     * <a href="<?= $category->getUrl() ?>">
+                     * <span><?= $subCategory->getName() ?></span>
+                     * </a>
+                     * </li>
+                     * <?php else: ?>
+                     * <li class="item">
+                     * <a href="<?= $subCategory->getUrl() ?>">
+                     * <span><?= $subCategory->getName() ?></span>
+                     * </a>
+                     * </li>
+                     * <?php endif; ?>
+                     * <?php endforeach; ?>
+                     * </ul>
+                     * </div>
+                     * </div>
+                     * </div>
+                     * </div>
+                     * <?php endif; **/ ?>
+
+                    <script type="text/x-magento-init">
+
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>

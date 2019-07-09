@@ -192,4 +192,14 @@ class RenderLayered extends OriginClass
             'active' => $isActive
         ];
     }
+
+    public function searchIdByValue($value, $array) {
+        $result = [];
+        foreach ($array as $key => $val) {
+            if (in_array($value, $val)) {
+                array_push($result, $key);
+            }
+        }
+        return $result;
+    }
 }
