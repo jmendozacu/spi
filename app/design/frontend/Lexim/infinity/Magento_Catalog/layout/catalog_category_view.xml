@@ -5,9 +5,15 @@
  * See COPYING.txt for license details.
  */
 -->
-<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
 
+        <!-- Remove wish-list compare in side-bar -->
+        <referenceContainer name="sidebar.additional" remove="true"/>
+
+        <!-- Move filter to front of listing page -->
+        <move element="sidebar.main" destination="columns" before="-" />
 
     </body>
 </page>
