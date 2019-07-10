@@ -10,6 +10,8 @@
 & when (@media-common = true) {
 
     .block.filter {
+        margin: 0;
+
         .filter-title {
             strong {
                 font-size: 18px;
@@ -58,8 +60,34 @@
         width: 840px;
         margin: 0 auto;
         .display-flex();
+        .flex-wrap(wrap);
         z-index: 9;
-        background: rgba(255, 255, 255, 0.8);
+        background: rgba(255, 255, 255, 0.9);
+        padding: 20px;
+
+        .filter-button-wrap {
+            padding: 0;
+        }
+
+        .filter-button {
+            width: 145px;
+            height: 50px;
+            line-height: 50px;
+            padding: 0 10px;
+            display: inline-block;
+            margin-bottom: 15px;
+            margin-right: 20px;
+            background: #3e3935;
+            text-align: center;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #applyButton {
+            background: @aqua;
+        }
     }
 
     .filter-options {
@@ -81,19 +109,48 @@
             margin: 10px 0;
 
             .swatch-option-a {
-                text-decoration: none;
-                border: none;
-                outline: 0;
+                position: relative;
+                text-decoration: none !important;
+                border: none !important;
+                outline: 0 !important;
+                .box-shadow(none);
+
+                &:not(.color).selected, &:not(.color):hover {
+                    &:before {
+                        content: "\2714";
+                        position: absolute;
+                        left: -15px;
+                        top: 6px;
+                        color: @gray;
+                        font-size: 12px;
+                        text-shadow: 0 0 0.6px @gray, 0 0 0.6px @gray;
+                    }
+
+                    .swatch-option {
+                        text-shadow: 0 0 0.6px @gray, 0 0 0.6px @gray;
+                    }
+                }
+
+                &.color:hover, &.color.selected {
+                    .colorSquare {
+                        border-color: @aqua !important;
+                    }
+
+                    .colorGroupText {
+                        text-shadow: 0 0 0.6px @gray, 0 0 0.6px @gray;
+                    }
+                }
             }
 
             .swatch-option {
                 outline: 0 !important;
                 border: none !important;
                 text-decoration: none !important;
+                .box-shadow(none);
                 float: none;
                 width: auto;
                 background: transparent;
-                color: @gray !important;
+                color: @gray;
                 min-width: 0;
                 max-width: 100%;
                 height: auto;
@@ -111,14 +168,8 @@
                     text-transform: capitalize;
                 }
 
-                &:hover, &.selected {
-                    .colorSquare {
-                        border-color: @aqua !important;
-                    }
-
-                    .colorGroupText {
-                        font-weight: bold;
-                    }
+                &.onSale {
+                    color: #ff0000;
                 }
             }
 

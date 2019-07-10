@@ -15,5 +15,8 @@
         <!-- Move filter to front of listing page -->
         <move element="sidebar.main" destination="columns" before="-" />
 
+        <!-- Remove page title -->
+        <referenceBlock name="page.main.title" remove="true" />
+
     </body>
 </page>

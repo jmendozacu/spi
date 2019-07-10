@@ -56,9 +56,6 @@ $allPrintLink = $block->getAllPrintLink();
                 "yellow" => [294]
             ];
 
-
-//            var_dump( $block->searchIdByValue($c, $colorGroup) );
-
             $colorArray = [
                 "black" => [
                     "hex" => "#000000",
@@ -123,6 +120,16 @@ $allPrintLink = $block->getAllPrintLink();
                 <?php } ?>
             <?php } ?>
 
+            <a href="javascript:void(0)" aria-label="" data-id="" data-link=""
+               data-type="<?= $swatchData['attribute_code'] ?>"
+               data-value="all_print" class="swatch-option-a color">
+                <div class="swatch-option">
+                    <div class="colorSquare">
+                        <span style='background: url(<?= $this->getViewFileUrl('images/all-print.jpg') ?>)'></span>
+                    </div>
+                    <div class="colorGroupText">All Prints</div>
+                </div>
+            </a>
         <?php } else { ?>
 
             <?php foreach ($swatchData['options'] as $option => $label): ?>
@@ -210,7 +217,7 @@ $allPrintLink = $block->getAllPrintLink();
         "Magento_Swatches/js/swatch-renderer"
     ], function ($) {
 
-        //$('.swatch-layered.<?//= $swatchData['attribute_code'] ?>//')
+        //$('.swatch-layered.<?= $swatchData['attribute_code'] ?>')
         //    .find('[option-type="1"], [option-type="2"], [option-type="0"], [option-type="3"]')
         //    .SwatchRendererTooltip();
 

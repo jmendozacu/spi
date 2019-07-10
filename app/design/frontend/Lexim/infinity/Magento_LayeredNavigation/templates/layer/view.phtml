@@ -10,13 +10,12 @@ $categoryRootID = $block->getLayer()->getCurrentStore()->getRootCategoryId();
 $categoryCurrentID = $category->getId();
 $categoryParentID = $category->getParentCategory()->getId();
 
-
-
+$parentCategory = ($categoryRootID === $categoryParentID) ? $category : $category->getParentCategory();
+$parentCatKey = $parentCategory->getUrlKey();
 ?>
 
 <?php if ($block->canShowBlock()): ?>
-    <div class="block filter" id="layered-filter-block"
-         data-mage-init='{"collapsible":{"openedState": "active", "collapsible": true, "active": false, "collateral": { "openedState": "filter-active", "element": "body" } }}'>
+    <div class="block filter" id="layered-filter-block">
         <?php $filtered = count($block->getLayer()->getState()->getFilters()) ?>
 
         <div class="block-content filter-content">
@@ -38,36 +37,102 @@ $categoryParentID = $category->getParentCategory()->getId();
                 </div>
 
                 <div class="filter-content-wrapper">
-                    <?php foreach ($block->getFilters() as $filter): ?>
 
-                        <div class="filter-options">
-                            <?php /** if ($filter->getRequestVar() == 'cat'): ?>
-                             * <?php $categoryFilter = $filter; ?>
-                             * <?php continue; ?>
-                             * <?php endif; **/ ?>
-
-                            <div class="filter-options-title">
-                                <span><?= $filter->getName() ?></span>
-                            </div>
-                            <div class="filter-options-item">
-                                <div class="filter-options-content">
-                                    <?= $block->getChildBlock('renderer')->render($filter) ?>
+                    <!-- CATEGORY -->
+                    <div class="filter-options" id="category-wrapper">
+                        <div class="filter-options-title">
+                            <span>CATEGORY</span>
+                        </div>
+                        <div class="filter-options-item">
+                            <div class="filter-options-content">
+                                <div class="swatch-attribute-options">
+                                    <?php foreach ($parentCategory->getChildrenCategories() as $subCategory) : ?>
+                                        <a href="javascript:void(0)"
+                                           data-type="cat" data-value="<?= $subCategory->getId() ?>"
+                                           class="swatch-option-a category">
+                                            <div class="swatch-option text"><?= $subCategory->getName() ?></div>
+                                        </a>
+                                    <?php endforeach; ?>
                                 </div>
                             </div>
                         </div>
-                    <?php endforeach; ?>
+                    </div>
 
+
+                    <!-- COLOR - SIZE - FIT -->
+                    <?php foreach ($block->getFilters() as $filter) {
+                        /**
+                         * @var \Magento\Catalog\Model\Layer $filter
+                         */
+                        $filterName = $filter->getName();
+                        if ($filterName != "Category") { ?>
+                            <!-- <?= $filterName ?> column -->
+                            <div class="filter-options">
+                                <?php /** if ($filter->getRequestVar() == 'cat'): ?>
+                                 * <?php $categoryFilter = $filter; ?>
+                                 * <?php continue; ?>
+                                 * <?php endif; **/ ?>
+
+                                <div class="filter-options-title">
+                                    <span><?= $filterName ?></span>
+                                </div>
+                                <div class="filter-options-item">
+                                    <div class="filter-options-content">
+                                        <?= $block->getChildBlock('renderer')->render($filter) ?>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php } ?>
+                    <?php } ?>
+
+
+                    <!-- SORT column -->
                     <div class="filter-options" id="sort-by-wrapper">
                         <div class="filter-options-title">
                             <span>SORT</span>
                         </div>
                         <div class="filter-options-item">
                             <div class="filter-options-content">
-                                <div class="">
-
+                                <div class="swatch-attribute-options">
+                                    <a href="javascript:void(0)"
+                                       data-type="product_list_order" data-value="price_asc"
+                                       class="swatch-option-a sort">
+                                        <div class="swatch-option text">Lowest Price</div>
+                                    </a>
+                                    <a href="javascript:void(0)"
+                                       data-type="product_list_order" data-value="price_desc"
+                                       class="swatch-option-a sort">
+                                        <div class="swatch-option text">Highest Price</div>
+                                    </a>
+                                    <a href="javascript:void(0)"
+                                       data-type="product_list_order" data-value=""
+                                       class="swatch-option-a sort">
+                                        <div class="swatch-option text">Newest</div>
+                                    </a>
+                                    <a href="javascript:void(0)"
+                                       data-type="product_list_order" data-value=""
+                                       class="swatch-option-a sort">
+                                        <div class="swatch-option text">Best Selling</div>
+                                    </a>
+                                    <a href="javascript:void(0)"
+                                       data-type="product_list_order" data-value=""
+                                       class="swatch-option-a sort">
+                                        <div class="swatch-option text">Top Rated</div>
+                                    </a>
+                                    <a href="javascript:void(0)"
+                                       data-type="product_list_order" data-value=""
+                                       class="swatch-option-a sort">
+                                        <div class="swatch-option text onSale">On Sale</div>
+                                    </a>
                                 </div>
                             </div>
                         </div>
+                    </div>
+
+
+                    <div class="filter-button-wrap">
+                        <div class="filter-button" id="applyButton" data-cat="<?= $parentCatKey ?>">APPLY</div>
+                        <div class="filter-button" id="clearButton">CLEAR</div>
                     </div>
 
                     <?php /**
@@ -137,11 +202,121 @@ $categoryParentID = $category->getParentCategory()->getId();
                      * </div>
                      * <?php endif; **/ ?>
 
-                    <script type="text/x-magento-init">
-
-                    </script>
                 </div>
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+        require(['jquery'], function ($) {
+
+            function getUrlParam(name) {
+                let results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+                if (!results) return false;
+                return results[1] || 0;
+            }
+
+            $(document).ready(function () {
+                let filters = $('.swatch-option-a');
+                let curUrl = window.location.href.split("?");
+
+                // Click filter
+                filters.click(function () {
+                    let _this = $(this);
+
+                    if (_this.hasClass("selected")) {
+                        if (_this.hasClass("sort")) {
+                            $('.swatch-option-a.sort').removeClass("selected");
+                        }
+                        _this.removeClass("selected")
+                    } else {
+                        if (_this.hasClass("sort")) {
+                            $('.swatch-option-a.sort').removeClass("selected");
+                        }
+                        _this.addClass("selected")
+                    }
+                });
+
+                // Click Clear
+                $('#clearButton').click(function () {
+                    filters.removeClass("selected");
+                });
+
+                // Click apply
+                $('#applyButton').click(function () {
+                    let selectedOptions = $('.swatch-option-a.selected');
+                    let catKey = $(this).attr("data-cat");
+                    let data = [], uri;
+                    let color = {name: 'is_manufacturer_color', value: ""};
+                    let size = {name: 'is_size', value: ""};
+                    let sort = {name: 'product_list_order', value: ""};
+                    let fit = {name: 'is_apparel_rise_length', value: ""};
+                    let cat = {name: 'cat', value: ""};
+
+                    // Get all selected options
+                    selectedOptions.each(function (i, item) {
+                        let type = $(item).attr("data-type");
+                        let value = $(item).attr("data-value");
+
+                        if (type === "is_manufacturer_color") {
+                            if (color.value) {
+                                color.value = color.value + "," + value;
+                            } else {
+                                color.value = value;
+                            }
+                        } else if (type === "is_size") {
+                            if (size.value) {
+                                size.value = size.value + "," + value;
+                            } else {
+                                size.value = value;
+                            }
+                        } else if (type === "product_list_order") {
+                            sort.value = value;
+                        } else if (type === "is_apparel_rise_length") {
+                            if (fit.value) {
+                                fit.value = fit.value + "," + value;
+                            } else {
+                                fit.value = value;
+                            }
+                        } else if (type === "cat") {
+                            if (cat.value) {
+                                cat.value = cat.value + "," + value;
+                            } else {
+                                cat.value = value;
+                            }
+                        } else if (type === "fit") {
+                            if (fit.value) {
+                                fit.value = fit.value + "," + value;
+                            } else {
+                                fit.value = value;
+                            }
+                        }
+                    });
+
+                    // Push data to URI
+                    if (color.value !== "") {
+                        data.push(color);
+                    }
+                    if (size.value !== "") {
+                        data.push(size);
+                    }
+                    if (sort.value !== "") {
+                        data.push(sort);
+                    }
+                    if (cat.value !== "") {
+                        data.push(cat);
+                    }
+                    // if (fit.value !== "") {
+                    //     data.push(fit);
+                    // }
+
+                    uri = decodeURIComponent($.param(data));
+
+                    window.location.href = "/" + catKey + ".html?" + uri;
+
+                });
+            })
+
+        });
+    </script>
 <?php endif; ?>
