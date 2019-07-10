@@ -219,8 +219,26 @@ $parentCatKey = $parentCategory->getUrlKey();
             $(document).ready(function () {
                 let filters = $('.swatch-option-a');
                 let curUrl = window.location.href.split("?");
+                let filterBoard = $('.filter-content-wrapper');
 
-                // Click filter
+                // Toggle when click filter title
+                $('.filter-heading').click(function () {
+                    let isHidden = filterBoard.css('visibility');
+                    if (isHidden === 'hidden') {
+                        filterBoard.css('visibility', 'visible');
+                    } else {
+                        filterBoard.css('visibility', 'hidden');
+                    }
+                });
+
+                $(document).keyup(function (e) {
+                    // press esc
+                    if (e.keyCode === 27) {
+                        filterBoard.css('visibility', 'hidden');
+                    }
+                });
+
+                // Click filter options
                 filters.click(function () {
                     let _this = $(this);
 
@@ -237,12 +255,12 @@ $parentCatKey = $parentCategory->getUrlKey();
                     }
                 });
 
-                // Click Clear
+                // Click Clear button
                 $('#clearButton').click(function () {
                     filters.removeClass("selected");
                 });
 
-                // Click apply
+                // Click Apply button
                 $('#applyButton').click(function () {
                     let selectedOptions = $('.swatch-option-a.selected');
                     let catKey = $(this).attr("data-cat");
