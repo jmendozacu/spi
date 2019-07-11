@@ -81,6 +81,45 @@
                 padding: 0;
             }
 
+            .clickAddToWishList {
+                span {
+                    border: 0;
+                    clip: rect(0, 0, 0, 0);
+                    height: 1px;
+                    margin: -1px;
+                    overflow: hidden;
+                    padding: 0;
+                    position: absolute;
+                    width: 1px;
+                }
+
+                &:before {
+                    content: '\e805' !important;
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    z-index: 999;
+                    font-family: "acs-icon-font";
+                    font-style: normal;
+                    font-weight: normal;
+                    speak: none;
+                    display: inline-block;
+                    font-size: 20px;
+                    padding: 20px;
+                    color: @gray;
+                    text-align: center;
+                    font-variant: normal;
+                    text-transform: none;
+                    line-height: 1;
+                    -webkit-font-smoothing: antialiased;
+                    -moz-osx-font-smoothing: grayscale;
+                }
+
+                &:hover:before, &.inWishList:before {
+                    color: @aqua;
+                }
+            }
+
             .product-item-name {
                 -moz-hyphens: auto;
                 -ms-hyphens: auto;
@@ -93,6 +132,19 @@
                 a {
                     text-decoration: none;
                     color: @gray;
+
+                    span {
+                        font-weight: bold;
+                        text-transform: uppercase;
+
+                        &.new {
+                            color: @aqua;
+                        }
+
+                        &.sale {
+                            color: #ff0000;
+                        }
+                    }
                 }
             }
 
@@ -109,6 +161,7 @@
             }
 
             .product-item-info {
+                position: relative;
                 max-width: 100%;
                 width: 100%;
             }
