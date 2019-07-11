@@ -350,7 +350,7 @@ $parentCatKey = $parentCategory->getUrlKey();
                     }
                 });
 
-                // Click filter button
+                // Click filter options
                 filters.click(function () {
                     let _this = $(this);
 
@@ -375,7 +375,9 @@ $parentCatKey = $parentCategory->getUrlKey();
 
                 // Click Clear button
                 $('#clearButton').click(function () {
-                    filters.removeClass("selected");
+                    filters.removeClass("selected"); // remove selected options in board
+                    $('.filtered-label').remove(); // remove option label in heading
+                    $('.filter-heading-wrap').removeClass("after");
                 });
 
                 // Click Apply button
