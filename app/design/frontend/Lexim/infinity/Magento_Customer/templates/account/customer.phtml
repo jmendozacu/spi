@@ -28,21 +28,18 @@
             }
         }
 
+
+
+
+
+
+
+
+
         </script>
 
         <div class="customer-menu">
-            <ul class="header links logged-out"
-                data-role="dropdownDialog"
-                data-mage-init='{"dropdownDialog":{
-                "appendTo":"[data-block=customer-block]",
-                "triggerTarget":".customer-name",
-                "timeout": "2000",
-                "closeOnMouseLeave": false,
-                "closeOnEscape": true,
-                "triggerClass":"active",
-                "parentClass":"active",
-                "bodyClass":"_has-customer_active",
-                "buttons":[]}}'>
+            <ul id="drop-my-account" style="display: none">
                 <li>
                     <a href="<?= $block->getUrl('customer/account/'); ?>" title="My Account">
                         My Account
@@ -87,25 +84,55 @@
         }
 
 
+
+
+
+
+
+
+
+
         </script>
 
         <!--        <div class="customer-menu2">-->
-        <div class="fixed-pop-up" style="display: none">
+        <div id="PopupLogin" class="fixed-pop-up" style="display: none">
+
             <div class="pop-up-container">
+                <i class="far fa-times" id="closePopupLogin"></i>
                 <?= $block->getChildHtml('customer_form_login'); ?>
                 <div class="register">
                     <div class="register-inner">
+                        <div class="dercor-line-black"></div>
                         <div class="field header">SIGN UP</div>
                         <p>Create an account: see your order history, check out faster, save your favorite items and get
                             the latest news about Infinity by Cherokee.
                         </p>
-                        <a class="create-an-account" title="Create an Account"
-                           href="<?= $block->getUrl('customer/account/login/'); ?>">CREATE AN ACCOUNT</a>
+                        <a id="btn-create-account" class="create-an-account" title="Create an Account"
+                           href="javascript:void(0);">CREATE AN ACCOUNT</a>
                     </div>
                 </div>
             </div>
         </div>
         <!--        </div>-->
+
+
+        <div id="PopupRegister" class="fixed-pop-up" style="display: none">
+
+            <div class="pop-up-container">
+                <i class="far fa-times" id="closePopupLogin"></i>
+                <?= $block->getChildHtml('customer_form_register'); ?>
+                <div class="register">
+                    <div class="register-inner">
+
+                        <div class="dercor-line-black"></div>
+                        <div class="field header">ALREADY HAVE AN ACCOUNT?</div>
+                        <a id="btn-login-account" class="create-an-account" title="Sign in"
+                           href="javascript:void(0);">SIGN IN</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </li>
 
 <?php endif; ?>
@@ -122,5 +149,89 @@
                 listItem.attr('data-block', "customer-block");
             }
         });
+
+
     })
+
+
+    require(['jquery'], function ($) {
+
+
+        $('body').on('click', '.customer-welcome>.customer-name', function () {
+            $('.customer-welcome>#PopupLogin').show();
+            $('.customer-welcome>#PopupLogin>.pop-up-container').show();
+        });
+
+        $('body').on('click', '#closePopupLogin', function () {
+            $('.customer-welcome>#PopupLogin').hide();
+            $('.customer-welcome>#PopupLogin>.pop-up-container').hide();
+            $('.customer-welcome>#PopupRegister').hide();
+            $('.customer-welcome>#PopupRegister>.pop-up-container').hide();
+        });
+
+
+        $(document).click(function (e) {
+
+            if ($(e.target).closest(".customer-welcome>#PopupLogin>.pop-up-container").length > 0
+                || $(e.target).closest(".customer-welcome>#PopupRegister>.pop-up-container").length > 0) {
+
+            } else {
+                $('.customer-welcome>#PopupLogin').hide();
+                $('.customer-welcome>#PopupLogin>.pop-up-container').hide();
+                $('.customer-welcome>#PopupRegister').hide();
+                $('.customer-welcome>#PopupRegister>.pop-up-container').hide();
+            }
+        });
+        $(document).click(function (e) {
+
+            if ($(e.target).closest(".customer-welcome>.customer-name").length > 0) {
+                $('.customer-welcome>#PopupLogin').show();
+                $('.customer-welcome>#PopupLogin>.pop-up-container').show();
+            }
+        });
+
+
+        $('body').on('click', '#btn-create-account', function () {
+            $('.customer-welcome>#PopupRegister').show();
+            $('.customer-welcome>#PopupRegister>.pop-up-container').show();
+            $('.customer-welcome>#PopupLogin').hide();
+            $('.customer-welcome>#PopupLogin>.pop-up-container').hide();
+        });
+
+        $('body').on('click', '#btn-login-account', function () {
+            $('.customer-welcome>#PopupLogin').show();
+            $('.customer-welcome>#PopupLogin>.pop-up-container').show();
+            $('.customer-welcome>#PopupRegister').hide();
+            $('.customer-welcome>#PopupRegister>.pop-up-container').hide();
+        });
+
+
+        $(document).click(function (e) {
+            if ($(e.target).closest(".customer-welcome>.customer-menu>#drop-my-account").length > 0) {
+            } else {
+                $('.customer-welcome>.customer-menu>#drop-my-account').hide();
+                $('.customer-welcome>.customer-name').removeClass("active");
+
+            }
+        });
+        $(document).click(function (e) {
+
+            if ($(e.target).closest(".customer-welcome>.customer-name").length > 0) {
+
+                //    if($('body').hasClass("customer-menu")){
+                $('.customer-welcome #drop-my-account').show();
+                $('.customer-welcome>.customer-name').addClass("active");
+                //    }
+            }
+        });
+
+
+        $('body').on('click', '.block-search>.search-icon', function () {
+            $(".block-search>.block-content").toggle();
+
+        });
+
+    })
+
+
 </script>
