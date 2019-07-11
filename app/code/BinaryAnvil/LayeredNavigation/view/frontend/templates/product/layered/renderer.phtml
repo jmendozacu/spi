@@ -107,9 +107,9 @@ $allPrintLink = $block->getAllPrintLink();
 
             <?php foreach ($colorArray as $colorKey => $colorVal) { ?>
                 <?php if (isset($colorVal["list"]) && count($colorVal["list"]) > 0) { ?>
-                    <a href="javascript:void(0)" aria-label="<?= $colorKey ?>" data-id="" data-link=""
+                    <a href="javascript:void(0)" data-label="<?= $colorKey ?>" class="swatch-option-a color"
                        data-type="<?= $swatchData['attribute_code'] ?>"
-                       data-value="<?= implode(",", $colorVal["list"]) ?>" class="swatch-option-a color">
+                       data-value="<?= implode(",", $colorVal["list"]) ?>">
                         <div class="swatch-option">
                             <div class="colorSquare">
                                 <span class="<?= $colorKey ?>" style="background: <?= $colorVal["hex"] ?>"></span>
@@ -120,9 +120,8 @@ $allPrintLink = $block->getAllPrintLink();
                 <?php } ?>
             <?php } ?>
 
-            <a href="javascript:void(0)" aria-label="" data-id="" data-link=""
-               data-type="<?= $swatchData['attribute_code'] ?>"
-               data-value="all_print" class="swatch-option-a color">
+            <a href="javascript:void(0)" data-label="All Prints" class="swatch-option-a color"
+               data-type="<?= $swatchData['attribute_code'] ?>" data-value="all_print">
                 <div class="swatch-option">
                     <div class="colorSquare">
                         <span style='background: url(<?= $this->getViewFileUrl('images/all-print.jpg') ?>)'></span>
@@ -133,70 +132,70 @@ $allPrintLink = $block->getAllPrintLink();
         <?php } else { ?>
 
             <?php foreach ($swatchData['options'] as $option => $label): ?>
-                <?php /** if ($block->checkCustomViewOption($option)): ?>
-                 * <?php continue; ?>
-                 * <?php endif; **/ ?>
+                <?php if ($option && $option !== "") { ?>
 
-                <a href="javascript:void(0)"
-                   aria-label="<?= $label['label'] ?>" data-id="<?= $option ?>"
-                   data-type="<?= $swatchData['attribute_code'] ?>"
-                   data-value="<?= $option ?>"
-                   data-link="<?= $label['link'] ?>"
-                   class="swatch-option-link-layered swatch-option-a">
-                    <?php if (isset($swatchData['swatches'][$option]['type'])) { ?>
-                        <?php switch ($swatchData['swatches'][$option]['type']) {
-                            case '3':
-                                ?>
-                                <div class="swatch-option <?= $label['custom_style'] ?>"
-                                     tabindex="-1"
-                                     option-type="3"
-                                     option-id="<?= $option ?>"
-                                     option-label="<?= $label['label'] ?>"
-                                     option-tooltip-thumb=""
-                                     option-tooltip-value=""
-                                ></div>
-                                <?php break;
-                            case '2':
-                                ?>
-                                <?php $swatchThumbPath = $block->getSwatchPath('swatch_thumb',
-                                $swatchData['swatches'][$option]['value']); ?>
-                                <?php $swatchImagePath = $block->getSwatchPath('swatch_image',
-                                $swatchData['swatches'][$option]['value']); ?>
-                                <div class="swatch-option image <?= $label['custom_style'] ?>"
-                                     tabindex="-1"
-                                     option-type="2"
-                                     option-id="<?= $option ?>"
-                                     option-label="<?= $label['label'] ?>"
-                                     option-tooltip-thumb="<?= $swatchThumbPath ?>"
-                                     option-tooltip-value=""
-                                     style="background: url(<?= $swatchImagePath ?>) no-repeat center; background-size: initial;"></div>
-                                <?php break;
-                            case '1':
-                                ?>
-                                <div class="swatch-option color <?= $label['custom_style'] ?>"
-                                     tabindex="-1"
-                                     option-type="1"
-                                     option-id="<?= $option ?>"
-                                     option-label="<?= $label['label'] ?>"
-                                     option-tooltip-thumb=""
-                                     option-tooltip-value="<?= $swatchData['swatches'][$option]['value'] ?>"
-                                     style="background: <?= $swatchData['swatches'][$option]['value'] ?> no-repeat center; background-size: initial;"></div>
-                                <?php break;
-                            case '0':
-                            default:
-                                ?>
-                                <div class="swatch-option text"
-                                     tabindex="-1" filter-content
-                                     option-type="0"
-                                     option-id="<?= $option ?>"
-                                     option-label="<?= $label['label'] ?>"
-                                     option-tooltip-thumb=""
-                                     option-tooltip-value=""
-                                ><?= $swatchData['swatches'][$option]['value'] ?></div>
-                                <?php break;
-                        } ?>
-                    <?php } ?>
-                </a>
+                    <a href="javascript:void(0)"
+                       data-label="<?= $label['label'] ?>" data-id="<?= $option ?>"
+                       data-type="<?= $swatchData['attribute_code'] ?>"
+                       data-value="<?= $option ?>"
+                       data-link="<?= $label['link'] ?>"
+                       class="swatch-option-link-layered swatch-option-a">
+                        <?php if (isset($swatchData['swatches'][$option]['type'])) { ?>
+                            <?php switch ($swatchData['swatches'][$option]['type']) {
+                                case '3':
+                                    ?>
+                                    <div class="swatch-option <?= $label['custom_style'] ?>"
+                                         tabindex="-1"
+                                         option-type="3"
+                                         option-id="<?= $option ?>"
+                                         option-label="<?= $label['label'] ?>"
+                                         option-tooltip-thumb=""
+                                         option-tooltip-value=""
+                                    ></div>
+                                    <?php break;
+                                case '2':
+                                    ?>
+                                    <?php $swatchThumbPath = $block->getSwatchPath('swatch_thumb',
+                                    $swatchData['swatches'][$option]['value']); ?>
+                                    <?php $swatchImagePath = $block->getSwatchPath('swatch_image',
+                                    $swatchData['swatches'][$option]['value']); ?>
+                                    <div class="swatch-option image <?= $label['custom_style'] ?>"
+                                         tabindex="-1"
+                                         option-type="2"
+                                         option-id="<?= $option ?>"
+                                         option-label="<?= $label['label'] ?>"
+                                         option-tooltip-thumb="<?= $swatchThumbPath ?>"
+                                         option-tooltip-value=""
+                                         style="background: url(<?= $swatchImagePath ?>) no-repeat center; background-size: initial;"></div>
+                                    <?php break;
+                                case '1':
+                                    ?>
+                                    <div class="swatch-option color <?= $label['custom_style'] ?>"
+                                         tabindex="-1"
+                                         option-type="1"
+                                         option-id="<?= $option ?>"
+                                         option-label="<?= $label['label'] ?>"
+                                         option-tooltip-thumb=""
+                                         option-tooltip-value="<?= $swatchData['swatches'][$option]['value'] ?>"
+                                         style="background: <?= $swatchData['swatches'][$option]['value'] ?> no-repeat center; background-size: initial;"></div>
+                                    <?php break;
+                                case '0':
+                                default:
+                                    ?>
+                                    <div class="swatch-option text"
+                                         tabindex="-1" filter-content
+                                         option-type="0"
+                                         option-id="<?= $option ?>"
+                                         option-label="<?= $label['label'] ?>"
+                                         option-tooltip-thumb=""
+                                         option-tooltip-value=""
+                                    ><?= $swatchData['swatches'][$option]['value'] ?></div>
+                                    <?php break;
+                            } ?>
+                        <?php } ?>
+                    </a>
+
+                <?php } ?>
             <?php endforeach; ?>
 
         <?php } ?>

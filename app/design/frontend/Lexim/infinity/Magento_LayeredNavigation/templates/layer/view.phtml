@@ -19,21 +19,31 @@ $parentCatKey = $parentCategory->getUrlKey();
         <?php $filtered = count($block->getLayer()->getState()->getFilters()) ?>
 
         <div class="block-content filter-content">
-            <div class="filter-wrapper">
-                <?= $block->getChildHtml('state') ?>
-
-                <?php /**
-                 * if ($block->getLayer()->getState()->getFilters()): ?>
-                 * <div class="block-actions filter-actions">
-                 * <a href="<?= $block->getClearUrl() ?>"
-                 * class="action clear filter-clear"><span><?= __('Clear All') ?></span></a>
-                 * </div>
-                 * <?php endif; **/ ?>
-            </div>
 
             <div class="filter-options-wrapper">
-                <div class="filter-heading" data-count="<?= $filtered ?>">
-                    <strong>FILTER</strong>
+
+                <div class="filter-wrapper">
+                    <?php /** $block->getChildHtml('state'); */ ?>
+
+                    <?php /**
+                     * if ($block->getLayer()->getState()->getFilters()): ?>
+                     * <div class="block-actions filter-actions">
+                     * <a href="<?= $block->getClearUrl() ?>"
+                     * class="action clear filter-clear"><span><?= __('Clear All') ?></span></a>
+                     * </div>
+                     * <?php endif; **/ ?>
+                </div>
+
+                <div class="filter-heading-wrap">
+                    <div class="filter-heading">FILTER</div>
+
+                    <!--
+                    <div class="filtered-label">
+                        <span class="far fa-times clearOneFilter" data-type="" data-value=""></span>
+                        <span>Bottoms</span>
+                    </div>
+                    -->
+
                 </div>
 
                 <div class="filter-content-wrapper">
@@ -47,10 +57,11 @@ $parentCatKey = $parentCategory->getUrlKey();
                             <div class="filter-options-content">
                                 <div class="swatch-attribute-options">
                                     <?php foreach ($parentCategory->getChildrenCategories() as $subCategory) : ?>
-                                        <a href="javascript:void(0)"
+                                        <?php $catName = $subCategory->getName(); ?>
+                                        <a href="javascript:void(0)" data-label="<?= $catName ?>"
                                            data-type="cat" data-value="<?= $subCategory->getId() ?>"
                                            class="swatch-option-a category">
-                                            <div class="swatch-option text"><?= $subCategory->getName() ?></div>
+                                            <div class="swatch-option text"><?= $catName ?></div>
                                         </a>
                                     <?php endforeach; ?>
                                 </div>
@@ -94,32 +105,32 @@ $parentCatKey = $parentCategory->getUrlKey();
                         <div class="filter-options-item">
                             <div class="filter-options-content">
                                 <div class="swatch-attribute-options">
-                                    <a href="javascript:void(0)"
+                                    <a href="javascript:void(0)" data-label="Lowest Price"
                                        data-type="product_list_order" data-value="price_asc"
                                        class="swatch-option-a sort">
                                         <div class="swatch-option text">Lowest Price</div>
                                     </a>
-                                    <a href="javascript:void(0)"
+                                    <a href="javascript:void(0)" data-label="Highest Price"
                                        data-type="product_list_order" data-value="price_desc"
                                        class="swatch-option-a sort">
                                         <div class="swatch-option text">Highest Price</div>
                                     </a>
-                                    <a href="javascript:void(0)"
+                                    <a href="javascript:void(0)" data-label="Newest"
                                        data-type="product_list_order" data-value=""
                                        class="swatch-option-a sort">
                                         <div class="swatch-option text">Newest</div>
                                     </a>
-                                    <a href="javascript:void(0)"
+                                    <a href="javascript:void(0)" data-label="Best Selling"
                                        data-type="product_list_order" data-value=""
                                        class="swatch-option-a sort">
                                         <div class="swatch-option text">Best Selling</div>
                                     </a>
-                                    <a href="javascript:void(0)"
+                                    <a href="javascript:void(0)" data-label="Top Rated"
                                        data-type="product_list_order" data-value=""
                                        class="swatch-option-a sort">
                                         <div class="swatch-option text">Top Rated</div>
                                     </a>
-                                    <a href="javascript:void(0)"
+                                    <a href="javascript:void(0)" data-label="On Sale"
                                        data-type="product_list_order" data-value=""
                                        class="swatch-option-a sort">
                                         <div class="swatch-option text onSale">On Sale</div>
@@ -209,11 +220,109 @@ $parentCatKey = $parentCategory->getUrlKey();
 
     <script type="text/javascript">
         require(['jquery'], function ($) {
+            'use strict';
 
+            /**
+             * Get URL Param by name
+             */
             function getUrlParam(name) {
                 let results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
                 if (!results) return false;
                 return results[1] || 0;
+            }
+
+            /**
+             * Show filtered options
+             */
+            function showFilteredOptions() {
+                let cat = getUrlParam("cat");
+                let color = getUrlParam("is_manufacturer_color");
+                let size = getUrlParam("is_size");
+                let fit = getUrlParam("is_apparel_rise_length");
+                let sort = getUrlParam("product_list_order");
+
+                // Check selected options and show them into filter board
+                if (cat) {
+                    let tmpCat = $('.swatch-option-a[data-type="cat"][data-value="' + cat + '"]');
+                    tmpCat.addClass("selected");
+                    makeOneFilterLabel("cat", cat, tmpCat.attr("data-label"));
+                }
+                if (color) {
+                    detectSelectedOptionsFromUri("is_manufacturer_color", color);
+                }
+                if (size) {
+                    detectSelectedOptionsFromUri("is_size", size);
+                }
+                if (fit) {
+                    detectSelectedOptionsFromUri("is_apparel_rise_length", fit);
+                }
+                if (sort) {
+                    let tmpSort = $('.swatch-option-a[data-type="product_list_order"][data-value="' + sort + '"]');
+                    tmpSort.addClass("selected");
+                    makeOneFilterLabel("product_list_order", sort, tmpSort.attr("data-label"));
+                }
+
+                // Check if the page has selected options
+                let selected = $('.swatch-option-a.selected');
+                if (selected.length > 0) {
+                    $('.filter-heading-wrap').addClass("after");
+                }
+
+                // Register event click x button
+                clickClearOption();
+            }
+
+            /**
+             * Check selected options and show in filter board
+             * @param optionKey
+             * @param valueFromUri
+             */
+            function detectSelectedOptionsFromUri(optionKey, valueFromUri) {
+                if (!valueFromUri) {
+                    valueFromUri = getUrlParam(optionKey);
+                }
+                $('.swatch-option-a[data-type="' + optionKey + '"]').each(function (i, item) {
+                    item = $(item);
+                    let curVal = item.attr("data-value");
+                    let index = valueFromUri.indexOf(curVal);
+                    if (index >= 0) {
+                        item.addClass("selected");
+                        makeOneFilterLabel(optionKey, curVal, item.attr("data-label"));
+                    }
+                })
+            }
+
+            /**
+             * Init filter label after click apply
+             * @param type
+             * @param value
+             * @param label
+             * @returns {number}
+             */
+            function makeOneFilterLabel(type, value, label) {
+                let html = "";
+                if (!type || !value || !label) {
+                    return 0;
+                }
+                html += '<div class="filtered-label">';
+                html += '<span class="far fa-times clearOneFilter" data-type="' + type + '" data-value="' + value + '"></span>';
+                html += '<span>' + label + '</span>';
+                html += '</div>';
+                $('.filter-heading-wrap').append(html);
+            }
+
+            /**
+             * Click x icon and clear one option, then reload filter
+             */
+            function clickClearOption() {
+                $('.clearOneFilter').click(function () {
+                    let _this = $(this);
+                    let type = _this.attr("data-type");
+                    let value = _this.attr("data-value");
+                    $('.swatch-option-a[data-type="' + type + '"][data-value="' + value + '"]').removeClass("selected");
+                    _this.parent().remove(); // remove label
+                    $("#applyButton").trigger("click"); // trigger click apply button
+                });
             }
 
             $(document).ready(function () {
@@ -221,7 +330,9 @@ $parentCatKey = $parentCategory->getUrlKey();
                 let curUrl = window.location.href.split("?");
                 let filterBoard = $('.filter-content-wrapper');
 
-                // Toggle when click filter title
+                showFilteredOptions();
+
+                // Toggle when click filter button
                 $('.filter-heading').click(function () {
                     let isHidden = filterBoard.css('visibility');
                     if (isHidden === 'hidden') {
@@ -231,6 +342,7 @@ $parentCatKey = $parentCategory->getUrlKey();
                     }
                 });
 
+                // Close filter board when click ESC button
                 $(document).keyup(function (e) {
                     // press esc
                     if (e.keyCode === 27) {
@@ -238,7 +350,7 @@ $parentCatKey = $parentCategory->getUrlKey();
                     }
                 });
 
-                // Click filter options
+                // Click filter button
                 filters.click(function () {
                     let _this = $(this);
 
@@ -246,10 +358,16 @@ $parentCatKey = $parentCategory->getUrlKey();
                         if (_this.hasClass("sort")) {
                             $('.swatch-option-a.sort').removeClass("selected");
                         }
+                        if (_this.hasClass("category")) {
+                            $('.swatch-option-a.category').removeClass("selected");
+                        }
                         _this.removeClass("selected")
                     } else {
                         if (_this.hasClass("sort")) {
                             $('.swatch-option-a.sort').removeClass("selected");
+                        }
+                        if (_this.hasClass("category")) {
+                            $('.swatch-option-a.category').removeClass("selected");
                         }
                         _this.addClass("selected")
                     }

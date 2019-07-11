@@ -40,16 +40,39 @@
         }
     }
 
-    .filter-heading {
-        cursor: pointer;
+    .filter-heading-wrap {
+        .display-flex();
+        .justify-content(center);
+        .align-items(center);
         text-align: center;
-        font-size: 24px;
-        color: @aqua;
-        padding: 20px 0;
-        font-weight: bold;
+        padding: 1vw 0;
 
-        strong {
+        .filter-heading {
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 24px;
+            color: @aqua;
             border-bottom: 5px solid;
+        }
+
+        &.after .filter-heading {
+            color: @gray;
+            font-size: 18px;
+            border: none;
+            padding-right: 20px;
+        }
+
+        .filtered-label {
+            padding: 0 7px;
+            font-size: 16px;
+            .display-flex();
+            .align-items(center);
+            text-transform: capitalize;
+
+            .clearOneFilter {
+                cursor: pointer;
+                padding: 7px;
+            }
         }
     }
 
