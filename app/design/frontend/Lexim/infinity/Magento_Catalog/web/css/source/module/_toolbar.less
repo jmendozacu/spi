@@ -7,9 +7,6 @@
 //  Variables
 //  ---------------------------------------------
 
-@toolbar-mode-icon-font-size: 24px;
-@toolbar-element-background: @panel__background-color;
-
 //
 //  Common
 //  _____________________________________________
@@ -22,13 +19,8 @@
         }
     }
 
-    .toolbar {
-        &:extend(.abs-add-clearfix all);
-    }
-
     .toolbar-amount {
         display: block;
-        line-height: @toolbar-mode-icon-font-size + 2;
         margin: 0;
         padding: 8px 0 0;
         vertical-align: middle;
@@ -39,16 +31,74 @@
     }
 
     .toolbar-products {
-        margin-bottom: @indent__xl;
-        padding: 0 @indent__s;
+        padding: 0;
         text-align: center;
-        &:extend(.abs-add-clearfix all);
 
         .pages {
-            display: none;
-
             .products.wrapper ~ & {
                 display: block;
+                padding: 0 0 3vw;
+                position: relative;
+                overflow: hidden;
+            }
+
+        }
+
+        .pages-items {
+            letter-spacing: 0.02em;
+
+            .item {
+                font-size: 16px;
+                color: @gray;
+                margin: 0;
+
+                a {
+                    text-decoration: none;
+                    color: @gray;
+                    font-weight: normal;
+                    font-size: 16px;
+
+                    &:hover {
+                        color: @aqua;
+
+                        &:before, &:after {
+                            color: @aqua;
+                        }
+                    }
+                }
+
+                .page {
+                    color: @gray;
+                    text-decoration: none;
+                    font-weight: normal;
+                    font-size: 16px;
+                    line-height: 1;
+                    padding: 0 12px;
+                }
+
+                &.current .page {
+                    color: @aqua;
+                }
+
+                .link span {
+                    padding: 0 12px;
+                }
+
+                .previous:before {
+                    color: @gray;
+                    font-weight: normal;
+                    font-family: "FontAwesomePro", FontAwesome, sans-serif;
+                    content: "\f053";
+                    font-size: 14px;
+                }
+
+                .next:after {
+                    color: @gray;
+                    font-weight: normal;
+                    font-family: "FontAwesomePro", FontAwesome, sans-serif;
+                    content: "\f054";
+                    font-size: 14px;
+                }
             }
         }
 
@@ -80,7 +130,7 @@
     .sorter-action {
         vertical-align: top;
         .lib-icon-font(
-            @icon-arrow-up,
+                @icon-arrow-up,
             @_icon-font-size: 28px,
             @_icon-font-line-height: 32px,
             @_icon-font-color: @header-icons-color,
@@ -107,7 +157,7 @@
     }
 
     .limiter-label {
-        font-weight: @font-weight__regular;
+        font-weight: normal;
     }
 
     .limiter {
@@ -147,7 +197,6 @@
     .modes {
         display: inline-block;
         float: left;
-        margin-right: @indent__base;
 
         .products.wrapper ~ .toolbar & {
             display: none;
@@ -160,10 +209,10 @@
 
     .modes-mode {
         .lib-css(color, @text__color__muted);
-        border: 1px solid @border-color__base;
+        border: 1px solid #999999;
         border-right: 0;
         float: left;
-        font-weight: @font-weight__regular;
+        font-weight: normal;
         line-height: 1;
         padding: 7px 10px;
         text-align: center;
@@ -171,12 +220,11 @@
         &:not(.active) {
             &:hover {
                 .lib-css(color, @text__color__muted);
-                background: darken(@toolbar-element-background, 7%);
             }
         }
 
         &:last-child {
-            border-right: 1px solid @border-color__base;
+            border-right: 1px solid #999999;
         }
 
         &.active {
@@ -184,8 +232,8 @@
         }
 
         .lib-icon-font(
-            @icon-grid,
-            @_icon-font-size: @toolbar-mode-icon-font-size,
+                @icon-grid,
+            @_icon-font-size: 24px,
             @_icon-font-text-hide: true,
             @_icon-font-color: @text__color__muted,
             @_icon-font-color-hover: @text__color__muted
@@ -198,7 +246,7 @@
 
     .toolbar {
         .products.wrapper ~ & .limiter {
-            display: block;
+            //display: block;
             float: right;
         }
     }
