@@ -66,25 +66,22 @@
         }
     }
 
-    .product {
-        &-items {
+    .page-products {
+        .product-items {
             font-size: 0;
+            .display-flex();
+            .flex-wrap(wrap);
         }
 
-        &-item {
-            font-size: 1.4rem;
-            vertical-align: top;
+        .product-item {
+            font-size: 14px;
 
             .products-grid & {
                 display: inline-block;
                 padding: 0;
             }
 
-            &:nth-child(2n + 1) {
-                margin-left: 0;
-            }
-
-            &-name {
+            .product-item-name {
                 -moz-hyphens: auto;
                 -ms-hyphens: auto;
                 -webkit-hyphens: auto;
@@ -92,24 +89,37 @@
                 hyphens: auto;
                 margin: 0;
                 word-wrap: break-word;
+
+                a {
+                    text-decoration: none;
+                    color: @gray;
+                }
             }
 
-            &-info {
+            .product-item-details {
+                padding: 12px 0 0;
+            }
+
+            .countColor {
+                color: #a7a4a3;
+                margin: 0;
+                padding: 10px 0 0;
+                font-size: 14px;
+                line-height: 1;
+            }
+
+            .product-item-info {
                 max-width: 100%;
                 width: 100%;
             }
 
-            &-actions {
+            .product-item-actions {
                 font-size: 0;
 
                 .actions-secondary {
                     display: inline-block;
                     vertical-align: middle;
                     white-space: nowrap;
-
-                    > button.action {
-                        //.lib-button-reset();
-                    }
 
                     > .action {
                         text-align: center;
@@ -120,9 +130,6 @@
                         &:before {
                             margin: 0;
                         }
-
-                        span {
-                        }
                     }
                 }
 
@@ -131,7 +138,7 @@
                 }
             }
 
-            &-description {
+            .product-item-description {
                 margin: 0;
             }
 
@@ -209,6 +216,7 @@
                 white-space: nowrap;
             }
         }
+
     }
 
     .price-container {
@@ -235,10 +243,6 @@
             width: 100%;
 
         }
-    }
-
-    .product-image-wrapper {
-
     }
 }
 
