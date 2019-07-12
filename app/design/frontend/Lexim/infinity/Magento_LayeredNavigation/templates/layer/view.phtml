@@ -243,9 +243,10 @@ $parentCatKey = $parentCategory->getUrlKey();
 
                 // Check selected options and show them into filter board
                 if (cat) {
-                    let tmpCat = $('.swatch-option-a[data-type="cat"][data-value="' + cat + '"]');
-                    tmpCat.addClass("selected");
-                    makeOneFilterLabel("cat", cat, tmpCat.attr("data-label"));
+                    // let tmpCat = $('.swatch-option-a[data-type="cat"][data-value="' + cat + '"]');
+                    // tmpCat.addClass("selected");
+                    // makeOneFilterLabel("cat", cat, tmpCat.attr("data-label"));
+                    detectSelectedOptionsFromUri("cat", cat);
                 }
                 if (color) {
                     detectSelectedOptionsFromUri("is_manufacturer_color", color);
@@ -358,16 +359,10 @@ $parentCatKey = $parentCategory->getUrlKey();
                         if (_this.hasClass("sort")) {
                             $('.swatch-option-a.sort').removeClass("selected");
                         }
-                        if (_this.hasClass("category")) {
-                            $('.swatch-option-a.category').removeClass("selected");
-                        }
                         _this.removeClass("selected")
                     } else {
                         if (_this.hasClass("sort")) {
                             $('.swatch-option-a.sort').removeClass("selected");
-                        }
-                        if (_this.hasClass("category")) {
-                            $('.swatch-option-a.category').removeClass("selected");
                         }
                         _this.addClass("selected")
                     }

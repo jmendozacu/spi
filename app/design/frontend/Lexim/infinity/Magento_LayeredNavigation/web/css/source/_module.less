@@ -44,6 +44,7 @@
         .display-flex();
         .justify-content(center);
         .align-items(center);
+        .flex-wrap(wrap);
         text-align: center;
         padding: 1vw 0;
 
@@ -81,7 +82,8 @@
         position: absolute;
         left: 0;
         right: 0;
-        width: 840px;
+        width: 100%;
+        max-width: 840px;
         margin: 0 auto;
         .display-flex();
         .flex-wrap(wrap);
@@ -124,6 +126,7 @@
             font-weight: bold;
             margin: 0;
             padding: 0 0 10px;
+            font-size: 14px;
         }
 
         .swatch-attribute-options {
@@ -279,5 +282,49 @@
 //  _____________________________________________
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .filter-content-wrapper {
+        display: block;
+        padding: 20px 0;
+
+        .filter-button {
+            width: 120px;
+        }
+    }
+
+    .filter-heading-wrap {
+        .filtered-label {
+            font-size: 14px;
+        }
+
+        &.after .filter-heading {
+            font-size: 14px;
+            padding-right: 10px;
+        }
+    }
+
+    .filter-options {
+        width: 50%;
+        float: left;
+        padding: 0 15px 15px;
+
+        .filter-options-title {
+            padding: 0 0 5px;
+        }
+
+        .swatch-attribute-options {
+            margin: 0;
+        }
+    }
+
+    .filter-content-wrapper .filter-button-wrap {
+        clear: both;
+    }
+
+}
+
+//
+//  Desktop
+//  _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
 
 }

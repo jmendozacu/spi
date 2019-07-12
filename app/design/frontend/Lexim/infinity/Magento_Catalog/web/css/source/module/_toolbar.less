@@ -167,6 +167,38 @@
     }
 }
 
+// max 480px
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
+    .toolbar-products {
+        .pages-items {
+            .item {
+                font-size: 14px;
+
+                a {
+                    font-size: 14px;
+                }
+
+                .page {
+                    font-size: 14px;
+                    padding: 0 7px;
+                }
+
+                .link span {
+                    padding: 0 7px;
+                }
+
+                .previous:before {
+                    font-size: 12px;
+                }
+
+                .next:after {
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+}
+
 //
 //  Desktop
 //  _____________________________________________
