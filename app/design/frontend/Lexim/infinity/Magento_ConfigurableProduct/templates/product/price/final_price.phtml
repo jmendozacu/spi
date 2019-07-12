@@ -1,0 +1,66 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+
+<?php
+/** @var \Magento\ConfigurableProduct\Pricing\Render\FinalPriceBox $block */
+
+/** @var \Magento\Framework\Pricing\Price\PriceInterface $priceModel */
+$priceModel = $block->getPriceType('regular_price');
+
+/** @var \Magento\Framework\Pricing\Price\PriceInterface $finalPriceModel */
+$finalPriceModel = $block->getPriceType('final_price');
+
+?>
+
+<?php if ($block->hasSpecialPrice()) { ?>
+
+    <span class="sale-ranger-price ranger-price">
+
+    <?php
+    $product = $block->getSaleableItem();
+    $childList = $product->getTypeInstance()->getUsedProducts($product);
+    $specialChildProductPrice = [];
+
+    foreach ($childList as $child) {
+        $specialPrice = $child->getSpecialPrice();
+        if ($specialPrice != 0 and !is_null($specialPrice)) {
+            $specialPrice = number_format($specialPrice, 2, '.', '');
+            $specialChildProductPrice[] = $specialPrice;
+        }
+    }
+    $min = min($specialChildProductPrice);
+    $max = max($specialChildProductPrice);
+
+    if ($min == $max) {
+        echo '$' . $min;
+    } else if ($min < $max) {
+        echo '$' . $min . " - " . '$' . $max;
+    }
+    ?>
+
+    </span>
+
+<?php } else { ?>
+
+    <span class="ranger-price">
+    <?php
+    $min = $priceModel->getMinRegularAmount()->getValue();
+    $max = $priceModel->getMaxRegularAmount()->getValue();
+
+    if ($min == $max) {
+        echo '$' . $min;
+    } else if ($min < $max) {
+        echo '$' . $min . " - " . '$' . $max;
+    }
+    ?>
+    </span>
+
+<?php } ?>
+
