@@ -290,6 +290,12 @@
 //  Mobile
 //  _____________________________________________
 
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .products .product-item .product-item-details {
+        text-align: center;
+    }
+}
+
 // max 480px
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
     .category-heading-wrap {
