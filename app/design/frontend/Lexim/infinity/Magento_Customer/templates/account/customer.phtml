@@ -5,7 +5,7 @@
 
 <?php if ($block->customerLoggedIn()): ?>
 
-    <li class="customer-welcome" data-block="customer-block">
+    <li class="customer-welcome loggedIn" data-block="customer-block">
         <span class="customer-name"
               role="link"
               tabindex="0"
@@ -27,15 +27,6 @@
                 }
             }
         }
-
-
-
-
-
-
-
-
-
         </script>
 
         <div class="customer-menu">
@@ -48,6 +39,11 @@
                 <li>
                     <a href="<?= $block->getUrl('sales/order/history/'); ?>" title="My Orders">
                         My Orders
+                    </a>
+                </li>
+                <li>
+                    <a href="<?= $block->getUrl('faqs/'); ?>" title="FAQS">
+                        FAQS
                     </a>
                 </li>
                 <li>
@@ -82,16 +78,6 @@
                 }
             }
         }
-
-
-
-
-
-
-
-
-
-
         </script>
 
         <!--        <div class="customer-menu2">-->
@@ -150,13 +136,7 @@
             }
         });
 
-
-    })
-
-
-    require(['jquery'], function ($) {
-
-
+        // Thien
         $('body').on('click', '.customer-welcome>.customer-name', function () {
             $('.customer-welcome>#PopupLogin').show();
             $('.customer-welcome>#PopupLogin>.pop-up-container').show();
@@ -215,9 +195,7 @@
             }
         });
         $(document).click(function (e) {
-
             if ($(e.target).closest(".customer-welcome>.customer-name").length > 0) {
-
                 //    if($('body').hasClass("customer-menu")){
                 $('.customer-welcome #drop-my-account').show();
                 $('.customer-welcome>.customer-name').addClass("active");
@@ -231,7 +209,5 @@
 
         });
 
-    })
-
-
+    });
 </script>

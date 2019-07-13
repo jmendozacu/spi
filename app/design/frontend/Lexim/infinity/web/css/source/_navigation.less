@@ -280,7 +280,7 @@
 //
 //  Desktop
 //  _____________________________________________
-
+// min 768px
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
 
     .nav-toggle, .nav-sections-item-title {
@@ -334,7 +334,7 @@
 
                 > a {
                     line-height: 1;
-                    padding: 0 15px;
+                    padding: 0 10px;
                     color: @gray;
                     border: none !important;
                     text-decoration: none;
@@ -407,4 +407,34 @@
         }
     }
 
+}
+
+// min 992px
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+
+    .nav-sections {
+        .nav-sections-items {
+        }
+
+        .navigation {
+            li {
+                > a {
+                    padding: 0 15px;
+                }
+            }
+
+            li.level0 {
+                .submenu {
+                    li {
+                    }
+                }
+
+                a.level-top.ui-state-active + .submenu {
+                }
+            }
+
+            .parent .level-top:after {
+            }
+        }
+    }
 }

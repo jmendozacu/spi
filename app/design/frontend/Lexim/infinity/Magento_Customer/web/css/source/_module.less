@@ -473,8 +473,7 @@
         -moz-border-radius: 5px;
         border-radius: 0;
         width: 150px;
-        height: 135px;
-        background-color: #fff;
+        background-color: #ffffff;
         border-style: solid;
         border-width: 1px;
         border-color: #807d7d;
@@ -516,40 +515,6 @@
 //
 //  Mobile
 //  _____________________________________________
-
-.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
-    .account {
-        .column.main,
-        .sidebar-additional {
-            margin: 0;
-        }
-    }
-
-    //
-    //  Pop up login form
-    //  ---------------------------------------------
-    .pop-up-container {
-        width: 300px;
-    }
-    #PopupRegister .form.create.account {
-        min-width: 200px;
-    }
-
-    //
-    //  Block search
-    //  ---------------------------------------------
-    .block-search input {
-        left: -94px;
-        margin: 15px 0;
-        position: absolute;
-        top: 60px;
-        z-index: 99;
-    }
-    .block-search .label.active + .control input {
-        position: absolute;
-    }
-
-}
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
     .login-container {
@@ -596,13 +561,25 @@
             }
         }
     }
-    .header.links {
-        .customer-welcome {
-            .customer-menu {
-                #drop-my-account {
-                    top: 248px;
-                }
-            }
+
+    .customer-menu {
+        padding: 0 0 10px;
+    }
+
+    .customer-welcome.loggedIn > .customer-name {
+        display: none;
+    }
+
+    #drop-my-account {
+        display: block !important;
+        position: relative;
+        top: 0;
+        border: none;
+        width: 100%;
+        padding: 0;
+
+        li a {
+            color: #999999;
         }
     }
 
@@ -616,6 +593,40 @@
     }
     .sticky .block-search input {
         top: -2px;
+    }
+
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+    .account {
+        .column.main,
+        .sidebar-additional {
+            margin: 0;
+        }
+    }
+
+    //
+    //  Pop up login form
+    //  ---------------------------------------------
+    .pop-up-container {
+        width: 300px;
+    }
+    #PopupRegister .form.create.account {
+        min-width: 200px;
+    }
+
+    //
+    //  Block search
+    //  ---------------------------------------------
+    .block-search input {
+        left: -94px;
+        margin: 15px 0;
+        position: absolute;
+        top: 60px;
+        z-index: 99;
+    }
+    .block-search .label.active + .control input {
+        position: absolute;
     }
 
 }
