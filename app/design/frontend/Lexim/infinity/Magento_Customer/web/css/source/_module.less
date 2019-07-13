@@ -332,7 +332,7 @@
         position: relative;
         width: 400px;
         margin: 0 auto 0;
-        top: 20%;
+        top: 10%;
         background: rgba(255, 255, 255, 0.96);
         padding: 50px;
         border: 1px solid #999999;
@@ -430,6 +430,7 @@
         font-weight: bold;
         font-size: 13px;
         text-transform: uppercase;
+        white-space: nowrap;
 
         &.active {
             color: #48c1cb;
@@ -523,6 +524,31 @@
             margin: 0;
         }
     }
+
+    //
+    //  Pop up login form
+    //  ---------------------------------------------
+    .pop-up-container {
+        width: 300px;
+    }
+    #PopupRegister .form.create.account {
+        min-width: 200px;
+    }
+
+    //
+    //  Block search
+    //  ---------------------------------------------
+    .block-search input {
+        left: -94px;
+        margin: 15px 0;
+        position: absolute;
+        top: 60px;
+        z-index: 99;
+    }
+    .block-search .label.active + .control input {
+        position: absolute;
+    }
+
 }
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
@@ -555,6 +581,43 @@
             position: relative;
         }
     }
+
+    //
+    //  Drop My Account
+    //  ---------------------------------------------
+    .rightHeader {
+        .customer-welcome {
+            .customer-name {
+                display: none;
+            }
+
+            .customer-menu {
+                display: none;
+            }
+        }
+    }
+    .header.links {
+        .customer-welcome {
+            .customer-menu {
+                #drop-my-account {
+                    top: 248px;
+                }
+            }
+        }
+    }
+
+    //
+    //  Block search
+    //  ---------------------------------------------
+    .block-search input {
+        top: 35px;
+        left: -92px;
+        z-index: 99;
+    }
+    .sticky .block-search input {
+        top: -2px;
+    }
+
 }
 
 //
