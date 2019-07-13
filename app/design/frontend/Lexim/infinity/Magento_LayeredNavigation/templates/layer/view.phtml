@@ -96,37 +96,39 @@ $parentCatKey = $parentCategory->getUrlKey();
                         </div>
                         <div class="filter-options-item">
                             <div class="filter-options-content">
-                                <div class="swatch-attribute-options">
-                                    <a href="javascript:void(0)" data-label="Lowest Price"
-                                       data-type="product_list_order" data-value="price_asc"
-                                       class="swatch-option-a sort">
-                                        <div class="swatch-option text">Lowest Price</div>
-                                    </a>
-                                    <a href="javascript:void(0)" data-label="Highest Price"
-                                       data-type="product_list_order" data-value="price_desc"
-                                       class="swatch-option-a sort">
-                                        <div class="swatch-option text">Highest Price</div>
-                                    </a>
-                                    <a href="javascript:void(0)" data-label="Newest"
-                                       data-type="product_list_order" data-value=""
-                                       class="swatch-option-a sort">
-                                        <div class="swatch-option text">Newest</div>
-                                    </a>
-                                    <a href="javascript:void(0)" data-label="Best Selling"
-                                       data-type="product_list_order" data-value=""
-                                       class="swatch-option-a sort">
-                                        <div class="swatch-option text">Best Selling</div>
-                                    </a>
-                                    <a href="javascript:void(0)" data-label="Top Rated"
-                                       data-type="product_list_order" data-value=""
-                                       class="swatch-option-a sort">
-                                        <div class="swatch-option text">Top Rated</div>
-                                    </a>
-                                    <a href="javascript:void(0)" data-label="On Sale"
-                                       data-type="product_list_order" data-value=""
-                                       class="swatch-option-a sort">
-                                        <div class="swatch-option text onSale">On Sale</div>
-                                    </a>
+                                <div class="swatch-attribute sort">
+                                    <div class="swatch-attribute-options">
+                                        <a href="javascript:void(0)" data-label="Lowest Price"
+                                           data-type="product_list_order" data-value="price_asc"
+                                           class="swatch-option-a sort">
+                                            <div class="swatch-option text">Lowest Price</div>
+                                        </a>
+                                        <a href="javascript:void(0)" data-label="Highest Price"
+                                           data-type="product_list_order" data-value="price_desc"
+                                           class="swatch-option-a sort">
+                                            <div class="swatch-option text">Highest Price</div>
+                                        </a>
+                                        <a href="javascript:void(0)" data-label="Newest"
+                                           data-type="product_list_order" data-value=""
+                                           class="swatch-option-a sort">
+                                            <div class="swatch-option text">Newest</div>
+                                        </a>
+                                        <a href="javascript:void(0)" data-label="Best Selling"
+                                           data-type="product_list_order" data-value=""
+                                           class="swatch-option-a sort">
+                                            <div class="swatch-option text">Best Selling</div>
+                                        </a>
+                                        <a href="javascript:void(0)" data-label="Top Rated"
+                                           data-type="product_list_order" data-value=""
+                                           class="swatch-option-a sort">
+                                            <div class="swatch-option text">Top Rated</div>
+                                        </a>
+                                        <a href="javascript:void(0)" data-label="On Sale"
+                                           data-type="product_list_order" data-value=""
+                                           class="swatch-option-a sort">
+                                            <div class="swatch-option text onSale">On Sale</div>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -441,6 +443,21 @@ $parentCatKey = $parentCategory->getUrlKey();
 
                     window.location.href = "/" + catKey + ".html?" + uri;
 
+                });
+
+                // Click filter menu on mobile
+                $('.filter-options-title').click(function () {
+                    let curWidth = $(window).width();
+                    if (curWidth < 768) {
+                        let parent = $(this).parent();
+                        if (parent.hasClass("opened")) {
+                            parent.removeClass("opened");
+                        } else {
+                            parent.addClass("opened");
+                        }
+                    } else {
+                        $('.filter-options').removeClass("opened");
+                    }
                 });
             })
 
