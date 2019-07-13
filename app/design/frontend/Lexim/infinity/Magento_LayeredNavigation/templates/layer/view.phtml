@@ -22,28 +22,20 @@ $parentCatKey = $parentCategory->getUrlKey();
 
             <div class="filter-options-wrapper">
 
-                <div class="filter-wrapper">
-                    <?php /** $block->getChildHtml('state'); */ ?>
-
-                    <?php /**
-                     * if ($block->getLayer()->getState()->getFilters()): ?>
-                     * <div class="block-actions filter-actions">
-                     * <a href="<?= $block->getClearUrl() ?>"
-                     * class="action clear filter-clear"><span><?= __('Clear All') ?></span></a>
-                     * </div>
-                     * <?php endif; **/ ?>
-                </div>
+                <!-- <div class="filter-wrapper">-->
+                <?php /** $block->getChildHtml('state'); */ ?>
+                <?php /**
+                 * if ($block->getLayer()->getState()->getFilters()): ?>
+                 * <div class="block-actions filter-actions">
+                 * <a href="<?= $block->getClearUrl() ?>"
+                 * class="action clear filter-clear"><span><?= __('Clear All') ?></span></a>
+                 * </div>
+                 * <?php endif; **/ ?>
+                <!-- </div>-->
 
                 <div class="filter-heading-wrap">
                     <div class="filter-heading">FILTER</div>
-
-                    <!--
-                    <div class="filtered-label">
-                        <span class="far fa-times clearOneFilter" data-type="" data-value=""></span>
-                        <span>Bottoms</span>
-                    </div>
-                    -->
-
+                    <div class="filtered-label-wrap"></div>
                 </div>
 
                 <div class="filter-content-wrapper">
@@ -309,7 +301,7 @@ $parentCatKey = $parentCategory->getUrlKey();
                 html += '<span class="far fa-times clearOneFilter" data-type="' + type + '" data-value="' + value + '"></span>';
                 html += '<span>' + label + '</span>';
                 html += '</div>';
-                $('.filter-heading-wrap').append(html);
+                $('.filtered-label-wrap').append(html);
             }
 
             /**
@@ -338,8 +330,10 @@ $parentCatKey = $parentCategory->getUrlKey();
                     let isHidden = filterBoard.css('visibility');
                     if (isHidden === 'hidden') {
                         filterBoard.css('visibility', 'visible');
+                        $(this).addClass("open");
                     } else {
                         filterBoard.css('visibility', 'hidden');
+                        $(this).removeClass("open");
                     }
                 });
 

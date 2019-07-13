@@ -24,9 +24,6 @@
     }
 
     .filter-current {
-        .item {
-        }
-
         .filter-label {
             display: block;
             font-weight: bold;
@@ -35,44 +32,54 @@
                 content: ':';
             }
         }
-
-        + .filter-actions {
-        }
     }
 
     .filter-heading-wrap {
         .display-flex();
         .justify-content(center);
         .align-items(center);
-        .flex-wrap(wrap);
+        .flex-wrap(nowrap);
         text-align: center;
         padding: 1vw 0;
 
         .filter-heading {
             cursor: pointer;
             font-weight: bold;
-            font-size: 24px;
-            color: @aqua;
-            border-bottom: 5px solid;
+            width: 120px;
+            height: 40px;
+            line-height: 40px;
+            font-size: 16px;
+            color: #ffffff;
+            background: @aqua;
+
+            &:hover, &.open {
+                background: @gray;
+            }
         }
 
         &.after .filter-heading {
+            background: transparent;
             color: @gray;
-            font-size: 18px;
-            border: none;
-            padding-right: 20px;
+            border-bottom: 5px solid @gray;
+            margin-right: 15px;
+        }
+
+        .filtered-label-wrap {
+            .display-flex();
+            .align-items(center);
+            .flex-wrap(wrap);
+            .justify-content(center);
         }
 
         .filtered-label {
             padding: 0 7px;
             font-size: 16px;
-            .display-flex();
-            .align-items(center);
             text-transform: capitalize;
+            line-height: 1;
 
             .clearOneFilter {
                 cursor: pointer;
-                padding: 7px;
+                padding: 5px 7px;
             }
         }
     }
@@ -288,32 +295,85 @@
 
         .filter-button {
             width: 120px;
+            height: 40px;
+            line-height: 40px;
+            font-size: 14px;
         }
     }
 
     .filter-heading-wrap {
+        padding: 0;
+        margin: 10px 0;
+
         .filtered-label {
-            font-size: 14px;
+            font-size: 12px;
+            color: #ffffff;
+            padding: 2px 7px;
         }
 
-        &.after .filter-heading {
-            font-size: 14px;
-            padding-right: 10px;
+        .filter-heading {
+            font-size: 12px;
+            padding: 0 10px;
+            border-bottom: none;
+            margin: 0;
+            color: #ffffff;
+            width: auto;
+
+            &:hover {
+                background: @aqua;
+            }
+
+            &.open:hover {
+                background: @gray;
+            }
+        }
+
+        &.after {
+            background: @aqua;
+            .justify-content(flex-start);
+
+            .filter-heading {
+                background: @aqua;
+            }
+
+            .filtered-label-wrap {
+                border-left: 1px solid #ffffff;
+                min-height: 40px;
+            }
         }
     }
 
     .filter-options {
-        width: 50%;
+        position: relative;
+        width: 100%;
         float: left;
-        padding: 0 15px 15px;
+        padding: 10px 0;
+        border-bottom: 1px solid #dddddd;
 
         .filter-options-title {
-            padding: 0 0 5px;
+            padding: 0;
         }
 
         .swatch-attribute-options {
             margin: 0;
         }
+
+        &:after {
+            content: '\e622';
+            font-family: 'icons-blank-theme';
+            position: absolute;
+            right: 0;
+            top: 0;
+            font-size: 30px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        //.swatch-attribute.is_manufacturer_color
+        //filter-options .swatch-attribute-options {
+        //    flex-wrap: wrap;
+        //    flex-direction: row;
+        //}
     }
 
     .filter-content-wrapper .filter-button-wrap {
