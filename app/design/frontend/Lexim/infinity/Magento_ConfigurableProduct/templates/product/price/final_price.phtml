@@ -50,7 +50,13 @@ $maxRegular = number_format($maxRegular, 2, '.', '');
 
     // Show regular price with line-through
     if ($minRegular != $min || $maxRegular != $max) {
-        echo '<span class="line-through">' . '$' . $minRegular . ' - ' . '$' . $maxRegular . '</span> ';
+        echo '<span class="line-through">';
+        if ($minRegular == $maxRegular) {
+            echo '$' . $minRegular;
+        } else if ($minRegular < $maxRegular) {
+            echo '$' . $minRegular . " - " . '$' . $maxRegular;
+        }
+        echo '</span> ';
     }
 
     // Show sale price
