@@ -27,6 +27,10 @@
                 }
             }
         }
+
+
+
+
         </script>
 
         <div class="customer-menu">
@@ -78,6 +82,10 @@
                 }
             }
         }
+
+
+
+
         </script>
 
         <!--        <div class="customer-menu2">-->
@@ -136,74 +144,102 @@
             }
         });
 
-        // Thien
+
+        // area popup login
+        let popupLogin = ".customer-welcome>#PopupLogin";
+        //  area container popup login
+        let popupLoginContainer = ".customer-welcome>#PopupLogin>.pop-up-container";
+        //  area popup register
+        let popupRegister = ".customer-welcome>#PopupRegister";
+        //  area container popup register
+        let popupRegisterContainer = ".customer-welcome>#PopupRegister>.pop-up-container";
+        // area customer name
+        let customerName = ".customer-welcome>.customer-name";
+        // area drop my account
+        let dropMyAccount = ".customer-welcome>.customer-menu>#drop-my-account";
+
+
+        /**
+         *   func click show popup login
+         */
         $('body').on('click', '.customer-welcome>.customer-name', function () {
-            $('.customer-welcome>#PopupLogin').show();
-            $('.customer-welcome>#PopupLogin>.pop-up-container').show();
+            $(popupLogin).show();
+            $(popupLoginContainer).show();
         });
 
+        /**
+         *   func click close Popup Login, Register
+         */
         $('body').on('click', '#closePopupLogin', function () {
-            $('.customer-welcome>#PopupLogin').hide();
-            $('.customer-welcome>#PopupLogin>.pop-up-container').hide();
-            $('.customer-welcome>#PopupRegister').hide();
-            $('.customer-welcome>#PopupRegister>.pop-up-container').hide();
+            $(popupLogin).hide();
+            $(popupLoginContainer).hide();
+            $(popupRegister).hide();
+            $(popupRegisterContainer).hide();
         });
 
-
-        $(document).click(function (e) {
-
-            if ($(e.target).closest(".customer-welcome>#PopupLogin>.pop-up-container").length > 0
-                || $(e.target).closest(".customer-welcome>#PopupRegister>.pop-up-container").length > 0) {
-
-            } else {
-                $('.customer-welcome>#PopupLogin').hide();
-                $('.customer-welcome>#PopupLogin>.pop-up-container').hide();
-                $('.customer-welcome>#PopupRegister').hide();
-                $('.customer-welcome>#PopupRegister>.pop-up-container').hide();
-            }
-        });
-        $(document).click(function (e) {
-
-            if ($(e.target).closest(".customer-welcome>.customer-name").length > 0) {
-                $('.customer-welcome>#PopupLogin').show();
-                $('.customer-welcome>#PopupLogin>.pop-up-container').show();
-            }
-        });
-
-
+        /**
+         *    func click show popup register and close popup login
+         */
         $('body').on('click', '#btn-create-account', function () {
-            $('.customer-welcome>#PopupRegister').show();
-            $('.customer-welcome>#PopupRegister>.pop-up-container').show();
-            $('.customer-welcome>#PopupLogin').hide();
-            $('.customer-welcome>#PopupLogin>.pop-up-container').hide();
+            $(popupRegister).show();
+            $(popupRegisterContainer).show();
+            $(popupLogin).hide();
+            $(popupLoginContainer).hide();
         });
 
+        /**
+         *    func click show popup login and close popup register
+         */
         $('body').on('click', '#btn-login-account', function () {
-            $('.customer-welcome>#PopupLogin').show();
-            $('.customer-welcome>#PopupLogin>.pop-up-container').show();
-            $('.customer-welcome>#PopupRegister').hide();
-            $('.customer-welcome>#PopupRegister>.pop-up-container').hide();
+            $(popupLogin).show();
+            $(popupLoginContainer).show();
+            $(popupRegister).hide();
+            $(popupRegisterContainer).hide();
         });
 
-
+        /**
+         *  func click in or out area div to show or hide popup.
+         */
         $(document).click(function (e) {
-            if ($(e.target).closest(".customer-welcome>.customer-menu>#drop-my-account").length > 0) {
-            } else {
-                $('.customer-welcome>.customer-menu>#drop-my-account').hide();
-                $('.customer-welcome>.customer-name').removeClass("active");
+
+            // popup login or popup register hide when click anywhere except area div of popup.
+            if (!($(e.target).closest(popupLoginContainer).length > 0)
+                && !($(e.target).closest(popupRegisterContainer).length > 0)) {
+
+                $(popupLogin).hide();
+                $(popupLoginContainer).hide();
+                $(popupRegister).hide();
+                $(popupRegisterContainer).hide();
+            }
+
+            // click area div customer-name show popup login when not login.
+            if ($(e.target).closest(customerName).length > 0) {
+
+                $(popupLogin).show();
+                $(popupLoginContainer).show();
+            }
+
+            // drop my account hide when click anywhere except area div of drop my account.
+            if (!($(e.target).closest(dropMyAccount).length > 0)) {
+                $(dropMyAccount).hide();
+                $(customerName).removeClass("active");
 
             }
-        });
-        $(document).click(function (e) {
-            if ($(e.target).closest(".customer-welcome>.customer-name").length > 0) {
+
+            // click area div customer-name show drop my account when logined.
+            if ($(e.target).closest(customerName).length > 0) {
+
                 //    if($('body').hasClass("customer-menu")){
-                $('.customer-welcome #drop-my-account').show();
-                $('.customer-welcome>.customer-name').addClass("active");
+                $(dropMyAccount).show();
+                $(customerName).addClass("active");
                 //    }
             }
+
         });
 
-
+        /**
+         *  func click icon search, show hide area textbox search.
+         */
         $('body').on('click', '.block-search>.search-icon', function () {
             $(".block-search>.block-content").toggle();
 
