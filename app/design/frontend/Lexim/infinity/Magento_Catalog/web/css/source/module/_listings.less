@@ -290,6 +290,7 @@
 //  Mobile
 //  _____________________________________________
 
+// max 767px
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
     .products .product-item .product-item-details {
         text-align: center;
@@ -311,8 +312,25 @@
         }
     }
 
-    .products .product-item {
-        width: 100%;
+    .products {
+        .product-items {
+            margin-left: -5px;
+            margin-right: -5px;
+        }
+
+        .product-item {
+            padding: 0 5px 20px;
+
+            .countColor {
+                font-size: 12px;
+                padding: 5px 0 0;
+            }
+
+            .product-item-details {
+                padding-top: 5px;
+                font-size: 12px;
+            }
+        }
     }
 }
 
