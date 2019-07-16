@@ -5,10 +5,38 @@
  * See COPYING.txt for license details.
  */
 -->
-<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-        <referenceContainer name="skip_gallery_before.wrapper" remove="true" />
-        <referenceContainer name="skip_gallery_after.wrapper" remove="true" />
+        <referenceContainer name="skip_gallery_before.wrapper" remove="true"/>
+        <referenceContainer name="skip_gallery_after.wrapper" remove="true"/>
 
+        <!-- Remove email -->
+        <referenceBlock name="product.info.mailto" remove="true"/>
+        <!-- Remove compare -->
+        <referenceBlock name="view.addto.compare" remove="true"/>
+        <!-- Remove in stock text -->
+        <referenceBlock name="product.info.type" remove="true"/>
+
+        <!-- Remove SKU label -->
+        <referenceBlock name="product.info.sku">
+            <arguments>
+                <argument name="at_label" xsi:type="string"/>
+            </arguments>
+        </referenceBlock>
+
+        <!-- Move social after "add to cart" button -->
+        <move element="product.info.social" destination="product.info.options.wrapper.bottom"
+              after="product.info.addtocart.additional"/>
+
+
+        <!-- Move Gallery before the main info -->
+        <move element="product.info.media" destination="content" before="product.info.main"/>
+
+        <!-- Move product title after review -->
+        <move element="page.main.title" destination="product.info.price" after="product.info.review"/>
+
+        <!-- Move sku to bottom of the main info -->
+        <move element="product.info.stock.sku" destination="product.info.main" after="-"/>
     </body>
 </page>

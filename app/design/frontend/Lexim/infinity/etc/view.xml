@@ -112,20 +112,20 @@
             </image>
 
             <image id="customer_shared_wishlist" type="small_image">
-                <width>425</width>
-                <height>550</height>
+                <width>595</width>
+                <height>770</height>
             </image>
             <image id="cart_cross_sell_products" type="small_image">
-                <width>425</width>
-                <height>550</height>
+                <width>595</width>
+                <height>770</height>
             </image>
             <image id="related_products_list" type="small_image">
-                <width>425</width>
-                <height>550</height>
+                <width>595</width>
+                <height>770</height>
             </image>
             <image id="upsell_products_list" type="small_image">
-                <width>425</width>
-                <height>550</height>
+                <width>595</width>
+                <height>770</height>
             </image>
 
             <image id="product_base_image" type="image">
