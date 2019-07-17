@@ -2,7 +2,6 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
-/*@aqua: #48c1cb;*/
 
 .swatch-attribute-label {
     position: relative;
@@ -35,6 +34,10 @@
     padding-top: 7px;
 }
 
+.is_apparel_rise_length .swatch-attribute-options {
+    padding-left: 2px;
+}
+
 .swatch-option {
     min-width: 40px;
     max-width: 90px;
@@ -45,9 +48,12 @@
     text-align: center;
     cursor: pointer;
     position: relative;
-    border: 1px solid #ddd;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.swatch-option.image[option-label="White"] {
+    border: 1px solid #ddd;
 }
 
 .swatch-option.text {
@@ -55,21 +61,11 @@
     color: #3e3935;
     font-size: 12px;
     font-weight: 700;
-    padding: 0 8px;
-}
-
-.swatch-option.selected {
-    outline: 2px solid #48c1cb;
-    border: 1px solid #fff;
-    color: #333;
-}
-
-.swatch-option.text.selected {
-    background-color: #fff !important;
+    padding: 0;
 }
 
 .clearfix:after {
-    content: " "; /* Older browser do not support empty content */
+    content: " ";
     visibility: hidden;
     display: block;
     height: 0;
@@ -87,10 +83,19 @@
     border: 1px solid #fff;
 }
 
+.is_apparel_rise_length .swatch-option.text {
+    padding: 0 8px;
+    outline: 2px solid #ddd;
+}
+
 .swatch-option:not(.disabled):hover {
-    outline: 1px solid #48c1cb;
-    border: 1px solid #fff;
-    color: #3e3935;
+    outline: 2px solid #48c1cb;
+}
+
+.swatch-option.selected {
+    outline: 2px solid #48c1cb;
+    color: #333;
+    border: none;
 }
 
 .swatch-option.image:not(.disabled):hover,
@@ -101,22 +106,24 @@
 
 .swatch-option.disabled {
     cursor: default;
+    color: #ddd;
+    text-decoration: line-through;
 }
 
 .swatch-option.disabled:after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    background: -moz-linear-gradient(to left top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 42%, rgba(255, 255, 255, 1) 43%, rgba(255, 255, 255, 1) 46%, rgba(255, 82, 22, 1) 47%, rgba(255, 82, 22, 1) 53%, rgba(255, 255, 255, 1) 54%, rgba(255, 255, 255, 1) 57%, rgba(255, 255, 255, 0) 58%, rgba(255, 255, 255, 0) 100%);
-    background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(42%, rgba(255, 255, 255, 0)), color-stop(43%, rgba(255, 255, 255, 1)), color-stop(46%, rgba(255, 255, 255, 1)), color-stop(47%, rgba(255, 82, 22, 1)), color-stop(53%, rgba(255, 82, 22, 1)), color-stop(54%, rgba(255, 255, 255, 1)), color-stop(57%, rgba(255, 255, 255, 1)), color-stop(58%, rgba(255, 255, 255, 0)), color-stop(100%, rgba(255, 255, 255, 0)));
-    background: -webkit-linear-gradient(to left top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 42%, rgba(255, 255, 255, 1) 43%, rgba(255, 255, 255, 1) 46%, rgba(255, 82, 22, 1) 47%, rgba(255, 82, 22, 1) 53%, rgba(255, 255, 255, 1) 54%, rgba(255, 255, 255, 1) 57%, rgba(255, 255, 255, 0) 58%, rgba(255, 255, 255, 0) 100%);
-    background: -o-linear-gradient(to left top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 42%, rgba(255, 255, 255, 1) 43%, rgba(255, 255, 255, 1) 46%, rgba(255, 82, 22, 1) 47%, rgba(255, 82, 22, 1) 53%, rgba(255, 255, 255, 1) 54%, rgba(255, 255, 255, 1) 57%, rgba(255, 255, 255, 0) 58%, rgba(255, 255, 255, 0) 100%);
-    background: -ms-linear-gradient(to left top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 42%, rgba(255, 255, 255, 1) 43%, rgba(255, 255, 255, 1) 46%, rgba(255, 82, 22, 1) 47%, rgba(255, 82, 22, 1) 53%, rgba(255, 255, 255, 1) 54%, rgba(255, 255, 255, 1) 57%, rgba(255, 255, 255, 0) 58%, rgba(255, 255, 255, 0) 100%);
-    background: linear-gradient(to left top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 42%, rgba(255, 255, 255, 1) 43%, rgba(255, 255, 255, 1) 46%, rgba(255, 82, 22, 1) 47%, rgba(255, 82, 22, 1) 53%, rgba(255, 255, 255, 1) 54%, rgba(255, 255, 255, 1) 57%, rgba(255, 255, 255, 0) 58%, rgba(255, 255, 255, 0) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ffffff', endColorstr='#00ffffff', GradientType=1);
+    /*content: '';*/
+    /*position: absolute;*/
+    /*left: 0;*/
+    /*right: 0;*/
+    /*top: 0;*/
+    /*bottom: 0;*/
+    /*background: -moz-linear-gradient(to left top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 42%, rgba(255, 255, 255, 1) 43%, rgba(255, 255, 255, 1) 46%, rgba(255, 82, 22, 1) 47%, rgba(255, 82, 22, 1) 53%, rgba(255, 255, 255, 1) 54%, rgba(255, 255, 255, 1) 57%, rgba(255, 255, 255, 0) 58%, rgba(255, 255, 255, 0) 100%);*/
+    /*background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, rgba(255, 255, 255, 0)), color-stop(42%, rgba(255, 255, 255, 0)), color-stop(43%, rgba(255, 255, 255, 1)), color-stop(46%, rgba(255, 255, 255, 1)), color-stop(47%, rgba(255, 82, 22, 1)), color-stop(53%, rgba(255, 82, 22, 1)), color-stop(54%, rgba(255, 255, 255, 1)), color-stop(57%, rgba(255, 255, 255, 1)), color-stop(58%, rgba(255, 255, 255, 0)), color-stop(100%, rgba(255, 255, 255, 0)));*/
+    /*background: -webkit-linear-gradient(to left top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 42%, rgba(255, 255, 255, 1) 43%, rgba(255, 255, 255, 1) 46%, rgba(255, 82, 22, 1) 47%, rgba(255, 82, 22, 1) 53%, rgba(255, 255, 255, 1) 54%, rgba(255, 255, 255, 1) 57%, rgba(255, 255, 255, 0) 58%, rgba(255, 255, 255, 0) 100%);*/
+    /*background: -o-linear-gradient(to left top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 42%, rgba(255, 255, 255, 1) 43%, rgba(255, 255, 255, 1) 46%, rgba(255, 82, 22, 1) 47%, rgba(255, 82, 22, 1) 53%, rgba(255, 255, 255, 1) 54%, rgba(255, 255, 255, 1) 57%, rgba(255, 255, 255, 0) 58%, rgba(255, 255, 255, 0) 100%);*/
+    /*background: -ms-linear-gradient(to left top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 42%, rgba(255, 255, 255, 1) 43%, rgba(255, 255, 255, 1) 46%, rgba(255, 82, 22, 1) 47%, rgba(255, 82, 22, 1) 53%, rgba(255, 255, 255, 1) 54%, rgba(255, 255, 255, 1) 57%, rgba(255, 255, 255, 0) 58%, rgba(255, 255, 255, 0) 100%);*/
+    /*background: linear-gradient(to left top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 42%, rgba(255, 255, 255, 1) 43%, rgba(255, 255, 255, 1) 46%, rgba(255, 82, 22, 1) 47%, rgba(255, 82, 22, 1) 53%, rgba(255, 255, 255, 1) 54%, rgba(255, 255, 255, 1) 57%, rgba(255, 255, 255, 0) 58%, rgba(255, 255, 255, 0) 100%);*/
+    /*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ffffff', endColorstr='#00ffffff', GradientType=1);*/
 }
 
 .swatch-option-tooltip {

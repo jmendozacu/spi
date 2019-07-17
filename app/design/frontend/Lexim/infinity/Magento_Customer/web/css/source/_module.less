@@ -512,24 +512,7 @@
         position: absolute;
         right: 0;
         width: 200px;
-        display: block;
-        left: 49px;
-        top: 88px;
-        z-index: 999;
-    }
-
-    .block-search input {
-        left: 0;
-        margin: 0;
-        position: unset;
-    }
-
-    .sticky .block-search .block-content {
-        top: 50px;
-    }
-
-    .sticky #ic-search-mobi {
-        top: 15px;
+        top: 37px;
     }
 
 }
@@ -605,6 +588,18 @@
         }
     }
 
+    //
+    //  Block search
+    //  ---------------------------------------------
+    .block-search input {
+        top: 35px;
+        left: -92px;
+        z-index: 99;
+    }
+    .sticky .block-search input {
+        top: -2px;
+    }
+
 }
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
@@ -628,7 +623,13 @@
     //
     //  Block search
     //  ---------------------------------------------
-
+    .block-search input {
+        left: -94px;
+        margin: 15px 0;
+        position: absolute;
+        top: 60px;
+        z-index: 99;
+    }
     .block-search .label.active + .control input {
         position: absolute;
     }
@@ -756,20 +757,4 @@
             margin: 0;
         }
     }
-
-    //
-    //  Block search
-    //  ---------------------------------------------
-
-    .block-search .block-content {
-        left: -165px;
-        top: 40px;
-    }
-    .sticky .block-search .block-content {
-        top: 37px;
-    }
-    #ic-search-mobi {
-        display: none;
-    }
-
 }
