@@ -228,7 +228,7 @@
             <!-- Turn on/off arrows on the sides preview (true/false) -->
             <var name="caption">false</var>
             <!-- Display alt text as image title (true/false) -->
-            <var name="allowfullscreen">true</var>
+            <var name="allowfullscreen">false</var>
             <!-- Turn on/off fullscreen (true/false) -->
             <var name="navdir">vertical</var>
             <!-- Sliding direction of thumbnails (horizontal/vertical) -->
