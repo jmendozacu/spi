@@ -11,25 +11,38 @@
  */
 ?>
 <?php $storeName = $block->getThemeName() ? $block->getThemeName() : $block->getLogoAlt(); ?>
-<span data-action="toggle-nav" class="action nav-toggle"><span><?= /* @escapeNotVerified */
-        __('Toggle Nav') ?></span>
-</span>
-<i id="ic-search-mobi" class="search-icon icon-elo-search"></i>
-<?php if ($block->isHomePage()): ?>
+<div class="nav-toggle-wrap">
+    <span data-action="toggle-nav" class="action nav-toggle">
+        <span></span>
+    </span>
+    <i id="ic-search-mobi" class="search-icon icon-elo-search"></i>
+</div>
+
+<?php if ($block->isHomePage()) { ?>
 <strong class="logo">
-    <?php else: ?>
-    <a class="logo" href="<?= $block->getUrl('') ?>" title="<?= /* @escapeNotVerified */
-    $storeName ?>">
-        <?php endif ?>
-        <img src="<?= /* @escapeNotVerified */
-        $block->getLogoSrc() ?>"
-             alt="<?= /* @escapeNotVerified */
-             $block->getLogoAlt() ?>"
+    <?php } else { ?>
+    <a class="logo" href="<?= $block->getUrl('') ?>" title="<?= $storeName ?>">
+        <?php } ?>
+
+        <img src="<?= $block->getLogoSrc() ?>"
+             alt="<?= $block->getLogoAlt() ?>"
             <?= $block->getLogoWidth() ? 'width="' . $block->getLogoWidth() . '"' : '' ?>
             <?= $block->getLogoHeight() ? 'height="' . $block->getLogoHeight() . '"' : '' ?>
         />
-        <?php if ($block->isHomePage()): ?>
+
+        <?php if ($block->isHomePage()) { ?>
 </strong>
-<?php else: ?>
+<?php } else { ?>
     </a>
-<?php endif ?>
+<?php } ?>
+
+<script type="text/javascript">
+    require(['jquery'], function ($) {
+        $(document).ready(function () {
+            // click search in mobile
+            $('#ic-search-mobi').click(function () {
+                $('.block-search .block-content').toggle();
+            });
+        });
+    });
+</script>
