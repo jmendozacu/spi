@@ -439,9 +439,15 @@ $parentCatKey = $parentCategory->getUrlKey();
                         data.push(fit);
                     }
 
+                    // Init new url
                     uri = decodeURIComponent($.param(data));
-
-                    window.location.href = "/" + catKey + "?" + uri;
+                    let protocol = window.location.protocol;
+                    let hostName = window.location.hostname;
+                    if (catKey !== 'women') { // fix bug listing page
+                        catKey = catKey + "/";
+                    }
+                    console.log(protocol + '//' + hostName + '/' + catKey + '?' + uri);
+                    window.location.replace(protocol + '//' + hostName + '/' + catKey + '?' + uri);
 
                 });
 
