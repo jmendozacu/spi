@@ -25,6 +25,21 @@
             </arguments>
         </referenceBlock>
 
+        <referenceBlock name="product.info.details">
+            <!-- Change name of Details Tab -->
+            <referenceBlock name="product.info.description">
+                <arguments>
+                    <argument translate="true" name="title" xsi:type="string">Descriptions</argument>
+                </arguments>
+            </referenceBlock>
+            <!-- Change name of More Information Tab -->
+            <referenceBlock name="product.attributes">
+                <arguments>
+                    <argument translate="true" name="title" xsi:type="string">Specifications</argument>
+                </arguments>
+            </referenceBlock>
+        </referenceBlock>
+
         <!-- Move social after "add to cart" button -->
         <move element="product.info.social" destination="product.info.options.wrapper.bottom"
               after="product.info.addtocart.additional"/>
