@@ -37,31 +37,30 @@
     .filter-heading-wrap {
         .display-flex();
         .justify-content(center);
-        .align-items(center);
         .flex-wrap(nowrap);
         text-align: center;
-        padding: 1vw 0;
+        padding: 15px 0;
 
         .filter-heading {
+            .display-flex();
+            .align-items(center);
+            .justify-content(center);
             cursor: pointer;
             font-weight: bold;
             width: 120px;
-            height: 40px;
+            height: auto;
+            min-height: 40px;
             line-height: 40px;
             font-size: 16px;
+            padding: 0 10px;
+            margin: 0;
             color: #ffffff;
             background: @aqua;
+            border-right: 1px solid #ffffff;
 
             &:hover, &.open {
                 background: @gray;
             }
-        }
-
-        &.after .filter-heading {
-            background: transparent;
-            color: @gray;
-            border-bottom: 5px solid @gray;
-            margin-right: 15px;
         }
 
         .filtered-label-wrap {
@@ -69,6 +68,9 @@
             .align-items(center);
             .flex-wrap(wrap);
             .justify-content(center);
+            background: @aqua;
+            min-height: 40px;
+            padding: 5px 10px
         }
 
         .filtered-label {
@@ -76,6 +78,11 @@
             font-size: 16px;
             text-transform: capitalize;
             line-height: 1;
+            color: #ffffff;
+
+            span {
+                padding-right: 7px;
+            }
 
             .clearOneFilter {
                 cursor: pointer;
@@ -287,7 +294,7 @@
 //
 //  Mobile
 //  _____________________________________________
-
+// max 767px
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
     .filter-content-wrapper {
         display: block;
@@ -308,21 +315,13 @@
     }
 
     .filter-heading-wrap {
-        padding: 0;
-        margin: 10px 0;
-
         .filtered-label {
             font-size: 12px;
-            color: #ffffff;
             padding: 2px 7px;
         }
 
         .filter-heading {
             font-size: 12px;
-            padding: 0 10px;
-            border-bottom: none !important;
-            margin: 0;
-            color: #ffffff !important;
             width: auto;
 
             &:hover {
@@ -335,17 +334,9 @@
         }
 
         &.after {
-            background: @aqua;
-            .justify-content(flex-start);
-
             .filter-heading {
                 background: @aqua;
                 margin-right: 0;
-            }
-
-            .filtered-label-wrap {
-                border-left: 1px solid #ffffff;
-                min-height: 40px;
             }
         }
     }
@@ -422,6 +413,9 @@
 //
 //  Desktop
 //  _____________________________________________
+// min 768px
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
-
+    .filter-heading-wrap {
+        padding: 20px 0;
+    }
 }
