@@ -97,7 +97,9 @@
 }
 
 .swatch-option.image:not(.disabled):hover,
-.swatch-option.color:not(.disabled):hover {
+.swatch-option.color:not(.disabled):hover,
+.swatch-option.image.selected,
+.swatch-option.color.selected {
     outline: 2px solid #48c1cb;
     border: 1px solid #fff;
 }

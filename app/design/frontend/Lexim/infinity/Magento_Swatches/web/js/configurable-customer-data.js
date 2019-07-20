@@ -36,7 +36,7 @@ define([
         /**
          * Get data and show in mobile when user click option in detail page
          */
-        listenClickOption: function() {
+        listenClickOption: function () {
             $('.swatch-attribute-options .swatch-option').click(function () {
                 let _this = $(this);
                 let label = _this.attr('option-label');
@@ -66,10 +66,7 @@ define([
                         newLabel += fitLabel;
                     }
                     $('#sizeFitPicker > p').text(newLabel);
-                    console.log(newLabel);
                 }
-
-                console.log(label);
             });
         },
 

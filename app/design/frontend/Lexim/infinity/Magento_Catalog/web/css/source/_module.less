@@ -702,6 +702,20 @@
     }
 
     .product-info-main {
+        .product-info-price {
+            position: relative;
+
+            .page-title-wrapper {
+                padding-right: 50px;
+            }
+
+            .icon-elo-heart {
+                position: absolute;
+                top: 50px;
+                right: 15px;
+            }
+        }
+
         .product-options-bottom {
             .justify-content(space-between);
             .align-items(flex-start);
@@ -824,6 +838,12 @@
         float: right;
         width: 40%;
         padding-left: 4%;
+
+        .product-info-price {
+            .action.towishlist {
+                display: none;
+            }
+        }
     }
 
     .options-picker-wrap {
@@ -832,6 +852,10 @@
 
     .product-info-main .swatch-attribute {
         display: block !important;
+    }
+
+    .theBottomProducts > .block .block-title {
+        text-align: center;
     }
 
     .sidebar {
