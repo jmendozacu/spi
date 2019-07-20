@@ -10,7 +10,7 @@
             <h4>Color</h4>
             <p></p>
         </div>
-        <div class='option-picker' id='sizeFitPicker' >
+        <div class='option-picker' id='sizeFitPicker'>
             <h4>Size / Fit</h4>
             <p></p>
         </div>
@@ -22,10 +22,13 @@
 <script type='text/javascript'>
     require(['jquery'], function ($) {
         'use strict';
-        let optionsBoard = $('#product-options-wrapper');
-        console.log("5");
 
         $(document).ready(function () {
+            let optionsBoard = $('#product-options-wrapper');
+
+            /**
+             * Option Picker in mobile
+             */
             $('.option-picker').click(function () {
                 let _this = $(this);
                 let code = _this.attr('data-code');
@@ -40,16 +43,14 @@
 
                     $('.product-info-main .swatch-attribute').hide();
                     if (code) {
-                        $('.swatch-attribute.'+code).show();
+                        $('.swatch-attribute.' + code).show();
                     } else {
                         $('.swatch-attribute.is_apparel_rise_length').show();
                         $('.swatch-attribute.is_size').show();
                     }
                     optionsBoard.show();
                 }
-
-
-            })
+            });
         })
     })
 </script>
