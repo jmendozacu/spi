@@ -53,5 +53,9 @@
 
         <!-- Move sku to bottom of the main info -->
         <move element="product.info.stock.sku" destination="product.info.main" after="-"/>
+
+        <!-- Make a wrapper outer related products  -->
+        <referenceContainer name="content.aside" htmlTag="div" htmlClass="aside theBottomProducts" />
+
     </body>
 </page>

@@ -1,0 +1,55 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<div class='product-options-bottom'>
+    <div class='options-picker-wrap'>
+        <div class='option-picker' id='colorPicker' data-code='is_manufacturer_color'>
+            <h4>Color</h4>
+            <p></p>
+        </div>
+        <div class='option-picker' id='sizeFitPicker' >
+            <h4>Size / Fit</h4>
+            <p></p>
+        </div>
+    </div>
+
+    <?= $block->getChildHtml('', true) ?>
+</div>
+
+<script type='text/javascript'>
+    require(['jquery'], function ($) {
+        'use strict';
+        let optionsBoard = $('#product-options-wrapper');
+        console.log("5");
+
+        $(document).ready(function () {
+            $('.option-picker').click(function () {
+                let _this = $(this);
+                let code = _this.attr('data-code');
+
+                // Add/remove class
+                if (_this.hasClass('open')) {
+                    _this.removeClass('open');
+                    optionsBoard.hide();
+                } else {
+                    $('.option-picker').removeClass('open');
+                    _this.addClass('open');
+
+                    $('.product-info-main .swatch-attribute').hide();
+                    if (code) {
+                        $('.swatch-attribute.'+code).show();
+                    } else {
+                        $('.swatch-attribute.is_apparel_rise_length').show();
+                        $('.swatch-attribute.is_size').show();
+                    }
+                    optionsBoard.show();
+                }
+
+
+            })
+        })
+    })
+</script>

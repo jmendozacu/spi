@@ -231,7 +231,21 @@
         }
 
         .swatch-opt {
+            .display-flex();
+            .flex-direction(column);
             margin: 0;
+
+            > .swatch-attribute {
+                order: 10;
+
+                &.is_manufacturer_color {
+                    order: 1;
+                }
+
+                &.is_size {
+                    order: 2;
+                }
+            }
         }
 
         .swatch-attribute {
@@ -253,6 +267,16 @@
                     margin: auto;
                     line-height: 49px;
                     color: @aqua;
+                }
+            }
+
+            .action.towishlist:hover {
+                .icon-elo-heart {
+                    background: @aqua;
+
+                    &:before {
+                        color: #ffffff;
+                    }
                 }
             }
         }
@@ -294,7 +318,7 @@
                 }
 
                 .actions {
-                    padding: 0 15px;
+                    padding: 0 8px;
                 }
 
                 .action.primary {
@@ -445,20 +469,53 @@
     //  Gallery - Product Detail
     //  ---------------------------------------------
     .product.media {
-        .fotorama__stage__frame .fotorama__img {
-            width: 100%;
+        .fotorama__stage {
+            width: 82% !important;
+            left: 18% !important;
+            margin: 0;
+
+            .fotorama__stage__shaft {
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+
+            .fotorama__stage__frame .fotorama__img {
+                width: 100%;
+                top: 0;
+                left: 0;
+                .transform(none);
+            }
+        }
+
+        .fotorama__nav-wrap--vertical.fotorama__nav-wrap {
+            position: absolute;
             top: 0;
             left: 0;
-            .transform(none);
+            width: 15%;
+        }
+
+        .fotorama__nav--thumbs {
+            width: 100% !important;
+        }
+
+        .fotorama__nav--thumbs .fotorama__nav__frame {
+            padding: 0 !important;
+            padding-bottom: 20% !important;
+            width: 100% !important;
+            height: auto;
         }
 
         .fotorama__arr, .fotorama__thumb__arr {
             background-color: transparent;
         }
 
-        .fotorama__nav--thumbs .fotorama__nav__frame {
-            padding-top: 0 !important;
-            padding-bottom: 20px !important;
+        .fotorama__nav-wrap .fotorama_vertical_ratio .fotorama__img {
+            position: relative;
+            top: 0;
+            left: 0;
+            .transform(none);
+            width: 100%;
+            height: auto;
         }
 
         .fotorama__thumb:after {
@@ -472,6 +529,7 @@
         .fotorama__thumb-border {
             border: 0;
             background: transparent;
+            width: 100% !important;
         }
 
         .fotorama__nav__frame--thumb.fotorama__active {
@@ -487,6 +545,44 @@
         .fotorama__stage.fotorama__shadows--top:before, .fotorama__nav.fotorama__shadows--top:before,
         .fotorama__stage.fotorama__shadows--bottom:after, .fotorama__nav.fotorama__shadows--bottom:after {
             background: transparent;
+        }
+
+        .fotorama__nav--dots {
+            position: absolute;
+            bottom: 5%;
+
+            .fotorama__nav__shaft {
+                .display-flex();
+                width: 80%;
+                margin: 0 auto;
+            }
+
+            .fotorama__nav__frame {
+                .flex(1 1 0);
+                width: 0;
+            }
+        }
+
+        .fotorama__dot {
+            display: block;
+            height: 7px;
+            left: 0;
+            position: relative;
+            top: 0;
+            width: auto;
+            background: #999999;
+            border: none;
+            .border-radius(0);
+        }
+
+        .fotorama__active .fotorama__dot {
+            background-color: #ebebeb;
+            border-color: transparent;
+        }
+
+        .fotorama__nav--dots .fotorama__nav__frame {
+            height: auto;
+            width: 20px;
         }
     }
 
@@ -543,70 +639,33 @@
     }
 
     //
-    //  Sidebar product view
+    //  Related Products - Product Detail
     //  ---------------------------------------------
+    .theBottomProducts {
+        padding-top: 5%;
 
-    .sidebar {
-        .product-items {
-            .product-item {
-            }
+        > .block {
+            .product-items {
+                .product-item {
+                    display: none;
+                }
 
-            .product-item-info {
-
-                .product-item-photo {
+                > .product-item:nth-child(1),
+                > .product-item:nth-child(1) {
+                    display: block;
                 }
             }
 
-            .product-item-name {
-            }
-
-            .product-item-details {
-
-            }
-
-            .product-item-actions {
-            }
-
-            .price-box {
-            }
-
-            .text {
-            }
-
-            .counter {
-                white-space: nowrap;
-            }
-
-            .minilist {
-                .price {
-                }
-
-                .weee:before {
-                }
-            }
-        }
-
-        .action {
-            &.delete {
-            }
-        }
-
-        .subtitle {
-        }
-
-        .product-items-images {
-            .product-item {
-            }
-        }
-
-        .product-items-names {
-            .product-item {
-            }
-
-            .product-item-name {
+            .block-title {
+                font-size: 14px;
+                color: @gray;
+                text-transform: uppercase;
+                padding: 0 0 15px;
+                margin: 0;
             }
         }
     }
+
 }
 
 //
@@ -614,11 +673,128 @@
 //  _____________________________________________
 // max 767px
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+    //
+    //  Gallery - Product Detail
+    //  ---------------------------------------------
+    .product.media {
+        .fotorama__stage {
+            width: 100% !important;
+            left: 0 !important;
+        }
+    }
+
+    //
+    //  Product info - Product Detail
+    //  ---------------------------------------------
+
+    .product-add-form {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        z-index: 999;
+        background: #ffffff;
+        width: 100%;
+    }
+
+    .product-info-main {
+        .product-options-bottom {
+            .justify-content(space-between);
+            .align-items(flex-start);
+            background: #f0f0f0;
+            padding: 15px;
+
+            .options-picker-wrap {
+                .display-flex();
+                .flex(1);
+                width: 100%;
+            }
+
+            .option-picker {
+                position: relative;
+                padding-right: 15px;
+                .flex(1);
+
+                p {
+                    margin: 0;
+                    font-weight: bold;
+                }
+
+                h4 {
+                    position: relative;
+                    .display-flex();
+                    .align-items(center);
+                    margin: 0 0 5px;
+                    font-weight: normal;
+                }
+
+                h4:after {
+                    content: '';
+                    position: relative;
+                    left: 10px;
+                    width: 0;
+                    height: 0;
+                    border-left: 5px solid transparent;
+                    border-right: 5px solid transparent;
+                    border-top: 5px solid @gray;
+                }
+
+                &.open h4:after {
+                    border-top: 0;
+                    border-bottom: 5px solid @gray;
+                }
+            }
+
+            .product-social-links {
+                display: none;
+            }
+
+            .box-tocart {
+                .field.qty {
+                    display: none;
+                }
+
+                .actions {
+                    padding: 0;
+                }
+
+                .action.primary {
+                    &:after {
+                        content: "ADD TO BAG";
+                    }
+
+                    > span {
+                        display: none;
+                    }
+                }
+            }
+
+        }
+
+        .swatch-attribute {
+            display: none;
+            padding: 15px;
+            border-bottom: 1px solid #dddddd;
+        }
+    }
+
+    //
+    //  Related products - Product Detail
+    //  ---------------------------------------------
+    .theBottomProducts {
+        .block .product-items {
+            > li:not(:nth-child(1)):not(:nth-child(2)) {
+                display: none !important;
+            }
+        }
+    }
+
     .block.related {
         .action.select {
             display: block;
         }
     }
+
 }
 
 // max 480px
@@ -643,6 +819,14 @@
         float: right;
         width: 40%;
         padding-left: 4%;
+    }
+
+    .options-picker-wrap {
+        display: none;
+    }
+
+    .product-info-main .swatch-attribute {
+        display: block !important;
     }
 
     .sidebar {
@@ -676,10 +860,8 @@
         padding-right: 5%;
     }
 
-    .product.media {
-    }
-
-    .product-info-main {
+    .product-info-main .product-options-bottom .box-tocart .actions {
+        padding: 0 15px;
     }
 
 }
