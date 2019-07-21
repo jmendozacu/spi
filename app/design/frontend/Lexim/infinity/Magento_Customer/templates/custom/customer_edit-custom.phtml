@@ -40,17 +40,17 @@ $customAttributes = $block->getCustomer()->getCustomAttributes();
     <fieldset class="fieldset name">
         <div class="field name required" data-container="change-name">
             <div class="wrap">
-                <div><span><?= __('Name');?></span></div>
-                <div><?= $block->escapeHtml($block->getCustomer()->getFirstName() . ' ' . $block->getCustomer()->getLastName()) ?></div>
-                <div><a href="#">Edit</a></div>
+                <div class="col lable"><span><?= __('Name');?></span></div>
+                <div class="col value"><?= $block->escapeHtml($block->getCustomer()->getFirstName() . ' ' . $block->getCustomer()->getLastName()) ?></div>
+                <div class="col action"><a href="#"><?= __('Edit');?></a></div>
             </div>
             <div class="content">
-                <div><span><?= __('Name');?></span></div>
-                <div>
+                <div class="title"><span><?= __('Name');?></span><button class="action cancel" title="<?= /* @escapeNotVerified */ __('Edit') ?>">Edit</button></div>
+                <div class="content-details">
                     <?= $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Name')->setObject($block->getCustomer())->toHtml() ?>
                     <div class="primary">
-                        <button class="action cancel" title="<?= /* @escapeNotVerified */ __('Cancel') ?>"><span><?= /* @escapeNotVerified */ __('Cancel') ?></span></button>
-                        <button type="submit" class="action save primary" title="<?= /* @escapeNotVerified */ __('Save') ?>"><span><?= /* @escapeNotVerified */ __('Save') ?></span></button>
+                        
+                        <button type="submit" class="action save primary" title="<?= /* @escapeNotVerified */ __('Save') ?>"><span><?= /* @escapeNotVerified */ __('Save Changes') ?></span></button>
                     </div>
                 </div>
                 <div></div>
@@ -60,13 +60,13 @@ $customAttributes = $block->getCustomer()->getCustomAttributes();
     <fieldset class="fieldset email">
         <div class="field email required" data-container="change-email">
             <div class="wrap">
-                <div><span><?= __('Email');?></span></div>
-                <div><?= $block->escapeHtml($block->getCustomer()->getEmail()) ?></div>
-                <div><a href="#">Edit</a></div>
+                 <div class="col lable"><span><?= __('Email');?></span></div>
+                <div class="col value"><?= $block->escapeHtml($block->getCustomer()->getEmail()) ?></div>
+                <div class="col action"><a href="#"><?= __('Edit');?></a></div>
             </div>
             <div class="content">
-                <div><span><?= __('Email');?></span></div>
-                <div>
+                <div class="title"><span><?= __('Email');?></span><button class="action cancel" title="<?= /* @escapeNotVerified */ __('Edit') ?>">Edit</button></div>
+                <div class="content-details">
                     <label class="label" for="email"><span><?= /* @escapeNotVerified */ __('Email') ?></span></label>
                     <div class="control">
                         <input type="email" autocomplete="email" name="email" id="email" data-input="change-email" value="<?= $block->escapeHtml($block->getCustomer()->getEmail()) ?>" title="<?= /* @escapeNotVerified */ __('Email') ?>" class="input-text" data-validate="{required:true, 'validate-email':true}" />
@@ -76,8 +76,7 @@ $customAttributes = $block->getCustomer()->getCustomAttributes();
                         <label class="label" for="change-email"><span><?= $block->escapeHtml(__('Change Email')) ?></span></label>
                     </div>
                     <div class="primary">
-                        <button class="action cancel" title="<?= /* @escapeNotVerified */ __('Cancel') ?>"><span><?= /* @escapeNotVerified */ __('Cancel') ?></span></button>
-                        <button type="submit" class="action save primary" title="<?= /* @escapeNotVerified */ __('Save') ?>"><span><?= /* @escapeNotVerified */ __('Save') ?></span></button>
+                        <button type="submit" class="action save primary" title="<?= /* @escapeNotVerified */ __('Save') ?>"><span><?= /* @escapeNotVerified */ __('Save Changes') ?></span></button>
                     </div>
                 </div>
                 <div></div>
@@ -86,16 +85,16 @@ $customAttributes = $block->getCustomer()->getCustomAttributes();
     </fieldset>
 
     <?= /* @noEscape */ $block->getChildHtml('form_fields_before_in_form') ?>
-
-    <fieldset class="fieldset password" data-container="change-email-password">
+    <fieldset class="fieldset password">
+    <div class="field password" data-container="change-email-password">
         <div class="wrap">
-            <div><span><?= __('Password');?></span></div>
-            <div><span><?= __('**********');?></span></div>
-            <div><a href="#">Edit</a></div>
+            <div class="col lable"><span><?= __('Password');?></span></div>
+            <div class="col value"><span><?= __('**********');?></span></div>
+            <div class="col action"><a href="#"><?= __('Edit');?></a></div>
         </div>
         <div class="content">
-            <div><span><?= __('Password');?></span></div>
-            <div>
+            <div class="title"><span><?= __('Password');?></span><button class="action cancel" title="<?= /* @escapeNotVerified */ __('Edit') ?>">Edit</button></div>
+            <div class="content-details">
                 <div class="field password current required">
                     <label class="label" for="current-password"><span><?= /* @escapeNotVerified */ __('Current Password') ?></span></label>
                     <div class="control">
@@ -134,111 +133,14 @@ $customAttributes = $block->getCustomer()->getCustomAttributes();
                     <label class="label" for="change-password"><span><?= $block->escapeHtml(__('Change Password')) ?></span></label>
                 </div>
                 <div class="primary">
-                    <button class="action cancel" title="<?= /* @escapeNotVerified */ __('Cancel') ?>"><span><?= /* @escapeNotVerified */ __('Cancel') ?></span></button>
-                    <button type="submit" class="action save primary" title="<?= /* @escapeNotVerified */ __('Save') ?>"><span><?= /* @escapeNotVerified */ __('Save') ?></span></button>
+                    <button type="submit" class="action save primary" title="<?= /* @escapeNotVerified */ __('Save') ?>"><span><?= /* @escapeNotVerified */ __('Save Changes') ?></span></button>
                 </div>
             </div>
             <div></div>
         </div>
         <?= $block->getChildHtml('form_additional_info') ?>
-    </fieldset>
-    <fieldset class="fieldset gender">
-        <?php $genders = $dataHelper->getCustomerGenderOptions() ?>
-        <div class="field gender required" data-container="change-gender">
-            <div class="wrap">
-                <div><span><?= __('Gender');?></span></div>
-                <div><?= $block->escapeHtml($genders[$block->getCustomer()->getGender()]['label']) ?></div>
-                <div><a href="#">Edit</a></div>
-            </div>
-            <div class="content">
-                <div><span><?= __('Gender');?></span></div>
-                <div>
-                    <label class="label" for="gender"><span><?= /* @escapeNotVerified */ __('Gender') ?></span></label>
-                    <div class="control">
-                        <select autocomplete="gender" name="gender" id="gender" data-input="change-gender" title="<?= /* @escapeNotVerified */ __('Gender') ?>" class="select" data-validate="{required:true}">
-                            <?php foreach ($genders as $gender): ?>
-                                <option value="<?= $gender['value'] ?>"<?php if ($gender['value'] == $block->getCustomer()->getGender()) echo ' selected'?>><?= __($gender['label']) ?></option>
-                            <?php endforeach ?>
-                        </select>
-                    </div>
-                    <div class="primary">
-                        <button class="action cancel" title="<?= /* @escapeNotVerified */ __('Cancel') ?>"><span><?= /* @escapeNotVerified */ __('Cancel') ?></span></button>
-                        <button type="submit" class="action save primary" title="<?= /* @escapeNotVerified */ __('Save') ?>"><span><?= /* @escapeNotVerified */ __('Save') ?></span></button>
-                    </div>
-                </div>
-                <div></div>
-            </div>
         </div>
     </fieldset>
-
-    <fieldset class="fieldset age-range">
-        <?php $ageRanges = $dataHelper->getCustomerAgeRangeOptions() ?>
-        <?php $ageRang = array_key_exists('age_range', $customAttributes) ? $customAttributes['age_range']->getValue() : 0 ?>
-        <div class="field age-range required" data-container="change-age_range">
-            <div class="wrap">
-                <div><span><?= __('Birthday');?></span></div>  
-                <?php if ($block->getCustomer()->getDob()): ?>
-                    <div><?= $block->getCustomer()->getDob(); ?></div>
-                <?php else: ?>
-                    <div><?= __('Select Birthday...');?></div>
-                <?php endif; ?>
-                <div><a href="#">Edit</a></div>
-            </div>
-            <div class="content">
-                <div><span><?= __('Birthday');?></span></div>
-                <div>
-                    <label class="label" for="age_range"><span><?= /* @escapeNotVerified */ __('Age Range') ?></span></label>
-                    <div class="control">
-                        <?php $_dob = $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Dob') ?>
-                        <?php if ($_dob->isEnabled()): ?>
-                            <?= $_dob->setDate($block->getCustomer()->getDob())->toHtml() ?>
-                        <?php endif ?>
-                    </div>
-                    <div class="primary">
-                        <button class="action cancel" title="<?= /* @escapeNotVerified */ __('Cancel') ?>"><span><?= /* @escapeNotVerified */ __('Cancel') ?></span></button>
-                        <button type="submit" class="action save primary" title="<?= /* @escapeNotVerified */ __('Save') ?>"><span><?= /* @escapeNotVerified */ __('Save') ?></span></button>
-                    </div>
-                </div>
-                <div></div>
-            </div>
-        </div>
-    </fieldset>
-
-    <fieldset class="fieldset occupation">
-        <?php $occupations = $dataHelper->getCustomerOccupationOptions() ?>
-        <?php $occ = array_key_exists('occupation', $customAttributes) ? $customAttributes['occupation']->getValue() : 0 ?>
-        <div class="field occupation required" data-container="change-occupation">
-            <div class="wrap">
-                <div><span><?= __('Occupation');?></span></div>
-                <div><?= $block->escapeHtml($occupations[$occ]['label']) ?></div>
-                <div><a href="#">Edit</a></div>
-            </div>
-            <div class="content">
-                <div><span><?= __('Occupation');?></span></div>
-                <div>
-                    <label class="label" for="occupation"><span><?= /* @escapeNotVerified */ __('Occupation') ?></span></label>
-                    <div class="control">
-                        <select autocomplete="occupation" name="occupation" id="occupation" data-input="change-occupation" title="<?= /* @escapeNotVerified */ __('Occupation') ?>" class="select">
-                        <?php foreach ($occupations as $occupation): ?>
-                            <option value="<?= $occupation['value'] ?>"<?php if ($occupation['value'] == $occ) echo ' selected'?>><?= __($occupation['label']) ?></option>
-                        <?php endforeach ?>
-                        </select>
-                    </div>
-                    <div class="primary">
-                        <button class="action cancel" title="<?= /* @escapeNotVerified */ __('Cancel') ?>"><span><?= /* @escapeNotVerified */ __('Cancel') ?></span></button>
-                        <button type="submit" class="action save primary" title="<?= /* @escapeNotVerified */ __('Save') ?>"><span><?= /* @escapeNotVerified */ __('Save') ?></span></button>
-                    </div>
-                </div>
-                <div></div>
-            </div>
-        </div>
-    </fieldset>
-
-    <?php $userDefinedAttributes = $block->getLayout()->getBlock('customer_form_user_attributes'); ?>
-    <?php if ($userDefinedAttributes):?>
-        <?php $userDefinedAttributes->setEntityType('customer')->setShowContainer(false);?>
-        <?php $block->restoreSessionData($userDefinedAttributes->getMetadataForm());?>
-    <?php endif;?>
 </form>
 <script>
     require([
@@ -261,17 +163,6 @@ $customAttributes = $block->getCustomer()->getCustomAttributes();
                 "titleChangeEmail": "<?= /* @escapeNotVerified */ __('Change Email') ?>",
                 "titleChangePassword": "<?= /* @escapeNotVerified */ __('Change Password') ?>",
                 "titleChangeEmailAndPassword": "<?= /* @escapeNotVerified */ __('Change Email and Password') ?>"
-            }
-        },
-        "*": {
-             "Magento_CustomerCustomAttributes/validation": {
-                "ignore": <?= (int) ($_dob->isEnabled() || $userDefinedAttributes->hasUserDefinedAttributes()) ?>,
-                "hasUserDefinedAttributes": <?= (int) $userDefinedAttributes->hasUserDefinedAttributes() ?>,
-                "isDobEnabled": <?= (int) $_dob->isEnabled() ?>,
-                "mixins": [
-                    "Magento_CustomerCustomAttributes/error-placement",
-                    "Magento_CustomerCustomAttributes/validation-ignore"
-                ]
             }
         },
         "[data-container=new-password]": {
