@@ -112,20 +112,20 @@
             </image>
 
             <image id="customer_shared_wishlist" type="small_image">
-                <width>425</width>
-                <height>550</height>
+                <width>595</width>
+                <height>770</height>
             </image>
             <image id="cart_cross_sell_products" type="small_image">
-                <width>425</width>
-                <height>550</height>
+                <width>595</width>
+                <height>770</height>
             </image>
             <image id="related_products_list" type="small_image">
-                <width>425</width>
-                <height>550</height>
+                <width>595</width>
+                <height>770</height>
             </image>
             <image id="upsell_products_list" type="small_image">
-                <width>425</width>
-                <height>550</height>
+                <width>595</width>
+                <height>770</height>
             </image>
 
             <image id="product_base_image" type="image">
@@ -228,9 +228,9 @@
             <!-- Turn on/off arrows on the sides preview (true/false) -->
             <var name="caption">false</var>
             <!-- Display alt text as image title (true/false) -->
-            <var name="allowfullscreen">true</var>
+            <var name="allowfullscreen">false</var>
             <!-- Turn on/off fullscreen (true/false) -->
-            <var name="navdir">horizontal</var>
+            <var name="navdir">vertical</var>
             <!-- Sliding direction of thumbnails (horizontal/vertical) -->
             <var name="navarrows">true</var>
             <!-- Turn on/off on the thumbs navigation sides arrows(true/false) -->
