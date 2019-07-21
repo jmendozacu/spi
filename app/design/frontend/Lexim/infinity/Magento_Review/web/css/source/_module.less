@@ -897,9 +897,21 @@
     }
 }
 
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .review-wrapper {
+        .flex-wrap(wrap);
+
+        .rating-statistics {
+            .flex(0 0 100%);
+        }
+
+        .review-list {
+            .flex(0 0 100%);
+        }
+    }
+}
+
 // Min 768px
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
-    .product-reviews-summary {
 
-    }
 }
