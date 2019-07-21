@@ -34,69 +34,75 @@ $collection = $wishlistHelper->getWishlistItemCollection();
 
 $image = 'category_page_grid';
 ?>
-<?php if (count($collection)) :?>
-    <div class="container-wishlist container">
-        <h3><?= __('Wishlist')?></h3>
-        <ol class="products list items product-items">
-            <?php foreach ($collection as $item) : ?>
-                <?php
-                $_product = $item->getProduct();
-                ?>
-                <li class="item product product-item <?php if (!$_product->isSaleable()): ?>hidden<?php endif; ?>">
-                    <div class="product-item-info" data-container="product-grid">
 
-                        <?php
-                        $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
-                        $productImage = $_imagehelper->init($_product, $image)->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->getUrl();
-                        ?>
+<div class="container-wishlist container">
+    <h3><?= __('Wishlist')?></h3>
+    <?php if (count($collection)) :?>
+    <ol class="products list items product-items">
+        <?php foreach ($collection as $item) : ?>
+            <?php
+            $_product = $item->getProduct();
+            ?>
+            <li class="item product product-item <?php if (!$_product->isSaleable()): ?>hidden<?php endif; ?>">
+                <div class="product-item-info" data-container="product-grid">
 
-                        <?php // Product Image ?>
-                        <a title="<?php /* @escapeNotVerified */ echo __('Go to') ?> <?php /* @escapeNotVerified */ echo $helper->productAttribute($_product, $_product->getName(), 'name'); ?>"
-                           href="<?php /* @escapeNotVerified */ echo $_product->getProductUrl() ?>"
-                           class="product photo product-item-photo"
-                        >
-                            <img class="photo image" src="<?= $productImage ?>" alt="<?php /* @escapeNotVerified */ echo $helper->productAttribute($_product, $_product->getName(), 'name'); ?>" />
-                        </a>
+                    <?php
+                    $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
+                    $productImage = $_imagehelper->init($_product, $image)->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->getUrl();
+                    ?>
 
-                        <div class="product details product-item-details">
-                            <strong class="product name product-item-name">
-                                <a class="product-item-link"
-                                   href="<?php /* @escapeNotVerified */ echo $_product->getProductUrl() ?>"
-                                   title="<?php /* @escapeNotVerified */ echo $helper->productAttribute($_product, $_product->getName(), 'name'); ?>"
-                                >
-                                    <?php /* @escapeNotVerified */ echo $helper->productAttribute($_product, $_product->getName(), 'name'); ?>
-                                </a>
-                            </strong>
-                            <?= $block->getProductPrice($_product)?>
+                    <?php // Product Image ?>
+                    <a title="<?php /* @escapeNotVerified */ echo __('Go to') ?> <?php /* @escapeNotVerified */ echo $helper->productAttribute($_product, $_product->getName(), 'name'); ?>"
+                       href="<?php /* @escapeNotVerified */ echo $_product->getProductUrl() ?>"
+                       class="product photo product-item-photo"
+                    >
+                        <img class="photo image" src="<?= $productImage ?>" alt="<?php /* @escapeNotVerified */ echo $helper->productAttribute($_product, $_product->getName(), 'name'); ?>" />
+                    </a>
 
-                            <?php if ($_product->isSaleable()): ?>
-                                <div class="product-item-actions">
-                                    <div class="actions-primary-wishlist">
-                                        <button type="button" data-role="tocart" data-post='<?= /* @noEscape */ $block->getItemAddToCartParams($item) ?>' title="<?= $block->escapeHtmlAttr(__('Add to Cart')) ?>" data-item-id="<?= $block->escapeHtmlAttr($item->getId()) ?>" class="action tocart primary-wishlist">
-                                            + <span><?= $block->escapeHtml(__('Add to Cart')) ?></span>
-                                        </button>
-                                    </div>
+                    <div class="product details product-item-details">
+                        <strong class="product name product-item-name">
+                            <a class="product-item-link"
+                               href="<?php /* @escapeNotVerified */ echo $_product->getProductUrl() ?>"
+                               title="<?php /* @escapeNotVerified */ echo $helper->productAttribute($_product, $_product->getName(), 'name'); ?>"
+                            >
+                                <?php /* @escapeNotVerified */ echo $helper->productAttribute($_product, $_product->getName(), 'name'); ?>
+                            </a>
+                        </strong>
+                        <?= $block->getProductPrice($_product)?>
+
+                        <?php if ($_product->isSaleable()): ?>
+                            <div class="product-item-actions">
+                                <div class="actions-primary-wishlist">
+                                    <button type="button" data-role="tocart" data-post='<?= /* @noEscape */ $block->getItemAddToCartParams($item) ?>' title="<?= $block->escapeHtmlAttr(__('Add to Cart')) ?>" data-item-id="<?= $block->escapeHtmlAttr($item->getId()) ?>" class="action tocart primary-wishlist">
+                                        + <span><?= $block->escapeHtml(__('Add to Cart')) ?></span>
+                                    </button>
                                 </div>
+                            </div>
+                        <?php else: ?>
+                            <?php if ($_product->getIsSalable()): ?>
+                                <p class="available stock" title="<?= $block->escapeHtmlAttr(__('Availability')) ?>">
+                                    <span><?= $block->escapeHtml(__('In stock')) ?></span>
+                                </p>
                             <?php else: ?>
-                                <?php if ($_product->getIsSalable()): ?>
-                                    <p class="available stock" title="<?= $block->escapeHtmlAttr(__('Availability')) ?>">
-                                        <span><?= $block->escapeHtml(__('In stock')) ?></span>
-                                    </p>
-                                <?php else: ?>
-                                    <p class="unavailable stock" title="<?= $block->escapeHtmlAttr(__('Availability')) ?>">
-                                        <span><?= $block->escapeHtml(__('no longer available')) ?></span>
-                                    </p>
-                                <?php endif; ?>
+                                <p class="unavailable stock" title="<?= $block->escapeHtmlAttr(__('Availability')) ?>">
+                                    <span><?= $block->escapeHtml(__('no longer available')) ?></span>
+                                </p>
                             <?php endif; ?>
-                        </div>
+                        <?php endif; ?>
                     </div>
-                </li>
-            <?php endforeach; ?>
-        </ol>
-        <a href="/wishlist" class="view-wishlist"><span><?= __('View wishlish')?></span></a>
-
+                </div>
+            </li>
+        <?php endforeach; ?>
+    </ol>
+    <a href="/wishlist" class="view-wishlist"><span><?= __('View wishlish')?></span></a>
+<?php else: ?>
+    <div class="message info empty">
+        <span class="emty-wishlist"><?= $block->escapeHtml(__('Engage in retail therapy. Go buy something.')) ?></span>
+        <a href="<?= $block->getBaseUrl(); ?>"><span><?= __('Fill your wishlish')?></span></a>
     </div>
 <?php endif; ?>
+</div>
+
 
 <!-- <script type="text/x-magento-init">
     {

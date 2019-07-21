@@ -61,7 +61,7 @@ $editUrl = $block->getCustomerEditUrl();
         </div>
     </div>
 </div>
-<?php if ($savedAddress): ?>
+
 <div class="container-box">
     <div class="wrap">
         <div class="header-items">
@@ -70,7 +70,11 @@ $editUrl = $block->getCustomerEditUrl();
         <div class="box-function">
             <div class="header-name"><span><?= /* @escapeNotVerified */ __('Save Address') ?></span></div>
             <div class="content">
+                <?php if ($savedAddress): ?>
                 <?= $savedAddress ?>
+                <?php else: ?>
+                    <span>None</span>
+                <?php endif; ?>
             </div>
             <div class="buttom">
                 <a href="<?= $savedAddressUrl; ?>"><?= /* @escapeNotVerified */ __('Edit') ?></a>
@@ -78,7 +82,6 @@ $editUrl = $block->getCustomerEditUrl();
         </div>
     </div>
 </div>
-<?php endif; ?>
 
 <div class="container-box">
     <div class="wrap">
