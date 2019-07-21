@@ -16,6 +16,8 @@ $priceModel = $block->getPriceType('regular_price');
 
 /** @var \Magento\Framework\Pricing\Price\PriceInterface $finalPriceModel */
 $finalPriceModel = $block->getPriceType('final_price');
+$idSuffix = $block->getIdSuffix() ? $block->getIdSuffix() : '';
+$schema = ($block->getZone() == 'item_view') ? true : false;
 
 $minRegular = $priceModel->getMinRegularAmount()->getValue();
 $minRegular = number_format($minRegular, 2, '.', '');
@@ -25,6 +27,20 @@ $maxRegular = number_format($maxRegular, 2, '.', '');
 ?>
 
 <!-- <?= $minRegular . " - " . $maxRegular ?> -->
+
+<span class="normal-price">
+    <?php
+    $arguments = [
+        'display_label' => '',
+        'price_id' => $block->getPriceId('product-price-' . $idSuffix),
+        'price_type' => 'finalPrice',
+        'include_container' => true,
+        'schema' => $schema
+    ];
+
+    echo $block->renderAmount($finalPriceModel->getAmount(), $arguments);
+    ?>
+</span>
 
 <?php if ($block->hasSpecialPrice()) { ?>
 

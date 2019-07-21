@@ -63,6 +63,12 @@
         }
     }
 
+    .product-items .product-item {
+        .normal-price {
+            display: none;
+        }
+    }
+
     .prices-tier {
         .price-container {
             .price-including-tax {
@@ -79,10 +85,6 @@
 
             .weee[data-label] {
                 display: inline;
-
-                .price {
-                }
-
                 &:before {
                     content: ' +' attr(data-label) ': ';
                 }
@@ -185,6 +187,7 @@
 
         .ranger-price {
             font-weight: normal;
+            display: none;
         }
 
         .stock {
