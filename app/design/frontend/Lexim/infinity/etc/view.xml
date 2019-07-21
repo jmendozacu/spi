@@ -66,8 +66,8 @@
                 <height>220</height>
             </image>
             <image id="product_page_image_small" type="thumbnail">
-                <width>170</width>
-                <height>220</height>
+                <width>119</width>
+                <height>154</height>
             </image>
             <image id="rss_thumbnail" type="thumbnail">
                 <width>170</width>
