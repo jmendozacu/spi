@@ -1,0 +1,83 @@
+<?php
+/**
+ * Binary Anvil, Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Binary Anvil, Inc. Software Agreement
+ * that is bundled with this package in the file LICENSE_BAS.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.binaryanvil.com/software/license/
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@binaryanvil.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this software to
+ * newer versions in the future. If you wish to customize this software for
+ * your needs please refer to http://www.binaryanvil.com/software for more
+ * information.
+ *
+ * @category    BinaryAnvil
+ * @package     Infinity
+ * @copyright   Copyright (c) 2018-2019 Binary Anvil,Inc. (http://www.binaryanvil.com)
+ * @license     http://www.binaryanvil.com/software/license
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php $_orders = $block->getOrders(); ?>
+<?= $block->getChildHtml('info') ?>
+<?php if ($_orders && count($_orders)): ?>
+    <div class="table-wrapper orders-history">
+        <table class="data table table-order-items history" id="my-orders-table">
+            <caption class="table-caption"><?= /* @escapeNotVerified */ __('Orders') ?></caption>
+            <thead>
+                <tr>
+                    <th scope="col" class="col id"><?= /* @escapeNotVerified */ __('Order number') ?>:</th>
+                    <th scope="col" class="col date"><?= /* @escapeNotVerified */ __('Order date') ?>:</th>
+                    <?= /* @noEscape */ $block->getChildHtml('extra.column.header') ?>
+                    <th scope="col" class="col status"><?= /* @escapeNotVerified */ __('Orders status') ?>:</th>
+                    <th scope="col" class="col actions"><?= /* @escapeNotVerified */ __('Details') ?>:</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($_orders as $_order): ?>
+                    <tr>
+                        <?php //TODO: change data format ?>
+                        <td data-th="<?= $block->escapeHtml(__('Order number')) ?>" class="col id"><span class="plus-open">+</span><span class="number-id"><?= /* @escapeNotVerified */ $_order->getRealOrderId() ?></span></td>
+                        <td data-th="<?= $block->escapeHtml(__('Order date')) ?>" class="col date"><?= /* @escapeNotVerified */ $block->formatDate($_order->getCreatedAt(), IntlDateFormatter::LONG) ?></td>
+                        <?php $extra = $block->getChildBlock('extra.container'); ?>
+                        <?php if ($extra): ?>
+                            <?php $extra->setOrder($_order); ?>
+                            <?= /* @noEscape */ $extra->getChildHtml() ?>
+                        <?php endif; ?>
+                        <td data-th="<?= $block->escapeHtml(__('Orders status')) ?>" class="col status"><?= /* @escapeNotVerified */ $_order->getStatusLabel() ?></td>
+                        <td data-th="<?= $block->escapeHtml(__('Details')) ?>" class="col actions">
+                            
+                            <?php if ($this->helper('Magento\Sales\Helper\Reorder')->canReorder($_order->getEntityId())) : ?>
+                                <a href="#" data-post='<?php /* @escapeNotVerified */ echo
+                                $this->helper(\Magento\Framework\Data\Helper\PostHelper::class)
+                                    ->getPostData($block->getReorderUrl($_order))
+                                ?>' class="action order">
+                                    <span><?= /* @escapeNotVerified */ __('Reorder') ?></span>
+                                </a>
+                            <?php endif ?>
+                            <a href="#" class="action track-order">
+                                <span><?= /* @escapeNotVerified */ __('Track Order') ?></span>
+                            </a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+    <?php if ($block->getPagerHtml()): ?>
+        <div class="order-products-toolbar toolbar bottom"><?= $block->getPagerHtml() ?></div>
+    <?php endif ?>
+<?php else: ?>
+    <div class="message info empty"><span><?= /* @escapeNotVerified */ __('You have placed no orders.') ?></span></div>
+<?php endif ?>

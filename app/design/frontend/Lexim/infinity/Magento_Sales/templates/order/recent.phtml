@@ -1,0 +1,52 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<div class="block block-dashboard-orders">
+<?php
+    $_orders = $block->getOrders();
+    $count = count($_orders);
+?>
+    <div class="block-title order">
+        <strong><?= /* @escapeNotVerified */ __('Recent Orders') ?></strong>
+    </div>
+    <div class="block-content">
+    <?= $block->getChildHtml() ?>
+    <?php if ($count > 0): ?>
+        <div class="table-wrapper orders-recent bk">
+            <table class="data table table-order-items recent" id="my-orders-table">
+                <caption class="table-caption"><?= /* @escapeNotVerified */ __('Recent Orders') ?></caption>
+                <thead>
+                    <tr>
+                        <th scope="col" class="col id"><?= /* @escapeNotVerified */ __('Order Number:') ?></th>
+                        <th scope="col" class="col date"><?= /* @escapeNotVerified */ __('Date Ordered:') ?></th>
+                        <th scope="col" class="col status"><?= /* @escapeNotVerified */ __('Status:') ?></th>
+                        <th scope="col" class="col actions"><?= /* @escapeNotVerified */ __('Detais:') ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($_orders as $_order): ?>
+                        <tr>
+                            <td data-th="<?= $block->escapeHtml(__('Order Number')) ?>" class="col id"><?= /* @escapeNotVerified */ $_order->getRealOrderId() ?></td>
+                            <td data-th="<?= $block->escapeHtml(__('Date Ordered')) ?>" class="col date"><?= /* @escapeNotVerified */ $block->formatDate($_order->getCreatedAt()) ?></td>
+                            <td data-th="<?= $block->escapeHtml(__('Status')) ?>" class="col status"><?= /* @escapeNotVerified */ $_order->getStatusLabel() ?></td>
+                            <td data-th="<?= $block->escapeHtml(__('Detais')) ?>" class="col actions">
+                                <a href="<?= /* @escapeNotVerified */ $block->getViewUrl($_order) ?>" class="action view">
+                                    <span><?= /* @escapeNotVerified */ __('View Order') ?></span>
+                                </a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    <?php else: ?>
+        <div class="message info empty"><span><?= /* @escapeNotVerified */ __('You have placed no orders.') ?></span></div>
+    <?php endif; ?>
+    </div>
+</div>
