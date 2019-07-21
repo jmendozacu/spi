@@ -133,19 +133,7 @@
 <?php endif; ?>
 
 <script>
-    require(['jquery', 'matchMedia'], function ($, mediaCheck) {
-        var listItem = $('li.customer-welcome');
-        mediaCheck({
-            media: '(max-width: 767px)',
-            entry: function () {
-                listItem.attr('data-block', "");
-            },
-            exit: function () {
-                listItem.attr('data-block', "customer-block");
-            }
-        });
-
-
+    require(['jquery'], function ($) {
         // area popup login
         let popupLogin = ".customer-welcome>#PopupLogin";
         //  area container popup login
@@ -224,12 +212,10 @@
             if (!($(e.target).closest(dropMyAccount).length > 0)) {
                 $(dropMyAccount).hide();
                 $(customerName).removeClass("active");
-
             }
 
             // click area div customer-name show drop my account when logined.
             if ($(e.target).closest(customerName).length > 0) {
-
                 //    if($('body').hasClass("customer-menu")){
                 $(dropMyAccount).show();
                 $(customerName).addClass("active");
