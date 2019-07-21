@@ -51,8 +51,8 @@
 
         <!-- Create New wish list next to title on mobile -->
         <block class="Magento\Wishlist\Block\Catalog\Product\View\AddTo\Wishlist" name="title.addto.wishlist"
-               template="Magento_Wishlist::catalog/product/view/addto/wishlist.phtml" />
-        <move element="title.addto.wishlist" destination="product.info.price" after="-" />
+               template="Magento_Wishlist::catalog/product/view/addto/wishlist.phtml"/>
+        <move element="title.addto.wishlist" destination="product.info.price" after="-"/>
 
         <!-- Move product title after review -->
         <move element="page.main.title" destination="product.info.price" after="product.info.review"/>
@@ -61,7 +61,34 @@
         <move element="product.info.stock.sku" destination="product.info.main" after="-"/>
 
         <!-- Make a wrapper outer related products  -->
-        <referenceContainer name="content.aside" htmlTag="div" htmlClass="aside theBottomProducts" />
+        <referenceContainer name="content.aside" htmlTag="div" htmlClass="aside theBottomProducts"/>
+
+
+        <!-- Review -->
+        <referenceBlock name="product.info.details">
+            <block class="BinaryAnvil\Ratings\Block\RatingList" name="review.custom"
+                   template="Magento_Catalog::product/view/review-custom.phtml">
+                <block class="Magento\Framework\View\Element\Template" name="product.item.review.custom"
+                       template="Magento_Catalog::product/view/review-title.phtml"/>
+                <block class="Magento\Catalog\Block\Product\View" name="product.info.review.custom"
+                       template="Magento_Catalog::product/view/review.phtml"/>
+
+                <container name="review-wrapper" htmlTag="div" htmlClass="review-wrapper">
+                    <block class="BinaryAnvil\Ratings\Block\RatingList" name="product.item.review.statistic"
+                           template="Magento_Catalog::product/view/rating-statistics.phtml"/>
+                    <container name="review.list.custom" htmlTag="div" htmlClass="review-list">
+                        <block class="Magento\Framework\View\Element\Template"
+                               name="product.info.product_additional_data" as="product_additional_data"
+                               template="Magento_Review::product/view/list.phtml" cacheable="false">
+                            <block class="BinaryAnvil\Ratings\Block\ReviewList"
+                                   name="product.info.product_additional_data.items" as="review_items"
+                                   template="Magento_Review::product/view/list/items.phtml"/>
+                        </block>
+                    </container>
+                </container>
+            </block>
+        </referenceBlock>
+
 
     </body>
 </page>

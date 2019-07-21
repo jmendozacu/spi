@@ -639,7 +639,7 @@
 
     .descriptionContentTab {
         width: 100%;
-        padding: 0 10%;
+        padding: 0;
     }
 
     //
@@ -885,22 +885,21 @@
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
 
     .catalog-product-view .columns .column.main {
-        padding-left: 5%;
-        padding-right: 5%;
+        padding-left: 0;
+        padding-right: 0;
     }
 
     .product-info-main .product-options-bottom .box-tocart .actions {
         padding: 0 15px;
     }
-
 }
 
 // min 1440px
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
 
     .catalog-product-view .columns .column.main {
-        padding-left: 12%;
-        padding-right: 12%;
+        padding-left: 8%;
+        padding-right: 8%;
     }
 
     .product.media {
@@ -908,5 +907,4 @@
 
     .product-info-main {
     }
-
 }
