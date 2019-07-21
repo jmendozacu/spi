@@ -38,6 +38,35 @@ $editUrl = $block->getCustomerEditUrl();
 
 <?php // TODO: work for backend - insert right edit redirect ?>
 
+<?php if(!$recentOrderData): ?>
+<div class="block block-dashboard-orders">
+    <div class="block-title order">
+        <strong><?= /* @escapeNotVerified */ __('Recent Orders') ?></strong>
+    </div>
+    <div class="block-content">
+        <div class="table-wrapper orders-recent bk">
+            <table class="data table table-order-items recent" id="my-orders-table">
+                <caption class="table-caption"><?= /* @escapeNotVerified */ __('Recent Orders') ?></caption>
+                <thead>
+                    <tr>
+                        <th scope="col" class="col id"><?= /* @escapeNotVerified */ __('Order Number:') ?></th>
+                        <th scope="col" class="col date"><?= /* @escapeNotVerified */ __('Date Ordered:') ?></th>
+                        <th scope="col" class="col status"><?= /* @escapeNotVerified */ __('Status:') ?></th>
+                        <th scope="col" class="col actions"><?= /* @escapeNotVerified */ __('Detais:') ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <tr>
+                            <td data-th="<?= $block->escapeHtml(__('None')) ?>" class="col id"><?= /* @escapeNotVerified */ __('None') ?>.</td>
+                            
+                        </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<?php endif; ?>
+
 <div class="container-box">
     <div class="wrap">
         <div class="header-items">
