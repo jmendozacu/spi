@@ -504,7 +504,16 @@
         }
     }
 
+    //
+    //  Block search
+    //  ---------------------------------------------
 
+    .block-search .block-content {
+        position: absolute;
+        right: 0;
+        width: 200px;
+        top: 37px;
+    }
 
 }
 
@@ -579,8 +588,16 @@
         }
     }
 
+    //
+    //  Block search
+    //  ---------------------------------------------
+    .block-search input {
+        top: 35px;
+        left: -92px;
+        z-index: 99;
+    }
     .sticky .block-search input {
-        //top: -2px;
+        top: -2px;
     }
 
 }
@@ -601,6 +618,20 @@
     }
     #PopupRegister .form.create.account {
         min-width: 200px;
+    }
+
+    //
+    //  Block search
+    //  ---------------------------------------------
+    .block-search input {
+        left: -94px;
+        margin: 15px 0;
+        position: absolute;
+        top: 60px;
+        z-index: 99;
+    }
+    .block-search .label.active + .control input {
+        position: absolute;
     }
 
 }
@@ -702,7 +733,7 @@
 
     .block-addresses-list {
         .items.addresses {
-            font-size: 0;
+            font-size: 14px;
 
             > .item {
                 display: inline-block;
@@ -726,4 +757,761 @@
             margin: 0;
         }
     }
+
+    //
+    //  Welcome block
+    //  ---------------------------------------------
+
+}
+
+// lampk49 dev start
+
+
+// 
+// DASHBOARD
+//  ______________________________________________
+
+.customer-account-index {
+
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+// max 767px
+@media only screen and (max-width: 767px) {
+    // Header
+
+}
+
+// max 480px
+@media only screen and (max-width: 480px) {
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+// min 768px
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .account{
+        .columns{
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-flex-wrap: wrap;
+            flex-wrap: wrap;
+            box-sizing: border-box;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 5%;
+            padding-right: 5%;
+
+            .column.main {
+                width: 100%;
+                -ms-flex-order: 3;
+                -webkit-order: 3;
+                order: 3;
+                float: right;
+                -webkit-flex-basis: 100%;
+                flex-basis: 100%;
+            }
+            
+           .page-title-wrapper {
+                width: 100%;
+                -ms-flex-order: 2;
+                -webkit-order: 2;
+                order: 2;
+                float: left;
+            }
+
+            .sidebar-main {
+                width: 100%;
+                -ms-flex-order: 1;
+                -webkit-order: 1;
+                order: 1;
+                float: left;
+            }
+        }
+        
+    }
+    
+    .account {
+        .greeting-wrapper {
+            padding-left: 3.7%;
+            padding-right: 3.7%;
+
+            .greeting {
+                padding-left: 5%;
+                padding-right: 5%;
+
+                h1 {
+                    font-family: 'ProximaNova';
+                    font-size: 30px;
+                    font-weight: bold;
+                    color: #3e3935;
+                    text-align: left;
+                    line-height: 48px;
+                    text-transform: uppercase;
+                    margin-bottom: 0;
+                }
+
+                p {
+                    font-family: 'Hind';
+                    font-size: 14px;
+
+                    .email {
+                        text-align: left;
+                        color: #3e3935;
+                    }
+
+                    a {
+                        text-align: left;
+                        -webkit-transform: scale(1.37);
+                        -ms-transform: scale(1.37);
+                        transform: scale(1.37);
+                        text-decoration: none;
+                        color: #3e3935;
+                        border-bottom: 3px solid #3e3935;
+                    }
+                }
+            }
+        }
+        .sidebar-main {
+            .account-nav {
+                padding: 15px 0;
+                margin-bottom: 0;
+
+                #account-nav{
+                    text-align: center;
+                    border-bottom: 1px solid #74706d;
+                    margin: 15px 0;
+                    padding: 0;
+
+                    ul {
+                        padding: 0;
+                        margin-bottom: 0;
+
+                        li {
+                            display: inline-block;
+                            text-align: left;
+                            line-height: 20px;
+                            text-transform: uppercase;
+                            padding: 0 10px;
+
+                            a {
+                                font-family: 'ProximaNova';
+                                font-size: 14px;
+                                font-weight: bold;
+                                color: #3e3935;
+                                border-left: none;
+                                
+                            }
+
+                            &:hover a,
+                            a:hover, a:focus, a.active {
+                                border-bottom:5px solid #3bc1cc;
+                                padding-bottom:6px;
+                                text-decoration: none;
+                                color: #3ac1cc;
+                            }
+                        }
+
+                        li.current strong {
+                            border-bottom:5px solid #3bc1cc;
+                            border-left: none;
+                            padding-bottom:7px;
+                            text-decoration: none;
+                            color: #3ac1cc;
+                        }
+                    }
+                }
+            }
+        }
+
+        .block-dashboard-orders {
+            .block-title.order {
+                strong {
+                    font-family: 'ProximaNova';
+                    font-size: 20px;
+                    font-weight: bold;
+                    color: #3e3935;
+                    text-align: left;
+                    line-height: 45px;
+                    -webkit-transform: scale(1.26, 1.29);
+                    -ms-transform: scale(1.26, 1.29);
+                    transform: scale(1.26, 1.29);
+                    text-transform: uppercase;
+                }
+            }
+
+            .block-content {
+                #my-orders-table {
+                    thead > tr > th {
+                        font-family: 'ProximaNova';
+                        font-size: 16px;
+                        font-weight: bold;
+                        color: #74706d;
+                        text-align: left;
+                        line-height: 35px;
+                        padding: 0;
+                        border-bottom: 1px solid #74706d;
+                        text-transform: uppercase;
+                    }
+
+                    tbody > tr {
+                            > td {
+                            font-family: 'Hind';
+                            font-size: 14px;
+                            color: #3e3935;
+                            text-align: left;
+                            line-height: 18px;
+                            padding: 8px 0;
+
+                            a{
+                                font-family: 'Hind';
+                                font-size: 14px;
+                                font-weight: bold;
+                                color: #3e3935;
+                                text-align: left;
+                                line-height: 18px;
+                                -webkit-transform: scale(1.26, 1.29);
+                                -ms-transform: scale(1.26, 1.29);
+                                transform: scale(1.26, 1.29);
+                            }
+
+                            a:hover{
+                                text-decoration: none;
+                            }
+                        }
+
+                        > td.status, td.actions {
+                            text-transform: uppercase;
+                        }
+                    }
+                }
+            }
+        }
+
+        .customer-short-info {
+            padding-bottom: 40px;
+            border-bottom: 1px solid #74706d;
+
+            .container-box {
+                display: inline-block;
+                width: 24.7%;
+                padding-right: 1%;
+
+                .wrap {
+                    min-height: 280px;
+                    float: left;
+                    width: 100%;
+
+                    .header-items span {
+                        font-family: 'ProximaNova';
+                        font-size: 20px;
+                        font-weight: bold;
+                        color: #3e3935;
+                        text-align: left;
+                        line-height: 45px;
+                        -webkit-transform: scale(1.26, 1.29);
+                        -ms-transform: scale(1.26, 1.29);
+                        transform: scale(1.26, 1.29);
+                        text-transform: uppercase;
+                    }
+
+                    .header-items span.hidden {
+                        opacity: 0;
+                    }
+
+                    .box-function {
+                        border: 5px solid #d6eef1;
+                        padding: 15px;
+
+                        .header-name {
+                            border-bottom: 1px solid #3e3935;
+
+                            span {
+                                font-family: 'ProximaNova';
+                                font-size: 16px;
+                                font-weight: bold;
+                                color: #74706d;
+                                text-align: left;
+                                line-height: 45px;
+                                -webkit-transform: scale(1.26, 1.29);
+                                -ms-transform: scale(1.26, 1.29);
+                                transform: scale(1.26, 1.29);
+                                text-transform: uppercase;
+                            }
+                        }
+
+                        .content {
+                            padding: 15px 0;
+                            min-height: 115px;
+
+                            ul {
+                                margin: 0;
+                                padding: 0;
+
+                                li {
+                                    list-style: none;
+                                    margin-bottom: 5px;
+
+                                    span {
+                                        .title {
+                                            font-family: 'ProximaNova';
+                                            font-size: 14px;
+                                            font-weight: bold;
+                                            color: #3e3935;
+                                            text-align: left;
+                                            line-height: 24px;
+                                            padding-right: 5px;
+                                        }
+
+                                        .value {
+                                            font-family: 'Hind';
+                                            font-size: 14px;
+                                            color: #3e3935;
+                                            text-align: left;
+                                            line-height: 24px;
+                                        }
+                                    }
+                                }
+                            }
+
+                            a:hover{
+                                text-decoration: none;
+                            }
+                        }
+
+                        .buttom {
+                                background-color: #3bc1cc;
+                                max-width: 130px;
+                                margin: auto;
+                                text-align: center;
+
+                                a {
+                                    font-family: 'ProximaNova';
+                                    font-size: 14px;
+                                    font-weight: bold;
+                                    color: #ffffff;
+                                    text-align: center;
+                                    line-height: 42px;
+                                    text-transform: uppercase;
+                                     -webkit-transform: scale(0.92, 0.94); 
+                                    -ms-transform: scale(0.92, 0.94);
+                                     transform: scale(0.92, 0.94); 
+                                    margin: auto;
+                                }
+
+                                a:hover{
+                                    text-decoration: none;
+                                }
+                            }
+                    }
+                }
+            }
+            .container-box:last-child {
+                padding-right: 0;
+            }
+        }
+        
+        // wish list style
+
+        .container-wrapper.wishlist {
+            padding-bottom: 60px;
+
+            .container-wishlist.container {
+                h3 {
+                    padding: 30px 0;
+                    margin: 0;
+                    font-family: 'ProximaNova';
+                    font-size: 20px;
+                    font-weight: bold;
+                    color: #3e3935;
+                    text-align: left;
+                    text-transform: uppercase;
+                }
+                ol.items.product-items {
+                    margin: 0 -1%;
+
+                    li.product-item {
+                        width: 16.6%;
+                        display: inline-block;
+                        padding: 0 1% 2%;
+                        
+                        .product-item-details {
+                            .product-item-name {
+                                height: 39px;  
+                            }
+
+                            .price-box .ranger-price {
+                                font-family: 'Hind';
+                                font-size: 14px;
+                                color: #a7a4a3;
+                                text-align: left;
+                                line-height: 18px;
+                                font-weight: normal;
+                            }
+
+                            .product-item-link{
+                                font-size: 14px;
+                                color: #3e3935;
+                                text-align: left;
+                                line-height: 18px;
+                            }
+
+                            .actions-primary-wishlist {
+                                .primary-wishlist {
+                                    background: transparent;
+                                    border-color: transparent;
+                                    padding-left: 0;
+                                    text-transform: uppercase;
+
+                                    span{
+                                        font-family: 'ProximaNova';
+                                        font-size: 14px;
+                                        font-weight: bold;
+                                        color: #3e3935;
+                                        text-align: left;
+                                        line-height: 18px;
+                                        -webkit-transform: scale(0.92, 0.94);
+                                        -ms-transform: scale(0.92, 0.94);
+                                        transform: scale(0.92, 0.94);
+                                    }
+                                }
+                            }
+
+                            .unavailable {
+                                font-family: 'ProximaNova';
+                                font-size: 14px;
+                                font-weight: bold;
+                                color: #3e3935;
+                                text-align: left;
+                                line-height: 18px;
+                                margin: 0;
+                                text-transform: uppercase;
+                            }
+                        }
+                        
+                    }
+
+                    .hidden {
+                        opacity: 0.5;
+                    }
+                }
+
+                a.view-wishlist {
+                    background-color: #3ac1cc;
+                    padding: 10px 30px;
+
+                    span {
+                        font-family: 'ProximaNova';
+                        font-size: 14px;
+                        font-weight: bold;
+                        color: #ffffff;
+                        text-align: left;
+                        line-height: 35px;
+                        text-transform: uppercase;
+                    }
+                }
+
+                a.view-wishlist:hover{
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+    
+    .wishlist-index-index {
+        #wishlist-view-form {
+            padding-bottom: 50px;
+        }
+
+        .page-title-wrapper {
+            .page-title {
+                width: auto;
+                height: auto;
+                position: relative;
+                margin: 0;
+                margin-bottom: 10px;
+
+                span {
+                    font-family: 'ProximaNova';
+                    font-size: 20px;
+                    font-weight: bold;
+                    color: #3e3935;
+                    text-align: left;
+                    line-height: 45px;
+                    -webkit-transform: scale(1.26, 1.29);
+                    -ms-transform: scale(1.26, 1.29);
+                    transform: scale(1.26, 1.29);
+                    text-transform: uppercase;
+                }
+            }
+        }
+
+        .message.empty {
+            background: transparent;
+            padding: 0;
+            margin: 0;
+
+            span.emty-cart {
+                font-family: 'Hind';
+                font-size: 14px;
+                color: #3e3935;
+                text-align: left;
+                line-height: 18px;
+                display: block;
+                margin-bottom: 10px;
+            }
+
+            span.emty-cart:before {
+                display: none;
+            }
+
+            span.fill-cart {
+                background-color: #3e3935;
+                padding: 10px 20px;
+                display: inline-block;
+
+                a{
+                    font-family: 'ProximaNova';
+                    font-size: 14px;
+                    font-weight: bold;
+                    color: #ffffff;
+                    text-align: left;
+                    line-height: 18px;
+                }
+
+                a:hover{
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+
+    .products-grid.wishlist {
+        .product-items {
+            margin: 0 -1%;
+            margin: 0;
+            padding: 0;
+
+            .product-item {
+                width: 25%;
+                display: inline-block;
+                padding: 0 1% 2%;
+
+                .product-item-info {
+                    width: auto;
+                    position: relative;
+
+                    .product-item-name {
+                        height: 39px;
+                        display: block;
+
+                        a {
+                            font-family: 'Hind';
+                            font-size: 15px;
+                            color: #3e3935;
+                            text-align: left;
+                            line-height: 19px;
+                            font-weight: normal;
+                        }
+
+                        a:hover, a:visited, .alink:visited {
+                            text-decoration: none;
+                        }
+                    }
+
+                    .product-item-inner {
+                        .actions-primary .primary{
+                            background: transparent;
+                            border-color: transparent;
+                            padding-left: 0;
+                            text-transform: uppercase;
+                            color: #3e3935;
+
+                            span {
+                                font-family: 'ProximaNova';
+                                font-size: 15px;
+                                font-weight: bold;
+                                color: #3e3935;
+                                text-align: left;
+                                line-height: 19px;
+                            }
+                        }
+
+                        .product-item-actions {
+                            position: absolute;
+                            top: 10px;
+                            right: 10px;
+                            z-index: 1;
+
+                            a:before{
+                                display: inline-block;
+                                font-family: "FontAwesomePro", FontAwesome, sans-serif;
+                                text-rendering: auto;
+                                text-transform: none;
+                                text-decoration: none;
+                                text-align: center;
+                                content: '\f2ed';
+                                font-style: normal;
+                                font-weight: 400;
+                                font-size: 20px;
+                                color: #3e3935;
+                                font-variant: normal;
+                                line-height: 1;
+                                speak: none;
+                                -webkit-font-smoothing: antialiased;
+                                -moz-osx-font-smoothing: grayscale;
+                            }
+                        }
+                    }
+                }
+
+                .product-item-info.hidden  {
+                    opacity: 0.5;
+                }
+            }
+        }
+    }
+
+    // Recent orders style 
+
+    .sales-order-history {
+        .page-title-wrapper {
+            .page-title {
+                margin-bottom: 10px;
+
+                span {
+                    font-family: 'ProximaNova';
+                    font-size: 20px;
+                    font-weight: bold;
+                    color: #3e3935;
+                    text-align: left;
+                    letter-spacing: 0.02em;
+                    line-height: 30px;
+                    text-transform: uppercase;
+                }
+            }
+        }
+
+        #my-orders-table {
+            thead {
+                .col {
+                    font-family: 'ProximaNova';
+                    font-size: 16px;
+                    font-weight: bold;
+                    color: #74706d;
+                    text-align: left;
+                    line-height: 35px;
+                    text-transform: uppercase;
+                    padding: 8px 0;
+                }
+
+                .col:first-child {
+                    padding-left: 0;
+                }
+
+                .col:last-child {
+                    padding-right: 0;
+                }
+            } 
+
+            tbody {
+                tr {
+                    border-bottom: 2px solid #74706d;
+
+                    td {
+                        font-family: 'Hind';
+                        font-size: 14px;
+                        color: #3e3935;
+                        text-align: left;
+                        line-height: 42px;
+                        width: 24%;
+                        padding: 8px 0;
+
+                        .plus-open {
+                            padding: 0 20px;
+                            font-size: 16px;
+                        }
+
+                        .action.order {
+                            font-family: 'ProximaNova';
+                            font-size: 14px;
+                            font-weight: bold;
+                            color: #3bc1cc;
+                            text-align: center;
+                            line-height: 38px;
+                            text-transform: uppercase;
+                            border: 2px solid #3bc1cc;
+                            width: 48%;
+                            display: inline-block;
+                            margin-right: 0;
+                            float: left;
+                        }
+
+                        .action.order:hover {
+                            text-decoration: none;
+                        }
+
+                        .action.track-order {
+                            font-family: 'ProximaNova';
+                            font-size: 14px;
+                            font-weight: bold;
+                            text-align: center;
+                            line-height: 38px;
+                            text-transform: uppercase;
+                            border: 2px solid #d4d4d3;
+                            background: #d4d4d3;
+                            display: inline-block;
+                            width: 48%;
+                            float: right;
+
+                            span {
+                                color: #ffffff;
+                            }
+                        }
+
+                        .action.track-order:hover {
+                            text-decoration: none;
+                            background-color: #3ac1cc;
+                             border: 2px solid #3ac1cc;
+                        }
+                    }
+                }
+
+                tr:first-child {
+                    border-top: 2px solid #74706d;
+                }
+            }
+        }
+        
+        .order-products-toolbar {
+            margin-bottom: 60px;
+        }
+
+        .actions-toolbar {
+            .action.back {
+                display: none;
+            }
+        }
+    }
+
+}
+
+// min 992px
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    //
+    //  Home page
+    //  ---------------------------------------------
+}
+
+// min 1440px
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+    //
+    //  Home page
+    //  ---------------------------------------------
 }

@@ -192,4 +192,33 @@ class AccountData extends Template
             return null;
         }
     }
+
+
+    /**
+     * add new funtion  dev
+     */
+    
+    /**
+     * Get customer data
+     * @return array|false
+     */
+    public function getCustomerData()
+    {
+        if ($customer = $this->getCustomer()) {
+            $customerData['name'] = $customer->getFirstname();
+            $customerData['email'] = $customer->getEmail();
+
+            return $customerData;
+        }
+        return false;
+    }
+
+    /**
+     * Get customer profile edit url
+     * @return string
+     */
+    public function getCustomerEditUrl()
+    {
+        return $this->getUrl('customer/account/edit');
+    }
 }
