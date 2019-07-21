@@ -66,8 +66,8 @@
                 <height>220</height>
             </image>
             <image id="product_page_image_small" type="thumbnail">
-                <width>119</width>
-                <height>154</height>
+                <width>170</width>
+                <height>220</height>
             </image>
             <image id="rss_thumbnail" type="thumbnail">
                 <width>170</width>
@@ -112,20 +112,20 @@
             </image>
 
             <image id="customer_shared_wishlist" type="small_image">
-                <width>595</width>
-                <height>770</height>
+                <width>425</width>
+                <height>550</height>
             </image>
             <image id="cart_cross_sell_products" type="small_image">
-                <width>595</width>
-                <height>770</height>
+                <width>425</width>
+                <height>550</height>
             </image>
             <image id="related_products_list" type="small_image">
-                <width>595</width>
-                <height>770</height>
+                <width>425</width>
+                <height>550</height>
             </image>
             <image id="upsell_products_list" type="small_image">
-                <width>595</width>
-                <height>770</height>
+                <width>425</width>
+                <height>550</height>
             </image>
 
             <image id="product_base_image" type="image">
@@ -228,9 +228,9 @@
             <!-- Turn on/off arrows on the sides preview (true/false) -->
             <var name="caption">false</var>
             <!-- Display alt text as image title (true/false) -->
-            <var name="allowfullscreen">false</var>
+            <var name="allowfullscreen">true</var>
             <!-- Turn on/off fullscreen (true/false) -->
-            <var name="navdir">vertical</var>
+            <var name="navdir">horizontal</var>
             <!-- Sliding direction of thumbnails (horizontal/vertical) -->
             <var name="navarrows">true</var>
             <!-- Turn on/off on the thumbs navigation sides arrows(true/false) -->

@@ -39,8 +39,8 @@ if ($_attributeType && $_attributeType == 'text') {
 ?>
 
 <?php if ($_attributeValue): ?>
-<div class="product attribute <?= $_className ?>">
-    <?php if ($renderLabel): ?><strong class="type"><?= $_attributeLabel ?></strong><?php endif; ?>
-    <div class="value" <?= $_attributeAddAttribute ?>><?= $_attributeValue ?></div>
-</div>
+    <div class="product attribute <?= $_className ?>">
+        <?php if ($renderLabel): ?><strong class="type"><?= $_attributeLabel ?></strong><?php endif; ?>
+        <div class="value" <?= $_attributeAddAttribute ?>><?= $_attributeValue ?></div>
+    </div>
 <?php endif; ?>

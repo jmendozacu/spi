@@ -18,17 +18,7 @@
 //  _____________________________________________
 
 & when (@media-common = true) {
-    //
-    //  Block search
-    //  ---------------------------------------------
-
-    #ic-search-mobi {
-        display: block;
-        padding-left: 15px;
-    }
-
     .block-search {
-
         margin-bottom: 0;
 
         .block {
@@ -38,12 +28,7 @@
         }
 
         .block-content {
-            position: absolute;
-            right: 0;
-            width: 200px;
-            top: 37px;
             margin-bottom: 0;
-            z-index: 9;
         }
 
         .label {
@@ -70,6 +55,9 @@
         }
 
         input {
+            left: -300%;
+            margin: 15px 0;
+            position: absolute;
         }
 
         .nested {
@@ -176,21 +164,12 @@
 //
 //  Mobile
 //  _____________________________________________
-// max 767px
+// max 768px
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
     .block-search {
         .block-content {
-            left: 15px;
-            top: 90px;
+            margin-bottom: 0;
         }
-
-        .search-icon.icon-elo-search {
-            display: none;
-        }
-    }
-
-    .sticky .block-search .block-content {
-        top: 50px;
     }
 }
 
@@ -206,10 +185,6 @@
 //  _____________________________________________
 // min 768px
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
-    #ic-search-mobi {
-        display: none;
-    }
-
     .block-search {
         float: right;
         padding-left: 15px;
@@ -234,7 +209,7 @@
 
         input {
             margin: 0;
-            //padding-right: 35px;
+            padding-right: 35px;
             position: static;
         }
 
