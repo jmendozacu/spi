@@ -64,6 +64,7 @@
             margin-left: auto;
             margin-right: auto;
             border: none;
+            max-width: calc(~'1780px + 7.6vw');
 
             .payment-method-content,
             .header.content {
@@ -78,6 +79,10 @@
                     width: 100%;
                     min-height: 110px;
                 }
+            }
+
+            .logo img {
+                height: 75px;
             }
         }
 
@@ -160,7 +165,8 @@
         .page-main {
             padding-left: 3.8vw;
             padding-right: 3.8vw;
-            max-width: 100%;
+            //max-width: 100%;
+            max-width: calc(~'1780px + 7.6vw');
 
             .checkout-container {
                 .lib-css(color, @aw-osc-primary__color);
@@ -255,7 +261,6 @@
                     &:checked + label:before {
                         content: '\e906';
                         font-family: 'aw-osc_icons-font';
-                        font-size: 17px;
                         -webkit-font-smoothing: antialiased;
                         -moz-osx-font-smoothing: grayscale;
                         color: @aw-osc-secondary__color;
@@ -279,7 +284,6 @@
                     &:checked + label:before {
                         content: '\e909';
                         font-family: 'aw-osc_icons-font';
-                        font-size: 17px;
                         -webkit-font-smoothing: antialiased;
                         -moz-osx-font-smoothing: grayscale;
                         color: @aw-osc-secondary__color;
@@ -406,7 +410,7 @@
                         display: block !important;
                         width: 100% !important;
                         position: absolute !important;
-                        top: 7px;
+                        top: 2px;
                         left: 0;
                         padding: 0;
                     }
@@ -441,8 +445,8 @@
 
                 .onestep-billing-address .choice label.label > span,
                 .saveForNextTime .control label.label > span {
-                    margin-left: 30px;
-                    margin-top: 10px;
+                    margin-left: 50px;
+                    margin-top: 7px;
                     font-size: 15px;
                     color: @aw-osc-primary__color;
                     font-weight: normal;
@@ -516,6 +520,10 @@
 
                         &.shipping-method {
                             max-width: 47.5%;
+
+                            input[type='radio'] + label:before {
+                                top: 4px;
+                            }
                         }
 
                         &.payment-methods {
@@ -1029,12 +1037,12 @@
                             position: relative !important;
                             top: 0;
                             left: 0;
-                            font-size: 26px;
+                            font-size: 22px;
                             font-weight: normal;
                             padding-left: 50px;
 
                             &:before {
-                                top: 4px;
+                                top: 1px;
                             }
                         }
 
@@ -1334,12 +1342,13 @@
                                             }
 
                                             .custom-qty {
-                                                font-size: 18px;
+                                                font-size: 15px;
                                                 font-weight: bold;
 
                                                 > span {
                                                     font-weight: normal;
-                                                    margin-left: 5px;
+                                                    margin-left: 2px;
+                                                    font-size: 15px;
                                                 }
                                             }
 
@@ -1369,7 +1378,7 @@
                                             margin-right: 15px;
                                             width: 300px;
                                             height: auto;
-                                            max-width: 35%;
+                                            max-width: 30%;
 
                                             .product-image-wrapper {
                                                 .lib-vendor-prefix-display(flex);
@@ -1386,7 +1395,7 @@
 
                                             img {
                                                 height: auto;
-                                                width: auto;
+                                                width: 100%;
                                                 max-height: 100%;
                                                 max-width: 100%;
                                             }
@@ -1996,7 +2005,7 @@
                                     width: auto !important;
                                     top: 3px;
                                     left: 0;
-                                    font-size: 18px;
+                                    font-size: 15px;
                                     //font-weight: bold !important;
                                     height: 30px !important;
                                     margin: 0 !important;
@@ -2018,7 +2027,7 @@
                                     .select {
                                         border: none;
                                         background: #dbd9d6;
-                                        padding: 0 0 0 10px;
+                                        padding: 0 0 0 5px;
                                         margin: 0;
                                         height: 20px !important;
                                         min-height: 0;
@@ -2027,7 +2036,7 @@
                                         box-shadow: none;
                                         text-indent: 0;
                                         font-weight: normal;
-                                        //font-size: 18px;
+                                        font-size: 15px;
                                         line-height: 1;
                                     }
                                 }
@@ -2104,6 +2113,14 @@
 // max 1780px
 @media only screen and (max-width: 1780px) {
 
+    .onestepcheckout-index-index .page-main .checkout-container input[type='radio'] + label:before {
+        font-size: 14px;
+    }
+
+    .onestepcheckout-index-index .page-main .aw-onestep-main .aw-onestep-groups .aw-onestep-groups_item.shipping-method input[type='radio'] + label:before {
+        top: 3px;
+    }
+
     .onestepcheckout-index-index .page-main .checkout-container .place-order-wrapper .error-place-order {
         font-size: 16px;
     }
@@ -2111,7 +2128,7 @@
     // Right sidebar
     .onestepcheckout-index-index .page-main .checkout-container .aw-onestep-sidebar-wrapper {
         width: 100%;
-        padding: 70px 30px;
+        padding: 70px 20px;
         margin: 0 0 25px;
 
     }
@@ -2258,7 +2275,7 @@
         position: relative !important;
         top: 0;
         left: 0;
-        font-size: 20px;
+        font-size: 18px;
         font-weight: normal;
         padding-left: 50px;
     }
@@ -2519,10 +2536,6 @@
 
     .onestepcheckout-index-index .page-main .checkout-container .onestep-shipping-method-list label.label {
         top: 1px;
-    }
-
-    .onestepcheckout-index-index .page-main .aw-onestep-main .payment-method .payment-method-title label.label:before {
-        top: 0;
     }
 
     .onestepcheckout-index-index .page-main .aw-onestep-main .onestep-shipping-address .field-row,
