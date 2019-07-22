@@ -118,6 +118,10 @@
     text-decoration: line-through;
 }
 
+.swatch-option.image.disabled {
+    background: #ccc !important;
+}
+
 .swatch-option.disabled:after {
     /*content: '';*/
     /*position: absolute;*/

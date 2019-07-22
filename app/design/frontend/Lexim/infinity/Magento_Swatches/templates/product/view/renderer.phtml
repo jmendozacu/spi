@@ -1,0 +1,40 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+// @codingStandardsIgnoreFile
+//"swatchRenderer": {
+?>
+
+<?php /** @var $block \Magento\Swatches\Block\Product\Renderer\Configurable */
+
+$helper = $this->helper('BinaryAnvil\SizeChart\Helper\Image');
+$attributeName = $helper->showInAttribute();
+?>
+<div class="swatch-opt" data-role="swatch-options"></div>
+
+<?php if ($sizeChar = $helper->getSizeChart($block->getProduct())): ?>
+    <div class="size-chart" style="display: none">
+        <img src="<?= $sizeChar ?>"/>
+    </div>
+<?php endif; ?>
+
+<script type="text/x-magento-init">
+    {
+        "[data-role=swatch-options]": {
+            "Magento_Swatches/js/swatch-renderer": {
+                "jsonConfig": <?= $swatchOptions = $block->getJsonConfig() ?>,
+                "jsonSwatchConfig": <?= $block->getJsonSwatchConfig(); ?>,
+                "mediaCallback": "<?= $block->getMediaCallback() ?>",
+                "gallerySwitchStrategy": "<?= $block->getVar('gallery_switch_strategy',
+        'Magento_ConfigurableProduct') ?: 'replace'; ?>"
+            },
+            "Magento_Swatches/js/configurable-customer-data": {
+                    "swatchOptions": <?= $swatchOptions ?>
+            }
+        }
+    }
+
+</script>
+

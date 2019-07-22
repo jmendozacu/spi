@@ -302,6 +302,7 @@ define([
                 this.options.jsonConfig.mappedAttributes = _.clone(this.options.jsonConfig.attributes);
                 this._sortAttributes();
                 this._RenderControls();
+                this.listenClickSizeChart();
                 this._setPreSelectedGallery();
                 $(this.element).trigger('swatch.initialized');
             } else {
@@ -405,6 +406,14 @@ define([
                         '<span class="' + classes.attributeSelectedOptionLabelClass + '"></span>';
                 }
 
+                // Get Size chart
+                if(item.code === 'is_size') {
+                    label += '<a href="javascript:void(0)" class="size-chart-link" id="size-chart-link">' +
+                        '<span>Size Guide</span></a>';
+                }
+                // End - Get Size chart
+
+
                 if ($widget.inProductList) {
                     $widget.productForm.append(input);
                     input = '';
@@ -463,6 +472,42 @@ define([
             //Emulate click on all swatches from Request
             $widget._EmulateSelected($.parseQuery());
             $widget._EmulateSelected($widget._getSelectedAttributes());
+        },
+
+
+        listenClickSizeChart: function() {
+
+            $('#size-chart-link').click(function () {
+                let sizeChart = $('.size-chart');
+                console.log("click");
+                if (sizeChart.hasClass('open')) {
+                    console.log('has');
+                    sizeChart.removeClass('open');
+                } else {
+                    console.log('not');
+                    sizeChart.addClass('open');
+
+                }
+            });
+
+            $(document).keyup(function (e) {
+                let sizeChart = $('.size-chart');
+                if (e.keyCode === 27) {
+                    sizeChart.removeClass('open');
+                }
+            });
+
+            $(document).mouseup(function(e)
+            {
+                let sizeChart = $('.size-chart');
+                let sizeChartImage = $('.size-chart > img');
+
+                // if the target of the click isn't the container nor a descendant of the container
+                if (!sizeChartImage.is(e.target) && sizeChartImage.has(e.target).length === 0)
+                {
+                    sizeChart.removeClass('open');
+                }
+            });
         },
 
         /**
