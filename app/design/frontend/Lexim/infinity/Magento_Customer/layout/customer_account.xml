@@ -84,7 +84,7 @@
             </arguments>
         </referenceBlock>
 
-        <referenceBlock name="customer-account-navigation-address-link" remove="true" />
+         <referenceBlock name="customer-account-navigation-address-link" remove="true" />
 
         <referenceBlock name="customer-account-navigation-giftregistry-link" remove="true" />
         <referenceBlock name="customer-account-navigation-downloadable-products-link" remove="true" />
