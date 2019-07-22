@@ -10,23 +10,23 @@
         <referenceBlock name="navigation.sections" remove="true" />
         <referenceContainer name="content">
 		  <!-- Estimate MOD start -->
-		  <block class="Magento\Framework\View\Element\Template" name="checkout.cart.estimation" template="Magento_Checkout::cart/estimation.phtml">
-              <arguments>
-                   <argument name="jsLayout" xsi:type="array">
-                         <item name="types" xsi:type="array"/>
-                           <item name="components" xsi:type="array">
-                              <item name="estimation" xsi:type="array">
-                                 <item name="sortOrder" xsi:type="string">10</item>
-                                 <item name="component" xsi:type="string">Magento_Checkout/js/view/estimation</item>
-                                 <item name="displayArea" xsi:type="string">estimation</item>
-                                 <item name="config" xsi:type="array">
-                                     <item name="template" xsi:type="string">Magento_Checkout/estimation</item>
-                                </item>
-                              </item>
-                          </item>
-                      </argument>
-                </arguments>
-            </block>
+<!--		  <block class="Magento\Framework\View\Element\Template" name="checkout.cart.estimation" template="Magento_Checkout::cart/estimation.phtml">-->
+<!--              <arguments>-->
+<!--                   <argument name="jsLayout" xsi:type="array">-->
+<!--                         <item name="types" xsi:type="array"/>-->
+<!--                           <item name="components" xsi:type="array">-->
+<!--                              <item name="estimation" xsi:type="array">-->
+<!--                                 <item name="sortOrder" xsi:type="string">10</item>-->
+<!--                                 <item name="component" xsi:type="string">Magento_Checkout/js/view/estimation</item>-->
+<!--                                 <item name="displayArea" xsi:type="string">estimation</item>-->
+<!--                                 <item name="config" xsi:type="array">-->
+<!--                                     <item name="template" xsi:type="string">Magento_Checkout/estimation</item>-->
+<!--                                </item>-->
+<!--                              </item>-->
+<!--                          </item>-->
+<!--                      </argument>-->
+<!--                </arguments>-->
+<!--            </block>-->
 			<!-- Estimate MOD end -->
             <block class="Aheadworks\OneStepCheckout\Block\Checkout" name="checkout.root" template="checkout.phtml" cacheable="false">
                 <arguments>
