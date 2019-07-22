@@ -5,10 +5,12 @@
 /** @var \BinaryAnvil\Ratings\Block\ReviewList $itemsBlock */
 $itemsBlock = $block->getChildBlock('review_items');
 
-$reviewCollectionSize = $itemsBlock->getReviewsCollection()->getSize();
+if ($itemsBlock) {
+    $reviewCollectionSize = $itemsBlock->getReviewsCollection()->getSize();
+}
 //echo $block->getChildHtml();
 ?>
-<?php if ($reviewCollectionSize):?>
+<?php if (isset($reviewCollectionSize) && $reviewCollectionSize) { ?>
     <div class="block review-list" id="customer-reviews">
         <div class="block-content">
             <ol id="review_list" class="items review-items">
@@ -23,8 +25,9 @@ $reviewCollectionSize = $itemsBlock->getReviewsCollection()->getSize();
                 <button class="write-review"><?= __('Write a review') ?> </button>
             </div>
         </div>
+
     </div>
-<?php else: ?>
+<?php } else { ?>
     <div class="block review-list" id="customer-reviews">
         <h2>Be First to review this product</h2>
         <div class="custom-buttons">
@@ -32,38 +35,38 @@ $reviewCollectionSize = $itemsBlock->getReviewsCollection()->getSize();
                 <button class="write-first-review"><?= __('Write the first review') ?> </button>
             </div>
         </div>
+
     </div>
-<?php endif;?>
+<?php } ?>
 
 <script>
-    require(['jquery', 'collapsible'], function($, collapsible){
-        $(function() {
-            $('.write-review').on('click', function() {
+    require(['jquery', 'collapsible'], function ($, collapsible) {
+        $(function () {
+            $('.write-review').on('click', function () {
                 $(".block.review-add").slideToggle().closest('#customer-reviews').hide();
             });
 
-            $('.write-first-review').on('click', function() {
-                if($(".block.review-add").is(':visible')) {
+            $('.write-first-review').on('click', function () {
+                if ($(".block.review-add").is(':visible')) {
                     $('.write-first-review').closest('#customer-reviews').animate({
                         opacity: 1
-                    }, 100, function() {
-                        $(".block.review-add").slideToggle('slow', function() {
+                    }, 100, function () {
+                        $(".block.review-add").slideToggle('slow', function () {
 
                         });
                     });
-                }
-                else {
+                } else {
                     $('.write-first-review').closest('#customer-reviews').animate({
                         opacity: 0.1
-                    }, 100, function() {
-                        $(".block.review-add").slideToggle('slow', function() {
+                    }, 100, function () {
+                        $(".block.review-add").slideToggle('slow', function () {
 
                         });
                     });
                 }
             });
 
-            $('.reviews-actions-link').on('click', function() {
+            $('.reviews-actions-link').on('click', function () {
                 $(".block.review-add").slideDown();
             });
         });
@@ -71,8 +74,8 @@ $reviewCollectionSize = $itemsBlock->getReviewsCollection()->getSize();
 </script>
 
 <script>
-    require(['jquery'], function($) {
-        $(function() {
+    require(['jquery'], function ($) {
+        $(function () {
             $('body').on('click', '.vote', function () {
                 let reviewId = $(this).data('review-id');
                 let isHelpful = $(this).data('value');
@@ -87,11 +90,11 @@ $reviewCollectionSize = $itemsBlock->getReviewsCollection()->getSize();
                         if ($(element).data('value')) {
                             $(element).children().text('(' + data.positive + ')');
                             $(element).next().children().text('(' + data.negative + ')');
-                            $(element).next().prop( "disabled", false );
+                            $(element).next().prop("disabled", false);
                         } else {
                             $(element).children().text('(' + data.negative + ')');
                             $(element).prev().children().text('(' + data.positive + ')');
-                            $(element).prev().prop( "disabled", false );
+                            $(element).prev().prop("disabled", false);
                         }
                         $(element).prop("disabled", true);
                     }
@@ -99,14 +102,15 @@ $reviewCollectionSize = $itemsBlock->getReviewsCollection()->getSize();
             });
         });
     });
-    require(['jquery'], function($) {
-        $(function() {
+
+    require(['jquery'], function ($) {
+        $(function () {
             let currentPage = 2;
             let pageSize = 3;
             let reviewCollectionSize = <?= $reviewCollectionSize ?>;
             let productId = <?= $itemsBlock->getProduct()->getId() ?>;
             $('#load_more_reviews').click(function () {
-                $(this).prop( "disabled", true );
+                $(this).prop("disabled", true);
                 $.ajax({
                     method: "POST",
                     url: "<?= $block->getUrl('ratings/ajax/morereviews') ?>",

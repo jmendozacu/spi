@@ -19,7 +19,7 @@ $splitSummaryRating = $block->getSplitSummaryRating();
         <div class="stars-count">
             <ul class="count">
                 <?php for ($i = 5; $i > 0; $i--): ?>
-                    <li><?= /* @escapeNotVerified */ $i . ' ' . ($i == 1 ? __('Star') : __('Stars')); ?></li>
+                    <li><?= $i . ' ' . ($i == 1 ? __('Star') : __('Stars')); ?></li>
                 <?php endfor ?>
             </ul>
             <ul class="line">
@@ -39,7 +39,7 @@ $splitSummaryRating = $block->getSplitSummaryRating();
             </ul>
             <ul class="total-count">
                 <?php for ($i = 5; $i > 0; $i--): ?>
-                    <li> <?= /* @escapeNotVerified */ $starsCountList[$i] ?></li>
+                    <li> <?= $starsCountList[$i] ?></li>
                 <?php endfor ?>
             </ul>
         </div>
@@ -58,13 +58,13 @@ $splitSummaryRating = $block->getSplitSummaryRating();
                         <li></li>
                         <li></li>
                         <li class="active"
-                            style="left: <?= /* @escapeNotVerified */ $rating->getValue() / 5 * $activeLineMaxLeft ?>%" >
+                            style="left: <?= $rating->getValue() / 5 * $activeLineMaxLeft ?>%" >
                         </li>
                     </ul>
                     <div class="characteristic">
-                        <span><?= /* @escapeNotVerified */ __($rating->getLabelMin()) ?></span>
-                        <span><?= /* @escapeNotVerified */ __($rating->getLabelPerfect()) ?></span>
-                        <span><?= /* @escapeNotVerified */ __($rating->getLabelMax()) ?></span>
+                        <span><?= __($rating->getLabelMin()) ?></span>
+                        <span><?= __($rating->getLabelPerfect()) ?></span>
+                        <span><?= __($rating->getLabelMax()) ?></span>
                     </div>
                 </div>
             <?php endforeach ?>

@@ -1,0 +1,174 @@
+<?php
+/** @var \Magento\Review\Block\Form $block */
+
+/** @var \BinaryAnvil\Ratings\Helper\Data $helper */
+$helper = $this->helper(\BinaryAnvil\Ratings\Helper\Data::class);
+?>
+
+<div class="block review-add">
+    <div class="page-title-wrapper">
+        <h1 class="page-title">
+            <span class="base"><?= __('Review and rating'); ?></span>
+        </h1>
+    </div>
+    <span><?= $block->escapeHtml(__('About ')) ?><strong><?= $block->escapeHtml($block->getProductInfo()->getName()) ?></strong></span>
+
+    <div class="block-content">
+        <?php if ($block->getAllowWriteReviewFlag()): ?>
+            <form action="<?= $block->escapeUrl($block->getAction()) ?>" class="review-form" method="post"
+                  id="review-form" data-role="product-review-form" data-bind="scope: 'review-form'">
+                <?= $block->getBlockHtml('formkey') ?>
+                <?= $block->getChildHtml('form_fields_before') ?>
+                <fieldset class="fieldset review-fieldset"
+                          data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>">
+                    <?php if ($block->getRatings() && $block->getRatings()->getSize()): ?>
+                        <span id="input-message-box"></span>
+                        <fieldset class="field required review-field-ratings used-summary">
+                            <div class="control">
+                                <div class="nested" id="product-review-table">
+                                    <?php foreach ($helper->getRatingCollection(1) as $_rating): ?>
+                                        <div class="field choice review-field-rating">
+                                            <label class="label"
+                                                   id="<?= $block->escapeHtml(str_replace(' ', '_', $_rating->getRatingCode())) ?>_rating_label"><span><?= $block->escapeHtml($_rating->getRatingCode() . __(' rating')) ?></span></label>
+                                            <div class="control review-control-vote">
+                                                <?php $options = $_rating->getOptions(); ?>
+                                                <?php $iterator = 1;
+                                                foreach ($options as $_option): ?>
+                                                    <input type="radio"
+                                                           name="ratings[<?= $block->escapeHtmlAttr($_rating->getId()) ?>]"
+                                                           id="<?= $block->escapeHtmlAttr(str_replace(' ', '_', $_rating->getRatingCode())) ?>_<?= $block->escapeHtmlAttr($_option->getValue()) ?>"
+                                                           value="<?= $block->escapeHtmlAttr($_option->getId()) ?>"
+                                                           class="radio"
+                                                           data-validate="{ 'rating-required':true}"
+                                                           aria-labelledby="<?= $block->escapeHtmlAttr(str_replace(' ', '_', $_rating->getRatingCode())) ?>_rating_label <?= $block->escapeHtmlAttr(str_replace(' ', '_', $_rating->getRatingCode())) ?>_<?= $block->escapeHtmlAttr($_option->getValue()) ?>_label"/>
+                                                    <label class="rating-<?= $block->escapeHtmlAttr($iterator) ?>"
+                                                           for="<?= $block->escapeHtmlAttr(str_replace(' ', '_', $_rating->getRatingCode())) ?>_<?= $block->escapeHtmlAttr($_option->getValue()) ?>"
+                                                           title="<?= $block->escapeHtmlAttr(__('%1 %2', $iterator, $iterator > 1 ? __('stars') : __('star'))) ?>"
+                                                           id="<?= $block->escapeHtmlAttr(str_replace(' ', '_', $_rating->getRatingCode())) ?>_<?= $block->escapeHtmlAttr($_option->getValue()) ?>_label"
+                                                    >
+                                                        <span><?= $block->escapeHtml(__('%1 %2', $iterator, $iterator > 1 ? __('stars') : __('star'))) ?></span>
+                                                    </label>
+                                                    <?php $iterator++; ?>
+                                                <?php endforeach; ?>
+                                            </div>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
+                                <input type="hidden" name="validate_rating" class="validate-rating" value=""/>
+                            </div>
+                        </fieldset>
+                    <?php endif ?>
+                    <div class="field review-recommend-product required">
+                        <div class="control">
+                            <span class="title-recommend"><?= $block->escapeHtml(__('Do you recommend this product?')) ?></span>
+                            <input id="recommend_product" type="radio" name="is_recommend_product" value="1">
+                            <label class="label" for="recommend_product">
+                                <span><?= $block->escapeHtml(__('Yes')) ?></span></label>
+
+                            <input id="not_recommend_product" type="radio" name="is_recommend_product" value="0">
+                            <label class="label" for="not_recommend_product">
+                                <span><?= $block->escapeHtml(__('No')) ?></span></label>
+                        </div>
+                    </div>
+
+                    <?php if ($block->getRatings() && $block->getRatings()->getSize()): ?>
+                        <span id="input-message-box"></span>
+                        <fieldset class="field required review-field-ratings no-used-summary">
+                            <div class="control">
+                                <div class="nested" id="product-review-table">
+                                    <?php foreach ($helper->getRatingCollection(0) as $_rating): ?>
+                                        <div class="field choice review-field-rating">
+                                            <label class="label"
+                                                   id="<?= $block->escapeHtml(str_replace(' ', '_', $_rating->getRatingCode())) ?>_rating_label"><span><?= $block->escapeHtml($_rating->getRatingCode()) ?></span></label>
+                                            <div class="control review-control-vote">
+                                                <?php $options = $_rating->getOptions(); ?>
+                                                <?php $iterator = 1;
+                                                foreach ($options as $_option): ?>
+                                                    <input type="radio"
+                                                           name="ratings[<?= $block->escapeHtmlAttr($_rating->getId()) ?>]"
+                                                           id="<?= $block->escapeHtmlAttr(str_replace(' ', '_', $_rating->getRatingCode())) ?>_<?= $block->escapeHtmlAttr($_option->getValue()) ?>"
+                                                           value="<?= $block->escapeHtmlAttr($_option->getId()) ?>"
+                                                           class="radio"
+                                                           data-validate="{ 'rating-required':true}"
+                                                           aria-labelledby="<?= $block->escapeHtmlAttr(str_replace(' ', '_', $_rating->getRatingCode())) ?>_rating_label <?= $block->escapeHtmlAttr(str_replace(' ', '_', $_rating->getRatingCode())) ?>_<?= $block->escapeHtmlAttr($_option->getValue()) ?>_label"/>
+                                                    <label class="rating-<?= $block->escapeHtmlAttr($iterator) ?>"
+                                                           for="<?= $block->escapeHtmlAttr(str_replace(' ', '_', $_rating->getRatingCode())) ?>_<?= $block->escapeHtmlAttr($_option->getValue()) ?>"
+                                                           title="<?= $block->escapeHtmlAttr(__('%1 %2', $iterator, $iterator > 1 ? __('stars') : __('star'))) ?>"
+                                                           id="<?= $block->escapeHtmlAttr(str_replace(' ', '_', $_rating->getRatingCode())) ?>_<?= $block->escapeHtmlAttr($_option->getValue()) ?>_label">
+                                                        <span><?= $block->escapeHtml(__('%1 %2', $iterator, $iterator > 1 ? __('stars') : __('star'))) ?></span>
+                                                    </label>
+                                                    <?php $iterator++; ?>
+                                                <?php endforeach; ?>
+                                            </div>
+                                            <div class="label-min-max">
+                                                <?php if ($_rating->getLabelMin()): ?>
+                                                    <span><?= $block->escapeHtml($_rating->getLabelMin()) ?></span>
+                                                <?php endif; ?>
+                                                <?php if ($_rating->getLabelPerfect()): ?>
+                                                    <span><?= $block->escapeHtml($_rating->getLabelPerfect()) ?></span>
+                                                <?php endif; ?>
+                                                <?php if ($_rating->getLabelMax()): ?>
+                                                    <span><?= $block->escapeHtml($_rating->getLabelMax()) ?></span>
+                                                <?php endif; ?>
+                                            </div>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
+                                <input type="hidden" name="validate_rating" class="validate-rating" value=""/>
+                            </div>
+                        </fieldset>
+                    <?php endif ?>
+
+                    <div class="field review-field-summary required">
+                        <label for="summary_field" class="label"><span><?= $block->escapeHtml(__('Headline')) ?></span></label>
+                        <div class="control">
+                            <input type="text" name="title" id="summary_field" class="input-text"
+                                   placeholder="Add a headline"
+                                   data-validate="{required:true}" data-bind="value: review().title"/>
+                        </div>
+                    </div>
+                    <div class="field review-field-text required">
+                        <label for="review_field"
+                               class="label"><span><?= $block->escapeHtml(__('Review')) ?></span></label>
+                        <div class="control">
+                            <textarea name="detail" id="review_field" cols="5" rows="3" data-validate="{required:true}"
+                                      placeholder="Write your review"
+                                      data-bind="value: review().detail"></textarea>
+                        </div>
+                    </div>
+                    <div class="field review-field-nickname required">
+                        <label for="nickname_field" class="label"><span><?= $block->escapeHtml(__('Email Address')) ?></span></label>
+                        <div class="control">
+                            <input type="email" name="nickname" id="nickname_field" class="input-text"
+                                   placeholder="Email Address"
+                                   data-validate="{required:true}" data-bind="value: nickname()"/>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="actions-toolbar review-form-actions">
+                    <div class="primary actions-primary">
+                        <button type="submit" class="action submit primary">
+                            <span><?= $block->escapeHtml(__('Submit')) ?></span></button>
+                    </div>
+                </div>
+            </form>
+            <script type="text/x-magento-init">
+            {
+                "[data-role=product-review-form]": {
+                    "Magento_Ui/js/core/app": <?= $block->getJsLayout() ?>
+                },
+                "#review-form": {
+                    "Magento_Review/js/error-placement": {},
+                    "Magento_Review/js/validate-review": {}
+                }
+            }
+            </script>
+        <?php else: ?>
+            <div class="message info notlogged" id="review-form">
+                <div>
+                    <?= $block->escapeHtml(__('Only registered users can write reviews. Please <a href="%1">Sign in</a> or <a href="%2">create an account</a>', $block->getLoginLink(), $block->getRegisterUrl()), ['a']) ?>
+                </div>
+            </div>
+        <?php endif ?>
+    </div>
+</div>

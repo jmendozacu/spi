@@ -76,6 +76,7 @@
                 <container name="review-wrapper" htmlTag="div" htmlClass="review-wrapper">
                     <block class="BinaryAnvil\Ratings\Block\RatingList" name="product.item.review.statistic"
                            template="Magento_Catalog::product/view/rating-statistics.phtml"/>
+
                     <container name="review.list.custom" htmlTag="div" htmlClass="review-list">
                         <block class="Magento\Framework\View\Element\Template"
                                name="product.info.product_additional_data" as="product_additional_data"
@@ -84,11 +85,15 @@
                                    name="product.info.product_additional_data.items" as="review_items"
                                    template="Magento_Review::product/view/list/items.phtml"/>
                         </block>
+
+                        <block class="Magento\Review\Block\Form" name="product.review.form.custom"
+                               as="review_form_custom" template="Magento_Review::form.phtml">
+                        </block>
                     </container>
                 </container>
             </block>
         </referenceBlock>
-
+        <referenceBlock name="product.review.form" remove="true" />
 
     </body>
 </page>
