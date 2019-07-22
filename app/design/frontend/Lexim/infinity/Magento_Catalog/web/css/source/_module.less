@@ -185,6 +185,18 @@
             }
         }
 
+        .normal-price {
+            .line-through {
+                margin-right: 7px;
+                text-decoration: line-through;
+                color: #a7a4a3;
+                font-weight: bold;
+                + .price-container {
+                    color: @aqua;
+                }
+            }
+        }
+
         .ranger-price {
             font-weight: normal;
             display: none;
