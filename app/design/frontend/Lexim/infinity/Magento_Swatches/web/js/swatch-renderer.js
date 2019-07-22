@@ -962,7 +962,26 @@ define([
          * @private
          */
         _getPrices: function (newPrices, displayPrices) {
+            console.log('_getPrices');
+            console.log(newPrices);
+
             var $widget = this;
+
+            // Show Sale price in product detail
+            // let $product = $widget.element.parents($widget.options.selectorProduct);
+            // let $productPrice = $product.find('.normal-price .price-wrapper');
+            // // var priceSelector = $('.product-info-main .normal-price .price-wrapper[data-price-type="finalPrice"]');
+            // if (newPrices && newPrices.oldPrice.amount &&
+            //     newPrices.finalPrice.amount < newPrices.oldPrice.amount) {
+            //     console.log("sale 22");
+            //     $productPrice.prepend('ssss');
+            //     $('.product-info-main .normal-price .price-wrapper').prepend("kong");
+            //
+            //     $productPrice.prepend('<span class="line-through">$' + newPrices.oldPrice.amount + ' </span>');
+            // } else {
+            //     console.log("not sale");
+            //     $productPrice.find('.line-through').remove();
+            // }
 
             if (_.isEmpty(newPrices)) {
                 newPrices = $widget.options.jsonConfig.prices;
