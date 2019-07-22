@@ -206,3 +206,30 @@ $customAttributes = $block->getCustomer()->getCustomAttributes();
         });
     });
 </script>
+<?php 
+$_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$savedAddres = $_objectManager->get('BinaryAnvil\Customer\Block\AccountData'); 
+$getAddres = $savedAddres->getSavedAddress();
+
+
+
+?>
+<div class="save-address">
+    <div class="title-address">
+        <span>Save addresses</span>
+        <a href="javascript:void(0)" class="link-edit-address"><?= __('Edit');?></a>
+    </div>
+    <div class="box-address">
+        <div class="content-address">
+            <p>
+                <?php if ($getAddres): ?>
+                    <?= $getAddres ?>
+                <?php else: ?>
+                    <span>None</span>
+                <?php endif; ?>
+            </p>
+        </div>
+        <div class="content-edit-address">
+        </div>
+    </div>
+</div>

@@ -33,7 +33,7 @@ class Subscribe extends \Magento\Newsletter\Block\Subscribe
         SessionFactory $sessionFactory,
         array $data = []
     ){
-        $this->_sessionFactory = $sessionFactory->create();
+       $this->_sessionFactory = $sessionFactory->create();
         parent::__construct($context, $data);
     }
 

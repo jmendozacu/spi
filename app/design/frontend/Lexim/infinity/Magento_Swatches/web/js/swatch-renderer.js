@@ -1007,8 +1007,8 @@ define([
          * @private
          */
         _getPrices: function (newPrices, displayPrices) {
-            console.log('_getPrices');
-            console.log(newPrices);
+            // console.log('_getPrices');
+            // console.log(newPrices);
 
             var $widget = this;
 

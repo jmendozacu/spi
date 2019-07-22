@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-right" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Thanks for your order!</title>
+    </head>
+    <body>
+        <referenceBlock name="sale.reorder.sidebar" remove="true"/>
+        <referenceBlock name="catalog.compare.sidebar" remove="true"/>
+        <referenceBlock name="multiple-wishlist_sidebar" remove="true"/>
+        <referenceBlock name="page.main.title" remove="true"/>
+        <referenceBlock name="checkout.registration" remove="true"/>
+
+        <referenceContainer name="sidebar.additional">
+            <block class="Magento\Cms\Block\Block" name="infnt_need-help" before="infnt_faqs_checkout">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">checkout_page_block_need_help</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Cms\Block\Block" name="infnt_faqs_checkout" after="-">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">checkout_page_block_faqs</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+
+        <block class="BinaryAnvil\InfinityTheme\Block\Customer\Form\Login" name="create.account.form" template="Magento_Checkout::onepage/create-account.phtml" />
+        <move element="create.account.form" destination="sidebar.additional" after="-" />
+
+        <referenceContainer name="columns">
+            <block class="Magento\Checkout\Block\Onepage\Success" name="success.order.total" template="Magento_Checkout::onepage/order-totals.phtml" />
+        </referenceContainer>
+    </body>
+</page>

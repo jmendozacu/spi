@@ -1,0 +1,154 @@
+<?php
+/**
+ * Binary Anvil, Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Binary Anvil, Inc. Software Agreement
+ * that is bundled with this package in the file LICENSE_BAS.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.binaryanvil.com/software/license/
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@binaryanvil.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this software to
+ * newer versions in the future. If you wish to customize this software for
+ * your needs please refer to http://www.binaryanvil.com/software for more
+ * information.
+ *
+ * @category    BinaryAnvil
+ * @package     Infinity
+ * @copyright   Copyright (c) 2018-2019 Binary Anvil,Inc. (http://www.binaryanvil.com)
+ * @license     http://www.binaryanvil.com/software/license
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php /** @var $block \Magento\Checkout\Block\Onepage\Success */ ?>
+<?php
+$orderHelper = $this->helper('BinaryAnvil\InfinityTheme\Helper\CheckoutHelper');
+$order = $orderHelper->getOrder();
+$shippingAddress = $order->getShippingAddress();
+$items = $order->getAllVisibleItems();
+$payment = $order->getPayment();
+?>
+<div class="checkout-success">
+    <?php if ($block->getOrderId()):?>
+        <div class="checkout-success-wrapper">
+            <?php if ($block->getCanViewOrder()) :?>
+                <h2 class="checkout-success-title"><?= /* @escapeNotVerified */ __('%1, thanks for your order.', $order->getCustomerFirstname()) ?></h2>
+                <p>
+                    <?= /* @escapeNotVerified */ __('Your order number is: %1.', sprintf('<a href="%s" class="order-number"><strong>%s</strong>.
+                         </a> You will receive a confirmation email at <span class="customer-email">%s</span> shortly',
+                        $block->escapeHtml($block->getViewOrderUrl()),
+                        $block->escapeHtml($block->getOrderId()),
+                        $order->getCustomerEmail()
+                    )) ?>
+                </p>
+            <?php  else :?>
+                <h2 class="checkout-success-title"><?= /* @escapeNotVerified */ __('Thank you for your order.') ?></h2>
+                <p><?= __('Your order number is: <span>%1</span>. You will receive a confirmation email at <span class="customer-email">%2</span> shortly.',
+                        $block->escapeHtml($block->getOrderId()),
+                        $order->getCustomerEmail()) ?></p>
+            <?php endif;?>
+            <p><?= /* @escapeNotVerified */ __('We hope you love your latest purchase!') ?></p>
+        </div>
+    <?php endif;?>
+
+    <div class="order-details-wrapper">
+        <h3 class="order-details-title"><?= /* @escapeNotVerified */ __('Order Details') ?></h3>
+        <div class="order-details">
+            <p><strong><?= /* @escapeNotVerified */ __('Date:') ?></strong> <?= /* @escapeNotVerified */ date("M j, Y",strtotime($order->getCreatedAtFormatted(\IntlDateFormatter::MEDIUM))) ?></p>
+            <p><strong><?= /* @escapeNotVerified */ __('Order Number:') ?></strong> <?= /* @escapeNotVerified */ $block->getOrderId() ?></p>
+            <p><strong><?= /* @escapeNotVerified */ __('Order Total:') ?></strong> <?= /* @escapeNotVerified */ $orderHelper->getFormatedPrice($order->getGrandTotal()) ?></p>
+            <p><strong><?= /* @escapeNotVerified */ __('Email:') ?></strong> <?= /* @escapeNotVerified */ $order->getCustomerEmail() ?></p>
+        </div>
+        <div class="payment-details">
+            <div class="shipping-address">
+                <p><strong><?= /* @escapeNotVerified */ __('Shipping Address:') ?></strong></p>
+                <p><?= /* @escapeNotVerified */ $shippingAddress->getFirstname() . ' ' . $shippingAddress->getLastname() ?></p>
+                <?php foreach ($shippingAddress->getStreet() as $street): ?>
+                    <p><?= /* @escapeNotVerified */ $street ?></p>
+                <?php endforeach; ?>
+                <p><?= /* @escapeNotVerified */ $shippingAddress->getCity() . ', ' . $shippingAddress->getRegion() . ' ' . $shippingAddress->getPostcode() ?></p>
+            </div>
+            <div class="payment-method">
+                <p><strong><?= /* @escapeNotVerified */ __('Payment Method:') ?></strong></p>
+                <?php if(($additionalInfo = $payment->getAdditionalInformation()) && isset($additionalInfo['card_type'])): ?>
+                        <p><?= /* @escapeNotVerified */ $additionalInfo['card_type'] ?></p>
+                        <p><?= /* @escapeNotVerified */ 'XXXXXXXXXXXX-' . $payment->getCcLast4()?></p>
+                        <p>
+                            <strong><?= /* @escapeNotVerified */ __('exp:') ?></strong> 
+                            <?= /* @escapeNotVerified */ $payment->getCcExpMonth() . '/' . $payment->getCcExpYear() ?>
+                        </p>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+    
+    <div class="order-summary-wrapper cart table-wrapper">
+        <h3 class="order-summary-title"><?= /* @escapeNotVerified */ __('Order Summary') ?></h3>
+
+        <table class="order-summary-table cart items data table">
+            <thead>
+            <tr>
+                <th class="col item" scope="col"><span><?= /* @escapeNotVerified */ __('Product') ?></span></th>
+                <th class="col price" scope="col"><span><?= /* @escapeNotVerified */ __('Each') ?></span></th>
+                <th class="col qty" scope="col"><span><?= /* @escapeNotVerified */ __('Quantity') ?></span></th>
+                <th class="col subtotal" scope="col"><span><?= /* @escapeNotVerified */ __('Total') ?></span></th>
+            </tr>
+            </thead>
+
+            <tbody class="cart item">
+                <?php foreach ($items as $item) : ?>
+                    <tr class="item-info">
+                        <td class="col item" data-th="Item">
+                            <div class="product-img">
+                                <img width="200" height="200" class="photo image"
+                                     src="<?= $orderHelper->getProductImage($item->getProduct()) ?>"
+                                     alt="<?= $item->getName() ?>">
+                            </div>
+                            <div class="product-item-details">
+                                <strong class="product-item-name"><?= $item->getName() ?></strong>
+                                <?php if($options = $item->getProductOptions()): ?>
+                                    <dl class="item-options">
+                                        <?php if(isset($options['attributes_info'])): ?>
+                                            <?php foreach ($options['attributes_info'] as $option): ?>
+                                                <dt><?= $block->escapeHtml($option['label']) ?></dt>
+                                                <dd><?= /* @escapeNotVerified */ $option['value'] ?></dd>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
+                                    </dl>
+                                <?php endif; ?>
+                            </div>
+                        </td>
+                        <td class="col price" data-th="Price">
+                            <span class="price-excluding-tax" data-label="Excl. Tax">
+                                <span class="cart-price">
+                                    <span class="price"><?= $orderHelper->getFormatedPrice($item->getPrice()) ?></span>
+                                </span>
+                            </span>
+                        </td>
+                        <td class="col qty" data-th="Qty">
+                            <span class="qty"><?= (int) $item->getQtyOrdered() ?></span>
+                        </td>
+
+                        <td class="col subtotal" data-th="Subtotal">
+                            <span class="price-excluding-tax" data-label="Excl. Tax">
+                                <span class="cart-price">
+                                    <span class="price"><?= $orderHelper->getFormatedPrice($item->getRowTotal()) ?></span>
+                                </span>
+                            </span>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+    <?= $block->getAdditionalInfoHtml() ?>
+</div>

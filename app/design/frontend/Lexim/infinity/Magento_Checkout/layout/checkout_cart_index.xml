@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="checkout_cart_item_renderers"/>
+    <body>
+        <referenceBlock name="page.main.title">
+            <action method="setPageTitle">
+                <argument translate="true" name="title" xsi:type="string">Shopping Bag</argument>
+            </action>
+        </referenceBlock>
+
+        <referenceBlock name="checkout.cart.summary.title">
+            <arguments>
+                <argument translate="true" name="text" xsi:type="string">Order Summary</argument>
+            </arguments>
+        </referenceBlock>
+
+        <!-- Mobile need-help and FAQ blocks -->
+        <container name="cart-mobile-block" htmlTag="div" htmlClass="mobile-block-wrapper">
+            <block class="Magento\Cms\Block\Block" name="mobile_need_help" before="-">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">checkout_page_block_need_help</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Cms\Block\Block" name="mobile_faqs_checkout" after="-">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">checkout_page_block_faqs</argument>
+                </arguments>
+            </block>
+        </container>
+
+
+        <referenceContainer name="checkout.cart.container">
+            <!--            <block class="Magento\Framework\View\Element\Template" name="checkout.cart.estimation" template="Magento_Checkout::cart/estimation.phtml">-->
+            <!--                <arguments>-->
+            <!--                    <argument name="jsLayout" xsi:type="array">-->
+            <!--                        <item name="types" xsi:type="array"/>-->
+            <!--                        <item name="components" xsi:type="array">-->
+            <!--                            <item name="estimation" xsi:type="array">-->
+            <!--                                <item name="sortOrder" xsi:type="string">10</item>-->
+            <!--                                <item name="component" xsi:type="string">Magento_Checkout/js/view/estimation</item>-->
+            <!--                                <item name="displayArea" xsi:type="string">estimation</item>-->
+            <!--                                <item name="config" xsi:type="array">-->
+            <!--                                    <item name="template" xsi:type="string">Magento_Checkout/estimation</item>-->
+            <!--                                </item>-->
+            <!--                            </item>-->
+            <!--                        </item>-->
+            <!--                    </argument>-->
+            <!--                </arguments>-->
+            <!--            </block>-->
+            <!--            <block class="Magento\Checkout\Block\Onepage\Link" name="checkout.cart.methods.onepage.top.mobile" template="Magento_Checkout::onepage/link.phtml" after="checkout.cart.estimation"/>-->
+
+
+            <!-- Check free shipping  Magento\Framework\View\Element\Template -->
+            <container name="cart_page.left_column" htmlTag="div" htmlClass="leftColumnCartPage" before="-">
+                <block class="Magento\Customer\Block\Account\Customer" name="cart.check.free.ship"
+                       template="Magento_Checkout::cart/check-free-shipping.phtml"/>
+            </container>
+
+
+            <container name="checkout.cart.right.column" htmlTag="div" htmlClass="cart-summary-wrapper"
+                       after="cart_page.left_column">
+                <block class="Magento\Cms\Block\Block" name="infnt_need-help" before="infnt_faqs_checkout">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">checkout_page_block_need_help</argument>
+                    </arguments>
+                </block>
+                <block class="Magento\Cms\Block\Block" name="infnt_faqs_checkout" after="-">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">checkout_page_block_faqs</argument>
+                    </arguments>
+                </block>
+            </container>
+
+            <container name="cart-mobile-block" htmlTag="div" htmlClass="mobile-block-wrapper" after="-">
+                <block class="Magento\Cms\Block\Block" name="mobile_need_help" before="-">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">checkout_page_block_need_help</argument>
+                    </arguments>
+                </block>
+                <block class="Magento\Cms\Block\Block" name="mobile_faqs_checkout" after="-">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">checkout_page_block_faqs</argument>
+                    </arguments>
+                </block>
+            </container>
+        </referenceContainer>
+
+        <referenceBlock name="checkout.cart.order.actions">
+            <block class="Magento\GiftMessage\Block\Cart\GiftOptions" name="checkout.cart.order.actions.gift_options"
+                   template="Magento_GiftMessage::cart/gift_options.phtml" cacheable="false">
+                <arguments>
+                    <argument name="jsLayout" xsi:type="array">
+                        <item name="types" xsi:type="array"/>
+                        <item name="components" xsi:type="array">
+                            <item name="giftOptionsCart" xsi:type="array">
+                                <item name="component" xsi:type="string">Magento_GiftMessage/js/view/gift-message</item>
+                                <item name="config" xsi:type="array">
+                                    <item name="componentDisabled" xsi:type="boolean">true</item>
+                                </item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+
+        <!-- remove gift card account -->
+        <referenceBlock name="checkout.cart.giftcardaccount" remove="true"/>
+
+        <!-- Move title to left column in cart page -->
+        <move element="page.main.title" destination="cart_page.left_column" before="-"/>
+
+        <!-- Move products table to left column in cart page -->
+        <move element="checkout.cart.form" destination="cart_page.left_column" after="-"/>
+
+        <!-- Move discount to cart summary -->
+        <move element="cart.discount" destination="cart.summary" after="checkout.cart.summary.title"/>
+
+        <!-- Create continue shopping to cart summary -->
+        <block class="Magento\Framework\View\Element\Template" name="cart.continue.shopping"
+               template="Magento_Checkout::cart/continue-shipping.phtml"/>
+        <move element="cart.continue.shopping" destination="cart.summary" after="-"/>
+
+        <!-- Move cart summary to right column in cart page -->
+        <move element="cart.summary" destination="checkout.cart.right.column" before="-"/>
+
+        <!-- Create custom block after checkout.cart.crosssell -->
+        <move element="cart-mobile-block" destination="checkout.cart.items" after="-"/>
+
+
+    </body>
+</page>
