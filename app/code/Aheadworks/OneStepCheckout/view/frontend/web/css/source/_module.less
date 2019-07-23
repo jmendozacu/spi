@@ -65,6 +65,11 @@
             margin-right: auto;
             border: none;
 
+            .logo {
+                -webkit-justify-content: center;
+                justify-content: center;
+            }
+
             .payment-method-content,
             .header.content {
                 padding: 0 3.8vw;
@@ -79,9 +84,18 @@
                     min-height: 110px;
                 }
             }
+
+            .rightHeader {
+                display: none;
+            }
         }
 
         // End header
+
+        // Footer
+        .page-footer {
+            display: none;
+        }
 
         .opc-estimated-wrapper {
             padding: 20px 0;
@@ -160,6 +174,7 @@
         .page-main {
             padding-left: 3.8vw;
             padding-right: 3.8vw;
+            padding-bottom: 3.8vw;
             max-width: 100%;
 
             .checkout-container {
@@ -385,6 +400,7 @@
                         font-size: 14px;
                         color: @aw-osc-primary__color;
                         font-weight: bold;
+                        z-index: 2;
 
                         > span {
                             display: -webkit-flex;
@@ -606,6 +622,9 @@
                         width: 100%;
                         padding: 20px 0;
                         line-height: 2;
+                        display: block;
+                        font-size: 16px;
+                        clear: both;
                     }
 
                     .actions-toolbar {
@@ -2105,7 +2124,7 @@
 @media only screen and (max-width: 1780px) {
 
     .onestepcheckout-index-index .page-main .checkout-container .place-order-wrapper .error-place-order {
-        font-size: 16px;
+        font-size: 14px;
     }
 
     // Right sidebar
@@ -2124,7 +2143,7 @@
 
     .price-including-tax, .price-excluding-tax {
         display: block;
-        font-size: 1.5rem;
+        font-size: 16px;
         line-height: 0;
     }
 
@@ -2132,7 +2151,7 @@
     .onestepcheckout-index-index .page-main .checkout-container .aw-onestep-sidebar-content .aw-onestep-sidebar-block.aw-sidebar-summary .aw-onestep-sidebar-totals tr > td {
         margin: 0;
         padding: 0 0 2px;
-        font-size: 18px;
+        font-size: 16px;
     }
 
     // Right Side bar End
@@ -2144,7 +2163,7 @@
 
     .onestepcheckout-index-index .page-title {
         margin-bottom: 40px;
-        font-size: 22px;
+        font-size: 24px;
         font-weight: bold;
         color: #3e3935;
     }
@@ -2269,9 +2288,7 @@
     }
 
     .onestepcheckout-index-index .page-main .aw-onestep-main .payment-method .payment-method-content .label {
-
         font-size: 10px;
-
     }
 
     .onestepcheckout-index-index .page-main .aw-onestep-main .shipping-address-items ol .shipping-address-item {

@@ -23,12 +23,12 @@
     'tokenbaseCardFormatter': {}
     }">
         <!-- ko if: (useAcceptJs()) -->
-            <input type="hidden" name="payment[acceptjs_key]" value="" data-bind="attr: {id: getCode() + '-acceptjs-key'}, value: acceptJsKey"/>
-            <input type="hidden" name="payment[acceptjs_value]" value="" data-bind="attr: {id: getCode() + '-acceptjs-value'}, value: acceptJsValue"/>
-            <input type="hidden" name="payment[cc_last4]" value="" data-bind="attr: {id: getCode() + '-cc-last4'}, value: creditCardLast4"/>
-            <!-- ko if: (canStoreBin()) -->
-                <input type="hidden" name="payment[cc_bin]" value="" data-bind="attr: {id: getCode() + '-cc-bin'}, value: creditCardBin"/>
-            <!-- /ko -->
+        <input type="hidden" name="payment[acceptjs_key]" value="" data-bind="attr: {id: getCode() + '-acceptjs-key'}, value: acceptJsKey"/>
+        <input type="hidden" name="payment[acceptjs_value]" value="" data-bind="attr: {id: getCode() + '-acceptjs-value'}, value: acceptJsValue"/>
+        <input type="hidden" name="payment[cc_last4]" value="" data-bind="attr: {id: getCode() + '-cc-last4'}, value: creditCardLast4"/>
+        <!-- ko if: (canStoreBin()) -->
+        <input type="hidden" name="payment[cc_bin]" value="" data-bind="attr: {id: getCode() + '-cc-bin'}, value: creditCardBin"/>
+        <!-- /ko -->
         <!-- /ko -->
         <div class="payment-method-billing-address">
             <!-- ko foreach: $parent.getRegion(getBillingAddressFormName()) -->
@@ -93,12 +93,12 @@
                        ">
                 </div>
             </div>
-            <div class="field number required" data-bind="visible: isCcFormShown">
+            <div class="field number required" data-bind="visible: isCcFormShown, mageInit: {'awOscFloatLabel': {}}">
                 <label data-bind="attr: {for: getCode() + '-cc-number'}" class="label">
                     <span><!-- ko text: $t('Credit Card Number')--><!-- /ko --></span>
                 </label>
                 <div class="control">
-                    <input type="text" name="payment[cc_number]" class="input-text" value="" autocomplete="cc-number"
+                    <input type="text" maxlength="19" name="payment[cc_number]" class="input-text" value="" autocomplete="cc-number"
                            data-bind="attr: {id: getCode() + '-cc-number', title: $t('Credit Card Number'), 'data-container': getCode() + '-cc-number', 'data-validate': JSON.stringify({'required':true, 'validate-cc-number':'#' + getCode() + '-cc-type', 'validate-cc-type':'#' + getCode() + '-cc-type'})},
                     enable: true, value: creditCardNumber"/>
                 </div>
@@ -139,12 +139,13 @@
                 </div>
             </div>
             <!-- ko if: (hasVerification())-->
-            <div class="field cvv required" data-bind="attr: {id: getCode() + '-cc-type-cvv-div'}, visible: (isCcvShown)">
+            <div class="field cvv required" data-bind="attr: {id: getCode() + '-cc-type-cvv-div'}, visible: (isCcvShown), mageInit: {'awOscFloatLabel': {}}">
                 <label data-bind="attr: {for: getCode() + '-cc-cid'}" class="label">
                     <span><!-- ko text: $t('Card Verification Number')--><!-- /ko --></span>
                 </label>
                 <div class="control">
                     <input type="text"
+                           maxlength="4"
                            class="input-text cvv"
                            name="payment[cc_cid]"
                            value=""
@@ -170,7 +171,7 @@
             </div>
             <!-- /ko -->
             <!-- ko if: (canSaveCard)-->
-            <div class="field" data-bind="visible: isCcFormShown">
+            <div class="field saveForNextTime" data-bind="visible: isCcFormShown">
                 <label class="label">
                     <span></span>
                 </label>
@@ -194,7 +195,7 @@
                            class="checkbox"
                            data-bind="checked: save, attr: {id: getCode() + '-save'}"/>
                     <label class="label" data-bind="attr: {for: getCode() + '-save'}">
-                        <span><!-- ko text: $t('Save for next time')--><!-- /ko --></span>
+                        <span><!-- ko text: $t('Save for next time and create a new account')--><!-- /ko --></span>
                     </label>
                     <!-- /ko -->
                 </div>
@@ -208,7 +209,7 @@
                 &#128077; <!-- ko text: $t('Okay, ready to continue!')--><!-- /ko -->
             </div>
             <div class="no-display _hidden"  data-bind="attr: {id: getCode() + '-failed'}">
-                &#10060; <!-- ko text: $t('Please fix your payment info before continuing.')--><!-- /ko --> <span class="error-text"></span>
+                &#10060; <!-- ko text: $t('Please fix your payment info before continuing.')--><!-- /ko -->
             </div>
             <!-- /ko -->
         </fieldset>
