@@ -10,10 +10,14 @@
 ?>
 
 <?php
+
+$slidesToShow = 4;
+
 switch ($type = $block->getType()) {
 
     case 'related-rule':
         $case = 'related-rule';
+        $slidesToShow = 3;
         if ($exist = $block->hasItems()) {
             $type = 'related';
             $class = $type;
@@ -34,7 +38,7 @@ switch ($type = $block->getType()) {
 
     case 'related':
         $case = 'related';
-
+        $slidesToShow = 3;
         /** @var \Magento\Catalog\Block\Product\ProductList\Related $block */
         if ($exist = $block->getItems()->getSize()) {
             $type = 'related';
@@ -106,7 +110,7 @@ switch ($type = $block->getType()) {
             $class = $type;
 
             $image = 'cart_cross_sell_products';
-            $title = __('Complete Your Look');
+            $title = __('Check This Out');
 
             $items = $block->getItemCollection();
 
@@ -127,7 +131,7 @@ switch ($type = $block->getType()) {
             $class = $type;
 
             $image = 'cart_cross_sell_products';
-            $title = __('Complete Your Look');
+            $title = __('Check This Out');
 
             $items = $block->getItems();
 
@@ -170,7 +174,7 @@ switch ($type = $block->getType()) {
 <!-- case: <?= $case ?> -->
 
 <?php if ($exist): ?>
-    <div class="block <?= $class ?>"
+    <div class="block2 bottom-slider <?= $class ?>"
         <?php if ($type == 'related' || $type == 'upsell') { ?>
             data-limit="<?= $limit ?>" data-shuffle="<?= $shuffle ?>"
         <?php } ?>
@@ -197,7 +201,7 @@ switch ($type = $block->getType()) {
              * <?php endif; **/ ?>
 
             <div class="products wrapper products-grid products-<?= $type ?>">
-                <ol class="products list items product-items">
+                <div class="products list items product-items the-bottom-slider">
                     <?php $iterator = 1; ?>
 
                     <?php foreach ($items as $_item): ?>
@@ -208,7 +212,7 @@ switch ($type = $block->getType()) {
                             <?php endif; ?>
                         <?php endif; ?>
 
-                        <li class="item product product-item">
+                        <div class="item  product-item">
                             <?php /** if ($type == 'related' || $type == 'upsell'): ?>
                              * <?= ($iterator++ == 1) ? '<li class="item product product-item" style="display: none;">' : '</li><li class="item product product-item" style="display: none;">' ?>
                              * <?php else: ?>
@@ -296,12 +300,35 @@ switch ($type = $block->getType()) {
                             </div>
 
                             <?php /** ($iterator == count($items) + 1) ? '</li>' : '' **/ ?>
-                        </li>
+                        </div>
 
                     <?php endforeach ?>
-                </ol>
+                </div>
             </div>
         </div>
 
     </div>
+
+    <script>
+        require(["jquery", 'slick'], function ($) {
+            $(document).ready(function () {
+                $('.the-bottom-slider').slick({
+                    dots: false,
+                    infinite: false,
+                    speed: 300,
+                    slidesToShow: <?= $slidesToShow ?>,
+                    slidesToScroll: <?= $slidesToShow ?>,
+                    responsive: [
+                        {
+                            breakpoint: 767,
+                            settings: {
+                                slidesToShow: 2,
+                                slidesToScroll: 2
+                            }
+                        }
+                    ]
+                });
+            });
+        });
+    </script>
 <?php endif; ?>
