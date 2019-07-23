@@ -57,6 +57,7 @@
             margin: 0;
             padding: 0 0 20px;
             font-weight: bold;
+            text-transform: uppercase;
         }
 
         .block, .customer-review .product-details, .block-banners, .block-banners-inline {
@@ -335,12 +336,12 @@
                 }
 
                 &:after {
-                    font-size: 20px;
-                    position: absolute;
-                    right: 0;
-                    top: 50%;
-                    transform: translateY(-50%);
-                    margin-top: 0;
+                    //font-size: 20px;
+                    //position: absolute;
+                    //right: 0;
+                    //top: 50%;
+                    //transform: translateY(-50%);
+                    //margin-top: 0;
                 }
             }
 
@@ -415,8 +416,8 @@
 
             > .title {
                 &:after {
-                    font-family: @font-family-name__icon;
-                    content: "\f107";
+                    //font-family: @font-family-name__icon;
+                    //content: "\f107";
                 }
             }
         }
@@ -428,6 +429,16 @@
         .page-main & {
             .block {
                 margin-bottom: 0;
+
+                .discount {
+                    .title {
+                        margin: 0 0 10px;
+                    }
+
+                    .actions-toolbar {
+                        margin: 0 !important;
+                    }
+                }
             }
         }
 
@@ -516,10 +527,10 @@
             }
 
             input.input-text {
-                background: @light-aqua;
+                background: #ffffff;
                 height: 36px;
                 line-height: 1;
-                border: 1px solid #bfbfbf;
+                border: 1px solid @dim-gray;
                 width: 100%;
                 padding: 0 10px;
                 font-size: 16px;
@@ -529,14 +540,14 @@
         .actions-toolbar {
             .action.primary {
                 height: 36px;
-                width: 80px;
+                width: 110px;
                 line-height: 1;
-                background: @aqua;
-                color: #ffffff;
+                background: #ffffff;
+                color: @aqua;
                 text-align: center;
                 margin: 0;
                 padding: 0;
-                border: none;
+                border: 1px solid;
                 outline: 0;
                 -webkit-box-shadow: none;
                 -moz-box-shadow: none;
@@ -645,6 +656,7 @@
 
     //  Totals block
     .cart-totals {
+        margin: 0 0 10px;
         border: none;
         &:extend(.abs-sidebar-totals all);
 
