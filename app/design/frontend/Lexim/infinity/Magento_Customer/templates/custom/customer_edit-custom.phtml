@@ -53,7 +53,6 @@ $customAttributes = $block->getCustomer()->getCustomAttributes();
                         <button type="submit" class="action save primary" title="<?= /* @escapeNotVerified */ __('Save') ?>"><span><?= /* @escapeNotVerified */ __('Save Changes') ?></span></button>
                     </div>
                 </div>
-                <div></div>
             </div>
         </div>
     </fieldset>
@@ -212,8 +211,24 @@ $savedAddres = $_objectManager->get('BinaryAnvil\Customer\Block\AccountData');
 $getAddres = $savedAddres->getSavedAddress();
 
 
+$countryList = $savedAddres->getCountries();
+$regionList = $savedAddres->getRegion();
+
+// get customer default 
+$addressInfo = $_objectManager->get('BinaryAnvil\Customer\Block\Addressinfo'); 
+$shippingAddress = $addressInfo->getDefaultShippingAddress(); 
+
+$changeArray = array();
+$changeArray = $shippingAddress->__toArray();
+// echo "<pre>";print_r($changeArray);
+$street = $changeArray['street'][0]; 
+$getregion_id = $changeArray['region_id'];
+$customer_id = $changeArray['customer_id'];
+$firstname = $changeArray['firstname'];
+$lastname = $changeArray['lastname'];
 
 ?>
+
 <div class="save-address">
     <div class="title-address">
         <span>Save addresses</span>
@@ -230,6 +245,135 @@ $getAddres = $savedAddres->getSavedAddress();
             </p>
         </div>
         <div class="content-edit-address">
+            <div class="box-edit-address">
+                <div class="content-details">
+                    <div class="field field-firstname required">
+                        <label class="label" for="name">
+                            <span><?php  echo __('name') ?></span>
+                        </label>
+                        <div class="control">
+                            <input type="text" id="name" name="firstname" value="<?= $firstname;?>" title="Name" class="input-text required-entry" data-validate="{required:true}" aria-required="true">
+                        </div>
+                    </div>
+                </div>
+                <div class="content-details">
+                    <div class="field field-lastname required">
+                        <label class="label" for="lastname">
+                            <span><?php  echo __('last name') ?></span>
+                        </label>
+                        <div class="control">
+                            <input type="text" id="lastname" name="lastname" value="<?= $lastname;?>" title="Last Name" class="input-text required-entry" data-validate="{required:true}" aria-required="true">
+                        </div>
+                    </div>
+                </div>
+                <div class="content-details">
+                    <div class="field field-address required">
+                        <label class="label" for="address">
+                            <span><?php  echo __('address') ?></span>
+                        </label>
+                        <div class="control">
+                            <input type="text" id="address" name="address" value="<?= $street;?>" title="Address" class="input-text required-entry" data-validate="{required:true}" aria-required="true">
+                        </div>
+                    </div>
+                </div>
+                <div class="content-details">
+                    <div class="field field-city required">
+                        <label class="label" for="city">
+                            <span><?php  echo __('city') ?></span>
+                        </label>
+                        <div class="control">
+                            <input type="text" id="city" name="city" value="<?= $shippingAddress->getCity(); ?>" title="City" class="input-text required-entry" data-validate="{required:true}" aria-required="true">
+                        </div>
+                    </div>
+                </div>
+                <div class="content-details">
+                    <div class="field state">
+                        <label class="label" for="state">
+                            <span><?php  echo __('state') ?></span>
+                        </label>
+                        <div class="control">
+                            <?php echo $regionList; ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-details zip-code">
+                    <div class="field field-zip-code required">
+                        <label class="label" for="zipcode">
+                            <span><?php  echo __('zip code') ?></span>
+                        </label>
+                        <div class="control">
+                            <input type="text" id="zipcode" name="zipcode" value="<?= $shippingAddress->getPostCode(); ?>" title="zipcode" class="input-text required-entry" data-validate="{required:true}" aria-required="true">
+                        </div>
+                    </div>
+                </div>
+                <div class="content-details phone">
+                    <div class="field field-phone required">
+                        <label class="label" for="phone">
+                            <span><?php  echo __('phone') ?></span>
+                        </label>
+                        <div class="control">
+                            <input type="text" id="phone" name="phone" value="<?= $shippingAddress->getTelephone(); ?>" title="phone" class="input-text required-entry" data-validate="{required:true}" aria-required="true">
+                        </div>
+                    </div>
+                </div>
+                <div class="content-details country">
+                    <div class="field country">
+                        <label class="label" for="country">
+                            <span><?php  echo __('country') ?></span>
+                        </label>
+                        <div class="control">
+                            <?php echo $countryList; ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="primary">
+                    <button type="submit" class="action save primary" title="<?= /* @escapeNotVerified */ __('Save') ?>"><span><?= /* @escapeNotVerified */ __('Save Changes') ?></span></button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+<script>
+    require(['jquery'], function($) {
+        $(function(){
+            $('.link-edit-address').click(function(e) {
+                if ( $( this ).hasClass( "focus" ) ) {
+                   $(this).removeClass('focus'); 
+                   $(this).parent().parent().removeClass('active');
+                }else{
+                    $(this).addClass('focus'); 
+                   $(this).parent().parent().addClass('active');
+                }
+            });
+            // select state
+            $('.content-details .state #state option[value="<?= $getregion_id ?>"]').attr('selected','selected');
+
+              $(".action.save.primary").click(function(e) {
+
+                var name = $('.box-edit-address #name').val();
+                var lastname = $('.box-edit-address #lastname').val();
+                var address = $('.box-edit-address #address').val();
+                var city = $('.box-edit-address #city').val();
+                var phone = $('.box-edit-address #phone').val();
+                var zipcode = $('.box-edit-address #zipcode').val();
+                var state = $( ".box-edit-address #state" ).val();
+                var country = $( ".box-edit-address #country" ).val();
+                var customer_id = <?= $customer_id ?>;
+
+                jQuery.ajax({
+                    url: '<?php echo $this->getBaseUrl().'content/load/load'?>',
+                    type: "POST",
+                    dataType: 'json',
+                    showLoader: true,
+                    data: {name:name, lastname:lastname, address:address, city:city, phone:phone, zipcode:zipcode, state:state, country:country, customer_id:customer_id
+                    },
+                    success: function(data){
+                        location.reload();
+                    }
+                });
+            });
+
+        });
+    });
+</script>

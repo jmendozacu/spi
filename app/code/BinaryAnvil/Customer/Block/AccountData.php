@@ -82,6 +82,7 @@ class AccountData extends Template
         Mapper $addressMapper,
         OrderCollection $orderCollection,
         Registry $registry,
+        \Magento\Directory\Block\Data $directoryBlock, 
         array $data = []
     ) {
         $this->customerSession = $customerSession->create();
@@ -89,6 +90,7 @@ class AccountData extends Template
         $this->addressRepository = $addressRepository;
         $this->addressMapper = $addressMapper;
         $this->orderCollection = $orderCollection;
+        $this->directoryBlock = $directoryBlock;
         $registry->register('tokenbase_method', 'authnetcim');
 
         parent::__construct($context, $data);
@@ -191,5 +193,46 @@ class AccountData extends Template
         } catch (\Magento\Framework\Exception\NoSuchEntityException $e) {
             return null;
         }
+    }
+
+
+    /**
+     * add new funtion  dev
+     */
+    
+    /**
+     * Get customer data
+     * @return array|false
+     */
+    public function getCustomerData()
+    {
+        if ($customer = $this->getCustomer()) {
+            $customerData['name'] = $customer->getFirstname();
+            $customerData['email'] = $customer->getEmail();
+
+            return $customerData;
+        }
+        return false;
+    }
+
+    /**
+     * Get customer profile edit url
+     * @return string
+     */
+    public function getCustomerEditUrl()
+    {
+        return $this->getUrl('customer/account/edit');
+    }
+
+    public function getCountries()
+    {
+        $country = $this->directoryBlock->getCountryHtmlSelect();
+        return $country;
+    }
+    
+    public function getRegion()
+    {
+        $region = $this->directoryBlock->getRegionHtmlSelect();
+        return $region;
     }
 }

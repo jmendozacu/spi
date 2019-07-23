@@ -227,7 +227,10 @@
         }
 
         .title {
+
             strong {
+                .lib-heading(h4);
+
                 .column.main & {
                 }
             }
@@ -245,6 +248,7 @@
 
     .field.password {
         .control {
+
             .mage-error {
             }
 
@@ -638,7 +642,11 @@
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
     .login-container {
+        &:extend(.abs-add-clearfix-desktop all);
+
         .block {
+            &:extend(.abs-blocks-2columns all);
+
             &.login {
                 .actions-toolbar {
                     > .primary {
@@ -654,6 +662,7 @@
 
         .fieldset {
             &:after {
+                &:extend(.abs-margin-for-forms-desktop all);
             }
 
             > .field {
@@ -757,13 +766,15 @@
 
 // lampk49 dev start
 
-//
+
+// 
 // DASHBOARD
 //  ______________________________________________
 
 .customer-account-index {
 
 }
+
 
 //
 //  Desktop
@@ -1523,191 +1534,253 @@
     // my profile style
 
     .customer-account-edit {
-        .page-title-wrapper {
-            .page-title {
-                span {
-                    font-family: 'ProximaNova';
-                    font-size: 20px;
-                    font-weight: bold;
-                    color: #3e3935;
-                    text-align: left;
-                    line-height: 45px;
-                    -webkit-transform: scale(1.26, 1.29);
-                    -ms-transform: scale(1.26, 1.29);
-                    transform: scale(1.26, 1.29);
-                    text-transform: uppercase;
+        .column.main {
+            padding-bottom: 60px;
+
+            .page-title-wrapper {
+                .page-title {
+                    span {
+                        font-family: 'ProximaNova';
+                        font-size: 20px;
+                        font-weight: bold;
+                        color: #3e3935;
+                        text-align: left;
+                        line-height: 45px;
+                        -webkit-transform: scale(1.26, 1.29);
+                        -ms-transform: scale(1.26, 1.29);
+                        transform: scale(1.26, 1.29);
+                        text-transform: uppercase;
+                    }
                 }
             }
-        }
 
-        .form.form-edit-account {
-            .fieldset {
-                margin: 0;
-                border-bottom: 1px solid #74706d;
-                display: block !important;
-
-                .field {
+            .form.form-edit-account {
+                .fieldset {
+                    margin: 0;
+                    border-bottom: 1px solid #74706d;
                     display: block !important;
-                    margin: 10px 0;
-                    position: relative;
 
-                    .wrap {
-                        .col {
-                            display: inline-block;
+                    .field {
+                        display: block !important;
+                        margin: 10px 0;
+                        position: relative;
 
-                            span {
-                                font-family: 'ProximaNova';
-                                font-size: 14px;
-                                font-weight: bold;
-                                color: #74706d;
-                                text-align: left;
-                                letter-spacing: 0.02em;
-                                line-height: 30px;
-                                text-transform: uppercase;
-                                -webkit-transform: scale(1.15, 1.16);
-                                -ms-transform: scale(1.15, 1.16);
-                                transform: scale(1.15, 1.16);
+                        .wrap {
+                            .col {
+                                display: inline-block;
+
+                                span {
+                                    font-family: 'ProximaNova';
+                                    font-size: 14px;
+                                    font-weight: bold;
+                                    color: #74706d;
+                                    text-align: left;
+                                    letter-spacing: 0.02em;
+                                    line-height: 30px;
+                                    text-transform: uppercase;
+                                    -webkit-transform: scale(1.15, 1.16);
+                                    -ms-transform: scale(1.15, 1.16);
+                                    transform: scale(1.15, 1.16);
+                                }
+
+                                a {
+                                    font-family: 'ProximaNova';
+                                    font-size: 14px;
+                                    font-weight: bold;
+                                    color: #3e3935;
+                                    text-align: right;
+                                    line-height: 30px;
+                                    -webkit-transform: scale(1.15, 1.16);
+                                    -ms-transform: scale(1.15, 1.16);
+                                    transform: scale(1.15, 1.16);
+                                    text-transform: uppercase;
+                                }
+
+                                a:hover, a:visited, .alink:visited {
+                                    text-decoration: none;
+                                }
                             }
 
-                            a {
-                                font-family: 'ProximaNova';
+                            .col.value {
+                                font-family: 'Hind';
                                 font-size: 14px;
-                                font-weight: bold;
                                 color: #3e3935;
-                                text-align: right;
+                                text-align: left;
                                 line-height: 30px;
                                 -webkit-transform: scale(1.15, 1.16);
                                 -ms-transform: scale(1.15, 1.16);
                                 transform: scale(1.15, 1.16);
-                                text-transform: uppercase;
                             }
 
-                            a:hover, a:visited, .alink:visited {
-                                text-decoration: none;
+                            .col.lable, .col.value {
+                                display: inline-block;
+                                width: 30%;
+                            }
+
+                            .col.action {
+                                display: inline-block;
+                                width: 39%;
+                                text-align: right;
+                                padding-right: 50px;
                             }
                         }
 
-                        .col.value {
+                        .content {
+                            display: none;
+                            position: relative;
+
+                            .action.cancel {
+                                float: right;
+                                padding-right: 50px;
+                                background: transparent;
+                                border: none;
+                                text-transform: uppercase;
+                                padding: 0px 55px 0 0;
+                                color: #3ac1cc;
+                            }
+
+                            .content-details {
+                                margin: 10px 0;
+                                position: relative;
+
+                                .field {
+                                    .label {
+                                        font-family: 'Hind';
+                                        font-size: 12px;
+                                        color: #74706d;
+                                        text-align: left;
+                                        letter-spacing: 0.02em;
+                                        line-height: 21px;
+                                        top: -11px;
+                                    }
+
+                                    input {
+                                        max-width: 300px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .fieldset.name {
+                    border-top: 1px solid #74706d;
+                }
+            }
+
+            .save-address {
+                padding: 20px 0;
+                border-bottom: 1px solid #74706d;
+                
+                .title-address {
+                    display: table;
+                    width: 100%;
+
+                    span {
+                        font-size: 16px;
+                        font-weight: bold;
+                        color: #3e3935;
+                        line-height: 45px;
+                        text-transform: uppercase;
+                        text-align: left;
+                        display: table-cell;
+                        vertical-align: middle;
+                        float: none;
+                        margin: auto;
+                    }
+
+                    a {
+                        padding-right: 53px;
+                        font-family: 'ProximaNova';
+                        font-size: 14px;
+                        font-weight: bold;
+                        color: #3e3935;
+                        line-height: 30px;
+                        text-transform: uppercase;
+                        text-align: right;
+                        display: table-cell;
+                        vertical-align: middle;
+                        float: none;
+                        margin: auto;
+                    }
+
+                    a:hover {
+                        text-decoration: none;
+                    }
+                }
+
+                .box-address {
+                    .content-address {
+                        p {
                             font-family: 'Hind';
                             font-size: 14px;
                             color: #3e3935;
                             text-align: left;
-                            line-height: 30px;
-                            -webkit-transform: scale(1.15, 1.16);
-                            -ms-transform: scale(1.15, 1.16);
-                            transform: scale(1.15, 1.16);
-                        }
-
-                        .col.lable, .col.value {
-                            display: inline-block;
-                            width: 30%;
-                        }
-
-                        .col.action {
-                            display: inline-block;
-                            width: 39%;
-                            text-align: right;
-                            padding-right: 50px;
+                            line-height: 18px;
+                            margin-bottom: 0;
                         }
                     }
 
-                    .content {
+                    .content-edit-address {
                         display: none;
-                        position: relative;
-
-                        .action.cancel {
-                            float: right;
-                            padding-right: 50px;
-                            background: transparent;
-                            border: none;
-                            text-transform: uppercase;
-                            padding: 0px 55px 0 0;
-                            color: #3ac1cc;
-                        }
-
+                        max-width: 300px;
+                        
                         .content-details {
-                            margin: 10px 0;
-                            position: relative;
+                            padding: 10px 0;
 
                             .field {
-                                .label {
+                                position: relative;
+
+                                 .label {
                                     font-family: 'Hind';
                                     font-size: 12px;
                                     color: #74706d;
                                     text-align: left;
                                     letter-spacing: 0.02em;
-                                    line-height: 21px;
-                                    top: -11px;
+                                    position: absolute;
+                                    top: -6px;
+                                    left: 10px;
+                                    padding: 0 5px;
+                                    font-weight: normal;
+                                    line-height: 1;
+                                    height: 12px;
+                                    background: #fff;
+                                    text-transform: lowercase;
                                 }
 
-                                input {
-                                    max-width: 300px;
+                                select {
+                                    height: 40px;
                                 }
                             }
+                        }
+
+                        .content-details.zip-code {
+                            width: 48%;
+                            display: inline-block;
+                            float: left;
+                        }
+
+                        .content-details.phone {
+                            float: right;
+                            width: 48%;
+                            display: inline-block;
+                        }
+
+                        .content-details.country {
+                            float: left;
+                            width: 100%;
                         }
                     }
                 }
             }
 
-            .fieldset.name {
-                border-top: 1px solid #74706d;
-            }
-        }
-
-        .save-address {
-            padding: 20px 0;
-
-            .title-address {
-                display: table;
-                width: 100%;
-
-                span {
-                    font-size: 16px;
-                    font-weight: bold;
-                    color: #3e3935;
-                    line-height: 45px;
-                    text-transform: uppercase;
-                    text-align: left;
-                    display: table-cell;
-                    vertical-align: middle;
-                    float: none;
-                    margin: auto;
-                }
-
-                a {
-                    padding-right: 53px;
-                    font-family: 'ProximaNova';
-                    font-size: 14px;
-                    font-weight: bold;
-                    color: #3e3935;
-                    line-height: 30px;
-                    text-transform: uppercase;
-                    text-align: right;
-                    display: table-cell;
-                    vertical-align: middle;
-                    float: none;
-                    margin: auto;
-                }
-
-                a:hover {
-                    text-decoration: none;
-                }
-            }
-
-            .box-address {
+            .save-address.active {
                 .content-address {
-                    p {
-                        font-family: 'Hind';
-                        font-size: 14px;
-                        color: #3e3935;
-                        text-align: left;
-                        line-height: 18px;
-                        margin-bottom: 0;
-                    }
+                    display: none;
                 }
 
                 .content-edit-address {
-                    display: none;
+                    display: block;
                 }
             }
         }
