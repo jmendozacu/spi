@@ -121,6 +121,7 @@
                     color: @gray;
                     font-size: 16px;
                     text-transform: uppercase;
+                    border: none;
                     display: none;
 
                     &.item {
@@ -727,6 +728,10 @@
         .cart {
             thead tr th.col, tbody .cart-item-td.quantity, tbody .cart-item-td.price, tbody .cart-item-td.actions {
                 display: table-cell;
+            }
+
+            thead tr th.col {
+                padding: 15px 0;
             }
 
             thead tr th.col.item > span {
