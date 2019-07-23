@@ -3,7 +3,7 @@
 
 /**  @var $block \Magento\Checkout\Block\Cart\Grid */
 ?>
-<?php $mergedCells = ($this->helper('Magento\Tax\Helper\Data')->displayCartBothPrices() ? 2 : 1); ?>
+<?php // $mergedCells = ($this->helper('Magento\Tax\Helper\Data')->displayCartBothPrices() ? 2 : 1); ?>
 <?= $block->getChildHtml('form_before') ?>
 <form action="<?=  $block->getUrl('checkout/cart/updatePost') ?>"
           method="post"
@@ -12,10 +12,10 @@
           class="form form-cart">
     <?= $block->getBlockHtml('formkey') ?>
     
-    <div class="cart table-wrapper<?= $mergedCells == 2 ? ' detailed' : '' ?>">
-        <?php if ($block->getPagerHtml()): ?>
+    <div class="cart table-wrapper <?php // echo $mergedCells == 2 ? ' detailed' : '' ?>">
+        <?php /** if ($block->getPagerHtml()): ?>
             <div class="cart-products-toolbar cart-products-toolbar-top toolbar" data-attribute="cart-products-toolbar-top"><?= $block->getPagerHtml() ?></div>
-        <?php endif ?>
+        <?php endif */ ?>
         
         <table id="shopping-cart-table"
                class="cart items data table"
@@ -23,24 +23,22 @@
                data-mage-init='{"shoppingCart":{"emptyCartButton": "action.clear",
                "updateCartActionContainer": "#update_cart_action_container"}}'>
 
-            <!-- <caption role="heading" aria-level="2" class="table-caption">--><?//=  __('Shopping Cart Items') ?><!--</caption>-->
-
             <?= $block->getChildHtml('checkout.cart.item.renderers.configurable.actions') ?>
 
-            <?php /**
             <thead>
                 <tr>
-                    <th class="col item" scope="col"><span><?=  __('Product') ?></span></th>
-                    <th class="col price" scope="col"><span><?=  __('Each') ?></span></th>
+                    <th class="col item" scope="col"><span><?=  __('Item Description') ?></span></th>
                     <th class="col qty" scope="col"><span><?=  __('Quantity') ?></span></th>
-                    <th class="col subtotal" scope="col"><span><?=  __('Total') ?></span></th>
+                    <th class="col price" scope="col"><span><?=  __('Price') ?></span></th>
+                    <th class="col action" scope="col"><span></span></th>
                 </tr>
             </thead>
-            **/ ?>
 
+            <tbody>
             <?php foreach ($block->getItems() as $_item): ?>
                 <?= $block->getItemHtml($_item) ?>
             <?php endforeach ?>
+            </tbody>
         </table>
         
         <?php if ($block->getPagerHtml()): ?>

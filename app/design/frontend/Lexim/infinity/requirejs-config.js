@@ -1,6 +1,6 @@
 var config = {
     paths: {
-        slick: 'js/slick'
+        slick: 'js/slick.min'
     },
     shim: {
         slick: {

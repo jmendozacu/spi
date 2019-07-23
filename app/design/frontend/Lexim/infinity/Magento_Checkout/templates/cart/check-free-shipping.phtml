@@ -4,7 +4,7 @@
 
 // Get sub total
 $subTotal = $block->getSubTotal();
-$check = 124.99 - (float) $subTotal;
+$check = 124.99 - (float)$subTotal;
 $check = round($check, 2);
 
 // Get User name
@@ -20,9 +20,10 @@ if ($block->customerLoggedIn()) {
 
 <?php if ($check > 0) { ?>
 
-<div class="cart-check-free-shipping">
-  <p><?= $firstName ?> are only $<span><?= $check ?></span> away from free shipping!</p>
-</div>
+    <div class="cart-check-free-shipping">
+        <p><?= $firstName ?> are only $<span><?= $check ?></span> away from free shipping. So throw in some socks, an
+            underscrub or a top to seal the deal.</p>
+    </div>
 
 <?php } ?>
 

@@ -4,33 +4,22 @@
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <update handle="checkout_cart_item_renderers"/>
     <body>
+
+        <!-- Rename title -->
         <referenceBlock name="page.main.title">
             <action method="setPageTitle">
-                <argument translate="true" name="title" xsi:type="string">Shopping Bag</argument>
+                <argument translate="true" name="title" xsi:type="string">My Shopping Bag</argument>
             </action>
         </referenceBlock>
 
+        <!-- Rename summary title -->
         <referenceBlock name="checkout.cart.summary.title">
             <arguments>
-                <argument translate="true" name="text" xsi:type="string">Order Summary</argument>
+                <argument translate="true" name="text" xsi:type="string">Summary</argument>
             </arguments>
         </referenceBlock>
 
-        <!-- Mobile need-help and FAQ blocks -->
-        <container name="cart-mobile-block" htmlTag="div" htmlClass="mobile-block-wrapper">
-            <block class="Magento\Cms\Block\Block" name="mobile_need_help" before="-">
-                <arguments>
-                    <argument name="block_id" xsi:type="string">checkout_page_block_need_help</argument>
-                </arguments>
-            </block>
-            <block class="Magento\Cms\Block\Block" name="mobile_faqs_checkout" after="-">
-                <arguments>
-                    <argument name="block_id" xsi:type="string">checkout_page_block_faqs</argument>
-                </arguments>
-            </block>
-        </container>
-
-
+        <!--  Cart container -->
         <referenceContainer name="checkout.cart.container">
             <!--            <block class="Magento\Framework\View\Element\Template" name="checkout.cart.estimation" template="Magento_Checkout::cart/estimation.phtml">-->
             <!--                <arguments>-->
@@ -54,34 +43,24 @@
 
             <!-- Check free shipping  Magento\Framework\View\Element\Template -->
             <container name="cart_page.left_column" htmlTag="div" htmlClass="leftColumnCartPage" before="-">
-                <block class="Magento\Customer\Block\Account\Customer" name="cart.check.free.ship"
+                <block class="Lexim\Override\Block\Magento\Customer\Customer" name="cart.check.free.ship"
                        template="Magento_Checkout::cart/check-free-shipping.phtml"/>
             </container>
 
 
             <container name="checkout.cart.right.column" htmlTag="div" htmlClass="cart-summary-wrapper"
                        after="cart_page.left_column">
-                <block class="Magento\Cms\Block\Block" name="infnt_need-help" before="infnt_faqs_checkout">
+                <!-- Add contact_us_block block -->
+                <block class="Magento\Cms\Block\Block" name="contact_us_block" before="-">
                     <arguments>
-                        <argument name="block_id" xsi:type="string">checkout_page_block_need_help</argument>
+                        <argument name="block_id" xsi:type="string">contact_us_block</argument>
                     </arguments>
                 </block>
-                <block class="Magento\Cms\Block\Block" name="infnt_faqs_checkout" after="-">
-                    <arguments>
-                        <argument name="block_id" xsi:type="string">checkout_page_block_faqs</argument>
-                    </arguments>
-                </block>
-            </container>
 
-            <container name="cart-mobile-block" htmlTag="div" htmlClass="mobile-block-wrapper" after="-">
-                <block class="Magento\Cms\Block\Block" name="mobile_need_help" before="-">
+                <!-- Add quick_link_block block -->
+                <block class="Magento\Cms\Block\Block" name="quick_link_block" after="-">
                     <arguments>
-                        <argument name="block_id" xsi:type="string">checkout_page_block_need_help</argument>
-                    </arguments>
-                </block>
-                <block class="Magento\Cms\Block\Block" name="mobile_faqs_checkout" after="-">
-                    <arguments>
-                        <argument name="block_id" xsi:type="string">checkout_page_block_faqs</argument>
+                        <argument name="block_id" xsi:type="string">quick_link_block</argument>
                     </arguments>
                 </block>
             </container>
@@ -106,11 +85,11 @@
             </block>
         </referenceBlock>
 
-        <!-- remove gift card account -->
+        <!-- Remove gift card account -->
         <referenceBlock name="checkout.cart.giftcardaccount" remove="true"/>
 
-        <!-- Move title to left column in cart page -->
-        <move element="page.main.title" destination="cart_page.left_column" before="-"/>
+        <!-- Move title in top cart page -->
+        <move element="page.main.title" destination="checkout.cart.items" before="checkout.cart.container"/>
 
         <!-- Move products table to left column in cart page -->
         <move element="checkout.cart.form" destination="cart_page.left_column" after="-"/>
@@ -126,8 +105,6 @@
         <!-- Move cart summary to right column in cart page -->
         <move element="cart.summary" destination="checkout.cart.right.column" before="-"/>
 
-        <!-- Create custom block after checkout.cart.crosssell -->
-        <move element="cart-mobile-block" destination="checkout.cart.items" after="-"/>
 
 
     </body>

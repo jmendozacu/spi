@@ -474,19 +474,17 @@ define([
             $widget._EmulateSelected($widget._getSelectedAttributes());
         },
 
-
+        /**
+         * Listen event when user click size chart in detail page
+         */
         listenClickSizeChart: function() {
 
             $('#size-chart-link').click(function () {
                 let sizeChart = $('.size-chart');
-                console.log("click");
                 if (sizeChart.hasClass('open')) {
-                    console.log('has');
                     sizeChart.removeClass('open');
                 } else {
-                    console.log('not');
                     sizeChart.addClass('open');
-
                 }
             });
 
