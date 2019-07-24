@@ -174,7 +174,7 @@ switch ($type = $block->getType()) {
 <!-- case: <?= $case ?> -->
 
 <?php if ($exist): ?>
-    <div class="block2 bottom-slider <?= $class ?>"
+    <div class="bottom-slider <?= $class ?>"
         <?php if ($type == 'related' || $type == 'upsell') { ?>
             data-limit="<?= $limit ?>" data-shuffle="<?= $shuffle ?>"
         <?php } ?>
@@ -200,8 +200,8 @@ switch ($type = $block->getType()) {
              * </div>
              * <?php endif; **/ ?>
 
-            <div class="products wrapper products-grid products-<?= $type ?>">
-                <div class="products list items product-items the-bottom-slider">
+            <div class="products products-grid products-<?= $type ?>">
+                <div class="the-bottom-slider">
                     <?php $iterator = 1; ?>
 
                     <?php foreach ($items as $_item): ?>
@@ -212,7 +212,7 @@ switch ($type = $block->getType()) {
                             <?php endif; ?>
                         <?php endif; ?>
 
-                        <div class="item  product-item">
+                        <div class="item product-item">
                             <?php /** if ($type == 'related' || $type == 'upsell'): ?>
                              * <?= ($iterator++ == 1) ? '<li class="item product product-item" style="display: none;">' : '</li><li class="item product product-item" style="display: none;">' ?>
                              * <?php else: ?>
@@ -312,7 +312,7 @@ switch ($type = $block->getType()) {
     <script>
         require(["jquery", 'slick'], function ($) {
             $(document).ready(function () {
-                $('.the-bottom-slider').slick({
+                jQuery('.the-bottom-slider').slick({
                     dots: false,
                     infinite: false,
                     speed: 300,

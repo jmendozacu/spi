@@ -1,0 +1,118 @@
+<!-- Part of column top and sidebar for mobile devices -->
+<div class="aw-mobile">
+    <!-- ko foreach: getRegion('column-top') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+    <!--/ko-->
+    <div class="aw-onestep aw-onestep-sidebar" data-bind="mageInit: {'awOscSidebar':{}}">
+        <div class="aw-onestep-sidebar-wrapper">
+            <div class="aw-onestep-sidebar-content">
+                <!-- ko foreach: getRegion('cart-items') -->
+                    <!-- ko template: getTemplate() --><!-- /ko -->
+                <!--/ko-->
+                <!-- ko foreach: getRegion('totals') -->
+                    <!-- ko template: getTemplate() --><!-- /ko -->
+                <!--/ko-->
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Shipping and payment methods -->
+<div class="aw-onestep aw-onestep-main">
+    <div class="aw-mobile-hide">
+        <!-- ko foreach: getRegion('column-top') -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+        <!--/ko-->
+    </div>
+    <!-- ko foreach: getRegion('messages') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+    <!--/ko-->
+    <!-- ko foreach: getRegion('authentication') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+    <!--/ko-->
+    <!-- ko foreach: getRegion('email') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+    <!--/ko-->
+    <ul class="aw-onestep-groups">
+        <!-- ko foreach: getRegion('amazon-button-region') -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+        <!--/ko-->
+        <!-- ko foreach: getRegion('shippingAddress') -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+        <!--/ko-->
+        <!-- ko foreach: getRegion('shippingMethod') -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+        <!--/ko-->
+        <!-- ko foreach: getRegion('paymentMethod') -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+        <!--/ko-->
+    </ul>
+</div>
+
+<!-- Sidebar -->
+<div class="aw-onestep aw-onestep-sidebar" data-bind="mageInit: {'awOscSidebar':{}}">
+    <div class="aw-onestep-sidebar-wrapper">
+
+        <div class="aw-mobile-hide">
+            <div class="aw-onestep-sidebar-header">
+                <span data-bind="i18n: 'Summary'"></span>
+            </div>
+        </div>
+
+        <div class="aw-onestep-sidebar-content">
+
+            <!-- ko foreach: getRegion('totals') -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+            <!-- ko foreach: getRegion('payment-options') -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+
+            <div class="aw-mobile-hide">
+                <!-- ko foreach: getRegion('cart-items') -->
+                <!-- ko template: getTemplate() --><!-- /ko -->
+                <!--/ko-->
+            </div>
+
+            <div class="aw-onestep-sidebar-block aw-sidebar-before-place-order">
+                <div class="aw-onestep-sidebar-block_title"></div>
+                <div class="aw-onestep-sidebar-block_content">
+                    <!-- ko foreach: getRegion('before-place-order') -->
+                    <!-- ko template: getTemplate() --><!-- /ko -->
+                    <!--/ko-->
+                </div>
+            </div>
+            <!-- ko foreach: getRegion('order-note') -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+            <!-- ko foreach: getRegion('actions-toolbar') -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+        </div>
+    </div>
+
+    <!-- ko foreach: getRegion('trustSeals') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+    <!--/ko-->
+
+    <!-- block id: contact_us_block -->
+    <div class="static-block">
+        <p class="title">CONTACT US</p>
+        <p class="bold">Hours:</p>
+        <p>Monday - Friday (9am – 9pm ET)</p>
+        <p>Saturday (9am – 5pm ET)</p>
+        <p class="bold">Phone:</p>
+        <p>(800) 261-4390</p>
+        <p class="bold">Email:</p>
+        <p><a href="mailto:CustomerService@infinityscrubs.com" class="email">CustomerService@infinityscrubs.com</a></p>
+    </div>
+
+    <!-- Block id: quick_link_block -->
+    <div class="static-block">
+        <p class="title">QUICK LINKS</p>
+        <p><a href="https://mcprod.infinityscrubs.com/faqs#ship" target="_blank">How much does shipping cost?</a></p>
+        <p><a href="https://mcprod.infinityscrubs.com/faqs#return" target="_blank">What is your return policy?</a></p>
+        <p><a href="https://mcprod.infinityscrubs.com/faqs#return" target="_blank">How do I exchange an item?</a></p>
+        <p class="bold"><a href="https://mcprod.infinityscrubs.com/faqs#territories" target="_blank">Do you ship to APO, FPO and Puerto Rico?</a></p>
+    </div>
+</div>
