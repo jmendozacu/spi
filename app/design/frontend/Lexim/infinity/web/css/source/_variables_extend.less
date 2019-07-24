@@ -1,4 +1,3 @@
-
 //
 //  Primary colors
 //  ---------------------------------------------
@@ -50,10 +49,6 @@
 
 @modal-popup__width: 50%;
 
-
-
-
-
 // Break points
 @screen__xxs: 320px;
 @screen__xs: 480px;
@@ -82,6 +77,7 @@
 @icon-acs-bag: '\e808';
 @icon-acs-star-empty: '\e800';
 @icon-acs-star: '\e801';
+@icon-acs-arrow-left: '';
 
 & when (@media-common = true) {
 
@@ -227,6 +223,18 @@
     .icon-elo-bag:before {
         content: '\e808';
     }
+
+    /* Slick */
+    @font-face {
+        font-family: 'slick';
+        font-weight: normal;
+        font-style: normal;
+        src: url('@{main-font-path}slick.eot');
+        src: url('@{main-font-path}slick.eot?#iefix') format('embedded-opentype'),
+        url('@{main-font-path}slick.woff') format('woff'),
+        url('@{main-font-path}slick.ttf') format('truetype'),
+        url('@{main-font-path}slick.svg#slick') format('svg');
+    }
 }
 
 // function
@@ -300,7 +308,7 @@
     transform: @value;
 }
 
-.border-radius(@border-value){
+.border-radius(@border-value) {
     -webkit-border-radius: @border-value;
     -moz-border-radius: @border-value;
     border-radius: @border-value;
