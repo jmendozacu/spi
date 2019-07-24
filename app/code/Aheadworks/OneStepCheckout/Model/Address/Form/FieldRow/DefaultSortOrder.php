@@ -10,12 +10,24 @@ class DefaultSortOrder
     /**
      * @var array
      */
+    // private $defaultFieldRowsSortOrder = [
+    //     'name-field-row' => 0,
+    //     'address-field-row' => 1,
+    //     'city-field-row' => 2,
+    //     'country-region-zip-field-row' => 3,
+    //     'phone-company-field-row' => 4
+    // ];
+
     private $defaultFieldRowsSortOrder = [
         'name-field-row' => 0,
         'address-field-row' => 1,
         'city-field-row' => 2,
-        'country-region-zip-field-row' => 3,
-        'phone-company-field-row' => 4
+        'country-field-row' => 3,
+        'region-field-row' => 3,
+        'zip-field-row' => 3,
+        'phone-field-row' => 4,
+        'company-field-row' => 5,
+        'fax-field-row' => 6
     ];
 
     /**
