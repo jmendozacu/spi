@@ -145,6 +145,11 @@
                     cursor: pointer;
                 }
 
+                .field-email-inner {
+                    position: relative;
+                    margin-top: 20px;
+                }
+
                 .field-tooltip .field-tooltip-action {
                     display: none;
                 }
@@ -260,6 +265,10 @@
                     }
                 }
 
+                label.label[for="billing-address-same-as-shipping"]:before {
+                    margin-right: 18px;
+                }
+
                 #billing-address-same-as-shipping:checked + .label:before {
                     content: 'x';
                 }
@@ -352,7 +361,6 @@
                     &[name="shippingAddress.country_id"] {
                         display: none;
                     }
-
 
                 }
 
@@ -483,8 +491,6 @@
                     width: 100%;
 
                     .field {
-                        margin: 5px 0;
-
                         .field-tooltip.toggle {
                             top: 7px !important;
                         }
@@ -528,7 +534,7 @@
 
                 .onestep-billing-address .choice,
                 .onestep-shipping-address .choice {
-                    margin: 20px 5px;
+                    margin: 20px 0;
                     width: inherit;
                 }
 
@@ -943,7 +949,7 @@
                     -webkit-box-sizing: border-box;
                     -moz-box-sizing: border-box;
                     box-sizing: border-box;
-                    padding: 25px 20px;
+                    padding: 0 0 20px;
                     position: relative;
 
                     .label {
@@ -971,8 +977,7 @@
 
                     input[type='radio'] {
                         + label:before {
-                            margin-left: 14px !important;
-                            margin-top: -6px !important;
+                            margin-right: 18px;
                         }
 
                         &.radio {
@@ -1117,9 +1122,10 @@
                             width: 50%;
                             padding: 10px;
 
-                            &:nth-child(1),&:nth-child(2) {
+                            &:nth-child(1), &:nth-child(2) {
                                 width: 100%;
                                 padding: 0;
+
                                 .fl-label {
                                     padding: 10px;
                                 }
@@ -1130,9 +1136,9 @@
                                 height: 0;
                                 padding: 0;
                                 margin: 0;
+                                display: none;
                             }
                         }
-
 
                     }
                 }
@@ -2465,16 +2471,6 @@
 .onestepcheckout-index-index .page-main .checkout-container .aw-onestep-sidebar-content .aw-sidebar_order-note span:hover {
     color: @aqua !important;
     text-decoration: none !important;
-}
-
-.onestepcheckout-index-index .page-main .aw-onestep-main .email {
-    margin: 0 5px;
-}
-
-@media only screen and (max-width: 639px) {
-    .onestepcheckout-index-index .page-main .checkout-container .aw-onestep-main .email .login-button-wrapper {
-        margin: 0 15px;
-    }
 }
 
 // End - fix bug cc
