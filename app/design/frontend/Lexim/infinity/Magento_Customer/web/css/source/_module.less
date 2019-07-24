@@ -662,6 +662,7 @@
 
         .fieldset {
             &:after {
+                &:extend(.abs-margin-for-forms-desktop all);
             }
 
             > .field {
@@ -766,7 +767,7 @@
 // lampk49 dev start
 
 
-// 
+//
 // DASHBOARD
 //  ______________________________________________
 
@@ -1782,9 +1783,171 @@
                     display: block;
                 }
             }
+
+            // My local retailer
+
+            .my-local-retailer {
+                padding-top: 40px;
+
+                .box-local-retailer {
+                    .header-retailer {
+                        max-width: 700px;
+
+                        .title {
+                            font-family: 'ProximaNova';
+                            font-size: 20px;
+                            font-weight: bold;
+                            color: #3e3935;
+                            text-align: left;
+                            line-height: 45px;
+                            -webkit-transform: scale(1.26, 1.29);
+                            -ms-transform: scale(1.26, 1.29);
+                            transform: scale(1.26, 1.29);
+                            text-transform: uppercase;
+                        }
+
+                        .text-retails {
+                            font-family: 'Hind';
+                            font-size: 14px;
+                            color: #3e3935;
+                            text-align: left;
+                            line-height: 18px;
+                        }
+                    }
+
+                    .content-retailer {
+                        max-width: 700px;
+                        padding-bottom: 40px;
+
+                        span.find {
+                            font-family: 'ProximaNova';
+                            font-size: 14px;
+                            font-weight: bold;
+                            color: #3e3935;
+                            text-align: left;
+                            display: block;
+                            padding: 10px 0;
+                        }
+
+                        .content-details.zip {
+                            width: 44%;
+                            display: inline-block;
+                            float: left;
+                            padding: 10px 0;
+
+                            .field-zip {
+                                position: relative;
+
+                                .label {
+                                    font-family: 'Hind';
+                                    font-size: 12px;
+                                    color: #74706d;
+                                    text-align: left;
+                                    letter-spacing: 0.02em;
+                                    position: absolute;
+                                    top: -6px;
+                                    left: 10px;
+                                    padding: 0 5px;
+                                    font-weight: normal;
+                                    line-height: 1;
+                                    height: 12px;
+                                    background: #fff;
+                                    text-transform: lowercase;
+
+                                    span {
+                                        font-family: 'Hind';
+                                        font-size: 12px;
+                                        color: #74706d;
+                                        text-align: left;
+                                        font-weight: normal;
+                                    }
+                                }
+
+                                input {
+                                    border: 2px solid #a6a3a1;
+                                }
+                            }
+                        }
+
+                        .content-details.distance {
+                            width: 44%;
+                            display: inline-block;
+                            float: right;
+                            padding: 10px 0;
+
+                            select {
+                                height: 40px;
+                                border: 2px solid #a6a3a1;
+                            }
+                        }
+
+                        .join-text {
+                            display: inline-block;
+                            text-align: center;
+                            width: 12%;
+                            line-height: 2.9;
+                            padding: 10px 0;
+                            font-family: 'ProximaNova';
+                            font-size: 14px;
+                            color: #3e3935;
+                            letter-spacing: 0.02em;
+                        }
+                    }
+
+                    .footer-retailer {
+                        padding-top: 40px;
+                        border-top: 1px solid #74706d;
+
+                        .location.slick-active {
+                            border-right: 1px solid #a7a4a3;
+                            margin-right: 20px;
+                        }
+
+                        .location:nth-child(4) {
+                            border-right: none;
+                        }
+
+                        .location-body {
+                            font-family: 'Hind';
+                            font-size: 14px;
+                            color: #3e3935;
+                            text-align: left;
+                            line-height: 18px;
+
+                            .name-store {
+                                font-family: 'Hind';
+                                font-size: 14px;
+                                font-weight: bold;
+                                color: #3e3935;
+                                text-align: left;
+                                line-height: 18px;
+                            }
+
+                            .make-this-store {
+                                margin-top: 10px;
+
+                                .radio {
+                                    display: none;
+                                }
+
+                                span {
+                                    font-family: 'ProximaNova';
+                                    font-size: 14px;
+                                    font-weight: bold;
+                                    color: #3bc1cc;
+                                    text-align: center;
+                                    line-height: 42px;
+                                    text-transform: uppercase;
+                                    border: 2px solid #48c1cb;
+                                    padding: 8px 10px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
-
 }
 
 // min 992px
