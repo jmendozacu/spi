@@ -36,7 +36,7 @@
                                id="confirm-email" />
                     </div>
                 </div>
-                <span class="note" data-bind="fadeVisible: isPasswordVisible() == false">Sign up to stay connected with our community. You can unsubscribe whenever you like.<br>All emails will be sent by Infinity by Cherokee Uniforms., 9800 De Soto Ave., Chatsworth, CA 91311.</span>
+                <span class="note" data-bind="fadeVisible: isPasswordVisible() == false"></span>
             </div>
 
 
@@ -53,8 +53,7 @@
                                name="password"
                                id="customer-password"
                                data-validate="{required:true}" autocomplete="off"/>
-                        <!-- <span class="note" data-bind="i18n: 'You already have an account with us. Sign in or continue as guest.'"></span>-->
-                        <span class="note">Sign up to stay connected with our community. You can unsubscribe whenever you like.<br>All emails will be sent by Infinity by Cherokee Uniforms., 9800 De Soto Ave., Chatsworth, CA 91311.</span>
+                        <span class="note" data-bind="i18n: 'You already have an account with us. Sign in or continue as guest.'"></span>
                     </div>
                 </div>
                 <!-- ko foreach: getRegion('additional-login-form-fields') -->
