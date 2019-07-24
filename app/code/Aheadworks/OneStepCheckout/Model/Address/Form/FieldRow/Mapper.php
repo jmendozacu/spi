@@ -16,19 +16,15 @@ class Mapper
         'middlename' => 'name-field-row',
         'lastname' => 'name-field-row',
         'suffix' => 'name-field-row',
+        'company' => 'phone-company-field-row',
         'street' => 'address-field-row',
         'city' => 'city-field-row',
-
-        'country_id' => 'country-field-row',
-
-        'region' => 'region-field-row',
-        'region_id' => 'region-field-row',
-
-        'postcode' => 'zip-field-row',
-
-        'telephone' => 'phone-field-row',
-        'company' => 'company-field-row',
-        'fax' => 'fax-field-row'
+        'country_id' => 'country-region-zip-field-row',
+        'region' => 'country-region-zip-field-row',
+        'region_id' => 'country-region-zip-field-row',
+        'postcode' => 'country-region-zip-field-row',
+        'telephone' => 'phone-company-field-row',
+        'fax' => 'phone-company-field-row'
     ];
 
     /**

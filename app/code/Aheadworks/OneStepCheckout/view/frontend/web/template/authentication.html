@@ -1,22 +1,17 @@
 <!-- ko ifnot: isCustomerLoggedIn -->
 <div class="authentication" data-block="authentication">
     <div class="authentication-notice">
-<!--        <span data-bind="i18n: 'Already have an account? Login'"></span>-->
+        <span data-bind="i18n: 'Already have an account? Login'"></span>
     </div>
     <div class="authentication-link authentication-link-popup">
-        <p>
-            Continue as guest or <a href="#" data-trigger="authentication"><span>login</span></a> into account.
-        </p>
-
-        <!-- Fix bug duplicated two login popup - Edited => 1-block-authentication | [data-trigger=1-authentication]
-         -->
-        <div class="1-block-authentication"
+        <a href="#" data-trigger="authentication"><span> <!-- ko i18n: 'here'--><!-- /ko --></span></a>
+        <div class="block-authentication"
              style="display: none"
              data-bind="mageInit: {
             'Magento_Ui/js/modal/modal':{
                 'type': 'custom',
                 'modalClass': 'authentication-dropdown',
-                'trigger': '[data-trigger=1-authentication]',
+                'trigger': '[data-trigger=authentication]',
                 'wrapperClass': 'authentication-link-popup',
                 'parentModalClass': '_has-modal-custom _has-auth-shown aw-onestep',
                 'responsive': true,

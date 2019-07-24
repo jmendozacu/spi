@@ -23,12 +23,12 @@
     'tokenbaseCardFormatter': {}
     }">
         <!-- ko if: (useAcceptJs()) -->
-            <input type="hidden" name="payment[acceptjs_key]" value="" data-bind="attr: {id: getCode() + '-acceptjs-key'}, value: acceptJsKey"/>
-            <input type="hidden" name="payment[acceptjs_value]" value="" data-bind="attr: {id: getCode() + '-acceptjs-value'}, value: acceptJsValue"/>
-            <input type="hidden" name="payment[cc_last4]" value="" data-bind="attr: {id: getCode() + '-cc-last4'}, value: creditCardLast4"/>
-            <!-- ko if: (canStoreBin()) -->
-                <input type="hidden" name="payment[cc_bin]" value="" data-bind="attr: {id: getCode() + '-cc-bin'}, value: creditCardBin"/>
-            <!-- /ko -->
+        <input type="hidden" name="payment[acceptjs_key]" value="" data-bind="attr: {id: getCode() + '-acceptjs-key'}, value: acceptJsKey"/>
+        <input type="hidden" name="payment[acceptjs_value]" value="" data-bind="attr: {id: getCode() + '-acceptjs-value'}, value: acceptJsValue"/>
+        <input type="hidden" name="payment[cc_last4]" value="" data-bind="attr: {id: getCode() + '-cc-last4'}, value: creditCardLast4"/>
+        <!-- ko if: (canStoreBin()) -->
+        <input type="hidden" name="payment[cc_bin]" value="" data-bind="attr: {id: getCode() + '-cc-bin'}, value: creditCardBin"/>
+        <!-- /ko -->
         <!-- /ko -->
         <div class="payment-method-billing-address">
             <!-- ko foreach: $parent.getRegion(getBillingAddressFormName()) -->
@@ -93,7 +93,7 @@
                        ">
                 </div>
             </div>
-            <div class="field number required" data-bind="visible: isCcFormShown">
+            <div class="field number required" data-bind="visible: isCcFormShown, mageInit: {'awOscFloatLabel': {}}">
                 <label data-bind="attr: {for: getCode() + '-cc-number'}" class="label">
                     <span><!-- ko text: $t('Credit Card Number')--><!-- /ko --></span>
                 </label>
@@ -139,7 +139,7 @@
                 </div>
             </div>
             <!-- ko if: (hasVerification())-->
-            <div class="field cvv required" data-bind="attr: {id: getCode() + '-cc-type-cvv-div'}, visible: (isCcvShown)">
+            <div class="field cvv required" data-bind="attr: {id: getCode() + '-cc-type-cvv-div'}, visible: (isCcvShown), mageInit: {'awOscFloatLabel': {}}">
                 <label data-bind="attr: {for: getCode() + '-cc-cid'}" class="label">
                     <span><!-- ko text: $t('Card Verification Number')--><!-- /ko --></span>
                 </label>
