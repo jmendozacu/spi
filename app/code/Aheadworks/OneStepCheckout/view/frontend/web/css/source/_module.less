@@ -2,23 +2,13 @@
 //  Variables
 //  _____________________________________________
 
-@aw-osc-font-family__base: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-@aw-osc-font-size__base: @font-size__base;
+@aw-osc-font-family__base: 'Proxima Nova', Hind, sans-serif;
+@aw-osc-font-size__base: 14px;
 @aw-osc-line-height__base: 1.43;
-@aw-osc-primary__color: @primary__color;
-@aw-osc-primary__color__darker: darken(@primary__color, 10%);
-@aw-osc-primary__color__lighter: lighten(@primary__color, 10%);
-@aw-osc-secondary__color: @active__color; // Use @theme-color for Porto blue color
-@aw-osc-border-color__base: #d8d8d8;
-@aw-osc-border-width__base: @border-width__base;
-@aw-osc-border-radius__base: 2px;
-@aw-osc-label__float__color: #838383;
-@aw-osc-h2__font-size: 20px;
-@aw-osc-background-color__base: #f8f8f8;
-@aw-osc-background-color__active: #ffffff;
-@aw-osc-link__color: #007dbd;
-@aw-osc-supplementary__padding: 55px;
-@aw-osc-sidebar__image__size: 75px;
+@aw-osc-font: 'aw-osc_icons-font';
+@aqua: #48c1cb;
+@light-aqua: #d6eef1;
+@gray: #3e3935;
 
 //
 //  Fonts
@@ -48,13 +38,11 @@
         div.mage-error[generated],
         .note {
             margin: 0;
-            .lib-css(order, 3, 1);
+            order: 3;
         }
 
         div.mage-success[generated] {
-            .lib-form-validation-note(
-                @_note-color: @color-dark-green1
-            );
+
         }
 
         .page-title {
@@ -62,7 +50,7 @@
         }
 
         .aw-onestep-description {
-            .lib-css(color, @aw-osc-primary__color__lighter);
+            color: #ccc;
             margin-bottom: 15px;
         }
 
@@ -74,14 +62,21 @@
 
         .page-main {
             .checkout-container {
-                .lib-css(color, @aw-osc-primary__color);
-                .lib-css(font-family, @aw-osc-font-family__base);
-                .lib-css(line-height, @aw-osc-line-height__base);
-                .lib-css(transition, 1s, 1);
-                .lib-font-size(@aw-osc-font-size__base);
-                .lib-vendor-prefix-display(flex);
+                font-family: @aw-osc-font-family__base;
+                line-height: 1.4;
+                -moz-transition: 1s;
+                -webkit-transition: 1s;
+                transition: 1s;
+                display: -webkit-flex;
+                display: -moz-flex;
+                display: -ms-flex;
+                display: -o-flex;
+                display: flex;
+
+                -webkit-justify-content: space-between;
                 justify-content: space-between;
                 margin: auto;
+                color: @gray;
 
                 img {
                     display: block;
@@ -93,13 +88,23 @@
 
                 .block-authentication {
                     .actions-toolbar {
+                        display: -webkit-flex;
+                        display: -moz-flex;
+                        display: -ms-flex;
+                        display: -o-flex;
                         display: flex;
+                        -webkit-flex-direction: row-reverse;
                         flex-direction: row-reverse;
+                        -webkit-align-items: center;
                         align-items: center;
-                        width: 100%;
+                        -webkit-justify-content: space-between;
                         justify-content: space-between;
-                        margin: 0;
+                        -webkit-flex-wrap: wrap;
+                        -ms-flex-wrap: wrap;
                         flex-wrap: wrap;
+                        width: 100%;
+                        margin: 0;
+
                         padding: 0;
 
                         .secondary,
@@ -115,16 +120,19 @@
                 }
 
                 .input-text, .select {
-                    .lib-vendor-prefix-appearance(none);
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none;
                     .lib-form-element-input(@_type: input-text);
-                    .lib-css(border, @aw-osc-border-width__base solid @aw-osc-border-color__base);
+                    border: 1px solid #cccccc;
                     min-height: 44px;
                     box-shadow: none;
-                    .lib-css(transition, .3s);
+                    -webkit-transition: .3s;
+                    transition: .3s;
                     cursor: pointer;
 
                     &.mage-error {
-                        .lib-css(border, @aw-osc-border-width__base solid @form-validation-note__color-error);
+                        border: 1px solid red;                        
                     }
                 }
 
@@ -141,7 +149,9 @@
                     display: none;
 
                     + label:before {
-                        .lib-css(transition, .2s, 1);
+                        -webkit-transition: .2s;
+                        -moz-transition: .2s;
+                        transition: .2s;
                         content: '';
                         display: inline-block;
                         float: left;
@@ -156,20 +166,20 @@
                 input[type='checkbox'] {
                     + label:before {
                         content: '\e903';
-                        font-family: 'aw-osc_icons-font';
+                        font-family: @aw-osc-font;
                         font-size: 17px;
                         -webkit-font-smoothing: antialiased;
                         -moz-osx-font-smoothing: grayscale;
-                        color: @aw-osc-secondary__color;
+                        color: @aqua;
                     }
 
                     &:checked + label:before {
                         content: '\e906';
-                        font-family: 'aw-osc_icons-font';
+                        font-family: @aw-osc-font;
                         font-size: 17px;
                         -webkit-font-smoothing: antialiased;
                         -moz-osx-font-smoothing: grayscale;
-                        color: @aw-osc-secondary__color;
+                        color: @aqua;
                     }
 
                     &:disabled + label {
@@ -180,20 +190,20 @@
                 input[type='radio'] {
                     + label:before {
                         content: '\e90a';
-                        font-family: 'aw-osc_icons-font';
+                        font-family: @aw-osc-font;
                         font-size: 17px;
                         -webkit-font-smoothing: antialiased;
                         -moz-osx-font-smoothing: grayscale;
-                        color: @aw-osc-secondary__color;
+                        color: @aqua;
                     }
 
                     &:checked + label:before {
                         content: '\e909';
-                        font-family: 'aw-osc_icons-font';
+                        font-family: @aw-osc-font;
                         font-size: 17px;
                         -webkit-font-smoothing: antialiased;
                         -moz-osx-font-smoothing: grayscale;
-                        color: @aw-osc-secondary__color;
+                        color: @aqua;
                     }
 
                     &:disabled + label {
@@ -234,9 +244,16 @@
                 }
 
                 .field {
-                    .lib-vendor-box-align(stretch);
-                    .lib-vendor-prefix-display(flex);
-                    .lib-vendor-prefix-flex-direction(column);
+                    -webkit-align-items: stretch;
+                    align-items: stretch;
+                    display: -webkit-flex;
+                    display: -moz-flex;
+                    display: -ms-flex;
+                    display: -o-flex;
+                    display: flex;
+                    -webkit-flex-direction: column;
+                    -ms-flex-direction: column;
+                    flex-direction: column;
                     margin: 5px;
                     width: 100%;
                     position: relative;
@@ -248,8 +265,8 @@
                         & > .label.short > span:first-of-type {
                             &:after {
                                 content: '*';
-                                color: @form-validation-note__color-error;
-                                font-size: 1.2rem;
+                                color: red;
+                                font-size: 12px;
                                 margin: -2px 0 0 2px;
                             }
                         }
@@ -269,7 +286,7 @@
                     &._error {
                         .input-text,
                         .select {
-                            .lib-css(border, @aw-osc-border-width__base solid @form-validation-note__color-error);
+                            border: 1px solid red;
                         }
                     }
 
@@ -279,7 +296,9 @@
                     }
 
                     &.choice {
-                        .lib-vendor-prefix-flex-direction(row);
+                        -webkit-flex-direction: row;
+                        -ms-flex-direction: row;
+                        flex-direction: row;
                         font-size: 13px;
                         margin: 0;
                     }
@@ -287,8 +306,14 @@
 
                 .field-row,
                 fieldset.field.street .control {
-                    .lib-vendor-box-align(flex-start);
-                    .lib-vendor-prefix-display(flex);
+                    -webkit-align-items: flex-start;
+                    align-items: flex-start;
+                    display: -webkit-flex;
+                    display: -moz-flex;
+                    display: -ms-flex;
+                    display: -o-flex;
+                    display: flex;
+                    -webkit-justify-content: space-between;
                     justify-content: space-between;
                 }
 
@@ -299,10 +324,15 @@
                 .fl-placeholder-state .label,
                 .fl-label-state .label,
                 fieldset .field .label {
-                    .lib-css(color, @aw-osc-label__float__color);
-                    .lib-css(transition, .3s, 1);
-                    .lib-vendor-box-align(center);
-                    .lib-vendor-prefix-display(flex);
+                    -webkit-transition: .3s;
+                    transition: .3s;
+                    -webkit-align-items: center;
+                    align-items: center;
+                    display: -webkit-flex;
+                    display: -moz-flex;
+                    display: -ms-flex;
+                    display: -o-flex;
+                    display: flex;
                     font-weight: 400;
                     height: 100%;
                     max-height: 44px;
@@ -310,21 +340,31 @@
                     position: absolute;
                     width: calc(~'100% - 10px');
                     z-index: 1;
-                    padding: 0;
-                    padding-left: 10px;
+                    padding: 0 0 0 10px;
                 }
             }
 
             .aw-onestep-main, .aw-onestep-sidebar {
-                .lib-css(transition, .4s, 1);
-                .lib-vendor-box-align(flex-start);
-                .lib-vendor-prefix-display(flex);
-                .lib-vendor-prefix-flex-direction(column);
+                -webkit-transition: .4s;
+                transition: .4s;
+                -webkit-align-items: flex-start;
+                align-items: flex-start;
+                display: -webkit-flex;
+                display: -moz-flex;
+                display: -ms-flex;
+                display: -o-flex;
+                display: flex;
+                -webkit-flex-direction: column;
+                -ms-flex-direction: column;
+                flex-direction: column;
+
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
                 box-sizing: border-box;
                 justify-content: flex-start;
                 margin: 10px 0;
-                width: 60%;
-                border-radius: @aw-osc-border-radius__base;
+                width: ~'calc(100% - 380px)';
+                padding-right: 4%;
             }
 
             .aw-onestep-main {
@@ -344,19 +384,26 @@
 
                         .group-title {
                             h2 {
-                                .lib-font-size(@aw-osc-h2__font-size);
+                                font-size: 20px;
                                 font-weight: 600;
                                 text-transform: uppercase;
                             }
 
                             .mark {
-                                .lib-css(border, 2px solid @aw-osc-secondary__color);
-                                .lib-css(border-radius, 50%, 1);
-                                .lib-css(color, @aw-osc-secondary__color);
-                                .lib-font-size(@aw-osc-h2__font-size);
-                                .lib-vendor-box-align(center);
-                                .lib-vendor-prefix-display(inline-flex);
-                                .lib-css(background-color, @aw-osc-background-color__active);
+                                -webkit-border-radius: 50%;
+                                -moz-border-radius: 50%;
+                                color: @aqua;
+                                border: 2px solid @aqua;
+                                border-radius: 50%;
+                                font-size: 20px;
+                                -webkit-align-items: center;
+                                align-items: center;
+                                display: -webkit-inline-flex;
+                                display: -ms-inline-flexbox;
+                                display: inline-flex;
+                                background-color: #ffffff;
+                                -webkit-box-sizing: border-box;
+                                -moz-box-sizing: border-box;
                                 box-sizing: border-box;
                                 font-weight: 600;
                                 height: 40px;
@@ -379,7 +426,8 @@
                 }
 
                 .email {
-                    .lib-css(transition, .3s, 1);
+                    -webkit-transition: .3s;
+                    transition: .3s;
                     max-width: 50%;
                     width: 100%;
 
@@ -408,9 +456,16 @@
 
                 .onestep-billing-address .action-toolbar,
                 .onestep-shipping-address .action-toolbar {
-                    .lib-vendor-box-align(center);
-                    .lib-vendor-prefix-display(flex);
-                    .lib-vendor-prefix-flex-direction(row-reverse);
+                    -webkit-align-items: center;
+                    align-items: center;
+                    display: -webkit-flex;
+                    display: -moz-flex;
+                    display: -ms-flex;
+                    display: -o-flex;
+                    display: flex;
+                    -webkit-flex-direction: row-reverse;
+                    -ms-flex-direction: row-reverse;
+                    flex-direction: row-reverse;
                     justify-content: flex-start;
                     margin-bottom: 20px;
 
@@ -439,7 +494,7 @@
 
                         strong {
                             font-weight: 400;
-                            .lib-css(color, @aw-osc-link__color);
+                            color: @aqua;
 
                             &:hover {
                                 text-decoration: underline;
@@ -447,7 +502,7 @@
                         }
 
                         &:before {
-                            .lib-css(background-color, @aw-osc-link__color);
+                            background-color: @aqua;
                             background-size: cover;
                             content: '';
                             display: inline-block;
@@ -463,17 +518,24 @@
                 }
 
                 .billing-address-details {
-                    .lib-vendor-prefix-display(flex);
-                    .lib-vendor-prefix-flex-direction(column);
-                    .lib-vendor-box-align(flex-start);
+                    display: -webkit-flex;
+                    display: -moz-flex;
+                    display: -ms-flex;
+                    display: -o-flex;
+                    display: flex;
+                    -webkit-flex-direction: column;
+                    -ms-flex-direction: column;
+                    flex-direction: column;
+                    -webkit-align-items: flex-start;
+                    align-items: flex-start;
                     justify-content: flex-start;
                     padding: 0 5px 0 60px;
                     margin-bottom: 20px;
 
                     .action-edit-address {
                         .lib-button-as-link(
-                            @_link-color: @aw-osc-link__color,
-                            @_link-color-hover: @aw-osc-link__color
+                            @_link-color: @aqua,
+                            @_link-color-hover: @aqua
                         );
                         box-shadow: none;
                         font-weight: 400;
@@ -482,18 +544,30 @@
 
                 .shipping-address-items {
                     ol {
-                        .lib-vendor-box-align(stretch);
-                        .lib-vendor-prefix-display(flex);
-                        .lib-vendor-prefix-flex-direction(row);
-                        .lib-vendor-prefix-flex-wrap(wrap);
+                        -webkit-align-items: stretch;
+                        align-items: stretch;
+                        display: -webkit-flex;
+                        display: -moz-flex;
+                        display: -ms-flex;
+                        display: -o-flex;
+                        display: flex;
+                        -webkit-flex-direction: row;
+                        -ms-flex-direction: row;
+                        flex-direction: row;
+                        -webkit-flex-wrap: wrap;
+                        -ms-flex-wrap: wrap;
+                        flex-wrap: wrap;
+
                         justify-content: space-between;
                         list-style-type: none;
                         padding: 0;
 
                         .shipping-address-item {
-                            .lib-css(border, @aw-osc-border-width__base solid @aw-osc-border-color__base);
-                            .lib-css(border-radius, 2px, 1);
-                            .lib-css(transition, .3s, 1);
+                            border: 1px solid #cccccc;
+                            -webkit-transition: .3s;
+                            transition: .3s;
+                            -webkit-box-sizing: border-box;
+                            -moz-box-sizing: border-box;
                             box-sizing: border-box;
                             margin: 5px 0;
                             padding: 15px 20px 43px;
@@ -501,11 +575,13 @@
                             width: calc(~'50% - 5px');
 
                             &.not-selected-item {
-                                .lib-css(background-color, @aw-osc-background-color__base);
+                                background-color: #ffffff;
 
                                 &:hover {
-                                    .lib-css(background-color, @aw-osc-background-color__active);
-                                    .lib-css(box-shadow, 0 0 5px 0 @aw-osc-primary__color);
+                                    background-color: #ffffff;
+                                    -webkit-box-shadow: 0 0 5px 0 @gray;
+                                    -moz-box-shadow: 0 0 5px 0 @gray;
+                                    box-shadow: 0 0 5px 0 @gray;
                                 }
 
                                 .edit-address-link {
@@ -514,14 +590,17 @@
                             }
 
                             &.selected-item {
-                                .lib-css(border, @aw-osc-border-width__base solid @aw-osc-secondary__color);
-                                .lib-css(box-shadow, inset 0 0 0 1px @aw-osc-secondary__color);
+                                border: 1px solid @aqua;
+
+                                -webkit-box-shadow: inset 0 0 0 1px @aqua;
+                                -moz-box-shadow: inset 0 0 0 1px @aqua;
+                                box-shadow: inset 0 0 0 1px @aqua;
 
                                 &:after {
                                     content: '\e907';
                                     display: inline-block;
-                                    color: @aw-osc-secondary__color;
-                                    font-family: 'aw-osc_icons-font';
+                                    color: @aqua;
+                                    font-family: @aw-osc-font;
                                     font-weight: normal;
                                     font-size: 25px;
                                     pointer-events: none;
@@ -536,19 +615,26 @@
                             .edit-address-link,
                             .action-select-shipping-item {
                                 .lib-button-as-link(
-                                    @_link-color: @aw-osc-link__color,
-                                    @_link-color-hover: @aw-osc-link__color
+                                    @_link-color: @aqua,
+                                    @_link-color-hover: @aqua
                                 );
                                 box-shadow: none;
-                                .lib-vendor-prefix-display(flex);
-                                .lib-vendor-box-align(flex-start);
-                                .lib-vendor-prefix-flex-direction(column);
-                                .lib-css(justify-content, flex-end, 1);
+                                display: -webkit-flex;
+                                display: -moz-flex;
+                                display: -ms-flex;
+                                display: -o-flex;
+                                display: flex;
+                                -webkit-align-items: flex-start;
+                                align-items: flex-start;
+                                -webkit-flex-direction: column;
+                                -ms-flex-direction: column;
+                                flex-direction: column;
+                                -webkit-justify-content: flex-end;
+                                justify-content: flex-end;
                                 bottom: 0;
                                 left: 0;
                                 width: 100%;
                                 height: 100%;
-                                box-shadow: none;
                                 font-size: 13px;
                                 font-weight: normal;
                                 outline: none;
@@ -575,13 +661,16 @@
                 }
 
                 .payment-method {
-                    .lib-css(transition, .2s, 1);
-                    border-left: 1px solid @aw-osc-border-color__base;
-                    border-bottom: 1px solid @aw-osc-border-color__base;
-                    border-right: 1px solid @aw-osc-border-color__base;
+                    -webkit-transition: all .2s ease-out;
+                    transition: all .2s ease-out;
+                    border-left: 1px solid #cccccc;
+                    border-bottom: 1px solid #cccccc;
+                    border-right: 1px solid #cccccc;
                     margin: auto;
                     max-width: 100%;
                     position: relative;
+                    -webkit-box-sizing: border-box;
+                    -moz-box-sizing: border-box;
                     box-sizing: border-box;
 
                     .payment-method-content {
@@ -591,14 +680,14 @@
                     }
 
                     &:first-of-type {
-                        border-top: 1px solid @aw-osc-border-color__base;
+                        border-top: 1px solid #cccccc;
                         border-radius: 2px 2px 0 0;
                         margin-top: 20px;
                     }
 
                     &._active {
                         .payment-method-title {
-                            .lib-css(background-color, transparent);
+                            background-color: transparent;
                         }
 
                         .payment-method-content {
@@ -617,9 +706,17 @@
                         }
 
                         .fields.group-2 {
-                            .lib-vendor-box-align(center);
-                            .lib-vendor-prefix-display(flex);
-                            .lib-vendor-prefix-flex-direction(row);
+                            -webkit-align-items: center;
+                            align-items: center;
+                            display: -webkit-flex;
+                            display: -moz-flex;
+                            display: -ms-flex;
+                            display: -o-flex;
+                            display: flex;
+                            -webkit-flex-direction: row;
+                            -ms-flex-direction: row;
+                            flex-direction: row;
+                            -webkit-justify-content: space-between;
                             justify-content: space-between;
 
                             .field {
@@ -634,7 +731,7 @@
                         }
 
                         &:before {
-                            .lib-css(background-color, @aw-osc-secondary__color);
+                            background-color: @aqua;
                             content: '';
                             display: block;
                             height: 100%;
@@ -648,7 +745,9 @@
                     &.payment-method-braintree,
                     #adyen-cc-form {
                         .field.choice {
-                            .lib-vendor-prefix-flex-direction(row-reverse);
+                            -webkit-flex-direction: row-reverse;
+                            -ms-flex-direction: row-reverse;
+                            flex-direction: row-reverse;
 
                             .label {
                                 left: 0;
@@ -696,15 +795,18 @@
                     &.payment-method-braintree {
                         .form .field {
                             .hosted-control {
-                                .lib-vendor-prefix-appearance(none);
+                                -webkit-appearance: none;
+                                -moz-appearance: none;
+                                appearance: none;
                                 .lib-form-element-input(@_type: input-text);
-                                .lib-css(border, @aw-osc-border-width__base solid @aw-osc-border-color__base);
-                                .lib-css(transition, .3s);
+                                border: 1px solid #cccccc;
+                                -webkit-transition: .3s;
+                                transition: .3s;
                                 min-height: 44px;
                                 box-shadow: none;
 
                                 &.braintree-hosted-fields-invalid {
-                                    border: 1px solid @form-validation-note__color-error
+                                    border: 1px solid red
                                 }
 
                                 &.fl-label-state,
@@ -720,16 +822,26 @@
                                     iframe {
                                         padding-top: 8px;
                                         outline: none;
-                                        .lib-css(transition, .3s);
+                                        -webkit-transition: .3s;
+                                        transition: .3s;
                                     }
                                 }
                             }
 
                             .hosted-date-wrap {
-                                .lib-css(flex-wrap, wrap, 1);
-                                .lib-vendor-box-align(center);
-                                .lib-vendor-prefix-display(flex);
-                                .lib-vendor-prefix-flex-direction(row);
+                                -webkit-flex-wrap: wrap;
+                                -ms-flex-wrap: wrap;
+                                flex-wrap: wrap;
+                                -webkit-align-items: center;
+                                align-items: center;
+                                display: -webkit-flex;
+                                display: -moz-flex;
+                                display: -ms-flex;
+                                display: -o-flex;
+                                display: flex;
+                                -webkit-flex-direction: row;
+                                -ms-flex-direction: row;
+                                flex-direction: row;
                                 justify-content: space-between;
 
                                 .hosted-control {
@@ -781,16 +893,26 @@
                 }
 
                 .payment-method-title {
-                    .lib-css(transition, .3s, 1);
-                    .lib-css(background-color, @aw-osc-background-color__base);
+                    -webkit-transition: .3s;
+                    transition: .3s;
+                    background-color: #ffffff;
+                    -webkit-box-sizing: border-box;
+                    -moz-box-sizing: border-box;
                     box-sizing: border-box;
                     padding: 25px 20px;
                     position: relative;
 
                     .label {
-                        .lib-vendor-box-align(center);
-                        .lib-vendor-prefix-display(flex);
-                        .lib-vendor-prefix-flex-direction(row);
+                        -webkit-align-items: center;
+                        align-items: center;
+                        display: -webkit-flex;
+                        display: -moz-flex;
+                        display: -ms-flex;
+                        display: -o-flex;
+                        display: flex;
+                        -webkit-flex-direction: row;
+                        -ms-flex-direction: row;
+                        flex-direction: row;
                         font-size: 14px;
 
                         a {
@@ -824,7 +946,7 @@
                     }
 
                     &:hover {
-                        .lib-css(background-color, @aw-osc-background-color__active);
+                        background-color: #ffffff;
                     }
                 }
 
@@ -854,8 +976,13 @@
                 }
 
                 .credit-card-types {
-                    .lib-vendor-box-align(center);
-                    .lib-vendor-prefix-display(flex);
+                    -webkit-align-items: center;
+                    align-items: center;
+                    display: -webkit-flex;
+                    display: -moz-flex;
+                    display: -ms-flex;
+                    display: -o-flex;
+                    display: flex;
                     list-style-type: none;
                     justify-content: flex-start;
                     padding: 0;
@@ -864,7 +991,7 @@
                     .item {
                         .lib-css(filter, grayscale(100%), 1);
                         margin-right: 10px;
-                        border: 1px solid @aw-osc-border-color__base;
+                        border: 1px solid #cccccc;
 
                         &._active {
                             filter: none;
@@ -882,7 +1009,8 @@
 
                 .modal-custom.authentication-dropdown {
                     z-index: 200;
-                    .lib-css(transition, .4s, 1);
+                    -webkit-transition: .4s;
+                    transition: .4s;
                     max-width: 360px;
                     position: fixed;
                     left: calc(~'50% - 180px');
@@ -892,9 +1020,18 @@
                         margin: auto;
 
                         .modal-content .block-authentication .block-customer-login .block-content form .fieldset {
-                            .lib-css(display, flex, 1);
-                            .lib-css(flex-direction, column, 1);
-                            .lib-css(align-items, center, 1);
+                            display: -webkit-flex;
+                            display: -moz-flex;
+                            display: -ms-flex;
+                            display: -o-flex;
+                            display: flex;
+
+                            -webkit-flex-direction: column;
+                            -ms-flex-direction: column;
+                            flex-direction: column;
+
+                            -webkit-align-items: center;
+                            align-items: center;
                         }
                     }
                 }
@@ -905,8 +1042,14 @@
                 }
 
                 .label {
-                    .lib-vendor-prefix-display(flex);
-                    .lib-vendor-prefix-flex-direction(row);
+                    display: -webkit-flex;
+                    display: -moz-flex;
+                    display: -ms-flex;
+                    display: -o-flex;
+                    display: flex;
+                    -webkit-flex-direction: row;
+                    -ms-flex-direction: row;
+                    flex-direction: row;
                     cursor: pointer;
                     width: inherit;
                 }
@@ -921,18 +1064,37 @@
                         padding: 0 5px;
 
                         .shipping-method-card {
-                            .lib-css(display, flex, 1);
-                            .lib-css(flex-direction, row, 1);
-                            .lib-css(justify-content, space-between, 1);
-                            .lib-css(align-items, flex-start, 1);
+                            display: -webkit-flex;
+                            display: -moz-flex;
+                            display: -ms-flex;
+                            display: -o-flex;
+                            display: flex;
+
+                            -webkit-flex-direction: row;
+                            -ms-flex-direction: row;
+                            flex-direction: row;
+                            -webkit-justify-content: space-between;
+                            justify-content: space-between;
+                            -webkit-align-items: flex-start;
+                            align-items: flex-start;
                             margin: 0 0 20px 0 !important;
                             font-size: 14px;
 
                             .shipping-method-title {
-                                .lib-css(display, flex, 1);
-                                .lib-css(flex-direction, column, 1);
-                                .lib-css(justify-content, flex-start, 1);
-                                .lib-css(align-items, flex-start, 1);
+                                display: -webkit-flex;
+                                display: -moz-flex;
+                                display: -ms-flex;
+                                display: -o-flex;
+                                display: flex;
+
+                                -webkit-flex-direction: column;
+                                -ms-flex-direction: column;
+                                flex-direction: column;
+
+                                -webkit-justify-content: flex-start;
+                                justify-content: flex-start;
+                                -webkit-align-items: flex-start;
+                                align-items: flex-start;
                                 width: 100%;
 
                                 .label {
@@ -941,7 +1103,7 @@
                                 }
 
                                 .shipping-method-subtitle {
-                                    padding-left: @aw-osc-supplementary__padding;
+                                    padding-left: 0;
                                     opacity: .6;
                                 }
 
@@ -971,7 +1133,7 @@
 
                         &:before {
                             content: '\e902';
-                            font-family: 'aw-osc_icons-font';
+                            font-family: @aw-osc-font;
                             font-size: 20px;
                             pointer-events: none;
                         }
@@ -991,14 +1153,12 @@
         .page-main {
             .checkout-container {
                 .aw-onestep-sidebar {
-                    .lib-css(background-color, @aw-osc-background-color__base);
-                    .lib-css(border, @aw-osc-border-width__base solid @aw-osc-border-color__base);
-                    margin-left: 30px;
                     position: -webkit-sticky;
                     position: sticky;
                     top: 20px;
-                    width: 40%;
-                    padding: 20px;
+                    width: 380px;
+                    padding: 0;
+                    margin: 0;
 
                     input[type='checkbox'] + label:before,
                     input[type='radio'] + label:before {
@@ -1013,19 +1173,19 @@
                         font-size: 20px;
                         font-weight: 600;
                         text-transform: uppercase;
-                        padding-left: @aw-osc-supplementary__padding;
+                        padding-left: 0;
                         position: relative;
 
                         &:before {
                             content: '\e912';
-                            font-family: 'aw-osc_icons-font' !important;
+                            font-family: @aw-osc-font !important;
                             font-size: 40px;
                             font-weight: normal;
                             position: absolute;
                             left: 5px;
                             -webkit-font-smoothing: antialiased;
                             -moz-osx-font-smoothing: grayscale;
-                            color: @aw-osc-secondary__color;
+                            color: @aqua;
                         }
                     }
 
@@ -1038,50 +1198,56 @@
                                     display: inline-block;
                                     font-size: 18px;
                                     font-weight: 300;
-                                    padding-left: @aw-osc-supplementary__padding;
+                                    padding-left: 0;
                                     cursor: pointer;
 
                                     &:after {
-                                        content: '';
                                         display: inline-block;
                                         margin-left: 5px;
                                         content: '\e900';
-                                        font-family: 'aw-osc_icons-font';
+                                        font-family: @aw-osc-font;
                                         font-size: 13px;
                                         -webkit-font-smoothing: antialiased;
                                         -moz-osx-font-smoothing: grayscale;
-                                        color: @aw-osc-primary__color__lighter;
+                                        color: #cccccc;
                                     }
                                 }
 
                                 &.active {
                                     .aw-onestep-sidebar-block_title {
                                         &:after {
-                                            content: '';
                                             display: inline-block;
                                             margin-left: 5px;
                                             content: '\e901';
-                                            font-family: 'aw-osc_icons-font';
+                                            font-family: @aw-osc-font;
                                             font-size: 13px;
                                             -webkit-font-smoothing: antialiased;
                                             -moz-osx-font-smoothing: grayscale;
-                                            color: @aw-osc-primary__color__lighter;
+                                            color: #cccccc;
                                         }
                                     }
                                 }
 
                                 .aw-onestep-sidebar-block_content {
                                     .lib-css(transition, .2s, 1);
-                                    .lib-css(border-bottom, @aw-osc-border-width__base solid @aw-osc-border-color__base);
+                                    border-bottom: 1px solid #cccccc;
 
                                     .aw-sidebar-product {
                                         margin-right: 15px;
 
                                         &-card {
-                                            .lib-vendor-prefix-display(flex);
-                                            .lib-vendor-prefix-flex-direction(row);
-                                            .lib-css(align-items, flex-start, 1);
-                                            .lib-css(justify-content, flex-start, 1);
+                                            display: -webkit-flex;
+                                            display: -moz-flex;
+                                            display: -ms-flex;
+                                            display: -o-flex;
+                                            display: flex;
+                                            -webkit-flex-direction: row;
+                                            -ms-flex-direction: row;
+                                            flex-direction: row;
+                                            -webkit-align-items: flex-start;
+                                            align-items: flex-start;
+                                            -webkit-justify-content: flex-start;
+                                            justify-content: flex-start;
                                             margin: 30px 0;
                                         }
 
@@ -1089,10 +1255,18 @@
                                             margin-right: 10px;
 
                                             .product-image-wrapper {
-                                                .lib-vendor-prefix-display(flex);
-                                                .lib-vendor-prefix-flex-direction(row);
-                                                .lib-css(align-items, center, 1);
-                                                .lib-css(justify-content, center, 1);
+                                                display: -webkit-flex;
+                                                display: -moz-flex;
+                                                display: -ms-flex;
+                                                display: -o-flex;
+                                                display: flex;
+                                                -webkit-flex-direction: row;
+                                                -ms-flex-direction: row;
+                                                flex-direction: row;
+                                                -webkit-align-items: center;
+                                                align-items: center;
+                                                -webkit-justify-content: center;
+                                                justify-content: center;
                                             }
 
                                             img {
@@ -1106,10 +1280,10 @@
                                         &-image,
                                         &-image .product-image-container,
                                         &-image .product-image-container .product-image-wrapper {
-                                            width: @aw-osc-sidebar__image__size;
-                                            height: @aw-osc-sidebar__image__size;
-                                            max-width: @aw-osc-sidebar__image__size;
-                                            max-height: @aw-osc-sidebar__image__size;
+                                            width: 120px;
+                                            height: auto;
+                                            max-width: 120px;
+                                            max-height: 160px;
                                         }
 
                                         &-description-container {
@@ -1121,10 +1295,18 @@
                                         }
 
                                         &-description {
-                                            .lib-vendor-prefix-display(flex);
-                                            .lib-vendor-prefix-flex-direction(row);
-                                            .lib-css(align-items, flex-start, 1);
-                                            .lib-css(justify-content, space-between, 1);
+                                            display: -webkit-flex;
+                                            display: -moz-flex;
+                                            display: -ms-flex;
+                                            display: -o-flex;
+                                            display: flex;
+                                            -webkit-flex-direction: row;
+                                            -ms-flex-direction: row;
+                                            flex-direction: row;
+                                            -webkit-align-items: flex-start;
+                                            align-items: flex-start;
+                                            -webkit-justify-content: space-between;
+                                            justify-content: space-between;
                                         }
 
                                         &-name,
@@ -1133,10 +1315,18 @@
                                         }
 
                                         &-qty {
-                                            .lib-vendor-prefix-display(flex);
-                                            .lib-vendor-prefix-flex-direction(row);
-                                            .lib-css(align-items, center, 1);
-                                            .lib-css(justify-content, flex-start, 1);
+                                            display: -webkit-flex;
+                                            display: -moz-flex;
+                                            display: -ms-flex;
+                                            display: -o-flex;
+                                            display: flex;
+                                            -webkit-flex-direction: row;
+                                            -ms-flex-direction: row;
+                                            flex-direction: row;
+                                            -webkit-align-items: center;
+                                            align-items: center;
+                                            -webkit-justify-content: flex-start;
+                                            justify-content: flex-start;
                                             margin: 5px 0 0;
 
                                             .item-qty {
@@ -1150,16 +1340,16 @@
 
                                             .aw-qty-placeholder {
                                                 margin-right: 15px;
-                                                color: @aw-osc-primary__color__lighter;
+                                                color: #cccccc;
                                                 opacity: .6;
                                             }
 
                                             a {
                                                 text-decoration: none;
                                                 font-size: 11px;
-                                                color: @aw-osc-primary__color__lighter;
+                                                color: #cccccc;
                                                 opacity: .6;
-                                                font-family: 'aw-osc_icons-font';
+                                                font-family: @aw-osc-font;
                                                 -webkit-font-smoothing: antialiased;
                                                 -moz-osx-font-smoothing: grayscale;
                                                 cursor: pointer;
@@ -1173,9 +1363,9 @@
                                         &_remove {
                                             text-decoration: none;
                                             font-size: 9px;
-                                            color: @aw-osc-primary__color__lighter;
+                                            color: #cccccc;
                                             opacity: .6;
-                                            font-family: 'aw-osc_icons-font';
+                                            font-family: @aw-osc-font;
                                             -webkit-font-smoothing: antialiased;
                                             -moz-osx-font-smoothing: grayscale;
                                             cursor: pointer;
@@ -1199,8 +1389,8 @@
                                             .toggle {
                                                 cursor: pointer;
                                                 .lib-button-as-link(
-                                                    @_link-color: @aw-osc-link__color,
-                                                    @_link-color-hover: @aw-osc-link__color
+                                                    @_link-color: @aqua,
+                                                    @_link-color-hover: @aqua
                                                 );
                                                 box-shadow: none;
                                                 font-weight: 400;
@@ -1209,9 +1399,9 @@
                                                     content: '\e900';
                                                     text-decoration: none;
                                                     font-size: 11px;
-                                                    color: @aw-osc-primary__color__lighter;
+                                                    color: #cccccc;
                                                     opacity: .6;
-                                                    font-family: 'aw-osc_icons-font';
+                                                    font-family: @aw-osc-font;
                                                     -webkit-font-smoothing: antialiased;
                                                     -moz-osx-font-smoothing: grayscale;
                                                     margin-top: 10px;
@@ -1225,8 +1415,8 @@
                                                 .toggle {
                                                     cursor: pointer;
                                                     .lib-button-as-link(
-                                                        @_link-color: @aw-osc-link__color,
-                                                        @_link-color-hover: @aw-osc-link__color
+                                                        @_link-color: @aqua,
+                                                        @_link-color-hover: @aqua
                                                     );
                                                     box-shadow: none;
                                                     font-weight: 400;
@@ -1235,9 +1425,9 @@
                                                         content: '\e901';
                                                         text-decoration: none;
                                                         font-size: 11px;
-                                                        color: @aw-osc-primary__color__lighter;
+                                                        color: #cccccc;
                                                         opacity: .6;
-                                                        font-family: 'aw-osc_icons-font';
+                                                        font-family: @aw-osc-font;
                                                         -webkit-font-smoothing: antialiased;
                                                         -moz-osx-font-smoothing: grayscale;
                                                         margin-top: 10px;
@@ -1262,7 +1452,7 @@
                                                         }
 
                                                         .control {
-                                                            background: @color-white;
+                                                            background: #ffffff;
                                                         }
                                                     }
 
@@ -1287,10 +1477,10 @@
                                             & > span {
                                                 -webkit-font-smoothing: antialiased;
                                                 -moz-osx-font-smoothing: grayscale;
-                                                color: @aw-osc-primary__color__lighter;
+                                                color: #cccccc;
                                                 cursor: pointer;
                                                 display: inline-block;
-                                                font-family: 'aw-osc_icons-font';
+                                                font-family: @aw-osc-font;
                                                 font-size: 9px;
                                                 margin-right: 5px;
                                                 opacity: .6;
@@ -1335,12 +1525,12 @@
                                             .price:after {
                                                 margin-left: 5px;
                                                 content: '\e900';
-                                                font-family: 'aw-osc_icons-font';
+                                                font-family: @aw-osc-font;
                                                 font-size: 12px;
                                                 vertical-align: middle;
                                                 -webkit-font-smoothing: antialiased;
                                                 -moz-osx-font-smoothing: grayscale;
-                                                color: @aw-osc-primary__color__lighter;
+                                                color: #cccccc;
                                             }
                                         }
 
@@ -1365,7 +1555,7 @@
 
                                     .grand {
                                         font-size: 150%;
-                                        .lib-css(border-top, @aw-osc-border-width__base solid @aw-osc-border-color__base);
+                                        border-top: 1px solid #cccccc;
 
                                         th,
                                         td {
@@ -1385,8 +1575,8 @@
                                 .payment-option-title {
                                     .action-toggle {
                                         .lib-button-as-link(
-                                            @_link-color: @aw-osc-link__color,
-                                            @_link-color-hover: @aw-osc-link__color
+                                            @_link-color: @aqua,
+                                            @_link-color-hover: @aqua
                                         );
                                         box-shadow: none;
                                         font-weight: 400;
@@ -1398,12 +1588,12 @@
                                             display: inline-block;
                                             margin-left: 5px;
                                             content: '\e900';
-                                            font-family: 'aw-osc_icons-font';
+                                            font-family: @aw-osc-font;
                                             font-size: 13px;
                                             vertical-align: middle;
                                             -webkit-font-smoothing: antialiased;
                                             -moz-osx-font-smoothing: grayscale;
-                                            color: @aw-osc-primary__color__lighter;
+                                            color: #cccccc;
                                         }
                                     }
                                 }
@@ -1416,8 +1606,8 @@
                                     .payment-option-title {
                                         .action-toggle {
                                             .lib-button-as-link(
-                                                @_link-color: @aw-osc-link__color,
-                                                @_link-color-hover: @aw-osc-link__color
+                                                @_link-color: @aqua,
+                                                @_link-color-hover: @aqua
                                             );
                                             box-shadow: none;
                                             font-weight: 400;
@@ -1429,12 +1619,12 @@
                                                 display: inline-block;
                                                 margin-left: 5px;
                                                 content: '\e901';
-                                                font-family: 'aw-osc_icons-font';
+                                                font-family: @aw-osc-font;
                                                 font-size: 13px;
                                                 vertical-align: middle;
                                                 -webkit-font-smoothing: antialiased;
                                                 -moz-osx-font-smoothing: grayscale;
-                                                color: @aw-osc-primary__color__lighter;
+                                                color: #cccccc;
                                             }
                                         }
                                     }
@@ -1458,9 +1648,17 @@
 
                                 &.giftcardaccount {
                                     .actions-toolbar {
-                                        .lib-css(display, flex, 1);
-                                        .lib-css(flex-direction, row, 1);
-                                        .lib-css(align-items, flex-start, 1);
+                                        display: -webkit-flex;
+                                        display: -moz-flex;
+                                        display: -ms-flex;
+                                        display: -o-flex;
+                                        display: flex;
+
+                                        -webkit-flex-direction: row;
+                                        -ms-flex-direction: row;
+                                        flex-direction: row;
+                                        -webkit-align-items: flex-start;
+                                        align-items: flex-start;
                                         justify-content: flex-start;
                                         max-width: 60%;
 
@@ -1480,17 +1678,25 @@
                                     margin: 10px 0;
 
                                     label {
-                                        .lib-css(display, flex, 1);
-                                        .lib-css(flex-direction, row, 1);
-                                        .lib-css(align-items, flex-start, 1);
+                                        display: -webkit-flex;
+                                        display: -moz-flex;
+                                        display: -ms-flex;
+                                        display: -o-flex;
+                                        display: flex;
+
+                                        -webkit-flex-direction: row;
+                                        -ms-flex-direction: row;
+                                        flex-direction: row;
+                                        -webkit-align-items: flex-start;
+                                        align-items: flex-start;
                                         justify-content: flex-start;
                                     }
                                 }
 
                                 .action {
                                     .lib-button-as-link(
-                                        @_link-color: @aw-osc-link__color,
-                                        @_link-color-hover: @aw-osc-link__color
+                                        @_link-color: @aqua,
+                                        @_link-color-hover: @aqua
                                     );
                                     box-shadow: none;
                                     font-weight: 400;
@@ -1502,8 +1708,8 @@
                         .aw-sidebar_order-note {
                             span {
                                 .lib-button-as-link(
-                                    @_link-color: @aw-osc-link__color,
-                                    @_link-color-hover: @aw-osc-link__color
+                                    @_link-color: @aqua,
+                                    @_link-color-hover: @aqua
                                 );
                                 box-shadow: none;
                                 font-weight: 400;
@@ -1514,12 +1720,12 @@
                                     display: inline-block;
                                     margin-left: 5px;
                                     content: '\e900';
-                                    font-family: 'aw-osc_icons-font';
+                                    font-family: @aw-osc-font;
                                     font-size: 13px;
                                     vertical-align: middle;
                                     -webkit-font-smoothing: antialiased;
                                     -moz-osx-font-smoothing: grayscale;
-                                    color: @aw-osc-primary__color__lighter;
+                                    color: #cccccc;
                                 }
                             }
 
@@ -1531,12 +1737,12 @@
                                         display: inline-block;
                                         margin-left: 5px;
                                         content: '\e901';
-                                        font-family: 'aw-osc_icons-font';
+                                        font-family: @aw-osc-font;
                                         font-size: 13px;
                                         vertical-align: middle;
                                         -webkit-font-smoothing: antialiased;
                                         -moz-osx-font-smoothing: grayscale;
-                                        color: @aw-osc-primary__color__lighter;
+                                        color: #cccccc;
                                     }
                                 }
                             }
@@ -1545,8 +1751,8 @@
                                 height: 125px;
                                 resize: none;
                                 box-shadow: none;
-                                .lib-css(border, @aw-osc-border-width__base solid @aw-osc-border-color__base);
-                                border-radius: @aw-osc-border-radius__base;
+                                border: 1px solid #cccccc;
+                                border-radius: 0;
                             }
                         }
 
@@ -1587,11 +1793,21 @@
 
                             &_badges {
                                 ul {
-                                    .lib-vendor-prefix-display(flex);
-                                    .lib-vendor-prefix-flex-direction(row);
-                                    .lib-css(align-items, center, 1);
-                                    .lib-css(justify-content, center, 1);
-                                    .lib-css(flex-wrap, wrap, 1);
+                                    display: -webkit-flex;
+                                    display: -moz-flex;
+                                    display: -ms-flex;
+                                    display: -o-flex;
+                                    display: flex;
+                                    -webkit-flex-direction: row;
+                                    -ms-flex-direction: row;
+                                    flex-direction: row;
+                                    -webkit-align-items: center;
+                                    align-items: center;
+                                    -webkit-justify-content: center;
+                                    justify-content: center;
+                                    -webkit-flex-wrap: wrap;
+                                    -ms-flex-wrap: wrap;
+                                    flex-wrap: wrap;
                                     list-style-type: none;
                                     margin: 0;
                                     padding: 0;
@@ -1641,7 +1857,7 @@
                                                 overflow: hidden;
                                                 speak: none;
                                                 text-align: center;
-                                                font-family: 'aw-osc_icons-font';
+                                                font-family: @aw-osc-font;
                                             }
 
                                             span {
@@ -1680,13 +1896,12 @@
                                     }
                                 }
                             }
-
                         }
                     }
                 }
 
                 .aw-mobile-hide {
-                    display: none;
+                    //display: none;
                 }
 
                 .aw-mobile {
@@ -1698,7 +1913,7 @@
 
                             &:before {
                                 content: '\e912';
-                                font-family: 'aw-osc_icons-font' !important;
+                                font-family: @aw-osc-font !important;
                                 font-size: 25px;
                                 font-weight: normal;
                                 position: absolute;
@@ -1706,7 +1921,7 @@
                                 top: 0;
                                 -webkit-font-smoothing: antialiased;
                                 -moz-osx-font-smoothing: grayscale;
-                                color: @aw-osc-secondary__color;
+                                color: @aqua;
                             }
                         }
                     }
@@ -1769,10 +1984,11 @@
                 max-width: 530px;
                 margin: auto;
                 padding: 5px 10px;
-                .lib-css(transition, .5s, 1);
+                -webkit-transition: .5s;
+                transition: .5s;
 
                 .page-title {
-                    font-size: 1.5em;
+                    font-size: 18px;
                 }
             }
 
@@ -1788,8 +2004,11 @@
                 padding: 10px;
 
                 .checkout-container {
-                    .lib-vendor-box-align(center);
-                    .lib-vendor-prefix-flex-direction(column);
+                    -webkit-align-items: center;
+                    align-items: center;
+                    -webkit-flex-direction: column;
+                    -ms-flex-direction: column;
+                    flex-direction: column;
                     max-width: 530px;
 
                     .aw-onestep-main,
@@ -1830,13 +2049,18 @@
                         }
 
                         fieldset.field.street .control {
-                            .lib-vendor-prefix-flex-wrap(wrap);
+                            -webkit-flex-wrap: wrap;
+                            -ms-flex-wrap: wrap;
+                            flex-wrap: wrap;
+
                         }
                     }
                 }
 
                 .osc-fluid {
-                    .lib-vendor-prefix-flex-wrap(wrap);
+                    -webkit-flex-wrap: wrap;
+                    -ms-flex-wrap: wrap;
+                    flex-wrap: wrap;
 
                     .field {
                         &:not(:last-child) {
@@ -1931,13 +2155,21 @@
 
                         .aw-onestep-groups_item .group-title {
                             h2 {
-                                .lib-vendor-prefix-display(flex);
-                                .lib-vendor-prefix-flex-direction(row);
-                                .lib-css(align-items, center, 1);
-                                .lib-css(justify-content, flex-start, 1);
+                                display: -webkit-flex;
+                                display: -moz-flex;
+                                display: -ms-flex;
+                                display: -o-flex;
+                                display: flex;
+                                -webkit-flex-direction: row;
+                                -ms-flex-direction: row;
+                                flex-direction: row;
+                                -webkit-align-items: center;
+                                align-items: center;
+                                -webkit-justify-content: flex-start;
+                                justify-content: flex-start;
 
                                 .mark {
-                                    .lib-css(background-color, @aw-osc-secondary__color);
+                                    background-color: @aqua;
                                     width: 12px;
                                     height: 12px;
                                     justify-content: center;
@@ -1962,8 +2194,12 @@
 
                     .onestep-billing-address .action-toolbar,
                     .onestep-shipping-address .action-toolbar {
-                        .lib-vendor-box-align(flex-end);
-                        .lib-vendor-prefix-flex-direction(column);
+                        -webkit-align-items: flex-end;
+                        align-items: flex-end;
+
+                        -webkit-flex-direction: column;
+                        -ms-flex-direction: column;
+                        flex-direction: column;
                         justify-content: center;
 
                         .action {
@@ -1978,6 +2214,10 @@
                                 display: none;
 
                                 &.short {
+                                    display: -webkit-flex;
+                                    display: -moz-flex;
+                                    display: -ms-flex;
+                                    display: -o-flex;
                                     display: flex;
                                 }
                             }
@@ -2003,8 +2243,11 @@
     .onestepcheckout-index-index {
         .page-main {
             .checkout-container {
-                .lib-vendor-box-align(flex-start);
-                .lib-vendor-prefix-flex-direction(row);
+                -webkit-align-items: flex-start;
+                align-items: flex-start;
+                -webkit-flex-direction: row;
+                -ms-flex-direction: row;
+                flex-direction: row;
 
                 .aw-mobile {
                     display: none;
@@ -2017,7 +2260,9 @@
 
             .shipping-method {
                 .onestep-shipping-method .onestep-shipping-method-list .shipping-method-card .shipping-method-title {
-                    .lib-css(flex-direction, row, 1);
+                    -webkit-flex-direction: row;
+                    -ms-flex-direction: row;
+                    flex-direction: row;
 
                     .shipping-method-subtitle {
                         padding-left: 0;
@@ -2054,10 +2299,6 @@
 }
 
 /* Fix bug cc */
-.onestepcheckout-index-index .page-main .aw-onestep-main .label {
-    top: 3px;
-    background: transparent;
-}
 
 .onestepcheckout-index-index .page-main .checkout-container .fl-placeholder-state .label,
 .onestepcheckout-index-index .page-main .checkout-container .fl-label-state .label,
@@ -2069,7 +2310,7 @@
 
 .onestepcheckout-index-index .page-main .checkout-container .field.fl-label-state .label,
 .onestepcheckout-index-index .page-main .checkout-container .field.fl-label[data-value-specified='1'] .label {
-    font-size: 1rem;
+    font-size: 12px;
 }
 
 .onestepcheckout-index-index .page-main .checkout-container .field.fl-label-state .input-text, .onestepcheckout-index-index .page-main .checkout-container .field.fl-label[data-value-specified='1'] .input-text,
@@ -2097,7 +2338,7 @@
 
 .onestepcheckout-index-index label[for="authnetcim-cc-type"],
 .onestepcheckout-index-index #authnetcim-cc-type-exp-div > label {
-    display: none !important;
+    //display: none !important;
 }
 
 .onestepcheckout-index-index .page-main .checkout-container .aw-onestep-sidebar-content .aw-onestep-sidebar-block.payment-option.giftcardaccount .actions-toolbar {
@@ -2106,7 +2347,7 @@
 
 .onestepcheckout-index-index .page-main .checkout-container .aw-onestep-sidebar-content .aw-onestep-sidebar-block.payment-option .payment-option-title .action-toggle:hover,
 .onestepcheckout-index-index .page-main .checkout-container .aw-onestep-sidebar-content .aw-sidebar_order-note span:hover {
-    color: #3bc1cc !important;
+    color: @aqua !important;
     text-decoration: none !important;
 }
 
