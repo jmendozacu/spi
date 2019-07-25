@@ -1174,7 +1174,7 @@
                     margin: 0 -1%;
 
                     li.product-item {
-                        width: 16.6%;
+                        width: 16.4%;
                         display: inline-block;
                         padding: 0 1% 2%;
 
@@ -2031,12 +2031,11 @@
         .display-flex();
         .justify-content(flex-start);
         .align-items(center);
-        font-weight: bold;
-
+        margin-bottom: 20px;
         .c1 {
             width: 65px;
             height: 50px;
-            background: #21538d;
+            background: #444;
             color: #ffffff;
             border-right: 2px solid;
             justify-content: center;
@@ -2056,6 +2055,7 @@
             background: #444444;
             color: #ffffff;
             line-height: 50px;
+            font-weight: bold;
             text-align: center;
             .flex(auto);
         }
@@ -2063,6 +2063,19 @@
         &.fb {
             .c1:after {
                 content: '\f39e';
+            }
+
+            .c1, .c2 {
+                background: #21538d;
+            }
+        }
+
+        &.gg {
+            .c1:after {
+                content: '\f0d5';
+            }
+            .c1, .c2 {
+                background: #f14336;
             }
         }
     }
@@ -2151,7 +2164,7 @@
         }
 
         .form.password.forget {
-            max-width: 380px;
+            max-width: 680px;
             min-height: 50vh;
 
             .fieldset {
