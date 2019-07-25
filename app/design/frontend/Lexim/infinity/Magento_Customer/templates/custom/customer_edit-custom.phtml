@@ -259,7 +259,6 @@ $customerSession = $_objectManager->create('Magento\Customer\Model\Session');
 $getIdcus = $customerSession->getCustomerId();
 
 
-
 $countryList = $savedAddres->getCountries();
 $regionList = $savedAddres->getRegion();
 
@@ -401,7 +400,28 @@ if(isset($shippingAddress)){
         <?php endif; ?>
     </div>
 </div>
+<?php
+$resource = $_objectManager->get('Magento\Framework\App\ResourceConnection');
+$connection = $resource->getConnection();
+$tableName = $resource->getTableName('local_retailer_store');
 
+$sql = "Select * FROM " . $tableName. " WHERE id_customer_use =". $getIdcus;
+$array_customer = $connection->fetchAll($sql);
+if (!empty($array_customer)){
+    foreach ($array_customer as $key) {
+        $retailerId = $key['retailer_id'];
+        break;
+    } ?>
+<style type="text/css">
+    .product-items.<?= $retailerId; ?> .<?= $retailerId; ?> .make-this-store span {
+        display: none;
+    }
+    .product-items.<?= $retailerId; ?> .<?= $retailerId; ?> .location-radio .label{
+        display: block !important;
+    }
+</style>
+<?php }
+?>
 <div class="my-local-retailer">
     <div class="box-local-retailer">
         <div class="header-retailer">
@@ -440,7 +460,7 @@ if(isset($shippingAddress)){
             </div>
         </div>
         <div class="footer-retailer">
-            <div class="products list items product-items the-bottom-slider">
+            <div class="products list items product-items the-bottom-slider <?php if(isset($retailerId)){echo $retailerId;} ?>">
             </div>
         </div>
     </div>
@@ -503,6 +523,7 @@ if(isset($shippingAddress)){
         $(document.body).on('click', '.make-this-store span' ,function(e){
             $(this).parent().addClass('active');
             var monday = "no", saturday = "no";
+            var retailerid = $('.make-this-store.active .retailerid-retailer').val();
             var storename = $('.make-this-store.active .storename-retailer').val();
             var street = $('.make-this-store.active .street-retailer').val();
             var city = $('.make-this-store.active .city-retailer').val();
@@ -519,6 +540,7 @@ if(isset($shippingAddress)){
                 dataType: 'json',
                 showLoader: true,
                 data: {
+                    retailerid: retailerid,
                     storename: storename,
                     street: street,
                     city: city,
@@ -531,7 +553,7 @@ if(isset($shippingAddress)){
                     getidcus: getidcus
                 },
                 success: function (data) {
-                    // location.reload();
+                    location.reload();
                 }
             });
         }); 

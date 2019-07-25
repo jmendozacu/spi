@@ -120,7 +120,32 @@ $editUrl = $block->getCustomerEditUrl();
         <div class="box-function">
             <div class="header-name"><span><?= /* @escapeNotVerified */ __('My local retails') ?></span></div>
             <div class="content">
-                <span>None</span>
+            <?php
+                $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+                $resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
+                $connection = $resource->getConnection();
+                $tableName = $resource->getTableName('local_retailer_store');
+                
+                $customerSession = $objectManager->create('Magento\Customer\Model\Session');
+                $getIdcus = $customerSession->getCustomerId();
+
+                $sql = "Select * FROM " . $tableName. " WHERE id_customer_use =". $getIdcus;
+                $array_customer = $connection->fetchAll($sql);
+                if (!empty($array_customer)){
+                    foreach ($array_customer as $key) {
+                        $storeName = $key['store_name'];
+                        $street = $key['street'];
+                        $city = $key['city'];
+                        $state = $key['state'];
+                        $zip = $key['zip'];
+                        break;
+                    } ?>
+                <?= $storeName; ?></br>
+                <?= $street; ?></br>
+                <?= $city; ?>, <?= $state; ?>, <?= $zip; ?>
+                <?php }else{  ?>
+                    <span>None</span>
+            <?php   }   ?>
             </div>
             <div class="buttom">
                 <a href="#"><?= /* @escapeNotVerified */ __('Edit') ?></a>

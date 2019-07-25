@@ -100,10 +100,10 @@ if (isStaging) {
             var html = "",
                 storeDistance = store.distance.toFixed(1);
 
-            html += '<div class="location">';
+            html += '<div class="location ' + store.retailerId + '">';
             html += '  <div class="location-radio">';
 
-            html += '    <label class="label"></label>';
+            html += '    <label class="label">MY LOCAL RETAILER</label>';
             html += '  </div>';
             html += '  <div class="location-body">';
             html += '<div class="name-store">';
@@ -116,7 +116,6 @@ if (isStaging) {
             }
 
             html += store.city + ", " + store.state + " " + store.zip + '<br />';
-            html += store.street1 + "</br>";
             if (isset(store.monday)) {
                 html += 'M-F:' + store.monday + '</br>';
                 html += 'Sat:' + store.saturday + '</br>';
@@ -124,7 +123,7 @@ if (isStaging) {
             html += store.phone + "</br>";
 
             // html += '    <div class="make-this-store"><input type="radio" class="radio" value="' + store.retailerId + '" name="location-option"><span>make this my store</span></div>';
-            html += '    <div class="make-this-store"><input type="radio" class="radio" value="' + store.retailerId + '" name="location-option">';
+            html += '    <div class="make-this-store"><input type="radio" class="radio retailerid-retailer" value="' + store.retailerId + '" name="location-option">';
             html += '    <input type="text" class="radio storename-retailer" value="' + store.storeName + '" name="storename-retailer">';
             if (isset(store.street2)) {
                 html += '    <input type="text" class="radio street-retailer" value="' + store.street1 + store.street2 + '" name="street-retailer">';
