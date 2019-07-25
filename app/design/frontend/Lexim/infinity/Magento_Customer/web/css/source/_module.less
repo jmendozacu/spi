@@ -7,23 +7,13 @@
 //  Variables
 //  _____________________________________________
 
-@account-nav-background: @sidebar__background-color;
-@account-nav-color: false;
-
-@account-nav-current-border: 3px solid transparent;
-@account-nav-current-border-color: @active__color;
-@account-nav-current-color: false;
-@account-nav-current-font-weight: @font-weight__semibold;
-
-@account-nav-delimiter__border-color: @color-gray82;
-
-@account-nav-item-hover: @color-gray91;
-
-@_password-default: @color-gray-light01;
+@_password-default: #f4f4f4;
 @_password-weak: #ffafae;
 @_password-medium: #ffd6b3;
 @_password-strong: #c5eeac;
 @_password-very-strong: #81b562;
+
+@hind-font: 'Hind', Proxima Nova, sans-serif;
 
 //
 //  Common
@@ -520,7 +510,7 @@
 //
 //  Mobile
 //  _____________________________________________
-
+// max 767px
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
     .login-container {
         .fieldset {
@@ -602,6 +592,7 @@
 
 }
 
+// max 640px
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
     .account {
         .column.main,
@@ -639,7 +630,7 @@
 //
 //  Desktop
 //  _____________________________________________
-
+// min 768px
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
     .login-container {
         &:extend(.abs-add-clearfix-desktop all);
@@ -764,8 +755,6 @@
 
 }
 
-// lampk49 dev start
-
 
 //
 // DASHBOARD
@@ -798,7 +787,6 @@
             .column.main {
                 width: 100%;
                 -ms-flex-order: 3;
-                -webkit-order: 3;
                 order: 3;
                 float: right;
                 -webkit-flex-basis: 100%;
@@ -808,7 +796,6 @@
             .page-title-wrapper {
                 width: 100%;
                 -ms-flex-order: 2;
-                -webkit-order: 2;
                 order: 2;
                 float: left;
             }
@@ -816,7 +803,6 @@
             .sidebar-main {
                 width: 100%;
                 -ms-flex-order: 1;
-                -webkit-order: 1;
                 order: 1;
                 float: left;
             }
@@ -834,7 +820,7 @@
                 padding-right: 5%;
 
                 h1 {
-                    font-family: 'ProximaNova';
+                    
                     font-size: 30px;
                     font-weight: bold;
                     color: #3e3935;
@@ -845,7 +831,7 @@
                 }
 
                 p {
-                    font-family: 'Hind';
+                    font-family: @hind-font;
                     font-size: 14px;
 
                     .email {
@@ -889,7 +875,7 @@
                             padding: 0 10px;
 
                             a {
-                                font-family: 'ProximaNova';
+                                
                                 font-size: 14px;
                                 font-weight: bold;
                                 color: #3e3935;
@@ -921,7 +907,7 @@
         .block-dashboard-orders {
             .block-title.order {
                 strong {
-                    font-family: 'ProximaNova';
+                    
                     font-size: 20px;
                     font-weight: bold;
                     color: #3e3935;
@@ -937,7 +923,6 @@
             .block-content {
                 #my-orders-table {
                     thead > tr > th {
-                        font-family: 'ProximaNova';
                         font-size: 16px;
                         font-weight: bold;
                         color: #74706d;
@@ -950,7 +935,7 @@
 
                     tbody > tr {
                         > td {
-                            font-family: 'Hind';
+                            font-family: @hind-font;
                             font-size: 14px;
                             color: #3e3935;
                             text-align: left;
@@ -958,7 +943,7 @@
                             padding: 8px 0;
 
                             a {
-                                font-family: 'Hind';
+                                font-family: @hind-font;
                                 font-size: 14px;
                                 font-weight: bold;
                                 color: #3e3935;
@@ -997,7 +982,7 @@
                     width: 100%;
 
                     .header-items span {
-                        font-family: 'ProximaNova';
+                        
                         font-size: 20px;
                         font-weight: bold;
                         color: #3e3935;
@@ -1021,7 +1006,7 @@
                             border-bottom: 1px solid #3e3935;
 
                             span {
-                                font-family: 'ProximaNova';
+                                
                                 font-size: 16px;
                                 font-weight: bold;
                                 color: #74706d;
@@ -1048,7 +1033,7 @@
 
                                     span {
                                         .title {
-                                            font-family: 'ProximaNova';
+                                            
                                             font-size: 14px;
                                             font-weight: bold;
                                             color: #3e3935;
@@ -1058,7 +1043,7 @@
                                         }
 
                                         .value {
-                                            font-family: 'Hind';
+                                            font-family: @hind-font;
                                             font-size: 14px;
                                             color: #3e3935;
                                             text-align: left;
@@ -1080,7 +1065,7 @@
                             text-align: center;
 
                             a {
-                                font-family: 'ProximaNova';
+                                
                                 font-size: 14px;
                                 font-weight: bold;
                                 color: #ffffff;
@@ -1115,7 +1100,7 @@
                 h3 {
                     padding: 30px 0;
                     margin: 0;
-                    font-family: 'ProximaNova';
+                    
                     font-size: 20px;
                     font-weight: bold;
                     color: #3e3935;
@@ -1129,7 +1114,7 @@
                     margin: 0;
 
                     span.emty-wishlist {
-                        font-family: 'Hind';
+                        font-family: @hind-font;
                         font-size: 14px;
                         color: #3e3935;
                         text-align: left;
@@ -1146,7 +1131,7 @@
                         background-color: #3bc1cc;
                         padding: 10px 20px;
                         display: inline-block;
-                        font-family: 'ProximaNova';
+                        
                         font-size: 14px;
                         font-weight: bold;
                         color: #ffffff;
@@ -1174,7 +1159,7 @@
                             }
 
                             .price-box .ranger-price {
-                                font-family: 'Hind';
+                                font-family: @hind-font;
                                 font-size: 14px;
                                 color: #a7a4a3;
                                 text-align: left;
@@ -1197,7 +1182,7 @@
                                     text-transform: uppercase;
 
                                     span {
-                                        font-family: 'ProximaNova';
+                                        
                                         font-size: 14px;
                                         font-weight: bold;
                                         color: #3e3935;
@@ -1211,7 +1196,7 @@
                             }
 
                             .unavailable {
-                                font-family: 'ProximaNova';
+                                
                                 font-size: 14px;
                                 font-weight: bold;
                                 color: #3e3935;
@@ -1234,7 +1219,7 @@
                     padding: 10px 30px;
 
                     span {
-                        font-family: 'ProximaNova';
+                        
                         font-size: 14px;
                         font-weight: bold;
                         color: #ffffff;
@@ -1261,11 +1246,10 @@
                 width: auto;
                 height: auto;
                 position: relative;
-                margin: 0;
-                margin-bottom: 10px;
+                margin: 0 0 10px;
 
                 span {
-                    font-family: 'ProximaNova';
+                    
                     font-size: 20px;
                     font-weight: bold;
                     color: #3e3935;
@@ -1285,7 +1269,7 @@
             margin: 0;
 
             span.emty-cart {
-                font-family: 'Hind';
+                font-family: @hind-font;
                 font-size: 14px;
                 color: #3e3935;
                 text-align: left;
@@ -1304,7 +1288,7 @@
                 display: inline-block;
 
                 a {
-                    font-family: 'ProximaNova';
+                    
                     font-size: 14px;
                     font-weight: bold;
                     color: #ffffff;
@@ -1343,7 +1327,7 @@
                         display: block;
 
                         a {
-                            font-family: 'Hind';
+                            font-family: @hind-font;
                             font-size: 15px;
                             color: #3e3935;
                             text-align: left;
@@ -1365,7 +1349,7 @@
                             color: #3e3935;
 
                             span {
-                                font-family: 'ProximaNova';
+                                
                                 font-size: 15px;
                                 font-weight: bold;
                                 color: #3e3935;
@@ -1417,7 +1401,7 @@
                 margin-bottom: 10px;
 
                 span {
-                    font-family: 'ProximaNova';
+                    
                     font-size: 20px;
                     font-weight: bold;
                     color: #3e3935;
@@ -1432,7 +1416,7 @@
         #my-orders-table {
             thead {
                 .col {
-                    font-family: 'ProximaNova';
+                    
                     font-size: 16px;
                     font-weight: bold;
                     color: #74706d;
@@ -1456,7 +1440,7 @@
                     border-bottom: 2px solid #74706d;
 
                     td {
-                        font-family: 'Hind';
+                        font-family: @hind-font;
                         font-size: 14px;
                         color: #3e3935;
                         text-align: left;
@@ -1470,7 +1454,7 @@
                         }
 
                         .action.order {
-                            font-family: 'ProximaNova';
+                            
                             font-size: 14px;
                             font-weight: bold;
                             color: #3bc1cc;
@@ -1489,7 +1473,7 @@
                         }
 
                         .action.track-order {
-                            font-family: 'ProximaNova';
+                            
                             font-size: 14px;
                             font-weight: bold;
                             text-align: center;
@@ -1540,7 +1524,7 @@
             .page-title-wrapper {
                 .page-title {
                     span {
-                        font-family: 'ProximaNova';
+                        
                         font-size: 20px;
                         font-weight: bold;
                         color: #3e3935;
@@ -1570,7 +1554,7 @@
                                 display: inline-block;
 
                                 span {
-                                    font-family: 'ProximaNova';
+                                    
                                     font-size: 14px;
                                     font-weight: bold;
                                     color: #74706d;
@@ -1584,7 +1568,7 @@
                                 }
 
                                 a {
-                                    font-family: 'ProximaNova';
+                                    
                                     font-size: 14px;
                                     font-weight: bold;
                                     color: #3e3935;
@@ -1602,7 +1586,7 @@
                             }
 
                             .col.value {
-                                font-family: 'Hind';
+                                font-family: @hind-font;
                                 font-size: 14px;
                                 color: #3e3935;
                                 text-align: left;
@@ -1631,11 +1615,10 @@
 
                             .action.cancel {
                                 float: right;
-                                padding-right: 50px;
                                 background: transparent;
                                 border: none;
                                 text-transform: uppercase;
-                                padding: 0px 55px 0 0;
+                                padding: 0 55px 0 0;
                                 color: #3ac1cc;
                             }
 
@@ -1645,7 +1628,7 @@
 
                                 .field {
                                     .label {
-                                        font-family: 'Hind';
+                                        font-family: @hind-font;
                                         font-size: 12px;
                                         color: #74706d;
                                         text-align: left;
@@ -1691,7 +1674,7 @@
 
                     a {
                         padding-right: 53px;
-                        font-family: 'ProximaNova';
+                        
                         font-size: 14px;
                         font-weight: bold;
                         color: #3e3935;
@@ -1712,7 +1695,7 @@
                 .box-address {
                     .content-address {
                         p {
-                            font-family: 'Hind';
+                            font-family: @hind-font;
                             font-size: 14px;
                             color: #3e3935;
                             text-align: left;
@@ -1732,7 +1715,7 @@
                                 position: relative;
 
                                 .label {
-                                    font-family: 'Hind';
+                                    font-family: @hind-font;
                                     font-size: 12px;
                                     color: #74706d;
                                     text-align: left;
@@ -1794,7 +1777,7 @@
                         max-width: 700px;
 
                         .title {
-                            font-family: 'ProximaNova';
+                            
                             font-size: 20px;
                             font-weight: bold;
                             color: #3e3935;
@@ -1807,7 +1790,7 @@
                         }
 
                         .text-retails {
-                            font-family: 'Hind';
+                            font-family: @hind-font;
                             font-size: 14px;
                             color: #3e3935;
                             text-align: left;
@@ -1820,7 +1803,7 @@
                         padding-bottom: 40px;
 
                         span.find {
-                            font-family: 'ProximaNova';
+                            
                             font-size: 14px;
                             font-weight: bold;
                             color: #3e3935;
@@ -1839,7 +1822,7 @@
                                 position: relative;
 
                                 .label {
-                                    font-family: 'Hind';
+                                    font-family: @hind-font;
                                     font-size: 12px;
                                     color: #74706d;
                                     text-align: left;
@@ -1855,7 +1838,7 @@
                                     text-transform: lowercase;
 
                                     span {
-                                        font-family: 'Hind';
+                                        font-family: @hind-font;
                                         font-size: 12px;
                                         color: #74706d;
                                         text-align: left;
@@ -1887,7 +1870,7 @@
                             width: 12%;
                             line-height: 2.9;
                             padding: 10px 0;
-                            font-family: 'ProximaNova';
+                            
                             font-size: 14px;
                             color: #3e3935;
                             letter-spacing: 0.02em;
@@ -1908,14 +1891,14 @@
                         }
 
                         .location-body {
-                            font-family: 'Hind';
+                            font-family: @hind-font;
                             font-size: 14px;
                             color: #3e3935;
                             text-align: left;
                             line-height: 18px;
 
                             .name-store {
-                                font-family: 'Hind';
+                                font-family: @hind-font;
                                 font-size: 14px;
                                 font-weight: bold;
                                 color: #3e3935;
@@ -1931,7 +1914,7 @@
                                 }
 
                                 span {
-                                    font-family: 'ProximaNova';
+                                    
                                     font-size: 14px;
                                     font-weight: bold;
                                     color: #3bc1cc;
@@ -1952,14 +1935,36 @@
 
 // min 992px
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
-    //
-    //  Home page
-    //  ---------------------------------------------
+
 }
 
 // min 1440px
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
-    //
-    //  Home page
-    //  ---------------------------------------------
+
+}
+
+//
+//  Create Account - Login Account page , Forget Password Page
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+// max 767px
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+// min 768px
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
 }
