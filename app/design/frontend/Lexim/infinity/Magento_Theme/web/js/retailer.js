@@ -109,22 +109,40 @@ if (isStaging) {
             html += '<div class="name-store">';
             html += store.storeName;
             html += '  </div>';
-            html += store.street1 + "<br />";
+            html += store.street1 + ", ";
 
             if (isset(store.street2)) {
                 html += store.street2;
             }
 
-            html += "\n";
-
             html += store.city + ", " + store.state + " " + store.zip + '<br />';
-            html += storeDistance > 1 ? '<span class="txt-teal">' + storeDistance + ' miles away </span>' : '<span class="txt-teal">' + storeDistance + ' mile away</span>';
-
-            if (store.storeId) {
-                html += '    <div class="make-this-store"><input type="radio" class="radio" value="' + store.retailerId + '-' + store.storeId + '" name="location-option"><span>make this my store</span></div>';
-            } else {
-                html += '    <div class="make-this-store"><input type="radio" class="radio" value="' + store.retailerId + '" name="location-option"><span>make this my store</span></div>';
+            html += store.street1 + "</br>";
+            if (isset(store.monday)) {
+                html += 'M-F:' + store.monday + '</br>';
+                html += 'Sat:' + store.saturday + '</br>';
             }
+            html += store.phone + "</br>";
+
+            // html += '    <div class="make-this-store"><input type="radio" class="radio" value="' + store.retailerId + '" name="location-option"><span>make this my store</span></div>';
+            html += '    <div class="make-this-store"><input type="radio" class="radio" value="' + store.retailerId + '" name="location-option">';
+            html += '    <input type="text" class="radio storename-retailer" value="' + store.storeName + '" name="storename-retailer">';
+            if (isset(store.street2)) {
+                html += '    <input type="text" class="radio street-retailer" value="' + store.street1 + store.street2 + '" name="street-retailer">';
+            }else{
+                html += '<input type="text" class="radio street-retailer" value="' + store.street1 + '" name="street-retailer">';
+            }
+            html += '    <input type="text" class="radio city-retailer" value="' + store.city + '" name="city-retailer">';
+            html += '    <input type="text" class="radio state-retailer" value="' + store.state + '" name="state-retailer">';
+            html += '    <input type="text" class="radio zip-retailer" value="' + store.zip + '" name="zip-retailer">';
+            html += '    <input type="text" class="radio distance-retailer" value="' + storeDistance + '" name="distance-retailer">';
+            if (isset(store.monday)) {
+                html += '    <input type="text" class="radio monday-retailer" value="' + store.monday + '" name="distance-retailer">';
+                html += '    <input type="text" class="radio saturday-retailer" value="' + store.saturday + '" name="distance-retailer">';
+            }
+            html += '    <input type="text" class="radio phone-retailer" value="' + store.phone + '" name="distance-retailer">';
+            html += '    <span>make this my store</span></div>';
+
+
 
             html += '  </div>';
             html += '</div>';
@@ -153,21 +171,20 @@ if (isStaging) {
             zipInput = jQuery('.input-zip');
         zipInput.keyup(function (e) {
             var inputVal = jQuery(this).val();
-            // If zip code is 5 characters and is numeric value gather results
-            if (inputVal.length === 5 && $.isNumeric(inputVal)) {
-                var radius = radiusInput.val();
-                zipCode = jQuery(this).val();
-
-                // if (!radius) {
-                //     radius = 10;
-                // }
-                loadLocations(zipCode, radius);
-            }
             jQuery('.the-bottom-slider .location').remove();
             jQuery('.the-bottom-slider .slick-arrow').remove();
             jQuery('.the-bottom-slider .slick-list').remove();
             jQuery('.the-bottom-slider').removeClass('slick-initialized');
             jQuery('.the-bottom-slider').removeClass('slick-slider');
+
+            // If zip code is 5 characters and is numeric value gather results
+            if (inputVal.length === 5 && $.isNumeric(inputVal)) {
+                var radius = radiusInput.val();
+                zipCode = jQuery(this).val();
+
+                loadLocations(zipCode, radius);
+            }
+            
         });
 
         radiusInput.on('change', function () {
@@ -182,7 +199,6 @@ if (isStaging) {
 
             loadLocations(zipCode, selectedRadius);
         });
-
     });
 })();
 

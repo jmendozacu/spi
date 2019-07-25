@@ -33,6 +33,7 @@ $helper = $this->helper('Magento\Catalog\Helper\Output');
 $collection = $wishlistHelper->getWishlistItemCollection();
 
 $image = 'category_page_grid';
+$countBreak = 0;
 ?>
 
 <div class="container-wishlist container">
@@ -45,7 +46,6 @@ $image = 'category_page_grid';
             ?>
             <li class="item product product-item <?php if (!$_product->isSaleable()): ?>hidden<?php endif; ?>">
                 <div class="product-item-info" data-container="product-grid">
-
                     <?php
                     $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
                     $productImage = $_imagehelper->init($_product, $image)->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->getUrl();
@@ -92,9 +92,10 @@ $image = 'category_page_grid';
                     </div>
                 </div>
             </li>
+        <?php $countBreak = $countBreak +1; if($countBreak == 6 ) { break;} ?>    
         <?php endforeach; ?>
     </ol>
-    <a href="/wishlist" class="view-wishlist"><span><?= __('View wishlish')?></span></a>
+    <a href="<?= $block->getBaseUrl(); ?>wishlist" class="view-wishlist"><span><?= __('View wishlish')?></span></a>
 <?php else: ?>
     <div class="message info empty">
         <span class="emty-wishlist"><?= $block->escapeHtml(__('Engage in retail therapy. Go buy something.')) ?></span>

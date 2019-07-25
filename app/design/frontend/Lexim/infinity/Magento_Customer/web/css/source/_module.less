@@ -6,25 +6,24 @@
 //
 //  Variables
 //  _____________________________________________
+
 @account-nav-background: @sidebar__background-color;
 @account-nav-color: false;
 
 @account-nav-current-border: 3px solid transparent;
-@account-nav-current-border-color: @aqua;
+@account-nav-current-border-color: @active__color;
 @account-nav-current-color: false;
-@account-nav-current-font-weight: 600;
+@account-nav-current-font-weight: @font-weight__semibold;
 
-@account-nav-delimiter__border-color: #d1d1d1;
+@account-nav-delimiter__border-color: @color-gray82;
 
-@account-nav-item-hover: #e8e8e8;
+@account-nav-item-hover: @color-gray91;
 
-@_password-default: #f4f4f4;
+@_password-default: @color-gray-light01;
 @_password-weak: #ffafae;
 @_password-medium: #ffd6b3;
 @_password-strong: #c5eeac;
 @_password-very-strong: #81b562;
-
-@hind-font: 'Hind', Proxima Nova, sans-serif;
 
 //
 //  Common
@@ -345,10 +344,6 @@
             font-size: 16px;
         }
 
-        .third.checkbox-field {
-            display: none;
-        }
-
         button {
             display: block;
             width: 100%;
@@ -525,7 +520,7 @@
 //
 //  Mobile
 //  _____________________________________________
-// max 767px
+
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
     .login-container {
         .fieldset {
@@ -607,7 +602,6 @@
 
 }
 
-// max 640px
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
     .account {
         .column.main,
@@ -645,7 +639,7 @@
 //
 //  Desktop
 //  _____________________________________________
-// min 768px
+
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
     .login-container {
         &:extend(.abs-add-clearfix-desktop all);
@@ -673,7 +667,7 @@
 
             > .field {
                 > .control {
-                    width: 100%;
+                    width: 55%;
                 }
             }
         }
@@ -697,6 +691,8 @@
 
     .form.password.reset,
     .form.send.confirmation,
+    .form.password.forget,
+    .form.create.account,
     .form.form-orders-search {
         min-width: 600px;
         width: 50%;
@@ -768,6 +764,9 @@
 
 }
 
+// lampk49 dev start
+
+
 //
 // DASHBOARD
 //  ______________________________________________
@@ -775,6 +774,7 @@
 .customer-account-index {
 
 }
+
 
 //
 //  Desktop
@@ -798,6 +798,7 @@
             .column.main {
                 width: 100%;
                 -ms-flex-order: 3;
+                -webkit-order: 3;
                 order: 3;
                 float: right;
                 -webkit-flex-basis: 100%;
@@ -807,13 +808,30 @@
             .page-title-wrapper {
                 width: 100%;
                 -ms-flex-order: 2;
+                -webkit-order: 2;
                 order: 2;
                 float: left;
+
+                .page-title {
+                    span {
+                        font-family: 'ProximaNova';
+                        font-size: 20px;
+                        font-weight: bold;
+                        color: rgba(62, 57, 53, 1);
+                        text-align: left;
+                        line-height: 45px;
+                        -webkit-transform: scale(1.26, 1.29);
+                        -ms-transform: scale(1.26, 1.29);
+                        transform: scale(1.26, 1.29);
+                        text-transform: uppercase;
+                    }
+                }
             }
 
             .sidebar-main {
                 width: 100%;
                 -ms-flex-order: 1;
+                -webkit-order: 1;
                 order: 1;
                 float: left;
             }
@@ -831,7 +849,7 @@
                 padding-right: 5%;
 
                 h1 {
-
+                    font-family: 'ProximaNova';
                     font-size: 30px;
                     font-weight: bold;
                     color: #3e3935;
@@ -842,7 +860,7 @@
                 }
 
                 p {
-                    font-family: @hind-font;
+                    font-family: 'Hind';
                     font-size: 14px;
 
                     .email {
@@ -886,7 +904,7 @@
                             padding: 0 10px;
 
                             a {
-
+                                font-family: 'ProximaNova';
                                 font-size: 14px;
                                 font-weight: bold;
                                 color: #3e3935;
@@ -918,7 +936,7 @@
         .block-dashboard-orders {
             .block-title.order {
                 strong {
-
+                    font-family: 'ProximaNova';
                     font-size: 20px;
                     font-weight: bold;
                     color: #3e3935;
@@ -934,6 +952,7 @@
             .block-content {
                 #my-orders-table {
                     thead > tr > th {
+                        font-family: 'ProximaNova';
                         font-size: 16px;
                         font-weight: bold;
                         color: #74706d;
@@ -946,7 +965,7 @@
 
                     tbody > tr {
                         > td {
-                            font-family: @hind-font;
+                            font-family: 'Hind';
                             font-size: 14px;
                             color: #3e3935;
                             text-align: left;
@@ -954,7 +973,7 @@
                             padding: 8px 0;
 
                             a {
-                                font-family: @hind-font;
+                                font-family: 'Hind';
                                 font-size: 14px;
                                 font-weight: bold;
                                 color: #3e3935;
@@ -993,7 +1012,7 @@
                     width: 100%;
 
                     .header-items span {
-
+                        font-family: 'ProximaNova';
                         font-size: 20px;
                         font-weight: bold;
                         color: #3e3935;
@@ -1017,7 +1036,7 @@
                             border-bottom: 1px solid #3e3935;
 
                             span {
-
+                                font-family: 'ProximaNova';
                                 font-size: 16px;
                                 font-weight: bold;
                                 color: #74706d;
@@ -1044,7 +1063,7 @@
 
                                     span {
                                         .title {
-
+                                            font-family: 'ProximaNova';
                                             font-size: 14px;
                                             font-weight: bold;
                                             color: #3e3935;
@@ -1054,7 +1073,7 @@
                                         }
 
                                         .value {
-                                            font-family: @hind-font;
+                                            font-family: 'Hind';
                                             font-size: 14px;
                                             color: #3e3935;
                                             text-align: left;
@@ -1076,7 +1095,7 @@
                             text-align: center;
 
                             a {
-
+                                font-family: 'ProximaNova';
                                 font-size: 14px;
                                 font-weight: bold;
                                 color: #ffffff;
@@ -1111,7 +1130,7 @@
                 h3 {
                     padding: 30px 0;
                     margin: 0;
-
+                    font-family: 'ProximaNova';
                     font-size: 20px;
                     font-weight: bold;
                     color: #3e3935;
@@ -1125,7 +1144,7 @@
                     margin: 0;
 
                     span.emty-wishlist {
-                        font-family: @hind-font;
+                        font-family: 'Hind';
                         font-size: 14px;
                         color: #3e3935;
                         text-align: left;
@@ -1142,7 +1161,7 @@
                         background-color: #3bc1cc;
                         padding: 10px 20px;
                         display: inline-block;
-
+                        font-family: 'ProximaNova';
                         font-size: 14px;
                         font-weight: bold;
                         color: #ffffff;
@@ -1160,7 +1179,7 @@
                     margin: 0 -1%;
 
                     li.product-item {
-                        width: 16.6%;
+                        width: 16.4%;
                         display: inline-block;
                         padding: 0 1% 2%;
 
@@ -1170,7 +1189,7 @@
                             }
 
                             .price-box .ranger-price {
-                                font-family: @hind-font;
+                                font-family: 'Hind';
                                 font-size: 14px;
                                 color: #a7a4a3;
                                 text-align: left;
@@ -1193,7 +1212,7 @@
                                     text-transform: uppercase;
 
                                     span {
-
+                                        font-family: 'ProximaNova';
                                         font-size: 14px;
                                         font-weight: bold;
                                         color: #3e3935;
@@ -1207,7 +1226,7 @@
                             }
 
                             .unavailable {
-
+                                font-family: 'ProximaNova';
                                 font-size: 14px;
                                 font-weight: bold;
                                 color: #3e3935;
@@ -1230,7 +1249,7 @@
                     padding: 10px 30px;
 
                     span {
-
+                        font-family: 'ProximaNova';
                         font-size: 14px;
                         font-weight: bold;
                         color: #ffffff;
@@ -1257,10 +1276,11 @@
                 width: auto;
                 height: auto;
                 position: relative;
-                margin: 0 0 10px;
+                margin: 0;
+                margin-bottom: 10px;
 
                 span {
-
+                    font-family: 'ProximaNova';
                     font-size: 20px;
                     font-weight: bold;
                     color: #3e3935;
@@ -1280,7 +1300,7 @@
             margin: 0;
 
             span.emty-cart {
-                font-family: @hind-font;
+                font-family: 'Hind';
                 font-size: 14px;
                 color: #3e3935;
                 text-align: left;
@@ -1299,7 +1319,7 @@
                 display: inline-block;
 
                 a {
-
+                    font-family: 'ProximaNova';
                     font-size: 14px;
                     font-weight: bold;
                     color: #ffffff;
@@ -1318,12 +1338,14 @@
         .product-items {
             margin: 0 -1%;
             padding: 0;
-            .display-flex();
+            // .display-flex();
+            display: block;
 
             .product-item {
                 width: 25%;
                 display: inline-block;
                 padding: 0 1% 2%;
+                float: left;
 
                 .product-item-info {
                     width: auto;
@@ -1338,7 +1360,7 @@
                         display: block;
 
                         a {
-                            font-family: @hind-font;
+                            font-family: 'Hind';
                             font-size: 15px;
                             color: #3e3935;
                             text-align: left;
@@ -1360,7 +1382,7 @@
                             color: #3e3935;
 
                             span {
-
+                                font-family: 'ProximaNova';
                                 font-size: 15px;
                                 font-weight: bold;
                                 color: #3e3935;
@@ -1412,7 +1434,7 @@
                 margin-bottom: 10px;
 
                 span {
-
+                    font-family: 'ProximaNova';
                     font-size: 20px;
                     font-weight: bold;
                     color: #3e3935;
@@ -1427,7 +1449,7 @@
         #my-orders-table {
             thead {
                 .col {
-
+                    font-family: 'ProximaNova';
                     font-size: 16px;
                     font-weight: bold;
                     color: #74706d;
@@ -1451,7 +1473,7 @@
                     border-bottom: 2px solid #74706d;
 
                     td {
-                        font-family: @hind-font;
+                        font-family: 'Hind';
                         font-size: 14px;
                         color: #3e3935;
                         text-align: left;
@@ -1465,7 +1487,7 @@
                         }
 
                         .action.order {
-
+                            font-family: 'ProximaNova';
                             font-size: 14px;
                             font-weight: bold;
                             color: #3bc1cc;
@@ -1484,7 +1506,7 @@
                         }
 
                         .action.track-order {
-
+                            font-family: 'ProximaNova';
                             font-size: 14px;
                             font-weight: bold;
                             text-align: center;
@@ -1535,7 +1557,7 @@
             .page-title-wrapper {
                 .page-title {
                     span {
-
+                        font-family: 'ProximaNova';
                         font-size: 20px;
                         font-weight: bold;
                         color: #3e3935;
@@ -1565,7 +1587,7 @@
                                 display: inline-block;
 
                                 span {
-
+                                    font-family: 'ProximaNova';
                                     font-size: 14px;
                                     font-weight: bold;
                                     color: #74706d;
@@ -1579,7 +1601,7 @@
                                 }
 
                                 a {
-
+                                    font-family: 'ProximaNova';
                                     font-size: 14px;
                                     font-weight: bold;
                                     color: #3e3935;
@@ -1597,7 +1619,7 @@
                             }
 
                             .col.value {
-                                font-family: @hind-font;
+                                font-family: 'Hind';
                                 font-size: 14px;
                                 color: #3e3935;
                                 text-align: left;
@@ -1626,10 +1648,11 @@
 
                             .action.cancel {
                                 float: right;
+                                padding-right: 50px;
                                 background: transparent;
                                 border: none;
                                 text-transform: uppercase;
-                                padding: 0 55px 0 0;
+                                padding: 0px 55px 0 0;
                                 color: #3ac1cc;
                             }
 
@@ -1639,7 +1662,7 @@
 
                                 .field {
                                     .label {
-                                        font-family: @hind-font;
+                                        font-family: 'Hind';
                                         font-size: 12px;
                                         color: #74706d;
                                         text-align: left;
@@ -1685,7 +1708,7 @@
 
                     a {
                         padding-right: 53px;
-
+                        font-family: 'ProximaNova';
                         font-size: 14px;
                         font-weight: bold;
                         color: #3e3935;
@@ -1706,7 +1729,7 @@
                 .box-address {
                     .content-address {
                         p {
-                            font-family: @hind-font;
+                            font-family: 'Hind';
                             font-size: 14px;
                             color: #3e3935;
                             text-align: left;
@@ -1726,7 +1749,7 @@
                                 position: relative;
 
                                 .label {
-                                    font-family: @hind-font;
+                                    font-family: 'Hind';
                                     font-size: 12px;
                                     color: #74706d;
                                     text-align: left;
@@ -1738,7 +1761,7 @@
                                     font-weight: normal;
                                     line-height: 1;
                                     height: 12px;
-                                    background: #ffffff;
+                                    background: #fff;
                                     text-transform: lowercase;
                                 }
 
@@ -1788,7 +1811,7 @@
                         max-width: 700px;
 
                         .title {
-
+                            font-family: 'ProximaNova';
                             font-size: 20px;
                             font-weight: bold;
                             color: #3e3935;
@@ -1801,7 +1824,7 @@
                         }
 
                         .text-retails {
-                            font-family: @hind-font;
+                            font-family: 'Hind';
                             font-size: 14px;
                             color: #3e3935;
                             text-align: left;
@@ -1814,7 +1837,7 @@
                         padding-bottom: 40px;
 
                         span.find {
-
+                            font-family: 'ProximaNova';
                             font-size: 14px;
                             font-weight: bold;
                             color: #3e3935;
@@ -1833,7 +1856,7 @@
                                 position: relative;
 
                                 .label {
-                                    font-family: @hind-font;
+                                    font-family: 'Hind';
                                     font-size: 12px;
                                     color: #74706d;
                                     text-align: left;
@@ -1845,11 +1868,11 @@
                                     font-weight: normal;
                                     line-height: 1;
                                     height: 12px;
-                                    background: #ffffff;
+                                    background: #fff;
                                     text-transform: lowercase;
 
                                     span {
-                                        font-family: @hind-font;
+                                        font-family: 'Hind';
                                         font-size: 12px;
                                         color: #74706d;
                                         text-align: left;
@@ -1881,7 +1904,7 @@
                             width: 12%;
                             line-height: 2.9;
                             padding: 10px 0;
-
+                            font-family: 'ProximaNova';
                             font-size: 14px;
                             color: #3e3935;
                             letter-spacing: 0.02em;
@@ -1891,6 +1914,10 @@
                     .footer-retailer {
                         padding-top: 40px;
                         border-top: 1px solid #74706d;
+
+                        .slick-prev, .slick-next {
+                            display: none;
+                        }
 
                         .location.slick-active {
                             border-right: 1px solid #a7a4a3;
@@ -1902,14 +1929,14 @@
                         }
 
                         .location-body {
-                            font-family: @hind-font;
+                            font-family: 'Hind';
                             font-size: 14px;
                             color: #3e3935;
                             text-align: left;
                             line-height: 18px;
 
                             .name-store {
-                                font-family: @hind-font;
+                                font-family: 'Hind';
                                 font-size: 14px;
                                 font-weight: bold;
                                 color: #3e3935;
@@ -1925,7 +1952,7 @@
                                 }
 
                                 span {
-
+                                    font-family: 'ProximaNova';
                                     font-size: 14px;
                                     font-weight: bold;
                                     color: #3bc1cc;
@@ -1946,254 +1973,14 @@
 
 // min 992px
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
-
+    //
+    //  Home page
+    //  ---------------------------------------------
 }
 
 // min 1440px
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
-
-}
-
-//
-//  Create Account - Login Account page , Forget Password Page
-//  _____________________________________________
-
-& when (@media-common = true) {
-    .checkbox-field {
-        position: relative;
-
-        input {
-            visibility: hidden;
-            position: absolute;
-            left: -9999px;
-            top: -9999px;
-
-            &:checked + label:before {
-                content: 'x';
-            }
-        }
-
-        label {
-            position: relative;
-            padding-left: 30px;
-            cursor: pointer;
-            display: inline-block;
-
-            &:before {
-                content: '';
-                display: inline-block;
-                position: absolute;
-                left: 0;
-                height: 15px;
-                width: 15px;
-                background: #ffffff;
-                border: 1px solid #808080;
-                font-size: 15px;
-                line-height: 14px;
-                text-align: center;
-                -webkit-font-smoothing: antialiased;
-                -moz-osx-font-smoothing: grayscale;
-            }
-        }
-
-        a {
-            color: @gray;
-            text-decoration: none;
-            border-bottom: 1px solid;
-
-            &:hover {
-                color: @aqua;
-            }
-        }
-    }
-
-    // Login FORM
-    .form-login {
-        .actions-toolbar {
-            .display-flex();
-            .flex-direction(column);
-
-            .secondary {
-                text-align: left;
-                margin: 0 0 20px;
-            }
-
-            .primary {
-                margin: 0 0 20px;
-            }
-
-            .third {
-                margin: 0 0 20px;
-            }
-        }
-    }
-
-    // Create account FORM
-    .form-create-account {
-        .fieldset {
-            margin-bottom: 0;
-        }
-
-        .show-in-login-page {
-            display: none;
-        }
-    }
-
-    // Forget Password PAGE + LOGIN PAGE
-    .customer-account-forgotpassword, .customer-account-login {
-        input[type="text"], input[type="password"], input[type="url"], input[type="tel"], input[type="search"], input[type="number"], input[type="datetime"], input[type="email"] {
-            border: 2px solid #727272;
-        }
-
-        .actions-toolbar {
-            margin: 0 0 20px;
-
-            .primary {
-                width: 100%;
-            }
-
-            button {
-                width: 100% !important;
-                display: block;
-                height: 40px;
-                text-transform: uppercase;
-                padding: 0;
-                margin: 0;
-                outline: 0;
-            }
-
-            a {
-                color: @gray;
-                text-decoration: none;
-                border-bottom: 1px solid;
-
-                &:hover {
-                    color: @aqua;
-                }
-            }
-        }
-
-        .action.primary:focus, .action.primary:active {
-            background: @aqua;
-            border: 2px solid @aqua;
-            color: #ffffff;
-        }
-    }
-
-    // Forget Password PAGE
-    .customer-account-forgotpassword {
-        .page-title {
-            font-size: 20px;
-            font-weight: bold;
-            text-align: left;
-            text-transform: uppercase;
-            margin: 0 0 20px;
-        }
-
-        .form.password.forget {
-            max-width: 380px;
-            min-height: 50vh;
-
-            .fieldset {
-                margin: 0;
-            }
-        }
-    }
-
-    // LOGIN PAGE (include Create account form )
-    .customer-account-login {
-        .page-title-wrapper {
-            display: none;
-        }
-
-        .field.header {
-            font-size: 20px;
-            font-weight: bold;
-            text-align: left;
-            text-transform: uppercase;
-            margin: 0 0 30px;
-        }
-
-        .show-in-login-page {
-            display: block;
-
-            .checkbox-field {
-                padding: 10px 0;
-            }
-        }
-
-        // Login form
-        .block-customer-login {
-            width: 100%;
-
-            .actions-toolbar {
-                .secondary {
-                    order: 2;
-                }
-
-                .primary {
-                    order: 1;
-                }
-
-                .third {
-                    order: 3;
-                }
-            }
-        }
-
-        // Create account form
-        .form-create-account {
-            width: 100%;
-
-            .register {
-                display: none;
-            }
-
-            .actions-toolbar {
-                margin-top: 20px;
-            }
-
-            button[type=submit] {
-                > span {
-                    visibility: hidden;
-                    display: none;
-                }
-
-                &:after {
-                    content: 'SIGN UP';
-                }
-            }
-        }
-    }
-}
-
-//
-//  Mobile
-//  _____________________________________________
-
-// max 767px
-.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
-
-}
-
-//
-//  Desktop
-//  _____________________________________________
-
-// min 768px
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
-
-    .customer-account-login {
-        .login-container {
-            .display-flex();
-            .justify-content(space-between);
-            max-width: 920px;
-            margin: 0 auto;
-
-            .block-customer-login, .form-create-account {
-                .flex(1);
-                padding: 0 3%;
-            }
-        }
-    }
+    //
+    //  Home page
+    //  ---------------------------------------------
 }
