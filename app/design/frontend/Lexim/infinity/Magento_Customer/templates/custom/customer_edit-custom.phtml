@@ -255,6 +255,10 @@ $_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
 $savedAddres = $_objectManager->get('BinaryAnvil\Customer\Block\AccountData');
 $getAddres = $savedAddres->getSavedAddress();
 
+$customerSession = $_objectManager->create('Magento\Customer\Model\Session');
+$getIdcus = $customerSession->getCustomerId();
+
+
 
 $countryList = $savedAddres->getCountries();
 $regionList = $savedAddres->getRegion();
@@ -262,15 +266,17 @@ $regionList = $savedAddres->getRegion();
 // get customer default 
 $addressInfo = $_objectManager->get('BinaryAnvil\Customer\Block\Addressinfo');
 $shippingAddress = $addressInfo->getDefaultShippingAddress();
+if(isset($shippingAddress)){
+    $changeArray = array();
+    $changeArray = $shippingAddress->__toArray();
+    // echo "<pre>";print_r($changeArray);
+    $street = $changeArray['street'][0];
+    $getregion_id = $changeArray['region_id'];
+    $customer_id = $changeArray['customer_id'];
+    $firstname = $changeArray['firstname'];
+    $lastname = $changeArray['lastname'];
+}
 
-$changeArray = array();
-$changeArray = $shippingAddress->__toArray();
-// echo "<pre>";print_r($changeArray);
-$street = $changeArray['street'][0];
-$getregion_id = $changeArray['region_id'];
-$customer_id = $changeArray['customer_id'];
-$firstname = $changeArray['firstname'];
-$lastname = $changeArray['lastname'];
 
 ?>
 
@@ -289,6 +295,7 @@ $lastname = $changeArray['lastname'];
                 <?php endif; ?>
             </p>
         </div>
+        <?php if ($getAddres): ?>
         <div class="content-edit-address">
             <div class="box-edit-address">
                 <div class="content-details">
@@ -391,6 +398,7 @@ $lastname = $changeArray['lastname'];
                 </div>
             </div>
         </div>
+        <?php endif; ?>
     </div>
 </div>
 
@@ -449,6 +457,7 @@ $lastname = $changeArray['lastname'];
                     $(this).parent().parent().addClass('active');
                 }
             });
+            <?php if ($getAddres): ?>
             // select state
             $('.content-details .state #state option[value="<?= $getregion_id ?>"]').attr('selected', 'selected');
 
@@ -485,7 +494,46 @@ $lastname = $changeArray['lastname'];
                     }
                 });
             });
-
+            <?php endif; ?>
         });
+    });
+</script>
+<script type="text/javascript">
+    require([ 'jquery'], function($){     
+        $(document.body).on('click', '.make-this-store span' ,function(e){
+            $(this).parent().addClass('active');
+            var monday = "no", saturday = "no";
+            var storename = $('.make-this-store.active .storename-retailer').val();
+            var street = $('.make-this-store.active .street-retailer').val();
+            var city = $('.make-this-store.active .city-retailer').val();
+            var state = $('.make-this-store.active .state-retailer').val();
+            var zip = $('.make-this-store.active .zip-retailer').val();
+            var distance = $('.make-this-store.active .distance-retailer').val();
+            var phone = $('.make-this-store.active .phone-retailer').val();
+                monday = $('.make-this-store.active .monday-retailer').val();
+                saturday = $('.make-this-store.active .saturday-retailer').val();
+            var getidcus = <?= $getIdcus ?>;
+            jQuery.ajax({
+                url: '<?php echo $this->getBaseUrl() . 'localretailer/load/load'?>',
+                type: "POST",
+                dataType: 'json',
+                showLoader: true,
+                data: {
+                    storename: storename,
+                    street: street,
+                    city: city,
+                    state: state,
+                    zip: zip,
+                    distance: distance,
+                    phone: phone,
+                    monday: monday,
+                    saturday: saturday,
+                    getidcus: getidcus
+                },
+                success: function (data) {
+                    // location.reload();
+                }
+            });
+        }); 
     });
 </script>

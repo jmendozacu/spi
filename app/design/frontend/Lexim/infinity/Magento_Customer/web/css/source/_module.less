@@ -809,6 +809,20 @@
                 -ms-flex-order: 2;
                 order: 2;
                 float: left;
+
+                .page-title {
+                    span {
+                        font-size: 20px;
+                        font-weight: bold;
+                        color: rgba(62, 57, 53, 1);
+                        text-align: left;
+                        line-height: 45px;
+                        -webkit-transform: scale(1.26, 1.29);
+                        -ms-transform: scale(1.26, 1.29);
+                        transform: scale(1.26, 1.29);
+                        text-transform: uppercase;
+                    }
+                }
             }
 
             .sidebar-main {
@@ -1318,12 +1332,14 @@
         .product-items {
             margin: 0 -1%;
             padding: 0;
-            .display-flex();
+            // .display-flex();
+            display: block;
 
             .product-item {
                 width: 25%;
                 display: inline-block;
                 padding: 0 1% 2%;
+                float: left;
 
                 .product-item-info {
                     width: auto;
@@ -1892,6 +1908,10 @@
                         padding-top: 40px;
                         border-top: 1px solid #74706d;
 
+                        .slick-prev, .slick-next {
+                            display: none;
+                        }
+
                         .location.slick-active {
                             border-right: 1px solid #a7a4a3;
                             margin-right: 20px;
@@ -2009,29 +2029,42 @@
 
     .brand-button {
         .display-flex();
+        .justify-content(flex-start);
+        .align-items(center);
+        font-weight: bold;
 
         .c1 {
             width: 65px;
             height: 50px;
             background: #21538d;
-            color: #fff;
+            color: #ffffff;
             border-right: 2px solid;
             justify-content: center;
             align-items: center;
             display: flex;
 
+            &:after {
+                text-align: center;
+                color: #ffffff;
+                font-size: 28px;
+                font-family: "FontAwesomeBrands", FontAwesome, sans-serif;
+            }
         }
 
         .c2 {
             height: 50px;
-            background: #444;
-            color: #fff;
+            background: #444444;
+            color: #ffffff;
             line-height: 50px;
             text-align: center;
             .flex(auto);
         }
 
-
+        &.fb {
+            .c1:after {
+                content: '\f39e';
+            }
+        }
     }
 
     // Login FORM
