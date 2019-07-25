@@ -358,7 +358,7 @@
                         margin: 0;
                     }
 
-                    &[name="shippingAddress.country_id"] {
+                    &[name="shippingAddress.country_id"], &[name='billingAddress.country_id'] {
                         display: none;
                     }
 
@@ -505,7 +505,7 @@
                 .email .form,
                 .payment-method .form,
                 .authentication {
-                    margin: 0 5px;
+                    margin: 0;
                 }
 
                 .authentication-notice, .authentication-link {
@@ -941,6 +941,18 @@
                     #paypal-express-in-context-button {
                         display: block !important;
                     }
+
+                    #authnetcim-form-cc {
+                        > .legend {
+                            font-size: 16px;
+                            text-transform: uppercase;
+                            font-weight: bold;
+                            padding: 20px 0;
+                        }
+                        .field.type {
+                            display: none;
+                        }
+                    }
                 }
 
                 .payment-method-title {
@@ -1120,10 +1132,11 @@
                         margin-right: -10px;
 
                         .field-row {
-                            width: 50%;
+                            //width: 50%;
+                            width: 100%;
                             padding: 10px;
 
-                            &:nth-child(1), &:nth-child(2) {
+                            &:nth-child(1), &:nth-child(2), &:nth-child(4) {
                                 width: 100%;
                                 padding: 0;
 
@@ -1133,11 +1146,11 @@
                             }
 
                             &:nth-child(4) {
-                                width: 0;
-                                height: 0;
-                                padding: 0;
-                                margin: 0;
-                                display: none;
+                                //width: 0;
+                                //height: 0;
+                                //padding: 0;
+                                //margin: 0;
+                                //display: none;
                             }
                         }
 

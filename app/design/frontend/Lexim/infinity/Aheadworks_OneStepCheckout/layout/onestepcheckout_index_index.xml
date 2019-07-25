@@ -158,7 +158,7 @@
                                     </item>
 
 
-                                    <!--
+
                                     <item name="shippingAddress" xsi:type="array">
                                         <item name="config" xsi:type="array">
                                             <item name="deps" xsi:type="array">
@@ -303,202 +303,202 @@
                                             </item>
                                         </item>
                                     </item>
-                                    -->
+
 
 
                                     <!-- START - Customize Shipping method -->
-                                    <item name="shippingAddress" xsi:type="array">
-                                        <item name="config" xsi:type="array">
-                                            <item name="deps" xsi:type="array">
-                                                <item name="0" xsi:type="string">checkoutProvider</item>
-                                                <item name="1" xsi:type="string">checkout.checkoutConfig</item>
-                                            </item>
-                                        </item>
-                                        <item name="component" xsi:type="string">Aheadworks_OneStepCheckout/js/view/shipping-address</item>
-                                        <item name="displayArea" xsi:type="string">shippingAddress</item>
-                                        <item name="provider" xsi:type="string">checkoutProvider</item>
-                                        <item name="sortOrder" xsi:type="string">5</item>
-                                        <item name="children" xsi:type="array">
-                                            <item name="shipping-address-list" xsi:type="array">
-                                                <item name="component" xsi:type="string">Aheadworks_OneStepCheckout/js/view/shipping-address/list</item>
-                                                <item name="displayArea" xsi:type="string">shipping-address-list</item>
-                                            </item>
-                                            <item name="shipping-address-fieldset" xsi:type="array">
-                                                <item name="component" xsi:type="string">uiComponent</item>
-                                                <item name="config" xsi:type="array">
-                                                    <item name="deps" xsi:type="array">
-                                                        <item name="0" xsi:type="string">checkoutProvider</item>
-                                                    </item>
-                                                </item>
-                                                <item name="displayArea" xsi:type="string">shipping-address-fieldset</item>
-                                                <item name="children" xsi:type="array">
-                                                    <item name="name-field-row" xsi:type="array">
-                                                        <item name="component" xsi:type="string">uiComponent</item>
-                                                        <item name="config" xsi:type="array">
-                                                            <item name="template" xsi:type="string">Aheadworks_OneStepCheckout/form/field-row-fluid</item>
-                                                        </item>
-                                                        <item name="sortOrder" xsi:type="string">1</item>
-                                                        <item name="children" xsi:type="array">
-                                                            <item name="prefix" xsi:type="array">
-                                                                <item name="sortOrder" xsi:type="string">1</item>
-                                                            </item>
-                                                            <item name="firstname" xsi:type="array">
-                                                                <item name="sortOrder" xsi:type="string">2</item>
-                                                            </item>
-                                                            <item name="middlename" xsi:type="array">
-                                                                <item name="sortOrder" xsi:type="string">3</item>
-                                                            </item>
-                                                            <item name="lastname" xsi:type="array">
-                                                                <item name="sortOrder" xsi:type="string">4</item>
-                                                            </item>
-                                                            <item name="suffix" xsi:type="array">
-                                                                <item name="sortOrder" xsi:type="string">5</item>
-                                                            </item>
-                                                        </item>
-                                                    </item>
+<!--                                    <item name="shippingAddress" xsi:type="array">-->
+<!--                                        <item name="config" xsi:type="array">-->
+<!--                                            <item name="deps" xsi:type="array">-->
+<!--                                                <item name="0" xsi:type="string">checkoutProvider</item>-->
+<!--                                                <item name="1" xsi:type="string">checkout.checkoutConfig</item>-->
+<!--                                            </item>-->
+<!--                                        </item>-->
+<!--                                        <item name="component" xsi:type="string">Aheadworks_OneStepCheckout/js/view/shipping-address</item>-->
+<!--                                        <item name="displayArea" xsi:type="string">shippingAddress</item>-->
+<!--                                        <item name="provider" xsi:type="string">checkoutProvider</item>-->
+<!--                                        <item name="sortOrder" xsi:type="string">5</item>-->
+<!--                                        <item name="children" xsi:type="array">-->
+<!--                                            <item name="shipping-address-list" xsi:type="array">-->
+<!--                                                <item name="component" xsi:type="string">Aheadworks_OneStepCheckout/js/view/shipping-address/list</item>-->
+<!--                                                <item name="displayArea" xsi:type="string">shipping-address-list</item>-->
+<!--                                            </item>-->
+<!--                                            <item name="shipping-address-fieldset" xsi:type="array">-->
+<!--                                                <item name="component" xsi:type="string">uiComponent</item>-->
+<!--                                                <item name="config" xsi:type="array">-->
+<!--                                                    <item name="deps" xsi:type="array">-->
+<!--                                                        <item name="0" xsi:type="string">checkoutProvider</item>-->
+<!--                                                    </item>-->
+<!--                                                </item>-->
+<!--                                                <item name="displayArea" xsi:type="string">shipping-address-fieldset</item>-->
+<!--                                                <item name="children" xsi:type="array">-->
+<!--                                                    <item name="name-field-row" xsi:type="array">-->
+<!--                                                        <item name="component" xsi:type="string">uiComponent</item>-->
+<!--                                                        <item name="config" xsi:type="array">-->
+<!--                                                            <item name="template" xsi:type="string">Aheadworks_OneStepCheckout/form/field-row-fluid</item>-->
+<!--                                                        </item>-->
+<!--                                                        <item name="sortOrder" xsi:type="string">1</item>-->
+<!--                                                        <item name="children" xsi:type="array">-->
+<!--                                                            <item name="prefix" xsi:type="array">-->
+<!--                                                                <item name="sortOrder" xsi:type="string">1</item>-->
+<!--                                                            </item>-->
+<!--                                                            <item name="firstname" xsi:type="array">-->
+<!--                                                                <item name="sortOrder" xsi:type="string">2</item>-->
+<!--                                                            </item>-->
+<!--                                                            <item name="middlename" xsi:type="array">-->
+<!--                                                                <item name="sortOrder" xsi:type="string">3</item>-->
+<!--                                                            </item>-->
+<!--                                                            <item name="lastname" xsi:type="array">-->
+<!--                                                                <item name="sortOrder" xsi:type="string">4</item>-->
+<!--                                                            </item>-->
+<!--                                                            <item name="suffix" xsi:type="array">-->
+<!--                                                                <item name="sortOrder" xsi:type="string">5</item>-->
+<!--                                                            </item>-->
+<!--                                                        </item>-->
+<!--                                                    </item>-->
 
-                                                    <item name="address-field-row" xsi:type="array">
-                                                        <item name="component" xsi:type="string">uiComponent</item>
-                                                        <item name="config" xsi:type="array">
-                                                            <item name="template" xsi:type="string">Aheadworks_OneStepCheckout/form/field-row</item>
-                                                        </item>
-                                                        <item name="sortOrder" xsi:type="string">2</item>
-                                                        <item name="children" xsi:type="array">
-                                                            <item name="street" xsi:type="array">
-                                                                <item name="label" xsi:type="string">Address</item>
-                                                            </item>
-                                                        </item>
-                                                    </item>
+<!--                                                    <item name="address-field-row" xsi:type="array">-->
+<!--                                                        <item name="component" xsi:type="string">uiComponent</item>-->
+<!--                                                        <item name="config" xsi:type="array">-->
+<!--                                                            <item name="template" xsi:type="string">Aheadworks_OneStepCheckout/form/field-row</item>-->
+<!--                                                        </item>-->
+<!--                                                        <item name="sortOrder" xsi:type="string">2</item>-->
+<!--                                                        <item name="children" xsi:type="array">-->
+<!--                                                            <item name="street" xsi:type="array">-->
+<!--                                                                <item name="label" xsi:type="string">Address</item>-->
+<!--                                                            </item>-->
+<!--                                                        </item>-->
+<!--                                                    </item>-->
 
-                                                    <item name="city-field-row" xsi:type="array">
-                                                        <item name="component" xsi:type="string">uiComponent</item>
-                                                        <item name="config" xsi:type="array">
-                                                            <item name="template" xsi:type="string">Aheadworks_OneStepCheckout/form/field-row</item>
-                                                        </item>
-                                                        <item name="sortOrder" xsi:type="string">3</item>
-                                                        <!-- <item name="children" xsi:type="array"></item>-->
-                                                    </item>
+<!--                                                    <item name="city-field-row" xsi:type="array">-->
+<!--                                                        <item name="component" xsi:type="string">uiComponent</item>-->
+<!--                                                        <item name="config" xsi:type="array">-->
+<!--                                                            <item name="template" xsi:type="string">Aheadworks_OneStepCheckout/form/field-row</item>-->
+<!--                                                        </item>-->
+<!--                                                        <item name="sortOrder" xsi:type="string">3</item>-->
+<!--                                                        &lt;!&ndash; <item name="children" xsi:type="array"></item>&ndash;&gt;-->
+<!--                                                    </item>-->
 
-                                                    <item name="country-field-row" xsi:type="array">
-                                                        <item name="component" xsi:type="string">uiComponent</item>
-                                                        <item name="config" xsi:type="array">
-                                                            <item name="template" xsi:type="string">Aheadworks_OneStepCheckout/form/field-row-fluid</item>
-                                                        </item>
-                                                        <item name="sortOrder" xsi:type="string">4</item>
-                                                        <item name="children" xsi:type="array">
-                                                            <item name="country_id" xsi:type="array">
-                                                                <!--<item name="visible" xsi:type="boolean">false</item>-->
-                                                                <item name="sortOrder" xsi:type="string">1</item>
-                                                            </item>
-                                                        </item>
-                                                    </item>
+<!--                                                    <item name="country-field-row" xsi:type="array">-->
+<!--                                                        <item name="component" xsi:type="string">uiComponent</item>-->
+<!--                                                        <item name="config" xsi:type="array">-->
+<!--                                                            <item name="template" xsi:type="string">Aheadworks_OneStepCheckout/form/field-row-fluid</item>-->
+<!--                                                        </item>-->
+<!--                                                        <item name="sortOrder" xsi:type="string">4</item>-->
+<!--                                                        <item name="children" xsi:type="array">-->
+<!--                                                            <item name="country_id" xsi:type="array">-->
+<!--                                                                &lt;!&ndash;<item name="visible" xsi:type="boolean">false</item>&ndash;&gt;-->
+<!--                                                                <item name="sortOrder" xsi:type="string">1</item>-->
+<!--                                                            </item>-->
+<!--                                                        </item>-->
+<!--                                                    </item>-->
 
-                                                    <item name="region-field-row" xsi:type="array">
-                                                        <item name="component" xsi:type="string">uiComponent</item>
-                                                        <item name="config" xsi:type="array">
-                                                            <item name="template" xsi:type="string">Aheadworks_OneStepCheckout/form/field-row-fluid</item>
-                                                        </item>
-                                                        <item name="sortOrder" xsi:type="string">5</item>
-                                                        <item name="children" xsi:type="array">
-                                                            <item name="region" xsi:type="array">
-                                                                <item name="visible" xsi:type="boolean">false</item>
-                                                                <item name="sortOrder" xsi:type="string">2</item>
-                                                            </item>
-                                                            <item name="region_id" xsi:type="array">
-                                                                <item name="component" xsi:type="string">Magento_Ui/js/form/element/region</item>
-                                                                <item name="config" xsi:type="array">
-                                                                    <item name="template" xsi:type="string">ui/form/field</item>
-                                                                    <item name="elementTmpl" xsi:type="string">ui/form/element/select</item>
-                                                                    <item name="customEntry" xsi:type="string">shippingAddress.region</item>
-                                                                </item>
-                                                                <item name="validation" xsi:type="array">
-                                                                    <item name="required-entry" xsi:type="boolean">true</item>
-                                                                </item>
-                                                                <item name="filterBy" xsi:type="array">
-                                                                    <item name="target" xsi:type="string"><![CDATA[${ $.provider }:${ $.parentScope }.country_id:]]></item>
-                                                                    <item name="field" xsi:type="string">country_id</item>
-                                                                </item>
-                                                                <item name="sortOrder" xsi:type="string">3</item>
-                                                            </item>
-                                                        </item>
-                                                    </item>
+<!--                                                    <item name="region-field-row" xsi:type="array">-->
+<!--                                                        <item name="component" xsi:type="string">uiComponent</item>-->
+<!--                                                        <item name="config" xsi:type="array">-->
+<!--                                                            <item name="template" xsi:type="string">Aheadworks_OneStepCheckout/form/field-row-fluid</item>-->
+<!--                                                        </item>-->
+<!--                                                        <item name="sortOrder" xsi:type="string">5</item>-->
+<!--                                                        <item name="children" xsi:type="array">-->
+<!--                                                            <item name="region" xsi:type="array">-->
+<!--                                                                <item name="visible" xsi:type="boolean">false</item>-->
+<!--                                                                <item name="sortOrder" xsi:type="string">2</item>-->
+<!--                                                            </item>-->
+<!--                                                            <item name="region_id" xsi:type="array">-->
+<!--                                                                <item name="component" xsi:type="string">Magento_Ui/js/form/element/region</item>-->
+<!--                                                                <item name="config" xsi:type="array">-->
+<!--                                                                    <item name="template" xsi:type="string">ui/form/field</item>-->
+<!--                                                                    <item name="elementTmpl" xsi:type="string">ui/form/element/select</item>-->
+<!--                                                                    <item name="customEntry" xsi:type="string">shippingAddress.region</item>-->
+<!--                                                                </item>-->
+<!--                                                                <item name="validation" xsi:type="array">-->
+<!--                                                                    <item name="required-entry" xsi:type="boolean">true</item>-->
+<!--                                                                </item>-->
+<!--                                                                <item name="filterBy" xsi:type="array">-->
+<!--                                                                    <item name="target" xsi:type="string"><![CDATA[${ $.provider }:${ $.parentScope }.country_id:]]></item>-->
+<!--                                                                    <item name="field" xsi:type="string">country_id</item>-->
+<!--                                                                </item>-->
+<!--                                                                <item name="sortOrder" xsi:type="string">3</item>-->
+<!--                                                            </item>-->
+<!--                                                        </item>-->
+<!--                                                    </item>-->
 
-                                                    <item name="zip-field-row" xsi:type="array">
-                                                        <item name="component" xsi:type="string">uiComponent</item>
-                                                        <item name="config" xsi:type="array">
-                                                            <item name="template" xsi:type="string">Aheadworks_OneStepCheckout/form/field-row-fluid</item>
-                                                        </item>
-                                                        <item name="sortOrder" xsi:type="string">6</item>
-                                                        <item name="children" xsi:type="array">
-                                                            <item name="postcode" xsi:type="array">
-                                                                <item name="component" xsi:type="string">Magento_Ui/js/form/element/post-code</item>
-                                                                <item name="validation" xsi:type="array">
-                                                                    <item name="required-entry" xsi:type="string">true</item>
-                                                                </item>
-                                                                <item name="sortOrder" xsi:type="string">4</item>
-                                                            </item>
-                                                        </item>
-                                                    </item>
+<!--                                                    <item name="zip-field-row" xsi:type="array">-->
+<!--                                                        <item name="component" xsi:type="string">uiComponent</item>-->
+<!--                                                        <item name="config" xsi:type="array">-->
+<!--                                                            <item name="template" xsi:type="string">Aheadworks_OneStepCheckout/form/field-row-fluid</item>-->
+<!--                                                        </item>-->
+<!--                                                        <item name="sortOrder" xsi:type="string">6</item>-->
+<!--                                                        <item name="children" xsi:type="array">-->
+<!--                                                            <item name="postcode" xsi:type="array">-->
+<!--                                                                <item name="component" xsi:type="string">Magento_Ui/js/form/element/post-code</item>-->
+<!--                                                                <item name="validation" xsi:type="array">-->
+<!--                                                                    <item name="required-entry" xsi:type="string">true</item>-->
+<!--                                                                </item>-->
+<!--                                                                <item name="sortOrder" xsi:type="string">4</item>-->
+<!--                                                            </item>-->
+<!--                                                        </item>-->
+<!--                                                    </item>-->
 
-                                                    <item name="phone-field-row" xsi:type="array">
-                                                        <item name="component" xsi:type="string">uiComponent</item>
-                                                        <item name="config" xsi:type="array">
-                                                            <item name="template" xsi:type="string">Aheadworks_OneStepCheckout/form/field-row-fluid</item>
-                                                        </item>
-                                                        <item name="sortOrder" xsi:type="string">7</item>
-                                                        <item name="children" xsi:type="array">
-                                                            <item name="telephone" xsi:type="array">
-                                                                <item name="sortOrder" xsi:type="string">1</item>
-                                                                <item name="config" xsi:type="array">
-                                                                    <item name="elementTmpl" xsi:type="string">Aheadworks_OneStepCheckout/form/element/input-phone</item>
-                                                                    <item name="additionalClasses" xsi:type="string">field-phone</item>
-                                                                    <!--  <item name="tooltip" xsi:type="array">-->
-                                                                    <!--  <item name="description" xsi:type="string" translate="true">For delivery questions.</item>-->
-                                                                    <!--  </item>-->
-                                                                </item>
-                                                            </item>
-                                                        </item>
-                                                    </item>
+<!--                                                    <item name="phone-field-row" xsi:type="array">-->
+<!--                                                        <item name="component" xsi:type="string">uiComponent</item>-->
+<!--                                                        <item name="config" xsi:type="array">-->
+<!--                                                            <item name="template" xsi:type="string">Aheadworks_OneStepCheckout/form/field-row-fluid</item>-->
+<!--                                                        </item>-->
+<!--                                                        <item name="sortOrder" xsi:type="string">7</item>-->
+<!--                                                        <item name="children" xsi:type="array">-->
+<!--                                                            <item name="telephone" xsi:type="array">-->
+<!--                                                                <item name="sortOrder" xsi:type="string">1</item>-->
+<!--                                                                <item name="config" xsi:type="array">-->
+<!--                                                                    <item name="elementTmpl" xsi:type="string">Aheadworks_OneStepCheckout/form/element/input-phone</item>-->
+<!--                                                                    <item name="additionalClasses" xsi:type="string">field-phone</item>-->
+<!--                                                                    &lt;!&ndash;  <item name="tooltip" xsi:type="array">&ndash;&gt;-->
+<!--                                                                    &lt;!&ndash;  <item name="description" xsi:type="string" translate="true">For delivery questions.</item>&ndash;&gt;-->
+<!--                                                                    &lt;!&ndash;  </item>&ndash;&gt;-->
+<!--                                                                </item>-->
+<!--                                                            </item>-->
+<!--                                                        </item>-->
+<!--                                                    </item>-->
 
-                                                    <item name="company-field-row" xsi:type="array">
-                                                        <item name="component" xsi:type="string">uiComponent</item>
-                                                        <item name="config" xsi:type="array">
-                                                            <item name="template" xsi:type="string">Aheadworks_OneStepCheckout/form/field-row-fluid</item>
-                                                        </item>
-                                                        <item name="sortOrder" xsi:type="string">8</item>
-                                                        <item name="children" xsi:type="array">
-                                                            <item name="company" xsi:type="array">
-                                                                <item name="sortOrder" xsi:type="string">2</item>
-                                                            </item>
-                                                        </item>
-                                                    </item>
+<!--                                                    <item name="company-field-row" xsi:type="array">-->
+<!--                                                        <item name="component" xsi:type="string">uiComponent</item>-->
+<!--                                                        <item name="config" xsi:type="array">-->
+<!--                                                            <item name="template" xsi:type="string">Aheadworks_OneStepCheckout/form/field-row-fluid</item>-->
+<!--                                                        </item>-->
+<!--                                                        <item name="sortOrder" xsi:type="string">8</item>-->
+<!--                                                        <item name="children" xsi:type="array">-->
+<!--                                                            <item name="company" xsi:type="array">-->
+<!--                                                                <item name="sortOrder" xsi:type="string">2</item>-->
+<!--                                                            </item>-->
+<!--                                                        </item>-->
+<!--                                                    </item>-->
 
-                                                    <item name="fax-field-row" xsi:type="array">
-                                                        <item name="component" xsi:type="string">uiComponent</item>
-                                                        <item name="config" xsi:type="array">
-                                                            <item name="template" xsi:type="string">Aheadworks_OneStepCheckout/form/field-row-fluid</item>
-                                                        </item>
-                                                        <item name="sortOrder" xsi:type="string">9</item>
-                                                        <item name="children" xsi:type="array">
-                                                            <item name="fax" xsi:type="array">
-                                                                <item name="sortOrder" xsi:type="string">2</item>
-                                                            </item>
-                                                        </item>
-                                                    </item>
+<!--                                                    <item name="fax-field-row" xsi:type="array">-->
+<!--                                                        <item name="component" xsi:type="string">uiComponent</item>-->
+<!--                                                        <item name="config" xsi:type="array">-->
+<!--                                                            <item name="template" xsi:type="string">Aheadworks_OneStepCheckout/form/field-row-fluid</item>-->
+<!--                                                        </item>-->
+<!--                                                        <item name="sortOrder" xsi:type="string">9</item>-->
+<!--                                                        <item name="children" xsi:type="array">-->
+<!--                                                            <item name="fax" xsi:type="array">-->
+<!--                                                                <item name="sortOrder" xsi:type="string">2</item>-->
+<!--                                                            </item>-->
+<!--                                                        </item>-->
+<!--                                                    </item>-->
 
-                                                    <item name="vat-field-row" xsi:type="array">
-                                                        <item name="component" xsi:type="string">uiComponent</item>
-                                                        <item name="config" xsi:type="array">
-                                                            <item name="template" xsi:type="string">Aheadworks_OneStepCheckout/form/field-row</item>
-                                                        </item>
-                                                        <item name="sortOrder" xsi:type="string">10</item>
-                                                        <item name="children" xsi:type="array">
-                                                        </item>
-                                                    </item>
-                                                </item>
-                                            </item>
-                                        </item>
-                                    </item>
+<!--                                                    <item name="vat-field-row" xsi:type="array">-->
+<!--                                                        <item name="component" xsi:type="string">uiComponent</item>-->
+<!--                                                        <item name="config" xsi:type="array">-->
+<!--                                                            <item name="template" xsi:type="string">Aheadworks_OneStepCheckout/form/field-row</item>-->
+<!--                                                        </item>-->
+<!--                                                        <item name="sortOrder" xsi:type="string">10</item>-->
+<!--                                                        <item name="children" xsi:type="array">-->
+<!--                                                        </item>-->
+<!--                                                    </item>-->
+<!--                                                </item>-->
+<!--                                            </item>-->
+<!--                                        </item>-->
+<!--                                    </item>-->
                                     <!-- END - Customize Shipping method -->
 
 
