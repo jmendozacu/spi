@@ -54,6 +54,10 @@
             <p>I agree to the terms and conditions of Infinity by Cherokee Uniforms.</p>
         </li>
     </ul>
+
+    <!-- ko foreach: getRegion('actions-toolbar') -->
+    <!-- ko template: getTemplate() --><!-- /ko -->
+    <!--/ko-->
 </div>
 
 <!-- Sidebar -->
@@ -92,9 +96,8 @@
             <!-- ko foreach: getRegion('order-note') -->
             <!-- ko template: getTemplate() --><!-- /ko -->
             <!--/ko-->
-            <!-- ko foreach: getRegion('actions-toolbar') -->
-            <!-- ko template: getTemplate() --><!-- /ko -->
-            <!--/ko-->
+
+
         </div>
     </div>
 

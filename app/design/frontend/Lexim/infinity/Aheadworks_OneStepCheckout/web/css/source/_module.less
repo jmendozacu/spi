@@ -120,6 +120,8 @@
         }
 
         .page-main {
+            padding-bottom: 3.7%;
+
             .checkout-container {
                 font-family: @aw-osc-font-family__base;
                 line-height: 1.4;
@@ -418,7 +420,7 @@
                 -moz-box-sizing: border-box;
                 box-sizing: border-box;
                 justify-content: flex-start;
-                margin: 10px 0;
+                margin: 0;
                 width: ~'calc(100% - 380px)';
                 padding-right: 4%;
             }
@@ -437,10 +439,17 @@
                         margin: 0;
                         border-bottom: 1px solid @dark-gray;
 
+                        &:last-child {
+                            border: none;
+                            padding-bottom: 0;
+                        }
+
                         &:not(:first-of-type) {
                         }
 
                         .group-title {
+                            padding-bottom: 20px;
+
                             h2 {
                                 font-size: 20px;
                                 font-weight: 600;
@@ -535,7 +544,7 @@
 
                 .onestep-billing-address .choice,
                 .onestep-shipping-address .choice {
-                    margin: 20px 0;
+                    margin: 0 0 20px;
                     width: inherit;
                 }
 
@@ -771,7 +780,7 @@
                             justify-content: space-between;
 
                             .field {
-                                max-width: calc(~'50% - 5px');
+                                max-width: calc(~'50% - 10px');
 
                                 .label {
                                     &.short {
@@ -942,18 +951,21 @@
                         display: block !important;
                     }
 
-                    #authnetcim-form-cc {
+                    .payment-method-title {
                         .payment-icon img {
                             float: left;
                             margin: 0 10px 0 0;
                         }
+                    }
 
+                    #authnetcim-form-cc {
                         > .legend {
                             font-size: 16px;
                             text-transform: uppercase;
                             font-weight: bold;
                             padding: 20px 0;
                         }
+
                         .field.type {
                             display: none;
                         }
@@ -967,7 +979,7 @@
                     -webkit-box-sizing: border-box;
                     -moz-box-sizing: border-box;
                     box-sizing: border-box;
-                    padding: 0 0 20px;
+                    padding: 10px 0;
                     position: relative;
 
                     .label {
@@ -1030,7 +1042,7 @@
                     }
 
                     .control {
-                        margin: 0 0 10px;
+                        margin: 0 0 20px;
 
                         .control {
                             margin: 0;
@@ -1165,12 +1177,19 @@
                 div[data-role="payment-methods-load"] {
                     max-width: calc(~'50% - 20px');
                 }
+
+                .actions-toolbar {
+                    button[type=submit] {
+                        margin: 0;
+                        height: 50px;
+                        width: 200px;
+                        text-transform: uppercase;
+                    }
+                }
             }
 
             .shipping-method {
                 .onestep-shipping-method {
-                    padding-right: 10px;
-                    padding-bottom: 10px;
 
                     .onestep-shipping-method-list {
                         padding: 0;
@@ -1189,8 +1208,12 @@
                             justify-content: space-between;
                             -webkit-align-items: flex-start;
                             align-items: flex-start;
-                            margin: 20px 0;
+                            margin: 0 0 15px;
                             font-size: 14px;
+
+                            &:last-child {
+                                margin: 0;
+                            }
 
                             .shipping-method-title {
                                 display: -webkit-flex;
@@ -1318,6 +1341,7 @@
                             }
 
                             &.aw-sidebar-product-list {
+
                                 .aw-onestep-sidebar-block_title {
                                     display: -webkit-flex;
                                     display: -moz-flex;
@@ -1329,6 +1353,7 @@
                                     font-size: 20px;
                                     cursor: pointer;
                                     text-transform: uppercase;
+                                    border-bottom: none;
 
                                     &:before {
                                         display: inline-block;
@@ -1350,6 +1375,8 @@
 
                                 &.active {
                                     .aw-onestep-sidebar-block_title {
+                                        border-bottom: 1px solid @dark-gray;
+
                                         &:before {
                                             content: '\e90d';
                                         }
