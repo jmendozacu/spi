@@ -11,8 +11,7 @@
               tabindex="0"
               data-trigger-keypress-button="true"
               data-bind="scope: 'customer'">
-            <span class="customer-txt">Hello</span><span>&nbsp;</span><span
-                    data-bind="text: customer().firstname"></span>
+            <span class="customer-txt">Hello</span><span>&nbsp;</span><span data-bind="text: customer().firstname"></span>
         </span>
 
         <script type="text/x-magento-init">
@@ -27,33 +26,21 @@
                 }
             }
         }
-
-
-
-
         </script>
 
         <div class="customer-menu">
             <ul id="drop-my-account" style="display: none">
                 <li>
-                    <a href="<?= $block->getUrl('customer/account/'); ?>" title="My Account">
-                        My Account
-                    </a>
+                    <a href="<?= $block->getUrl('customer/account/'); ?>" title="My Account">My Account</a>
                 </li>
                 <li>
-                    <a href="<?= $block->getUrl('sales/order/history/'); ?>" title="My Orders">
-                        My Orders
-                    </a>
+                    <a href="<?= $block->getUrl('sales/order/history/'); ?>" title="My Orders">My Orders</a>
                 </li>
                 <li>
-                    <a href="<?= $block->getUrl('faqs/'); ?>" title="FAQS">
-                        FAQS
-                    </a>
+                    <a href="<?= $block->getUrl('faqs/'); ?>" title="FAQS">FAQS</a>
                 </li>
                 <li>
-                    <a href="<?= $block->getUrl('customer/account/logout/'); ?>" title="Sign Out">
-                        Sign Out
-                    </a>
+                    <a href="<?= $block->getUrl('customer/account/logout/'); ?>" title="Sign Out">Sign Out</a>
                 </li>
             </ul>
         </div>
@@ -82,13 +69,9 @@
                 }
             }
         }
-
-
-
-
         </script>
 
-        <!--        <div class="customer-menu2">-->
+        <!-- <div class="customer-menu2">-->
         <div id="PopupLogin" class="fixed-pop-up" style="display: none">
 
             <div class="pop-up-container">
@@ -98,31 +81,26 @@
                     <div class="register-inner">
                         <div class="dercor-line-black"></div>
                         <div class="field header">SIGN UP</div>
-                        <p>Create an account: see your order history, check out faster, save your favorite items and get
-                            the latest news about Infinity by Cherokee.
-                        </p>
-                        <a id="btn-create-account" class="create-an-account" title="Create an Account"
-                           href="javascript:void(0);">CREATE AN ACCOUNT</a>
+                        <p>Create an account: see your order history, check out faster, save your favorite items and get the latest news about Infinity by Cherokee.</p>
+                        <a id="btn-create-account2" class="create-an-account" title="Create an Account" href="<?= $block->getUrl('customer/account/'); ?>">CREATE AN ACCOUNT</a>
                     </div>
                 </div>
             </div>
         </div>
-        <!--        </div>-->
+        <!-- </div>-->
 
 
-        <div id="PopupRegister" class="fixed-pop-up lampk" style="display: none">
+        <div id="PopupRegister" class="fixed-pop-up" style="display: none">
 
             <div class="pop-up-container">
                 <i class="far fa-times" id="closePopupLogin"></i>
-                <?= $block->getChildHtml('customer_form_register'); 
+                <?= $block->getChildHtml('customer_form_register');
                 ?>
                 <div class="register">
                     <div class="register-inner">
-
                         <div class="dercor-line-black"></div>
                         <div class="field header">ALREADY HAVE AN ACCOUNT?</div>
-                        <a id="btn-login-account" class="create-an-account" title="Sign in"
-                           href="javascript:void(0);">SIGN IN</a>
+                        <a id="btn-login-account" class="create-an-account" title="Sign in" href="javascript:void(0);">SIGN IN</a>
                     </div>
                 </div>
             </div>
@@ -134,102 +112,104 @@
 
 <script>
     require(['jquery'], function ($) {
-        // area popup login
-        let popupLogin = ".customer-welcome>#PopupLogin";
-        //  area container popup login
-        let popupLoginContainer = ".customer-welcome>#PopupLogin>.pop-up-container";
-        //  area popup register
-        let popupRegister = ".customer-welcome>#PopupRegister";
-        //  area container popup register
-        let popupRegisterContainer = ".customer-welcome>#PopupRegister>.pop-up-container";
-        // area customer name
-        let customerName = ".customer-welcome>.customer-name";
-        // area drop my account
-        let dropMyAccount = ".customer-welcome>.customer-menu>#drop-my-account";
+        $(document).ready(function () {
+
+            // area popup login
+            let popupLogin = ".customer-welcome>#PopupLogin";
+            //  area container popup login
+            let popupLoginContainer = ".customer-welcome>#PopupLogin>.pop-up-container";
+            //  area popup register
+            let popupRegister = ".customer-welcome>#PopupRegister";
+            //  area container popup register
+            let popupRegisterContainer = ".customer-welcome>#PopupRegister>.pop-up-container";
+            // area customer name
+            let customerName = ".customer-welcome>.customer-name";
+            // area drop my account
+            let dropMyAccount = ".customer-welcome>.customer-menu>#drop-my-account";
 
 
-        /**
-         *   func click show popup login
-         */
-        $('body').on('click', '.customer-welcome>.customer-name', function () {
-            $(popupLogin).show();
-            $(popupLoginContainer).show();
-        });
+            /**
+             *   func click show popup login
+             */
+            $('body').on('click', '.customer-welcome>.customer-name', function () {
+                $(popupLogin).show();
+                $(popupLoginContainer).show();
+            });
 
-        /**
-         *   func click close Popup Login, Register
-         */
-        $('body').on('click', '#closePopupLogin', function () {
-            $(popupLogin).hide();
-            $(popupLoginContainer).hide();
-            $(popupRegister).hide();
-            $(popupRegisterContainer).hide();
-        });
-
-        /**
-         *    func click show popup register and close popup login
-         */
-        $('body').on('click', '#btn-create-account', function () {
-            $(popupRegister).show();
-            $(popupRegisterContainer).show();
-            $(popupLogin).hide();
-            $(popupLoginContainer).hide();
-        });
-
-        /**
-         *    func click show popup login and close popup register
-         */
-        $('body').on('click', '#btn-login-account', function () {
-            $(popupLogin).show();
-            $(popupLoginContainer).show();
-            $(popupRegister).hide();
-            $(popupRegisterContainer).hide();
-        });
-
-        /**
-         *  func click in or out area div to show or hide popup.
-         */
-        $(document).click(function (e) {
-
-            // popup login or popup register hide when click anywhere except area div of popup.
-            if (!($(e.target).closest(popupLoginContainer).length > 0)
-                && !($(e.target).closest(popupRegisterContainer).length > 0)) {
-
+            /**
+             *   func click close Popup Login, Register
+             */
+            $('body').on('click', '#closePopupLogin', function () {
                 $(popupLogin).hide();
                 $(popupLoginContainer).hide();
                 $(popupRegister).hide();
                 $(popupRegisterContainer).hide();
-            }
+            });
 
-            // click area div customer-name show popup login when not login.
-            if ($(e.target).closest(customerName).length > 0) {
+            /**
+             *    func click show popup register and close popup login
+             */
+            $('body').on('click', '#btn-create-account', function () {
+                $(popupRegister).show();
+                $(popupRegisterContainer).show();
+                $(popupLogin).hide();
+                $(popupLoginContainer).hide();
+            });
 
+            /**
+             *    func click show popup login and close popup register
+             */
+            $('body').on('click', '#btn-login-account', function () {
                 $(popupLogin).show();
                 $(popupLoginContainer).show();
-            }
+                $(popupRegister).hide();
+                $(popupRegisterContainer).hide();
+            });
 
-            // drop my account hide when click anywhere except area div of drop my account.
-            if (!($(e.target).closest(dropMyAccount).length > 0)) {
-                $(dropMyAccount).hide();
-                $(customerName).removeClass("active");
-            }
+            /**
+             *  func click in or out area div to show or hide popup.
+             */
+            $(document).click(function (e) {
 
-            // click area div customer-name show drop my account when logined.
-            if ($(e.target).closest(customerName).length > 0) {
-                //    if($('body').hasClass("customer-menu")){
-                $(dropMyAccount).show();
-                $(customerName).addClass("active");
-                //    }
-            }
+                // popup login or popup register hide when click anywhere except area div of popup.
+                if (!($(e.target).closest(popupLoginContainer).length > 0)
+                    && !($(e.target).closest(popupRegisterContainer).length > 0)) {
 
-        });
+                    $(popupLogin).hide();
+                    $(popupLoginContainer).hide();
+                    $(popupRegister).hide();
+                    $(popupRegisterContainer).hide();
+                }
 
-        /**
-         *  func click icon search, show hide area textbox search.
-         */
-        $('body').on('click', '.block-search>.search-icon', function () {
-            $(".block-search>.block-content").toggle();
+                // click area div customer-name show popup login when not login.
+                if ($(e.target).closest(customerName).length > 0) {
 
+                    $(popupLogin).show();
+                    $(popupLoginContainer).show();
+                }
+
+                // drop my account hide when click anywhere except area div of drop my account.
+                if (!($(e.target).closest(dropMyAccount).length > 0)) {
+                    $(dropMyAccount).hide();
+                    $(customerName).removeClass("active");
+                }
+
+                // click area div customer-name show drop my account when logined.
+                if ($(e.target).closest(customerName).length > 0) {
+                    //    if($('body').hasClass("customer-menu")){
+                    $(dropMyAccount).show();
+                    $(customerName).addClass("active");
+                    //    }
+                }
+
+            });
+
+            /**
+             *  func click icon search, show hide area textbox search.
+             */
+            $('body').on('click', '.block-search>.search-icon', function () {
+                $(".block-search>.block-content").toggle();
+            });
         });
 
     });
