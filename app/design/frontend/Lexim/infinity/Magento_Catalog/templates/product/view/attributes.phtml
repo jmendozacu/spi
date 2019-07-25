@@ -19,17 +19,22 @@ $_product = $block->getProduct();
 <?php if ($_additional = $block->getAdditionalData()): ?>
     <div class="additional-attributes-wrapper table-wrapper">
         <div class="data table additional-attributes" id="product-attribute-specs-table">
-            <!-- <caption class="table-caption">SPECIFICATIONS</caption>-->
-            <div class="spec-wrapper">
-                <?php foreach ($_additional as $_data): ?>
+            <table>
+                <!-- <caption class="table-caption">SPECIFICATIONS</caption>-->
+                <div class="spec-wrapper">
+                    <?php foreach ($_additional as $_data): ?>
                     <div class="spec-item">
-                        <div class="label"><?= $block->escapeHtml(__($_data['label'])) ?></div>
-                        <div class="data" data-th="<?= $block->escapeHtml(__($_data['label'])) ?>">
+                        <td>
+                            <div class="label"><?= $block->escapeHtml(__($_data['label'])) ?></div>
+                            <div class="data"
+                            "<?= $block->escapeHtml(__($_data['label'])) ?>">
                             <?= $_helper->productAttribute($_product, $_data['value'], $_data['code']) ?>
-                        </div>
+                            </div>
+                        </td>
                     </div>
                 <?php endforeach; ?>
-            </div>
+                </div>
+            </table>
         </div>
     </div>
-<?php endif;?>
+<?php endif; ?>
