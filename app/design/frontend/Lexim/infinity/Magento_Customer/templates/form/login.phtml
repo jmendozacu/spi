@@ -20,7 +20,7 @@
             <?= $block->getBlockHtml('formkey') ?>
             <fieldset class="fieldset login">
                 <!-- <div class="field note">If you are a registered user, please enter your email and password.</div>-->
-                <div class="field header">SIGN IN</div>
+                <div class="field header">I AM ALREADY A CUSTOMER</div>
 
                 <div class="field email required">
                     <label class="label" for="email"><span><?= $block->escapeHtml(__('Email')) ?></span></label>
@@ -54,6 +54,11 @@
                     <div class="primary">
                         <button type="submit" class="action login primary" name="send" id="send2">
                             <span><?= $block->escapeHtml(__('Login')) ?></span></button>
+                    </div>
+
+                    <div class="third checkbox-field">
+                        <input type="checkbox" name="remember_me" id="Login_Remember_Me"/>
+                        <label for="Login_Remember_Me"><span>Remember me.</span></label>
                     </div>
                 </div>
 

@@ -345,6 +345,10 @@
             font-size: 16px;
         }
 
+        .third.checkbox-field {
+            display: none;
+        }
+
         button {
             display: block;
             width: 100%;
@@ -669,7 +673,7 @@
 
             > .field {
                 > .control {
-                    width: 55%;
+                    width: 100%;
                 }
             }
         }
@@ -693,7 +697,6 @@
 
     .form.password.reset,
     .form.send.confirmation,
-    .form.create.account,
     .form.form-orders-search {
         min-width: 600px;
         width: 50%;
@@ -1956,15 +1959,135 @@
 //  _____________________________________________
 
 & when (@media-common = true) {
-    .customer-account-forgotpassword {
+    .checkbox-field {
+        position: relative;
+
+        input {
+            visibility: hidden;
+            position: absolute;
+            left: -9999px;
+            top: -9999px;
+
+            &:checked + label:before {
+                content: 'x';
+            }
+        }
+
+        label {
+            position: relative;
+            padding-left: 30px;
+            cursor: pointer;
+            display: inline-block;
+
+            &:before {
+                content: '';
+                display: inline-block;
+                position: absolute;
+                left: 0;
+                height: 15px;
+                width: 15px;
+                background: #ffffff;
+                border: 1px solid #808080;
+                font-size: 15px;
+                line-height: 14px;
+                text-align: center;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+        }
+
+        a {
+            color: @gray;
+            text-decoration: none;
+            border-bottom: 1px solid;
+
+            &:hover {
+                color: @aqua;
+            }
+        }
+    }
+
+    // Login FORM
+    .form-login {
+        .actions-toolbar {
+            .display-flex();
+            .flex-direction(column);
+
+            .secondary {
+                text-align: left;
+                margin: 0 0 20px;
+            }
+
+            .primary {
+                margin: 0 0 20px;
+            }
+
+            .third {
+                margin: 0 0 20px;
+            }
+        }
+    }
+
+    // Create account FORM
+    .form-create-account {
+        .fieldset {
+            margin-bottom: 0;
+        }
+
+        .show-in-login-page {
+            display: none;
+        }
+    }
+
+    // Forget Password PAGE + LOGIN PAGE
+    .customer-account-forgotpassword, .customer-account-login {
         input[type="text"], input[type="password"], input[type="url"], input[type="tel"], input[type="search"], input[type="number"], input[type="datetime"], input[type="email"] {
             border: 2px solid #727272;
+        }
+
+        .actions-toolbar {
+            margin: 0 0 20px;
+
+            .primary {
+                width: 100%;
+            }
+
+            button {
+                width: 100% !important;
+                display: block;
+                height: 40px;
+                text-transform: uppercase;
+                padding: 0;
+                margin: 0;
+                outline: 0;
+            }
+
+            a {
+                color: @gray;
+                text-decoration: none;
+                border-bottom: 1px solid;
+
+                &:hover {
+                    color: @aqua;
+                }
+            }
         }
 
         .action.primary:focus, .action.primary:active {
             background: @aqua;
             border: 2px solid @aqua;
             color: #ffffff;
+        }
+    }
+
+    // Forget Password PAGE
+    .customer-account-forgotpassword {
+        .page-title {
+            font-size: 20px;
+            font-weight: bold;
+            text-align: left;
+            text-transform: uppercase;
+            margin: 0 0 20px;
         }
 
         .form.password.forget {
@@ -1974,35 +2097,74 @@
             .fieldset {
                 margin: 0;
             }
+        }
+    }
 
-            .actions-toolbar {
-                margin: 0 0 20px;
-
-                .primary {
-                    width: 100%;
-                }
-
-                .action.submit {
-                    width: 100%;
-                    display: block;
-                    height: 40px;
-                    text-transform: uppercase;
-                    padding: 0;
-                    margin: 0;
-                    outline: 0;
-                }
-            }
+    // LOGIN PAGE (include Create account form )
+    .customer-account-login {
+        .page-title-wrapper {
+            display: none;
         }
 
-        .page-title {
+        .field.header {
             font-size: 20px;
             font-weight: bold;
             text-align: left;
             text-transform: uppercase;
-            margin: 0 0 20px;
+            margin: 0 0 30px;
+        }
+
+        .show-in-login-page {
+            display: block;
+
+            .checkbox-field {
+                padding: 10px 0;
+            }
+        }
+
+        // Login form
+        .block-customer-login {
+            width: 100%;
+
+            .actions-toolbar {
+                .secondary {
+                    order: 2;
+                }
+
+                .primary {
+                    order: 1;
+                }
+
+                .third {
+                    order: 3;
+                }
+            }
+        }
+
+        // Create account form
+        .form-create-account {
+            width: 100%;
+
+            .register {
+                display: none;
+            }
+
+            .actions-toolbar {
+                margin-top: 20px;
+            }
+
+            button[type=submit] {
+                > span {
+                    visibility: hidden;
+                    display: none;
+                }
+
+                &:after {
+                    content: 'SIGN UP';
+                }
+            }
         }
     }
-
 }
 
 //
@@ -2021,4 +2183,17 @@
 // min 768px
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
 
+    .customer-account-login {
+        .login-container {
+            .display-flex();
+            .justify-content(space-between);
+            max-width: 920px;
+            margin: 0 auto;
+
+            .block-customer-login, .form-create-account {
+                .flex(1);
+                padding: 0 3%;
+            }
+        }
+    }
 }
