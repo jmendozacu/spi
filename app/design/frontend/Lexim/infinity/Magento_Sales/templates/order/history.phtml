@@ -27,7 +27,11 @@
  */
 
 // @codingStandardsIgnoreFile
-
+$objectManager  = \Magento\Framework\App\ObjectManager::getInstance();
+$store = $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getStore();
+$currencysymbol = $objectManager->get('Magento\Directory\Model\Currency');
+$currencysbol = $currencysymbol->getCurrencySymbol();
+$blockInfo = $objectManager->get('Magento\Sales\Block\Order\Info'); 
 ?>
 <?php $_orders = $block->getOrders(); ?>
 <?= $block->getChildHtml('info') ?>
@@ -69,6 +73,82 @@
                             <a href="#" class="action track-order">
                                 <span><?= /* @escapeNotVerified */ __('Track Order') ?></span>
                             </a>
+                        </td>
+                    </tr>
+                    <tr class="item-product">
+                        <td></td>
+                        <td colspan="3" class="content">
+                            <div class="section-details details">
+                                <div class="title"><?= /* @escapeNotVerified */ __('Item description') ?></div>
+                                <div class="content-details">
+                                    <ol>
+                                    <?php 
+                                    $incrementId = $_order->getRealOrderId();
+                                    $order = $objectManager->create('Magento\Sales\Model\Order')->loadByIncrementId($incrementId);
+                                    $_orderAllVisibleItems = $order->getAllVisibleItems();
+                                    foreach($_orderAllVisibleItems as $_item ) {
+                                    $idProduct = $_item['product_id'];
+                                    $product = $objectManager->get('Magento\Catalog\Model\Product')->load($idProduct);
+                                    $imageUrl = $store->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA) . 'catalog/product' . $product->getImage(); ?>
+                                        <li>
+                                            <div class="images">
+                                                <img src="<?= $imageUrl; ?>">
+                                            </div>
+                                            <div class="box-conten">
+                                                <p><?= $_item['name']; ?></p>
+                                                <p class="sku-item"><?= /* @escapeNotVerified */ __('Sku') ?>: <?= $_item->getSku(); ?></p>
+                                                <p class="price-item"><?=$currencysbol; ?><?= round($_item['price'], 2); ?></p>
+                                                <?php 
+                                                $getOptions =  $_item['product_options']['attributes_info']; 
+                                                foreach($getOptions as $keys ) {?>
+                                                <p class="option-product"><span><?= $keys['label']; ?>: </span><span><?= $keys['value']; ?></span></p>
+                                               <?php } ?>
+                                                <p class="quantity-item"><?= /* @escapeNotVerified */ __('Quantity') ?>: <?= intval($_item->getQtyOrdered());?></p>
+                                            </div>
+                                        </li>
+                                    <?php  } ?>
+                                    </ol>
+                                </div>
+                            </div>
+                            <div class="section-details">
+                                <div class="title"><?= /* @escapeNotVerified */ __('Delivery') ?></div>
+                                <div class="content-details-shipping">
+                                    <span>
+                                    <?php if ($order->getShippingDescription()): ?>
+                                        <?= $blockInfo->escapeHtml($order->getShippingDescription()) ?>
+                                    <?php else: ?>
+                                        <?= /* @escapeNotVerified */ __('No shipping information available') ?>
+                                    <?php endif; ?>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="section-details">
+                                <div class="title"><?= /* @escapeNotVerified */ __('Payment method') ?></div>
+                                <div class="content-details-method">
+                                    <span><?php $payment = $order->getPayment();
+                                    echo $payment->getAdditionalInformation()['method_title'];?></span>
+                                </div>
+                            </div>
+                            <div class="address-order">
+                                <div class="section-details">
+                                    <div class="title"><?= /* @escapeNotVerified */ __('Shipping address') ?></div>
+                                    <div class="content-details-method">
+                                        <address><?= /* @escapeNotVerified */ $blockInfo->getFormattedAddress($order->getShippingAddress()) ?></address>
+                                    </div>
+                                </div>
+                                <div class="section-details">
+                                    <div class="title"><?= /* @escapeNotVerified */ __('Billing address') ?></div>
+                                    <div class="content-details-method">
+                                        <address><?= /* @escapeNotVerified */ $blockInfo->getFormattedAddress($order->getBillingAddress()) ?></address>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="section-details">
+                                <div class="title"><?= /* @escapeNotVerified */ __('Order summary') ?></div>
+                                <div class="content-details-method">
+                                    
+                                </div>
+                            </div>
                         </td>
                     </tr>
                 <?php endforeach; ?>
