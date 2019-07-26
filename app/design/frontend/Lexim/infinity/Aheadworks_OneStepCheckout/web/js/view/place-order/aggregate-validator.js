@@ -38,9 +38,9 @@ define(
                 }
 
                 // Check validate confirm email
-                if (!this._validateConfirmEmail()) {
-                    isValid = false;
-                }
+                // if (!this._validateConfirmEmail()) {
+                //     isValid = false;
+                // }
 
                 if (!isValid) {
                     $('#ErrorPlaceOrder').show();

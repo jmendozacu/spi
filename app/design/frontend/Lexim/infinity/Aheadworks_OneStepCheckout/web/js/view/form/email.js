@@ -91,16 +91,16 @@ define([
      * Listen first name / last name is changed and save to quote
      */
     function listenCustomerNameIsChanged() {
-        $('form.form input[name=firstname]').change(function(){
+        $('form.form input[name=firstname]').change(function () {
             saveEmailToQuote();
         });
-        $('form.form input[name=lastname]').change(function(){
+        $('form.form input[name=lastname]').change(function () {
             saveEmailToQuote();
         });
     }
 
     $(document).ready(function () {
-        listenCustomerNameIsChanged();
+        // listenCustomerNameIsChanged();
     });
 
     return Component.extend({
@@ -114,7 +114,7 @@ define([
             listens: {
                 email: 'emailHasChanged',
                 emailFocused: 'validateEmail',
-                confirmEmailFocused: 'validateConfirmEmail'
+                // confirmEmailFocused: 'validateConfirmEmail'
             }
         },
         checkDelay: 2000,
@@ -130,7 +130,7 @@ define([
         initialize: function () {
             this._super();
             completenessLogger.bindField('email', this.email);
-            console.log("8");
+            // console.log("8");
         },
 
         /**
@@ -158,7 +158,10 @@ define([
 
             if (self.validateEmail()) {
                 quote.guestEmail = self.email();
-                saveEmailToQuote(quote.guestEmail);
+
+                // Save email guest for abandon cart
+                // saveEmailToQuote(quote.guestEmail);
+
                 newsletterSubscriber.subscriberEmail = self.email();
                 checkoutData.setValidatedEmailValue(self.email());
             }
