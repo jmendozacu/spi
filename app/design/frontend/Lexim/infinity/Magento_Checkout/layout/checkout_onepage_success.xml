@@ -11,24 +11,34 @@
         <referenceBlock name="page.main.title" remove="true"/>
         <referenceBlock name="checkout.registration" remove="true"/>
 
-        <referenceContainer name="sidebar.additional">
-            <block class="Magento\Cms\Block\Block" name="infnt_need-help" before="infnt_faqs_checkout">
-                <arguments>
-                    <argument name="block_id" xsi:type="string">checkout_page_block_need_help</argument>
-                </arguments>
-            </block>
-            <block class="Magento\Cms\Block\Block" name="infnt_faqs_checkout" after="-">
-                <arguments>
-                    <argument name="block_id" xsi:type="string">checkout_page_block_faqs</argument>
-                </arguments>
-            </block>
-        </referenceContainer>
-
-        <block class="BinaryAnvil\InfinityTheme\Block\Customer\Form\Login" name="create.account.form" template="Magento_Checkout::onepage/create-account.phtml" />
-        <move element="create.account.form" destination="sidebar.additional" after="-" />
-
         <referenceContainer name="columns">
-            <block class="Magento\Checkout\Block\Onepage\Success" name="success.order.total" template="Magento_Checkout::onepage/order-totals.phtml" />
+            <block class="Magento\Checkout\Block\Onepage\Success" name="success.title"
+                   template="Magento_Checkout::onepage/success-title.phtml" before="-"/>
         </referenceContainer>
+
+        <!-- Success content -->
+        <referenceBlock name="checkout.success">
+            <block class="Magento\Checkout\Block\Onepage\Success" name="success.order.total" template="Magento_Checkout::onepage/order-totals.phtml"/>
+            <block class="BinaryAnvil\InfinityTheme\Block\Customer\Form\Login" name="create.account.form" template="Magento_Checkout::onepage/create-account.phtml"/>
+        </referenceBlock>
+
+        <!-- Success Side-bar-->
+        <referenceContainer name="sidebar.additional">
+            <!-- Add contact_us_block block -->
+            <block class="Magento\Cms\Block\Block" name="contact_us_block" before="-">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">contact_us_block</argument>
+                </arguments>
+            </block>
+
+            <!-- Add quick_link_block block -->
+            <block class="Magento\Cms\Block\Block" name="quick_link_block" after="contact_us_block">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">quick_link_block</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+
+
     </body>
 </page>
