@@ -413,16 +413,16 @@ if (!empty($array_customer)){
         break;
     } ?>
 <style type="text/css">
-    .product-items.<?= $retailerId; ?> .<?= $retailerId; ?> .make-this-store span {
+    #<?= $retailerId; ?> .product-items .<?= $retailerId; ?> .make-this-store span {
         display: none;
     }
-    .product-items.<?= $retailerId; ?> .<?= $retailerId; ?> .location-radio .label{
+    #<?= $retailerId; ?> .product-items .<?= $retailerId; ?> .location-radio .label{
         display: block !important;
     }
 </style>
 <?php }
 ?>
-<div class="my-local-retailer">
+<div class="my-local-retailer" id="retailer-store">
     <div class="box-local-retailer">
         <div class="header-retailer">
             <span class="title"><?= /* @escapeNotVerified */
@@ -459,8 +459,8 @@ if (!empty($array_customer)){
                 </div>
             </div>
         </div>
-        <div class="footer-retailer">
-            <div class="products list items product-items the-bottom-slider <?php if(isset($retailerId)){echo $retailerId;} ?>">
+        <div class="footer-retailer" id="<?php if(isset($retailerId)){echo $retailerId;} ?>">
+            <div class="products list items product-items the-bottom-slider">
             </div>
         </div>
     </div>
@@ -521,6 +521,7 @@ if (!empty($array_customer)){
 <script type="text/javascript">
     require([ 'jquery'], function($){     
         $(document.body).on('click', '.make-this-store span' ,function(e){
+            $('.make-this-store').removeClass('active');
             $(this).parent().addClass('active');
             var monday = "no", saturday = "no";
             var retailerid = $('.make-this-store.active .retailerid-retailer').val();
@@ -553,7 +554,14 @@ if (!empty($array_customer)){
                     getidcus: getidcus
                 },
                 success: function (data) {
-                    location.reload();
+                    // location.reload();
+                    $('.footer-retailer').removeAttr('id');
+                    $('.footer-retailer').attr( 'id', retailerid );
+                    $(".customer-account-edit .column.main .my-local-retailer .box-local-retailer .footer-retailer .location .location-radio .label").removeAttr( 'style' );
+                    $(".customer-account-edit .column.main .my-local-retailer .box-local-retailer .footer-retailer .location."+retailerid+" .location-radio .label").css("display", "block");
+
+                    $(".make-this-store span").removeAttr( 'style' );
+                    $(".make-this-store.active span").css("display", "none");
                 }
             });
         }); 

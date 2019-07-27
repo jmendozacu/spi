@@ -99,8 +99,11 @@ if (isStaging) {
         function getLocation(store) {
             var html = "",
                 storeDistance = store.distance.toFixed(1);
-
-            html += '<div class="location ' + store.retailerId + '">';
+            if (store.storeId) {
+                html += '<div class="location '+ store.retailerId + '-' + store.storeId + '">';
+            } else {
+                html += '<div class="location ' + store.retailerId + '">';
+            }
             html += '  <div class="location-radio">';
 
             html += '    <label class="label">MY LOCAL RETAILER</label>';
@@ -123,7 +126,11 @@ if (isStaging) {
             html += store.phone + "</br>";
 
             // html += '    <div class="make-this-store"><input type="radio" class="radio" value="' + store.retailerId + '" name="location-option"><span>make this my store</span></div>';
-            html += '    <div class="make-this-store"><input type="radio" class="radio retailerid-retailer" value="' + store.retailerId + '" name="location-option">';
+            if (store.storeId) {
+                html += '<div class="make-this-store"><input type="radio" class="radio retailerid-retailer" value="'+ store.retailerId + '-' + store.storeId + '" name="location-option">';
+            } else {
+                html += '<div class="make-this-store"><input type="radio" class="radio retailerid-retailer" value="' + store.retailerId + '" name="location-option">';
+            }
             html += '    <input type="text" class="radio storename-retailer" value="' + store.storeName + '" name="storename-retailer">';
             if (isset(store.street2)) {
                 html += '    <input type="text" class="radio street-retailer" value="' + store.street1 + store.street2 + '" name="street-retailer">';
