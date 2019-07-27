@@ -5,6 +5,13 @@
 & when (@media-common = true) {
 
     .cms-about-us {
+        .page-main a {
+            color: @gray;
+            text-decoration: none;
+            border-bottom: 1px solid;
+            font-weight: bold;
+        }
+
         img {
             width: 100%;
             height: auto;
@@ -18,6 +25,13 @@
                 margin: 0;
                 padding: 5px 0;
                 line-height: 1.4;
+                overflow-wrap: break-word;
+                word-wrap: break-word;
+                word-break: break-word;
+                -ms-hyphens: auto;
+                -moz-hyphens: auto;
+                -webkit-hyphens: auto;
+                hyphens: auto;
             }
         }
 
@@ -27,7 +41,8 @@
         .about-flex-hero {
             .display-flex();
             .align-items(center);
-            padding-bottom: 3.7%;
+            .flex-wrap(wrap);
+            padding-bottom: 20px;
 
             ul {
                 margin: 0 2%;
@@ -35,9 +50,12 @@
         }
 
         .about-hero-left {
+            .flex(0 auto);
             background: @light-aqua;
-            padding: 4% 2%;
-            .flex(1 33%);
+            padding: 8vw 4vw;
+            margin: -7% auto auto;
+            width: 88%;
+            order: 2;
         }
 
         .about-hero-right {
@@ -46,7 +64,7 @@
 
         .about-keyword {
             h2 {
-                font-size: 4vw;
+                font-size: 10vw;
                 font-weight: 900;
                 letter-spacing: -0.04em;
                 line-height: 0.6;
@@ -61,7 +79,7 @@
         }
 
         .about-slogan {
-            font-size: 30px;
+            font-size: 20px;
             padding: 5% 0;
             margin: 0;
             font-weight: bold;
@@ -74,19 +92,22 @@
         .about-flex-content {
             .display-flex();
             .justify-content(space-between);
+            .flex-wrap(wrap);
             padding-bottom: 3.7%;
 
             .about-item {
-                .flex(0 0 24%);
+                .flex(0 0 auto);
+                width: 100%;
                 background: #e9e9e9;
-                padding: 3% 2%;
+                padding: 30px 15px;
+                margin: 0 0 20px;
 
                 &:nth-child(2n+1) {
                     background: #d4d4d4;
                 }
 
                 .about-heading {
-                    font-size: 30px;
+                    font-size: 20px;
                     font-weight: 900;
                     margin: 0;
                     padding: 0 0 20px;
@@ -100,9 +121,7 @@
                 }
             }
         }
-
     }
-
 }
 
 //
@@ -121,9 +140,66 @@
 // Min 768px
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
 
+    .cms-about-us {
+        .about-slogan,
+        .about-flex-content .about-item .about-heading {
+            font-size: 24px;
+        }
+
+        .about-flex-hero {
+            padding-bottom: 30px;
+        }
+
+        .about-keyword h2 {
+            font-size: 7vw;
+        }
+
+        .about-flex-content .about-item {
+            width: calc(~'50% - 15px');
+            margin: 0 0 30px;
+        }
+    }
+
 }
 
 // Min 992px
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
 
+    .cms-about-us {
+        .about-slogan,
+        .about-flex-content .about-item .about-heading {
+            font-size: 24px;
+        }
+
+        .about-flex-hero {
+            .flex-wrap(nowrap);
+        }
+
+        .about-hero-left {
+            order: 0;
+            margin: 0;
+            width: 33%;
+            min-width: 400px;
+            padding: 40px 20px;
+        }
+
+        .about-keyword h2 {
+            font-size: 50px;
+        }
+    }
+
+}
+
+// Min 1440px
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+    .cms-about-us {
+        .about-flex-content .about-item {
+            width: calc(~'25% - 20px');
+            margin: 0 0 10px;
+        }
+
+        .about-keyword h2 {
+            font-size: 3.3vw;
+        }
+    }
 }
