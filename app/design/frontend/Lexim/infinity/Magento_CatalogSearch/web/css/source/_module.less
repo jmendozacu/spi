@@ -176,10 +176,23 @@
     //  search page
     //  ---------------------------------------------
     .catalogsearch-result-index {
+        .columns .column.main {
+            .display-flex();
+            .flex-wrap(wrap);
+        }
+
+        #layered-filter-block {
+            .flex(0 100%);
+        }
+
         .toolbar-products {
             .pages, .toolbar-sorter {
                 display: none;
             }
+        }
+
+        .search-page-title {
+            order: -1;
         }
 
         .toolbar-amount {
@@ -303,8 +316,6 @@
     //  ---------------------------------------------
     .catalogsearch-result-index {
         .products {
-            margin-left: -2%;
-            margin-right: -2%;
         }
     }
 }

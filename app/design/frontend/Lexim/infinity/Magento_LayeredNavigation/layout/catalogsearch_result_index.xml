@@ -15,7 +15,7 @@
                    template="Magento_LayeredNavigation::layer/category.phtml"/>
         </block>
 
-        <move element="catalogsearch.leftnav" destination="content" before="-"/>
+        <move element="catalogsearch.leftnav" destination="content" before="search.result"/>
 
 
     </body>

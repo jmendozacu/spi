@@ -12,6 +12,9 @@ $categoryParentID = $category->getParentCategory()->getId();
 
 $parentCategory = ($categoryRootID === $categoryParentID) ? $category : $category->getParentCategory();
 $parentCatKey = $parentCategory->getUrlKey();
+
+$currentPage = $block->getRequest()->getFullActionName();
+
 ?>
 
 <?php if ($block->canShowBlock()): ?>
@@ -48,14 +51,20 @@ $parentCatKey = $parentCategory->getUrlKey();
                         <div class="filter-options-item">
                             <div class="filter-options-content">
                                 <div class="swatch-attribute-options">
-                                    <?php foreach ($parentCategory->getChildrenCategories() as $subCategory) : ?>
-                                        <?php $catName = $subCategory->getName(); ?>
-                                        <a href="javascript:void(0)" data-label="<?= $catName ?>"
-                                           data-type="cat" data-value="<?= $subCategory->getId() ?>"
-                                           class="swatch-option-a category">
-                                            <div class="swatch-option text"><?= $catName ?></div>
-                                        </a>
-                                    <?php endforeach; ?>
+                                    <?php
+                                    if ($currentPage === 'catalogsearch_result_index') { // search page
+
+                                    } else {
+                                        foreach ($parentCategory->getChildrenCategories() as $subCategory) { ?>
+                                            <?php $catName = $subCategory->getName(); ?>
+                                            <a href="javascript:void(0)" data-label="<?= $catName ?>"
+                                               data-type="cat" data-value="<?= $subCategory->getId() ?>"
+                                               class="swatch-option-a category">
+                                                <div class="swatch-option text"><?= $catName ?></div>
+                                            </a>
+                                        <?php } ?>
+                                    <?php } ?>
+
                                 </div>
                             </div>
                         </div>
@@ -225,6 +234,14 @@ $parentCatKey = $parentCategory->getUrlKey();
                 return decodeURIComponent(results[1]) || 0;
             }
 
+            function escapeRegExp(string) {
+                return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+            }
+
+            function replaceAll(str, term, replacement) {
+                return str.replace(new RegExp(escapeRegExp(term), 'g'), replacement);
+            }
+
             /**
              * Show filtered options
              */
@@ -234,6 +251,13 @@ $parentCatKey = $parentCategory->getUrlKey();
                 let size = getUrlParam("is_size");
                 let fit = getUrlParam("is_apparel_rise_length");
                 let sort = getUrlParam("product_list_order");
+
+                let q = getUrlParam("q");
+                // Search page
+                if (q && q !== "") {
+                    q = replaceAll(q, "+", " ");
+                    $('.search-query-txt').text(q);
+                }
 
                 // Check selected options and show them into filter board
                 if (cat) {
@@ -443,12 +467,29 @@ $parentCatKey = $parentCategory->getUrlKey();
                     uri = decodeURIComponent($.param(data));
                     let protocol = window.location.protocol;
                     let hostName = window.location.hostname;
-                    // if (catKey !== 'women') { // fix bug listing page
-                        catKey = catKey + "/";
-                    // }
-                    console.log(protocol + '//' + hostName + '/' + catKey + '?' + uri);
-                    window.location.replace(protocol + '//' + hostName + '/' + catKey + '?' + uri);
 
+                    if (!catKey) { // search page
+                        let q = getUrlParam('q');
+                        let currentUrl = $(location).attr('href');
+                        let urlArray = currentUrl.split('?');
+                        let url = '';
+                        if (urlArray[0] && urlArray[0] !== '') {
+                            url = urlArray[0];
+                        }
+                        if (q) {
+                            url += '?q=' + q + '&';
+                        }
+                        url += uri;
+
+                        console.log(urlArray);
+                        console.log(uri);
+                        console.log(url);
+                        window.location.replace(url);
+                    } else { // category page
+                        catKey = catKey + "/";
+                        console.log(protocol + '//' + hostName + '/' + catKey + '?' + uri);
+                        window.location.replace(protocol + '//' + hostName + '/' + catKey + '?' + uri);
+                    }
                 });
 
                 // Click filter menu on mobile

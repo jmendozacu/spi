@@ -9,12 +9,11 @@
     <body>
 
         <referenceContainer name="content">
-
         </referenceContainer>
 
+        <referenceBlock name="page.main.title" remove="true" />
 
         <referenceBlock name="sidebar.main" remove="true"/>
-
 <!--        <referenceBlock name="catalog.compare.link" remove="true"/>-->
 <!--        <referenceBlock name="catalog.compare.sidebar" remove="true"/>-->
 
