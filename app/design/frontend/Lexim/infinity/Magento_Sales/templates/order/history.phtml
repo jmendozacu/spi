@@ -31,7 +31,10 @@ $objectManager  = \Magento\Framework\App\ObjectManager::getInstance();
 $store = $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getStore();
 $currencysymbol = $objectManager->get('Magento\Directory\Model\Currency');
 $currencysbol = $currencysymbol->getCurrencySymbol();
-$blockInfo = $objectManager->get('Magento\Sales\Block\Order\Info'); 
+$blockInfo = $objectManager->get('Magento\Sales\Block\Order\Info');
+
+$blockTotals = $objectManager->get('Magento\Sales\Block\Order\Totals');
+
 ?>
 <?php $_orders = $block->getOrders(); ?>
 <?= $block->getChildHtml('info') ?>
@@ -145,8 +148,11 @@ $blockInfo = $objectManager->get('Magento\Sales\Block\Order\Info');
                             </div>
                             <div class="section-details">
                                 <div class="title"><?= /* @escapeNotVerified */ __('Order summary') ?></div>
-                                <div class="content-details-method">
-                                    
+                                <div class="content-details-summary">
+                                     <p class="price-product"><span class="label"><?= /* @escapeNotVerified */ __('Subtotal') ?></span><span class="value"><?=$currencysbol; ?><?= round($order->getSubtotal(), 2); ?></span></p>
+                                     <p class="price-product"><span class="label"><?= /* @escapeNotVerified */ __('Shipping') ?></span><span class="value"><?=$currencysbol; ?><?= round($order->getShippingAmount(), 2); ?></span></p>
+                                     <p class="price-product"><span class="label"><?= /* @escapeNotVerified */ __('Tax') ?></span><span class="value"><?=$currencysbol; ?><?= round($order->getTaxAmount(), 2); ?></span></p>
+                                     <p class="price-product total"><span class="label"><?= /* @escapeNotVerified */ __('Total') ?></span><span class="value"><?=$currencysbol; ?><?= round($order->getGrandTotal(), 2); ?></span></p>
                                 </div>
                             </div>
                         </td>
@@ -161,3 +167,23 @@ $blockInfo = $objectManager->get('Magento\Sales\Block\Order\Info');
 <?php else: ?>
     <div class="message info empty"><span><?= /* @escapeNotVerified */ __('You have placed no orders.') ?></span></div>
 <?php endif ?>
+<script>
+    require(['jquery'], function ($) {
+        $(function () {
+            $('#my-orders-table .plus-open').click(function (e) {
+                if ($(this).hasClass("focus")) {
+                    $(this).removeClass('focus');
+                    $(this).text("+");
+                    $(this).parent().parent().removeClass('focus');
+                    $(this).parent().parent().next().removeClass('active');
+                } else {
+                    $(this).addClass('focus');
+                    $(this).text("-");
+                    $(this).parent().parent().addClass('focus');
+                    $(this).parent().parent().next().addClass('active');
+                }
+                
+            });
+        });
+    });
+</script>

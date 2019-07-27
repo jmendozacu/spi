@@ -1476,8 +1476,20 @@
                         padding: 8px 0;
 
                         .plus-open {
-                            padding: 0 20px;
+                            cursor: pointer;
+                            width: 10px;
+                            margin: 0 20px;
+                            display: inline-block;
+                            font-family: 'ProximaNova';
                             font-size: 16px;
+                            color: #3e3935;
+                            text-align: left;
+                            letter-spacing: 0.02em;
+                            line-height: 26px;
+                        }
+
+                        .plus-open.focus {
+                            color: #3bc1cc;
                         }
 
                         .action.order {
@@ -1541,49 +1553,102 @@
                                 ol {
                                     padding-left: 0;
                                     margin-bottom: 0;
-                                }
 
-                                li {
-                                    list-style-type: none;
-                                    display: inline-block;
-
-                                    .images {
+                                    li {
+                                        list-style-type: none;
                                         display: inline-block;
-                                        float: left;
-                                        padding-right: 20px;
 
-                                        img {
-                                            width: 150px;
+                                        .images {
+                                            display: inline-block;
+                                            float: left;
+                                            padding-right: 20px;
+
+                                            img {
+                                                width: 150px;
+                                            }
+                                        }
+
+                                        .box-conten {
+                                            display: inline-block;
+
+                                            p {
+                                                margin-bottom: 0;
+                                                font-family: @hind-font;
+                                                font-size: 14px;
+                                                color: #3e3935;
+                                                text-align: left;
+                                                line-height: 18px;
+                                            }
+                                            p.price-item {
+                                                padding: 5px 0;
+                                            }
+                                            p.sku-item {
+                                               text-transform: uppercase;
+                                            }
                                         }
                                     }
 
-                                    .box-conten {
-                                        display: inline-block;
-
-                                        p {
-                                            margin-bottom: 0;
-                                            font-family: @hind-font;
-                                            font-size: 14px;
-                                            color: #3e3935;
-                                            text-align: left;
-                                            line-height: 18px;
-                                        }
-                                        p.price-item {
-                                            padding: 5px 0;
-                                        }
-                                        p.sku-item {
-                                           text-transform: uppercase;
-                                        }
+                                    li:nth-child(2n+1) {
+                                        padding-right: 15px;
                                     }
-                                }
-
-                                li:nth-child(2n+1) {
-                                    padding-right: 15px;
                                 }
                             }
 
                             .content-details-shipping, .content-details-method {
                                 line-height: 1.5;
+
+                                span {
+                                    font-family: @hind-font;
+                                    font-size: 14px;
+                                    color: #3e3935;
+                                    text-align: left;
+                                    line-height: 26px;
+                                }
+
+                                address {
+                                    font-family: @hind-font;
+                                    font-size: 14px;
+                                    color: #3e3935;
+                                    text-align: left;
+                                    line-height: 18px;
+                                    a, a:active, .alink:active {
+                                        color: #3e3935;
+                                    }
+                                    a:hover {
+                                        text-decoration: none;
+                                    }
+                                }
+                            }
+
+                            .content-details-summary {
+                                .price-product {
+                                    margin-bottom: 0;
+                                    line-height: 24px;
+                                    
+                                    span.label {
+                                        min-width: 300px;
+                                        display: inline-block;
+                                        font-family: 'ProximaNova';
+                                        font-size: 14px;
+                                        font-weight: bold;
+                                        color: #74706d;
+                                        text-align: left;
+                                        line-height: 24px;
+                                        text-transform: uppercase;
+                                    }
+
+                                    span.value {
+                                        font-family: @hind-font;
+                                        font-size: 14px;
+                                        color: #3e3935;
+                                        text-align: left;
+                                        line-height: 24px;
+                                    }
+                                }
+
+                                .price-product.total {
+                                    padding: 15px 0;
+                                }
                             }
                         }
 
@@ -1600,6 +1665,17 @@
                             }
                         }
                     }
+                }
+                
+                li.focus {
+                    border-bottom: none;
+                }
+                .item-product {
+                    display: none;
+                }
+
+                .item-product.active {
+                    display: table-row;
                 }
 
                 tr:first-child {
