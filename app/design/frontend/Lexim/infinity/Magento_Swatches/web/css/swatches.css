@@ -34,7 +34,7 @@
     padding-top: 7px;
 }
 
-.is_apparel_rise_length .swatch-attribute-options {
+.catalog-product-view .is_apparel_rise_length .swatch-attribute-options {
     display: -webkit-flex;
     display: -moz-flex;
     display: -ms-flex;
@@ -88,7 +88,7 @@
     border: 1px solid #fff;
 }
 
-.is_apparel_rise_length .swatch-option.text {
+.catalog-product-view .is_apparel_rise_length .swatch-option.text {
     padding: 0 8px;
     outline: 2px solid #ddd;
     -webkit-flex: 1;

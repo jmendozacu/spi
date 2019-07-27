@@ -1,30 +1,4 @@
 <?php
-/**
- * Binary Anvil, Inc.
- *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the Binary Anvil, Inc. Software Agreement
- * that is bundled with this package in the file LICENSE_BAS.txt.
- * It is also available through the world-wide-web at this URL:
- * http://www.binaryanvil.com/software/license/
- *
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@binaryanvil.com so we can send you a copy immediately.
- *
- * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade this software to
- * newer versions in the future. If you wish to customize this software for
- * your needs please refer to http://www.binaryanvil.com/software for more
- * information.
- *
- * @category    BinaryAnvil
- * @package     LayeredNavigation
- * @copyright   Copyright (c) 2018-2019 Binary Anvil,Inc. (http://www.binaryanvil.com)
- * @license     http://www.binaryanvil.com/software/license
- */
 
 // @codingStandardsIgnoreFile
 
@@ -32,7 +6,7 @@
 ?>
 <?php $swatchData = $block->getSwatchData();
 $allPrintLink = $block->getAllPrintLink();
-
+$currentAction = $block->getRequest()->getActionName();
 ?>
 <div class="swatch-attribute swatch-layered <?= $swatchData['attribute_code'] ?>"
      attribute-code="<?= $swatchData['attribute_code'] ?>"
@@ -131,73 +105,102 @@ $allPrintLink = $block->getAllPrintLink();
             </a>
         <?php } else { ?>
 
-            <?php foreach ($swatchData['options'] as $option => $label): ?>
-                <?php if ($option && $option !== "") { ?>
+            <?php
+            // SIZE
+            if ($swatchData['attribute_code'] === 'is_size') {
+                $clothes = '';
+                $footWear = '';
 
-                    <a href="javascript:void(0)"
-                       data-label="<?= $label['label'] ?>" data-id="<?= $option ?>"
-                       data-type="<?= $swatchData['attribute_code'] ?>"
-                       data-value="<?= $option ?>"
-                       data-link="<?= $label['link'] ?>"
-                       class="swatch-option-link-layered swatch-option-a">
-                        <?php if (isset($swatchData['swatches'][$option]['type'])) { ?>
-                            <?php switch ($swatchData['swatches'][$option]['type']) {
-                                case '3':
-                                    ?>
-                                    <div class="swatch-option <?= $label['custom_style'] ?>"
-                                         tabindex="-1"
-                                         option-type="3"
-                                         option-id="<?= $option ?>"
-                                         option-label="<?= $label['label'] ?>"
-                                         option-tooltip-thumb=""
-                                         option-tooltip-value=""
-                                    ></div>
-                                    <?php break;
-                                case '2':
-                                    ?>
-                                    <?php $swatchThumbPath = $block->getSwatchPath('swatch_thumb',
-                                    $swatchData['swatches'][$option]['value']); ?>
-                                    <?php $swatchImagePath = $block->getSwatchPath('swatch_image',
-                                    $swatchData['swatches'][$option]['value']); ?>
-                                    <div class="swatch-option image <?= $label['custom_style'] ?>"
-                                         tabindex="-1"
-                                         option-type="2"
-                                         option-id="<?= $option ?>"
-                                         option-label="<?= $label['label'] ?>"
-                                         option-tooltip-thumb="<?= $swatchThumbPath ?>"
-                                         option-tooltip-value=""
-                                         style="background: url(<?= $swatchImagePath ?>) no-repeat center; background-size: initial;"></div>
-                                    <?php break;
-                                case '1':
-                                    ?>
-                                    <div class="swatch-option color <?= $label['custom_style'] ?>"
-                                         tabindex="-1"
-                                         option-type="1"
-                                         option-id="<?= $option ?>"
-                                         option-label="<?= $label['label'] ?>"
-                                         option-tooltip-thumb=""
-                                         option-tooltip-value="<?= $swatchData['swatches'][$option]['value'] ?>"
-                                         style="background: <?= $swatchData['swatches'][$option]['value'] ?> no-repeat center; background-size: initial;"></div>
-                                    <?php break;
-                                case '0':
-                                default:
-                                    ?>
-                                    <div class="swatch-option text"
-                                         tabindex="-1" filter-content
-                                         option-type="0"
-                                         option-id="<?= $option ?>"
-                                         option-label="<?= $label['label'] ?>"
-                                         option-tooltip-thumb=""
-                                         option-tooltip-value=""
-                                    ><?= $swatchData['swatches'][$option]['value'] ?></div>
-                                    <?php break;
-                            } ?>
-                        <?php } ?>
-                    </a>
+                foreach ($swatchData['options'] as $option => $label) {
+                    if ($option && $option !== "") {
 
-                <?php } ?>
-            <?php endforeach; ?>
+                        $size = sprintf('<a href="javascript:void(0)" data-label="%s" data-id="%s" data-type="%s" data-value="%s" data-link="%s" class="swatch-option-link-layered swatch-option-a">
+                        <div class="swatch-option text" tabindex="-1" filter-content option-type="0" option-id="%s" option-label="%s" option-tooltip-thumb="" option-tooltip-value="">%s</div></a>',
+                            $label['label'], $option, $swatchData['attribute_code'], $option, $label['link'], $option, $label['label'], $swatchData['swatches'][$option]['value']);
 
+                        if (str_contains(strtoupper($label['label']), ['S', 'M', 'L'])) { // clothes
+                            $clothes .= $size;
+                        } else { //footwear
+                            $footWear .= $size;
+                        }
+                    }
+                } ?>
+
+                <?php if ($currentAction === 'index') { // Search page ?>
+                    <div class="size-col clothes"><?= $clothes ?></div>
+                    <div class="size-col footwear"><?= $footWear ?></div>
+                <?php } else {
+                    echo $clothes . $footWear;
+                } ?>
+
+            <?php } else { // OTHERS
+                foreach ($swatchData['options'] as $option => $label): ?>
+                    <?php if ($option && $option !== "") { ?>
+
+                        <a href="javascript:void(0)"
+                           data-label="<?= $label['label'] ?>" data-id="<?= $option ?>"
+                           data-type="<?= $swatchData['attribute_code'] ?>"
+                           data-value="<?= $option ?>"
+                           data-link="<?= $label['link'] ?>"
+                           class="swatch-option-link-layered swatch-option-a">
+                            <?php if (isset($swatchData['swatches'][$option]['type'])) { ?>
+                                <?php switch ($swatchData['swatches'][$option]['type']) {
+                                    case '3':
+                                        ?>
+                                        <div class="swatch-option <?= $label['custom_style'] ?>"
+                                             tabindex="-1"
+                                             option-type="3"
+                                             option-id="<?= $option ?>"
+                                             option-label="<?= $label['label'] ?>"
+                                             option-tooltip-thumb=""
+                                             option-tooltip-value=""
+                                        ></div>
+                                        <?php break;
+                                    case '2':
+                                        ?>
+                                        <?php $swatchThumbPath = $block->getSwatchPath('swatch_thumb',
+                                        $swatchData['swatches'][$option]['value']); ?>
+                                        <?php $swatchImagePath = $block->getSwatchPath('swatch_image',
+                                        $swatchData['swatches'][$option]['value']); ?>
+                                        <div class="swatch-option image <?= $label['custom_style'] ?>"
+                                             tabindex="-1"
+                                             option-type="2"
+                                             option-id="<?= $option ?>"
+                                             option-label="<?= $label['label'] ?>"
+                                             option-tooltip-thumb="<?= $swatchThumbPath ?>"
+                                             option-tooltip-value=""
+                                             style="background: url(<?= $swatchImagePath ?>) no-repeat center; background-size: initial;"></div>
+                                        <?php break;
+                                    case '1':
+                                        ?>
+                                        <div class="swatch-option color <?= $label['custom_style'] ?>"
+                                             tabindex="-1"
+                                             option-type="1"
+                                             option-id="<?= $option ?>"
+                                             option-label="<?= $label['label'] ?>"
+                                             option-tooltip-thumb=""
+                                             option-tooltip-value="<?= $swatchData['swatches'][$option]['value'] ?>"
+                                             style="background: <?= $swatchData['swatches'][$option]['value'] ?> no-repeat center; background-size: initial;"></div>
+                                        <?php break;
+                                    case '0':
+                                    default:
+                                        ?>
+                                        <div class="swatch-option text"
+                                             tabindex="-1" filter-content
+                                             option-type="0"
+                                             option-id="<?= $option ?>"
+                                             option-label="<?= $label['label'] ?>"
+                                             option-tooltip-thumb=""
+                                             option-tooltip-value=""
+                                        ><?= $swatchData['swatches'][$option]['value'] ?></div>
+                                        <?php break;
+                                } ?>
+                            <?php } ?>
+                        </a>
+
+                    <?php } ?>
+                <?php endforeach; ?>
+            <?php } ?>
         <?php } ?>
 
     </div>

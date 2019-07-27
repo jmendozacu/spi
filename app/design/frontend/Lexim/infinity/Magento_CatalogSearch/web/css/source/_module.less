@@ -220,6 +220,24 @@
         .sidebar, .sidebar-additional, .action.tocompare {
             display: none;
         }
+
+        // Filter
+        .swatch-attribute.swatch-layered.is_size {
+            .swatch-attribute-options {
+                .flex-direction(row);
+            }
+
+            .swatch-attribute-options {
+                .size-col {
+                    .flex(0 50%);
+
+                    .swatch-option-a {
+                        display: block;
+                        width: 100%;
+                    }
+                }
+            }
+        }
     }
 
 }
