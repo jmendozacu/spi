@@ -88,6 +88,10 @@
                 flex-direction: column;
             }
 
+            .nav-toggle-wrap {
+                display: none;
+            }
+
             .logo {
                 -webkit-justify-content: center;
                 justify-content: center;
@@ -133,9 +137,11 @@
                 display: -ms-flex;
                 display: -o-flex;
                 display: flex;
-
                 -webkit-justify-content: space-between;
                 justify-content: space-between;
+                -webkit-flex-wrap: wrap;
+                -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
                 margin: auto;
                 color: @gray;
 
@@ -216,6 +222,8 @@
                     background-position: calc(~'100% - 10px') 50% !important;
                     background: url(../Aheadworks_OneStepCheckout/images/arrow_down.svg);
                     background-size: 13px !important;
+                    font-size: 14px;
+                    font-family: 'Proxima Nova', Hind, sans-serif;
                 }
 
                 input[type='checkbox'],
@@ -403,26 +411,22 @@
             }
 
             .aw-onestep-main, .aw-onestep-sidebar {
-                -webkit-transition: .4s;
-                transition: .4s;
-                -webkit-align-items: flex-start;
-                align-items: flex-start;
                 display: -webkit-flex;
                 display: -moz-flex;
                 display: -ms-flex;
                 display: -o-flex;
                 display: flex;
+                -webkit-align-items: flex-start;
+                align-items: flex-start;
                 -webkit-flex-direction: column;
                 -ms-flex-direction: column;
                 flex-direction: column;
-
                 -webkit-box-sizing: border-box;
                 -moz-box-sizing: border-box;
                 box-sizing: border-box;
+                -webkit-justify-content: flex-start;
                 justify-content: flex-start;
-                margin: 0;
-                width: ~'calc(100% - 380px)';
-                padding-right: 4%;
+                margin: 0 0 50px;
             }
 
             .aw-onestep-main {
@@ -466,9 +470,9 @@
                                 font-size: 20px;
                                 -webkit-align-items: center;
                                 align-items: center;
-                                display: -webkit-inline-flex;
-                                display: -ms-inline-flexbox;
-                                display: inline-flex;
+                                //display: -webkit-inline-flex;
+                                //display: -ms-inline-flexbox;
+                                //display: inline-flex;
                                 background-color: #ffffff;
                                 -webkit-box-sizing: border-box;
                                 -moz-box-sizing: border-box;
@@ -495,9 +499,6 @@
                 }
 
                 .email {
-                    -webkit-transition: .3s;
-                    transition: .3s;
-                    max-width: 50%;
                     width: 100%;
 
                     .field {
@@ -506,8 +507,23 @@
                         }
                     }
 
+                    .hidden-fields {
+                        > .fl-label {
+                            margin-top: 20px;
+                            margin-bottom: 20px;
+
+                            input {
+                                margin-bottom: 20px;
+                            }
+                        }
+                    }
+
                     .actions-toolbar {
                         margin-left: auto;
+
+                        .secondary {
+                            margin: 0;
+                        }
                     }
                 }
 
@@ -1136,7 +1152,6 @@
                 .onestep-shipping-address, .onestep-billing-address {
 
                     > form {
-                        max-width: 50%;
                         display: -webkit-flex;
                         display: -moz-flex;
                         display: -ms-flex;
@@ -1151,7 +1166,10 @@
                         .field-row {
                             //width: 50%;
                             width: 100%;
-                            padding: 10px;
+
+                            > div {
+                                padding: 10px;
+                            }
 
                             &:nth-child(1), &:nth-child(2), &:nth-child(4) {
                                 width: 100%;
@@ -1175,15 +1193,19 @@
                 }
 
                 div[data-role="payment-methods-load"] {
-                    max-width: calc(~'50% - 20px');
                 }
 
                 .actions-toolbar {
+                    .primary {
+                        text-align: left;
+                    }
+
                     button[type=submit] {
                         margin: 0;
                         height: 50px;
                         width: 200px;
                         text-transform: uppercase;
+                        text-align: center;
                     }
                 }
             }
@@ -1222,10 +1244,9 @@
                                 display: -o-flex;
                                 display: flex;
 
-                                -webkit-flex-direction: column;
-                                -ms-flex-direction: column;
-                                flex-direction: column;
-
+                                -webkit-flex-direction: row;
+                                -ms-flex-direction: row;
+                                flex-direction: row;
                                 -webkit-justify-content: flex-start;
                                 justify-content: flex-start;
                                 -webkit-align-items: flex-start;
@@ -1286,17 +1307,14 @@
     .onestepcheckout-index-index {
         .static-block {
             border-color: @dark-gray;
+            padding: 30px 0;
         }
 
         .page-main {
             .checkout-container {
                 .aw-onestep-sidebar {
-                    position: -webkit-sticky;
-                    position: sticky;
-                    top: 20px;
-                    width: 380px;
+                    width: 100%;
                     padding: 0;
-                    margin: 0;
 
                     input[type='checkbox'] + label:before,
                     input[type='radio'] + label:before {
@@ -2165,283 +2183,179 @@
 }
 
 //
-//  Style groups for 'mobile' devices
-//  ---------------------------------------------
-
-& when (@media-target = 'mobile'), (@media-target = 'all') {
-
-    // max 767px
-    @media only screen and (max-width: (@screen__m - 1)) {
-        .modal-inner-wrap {
-            max-width: 100% !important;
-        }
-    }
-
-    // max 991px
-    @media only screen and (max-width: (@screen__l - 1)) {
-        .onestepcheckout-index-index {
-            .page-title-wrapper {
-                max-width: 530px;
-                margin: auto;
-                padding: 5px 10px;
-                -webkit-transition: .5s;
-                transition: .5s;
-
-                .page-title {
-                    font-size: 18px;
-                }
-            }
-
-            .aw-onestep-description {
-                padding: 0 10px;
-            }
-
-            .header .logo {
-                margin-left: 0;
-            }
-
-            .page-main {
-                padding: 10px;
-
-                .checkout-container {
-                    -webkit-align-items: center;
-                    align-items: center;
-                    -webkit-flex-direction: column;
-                    -ms-flex-direction: column;
-                    flex-direction: column;
-                    max-width: 530px;
-
-                    .aw-onestep-main,
-                    .aw-onestep-sidebar {
-                        width: 100%;
-                        position: static;
-                    }
-
-                    .aw-onestep-sidebar {
-                        margin: 0;
-
-                        .aw-sidebar-product-options {
-                            margin-top: 7px;
-                        }
-
-                        .aw-sidebar_order-note {
-                            padding-bottom: 15px;
-                        }
-                    }
-
-                    .aw-onestep-main {
-                        .email {
-                            margin-bottom: 20px;
-                        }
-
-                        .authentication {
-                            margin-top: 40px;
-                        }
-
-                        .modal-custom.authentication-dropdown {
-                            position: fixed;
-                            left: inherit;
-                            top: 0;
-                            max-width: 90%;
-                            width: 100%;
-                            right: 0;
-                            height: 100%;
-                        }
-
-                        fieldset.field.street .control {
-                            -webkit-flex-wrap: wrap;
-                            -ms-flex-wrap: wrap;
-                            flex-wrap: wrap;
-
-                        }
-                    }
-                }
-
-                .osc-fluid {
-                    -webkit-flex-wrap: wrap;
-                    -ms-flex-wrap: wrap;
-                    flex-wrap: wrap;
-
-                    .field {
-                        &:not(:last-child) {
-                            .lib-vendor-prefix-flex-basis(calc(~'100% - 10px'));
-                        }
-
-                        &.field-phone {
-                            .lib-vendor-prefix-flex-basis(100%);
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    .aw-mobile {
-        width: 100%;
-    }
-}
-
-//
 //  Mobile
 //  _____________________________________________
 
-.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
-    .onestepcheckout-index-index {
-        -webkit-overflow-scrolling: touch;
-        height: 100%;
-        overflow: auto;
-
-        .page-title-wrapper {
-            max-width: 100%;
-        }
-
-        .page-main {
-            padding: 0;
-
-            .checkout-container {
-                max-width: 100%;
-
-                .field-tooltip._active .field-tooltip-content {
-                    max-width: 200px;
-                }
-
-                .aw-onestep-sidebar {
-                    padding: 10px;
-                    border-radius: 0;
-                    border-left: none;
-                    border-right: none;
-                }
-
-                .aw-onestep-sidebar-content {
-                    .aw-onestep-sidebar-block.payment-option {
-                        &.customerbalance {
-                            .actions-toolbar {
-                                max-width: 50%;
-                            }
-                        }
-
-                        &.rewardpoints {
-                            .actions-toolbar {
-                                max-width: 55%;
-                            }
-                        }
-
-                        &.giftcardaccount {
-                            .actions-toolbar {
-                                max-width: 80%;
-                            }
-                        }
-                    }
-                }
-
-                .aw-onestep-main {
-                    .email .form,
-                    .authentication {
-                        margin: 0 15px;
-                    }
-
-                    .authentication {
-                        margin-top: 40px;
-                    }
-
-                    .email {
-                        max-width: 100%;
-                        margin-bottom: 20px;
-                    }
-
-                    .aw-onestep-groups {
-                        max-width: calc(~'100% - 20px');
-                        margin: 0 auto;
-
-                        .aw-onestep-groups_item .group-title {
-                            h2 {
-                                display: -webkit-flex;
-                                display: -moz-flex;
-                                display: -ms-flex;
-                                display: -o-flex;
-                                display: flex;
-                                -webkit-flex-direction: row;
-                                -ms-flex-direction: row;
-                                flex-direction: row;
-                                -webkit-align-items: center;
-                                align-items: center;
-                                -webkit-justify-content: flex-start;
-                                justify-content: flex-start;
-
-                                .mark {
-                                    background-color: @aqua;
-                                    width: 12px;
-                                    height: 12px;
-                                    justify-content: center;
-                                    margin-right: 9px;
-                                    margin-left: 5px;
-
-                                    &:after {
-                                        content: "";
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    .shipping-address-item {
-                        width: 100% !important;
-                    }
-
-                    .payment-method-content {
-                        width: calc(~'100% - 55px');
-                    }
-
-                    .onestep-billing-address .action-toolbar,
-                    .onestep-shipping-address .action-toolbar {
-                        -webkit-align-items: flex-end;
-                        align-items: flex-end;
-
-                        -webkit-flex-direction: column;
-                        -ms-flex-direction: column;
-                        flex-direction: column;
-                        justify-content: center;
-
-                        .action {
-                            width: calc(~'100% - 10px');
-                        }
-                    }
-
-                    .payment-method._active {
-                        .fields.group-2 .field,
-                        &.payment-method-braintree .hosted-date-wrap .hosted-control {
-                            .label {
-                                display: none;
-
-                                &.short {
-                                    display: -webkit-flex;
-                                    display: -moz-flex;
-                                    display: -ms-flex;
-                                    display: -o-flex;
-                                    display: flex;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-// min 768px
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+// max 767px
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
 
 }
+
+// max 640px
+//.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+//    .onestepcheckout-index-index {
+//        -webkit-overflow-scrolling: touch;
+//        height: 100%;
+//        overflow: auto;
+//
+//        .page-title-wrapper {
+//            max-width: 100%;
+//        }
+//
+//        .page-main {
+//
+//            .checkout-container {
+//                max-width: 100%;
+//
+//                .field-tooltip._active .field-tooltip-content {
+//                    max-width: 200px;
+//                }
+//
+//                .aw-onestep-sidebar {
+//                    padding: 10px;
+//                    border-radius: 0;
+//                    border-left: none;
+//                    border-right: none;
+//                }
+//
+//                .aw-onestep-sidebar-content {
+//                    .aw-onestep-sidebar-block.payment-option {
+//                        &.customerbalance {
+//                            .actions-toolbar {
+//                                max-width: 50%;
+//                            }
+//                        }
+//
+//                        &.rewardpoints {
+//                            .actions-toolbar {
+//                                max-width: 55%;
+//                            }
+//                        }
+//
+//                        &.giftcardaccount {
+//                            .actions-toolbar {
+//                                max-width: 80%;
+//                            }
+//                        }
+//                    }
+//                }
+//
+//                .aw-onestep-main {
+//                    .email .form,
+//                    .authentication {
+//                        margin: 0 15px;
+//                    }
+//
+//                    .authentication {
+//                        margin-top: 40px;
+//                    }
+//
+//                    .email {
+//                        max-width: 100%;
+//                        margin-bottom: 20px;
+//                    }
+//
+//                    .aw-onestep-groups {
+//                        max-width: calc(~'100% - 20px');
+//                        margin: 0 auto;
+//
+//                        .aw-onestep-groups_item .group-title {
+//                            h2 {
+//                                display: -webkit-flex;
+//                                display: -moz-flex;
+//                                display: -ms-flex;
+//                                display: -o-flex;
+//                                display: flex;
+//                                -webkit-flex-direction: row;
+//                                -ms-flex-direction: row;
+//                                flex-direction: row;
+//                                -webkit-align-items: center;
+//                                align-items: center;
+//                                -webkit-justify-content: flex-start;
+//                                justify-content: flex-start;
+//
+//                                .mark {
+//                                    background-color: @aqua;
+//                                    width: 12px;
+//                                    height: 12px;
+//                                    justify-content: center;
+//                                    margin-right: 9px;
+//                                    margin-left: 5px;
+//
+//                                    &:after {
+//                                        content: "";
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    }
+//
+//                    .shipping-address-item {
+//                        width: 100% !important;
+//                    }
+//
+//                    .payment-method-content {
+//                        width: calc(~'100% - 55px');
+//                    }
+//
+//                    .onestep-billing-address .action-toolbar,
+//                    .onestep-shipping-address .action-toolbar {
+//                        -webkit-align-items: flex-end;
+//                        align-items: flex-end;
+//
+//                        -webkit-flex-direction: column;
+//                        -ms-flex-direction: column;
+//                        flex-direction: column;
+//                        justify-content: center;
+//
+//                        .action {
+//                            width: calc(~'100% - 10px');
+//                        }
+//                    }
+//
+//                    .payment-method._active {
+//                        .fields.group-2 .field,
+//                        &.payment-method-braintree .hosted-date-wrap .hosted-control {
+//                            .label {
+//                                display: none;
+//
+//                                &.short {
+//                                    display: -webkit-flex;
+//                                    display: -moz-flex;
+//                                    display: -ms-flex;
+//                                    display: -o-flex;
+//                                    display: flex;
+//                                }
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
+//}
 
 //
 //  Desktop large
 //  _____________________________________________
 
+// min 768px
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .onestepcheckout-index-index {
+        .page-main .aw-onestep-main {
+            .email {
+                max-width: calc(~'50% - 10px');
+            }
+        }
+    }
+
+}
+
 // min 992px
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
     .onestepcheckout-index-index {
         .page-main {
+
             .checkout-container {
                 -webkit-align-items: flex-start;
                 align-items: flex-start;
@@ -2456,6 +2370,15 @@
                 .aw-mobile-hide {
                     display: block;
                 }
+
+                .aw-onestep-sidebar {
+                    width: 380px;
+                }
+            }
+
+            .aw-onestep-main {
+                width: calc(~'100% - 380px');
+                padding-right: 4%;
             }
 
             .shipping-method {
@@ -2494,6 +2417,15 @@
                     }
                 }
             }
+        }
+    }
+}
+
+// min 1440px
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+    .onestepcheckout-index-index .page-main .aw-onestep-main {
+        div[data-role="payment-methods-load"], .onestep-shipping-address, .onestep-billing-address {
+            max-width: calc(~'50% - 10px');
         }
     }
 }
