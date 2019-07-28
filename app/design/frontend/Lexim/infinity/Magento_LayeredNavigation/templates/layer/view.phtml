@@ -53,13 +53,33 @@ $currentPage = $block->getRequest()->getFullActionName();
                                 <div class="swatch-attribute-options">
                                     <?php
                                     if ($currentPage === 'catalogsearch_result_index') { // search page
+                                        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+                                        $categoryHelper = $objectManager->get('\Magento\Catalog\Helper\Category');
+                                        $categories = $categoryHelper->getStoreCategories();
+
+                                        /** @var Magento\Catalog\Model\Category $catItem */
+                                        foreach ($categories as $catItem) {
+                                            $parentId = $catItem->getId();
+                                            $parentCatName = $catItem->getName();
+
+                                            // parent cat
+                                            printf('<a href="javascript:void(0)" data-label="%s" data-type="cat" data-value="%s" class="swatch-option-a category"><div class="swatch-option text">%s</div></a>', $parentCatName, $parentId, $parentCatName);
+
+                                            $subCategories = $catItem->getChildrenCategories();
+                                            if ($subCategories && is_array($subCategories) && count($subCategories) > 0) {
+                                                foreach ($subCategories as $subItem) {
+                                                    $subCatId = $subItem->getId();
+                                                    $subCatName = $subItem->getName();
+                                                    // sub cat
+                                                    printf('<a href="javascript:void(0)" data-label="%s" data-type="cat" data-value="%s" class="swatch-option-a category sub"><div class="swatch-option text">%s</div></a>', $subCatName, $subCatId, $subCatName);
+                                                }
+                                            }
+                                        }
 
                                     } else {
                                         foreach ($parentCategory->getChildrenCategories() as $subCategory) { ?>
                                             <?php $catName = $subCategory->getName(); ?>
-                                            <a href="javascript:void(0)" data-label="<?= $catName ?>"
-                                               data-type="cat" data-value="<?= $subCategory->getId() ?>"
-                                               class="swatch-option-a category">
+                                            <a href="javascript:void(0)" data-label="<?= $catName ?>" data-type="cat" data-value="<?= $subCategory->getId() ?>" class="swatch-option-a category">
                                                 <div class="swatch-option text"><?= $catName ?></div>
                                             </a>
                                         <?php } ?>
