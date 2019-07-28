@@ -11,7 +11,8 @@ $helper = $this->helper(\BinaryAnvil\Ratings\Helper\Data::class);
             <span class="base"><?= __('Review and rating'); ?></span>
         </h1>
     </div>
-    <span><?= $block->escapeHtml(__('About ')) ?><strong><?= $block->escapeHtml($block->getProductInfo()->getName()) ?></strong></span>
+<?php /**
+    <span><?= $block->escapeHtml(__('About ')) ?><strong><?= $block->escapeHtml($block->getProductInfo()->getName()) ?></strong></span> */ ?>
 
     <div class="block-content">
         <?php if ($block->getAllowWriteReviewFlag()): ?>
