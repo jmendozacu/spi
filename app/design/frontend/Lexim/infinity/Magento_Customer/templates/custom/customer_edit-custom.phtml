@@ -215,6 +215,7 @@ $block->getUrl('customer/account/editPost') ?>" method="post" id="form-validate"
         }
     }
 
+
 </script>
 
 <script>
@@ -265,18 +266,21 @@ $regionList = $savedAddres->getRegion();
 // get customer default 
 $addressInfo = $_objectManager->get('BinaryAnvil\Customer\Block\Addressinfo');
 $shippingAddress = $addressInfo->getDefaultShippingAddress();
-if(isset($shippingAddress)){
+if (isset($shippingAddress)) {
     $changeArray = array();
     $changeArray = $shippingAddress->__toArray();
     // echo "<pre>";print_r($changeArray);
-    $street = $changeArray['street'][0];
-    $getregion_id = $changeArray['region_id'];
-    $customer_id = $changeArray['customer_id'];
+    $idAddress = $changeArray['id'];
     $firstname = $changeArray['firstname'];
     $lastname = $changeArray['lastname'];
+    $street = $changeArray['street'][0];
+    $city = $changeArray['city'];
+    $country_id = $changeArray['country_id'];
+    $region_id = $changeArray['region_id'];
+    $postcode = $changeArray['postcode'];
+    $telephone = $changeArray['telephone'];
+    $customer_id = $changeArray['customer_id'];
 }
-
-
 ?>
 
 <div class="save-address">
@@ -295,131 +299,331 @@ if(isset($shippingAddress)){
             </p>
         </div>
         <?php if ($getAddres): ?>
-        <div class="content-edit-address">
-            <div class="box-edit-address">
-                <div class="content-details">
-                    <div class="field field-firstname required">
-                        <label class="label" for="name">
-                            <span><?php echo __('name') ?></span>
-                        </label>
-                        <div class="control">
-                            <input type="text" id="name" name="firstname" value="<?= $firstname; ?>" title="Name"
-                                   class="input-text required-entry" data-validate="{required:true}"
-                                   aria-required="true">
+            <div class="content-edit-address">
+                <div class="box-edit-address">
+                    <form class="form-address-edit"
+                          action="<?= $this->getBaseUrl(); ?>customer/address/formPost/id/<?= $idAddress; ?>/"
+                          method="post" id="form-validate" enctype="multipart/form-data"
+                          data-hasrequired="* Required Fields" novalidate="novalidate">
+                        <?= $addressInfo->getBlockHtml('formkey') ?>
+                        <div class="content-details">
+                            <div class="field field-firstname required">
+                                <label class="label" for="name">
+                                    <span><?php echo __('name') ?></span>
+                                </label>
+                                <div class="control">
+                                    <input type="text" id="name" name="firstname" value="<?= $firstname; ?>"
+                                           title="Name"
+                                           class="input-text required-entry" data-validate="{required:true}"
+                                           aria-required="true">
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="content-details">
-                    <div class="field field-lastname required">
-                        <label class="label" for="lastname">
-                            <span><?php echo __('last name') ?></span>
-                        </label>
-                        <div class="control">
-                            <input type="text" id="lastname" name="lastname" value="<?= $lastname; ?>" title="Last Name"
-                                   class="input-text required-entry" data-validate="{required:true}"
-                                   aria-required="true">
+                        <div class="content-details">
+                            <div class="field field-lastname required">
+                                <label class="label" for="lastname">
+                                    <span><?php echo __('last name') ?></span>
+                                </label>
+                                <div class="control">
+                                    <input type="text" id="lastname" name="lastname" value="<?= $lastname; ?>"
+                                           title="Last Name"
+                                           class="input-text required-entry" data-validate="{required:true}"
+                                           aria-required="true">
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="content-details">
-                    <div class="field field-address required">
-                        <label class="label" for="address">
-                            <span><?php echo __('address') ?></span>
-                        </label>
-                        <div class="control">
-                            <input type="text" id="address" name="address" value="<?= $street; ?>" title="Address"
-                                   class="input-text required-entry" data-validate="{required:true}"
-                                   aria-required="true">
+                        <div class="content-details">
+                            <div class="field field-address required">
+                                <label class="label" for="address">
+                                    <span><?php echo __('address') ?></span>
+                                </label>
+                                <div class="control">
+                                    <input type="text" id="street_1" name="street[]" value="<?= $street; ?>"
+                                           title="Address"
+                                           class="input-text required-entry" data-validate="{required:true}"
+                                           aria-required="true">
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="content-details">
-                    <div class="field field-city required">
-                        <label class="label" for="city">
-                            <span><?php echo __('city') ?></span>
-                        </label>
-                        <div class="control">
-                            <input type="text" id="city" name="city" value="<?= $shippingAddress->getCity(); ?>"
-                                   title="City" class="input-text required-entry" data-validate="{required:true}"
-                                   aria-required="true">
+                        <div class="content-details">
+                            <div class="field field-city required">
+                                <label class="label" for="city">
+                                    <span><?php echo __('city') ?></span>
+                                </label>
+                                <div class="control">
+                                    <input type="text" id="city" name="city" value="<?= $city; ?>"
+                                           title="City" class="input-text required-entry"
+                                           data-validate="{required:true}"
+                                           aria-required="true">
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="content-details">
-                    <div class="field state">
-                        <label class="label" for="state">
-                            <span><?php echo __('state') ?></span>
-                        </label>
-                        <div class="control">
-                            <?php echo $regionList; ?>
+                        <div class="default-state content-details lx-<?= $idAddress ?>">
+                            <div class="field state">
+                                <label class="label" for="state">
+                                    <span><?php echo __('state') ?></span>
+                                </label>
+                                <div class="control">
+                                    <?php echo $regionList; ?>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="content-details zip-code">
-                    <div class="field field-zip-code required">
-                        <label class="label" for="zipcode">
-                            <span><?php echo __('zip code') ?></span>
-                        </label>
-                        <div class="control">
-                            <input type="text" id="zipcode" name="zipcode"
-                                   value="<?= $shippingAddress->getPostCode(); ?>" title="zipcode"
-                                   class="input-text required-entry" data-validate="{required:true}"
-                                   aria-required="true">
+                        <div class="content-details zip-code">
+                            <div class="field field-zip-code required">
+                                <label class="label" for="zipcode">
+                                    <span><?php echo __('zip code') ?></span>
+                                </label>
+                                <div class="control">
+                                    <input type="text" id="zip" name="postcode"
+                                           value="<?= $postcode; ?>" title="zipcode"
+                                           class="input-text validate-zip-international" data-validate="{required:true}"
+                                           aria-required="true">
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="content-details phone">
-                    <div class="field field-phone required">
-                        <label class="label" for="phone">
-                            <span><?php echo __('phone') ?></span>
-                        </label>
-                        <div class="control">
-                            <input type="text" id="phone" name="phone" value="<?= $shippingAddress->getTelephone(); ?>"
-                                   title="phone" class="input-text required-entry" data-validate="{required:true}"
-                                   aria-required="true">
+                        <div class="content-details phone">
+                            <div class="field field-phone required">
+                                <label class="label" for="phone">
+                                    <span><?php echo __('phone') ?></span>
+                                </label>
+                                <div class="control">
+                                    <input type="text" id="telephone" name="telephone" value="<?= $telephone; ?>"
+                                           title="phone" class="input-text required-entry"
+                                           data-validate="{required:true}"
+                                           aria-required="true">
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="content-details country">
-                    <div class="field country">
-                        <label class="label" for="country">
-                            <span><?php echo __('country') ?></span>
-                        </label>
-                        <div class="control">
-                            <?php echo $countryList; ?>
+                        <div class="content-details country">
+                            <div class="field country">
+                                <label class="label" for="country">
+                                    <span><?php echo __('country') ?></span>
+                                </label>
+                                <div class="control">
+                                    <?php echo $countryList; ?>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="primary">
-                    <button type="submit" class="action save primary" title="<?= /* @escapeNotVerified */
-                    __('Save') ?>"><span><?= /* @escapeNotVerified */
-                            __('Save Changes') ?></span></button>
+                        <div class="content-details country">
+                            <div class="checkbox-field-default">
+                                <label for="set_shipping_address"><span>This is your default shipping address.</span></label>
+                            </div>
+                        </div>
+
+
+                        <div class="primary">
+                            <button type="submit" class="action primary" title="<?= /* @escapeNotVerified */
+                            __('Save') ?>"><span><?= /* @escapeNotVerified */
+                                    __('Save Changes') ?></span></button>
+                        </div>
+                    </form>
                 </div>
             </div>
-        </div>
+            <script>
+                require(['jquery'], function ($) {
+                    $(function () {
+                        // select state
+                        $(".default-state.content-details").find('option').removeAttr("selected");
+
+                        $('.default-state.content-details.lx-<?= $idAddress; ?> .state #state option[value="<?= $region_id; ?>"]').attr('selected', 'selected');
+                    });
+                });
+            </script>
         <?php endif; ?>
     </div>
 </div>
+<?php
+// address book
+$addressBook = $_objectManager->get('Magento\Customer\Block\Address\Book');
+?>
+<?php if ($_pAddsses = $addressBook->getAdditionalAddresses()): ?>
+    <?php foreach ($_pAddsses as $_address): ?>
+        <?php $changeArray = array();
+        $changeArray = $_address->__toArray();
+        // echo "<pre>";print_r($changeArray);
+        $idAddress = $changeArray['id'];
+        $firstname = $changeArray['firstname'];
+        $lastname = $changeArray['lastname'];
+        $street = $changeArray['street'][0];
+        $city = $changeArray['city'];
+        $country_id = $changeArray['country_id'];
+        $region_id = $changeArray['region_id'];
+        $postcode = $changeArray['postcode'];
+        $telephone = $changeArray['telephone'];
+        $customer_id = $changeArray['customer_id'];
+        ?>
+
+        <div class="save-address">
+            <div class="title-address">
+                <a href="javascript:void(0)" class="link-edit-address"><?= __('Edit'); ?></a>
+            </div>
+            <div class="box-address">
+                <div class="content-address">
+                    <p>
+                        <?= $addressBook->getAddressHtml($_address) ?>
+                    </p>
+                </div>
+                <div class="content-edit-address">
+                    <div class="box-edit-address">
+                        <form class="form-address-edit"
+                              action="<?= $this->getBaseUrl(); ?>customer/address/formPost/id/<?= $idAddress; ?>/"
+                              method="post" id="form-validate" enctype="multipart/form-data"
+                              data-hasrequired="* Required Fields" novalidate="novalidate">
+                            <?= $addressBook->getBlockHtml('formkey') ?>
+                            <div class="content-details">
+                                <div class="field field-firstname required">
+                                    <label class="label" for="name">
+                                        <span><?php echo __('name') ?></span>
+                                    </label>
+                                    <div class="control">
+                                        <input type="text" id="name" name="firstname" value="<?= $firstname; ?>"
+                                               title="Name"
+                                               class="input-text required-entry" data-validate="{required:true}"
+                                               aria-required="true">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="content-details">
+                                <div class="field field-lastname required">
+                                    <label class="label" for="lastname">
+                                        <span><?php echo __('last name') ?></span>
+                                    </label>
+                                    <div class="control">
+                                        <input type="text" id="lastname" name="lastname" value="<?= $lastname; ?>"
+                                               title="Last Name"
+                                               class="input-text required-entry" data-validate="{required:true}"
+                                               aria-required="true">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="content-details">
+                                <div class="field field-address required">
+                                    <label class="label" for="address">
+                                        <span><?php echo __('address') ?></span>
+                                    </label>
+                                    <div class="control">
+                                        <input type="text" id="street_1" name="street[]" value="<?= $street; ?>"
+                                               title="Address"
+                                               class="input-text required-entry" data-validate="{required:true}"
+                                               aria-required="true">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="content-details">
+                                <div class="field field-city required">
+                                    <label class="label" for="city">
+                                        <span><?php echo __('city') ?></span>
+                                    </label>
+                                    <div class="control">
+                                        <input type="text" id="city" name="city" value="<?= $city; ?>"
+                                               title="City" class="input-text required-entry"
+                                               data-validate="{required:true}"
+                                               aria-required="true">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="book-state content-details lx-<?= $idAddress ?>">
+                                <div class="field state">
+                                    <label class="label" for="state">
+                                        <span><?php echo __('state') ?></span>
+                                    </label>
+                                    <div class="control">
+                                        <?php echo $regionList; ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="content-details zip-code">
+                                <div class="field field-zip-code required">
+                                    <label class="label" for="zipcode">
+                                        <span><?php echo __('zip code') ?></span>
+                                    </label>
+                                    <div class="control">
+                                        <input type="text" id="zip" name="postcode"
+                                               value="<?= $postcode; ?>" title="zipcode"
+                                               class="input-text validate-zip-international"
+                                               data-validate="{required:true}"
+                                               aria-required="true">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="content-details phone">
+                                <div class="field field-phone required">
+                                    <label class="label" for="phone">
+                                        <span><?php echo __('phone') ?></span>
+                                    </label>
+                                    <div class="control">
+                                        <input type="text" id="telephone" name="telephone" value="<?= $telephone; ?>"
+                                               title="phone" class="input-text required-entry"
+                                               data-validate="{required:true}"
+                                               aria-required="true">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="content-details country">
+                                <div class="field country">
+                                    <label class="label" for="country">
+                                        <span><?php echo __('country') ?></span>
+                                    </label>
+                                    <div class="control">
+                                        <?php echo $countryList; ?>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="content-details country">
+                                <div class="checkbox-field">
+                                    <input type="checkbox" name="set_form_shipping_address" id="set_shipping_address">
+                                    <label for="set_shipping_address"><span>Set as shipping address</span></label>
+                                </div>
+                            </div>
+
+
+                            <div class="primary">
+                                <button type="submit" class="action primary" title="<?= /* @escapeNotVerified */
+                                __('Save') ?>"><span><?= /* @escapeNotVerified */
+                                        __('Save Changes') ?></span></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            require(['jquery'], function ($) {
+                $(function () {
+                    // select state
+                    $(".book-state.content-details").find('option').removeAttr("selected");
+                    $('.book-state.content-details.lx-<?= $idAddress; ?> .state #state option[value="<?= $region_id; ?>"]').attr('selected', 'selected');
+                });
+            });
+        </script>
+    <?php endforeach; ?>
+<?php endif; ?>
+
 <?php
 $resource = $_objectManager->get('Magento\Framework\App\ResourceConnection');
 $connection = $resource->getConnection();
 $tableName = $resource->getTableName('local_retailer_store');
 
-$sql = "Select * FROM " . $tableName. " WHERE id_customer_use =". $getIdcus;
+$sql = "Select * FROM " . $tableName . " WHERE id_customer_use =" . $getIdcus;
 $array_customer = $connection->fetchAll($sql);
-if (!empty($array_customer)){
+if (!empty($array_customer)) {
     foreach ($array_customer as $key) {
         $retailerId = $key['retailer_id'];
         break;
     } ?>
-<style type="text/css">
-    #<?= $retailerId; ?> .product-items .<?= $retailerId; ?> .make-this-store span {
-        display: none;
-    }
-    #<?= $retailerId; ?> .product-items .<?= $retailerId; ?> .location-radio .label{
-        display: block !important;
-    }
-</style>
+    <style type="text/css">
+        #
+        <?= $retailerId; ?>
+        .product-items .<?= $retailerId; ?> .make-this-store span {
+            display: none;
+        }
+
+        #
+        <?= $retailerId; ?>
+        .product-items .<?= $retailerId; ?> .location-radio .label {
+            display: block !important;
+        }
+    </style>
 <?php }
 ?>
 <div class="my-local-retailer" id="retailer-store">
@@ -459,7 +663,9 @@ if (!empty($array_customer)){
                 </div>
             </div>
         </div>
-        <div class="footer-retailer" id="<?php if(isset($retailerId)){echo $retailerId;} ?>">
+        <div class="footer-retailer" id="<?php if (isset($retailerId)) {
+            echo $retailerId;
+        } ?>">
             <div class="products list items product-items the-bottom-slider">
             </div>
         </div>
@@ -477,50 +683,12 @@ if (!empty($array_customer)){
                     $(this).parent().parent().addClass('active');
                 }
             });
-            <?php if ($getAddres): ?>
-            // select state
-            $('.content-details .state #state option[value="<?= $getregion_id ?>"]').attr('selected', 'selected');
-
-            $(".action.save.primary").click(function (e) {
-
-                var name = $('.box-edit-address #name').val();
-                var lastname = $('.box-edit-address #lastname').val();
-                var address = $('.box-edit-address #address').val();
-                var city = $('.box-edit-address #city').val();
-                var phone = $('.box-edit-address #phone').val();
-                var zipcode = $('.box-edit-address #zipcode').val();
-                var state = $(".box-edit-address #state").val();
-                var country = $(".box-edit-address #country").val();
-                var customer_id = <?= $customer_id ?>;
-
-                jQuery.ajax({
-                    url: '<?php echo $this->getBaseUrl() . 'content/load/load'?>',
-                    type: "POST",
-                    dataType: 'json',
-                    showLoader: true,
-                    data: {
-                        name: name,
-                        lastname: lastname,
-                        address: address,
-                        city: city,
-                        phone: phone,
-                        zipcode: zipcode,
-                        state: state,
-                        country: country,
-                        customer_id: customer_id
-                    },
-                    success: function (data) {
-                        location.reload();
-                    }
-                });
-            });
-            <?php endif; ?>
         });
     });
 </script>
 <script type="text/javascript">
-    require([ 'jquery'], function($){     
-        $(document.body).on('click', '.make-this-store span' ,function(e){
+    require(['jquery'], function ($) {
+        $(document.body).on('click', '.make-this-store span', function (e) {
             $('.make-this-store').removeClass('active');
             $(this).parent().addClass('active');
             var monday = "no", saturday = "no";
@@ -532,8 +700,8 @@ if (!empty($array_customer)){
             var zip = $('.make-this-store.active .zip-retailer').val();
             var distance = $('.make-this-store.active .distance-retailer').val();
             var phone = $('.make-this-store.active .phone-retailer').val();
-                monday = $('.make-this-store.active .monday-retailer').val();
-                saturday = $('.make-this-store.active .saturday-retailer').val();
+            monday = $('.make-this-store.active .monday-retailer').val();
+            saturday = $('.make-this-store.active .saturday-retailer').val();
             var getidcus = <?= $getIdcus ?>;
             jQuery.ajax({
                 url: '<?php echo $this->getBaseUrl() . 'localretailer/load/load'?>',
@@ -556,14 +724,14 @@ if (!empty($array_customer)){
                 success: function (data) {
                     // location.reload();
                     $('.footer-retailer').removeAttr('id');
-                    $('.footer-retailer').attr( 'id', retailerid );
-                    $(".customer-account-edit .column.main .my-local-retailer .box-local-retailer .footer-retailer .location .location-radio .label").removeAttr( 'style' );
-                    $(".customer-account-edit .column.main .my-local-retailer .box-local-retailer .footer-retailer .location."+retailerid+" .location-radio .label").css("display", "block");
+                    $('.footer-retailer').attr('id', retailerid);
+                    $(".customer-account-edit .column.main .my-local-retailer .box-local-retailer .footer-retailer .location .location-radio .label").removeAttr('style');
+                    $(".customer-account-edit .column.main .my-local-retailer .box-local-retailer .footer-retailer .location." + retailerid + " .location-radio .label").css("display", "block");
 
-                    $(".make-this-store span").removeAttr( 'style' );
+                    $(".make-this-store span").removeAttr('style');
                     $(".make-this-store.active span").css("display", "none");
                 }
             });
-        }); 
+        });
     });
 </script>

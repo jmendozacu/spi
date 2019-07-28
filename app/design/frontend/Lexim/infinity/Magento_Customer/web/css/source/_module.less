@@ -877,6 +877,11 @@
             }
         }
 
+        .page.messages {
+            padding-left: 5%;
+            padding-right: 5%;
+        }
+
         .sidebar-main {
             .account-nav {
                 padding: 15px 0;
@@ -1440,6 +1445,26 @@
             }
         }
 
+        .message.empty {
+            background: transparent;
+            padding: 0;
+            margin: 0;
+
+            span {
+                font-family: @hind-font;
+                font-size: 14px;
+                color: #3e3935;
+                text-align: left;
+                line-height: 18px;
+                display: block;
+                margin-bottom: 20px;
+            }
+
+            span:before {
+                display: none;
+            }
+        }
+
         #my-orders-table {
             thead {
                 .col {
@@ -1950,6 +1975,18 @@
 
                 .content-edit-address {
                     display: block;
+                }
+            }
+
+            // list addresses
+
+            .block-addresses-list {
+                .items {
+                    .item-addresses {
+                        display: block;
+                        padding: 20px 0;
+                        border-bottom: 1px solid #74706d;
+                    }
                 }
             }
 
