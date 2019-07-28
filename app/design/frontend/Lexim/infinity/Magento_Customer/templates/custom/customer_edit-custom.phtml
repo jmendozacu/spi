@@ -301,7 +301,7 @@ if (isset($shippingAddress)) {
         <?php if ($getAddres): ?>
             <div class="content-edit-address">
                 <div class="box-edit-address">
-                    <form class="form-address-edit"
+                    <form class="form-address-edit" id="<?= $idAddress; ?>" 
                           action="<?= $this->getBaseUrl(); ?>customer/address/formPost/id/<?= $idAddress; ?>/"
                           method="post" id="form-validate" enctype="multipart/form-data"
                           data-hasrequired="* Required Fields" novalidate="novalidate">
@@ -429,6 +429,18 @@ if (isset($shippingAddress)) {
                     });
                 });
             </script>
+            <!-- require for edit default shipping -->
+            <script type="text/javascript">
+            require([
+                'jquery',
+                'mage/mage'
+            ], function($){
+
+               var dataForm = $('.form-address-edit#<?= $idAddress; ?>');
+               dataForm.mage('validation', {});
+
+            });
+            </script>
         <?php endif; ?>
     </div>
 </div>
@@ -465,7 +477,7 @@ $addressBook = $_objectManager->get('Magento\Customer\Block\Address\Book');
                 </div>
                 <div class="content-edit-address">
                     <div class="box-edit-address">
-                        <form class="form-address-edit"
+                        <form class="form-address-edit" id="<?= $idAddress; ?>" 
                               action="<?= $this->getBaseUrl(); ?>customer/address/formPost/id/<?= $idAddress; ?>/"
                               method="post" id="form-validate" enctype="multipart/form-data"
                               data-hasrequired="* Required Fields" novalidate="novalidate">
@@ -569,10 +581,10 @@ $addressBook = $_objectManager->get('Magento\Customer\Block\Address\Book');
                                     </div>
                                 </div>
                             </div>
-                            <div class="content-details country">
+                            <div class="content-details">
                                 <div class="checkbox-field">
-                                    <input type="checkbox" id="default_shipping" name="default_shipping" value="1" class="checkbox">
-                                    <label for="default_shipping"><span>Set as shipping address</span></label>
+                                    <input type="checkbox" id="primary_billing" name="default_billing" value="1" class="checkbox">
+                                    <label for="primary_billing"><span>Set as shipping address</span></label>
                                 </div>
                             </div>
 
@@ -591,13 +603,146 @@ $addressBook = $_objectManager->get('Magento\Customer\Block\Address\Book');
             require(['jquery'], function ($) {
                 $(function () {
                     // select state
-                    $(".book-state.content-details").find('option').removeAttr("selected");
+                    // $(".book-state.content-details").find('option').removeAttr("selected");
                     $('.book-state.content-details.lx-<?= $idAddress; ?> .state #state option[value="<?= $region_id; ?>"]').attr('selected', 'selected');
                 });
             });
         </script>
+        <!-- require for edit book shipping -->
+        <script type="text/javascript">
+        require([
+            'jquery',
+            'mage/mage'
+        ], function($){
+
+           var dataForm = $('.form-address-edit#<?= $idAddress; ?>');
+           dataForm.mage('validation', {});
+
+        });
+        </script>
     <?php endforeach; ?>
 <?php endif; ?>
+
+<!-- Add shipping address -->
+
+<div class="save-address add-shipping-address">
+    <div class="title-address">
+        <span class="link-add-address"><?= __('+'); ?></span>
+        <span><?= __('Add shipping address'); ?></span>
+    </div>
+    <div class="box-address">
+        <div class="content-edit-address">
+            <div class="box-edit-address">
+                <form class="form" id="add-custom-form" method="post" autocomplete="off">
+                <div class="content-details">
+                    <div class="field field-firstname required">
+                        <label class="label" for="name">
+                            <span><?php echo __('name') ?></span>
+                        </label>
+                        <div class="control">
+                            <input type="text" id="name" name="firstname" value="" title="Name"
+                                   class="input-text required-entry" data-validate="{required:true}"
+                                   aria-required="true">
+                        </div>
+                    </div>
+                </div>
+                <div class="content-details">
+                    <div class="field field-lastname required">
+                        <label class="label" for="lastname">
+                            <span><?php echo __('last name') ?></span>
+                        </label>
+                        <div class="control">
+                            <input type="text" id="lastname" name="lastname" value="" title="Last Name"
+                                   class="input-text required-entry" data-validate="{required:true}"
+                                   aria-required="true">
+                        </div>
+                    </div>
+                </div>
+                <div class="content-details">
+                    <div class="field field-address required">
+                        <label class="label" for="address">
+                            <span><?php echo __('address') ?></span>
+                        </label>
+                        <div class="control">
+                            <input type="text" id="address" name="address" value="" title="Address"
+                                   class="input-text required-entry" data-validate="{required:true}"
+                                   aria-required="true">
+                        </div>
+                    </div>
+                </div>
+                <div class="content-details">
+                    <div class="field field-city required">
+                        <label class="label" for="city">
+                            <span><?php echo __('city') ?></span>
+                        </label>
+                        <div class="control">
+                            <input type="text" id="city" name="city" value=""
+                                   title="City" class="input-text required-entry" data-validate="{required:true}"
+                                   aria-required="true">
+                        </div>
+                    </div>
+                </div>
+                <div class="content-details">
+                    <div class="field state">
+                        <label class="label" for="state">
+                            <span><?php echo __('state') ?></span>
+                        </label>
+                        <div class="control">
+                            <?php echo $regionList; ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-details zip-code">
+                    <div class="field field-zip-code required">
+                        <label class="label" for="zipcode">
+                            <span><?php echo __('zip code') ?></span>
+                        </label>
+                        <div class="control">
+                            <input type="text" id="zipcode" name="zipcode"
+                                   value="" title="zipcode"
+                                   class="input-text required-entry" data-validate="{required:true}"
+                                   aria-required="true">
+                        </div>
+                    </div>
+                </div>
+                <div class="content-details phone">
+                    <div class="field field-phone required">
+                        <label class="label" for="phone">
+                            <span><?php echo __('phone') ?></span>
+                        </label>
+                        <div class="control">
+                            <input type="text" id="phone" name="phone" value=""
+                                   title="phone" class="input-text required-entry" data-validate="{required:true}"
+                                   aria-required="true">
+                        </div>
+                    </div>
+                </div>
+                <div class="content-details country">
+                    <div class="field country">
+                        <label class="label" for="country">
+                            <span><?php echo __('country') ?></span>
+                        </label>
+                        <div class="control">
+                            <?php echo $countryList; ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="content-details add_shipping_address">
+                    <div class="checkbox-field">
+                        <input type="checkbox" id="add_shipping" name="check-default" value="" class="checkbox">
+                        <label for="add_shipping"><span>Set as shipping address</span></label>
+                    </div>
+                </div>
+                <div class="primary">
+                    <button type="submit" class="action save primary" title="<?= /* @escapeNotVerified */
+                    __('Save') ?>"><span><?= /* @escapeNotVerified */
+                            __('Save Changes') ?></span></button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 <?php
 $resource = $_objectManager->get('Magento\Framework\App\ResourceConnection');
@@ -674,7 +819,7 @@ if (!empty($array_customer)) {
 <script>
     require(['jquery'], function ($) {
         $(function () {
-            $('.link-edit-address').click(function (e) {
+            $('.link-edit-address').click(function (i) {
                 if ($(this).hasClass("focus")) {
                     $(this).removeClass('focus');
                     $(this).parent().parent().removeClass('active');
@@ -734,4 +879,73 @@ if (!empty($array_customer)) {
             });
         });
     });
+</script>
+
+<!-- add new address -->
+<script>
+    require(['jquery'], function ($) {
+        $(function () {
+            $('.link-add-address').click(function (e) {
+
+                if ($(this).hasClass("focus")) {
+                    $(this).removeClass('focus');
+                    $(this).parent().parent().removeClass('active');
+                } else {
+                    $(this).addClass('focus');
+                    $(this).parent().parent().addClass('active');
+                }
+            });
+
+
+            $(".action.save.primary").click(function (e) {
+                var add_shipping_default = 0;
+                if ($('#add_shipping').is(":checked")) {
+                   add_shipping_default = 1;
+                }
+                console.log('sssssssss');
+                var name = $('.add-shipping-address .box-edit-address #name').val();
+                var lastname = $('.add-shipping-address .box-edit-address #lastname').val();
+                var address = $('.add-shipping-address .box-edit-address #address').val();
+                var city = $('.add-shipping-address .box-edit-address #city').val();
+                var phone = $('.add-shipping-address .box-edit-address #phone').val();
+                var zipcode = $('.add-shipping-address .box-edit-address #zipcode').val();
+                var state = $(".add-shipping-address .box-edit-address #state").val();
+                var country = $(".add-shipping-address .box-edit-address #country").val();
+                var getidcus = <?= $getIdcus ?>;
+                // jQuery.ajax({
+    
+                //     type: "POST",
+                //     dataType: 'json',
+                //     showLoader: true,
+                //     data: {
+                //         name: name,
+                //         lastname: lastname,
+                //         address: address,
+                //         city: city,
+                //         phone: phone,
+                //         zipcode: zipcode,
+                //         state: state,
+                //         country: country,
+                //         customer_id: getidcus,
+                //         add_shipping_default: add_shipping_default
+                //     },
+                //     success: function (data) {
+                //         location.reload();
+                //     }
+                // });
+            });
+        });
+    });
+</script>
+<!-- require for add address shipping -->
+<script type="text/javascript">
+require([
+    'jquery',
+    'mage/mage'
+], function($){
+
+   var dataForm = $('#add-custom-form');
+   dataForm.mage('validation', {});
+
+});
 </script>
