@@ -4,9 +4,15 @@
 
 & when (@media-common = true) {
 
-  .cms-store-locator {
+    .cms-store-locator {
+        .columns .column.main {
+            iframe {
+                width: 100%;
+                padding-bottom: 3%;
+            }
+        }
 
-  }
+    }
 
 }
 
@@ -26,13 +32,10 @@
 // Min 768px
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
 
-
 }
 
 // Min 992px
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
-
-
 
 }
 
