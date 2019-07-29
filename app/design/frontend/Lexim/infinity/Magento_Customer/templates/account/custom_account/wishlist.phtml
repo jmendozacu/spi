@@ -95,11 +95,11 @@ $countBreak = 0;
         <?php $countBreak = $countBreak +1; if($countBreak == 6 ) { break;} ?>    
         <?php endforeach; ?>
     </ol>
-    <a href="<?= $block->getBaseUrl(); ?>wishlist" class="view-wishlist"><span><?= __('View wishlish')?></span></a>
+    <a href="<?= $block->getBaseUrl(); ?>wishlist" class="view-wishlist"><span><?= __('View wishlist')?></span></a>
 <?php else: ?>
     <div class="message info empty">
         <span class="emty-wishlist"><?= $block->escapeHtml(__('Engage in retail therapy. Go buy something.')) ?></span>
-        <a href="<?= $block->getBaseUrl(); ?>"><span><?= __('Fill your wishlish')?></span></a>
+        <a href="<?= $block->getBaseUrl(); ?>"><span><?= __('Fill your wishlist')?></span></a>
     </div>
 <?php endif; ?>
 </div>

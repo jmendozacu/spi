@@ -33,22 +33,40 @@
 
 /** @var \ParadoxLabs\TokenBase\Model\Card $creditCard */
 $creditCard = $block->getCards()->getFirstItem()->getTypeInstance();
+
+// var_dump($creditCard->getData());
 ?>
+<div class="content save-payment-box">
 <?php if ($creditCard->getData()): ?>
-    <div class="container">
-        <div class="wrap">
-            <h2><?= __('Payments')?></h2>
             <?php
             /** @var \ParadoxLabs\TokenBase\Helper\Data $ccHelper */
-            $ccHelper = $this->helper(\ParadoxLabs\TokenBase\Helper\Data::class)
-            ?>
-            <p>
-                <span class="cart"><?= $ccHelper->translateCardType($creditCard->getAdditional('cc_type')) ?></span>
-                <span> | ****-****-<?= $creditCard->getAdditionalObject()->getCcLast4() ?></span>
-            </p>
-            <button onclick="window.location.href='<?= $block->getUrl('customer/paymentinfo') ?>'">
-                <span><?= __('Edit')?></span>
-            </button>
-        </div>
-    </div>
+            $ccHelper = $this->helper(\ParadoxLabs\TokenBase\Helper\Data::class);
+            $namePayment = $ccHelper->translateCardType($creditCard->getAdditional('cc_type')); ?>
+            <ul class="item-payment">
+                <li>
+                    <?php if($namePayment == 'Visa'): ?>
+
+                    <img src="/pub/static/frontend/Lexim/infinity/en_US/images/checkout/payment-visa.png">
+                    <?php elseif($namePayment == 'MasterCard'): ?>
+
+                    <img src="/pub/static/frontend/Lexim/infinity/en_US/images/checkout/payment-master.png">
+                    <?php elseif($namePayment == 'American Express'): ?>
+
+                    <img src="/pub/static/frontend/Lexim/infinity/en_US/images/checkout/payment-american.png">
+                    <?php endif; ?>
+                </li>
+                <li>
+                    <p>
+                    <span class="card"><?= $namePayment;?></span>
+                        <span>ending in <?= $creditCard->getAdditionalObject()->getCcLast4() ?></span>
+                    </p>
+                    <p>
+                        <span class="expires">Expires</span>: 
+                        <span><?= $creditCard->getAdditionalObject()->getCcExpMonth() ?>/<?= $creditCard->getAdditionalObject()->getCcExpYear() ?></span>
+                    </p>
+                </li>
+            </ul>
+<?php else: ?>
+     <span>None</span>
 <?php endif; ?>
+</div>

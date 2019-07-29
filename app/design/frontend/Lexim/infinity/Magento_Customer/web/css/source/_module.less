@@ -2187,6 +2187,7 @@
                 .link-add-address {
                     width: 10px;
                     padding-right: 10px;
+                    cursor: pointer;
                 }
 
                 .add_shipping_address {
@@ -2199,10 +2200,49 @@
     }
 
     // saved payment
+    .save-payment-box {
+        ul.item-payment {
+            margin-bottom: 0;
+            padding-left: 0;
+
+            li {
+                display: inline-block;
+                margin-bottom: 0;
+                padding-right: 15px;
+
+                p {
+                    margin-bottom: 0;
+
+                    .card {
+                        text-transform: uppercase;
+                    }
+                }
+            }
+        }
+    }
+    .manage-payment-method {
+        padding-bottom: 40px;
+
+        .month-years-payment {
+            .label {
+                z-index: 1;
+            }
+        }
+
+        .actions-toolbar {
+            .secondary {
+                .action.back {
+                    display: none;
+                }
+            }
+        }
+    }
+
 
     .customer-paymentinfo-index {
         .page-title {
             margin-bottom: 0;
+
             span {
                 font-family: 'ProximaNova';
                 font-size: 20px;
@@ -2215,8 +2255,16 @@
 
         .manage-payment-method {
             .show-payment {
-                max-width: 300px;
                 padding: 20px 0;
+
+                .box-address-billing {
+                    border-bottom: 1px solid #74706d;
+                    padding: 20px 0;
+
+                    &:first-child {
+                        border-top: 1px solid #74706d;
+                    }
+                }
             }
 
             .add-payment {
@@ -2231,6 +2279,18 @@
                     letter-spacing: 0.02em;
                     line-height: 29px;
                     text-transform: uppercase;
+                }
+
+                .add-payment-form {
+                    display: none;
+                    padding-top: 20px;
+                }
+            }
+
+            .add-payment.active {
+
+                .add-payment-form {
+                    display: block;
                 }
             }
         }

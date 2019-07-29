@@ -52,7 +52,7 @@ $editUrl = $block->getCustomerEditUrl();
                         <th scope="col" class="col id"><?= /* @escapeNotVerified */ __('Order Number:') ?></th>
                         <th scope="col" class="col date"><?= /* @escapeNotVerified */ __('Date Ordered:') ?></th>
                         <th scope="col" class="col status"><?= /* @escapeNotVerified */ __('Status:') ?></th>
-                        <th scope="col" class="col actions"><?= /* @escapeNotVerified */ __('Detais:') ?></th>
+                        <th scope="col" class="col actions"><?= /* @escapeNotVerified */ __('Details:') ?></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -161,11 +161,9 @@ $editUrl = $block->getCustomerEditUrl();
         </div>
         <div class="box-function">
             <div class="header-name"><span><?= /* @escapeNotVerified */ __('Save Payments') ?></span></div>
-            <div class="content">
-                <span>None</span>
-            </div>
+            <?= $block->getChildHtml('my_account_payments_data') ?>
             <div class="buttom">
-                <a href="#"><?= /* @escapeNotVerified */ __('Edit') ?></a>
+                <a href="<?= $block->getUrl('customer/paymentinfo') ?>"><?= /* @escapeNotVerified */ __('Edit') ?></a>
             </div>
         </div>
     </div>
