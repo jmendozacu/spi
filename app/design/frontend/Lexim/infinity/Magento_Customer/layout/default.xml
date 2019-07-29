@@ -18,8 +18,6 @@
         <referenceBlock name="catalog.compare.link" remove="true"/>
         <referenceBlock name="skip_to_content" remove="true"/>
 
-        <block class="BinaryAnvil\FederationFacebook\Block\Facebook" name="federation.facebook.button"
-               template="BinaryAnvil_FederationFacebook::facebook.phtml"/>
 
         <!-- My account in header -->
         <referenceBlock name="top.links">
@@ -28,12 +26,16 @@
                 <block class="Magento\Customer\Block\Form\Login" name="customer_form_login" template="Magento_Customer::form/login.phtml">
                     <container name="form.additional.info" as="form_additional_info"/>
                 </block>
-                <block class="Magento\Customer\Block\Form\Register" name="customer_form_register" template="Magento_Customer::form/register.phtml" />
+                <block class="Magento\Customer\Block\Form\Register" name="customer_form_register" template="Magento_Customer::form/register.phtml"/>
             </block>
         </referenceBlock>
 
-        <move element="federation.facebook.button" destination="customer_form_login" />
+        <block class="BinaryAnvil\FederationFacebook\Block\Facebook" name="federation.facebook.button" template="BinaryAnvil_FederationFacebook::facebook.phtml"/>
+        <move element="federation.facebook.button" destination="customer_form_login"/>
 
+        <block class="Mageplaza\SocialLogin\Block\Popup\Social" before="customer.login.container" ifconfig="sociallogin/general/enabled"
+               name="social-login-popup-authentication-social-login" template="Mageplaza_SocialLogin::form/social.phtml"/>
+        <move element="social-login-popup-authentication-social-login" destination="customer_form_login"/>
 
 
         <!--        <block class="Magento\Theme\Block\Html\Header" name="header" as="header">-->

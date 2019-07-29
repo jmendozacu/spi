@@ -31,6 +31,21 @@
 //  _____________________________________________
 
 & when (@media-common = true) {
+    // Social login
+    .social-login-authentication-channel.account-social-login {
+        width: 100% !important;
+
+        .actions-toolbar.social-btn {
+            width: 100%;
+        }
+
+        .social-btn .btn-social {
+            border: 1px solid transparent !important;
+            .border-radius(0);
+            text-align: center;
+        }
+    }
+
     .login-container {
         .block {
             &-new-customer {
@@ -2238,7 +2253,6 @@
         }
     }
 
-
     .customer-paymentinfo-index {
         .page-title {
             margin-bottom: 0;
@@ -2369,7 +2383,7 @@
         .c1 {
             width: 65px;
             height: 50px;
-            background: #444;
+            background: #444444;
             color: #ffffff;
             border-right: 2px solid;
             justify-content: center;

@@ -16,16 +16,17 @@
         <!-- Remove login popup in header -->
         <referenceBlock name="customer_in_header" remove="true"/>
 
+        <referenceBlock name="customer_form_login_popup" remove="true"/>
+
+
         <referenceContainer name="customer.login.container">
             <block class="Magento\Customer\Block\Form\Register" name="customer_form_register-2" template="Magento_Customer::form/register.phtml">
                 <block class="BinaryAnvil\FederationFacebook\Block\Facebook" name="federation.facebook.button.register"
                        template="BinaryAnvil_FederationFacebook::facebook.phtml"/>
             </block>
         </referenceContainer>
-
-
-        <referenceBlock name="customer_form_login_popup" remove="true"/>
-
         <move element="federation.facebook.button" destination="customer_form_login"/>
+        <move element="social-login-popup-authentication-social-login" destination="customer_form_login" />
+
     </body>
 </page>
