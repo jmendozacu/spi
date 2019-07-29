@@ -581,10 +581,10 @@ $addressBook = $_objectManager->get('Magento\Customer\Block\Address\Book');
                                     </div>
                                 </div>
                             </div>
-                            <div class="content-details">
+                            <div class="content-details edit_shipping_address">
                                 <div class="checkbox-field">
-                                    <input type="checkbox" id="primary_billing" name="default_billing" value="1" class="checkbox">
-                                    <label for="primary_billing"><span>Set as shipping address</span></label>
+                                    <input type="checkbox" id="primary_shipping" name="default_shipping" value="1" class="checkbox">
+                                    <label for="primary_shipping"><span>Set as shipping address</span></label>
                                 </div>
                             </div>
 
@@ -729,7 +729,7 @@ $addressBook = $_objectManager->get('Magento\Customer\Block\Address\Book');
                 </div>
                 <div class="content-details add_shipping_address">
                     <div class="checkbox-field">
-                        <input type="checkbox" id="add_shipping" name="check-default" value="" class="checkbox">
+                        <input type="checkbox" id="add_shipping" name="default_shipping" value="" class="checkbox">
                         <label for="add_shipping"><span>Set as shipping address</span></label>
                     </div>
                 </div>
@@ -912,27 +912,27 @@ if (!empty($array_customer)) {
                 var state = $(".add-shipping-address .box-edit-address #state").val();
                 var country = $(".add-shipping-address .box-edit-address #country").val();
                 var getidcus = <?= $getIdcus ?>;
-                // jQuery.ajax({
-    
-                //     type: "POST",
-                //     dataType: 'json',
-                //     showLoader: true,
-                //     data: {
-                //         name: name,
-                //         lastname: lastname,
-                //         address: address,
-                //         city: city,
-                //         phone: phone,
-                //         zipcode: zipcode,
-                //         state: state,
-                //         country: country,
-                //         customer_id: getidcus,
-                //         add_shipping_default: add_shipping_default
-                //     },
-                //     success: function (data) {
-                //         location.reload();
-                //     }
-                // });
+                jQuery.ajax({
+                    url: '<?php echo $this->getBaseUrl() . 'localretailer/book/book'?>',
+                    type: "POST",
+                    dataType: 'json',
+                    showLoader: true,
+                    data: {
+                        name: name,
+                        lastname: lastname,
+                        address: address,
+                        city: city,
+                        phone: phone,
+                        zipcode: zipcode,
+                        state: state,
+                        country: country,
+                        customer_id: getidcus,
+                        add_shipping_default: add_shipping_default
+                    },
+                    success: function (data) {
+                        location.reload();
+                    }
+                });
             });
         });
     });

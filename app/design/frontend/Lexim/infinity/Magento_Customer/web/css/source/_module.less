@@ -1968,6 +1968,12 @@
                             float: left;
                             width: 100%;
                         }
+
+                        .content-details.edit_shipping_address {
+                            .checkbox-field {
+                                position: unset;
+                            }
+                        }
                     }
                 }
             }
@@ -2181,6 +2187,50 @@
                 .link-add-address {
                     width: 10px;
                     padding-right: 10px;
+                }
+
+                .add_shipping_address {
+                    .checkbox-field {
+                        position: unset;
+                    }
+                }
+            }
+        }
+    }
+
+    // saved payment
+
+    .customer-paymentinfo-index {
+        .page-title {
+            margin-bottom: 0;
+            span {
+                font-family: 'ProximaNova';
+                font-size: 20px;
+                font-weight: bold;
+                color: #3e3935;
+                text-align: left;
+                line-height: 45px;
+            }
+        }
+
+        .manage-payment-method {
+            .show-payment {
+                max-width: 300px;
+                padding: 20px 0;
+            }
+
+            .add-payment {
+                max-width: 300px;
+
+                .add-payment-title {
+                    font-family: 'ProximaNova';
+                    font-size: 14px;
+                    font-weight: bold;
+                    color: #3e3935;
+                    text-align: left;
+                    letter-spacing: 0.02em;
+                    line-height: 29px;
+                    text-transform: uppercase;
                 }
             }
         }
