@@ -1,0 +1,35 @@
+{
+  "name": "binaryanvil/module-federation-facebook",
+  "description": "Binary Anvil Facebook Federation",
+  "type": "magento2-module",
+  "version": "1.2.0",
+  "authors": [
+    {
+      "name": "Binary Anvil Team",
+      "homepage": "http://www.binaryanvil.com"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://packages.binaryanvil.tools"
+    }
+  ],
+  "require": {
+    "binaryanvil/base": "*",
+    "binaryanvil/module-federation": "*",
+    "facebook/php-sdk-v4": "^5.1.2"
+  },
+  "config": {
+    "preferred-install": "dist"
+  },
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "BinaryAnvil\\FederationFacebook\\": ""
+    }
+  }
+}
+

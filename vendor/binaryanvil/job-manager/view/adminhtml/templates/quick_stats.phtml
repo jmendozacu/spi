@@ -1,0 +1,111 @@
+<?php
+/**
+ * Binary Anvil, Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Binary Anvil, Inc. Software Agreement
+ * that is bundled with this package in the file LICENSE_BAS.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.binaryanvil.com/software/license/
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@binaryanvil.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this software to
+ * newer versions in the future. If you wish to customize this software for
+ * your needs please refer to http://www.binaryanvil.com/software for more
+ * information.
+ *
+ * @category    BinaryAnvil
+ * @package     JobManager
+ * @copyright   Copyright (c) 2016-present Binary Anvil,Inc. (http://www.binaryanvil.com)
+ * @license     http://www.binaryanvil.com/software/license
+ */
+
+/**
+ * @var \BinaryAnvil\JobManager\Block\Adminhtml\Job\Grid\QuickStats $block
+ */
+
+// @codingStandardsIgnoreFile
+
+$stats = $block->getStats();
+$total = $block->getTotalJobs();
+?>
+<?php if ($total > 0): ?>
+<div class="quick-stats">
+<?php foreach ($stats as $name => $stat): ?>
+    <div class="quick-stats-container">
+        <h3><?php /* @escapeNotVerified */ echo __(ucfirst($name)); ?>:</h3>
+        <div class="quick-stats-block">
+        <?php
+            $percentTotal = 100;
+            $itemsCount = count($stat);
+            $i = 0;
+        ?>
+        <?php foreach ($stat as $item): ?>
+            <?php
+                $percent = $block->getPercentage($item['count'], $total);
+                if (++$i == $itemsCount && $percentTotal != $percent) {
+                    $percent = $percentTotal;
+                }
+                $percentTotal -= $percent;
+            ?>
+            <?php if ($percent > 0): ?>
+                <div class="quick-stats-segment<?php echo !empty($item['class']) ? ' ' . $item['class'] : '' ?>"
+                     style="width: <?php echo $percent ?>%;"
+                     title="<?php /* @escapeNotVerified */ echo __($item['name']) ?>: <?php echo $item['count'] ?> (<?php echo $percent ?>%)">
+
+                    <div class="quick-stats-meter" data-percent="100%">
+                        <?php if (intval($percent) >= 10): ?>
+                        <div class="quick-stats-meter-title">
+                            <span><?php /* @escapeNotVerified */ echo __($item['name']) ?></span>
+                        </div>
+                        <?php endif; ?>
+                        <div class="quick-stats-meter-bar"></div>
+
+                        <div class="quick-stats-meter-percent"><?php echo $percent ?>%</div>
+
+                    </div>
+
+                    <?php if (intval($percent) < 10 && intval($percent) >= 5): ?>
+                        <span class="quick-stats-tooltip"><?php /* @escapeNotVerified */ echo __($item['name']) ?></span>
+                    <?php endif; ?>
+
+                    <div class="quick-stats-hint">
+                        <strong><?php /* @escapeNotVerified */ echo __($item['name']) ?></strong>: <?php echo $item['count'] ?> (<?php echo $percent ?>%)
+                    </div>
+                </div>
+            <?php endif; ?>
+        <?php endforeach; ?>
+        </div>
+    </div>
+<?php endforeach; ?>
+</div>
+
+<script type="text/javascript">
+    requirejs ([
+        'jquery'
+    ], function($) {
+        $(function () {
+            $('.quick-stats-meter').each(function(){
+                $(this).find('.quick-stats-meter-bar').animate({
+                    width: $(this).attr('data-percent')
+                },2000);
+            });
+
+            $('.quick-stats-segment').hover(
+                function(){
+                    $(this).find('.quick-stats-hint').show();
+                },
+                function(){
+                    $(this).find('.quick-stats-hint').hide();
+                }
+            )
+        });
+    });
+</script>
+<?php endif; ?>
