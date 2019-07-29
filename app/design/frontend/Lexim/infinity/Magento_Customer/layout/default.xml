@@ -20,15 +20,13 @@
 
         <!-- My account in header -->
         <referenceBlock name="top.links">
-            <block class="Magento\Customer\Block\Account\Customer" name="customer"
+            <block class="Magento\Customer\Block\Account\Customer" name="customer_in_header"
                    template="Magento_Customer::account/customer.phtml" after="-">
-
                 <block class="Magento\Customer\Block\Form\Login" name="customer_form_login" template="Magento_Customer::form/login.phtml">
 
                     <container name="form.additional.info" as="form_additional_info"/>
                 </block>
-                <block class="Magento\Customer\Block\Form\Register" name="customer_form_register" template="Magento_Customer::form/register.phtml"></block>
-
+                <block class="Magento\Customer\Block\Form\Register" name="customer_form_register" template="Magento_Customer::form/register.phtml" />
             </block>
         </referenceBlock>
 
