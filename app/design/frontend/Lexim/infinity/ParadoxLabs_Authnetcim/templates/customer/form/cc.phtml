@@ -40,12 +40,9 @@
     <?php else: ?>
         <div class="actions-toolbar">
             <div class="primary">
-                <button id="add-payment" type="button" title="<?= $block->escapeHtmlAttr(__('Add payment')) ?>" class="action primary add add-payment"><span><?= $block->escapeHtml(__('Add payment')) ?></span></button>
+                <button id="add-new-payment" type="button" title="<?= $block->escapeHtmlAttr(__('Add payment')) ?>" class="action primary add add-payment"><span><?= $block->escapeHtml(__('Add payment')) ?></span></button>
             </div>
         </div>
-        <h2 class="add-payment-title">
-            <?php echo $block->escapeHtml(__('Add payment')); ?>
-        </h2>
     <?php endif; ?>
 </div>
 
@@ -81,7 +78,7 @@
                 <input type="text" maxlength="19" id="<?php echo $code ?>-cc-number" name="payment[cc_number]" title="<?php echo $block->escapeQuote(__('Credit Card Number')) ?>" class="input-text" value="<?php echo $block->escapeQuote($block->getCard()->getLabel(false)); ?>" data-validate='{"required-number":true<?php if ($block->isEdit() === false): ?>, "validate-cc-number":"#<?php echo $code ?>-cc-type", "validate-cc-type":"#<?php echo $code ?>-cc-type"<?php endif; ?>}' autocomplete="cc-number" />
             </div>
         </div>
-        <div class="field date required" id="<?php echo $code ?>-cc-type_exp_div">
+        <div class="field date required month-years-payment" id="<?php echo $code ?>-cc-type_exp_div">
             <label for="<?php echo $code ?>-cc-exp-month" class="label"><span><?php echo $block->escapeHtml(__('Expiration')) ?></span></label>
             <div class="control">
                 <div class="fields group group-2">
@@ -241,4 +238,21 @@
             }
         }
     }
+</script>
+<!-- add new address -->
+<script>
+    require(['jquery'], function ($) {
+        $(function () {
+            $('#add-new-payment').click(function (e) {
+
+                if ($(this).hasClass("focus")) {
+                    $(this).removeClass('focus');
+                    $(this).parent().parent().parent().parent().removeClass('active');
+                } else {
+                    $(this).addClass('focus');
+                    $(this).parent().parent().parent().parent().addClass('active');
+                }
+            });
+        });
+    });
 </script>
