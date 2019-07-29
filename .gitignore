@@ -31,4 +31,7 @@
 !/packages
 !/packages/**
 !/app
-!/vendor/binaryanvil
+
+!/vendor
+!/vendor/*/
+!/vendor/binaryanvil/**

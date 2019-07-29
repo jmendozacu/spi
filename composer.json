@@ -11,7 +11,9 @@
 	"magento/magento-cloud-metapackage": ">=2.2.5 <2.2.6",
         "composer/composer": "@alpha",
         "binaryanvil/job-manager": "^1.1",
-        "binaryanvil/module-federation-facebook": "^1.2"
+        "binaryanvil/module-federation-facebook": "^1.2",
+        "mageplaza/magento-2-social-login": "^2.7",
+        "facebook/graph-sdk": "^5.7"
     },
     "config": {
         "use-include-path": true
