@@ -40,10 +40,11 @@
         .block-content {
             position: absolute;
             right: 0;
-            width: 200px;
             top: 37px;
             margin-bottom: 0;
             z-index: 9;
+            width: 100%;
+            max-width: 400px;
         }
 
         .label {
@@ -251,7 +252,17 @@
 //  _____________________________________________
 // max 767px
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+    //
+    //  Block search
+    //  ---------------------------------------------
     .block-search {
+        input {
+            top: 35px;
+            left: -92px;
+            z-index: 99;
+        }
+
         .block-content {
             left: 15px;
             top: 90px;
@@ -262,13 +273,27 @@
         }
     }
 
-    .sticky .block-search .block-content {
-        top: 50px;
+    .sticky .block-search {
+        input {
+            top: -2px;
+        }
+
+        .block-content {
+            top: 50px;
+        }
     }
 }
 
 // max 640px
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+    //
+    //  Block search
+    //  ---------------------------------------------
+
+    .block-search .label.active + .control input {
+        position: absolute;
+    }
+
     .block-search {
         margin-top: 0;
     }
