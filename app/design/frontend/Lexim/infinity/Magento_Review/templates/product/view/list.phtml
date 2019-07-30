@@ -46,6 +46,7 @@ if ($itemsBlock) {
                 $(".block.review-add").slideToggle().closest('#customer-reviews').hide();
             });
 
+            // Click write review button
             $('.write-first-review').on('click', function () {
                 if ($(".block.review-add").is(':visible')) {
                     $('.write-first-review').closest('#customer-reviews').animate({
@@ -64,6 +65,11 @@ if ($itemsBlock) {
                         });
                     });
                 }
+            });
+
+            // click 'Be the first to review this product'
+            $('#customer-reviews').click(function () {
+               $('.write-first-review').trigger('click');
             });
 
             $('.reviews-actions-link').on('click', function () {
