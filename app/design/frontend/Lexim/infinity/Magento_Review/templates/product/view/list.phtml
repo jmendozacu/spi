@@ -48,32 +48,33 @@ if ($itemsBlock) {
 
             // Click write review button
             $('.write-first-review').on('click', function () {
-                if ($(".block.review-add").is(':visible')) {
-                    $('.write-first-review').closest('#customer-reviews').animate({
-                        opacity: 1
-                    }, 100, function () {
-                        $(".block.review-add").slideToggle('slow', function () {
 
-                        });
+                // if ($(".block.review-add").is(':visible')) {
+                $('.write-first-review').closest('#customer-reviews').animate({
+                    opacity: 1
+                }, 100, function () {
+                    $(".block.review-add").slideToggle('slow', function () {
                     });
-                } else {
-                    $('.write-first-review').closest('#customer-reviews').animate({
-                        opacity: 0.1
-                    }, 100, function () {
-                        $(".block.review-add").slideToggle('slow', function () {
-
-                        });
-                    });
-                }
-            });
-
-            // click 'Be the first to review this product'
-            $('#customer-reviews').click(function () {
-               $('.write-first-review').trigger('click');
+                });
+                // }
+                // else {
+                //     $('.write-first-review').closest('#customer-reviews').animate({
+                //         opacity: 0.1
+                //     }, 100, function () {
+                //         $(".block.review-add").slideToggle('slow', function () {
+                //
+                //         });
+                //     });
+                // }
             });
 
             $('.reviews-actions-link').on('click', function () {
                 $(".block.review-add").slideDown();
+            });
+
+            // Click 'be first review'
+            $('.product-reviews-summary .reviews-actions .action.add').click(function () {
+                $('.write-first-review').trigger('click');
             });
         });
     });
