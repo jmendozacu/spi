@@ -11,5 +11,7 @@
     <preference for="Magento\Newsletter\Block\Subscribe" type="Lexim\Override\Block\Magento\Newsletter\Subscribe" />
     <preference for="Magento\Customer\Block\Account\Customer" type="Lexim\Override\Block\Magento\Customer\Customer" />
     <preference for="Magento\Catalog\Block\Product\ListProduct" type="Lexim\Override\Block\ListProduct" />
+    <preference for="Magento\CatalogSearch\Block\SearchResult\ListProduct" type="Lexim\Override\Block\ListProduct" />
+
 
 </config>
