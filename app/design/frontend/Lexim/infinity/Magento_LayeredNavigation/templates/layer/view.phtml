@@ -380,6 +380,14 @@ $curCatName = strtolower($category->getName());
 
                 showFilteredOptions();
 
+                // Clear filter items by label
+                function clearFilterItemsBy(label) {
+                    if (label && label !== '') {
+                        let _filter = $('.filter-options' + '.' + label);
+                        _filter.find('.swatch-option-a').removeClass('selected');
+                    }
+                }
+
                 // Toggle when click filter button
                 $('.filter-heading').click(function () {
                     let isHidden = filterBoard.css('visibility');
@@ -403,6 +411,22 @@ $curCatName = strtolower($category->getName());
                 // Click filter options
                 filters.click(function () {
                     let _this = $(this);
+
+                    // START - On/Off Fit filter
+                    let fitFilter = $('.filter-options.fit');
+                    let dataType = _this.attr('data-type');
+                    if (dataType === 'cat') {
+                        let curLabel = _this.attr('data-label');
+                        let hasSelected = _this.hasClass('selected');
+                        curLabel = curLabel.toLowerCase();
+                        if (curLabel === 'bottoms' && !hasSelected) {
+                            fitFilter.addClass('on');
+                        } else {
+                            fitFilter.removeClass('on');
+                            clearFilterItemsBy('fit');
+                        }
+                    }
+                    // END - On/Off Fit filter
 
                     if (_this.hasClass("selected")) {
                         if (_this.hasClass("sort")) {
