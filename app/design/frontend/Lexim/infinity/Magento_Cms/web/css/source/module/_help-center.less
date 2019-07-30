@@ -1,0 +1,106 @@
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    .static-page-content-inner {
+        .title {
+            font-size: 30px;
+            font-weight: bold;
+            letter-spacing: 0.02em;
+            margin: 0 0 20px;
+        }
+
+        .help-content {
+            padding: 40px 0 0;
+        }
+
+        .right-help-page {
+            p {
+                margin: 0 0 20px;
+
+                &.heading {
+                    font-weight: bold;
+                }
+                &.pad-left {
+                    padding-left: 30px;
+                }
+            }
+        }
+    }
+
+    .help-tab-list {
+        .display-flex();
+        .justify-content(center);
+        .flex-wrap(wrap);
+
+        .item.title {
+            width: auto;
+            display: inline-block;
+            order: 0;
+            white-space: nowrap;
+            padding: 0 20px;
+            margin: 0 0 10px;
+        }
+
+        .item.content {
+            order: 2;
+            .flex(1 100%);
+            border-top: 1px solid;
+            padding: 40px 0 0;
+        }
+
+        .left-help-page {
+            width: 20%;
+            float: left;
+        }
+
+        .right-help-page {
+            width: 80%;
+            float: left;
+            padding-left: 40px;
+        }
+    }
+
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+// 767px
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+// Min 768px
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+
+
+}
+
+// Min 992px
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+
+    .static-page-content-inner {
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+}
+
+// Min 1440px
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+
+    .static-page-content-inner {
+        padding-left: 12%;
+        padding-right: 12%;
+    }
+
+}
