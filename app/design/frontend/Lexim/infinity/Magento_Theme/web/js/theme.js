@@ -32,118 +32,69 @@ define([
 
     keyboardHandler.apply();
 
-
-
-    // Newsletter pop up
-    if (body.hasClass('cms-home') || body.hasClass('cms-lookbook')) {
-
-        $(document).ready(function () {
-            
-            function newsClick() {
-                jQuery('.header-newsletter a')[0].click();
+    // Cookie Functions
+    function readCookie(name) {
+        let nameEQ = name + "=";
+        let ca = document.cookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) === ' ') {
+                c = c.substring(1, c.length);
             }
-            
-            // Cookie Functions
-            function readCookie(name) {
-                let nameEQ = name + "=";
-                let ca = document.cookie.split(';');
-                for (let i = 0; i < ca.length; i++) {
-                    let c = ca[i];
-                    while (c.charAt(0) === ' ') {
-                        c = c.substring(1, c.length);
-                    }
-                    if (c.indexOf(nameEQ) === 0) {
-                        return c.substring(nameEQ.length, c.length);
-                    }
-                }
+            if (c.indexOf(nameEQ) === 0) {
+                return c.substring(nameEQ.length, c.length);
             }
-            
-            function createCookie(name,value,days) {
-                let expires = "";
-                if (days) {
-                    let date = new Date();
-                    date.setTime(date.getTime() + (days * 24 * 60 * 60 *1000));
-                    expires = "; expires=" + date.toGMTString();
-                }
-                document.cookie = name + "=" + value + expires + "; path=/";
-            }
+        }
+    }
 
-            // mp4 video
-            // let video = document.getElementById('home-video'),
-            //     windowSize = $(window).width(),
-            //     mobileVideoSrc = 'https://i.infinityscrubs.com/infinity/videos/INFScrubs_HomepageVideo_mobile.mp4';
-            //
-            // $('#home-video, .play-btn').on('ended', function() {
-            //     video.autoplay=false;
-            //     video.load();
-            //     $('.play-btn').fadeIn();
-            // });
+    function createCookie(name, value, days) {
+        let expires = "";
+        if (days) {
+            let date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toGMTString();
+        }
+        document.cookie = name + "=" + value + expires + "; path=/";
+    }
 
-            
-            // if (windowSize < 768) {
-            //     // $('#home-video source').attr('src', mobileVideoSrc);
-            //
-            //     $('#home-video, .play-btn').on('touchstart', function() {
-            //         if (video.paused === true) {
-            //             $('.play-btn').fadeOut();
-            //             video.play();
-            //             if (video.muted){
-            //                 video.muted = false;
-            //             } else{
-            //                 video.muted = true;
-            //             }
-            //         } else {
-            //             $('.play-btn').fadeIn();
-            //             video.pause();
-            //         }
-            //     });
-            // } else {
-            //     $('#home-video, .play-btn').on('click', function() {
-            //         if (video.paused) {
-            //             $('.play-btn').fadeOut();
-            //             video.play();
-            //
-            //             if (video.muted){
-            //                 video.muted = false;
-            //             } else{
-            //                 video.muted = true;
-            //             }
-            //         } else {
-            //             $('.play-btn').fadeIn();
-            //             video.pause();
-            //         }
-            //     });
-            // }
+    function newsClick() {
+        jQuery('.header-newsletter a')[0].click();
+    }
 
+
+    $(document).ready(function () {
+        let is_safari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
+        // promotion in header
+        if (!readCookie('top_header_closed')) {
+            $('.on-top-header').show();
+        }
+
+
+        // Newsletter pop up
+        if (body.hasClass('cms-home') || body.hasClass('cms-lookbook')) {
             // Checking for Newsletter Cookie
-            let is_safari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-
             if (document.documentMode || /Edge/.test(navigator.userAgent) || is_safari) {
                 if (!readCookie('newsletter_viewed')) {
-
                     let now = new Date();
                     let time = now.getTime();
                     time += 3600 * 1000;
                     now.setTime(time);
 
-                    setTimeout(function() {
+                    setTimeout(function () {
                         newsClick();
                     }, 500);
 
-                    setTimeout(function() {
+                    setTimeout(function () {
                         createCookie('newsletter_viewed', 'true', now.toUTCString());
                     }, 1000)
                 }
-
             } else {
                 if (!readCookie('newsletter_viewed')) {
-
-                    setTimeout(function() {
+                    setTimeout(function () {
                         $('.header-newsletter a').click();
-
                         createCookie('newsletter_viewed', 'true')
                     }, 800);
-
                 }
             }
 
@@ -156,6 +107,6 @@ define([
             //
             //     jQuery('img[usemap]').rwdImageMaps();
             // });
-        });
-    }
+        }
+    });
 });
