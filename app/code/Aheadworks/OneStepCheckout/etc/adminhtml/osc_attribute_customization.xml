@@ -86,7 +86,7 @@
         <attribute code="postcode">
             <metadata>
                 <field name="required">
-                    <editable>false</editable>
+                    <editable>true</editable>
                 </field>
                 <field name="visible">
                     <editable>false</editable>
@@ -200,7 +200,7 @@
         <attribute code="postcode">
             <metadata>
                 <field name="required">
-                    <editable>false</editable>
+                    <editable>true</editable>
                 </field>
                 <field name="visible">
                     <editable>false</editable>
