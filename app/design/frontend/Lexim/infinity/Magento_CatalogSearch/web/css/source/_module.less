@@ -43,8 +43,8 @@
             top: 37px;
             margin-bottom: 0;
             z-index: 9;
-            width: 100%;
-            max-width: 400px;
+            width: 400px;
+            max-width: 100%;
         }
 
         .label {
@@ -296,6 +296,14 @@
 
     .block-search {
         margin-top: 0;
+    }
+}
+
+// max 480px
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
+    .block-search .block-content {
+        width: calc(~'100% - 30px');
+        max-width: 100%;
     }
 }
 
