@@ -49,11 +49,13 @@ define([
     keyboardHandler.apply();
 
     if ($('body').hasClass('cms-home') || $('body').hasClass('cms-lookbook')) {
-        function newsClick() {
-            jQuery('.header-newsletter a')[0].click();
-        }
 
         $(document).ready(function () {
+
+            function newsClick() {
+                jQuery('.header-newsletter a')[0].click();
+            }
+
 
             // Cookie Functions
             function readCookie(name) {

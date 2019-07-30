@@ -1,0 +1,57 @@
+
+<div class="header-newsletter">
+    <a href="javascript:void(0)" id="clickNewsLetterPopUp"><span>a</span></a>
+</div>
+
+<div class="newsletter-sign-up" >
+    <div class="wrapper">
+        <div class="head">
+            <i class="far fa-smile"></i>
+            <p class="title">HEY THERE!</p>
+            <p class="description">We can tell you have impeccable tastes in scrubs.<br>So stop lurking and join us.<br>It takes 30 seconds to sign up. Do it!</p>
+        </div>
+        <div class="content">
+            <form class="form subscribe" novalidate action="<?= $block->escapeUrl($block->getFormUrl()) ?>"
+                  method="post" data-mage-init='{"validation": {"errorClass": "mage-error"}}'
+                  id="newsletter-validate-detail-2">
+                <div class="field newsletter">
+                    <div class="control">
+                        <input name="email" type="email" id="newsletter-2" class="email" placeholder="<?= $block->escapeHtmlAttr(__('enter email')) ?>"
+                               data-validate="{required:true, 'validate-email':true}"/>
+                    </div>
+                </div>
+                <div class="actions">
+                    <button class="action subscribe primary" title="<?= $block->escapeHtmlAttr(__('Subscribe')) ?>">
+                        <span><?= $block->escapeHtml(__('Submit')) ?></span>
+                    </button>
+                </div>
+                <p class="term">By submitting your email you agree to our <a href="<?= $block->getBaseUrl() . 'privacy-policy'?>">terms and conditions</a></p>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="subscribe-success" style="display: none">
+    <div class="wrapper">
+        <div class="head">
+            <i class="icon-mail" aria-hidden="true"></i><br>
+            <p class="title"><?= __('Thank you!'); ?></p>
+            <p class="description"><?= __('You will receive an email to confirm your subscription.');?></p>
+        </div>
+        <div class="content">
+            <p class="email"></p>
+        </div>
+    </div>
+</div>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "subscribe": {
+                "FormClass": ".form.subscribe",
+                "FormUrl": "<?= $block->escapeUrl($block->getFormUrl()) ?>",
+                "NewsletterSignUp": ".newsletter-sign-up",
+                "NewsletterSuccess": ".subscribe-success"
+            }
+        }
+    }
+</script>

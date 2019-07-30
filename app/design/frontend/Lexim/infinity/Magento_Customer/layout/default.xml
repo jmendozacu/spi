@@ -66,8 +66,7 @@
         <move element="minicart" destination="right.header.wrapper" after="-"/>
 
         <!-- Newsletter -->
-        <block class="BinaryAnvil\Newsletter\Block\Newsletter" name="header.newsletter"
-               template="Magento_Newsletter::header-newsletter.phtml"/>
-        <move element="header.newsletter" destination="head.container" before="logo"/>
+        <block class="BinaryAnvil\Newsletter\Block\Newsletter" name="header.newsletter" template="Magento_Newsletter::header-newsletter.phtml"/>
+        <move element="header.newsletter" destination="content" after="-"/>
     </body>
 </page>
