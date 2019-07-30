@@ -56,7 +56,7 @@
             <img src="{{view url='images/home/home_dream_04.jpg'}}"/>
         </div>
         <div class="right-video-hv">
-            <video id="home-video" width="900px"
+            <video id="home-video" width="900px" muted
                    poster="{{view url='images/home/home-video.jpg'}}">
                 <source src="https://i.infinityscrubs.com/infinity/videos/INFScrubs_HomepageVideo_desktop.mp4"
                         type="video/mp4"/>
@@ -100,6 +100,7 @@
 
                 videoSelector.click(function () {
                     if (video.paused === true) {
+                        video.muted = true;
                         video.play();
                     } else {
                         video.pause();
@@ -109,6 +110,7 @@
                 videoSelector.on('ended', function () {
                     video.autoplay = false;
                     video.load();
+                    video.muted = true;
                 });
 
                 if (windowSize < 768) {
@@ -127,6 +129,7 @@
                         videoPosTop < (currentTop + windowHeight) &&
                         (videoPosTop + videoHeight) < (currentTop + windowHeight)) {
                         video.play();
+                        video.muted = true;
                     } else {
                         video.pause();
                     }
