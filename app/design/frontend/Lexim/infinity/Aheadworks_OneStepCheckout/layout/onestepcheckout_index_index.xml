@@ -6,6 +6,9 @@
     </head>
     <body>
 
+        <referenceBlock name="header.newsletter" remove="true"/>
+
+
         <!-- Estimate MOD start -->
         <block class="Magento\Framework\View\Element\Template" name="checkout.cart.estimation" template="Magento_Checkout::cart/estimation.phtml">
             <arguments>

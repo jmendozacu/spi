@@ -10,6 +10,8 @@
         <referenceBlock name="multiple-wishlist_sidebar" remove="true"/>
         <referenceBlock name="page.main.title" remove="true"/>
         <referenceBlock name="checkout.registration" remove="true"/>
+        <referenceBlock name="header.newsletter" remove="true"/>
+
 
         <referenceContainer name="columns">
             <block class="Magento\Checkout\Block\Onepage\Success" name="success.title"
