@@ -15,16 +15,25 @@
         .lib-css(border-radius, @button__border-radius);
         background: @aqua;
         border-color: @aqua;
+        color: #ffffff;
         font-family: @main-font;
         -moz-border-radius: 0;
         -webkit-border-radius: 0;
         border-radius: 0;
+        text-transform: uppercase;
     }
 
     button {
         &:active {
             background: @aqua;
             border-color: @aqua;
+            color: #ffffff;
+        }
+
+        &:hover {
+            background: #ffffff;
+            border: 2px solid @aqua;
+            color: @aqua;
         }
     }
 
@@ -47,7 +56,7 @@
     .action.primary:focus, .action.primary:active {
         background: @aqua;
         border-color: @aqua;
-        color: #fff;
+        color: #ffffff;
     }
 
     .action.primary:hover {
