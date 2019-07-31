@@ -26,7 +26,7 @@
                         <th scope="col" class="col id"><?= /* @escapeNotVerified */ __('Order Number:') ?></th>
                         <th scope="col" class="col date"><?= /* @escapeNotVerified */ __('Date Ordered:') ?></th>
                         <th scope="col" class="col status"><?= /* @escapeNotVerified */ __('Status:') ?></th>
-                        <th scope="col" class="col actions"><?= /* @escapeNotVerified */ __('Detais:') ?></th>
+                        <th scope="col" class="col actions"><?= /* @escapeNotVerified */ __('Details:') ?></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -35,7 +35,7 @@
                             <td data-th="<?= $block->escapeHtml(__('Order Number')) ?>" class="col id"><?= /* @escapeNotVerified */ $_order->getRealOrderId() ?></td>
                             <td data-th="<?= $block->escapeHtml(__('Date Ordered')) ?>" class="col date"><?= /* @escapeNotVerified */ $block->formatDate($_order->getCreatedAt()) ?></td>
                             <td data-th="<?= $block->escapeHtml(__('Status')) ?>" class="col status"><?= /* @escapeNotVerified */ $_order->getStatusLabel() ?></td>
-                            <td data-th="<?= $block->escapeHtml(__('Detais')) ?>" class="col actions">
+                            <td data-th="<?= $block->escapeHtml(__('Details')) ?>" class="col actions">
                                 <a href="<?= /* @escapeNotVerified */ $block->getViewUrl($_order) ?>" class="action view">
                                     <span><?= /* @escapeNotVerified */ __('View Order') ?></span>
                                 </a>
