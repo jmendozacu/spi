@@ -68,12 +68,6 @@ $qty = $block->getQty();
                 <?= $block->getActions($_item) ?>
             </div>
 
-            <!-- Update -->
-            <button type="submit" name="update_cart_action" data-cart-item-update=""
-                    value="update_qty" title="Update Shopping Bag" class="action update">
-                <span><?= __('Update') ?></span>
-            </button>
-
 
             <?php if ($messages = $block->getMessages()): ?>
                 <?php foreach ($messages as $message): ?>
@@ -110,6 +104,12 @@ $qty = $block->getQty();
             <span class="product-cart-control product-cart-control-add-qty plus"
                   title="<?= __('Increase Quantity') ?>"><?= __('+') ?></span>
         </div>
+        <br>
+        <!-- Update -->
+        <button type="submit" name="update_cart_action" data-cart-item-update=""
+                value="update_qty" title="Update Shopping Bag" class="action update">
+            <span><?= __('Update') ?></span>
+        </button>
     </td>
 
     <!-- PRICE -->
