@@ -9,6 +9,7 @@ $category = $block->getLayer()->getCurrentCategory();
 $categoryRootID = $block->getLayer()->getCurrentStore()->getRootCategoryId();
 $categoryCurrentID = $category->getId();
 $categoryParentID = $category->getParentCategory()->getId();
+$categoryParentName = $category->getParentCategory()->getName();
 
 $parentCategory = ($categoryRootID === $categoryParentID) ? $category : $category->getParentCategory();
 $parentCatKey = $parentCategory->getUrlKey();
@@ -16,6 +17,11 @@ $parentCatKey = $parentCategory->getUrlKey();
 $currentPage = $block->getRequest()->getFullActionName();
 
 $curCatName = strtolower($category->getName());
+
+// Fix bug get url key
+if ($parentCatKey === 'katie-duke') {
+    $parentCatKey = 'thekatieduke';
+}
 
 ?>
 
@@ -103,10 +109,14 @@ $curCatName = strtolower($category->getName());
 
                         if ($filterName != "Category") {
                             $off = ($curCatName === 'bottoms' && $filterNameLower === 'fit') ? 'on' : '';
+
+                            if( strtolower($categoryParentName) == 'footwear' ||  strtolower($curCatName) == 'footwear' ) {
+                                $filterName = 'Width';
+                            }
                             ?>
 
                             <!-- <?= $filterName ?> column -->
-                            <div class="filter-options <?= $filterNameLower . ' ' . $off ?>">
+                            <div class="filter-options <?= $filterNameLower . ' ' . $off ?>" data-name="<?= $filterName ?>">
                                 <?php /** if ($filter->getRequestVar() == 'cat'): ?>
                                  * <?php $categoryFilter = $filter; ?>
                                  * <?php continue; ?>
