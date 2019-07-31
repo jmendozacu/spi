@@ -627,8 +627,7 @@ $addressBook = $_objectManager->get('Magento\Customer\Block\Address\Book');
 
 <div class="save-address add-shipping-address">
     <div class="title-address">
-        <span class="link-add-address"><?= __('+'); ?></span>
-        <span><?= __('Add shipping address'); ?></span>
+        <span class="link-add-address"><?= __('+  '); ?><?= __('Add shipping address'); ?></span>
     </div>
     <div class="box-address">
         <div class="content-edit-address">
@@ -885,9 +884,11 @@ if (!empty($array_customer)) {
 
                 if ($(this).hasClass("focus")) {
                     $(this).removeClass('focus');
+                    $(this).text("+  Add shipping address");
                     $(this).parent().parent().removeClass('active');
                 } else {
                     $(this).addClass('focus');
+                    $(this).text("-  Add shipping address");
                     $(this).parent().parent().addClass('active');
                 }
             });
@@ -898,7 +899,6 @@ if (!empty($array_customer)) {
                 if ($('#add_shipping').is(":checked")) {
                    add_shipping_default = 1;
                 }
-                console.log('sssssssss');
                 var name = $('.add-shipping-address .box-edit-address #name').val();
                 var lastname = $('.add-shipping-address .box-edit-address #lastname').val();
                 var address = $('.add-shipping-address .box-edit-address #address').val();
@@ -908,27 +908,29 @@ if (!empty($array_customer)) {
                 var state = $(".add-shipping-address .box-edit-address #state").val();
                 var country = $(".add-shipping-address .box-edit-address #country").val();
                 var getidcus = <?= $getIdcus ?>;
-                jQuery.ajax({
-                    url: '<?php echo $this->getBaseUrl() . 'localretailer/book/book'?>',
-                    type: "POST",
-                    dataType: 'json',
-                    showLoader: true,
-                    data: {
-                        name: name,
-                        lastname: lastname,
-                        address: address,
-                        city: city,
-                        phone: phone,
-                        zipcode: zipcode,
-                        state: state,
-                        country: country,
-                        customer_id: getidcus,
-                        add_shipping_default: add_shipping_default
-                    },
-                    success: function (data) {
-                        location.reload();
-                    }
-                });
+                if(state != ''){
+                    jQuery.ajax({
+                        url: '<?php echo $this->getBaseUrl() . 'localretailer/book/book'?>',
+                        type: "POST",
+                        dataType: 'json',
+                        showLoader: true,
+                        data: {
+                            name: name,
+                            lastname: lastname,
+                            address: address,
+                            city: city,
+                            phone: phone,
+                            zipcode: zipcode,
+                            state: state,
+                            country: country,
+                            customer_id: getidcus,
+                            add_shipping_default: add_shipping_default
+                        },
+                        success: function (data) {
+                            location.reload();
+                        }
+                    });
+                }
             });
         });
     });

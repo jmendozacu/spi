@@ -37,7 +37,7 @@ $blockTotals = $objectManager->get('Magento\Sales\Block\Order\Totals');
 
 ?>
 <?php $_orders = $block->getOrders(); ?>
-<?= $block->getChildHtml('info') ?>
+<?php $block->getChildHtml('info') ?>
 <?php if ($_orders && count($_orders)): ?>
     <div class="table-wrapper orders-history">
         <table class="data table table-order-items history" id="my-orders-table">

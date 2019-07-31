@@ -597,6 +597,106 @@
         }
     }
 
+    // My account dashboard
+
+    .account {
+        .columns {
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-flex-wrap: wrap;
+            flex-wrap: wrap;
+            box-sizing: border-box;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 5%;
+            padding-right: 5%;
+
+            .column.main {
+                width: 100%;
+                -ms-flex-order: 3;
+                order: 3;
+                float: right;
+                -webkit-flex-basis: 100%;
+                flex-basis: 100%;
+            }
+
+            .page-title-wrapper {
+                width: 100%;
+                -ms-flex-order: 2;
+                order: 2;
+                float: left;
+
+                .page-title {
+                    span {
+                        font-size: 20px;
+                        font-weight: bold;
+                        color: rgba(62, 57, 53, 1);
+                        text-align: left;
+                        line-height: 45px;
+                        -webkit-transform: scale(1.26, 1.29);
+                        -ms-transform: scale(1.26, 1.29);
+                        transform: scale(1.26, 1.29);
+                        text-transform: uppercase;
+                    }
+                }
+            }
+
+            .sidebar-main {
+                width: 100%;
+                -ms-flex-order: 1;
+                order: 1;
+                float: left;
+            }
+        }
+    }
+
+    .account {
+        .greeting-wrapper {
+            .greeting {
+                padding: 0;
+                width: calc(100% - 30px);
+                margin: auto;
+
+                h1 {
+
+                    font-size: 30px;
+                    font-weight: bold;
+                    color: #3e3935;
+                    text-align: left;
+                    line-height: 48px;
+                    text-transform: uppercase;
+                    margin-bottom: 0;
+                }
+
+                p {
+                    font-family: @hind-font;
+                    font-size: 14px;
+
+                    .email {
+                        text-align: left;
+                        color: #3e3935;
+                    }
+
+                    a {
+                        text-align: left;
+                        -webkit-transform: scale(1.37);
+                        -ms-transform: scale(1.37);
+                        transform: scale(1.37);
+                        text-decoration: none;
+                        color: #3e3935;
+                        border-bottom: 3px solid #3e3935;
+                    }
+                }
+            }
+        }
+
+        .page.messages {
+            padding-left: 5%;
+            padding-right: 5%;
+        }
+    }
+
 }
 
 // max 640px
