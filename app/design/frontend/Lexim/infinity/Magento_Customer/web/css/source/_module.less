@@ -609,8 +609,6 @@
             box-sizing: border-box;
             margin-left: auto;
             margin-right: auto;
-            padding-left: 5%;
-            padding-right: 5%;
 
             .column.main {
                 width: 100%;
@@ -654,49 +652,380 @@
     .account {
         .greeting-wrapper {
             .greeting {
-                padding: 0;
-                width: calc(100% - 30px);
+                padding: 15px 0 0;
+                width: calc(~'100% - 30px');
                 margin: auto;
 
                 h1 {
-
-                    font-size: 30px;
+                    font-family: 'ProximaNova';
+                    font-size: 22px;
                     font-weight: bold;
                     color: #3e3935;
                     text-align: left;
-                    line-height: 48px;
-                    text-transform: uppercase;
-                    margin-bottom: 0;
+                    line-height: 17px;
+                    margin-bottom: 5px;
                 }
 
                 p {
-                    font-family: @hind-font;
-                    font-size: 14px;
-
                     .email {
-                        text-align: left;
+                        font-family: 'ProximaNova';
+                        font-size: 16px;
                         color: #3e3935;
+                        text-align: left;
+                        line-height: 18px;
+                        padding-right: 8px;
                     }
 
                     a {
-                        text-align: left;
-                        -webkit-transform: scale(1.37);
-                        -ms-transform: scale(1.37);
-                        transform: scale(1.37);
-                        text-decoration: none;
+                        font-family: 'ProximaNova';
+                        font-size: 16px;
                         color: #3e3935;
-                        border-bottom: 3px solid #3e3935;
+                        text-align: left;
+                        line-height: 18px;
+                        border-bottom: 1px solid #3e3935;
                     }
                 }
             }
         }
 
         .page.messages {
-            padding-left: 5%;
-            padding-right: 5%;
+            width: calc(~'100% - 30px');
+        }
+
+        .sidebar-main {
+            .account-nav {
+                padding: 15px 0;
+                margin-bottom: 0;
+
+                #account-nav {
+                    text-align: center;
+                    margin: 15px 0;
+                    padding: 0;
+
+                    ul {
+                        padding: 0;
+                        margin-bottom: 0;
+
+                        li {
+                            background-color: #fff;
+                            display: inline-block;
+                            width: 47%;
+                            margin-top: 0;
+                            margin-bottom: 14px;
+                            border: 1px solid #3ac1cc;
+
+                            a {
+                                font-family: 'ProximaNova';
+                                font-size: 16px;
+                                font-weight: bold;
+                                color: #3ac1cc;
+                                letter-spacing: 0.02em;
+                                text-transform: uppercase;
+                                text-align: center;
+                                line-height: 42px;
+                            }
+
+                            &:hover a,
+                            a:hover, a:focus, a.active {
+                                border-bottom: 5px solid #3bc1cc;
+                                padding-bottom: 6px;
+                                text-decoration: none;
+                                color: #3ac1cc;
+                            }
+                        }
+
+                        li:nth-child(2n+1) {
+                            margin-right: 7px
+                        }
+
+                        li:nth-child(2n) {
+                            margin-left: 7px
+                        }
+
+                        li:last-child {
+                            display: none;
+                        }
+
+                        li.current {
+                            background-color: #3ac1cc;
+
+                            strong {
+                                font-family: 'ProximaNova';
+                                font-size: 16px;
+                                font-weight: bold;
+                                color: #ffffff;
+                                letter-spacing: 0.02em;
+                                text-transform: uppercase;
+                                text-align: center;
+                                line-height: 42px;
+                            }
+                        } 
+                    }
+                }
+            }
+        }
+
+        .block-dashboard-orders {
+            margin-bottom: 25px; 
+
+            .block-title.order {
+                border-bottom: 1px solid #a7a4a3;
+                padding-bottom: 10px;
+
+                strong {
+                    font-family: 'ProximaNova';
+                    font-size: 16px;
+                    font-weight: bold;
+                    color: #3e3935;
+                    text-align: left;
+                    line-height: 21px;
+                    -webkit-transform: scale(0.59, 0.6);
+                    -ms-transform: scale(0.59, 0.6);
+                    transform: scale(0.59, 0.6);
+                    text-transform: uppercase;
+                }
+            }
+
+            .block-content {
+                padding-top: 10px;
+
+                .table-wrapper .table:not(.cart):not(.totals):not(.table-comparison) > tbody > tr {
+                    td {
+                        font-family: 'ProximaNova';
+                        font-size: 16px;
+                        color: #3e3935;
+                        text-align: left;
+                        line-height: 22px;
+                        padding: 1px 0;
+                    }
+
+                    td:before {
+                        font-weight: bold;
+                        color: #3e3935;
+                        text-align: left;
+                        line-height: 20px;
+                    }
+                    
+                    td.actions {
+                        a {
+                            span {
+                                font-family: 'ProximaNova';
+                                font-size: 16px;
+                                font-weight: bold;
+                                color: #a7a4a3;
+                                text-align: left;
+                                line-height: 30px;
+                                text-transform: uppercase;
+                            }
+                        }
+                    }
+
+                    td.actions:before {
+                        display: none;
+                    }
+                } 
+            }
+        }
+
+        .customer-short-info {
+            .container-box {
+                margin-bottom: 20px;
+
+                .header-items {
+                    border-bottom: none;
+                    padding-bottom: 10px;
+                    
+                    .hidden {
+                        display: none;
+                    }
+
+                    span {
+                        font-family: 'ProximaNova';
+                        font-size: 16px;
+                        font-weight: bold;
+                        color: #3e3935;
+                        text-align: left;
+                        line-height: 21px;
+                        -webkit-transform: scale(0.59, 0.6);
+                        -ms-transform: scale(0.59, 0.6);
+                        transform: scale(0.59, 0.6);
+                        text-transform: uppercase;
+                    }
+                }
+
+                .box-function {
+                    position: relative;
+
+                    .header-name {
+                        span {
+                            font-family: 'ProximaNova';
+                            font-size: 16px;
+                            font-weight: bold;
+                            color: #3e3935;
+                            text-align: left;
+                            line-height: 30px;
+                            -webkit-transform: scale(0.83, 0.85);
+                            -ms-transform: scale(0.83, 0.85);
+                            transform: scale(0.83, 0.85);
+                        }
+                    }
+
+                    .content {
+                        font-family: 'ProximaNova';
+                        font-size: 16px;
+                        color: #3e3935;
+                        text-align: left;
+                        line-height: 22px;
+
+                        ul {
+                            padding-left: 0;
+                            margin-bottom: 0;
+
+                            li {
+                                list-style: none;
+                                margin-bottom: 5px;
+
+                                span {
+                                    font-family: 'ProximaNova';
+                                    font-size: 16px;
+                                    color: #3e3935;
+                                    text-align: left;
+                                    line-height: 22px;
+                                    -webkit-transform: scale(0.83, 0.85);
+                                    -ms-transform: scale(0.83, 0.85);
+                                    transform: scale(0.83, 0.85);
+                                    text-transform: capitalize;
+                                }
+
+                                span.title {
+                                    display: none;
+                                }
+                            }
+                        }
+                    }
+
+                    .buttom {
+                        a {
+                            font-family: 'ProximaNova';
+                            font-size: 16px;
+                            font-weight: bold;
+                            color: #3ac1cc;
+                            text-align: left;
+                            letter-spacing: 0.02em;
+                            line-height: 28px;
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                        }
+                    }
+                }
+            }
+
+            .container-box:first-child {
+                .header-items {
+                    border-bottom: 1px solid #a7a4a3;
+                }
+            }
+
+            .container-box:last-child {
+                .header-items span {
+                    display: none;
+                }
+
+                .box-function {
+                    .header-name {
+                        border-bottom: 1px solid #a7a4a3;
+                    }
+
+                    .save-payment-box {
+                        padding-top: 15px;
+
+                        .item-payment {
+                            li {
+                                display: inline-block;
+                                margin-bottom: 0;
+                                margin-right: 5px;
+
+                                p {
+                                    margin-bottom: 0;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .container-wrapper.wishlist {
+            .container-wishlist {
+                text-align: center;
+                padding-bottom: 30px;
+
+                h3 {
+                    font-family: 'ProximaNova';
+                    font-size: 16px;
+                    font-weight: bold;
+                    color: #3e3935;
+                    text-align: left;
+                    line-height: 21px;
+                    text-transform: uppercase;
+                }
+
+                .product-items {
+                    .product-item {
+                        display: inline-block;
+                        width: 48%;
+                        display: none;
+                        
+                        .product-item-name {
+                            height: 33px;
+                        }
+
+                        .product-item-actions {
+                            .primary-wishlist {
+                                background: transparent;
+                                border-color: transparent;
+                                font-family: 'ProximaNova';
+                                font-size: 12px;
+                                font-weight: bold;
+                                color: #3e3935;
+                                text-align: center;
+                                line-height: 16px;
+                            }
+                        }
+                    }
+
+                    .product-item:nth-child(1) {
+                        padding-right: 7px;
+                        padding-left: 0;
+                        display: inline-block;
+                    }
+
+                    .product-item:nth-child(2) {
+                        padding-left: 7px;
+                        padding-right: 0;
+                        display: inline-block;
+                    }
+
+                }
+
+                .view-wishlist {
+                    background-color: #3ac1cc;
+                    padding: 5px 10px;
+
+                    span {
+                        font-family: 'ProximaNova';
+                        font-size: 16px;
+                        font-weight: bold;
+                        color: #ffffff;
+                        letter-spacing: 0.02em;
+                        line-height: 28px;
+                        text-transform: uppercase;
+                    }
+                }
+            }
         }
     }
-
 }
 
 // max 640px
@@ -910,7 +1239,6 @@
                 float: left;
             }
         }
-
     }
 
     .account {
