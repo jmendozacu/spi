@@ -664,6 +664,7 @@
                     text-align: left;
                     line-height: 17px;
                     margin-bottom: 5px;
+                    text-transform: uppercase;
                 }
 
                 p {
@@ -759,14 +760,14 @@
                                 text-align: center;
                                 line-height: 42px;
                             }
-                        } 
+                        }
                     }
                 }
             }
         }
 
         .block-dashboard-orders {
-            margin-bottom: 25px; 
+            margin-bottom: 25px;
 
             .block-title.order {
                 border-bottom: 1px solid #a7a4a3;
@@ -805,7 +806,7 @@
                         text-align: left;
                         line-height: 20px;
                     }
-                    
+
                     td.actions {
                         a {
                             span {
@@ -823,18 +824,18 @@
                     td.actions:before {
                         display: none;
                     }
-                } 
+                }
             }
         }
 
         .customer-short-info {
             .container-box {
-                margin-bottom: 20px;
+                margin-bottom: 10px;
 
                 .header-items {
                     border-bottom: none;
                     padding-bottom: 10px;
-                    
+
                     .hidden {
                         display: none;
                     }
@@ -867,6 +868,7 @@
                             -webkit-transform: scale(0.83, 0.85);
                             -ms-transform: scale(0.83, 0.85);
                             transform: scale(0.83, 0.85);
+                            text-transform: capitalize;
                         }
                     }
 
@@ -925,6 +927,12 @@
                 .header-items {
                     border-bottom: 1px solid #a7a4a3;
                 }
+
+                .box-function {
+                    .header-name {
+                        padding-top: 5px;
+                    }
+                }
             }
 
             .container-box:last-child {
@@ -976,7 +984,7 @@
                         display: inline-block;
                         width: 48%;
                         display: none;
-                        
+
                         .product-item-name {
                             height: 33px;
                         }
@@ -1011,7 +1019,7 @@
 
                 .view-wishlist {
                     background-color: #3ac1cc;
-                    padding: 5px 10px;
+                    padding: 7px 14px;
 
                     span {
                         font-family: 'ProximaNova';
@@ -1026,6 +1034,153 @@
             }
         }
     }
+
+    // MOBILE - MY ACCOUNT - WISHLIST
+
+    .wishlist-index-index {
+        .sidebar-main .account-nav #account-nav ul li:first-child {
+            background-color: #3ac1cc;
+
+            a {
+                color: #ffffff;
+            }
+        }
+
+        #wishlist-view-form {
+            padding-bottom: 30px;
+            text-align: center;
+        }
+
+        .page-title-wrapper {
+            .page-title {
+                width: auto;
+                height: auto;
+                position: relative;
+                padding-bottom: 10px;
+
+                span {
+                    font-family: 'ProximaNova';
+                    font-size: 16px;
+                    font-weight: bold;
+                    color: #3e3935;
+                    text-align: left;
+                    line-height: 21px;
+                    text-transform: uppercase;
+                }
+            }
+        }
+
+        .message.empty {
+            background: transparent;
+            padding: 10px 0 0;
+            margin: 0;
+
+            span.emty-cart {
+                font-family: 'ProximaNova';
+                font-size: 16px;
+                color: #3e3935;
+                text-align: left;
+                line-height: 22px;
+                display: block;
+                margin-bottom: 10px;
+            }
+
+            span.emty-cart:before {
+                display: none;
+            }
+
+            span.fill-cart {
+                background-color: #3e3935;
+                padding: 7px 30px;
+                display: inline-block;
+
+                a {
+                    font-family: 'ProximaNova';
+                    font-size: 16px;
+                    font-weight: bold;
+                    color: #ffffff;
+                    text-align: left;
+                    letter-spacing: 0.02em;
+                    line-height: 28px;
+                    text-transform: uppercase;
+                    -webkit-transform: scale(0.6, 0.62);
+                    -ms-transform: scale(0.6, 0.62);
+                    transform: scale(0.6, 0.62);
+                }
+
+                a:hover {
+                    text-decoration: none;
+                }
+            }
+        }
+
+        .form-wishlist-items {
+            ol.product-items {
+                margin-bottom: 0;
+                padding-left: 0;
+
+                .product-item {
+                    display: inline-block;
+                    width: 48%;
+
+                    .product-item-info {
+                        margin-left: 0;
+
+                        .product-item-photo {
+                            margin-left: 0;
+                        }
+
+                        .product-item-name, .price-final_price {
+                            margin-left: 0;
+
+                            .product-item-link {
+                                font-family: 'Hind';
+                                font-size: 12px;
+                                color: #3e3935;
+                                text-align: center;
+                                line-height: 16px;
+                            }
+                        }
+
+
+                        .product-item-inner {
+                            .actions-primary {
+                                .tocart.primary {
+                                    background: transparent;
+                                    border: none;
+                                    font-family: 'Hind';
+                                    font-size: 12px;
+                                    color: #3e3935;
+                                    text-align: center;
+                                    line-height: 16px;
+                                }
+                            }
+                        }
+
+                        .product-item-name {
+                            height: 36px;
+                            display: block;
+                        }
+                    }
+                }
+
+                .product-item:nth-child(2n+1) {
+                    padding-right: 7px;
+                    padding-left: 0;
+                    display: inline-block;
+                }
+
+                .product-item:nth-child(2n) {
+                    padding-left: 7px;
+                    padding-right: 0;
+                    display: inline-block;
+                }
+            }
+        }
+    }
+
+    // END MOBILE - MY ACCOUNT - WISHLIST
+
 }
 
 // max 640px
