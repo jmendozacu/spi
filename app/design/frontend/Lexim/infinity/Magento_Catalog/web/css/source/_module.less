@@ -942,12 +942,12 @@
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
     .product.media {
         float: left;
-        width: 60%;
+        width: 53%;
     }
 
     .product-info-main {
         float: right;
-        width: 40%;
+        width: 47%;
         padding-left: 4%;
 
         .product-info-price {
@@ -1005,17 +1005,26 @@
     }
 }
 
-// min 1440px
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+// min 1200px
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__1200) {
 
     .catalog-product-view .columns .column.main {
-        padding-left: 8%;
-        padding-right: 8%;
+        padding: 0;
+        max-width: 1333px;
+        margin: 0 auto;
     }
 
     .product.media {
+        width: calc(~'100% - 550px');
     }
 
     .product-info-main {
+        width: 550px;
+        padding-left: 50px;
     }
+}
+
+// min 1440px
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+
 }
