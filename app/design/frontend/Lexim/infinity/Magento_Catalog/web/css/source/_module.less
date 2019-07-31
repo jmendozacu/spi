@@ -353,13 +353,15 @@
             .display-flex();
             .align-items(center);
             padding-top: 30px;
+
             .box-tocart {
                 > .fieldset {
-                    .display-flex();
+                    //.display-flex();
                 }
 
                 .field.qty {
                     margin: 0;
+                    display: inline-flex;
 
                     .product-cart-control {
                         display: none;
@@ -382,6 +384,7 @@
                 }
 
                 .actions {
+                    display: inline-flex;
                     padding: 0 8px;
                 }
 
@@ -483,6 +486,7 @@
 
         .box-tocart {
             margin: 0;
+            display: inline-block;
 
             .field.qty {
             }
