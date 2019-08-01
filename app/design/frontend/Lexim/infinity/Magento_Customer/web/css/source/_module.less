@@ -695,12 +695,12 @@
 
         .sidebar-main {
             .account-nav {
-                padding: 15px 0;
+                padding: 5px 0;
                 margin-bottom: 0;
 
                 #account-nav {
                     text-align: center;
-                    margin: 15px 0;
+                    margin: 15px 0 0;
                     padding: 0;
 
                     ul {
@@ -1057,6 +1057,8 @@
                 height: auto;
                 position: relative;
                 padding-bottom: 10px;
+                margin-right: 0;
+                margin-left: 5px;
 
                 span {
                     font-family: 'ProximaNova';
@@ -1121,7 +1123,7 @@
 
                 .product-item {
                     display: inline-block;
-                    width: 48%;
+                    width: 49%;
 
                     .product-item-info {
                         margin-left: 0;
@@ -1142,7 +1144,6 @@
                             }
                         }
 
-
                         .product-item-inner {
                             .actions-primary {
                                 .tocart.primary {
@@ -1160,6 +1161,10 @@
                         .product-item-name {
                             height: 36px;
                             display: block;
+                        }
+
+                        .product-item-tooltip {
+                            display: none;
                         }
                     }
                 }
@@ -1181,6 +1186,117 @@
 
     // END MOBILE - MY ACCOUNT - WISHLIST
 
+    // MOBILE - MY ACCOUNT - RECENT ORDERS
+
+    .sales-order-history {
+        .page-title-wrapper {
+            .page-title {
+                border-bottom: 1px solid #a7a4a3;
+                margin: 0;
+                padding-bottom: 15px;
+
+                .base {
+                    font-family: 'ProximaNova';
+                    font-size: 16px !important;
+                    font-weight: bold;
+                    color: #3e3935;
+                    text-align: left;
+                    line-height: 21px !important;
+                    -webkit-transform: scale(0.59, 0.6);
+                    -ms-transform: scale(0.59, 0.6);
+                    transform: scale(0.59, 0.6);
+                }
+            }
+        }
+
+        .orders-history {
+            margin: 10px 0;
+
+            #my-orders-table {
+                tbody {
+                    tr {
+                        position: relative;
+                        padding-bottom: 25px;
+
+                        td:before {
+                            font-family: 'ProximaNova';
+                            font-size: 16px;
+                            font-weight: bold;
+                            color: #3e3935;
+                            text-align: left;
+                            line-height: 20px;
+                        }
+
+                        td {
+                            font-family: 'ProximaNova';
+                            font-size: 16px;
+                            color: #3e3935;
+                            text-align: left;
+                            line-height: 22px;
+                            padding: 0;
+
+                            span.plus-open {
+                                position: absolute;
+                                bottom: 0;
+                                left: 0;
+                            }
+                        }
+
+                        td.actions:before {
+                            display: none;
+                        }
+
+                        td.actions {
+                            padding-top: 20px;
+
+                            a.order {
+                                padding: 5px 30px;
+                                border: 1px solid #3ac1cc;
+
+                                span {
+                                    font-family: 'ProximaNova';
+                                    font-size: 12px;
+                                    font-weight: bold;
+                                    color: #3ac1cc;
+                                    text-align: left;
+                                    letter-spacing: 0.02em;
+                                    line-height: 16px;
+                                    text-transform: uppercase;
+                                }
+                            }
+
+                            a.track-order {
+                                padding: 5px 30px;
+                                background-color: #dbd9d6;
+                                border: 1px solid #dbd9d6;
+
+                                span {
+                                    font-family: 'ProximaNova';
+                                    font-size: 12px;
+                                    font-weight: bold;
+                                    color: #fff;
+                                    text-align: left;
+                                    letter-spacing: 0.02em;
+                                    line-height: 16px;
+                                    text-transform: uppercase;
+                                }
+                            }
+
+                            a.track-order:hover, a.track-order:active, a.track-order:focus {
+                                background-color: #48c1cb;
+                            }
+                        }
+                    }
+
+                    tr.item-product {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+
+    // END MOBILE - MY ACCOUNT - RECENT ORDERS
 }
 
 // max 640px
