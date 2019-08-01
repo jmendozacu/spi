@@ -314,8 +314,8 @@
         .product-social-links {
             .icon-elo-heart {
                 position: relative;
-                width: 50px;
-                height: 50px;
+                width: 40px;
+                height: 40px;
                 display: block;
                 border: 2px solid @aqua;
 
@@ -324,7 +324,7 @@
                     right: 0;
                     left: 0;
                     margin: auto;
-                    line-height: 49px;
+                    line-height: 40px;
                     color: @aqua;
                 }
             }
@@ -376,8 +376,8 @@
                     }
 
                     .input-text.qty {
-                        width: 50px;
-                        height: 50px;
+                        width: 40px;
+                        height: 40px;
                         border: 2px solid #707070;
                         color: @gray;
                         font-size: 14px;
@@ -390,7 +390,7 @@
                 }
 
                 .action.primary {
-                    height: 50px;
+                    height: 40px;
                 }
             }
         }
@@ -605,6 +605,7 @@
 
         .fotorama__nav--thumbs {
             width: 100% !important;
+			max-height: 725px;
         }
 
         .fotorama__nav--thumbs .fotorama__nav__frame {
@@ -612,6 +613,7 @@
             padding-bottom: 15.3% !important;
             width: 100% !important;
             height: auto;
+
         }
 
         .fotorama__arr, .fotorama__thumb__arr {
@@ -1004,6 +1006,11 @@
     .product-info-main .product-options-bottom .box-tocart .actions {
         padding: 0 15px;
     }
+	.product.media {
+		padding-left: 30px;
+		}
+		
+
 }
 
 // min 1200px
@@ -1023,9 +1030,14 @@
         width: 550px;
         padding-left: 50px;
     }
+
 }
 
 // min 1440px
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+        .fotorama__nav--thumbs {
+            width: 100% !important;
+			max-height: 800px!important;
+        }
 
 }

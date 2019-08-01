@@ -18,12 +18,7 @@
         <!-- Remove in stock text -->
         <referenceBlock name="product.info.type" remove="true"/>
 
-        <!-- Remove SKU label -->
-        <referenceBlock name="product.info.sku">
-            <arguments>
-                <argument name="at_label" xsi:type="string"/>
-            </arguments>
-        </referenceBlock>
+
 
         <referenceBlock name="product.info.details">
             <!-- Change name of Details Tab -->
