@@ -38,7 +38,7 @@
         thumbBarHeight = config.thumbheight;
     }
 
-    loader.style.paddingBottom = (config.height / config.width * 100) + "%";
+    loader.style.paddingBottom = (config.height / config.width * 50) + "%";
 </script>
 
 <script type="text/x-magento-init">
@@ -63,6 +63,7 @@
                         "allowfullscreen": <?= $block->getVar("gallery/allowfullscreen") ?>,
                     <?php endif; ?>
                     "showCaption": false,
+					"arrows":false,
 
                     <?php if ($block->getVar("gallery/transition/duration")): ?>
                         "transitionduration": <?= $block->getVar("gallery/transition/duration") ?>,
