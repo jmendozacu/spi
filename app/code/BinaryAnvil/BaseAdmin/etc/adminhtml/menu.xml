@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <remove id="BinaryAnvil_Base::binaryanvil_base" />
+        <remove id="BinaryAnvil_Base::basegeneral" />
+        <remove id="BinaryAnvil_Base::basesettings" />
+
+        <add id="BinaryAnvil_BaseAdmin::binaryanvil_base"
+             title="Lexim Global"
+             resource="BinaryAnvil_Base::binaryanvil_base_menu"
+             module="BinaryAnvil_Base"
+             sortOrder="15"/>
+        <add id="BinaryAnvil_BaseAdmin::basegeneral"
+             title="General"
+             resource="BinaryAnvil_Base::basegeneral"
+             module="BinaryAnvil_Base"
+             parent="BinaryAnvil_BaseAdmin::binaryanvil_base"
+             sortOrder="10"/>
+        <add id="BinaryAnvil_BaseAdmin::basesettings"
+             title="Settings"
+             resource="BinaryAnvil_Base::basegeneral"
+             module="BinaryAnvil_Base"
+             parent="BinaryAnvil_BaseAdmin::basegeneral"
+             action="adminhtml/system_config/edit/section/binaryanvil_base"
+             sortOrder="10"/>
+    </menu>
+</config>
