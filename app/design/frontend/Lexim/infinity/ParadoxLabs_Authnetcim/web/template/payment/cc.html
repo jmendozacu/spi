@@ -12,7 +12,7 @@
             <div class="payment-icon">
                 <img src="/static/frontend/Lexim/infinity/en_US/images/checkout/payment-visa.png" title="Visa">
                 <img src="/static/frontend/Lexim/infinity/en_US/images/checkout/payment-master.png" title="Master Card">
-                <img src="/static/frontend/Lexim/infinity/en_US/images/checkout/payment-american.png" title="American Express">
+                <!-- <img src="/static/frontend/Lexim/infinity/en_US/images/checkout/payment-american.png" title="American Express">-->
             </div>
         </label>
     </div>
@@ -44,11 +44,12 @@
 
         <fieldset data-bind="attr: {class: 'fieldset payment items ccard ' + getCode(), id: getCode() + '-form-cc'}">
             <!-- ko if: (isShowLegend())-->
-            <legend class="legend"><span><!-- ko text: $t('Credit Card')--><!-- /ko --></span></legend><br />
+            <legend class="legend"><span><!-- ko text: $t('Credit Card')--><!-- /ko --></span></legend>
+            <br/>
             <!-- /ko -->
             <!-- ko if: (getLogoImage())-->
             <div class="sorter">
-                <img data-bind="attr: {'src': getLogoImage()}" />
+                <img data-bind="attr: {'src': getLogoImage()}"/>
             </div>
             <!--/ko-->
             <!-- ko if: (useVault()) -->
@@ -117,8 +118,8 @@
                     <div class="fields group group-2">
                         <div class="field no-label month">
                             <div class="control">
-                                <select  name="payment[cc_exp_month]" class="select month" autocomplete="cc-exp-month"
-                                         data-bind="attr: {id: getCode() + '-cc-exp-month', 'data-container': getCode() + '-cc-month', 'data-validate': JSON.stringify({required:true, 'validate-cc-exp':'#' + getCode() + '-cc-exp-year'})},
+                                <select name="payment[cc_exp_month]" class="select month" autocomplete="cc-exp-month"
+                                        data-bind="attr: {id: getCode() + '-cc-exp-month', 'data-container': getCode() + '-cc-month', 'data-validate': JSON.stringify({required:true, 'validate-cc-exp':'#' + getCode() + '-cc-exp-year'})},
                                 enable: true,
                                 options: getCcMonthsValues(),
                                 optionsValue: 'value',
@@ -161,7 +162,7 @@
                        'data-container': getCode() + '-cc-cvv',
                        'data-validate': JSON.stringify({'required-number':true, 'validate-cc-cvn':'#' + getCode() + '-cc-type'})},
                        enable: true,
-                       value: creditCardVerificationNumber" />
+                       value: creditCardVerificationNumber"/>
                     <div class="field-tooltip toggle">
                         <span class="field-tooltip-action action-cvv"
                               tabindex="0"
@@ -214,7 +215,7 @@
             <div class="no-display _hidden" data-bind="attr: {id: getCode() + '-complete'}">
                 &#128077; <!-- ko text: $t('Okay, ready to continue!')--><!-- /ko -->
             </div>
-            <div class="no-display _hidden"  data-bind="attr: {id: getCode() + '-failed'}">
+            <div class="no-display _hidden" data-bind="attr: {id: getCode() + '-failed'}">
                 &#10060; <!-- ko text: $t('Please fix your payment info before continuing.')--><!-- /ko -->
             </div>
             <!-- /ko -->
