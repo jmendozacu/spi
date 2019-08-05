@@ -55,7 +55,7 @@ $blockTotals = $objectManager->get('Magento\Sales\Block\Order\Totals');
                 <?php foreach ($_orders as $_order): ?>
                     <tr>
                         <?php //TODO: change data format ?>
-                        <td data-th="<?= $block->escapeHtml(__('Order number')) ?>" class="col id"><span class="plus-open">+</span><span class="number-id"><?= /* @escapeNotVerified */ $_order->getRealOrderId() ?></span></td>
+                        <td data-th="<?= $block->escapeHtml(__('Order number')) ?>" class="col id"><span class="plus-open">+</span><span class="see-more">See more</span><span class="number-id"><?= /* @escapeNotVerified */ $_order->getRealOrderId() ?></span></td>
                         <td data-th="<?= $block->escapeHtml(__('Order date')) ?>" class="col date"><?= /* @escapeNotVerified */ $block->formatDate($_order->getCreatedAt(), IntlDateFormatter::LONG) ?></td>
                         <?php $extra = $block->getChildBlock('extra.container'); ?>
                         <?php if ($extra): ?>
@@ -184,6 +184,22 @@ $blockTotals = $objectManager->get('Magento\Sales\Block\Order\Totals');
                 }
                 
             });
+
+            $('#my-orders-table .see-more').click(function (e) {
+                if ($(this).prev().hasClass("focus")) {
+                    $(this).prev().removeClass('focus');
+                    $(this).prev().text("+");
+                    $(this).parent().parent().removeClass('focus');
+                    $(this).parent().parent().next().removeClass('active');
+                } else {
+                    $(this).prev().addClass('focus');
+                    $(this).prev().text("-");
+                    $(this).parent().parent().addClass('focus');
+                    $(this).parent().parent().next().addClass('active');
+                }
+                
+            });
+
         });
     });
 </script>
