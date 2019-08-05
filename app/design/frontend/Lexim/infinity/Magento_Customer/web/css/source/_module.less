@@ -791,6 +791,8 @@
                 padding-top: 10px;
 
                 .table-wrapper .table:not(.cart):not(.totals):not(.table-comparison) > tbody > tr {
+                    border-bottom: 1px dotted #a7a4a3;
+
                     td {
                         font-family: 'ProximaNova';
                         font-size: 16px;
@@ -824,6 +826,10 @@
                     td.actions:before {
                         display: none;
                     }
+                }
+
+                .table-wrapper .table:not(.cart):not(.totals):not(.table-comparison) > tbody > tr:last-child {
+                    border-bottom: none;
                 }
             }
         }
@@ -869,6 +875,12 @@
                             -ms-transform: scale(0.83, 0.85);
                             transform: scale(0.83, 0.85);
                             text-transform: capitalize;
+                        }
+                    }
+
+                    .header-name.save-payment-mobile {
+                        span {
+                            text-transform: uppercase;
                         }
                     }
 
@@ -962,6 +974,16 @@
                     }
                 }
             }
+
+            .block-dashboard-orders + .container-box {
+                .header-items {
+                    border-bottom: 1px solid #a7a4a3;
+                }
+
+                .box-function {
+                    padding-top: 5px;
+                }
+            }
         }
 
         .container-wrapper.wishlist {
@@ -977,6 +999,8 @@
                     text-align: left;
                     line-height: 21px;
                     text-transform: uppercase;
+                    padding-bottom: 10px;
+                    border-bottom: 1px solid #a7a4a3;
                 }
 
                 .product-items {
@@ -1029,6 +1053,45 @@
                         letter-spacing: 0.02em;
                         line-height: 28px;
                         text-transform: uppercase;
+                    }
+                }
+
+                .message.empty {
+                    background: #fff;
+                    padding: 0;
+
+                    span {
+                        font-family: 'ProximaNova';
+                        font-size: 16px;
+                        color: #3e3935;
+                        text-align: left;
+                        line-height: 22px;
+                        display: block;
+                    }
+
+                    span::before {
+                        display: none;
+                    }
+
+                    a {
+                        display: block;
+                        width: 180px;
+                        margin: auto;
+                        padding-top: 10px;
+
+                        span {
+                            font-family: 'ProximaNova';
+                            font-size: 16px;
+                            font-weight: bold;
+                            color: #ffffff;
+                            text-align: left;
+                            letter-spacing: 0.02em;
+                            line-height: 28px;
+                            text-transform: uppercase;
+                            background-color: #3ac1cc;
+                            padding: 5px 10px;
+                            display: block;
+                        }
                     }
                 }
             }
@@ -1671,17 +1734,236 @@
                         border: 1px solid #a7a4a3;
                     }
                 }
+
                 .content-edit-address {
                     display: none;
+
+                    .form-address-edit {
+                        .primary {
+                            padding: 15px 0 30px;
+                        }
+
+                        .content-details {
+                            padding: 10px 0;
+
+                            .field {
+                                position: relative;
+
+                                .label {
+                                    position: absolute;
+                                    top: -6px;
+                                    left: 10px;
+                                    padding: 0 5px;
+                                    font-weight: normal;
+                                    line-height: 1;
+                                    height: 12px;
+                                    background: #fff;
+                                    font-size: 12px;
+                                    text-transform: lowercase;
+                                }
+
+                                select {
+                                    height: 40px;
+                                }
+                            }
+                        }
+                    }
+
+                    #add-custom-form {
+                        .primary {
+                            .action {
+                                margin: 10px 0 20px;
+                            }
+                        }
+
+                        .content-details {
+                            padding: 10px 0;
+
+                            .field {
+                                position: relative;
+
+                                .label {
+                                    position: absolute;
+                                    top: -6px;
+                                    left: 10px;
+                                    padding: 0 5px;
+                                    font-weight: normal;
+                                    line-height: 1;
+                                    height: 12px;
+                                    background: #fff;
+                                    font-size: 12px;
+                                    text-transform: lowercase;
+                                }
+
+                                select {
+                                    height: 40px;
+                                }
+                            }
+                        }
+                    }
                 }
             }
-
-            
         }
 
         .save-address.active {
             .content-edit-address {
                 display: block;
+            }
+        }
+
+        #retailer-store {
+            .header-retailer {
+                .title {
+                    font-family: 'ProximaNova';
+                    font-size: 16px;
+                    font-weight: bold;
+                    color: #3e3935;
+                    text-align: left;
+                    line-height: 16px;
+                    text-transform: uppercase;
+                    margin-bottom: 20px;
+                }
+
+                .text-retails {
+                    margin-top: 10px;
+                    font-family: 'ProximaNova';
+                    font-size: 16px;
+                    color: #3e3935;
+                    text-align: left;
+                    line-height: 22px;
+                }
+            }
+
+            .content-retailer {
+                padding-bottom: 10px;
+
+                .find {
+                    font-family: 'ProximaNova';
+                    font-size: 16px;
+                    font-weight: bold;
+                    color: #3e3935;
+                    text-align: left;
+                    line-height: 23px;
+                    display: block;
+                }
+
+                .content-details.zip {
+                    width: 42%;
+                    display: inline-block;
+                    float: left;
+                    padding: 10px 0;
+
+                    .field-zip {
+                        position: relative;
+
+                        .label {
+                            position: absolute;
+                            top: -6px;
+                            left: 10px;
+                            padding: 0 5px;
+                            font-weight: normal;
+                            line-height: 1;
+                            height: 12px;
+                            background: #fff;
+                            font-size: 12px;
+                            text-transform: lowercase;
+                        }
+                    }                   
+                }
+
+                .join-text {
+                    display: inline-block;
+                    text-align: center;
+                    width: 16%;
+                    padding: 10px 0;
+                    font-size: 14px;
+                    color: #3e3935;
+                    letter-spacing: 0.02em;
+                    line-height: 2.8;
+                }
+
+                .content-details.distance {
+                    width: 42%;
+                    display: inline-block;
+                    float: right;
+                    padding: 10px 0;
+                    line-height: 2.8;
+
+                    select {
+                        height: 40px;
+                        padding: 0;
+                    }
+                }
+            }
+
+            .footer-retailer {
+                .slick-track {
+                    transform: translate3d(0, 0, 0) !important;
+                    width: 100% !important;
+                    border-top: 1px solid #a7a4a3;
+
+                    .slick-slide {
+                        width: 100% !important;
+                        border-bottom: 1px solid #a7a4a3;
+                        padding: 10px 0;
+                    }
+
+                    .slick-slide:last-child {
+                        padding-bottom: 30px;
+                    }
+                }
+
+                .location {
+                    .label {
+                        display: none;
+                        font-family: 'ProximaNova';
+                        font-size: 16px;
+                        font-weight: bold;
+                        color: #3ac1cc;
+                        text-align: left;
+                        line-height: 22px;
+                    }
+
+                    .location-body {
+                        font-family: 'Hind';
+                        font-size: 16px;
+                        color: #3e3935;
+                        text-align: left;
+                        line-height: 22px;
+
+                        .name-store {
+                            font-family: 'Hind';
+                            font-size: 16px;
+                            font-weight: bold;
+                            color: #3e3935;
+                            text-align: left;
+                            line-height: 22px;
+                        } 
+                    }
+                    
+                }
+
+                .make-this-store {
+                    padding-top: 15px;
+
+                    input {
+                        display: none;
+                    }
+
+                    span {
+                        font-family: 'ProximaNova';
+                        font-size: 16px;
+                        font-weight: bold;
+                        color: #3ac1cc;
+                        text-align: left;
+                        letter-spacing: 0.02em;
+                        line-height: 28px;
+                        text-transform: uppercase;
+                        border: 1px solid #3ac1cc;
+                        padding: 2px 5px;
+                    }
+                    
+                }
             }
         }
     }

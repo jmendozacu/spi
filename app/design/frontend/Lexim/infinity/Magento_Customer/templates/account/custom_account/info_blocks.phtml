@@ -160,7 +160,7 @@ $editUrl = $block->getCustomerEditUrl();
             <span><?= /* @escapeNotVerified */ __('Payments') ?></span>
         </div>
         <div class="box-function">
-            <div class="header-name"><span><?= /* @escapeNotVerified */ __('Saved Payments') ?></span></div>
+            <div class="header-name save-payment-mobile"><span><?= /* @escapeNotVerified */ __('Saved Payments') ?></span></div>
             <?= $block->getChildHtml('my_account_payments_data') ?>
             <div class="buttom">
                 <a href="<?= $block->getUrl('customer/paymentinfo') ?>"><?= /* @escapeNotVerified */ __('Edit') ?></a>
