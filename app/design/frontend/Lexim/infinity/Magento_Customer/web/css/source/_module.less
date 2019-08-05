@@ -627,11 +627,11 @@
 
                 .page-title {
                     span {
-                        font-size: 20px;
+                        font-size: 16px;
                         font-weight: bold;
                         color: rgba(62, 57, 53, 1);
                         text-align: left;
-                        line-height: 45px;
+                        line-height: 21px;
                         -webkit-transform: scale(1.26, 1.29);
                         -ms-transform: scale(1.26, 1.29);
                         transform: scale(1.26, 1.29);
@@ -1216,7 +1216,8 @@
                 tbody {
                     tr {
                         position: relative;
-                        padding-bottom: 25px;
+                        padding-bottom: 36px;
+                        border-bottom: 1px solid #a6a3a1;
 
                         td:before {
                             font-family: 'ProximaNova';
@@ -1237,8 +1238,27 @@
 
                             span.plus-open {
                                 position: absolute;
-                                bottom: 0;
+                                bottom: 10px;
                                 left: 0;
+                                font-family: 'ProximaNova';
+                                font-size: 14px;
+                                color: #3bc1cc;
+                                text-align: left;
+                                letter-spacing: 0.02em;
+                                line-height: 11px;
+                            }
+
+                            span.see-more {
+                                display: block;
+                                position: absolute;
+                                bottom: 10px;
+                                left: 15px;
+                                font-family: 'ProximaNova';
+                                font-size: 14px;
+                                color: #3bc1cc;
+                                text-align: left;
+                                letter-spacing: 0.02em;
+                                line-height: 11px;
                             }
                         }
 
@@ -1286,17 +1306,387 @@
                                 background-color: #48c1cb;
                             }
                         }
+
+                        td.col.id {
+                            padding-top: 10px;
+                        }
                     }
 
                     tr.item-product {
                         display: none;
                     }
+
+                    tr.item-product.active {
+                        display: block;
+                        padding-left: 15px;
+                    }
+
+                    tr.focus {
+                        border-bottom: none;
+                    }
+
+                    tr.item-product.active {
+                        td::before {
+                            display: none;
+                        }
+
+                        td {
+                            .section-details {
+                                margin: 10px 0;
+
+                                .title {
+                                    font-family: 'ProximaNova';
+                                    font-size: 14px;
+                                    font-weight: bold;
+                                    color: #3e3935;
+                                    text-align: left;
+                                    letter-spacing: 0.02em;
+                                    text-transform: uppercase;
+                                }
+
+                                .content-details {
+                                    ol {
+                                        padding-left: 0;
+
+                                        li {
+                                            list-style-type: none;
+
+                                            .images {
+                                                display: none;
+                                            }
+
+                                            .box-conten {
+                                                p {
+                                                    font-size: 14px;
+                                                    color: #3e3935;
+                                                    text-align: left;
+                                                    line-height: 18px;
+                                                    margin-bottom: 0;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+                                .content-details-summary {
+                                    p.price-product {
+                                        label {
+                                            width: 90px;
+                                            display: inline-block;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
+            }
+        }
+
+        .actions-toolbar {
+            display: none;
+        }
+
+        .order-products-toolbar {
+            .toolbar-amount {
+                display: inline-block;
+                padding-top: 0;
+                margin-bottom: 0;
+                text-align: left;
+                padding-right: 50px;
+            }
+
+            .limiter {
+                display: inline-block;
             }
         }
     }
 
     // END MOBILE - MY ACCOUNT - RECENT ORDERS
+
+    // MOBILE - MY ACCOUNT - PAYMENT
+
+    .account.customer-paymentinfo-index .columns {
+        .page-title-wrapper {
+            .page-title {
+                font-family: 'ProximaNova';
+                font-size: 16px !important;
+                font-weight: bold;
+                color: #3e3935;
+                text-align: left;
+                line-height: 21px !important;
+            }
+        }
+
+        .manage-payment-method {
+            .show-payment {
+                .save-payment-box {
+                    ul.item-payment {
+                        padding-left: 0;
+
+                        li {
+                            list-style-type: none;
+                            display: inline-block;
+
+                            p {
+                                margin-bottom: 0;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .add-payment {
+                .add-payment-form {
+                    display: none;
+                    padding-top: 15px;
+
+                    .payment {
+                        .label {
+                            z-index: 1;
+                        }
+                    }
+
+                    select {
+                        height: 40px;
+                    }
+
+                    .actions-toolbar {
+                        padding-bottom: 40px;
+
+                        .secondary {
+                            display: none;
+                        }
+
+                        .primary .save {
+                            max-width: 100px;                
+                        }
+                    }
+                }
+            }
+            
+            .add-payment.active {
+                .add-payment-form  {
+                    display: block;
+                }
+            }
+        }
+    }
+
+    // END MOBILE - MY ACCOUNT - PAYMENT
+
+    // MOBILE - MY ACCOUNT - MY PROFILE
+
+    .customer-account-edit {
+        .page-title-wrapper {
+            .page-title {
+                border-bottom: 1px solid #a7a4a3;
+                padding-bottom: 10px;
+                margin-right: 0;
+            }
+        }
+
+        .form-edit-account {
+            .fieldset.name {
+                margin-bottom: 0;
+
+                .wrap {
+                    font-family: ProximaNova;
+                    font-size: 16px;
+                    color: rgb(62, 57, 53);
+                    text-align: left;
+                    letter-spacing: 0.02em;
+                    line-height: 22px;
+                    display: block;
+
+                    .col.action {
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+
+                        a {
+                            font-family: 'ProximaNova';
+                            font-size: 16px;
+                            font-weight: bold;
+                            color: #3bc1cc;
+                            text-align: right;
+                            line-height: 11px;
+                        }
+                    }
+                }
+
+                .content {
+                    display: none;
+                }
+
+                .content.active {
+                    position: relative;
+
+                    .title {
+                        margin-bottom: 20px;
+
+                        span {
+                            display: none;
+                        }
+
+                        .action {
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                        }
+                    }
+
+                    .content-details {
+                        position: relative;
+
+                        .primary {
+                            padding-top: 10px;
+                        }
+                    }
+                }
+            }
+
+            .fieldset.email, .fieldset.password {
+                display: block;
+                margin-bottom: 0;
+
+                .email, .password {
+                    display: block !important;
+
+                    .wrap {
+                        position: relative;
+                        font-family: 'ProximaNova';
+                        font-size: 16px;
+                        color: #3e3935;
+                        text-align: left;
+                        letter-spacing: 0.02em;
+                        line-height: 22px;
+
+                        .action {
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+
+                            a{
+                                font-family: 'ProximaNova';
+                                font-size: 16px;
+                                font-weight: bold;
+                                color: #3bc1cc;
+                                text-align: right;
+                                line-height: 11px;
+                            }
+                        }
+
+                        .content.active {
+                            .title {
+                                margin-bottom: 20px;
+                                position: relative;
+
+                                .action {
+                                    position: absolute;
+                                    right: 0;
+                                }
+                            }
+
+                            .content-details {
+                                position: relative;
+                            }
+                        }
+                    }
+
+                    .content {
+                        display: none;
+                    }
+
+                    .content.active {
+                        .title {
+                            margin-bottom: 20px;
+                            position: relative;
+
+                            .action {
+                                position: absolute;
+                                right: 0;
+                            }
+                        }
+
+                        .content-details {
+                            position: relative;
+
+                            .password.current {
+                                padding-bottom: 10px;      
+                            }
+
+                            .new.password {
+                                position: relative;  
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .save-address {
+            .title-address {
+                position: relative;
+                border-bottom: 1px solid #a7a4a3;
+                padding-bottom: 10px;
+
+                span {
+                    font-family: 'ProximaNova';
+                    font-size: 16px;
+                    font-weight: bold;
+                    color: #3e3935;
+                    text-align: left;
+                    line-height: 16px;
+                    text-transform: uppercase;
+                }
+
+                .link-edit-address {
+                    position: absolute;
+                    right: 0;
+                    top: 40px;
+                    font-family: 'ProximaNova';
+                    font-size: 16px;
+                    font-weight: bold;
+                    color: #3bc1cc;
+                    text-align: right;
+                    line-height: 11px;
+                }
+            }
+
+            .box-address {
+                padding-top: 15px;
+
+                .content-address {
+                    p {
+                        font-family: 'ProximaNova';
+                        color: #3e3935;
+                        letter-spacing: 0.02em;
+                        line-height: 22px;
+                        font-size: 14px;
+                        text-align: left;
+                    }
+
+                    input {
+                        border: 1px solid #a7a4a3;
+                    }
+                }
+                .content-edit-address {
+                    display: none;
+                }
+            }
+
+            
+        }
+
+        .save-address.active {
+            .content-edit-address {
+                display: block;
+            }
+        }
+    }
+
+    // END MOBILE - MY ACCOUNT - MY PROFILE
 }
 
 // max 640px
@@ -1582,7 +1972,6 @@
                             padding: 0 10px;
 
                             a {
-
                                 font-size: 14px;
                                 font-weight: bold;
                                 color: #3e3935;
@@ -2199,6 +2588,10 @@
 
                         .plus-open.focus {
                             color: #3bc1cc;
+                        }
+
+                        .see-more {
+                            display: none;
                         }
 
                         .action.order {
