@@ -100,7 +100,7 @@ define([
     }
 
     $(document).ready(function () {
-        // listenCustomerNameIsChanged();
+        listenCustomerNameIsChanged();
     });
 
     return Component.extend({
@@ -160,7 +160,7 @@ define([
                 quote.guestEmail = self.email();
 
                 // Save email guest for abandon cart
-                // saveEmailToQuote(quote.guestEmail);
+                saveEmailToQuote(quote.guestEmail);
 
                 newsletterSubscriber.subscriberEmail = self.email();
                 checkoutData.setValidatedEmailValue(self.email());
