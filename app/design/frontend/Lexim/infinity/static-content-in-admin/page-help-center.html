@@ -504,20 +504,21 @@
         $('.help-tab-list').accordion();
 
         $(document).ready(function () {
+
             /**
-             *
-             * @param id . exmaple #ordering
+             * Click tab or click scroll to ID
+             * @param id - example #ordering
              */
             function clickTab(id) {
                 if (!id || $(id).length === 0) {
                     return;
                 }
+
                 let _id = id.substring(1);
                 let newTab = $('[aria-controls="' + _id + '"]');
-                console.log(newTab);
                 let newTargetPos = $('.help-content').offset().top - 100;
+
                 if (newTab.length > 0) { // click tab
-                    console.log("trigger click");
                     newTab.trigger("click");
                 } else { // go to target by ID
                     $('.help-tab-list > div:first-child').trigger("click");
@@ -533,7 +534,7 @@
 
             // Click link on footer
             $(document).on('click', 'a[href^="/help-center#"]', function (e) {
-                console.log('a[href^="/help-center#"]');
+                // console.log('a[href^="/help-center#"]');
                 e.preventDefault();
                 let href = $(this).attr('href');
                 let newTarget = href.split('#');
@@ -544,7 +545,7 @@
 
             // click link in FAQs
             $(document).on('click', 'a[href^="#"]:not(.switch)', function (e) {
-                console.log('a[href^="#"]');
+                // console.log('a[href^="#"]');
 
                 // target element id
                 let id = $(this).attr('href');
@@ -569,7 +570,7 @@
             if (target.length > 0) {
                 $('html, body').stop();
                 // Trigger Click tab
-                $('a.switch[href="' + hash + '"]').trigger('click');
+                // $('a.switch[href="' + hash + '"]').trigger('click');
                 clickTab(hash);
             }
 
