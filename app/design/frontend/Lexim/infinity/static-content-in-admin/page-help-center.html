@@ -4,7 +4,7 @@
         <p>You have questions. We got all the answers</p>
 
         <div class="help-content">
-            <div class="help-tab-list" data-mage-init='{"accordion": {"collapsible": false}}'>
+            <div class="help-tab-list" data-mage-init333='{"accordion": {"collapsible": false}}'>
 
                 <!-- FAQs -->
                 <div class="item title" data-role="collapsible">
@@ -13,12 +13,12 @@
                 <div id="tab-Faqs" class="item content" data-role="content">
                     <div class="left-help-page">
                         <div class="faqs-hash-link">
-                            <p><a href="javascript:void(0)" data-id="#ordering">ORDERING</a></p>
-                            <p><a href="javascript:void(0)" data-id="#shipping">SHIPPING</a></p>
-                            <p><a href="javascript:void(0)" data-id="#returns">RETURN & EXCHANGES</a></p>
-                            <p><a href="javascript:void(0)" data-id="#product">PRODUCT INFO</a></p>
-                            <p><a href="javascript:void(0)" data-id="#promotions">PROMOTIONS & GIFT CARDS</a></p>
-                            <p><a href="javascript:void(0)" data-id="#contact">CONTACT US</a></p>
+                            <p><a href="#ordering">ORDERING</a></p>
+                            <p><a href="#shipping">SHIPPING</a></p>
+                            <p><a href="#returns">RETURN & EXCHANGES</a></p>
+                            <p><a href="#product">PRODUCT INFO</a></p>
+                            <p><a href="#promotions">PROMOTIONS & GIFT CARDS</a></p>
+                            <p><a href="#contact">CONTACT US</a></p>
 
                         </div>
 
@@ -499,29 +499,79 @@
 </div>
 
 <script>
-    require(['jquery', 'jquery/ui'], function ($) {
+    require(['jquery', 'accordion', 'domReady!'], function ($, accordion, doc) {
         'use strict';
-        $(document).ready(function () {
-            let hash = window.location.hash;
-            let target = $(hash);
+        $('.help-tab-list').accordion();
 
-            // Go to hash link when redirect
-            if (target.length > 0) {
+        $(document).ready(function () {
+            /**
+             *
+             * @param id . exmaple #ordering
+             */
+            function clickTab(id) {
+                if (!id || $(id).length === 0) {
+                    return;
+                }
+                let _id = id.substring(1);
+                let newTab = $('[aria-controls="' + _id + '"]');
+                console.log(newTab);
+                let newTargetPos = $('.help-content').offset().top - 100;
+                if (newTab.length > 0) { // click tab
+                    console.log("trigger click");
+                    newTab.trigger("click");
+                } else { // go to target by ID
+                    $('.help-tab-list > div:first-child').trigger("click");
+                    newTargetPos = $(id).offset().top - 100;
+                }
+
+                // scroll page
                 $('html, body').stop().animate({
-                    scrollTop: target.offset().top - 200
+                    scrollTop: newTargetPos
                 }, 500);
             }
 
-            $('.faqs-hash-link a').click(function () {
-                let id = $(this).attr('data-id');
-                target = $(id);
 
-                if (target.length > 0) {
-                    $('html, body').stop().animate({
-                        scrollTop: target.offset().top - 200
-                    }, 500);
+            // Click link on footer
+            $(document).on('click', 'a[href^="/help-center#"]', function (e) {
+                console.log('a[href^="/help-center#"]');
+                e.preventDefault();
+                let href = $(this).attr('href');
+                let newTarget = href.split('#');
+                if (newTarget && newTarget.length === 2) {
+                    clickTab('#' + newTarget[1]);
                 }
-            })
+            });
+
+            // click link in FAQs
+            $(document).on('click', 'a[href^="#"]:not(.switch)', function (e) {
+                console.log('a[href^="#"]');
+
+                // target element id
+                let id = $(this).attr('href');
+
+                // target element
+                let $id = $(id);
+                if ($id.length === 0) {
+                    return;
+                }
+
+                // prevent standard hash navigation (avoid blinking in IE)
+                e.preventDefault();
+
+                $('html, body').stop().animate({
+                    scrollTop: $id.offset().top - 200
+                }, 500);
+            });
+
+            // Go to hash link when redirect
+            let hash = window.location.hash;
+            let target = $(hash);
+            if (target.length > 0) {
+                $('html, body').stop();
+                // Trigger Click tab
+                $('a.switch[href="' + hash + '"]').trigger('click');
+                clickTab(hash);
+            }
 
         });
     });
