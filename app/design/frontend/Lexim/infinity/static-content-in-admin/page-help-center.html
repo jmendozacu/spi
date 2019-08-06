@@ -4,15 +4,24 @@
         <p>You have questions. We got all the answers</p>
 
         <div class="help-content">
-            <div class="help-tab-list" data-mage-init='{"accordion": {"collapsible": true}}'>
+            <div class="help-tab-list" data-mage-init='{"accordion": {"collapsible": false}}'>
 
                 <!-- FAQs -->
                 <div class="item title" data-role="collapsible">
                     <a class="switch" data-toggle="trigger" href="#tab-FAQs">FAQs </a>
                 </div>
                 <div id="tab-FAQs" class="item content" data-role="content">
-
                     <div class="left-help-page">
+                        <div class="faqs-hash-link">
+                            <p><a href="javascript:void(0)" data-id="#ordering">ORDERING</a></p>
+                            <p><a href="javascript:void(0)" data-id="#shipping">SHIPPING</a></p>
+                            <p><a href="javascript:void(0)" data-id="#returns">RETURN & EXCHANGES</a></p>
+                            <p><a href="javascript:void(0)" data-id="#product">PRODUCT INFO</a></p>
+                            <p><a href="javascript:void(0)" data-id="#promotions">PROMOTIONS & GIFT CARDS</a></p>
+                            <p><a href="javascript:void(0)" data-id="#contact">CONTACT US</a></p>
+
+                        </div>
+
                         <div class="static-block">
                             <p class="title">CONTACT US</p>
                             <p class="bold">Hours:</p>
@@ -35,7 +44,7 @@
 
                     <div class="right-help-page">
 
-                        <p class="heading">ORDERING:</p>
+                        <p class="heading" id="ordering">ORDERING:</p>
                         <p class="bold">How do I place an order?</p>
                         <p>Placing an order is simple and secure. Just select the color, size and quantity of the item(s) you would like to purchase and then click the "Add to Bag" button. The Shopping Cart page will display the items in your cart and will allow you to change the quantity of each item you've selected or remove items. From the Shopping Cart page you can either proceed to checkout or continue shopping.</p>
 
@@ -66,7 +75,7 @@
 
                         <p>If you have ordered multiple times, in-stock items will be shipped immediately via your requested shipping method so as not to delay your entire order. Backordered items will be shipped at our cost at no extra charge to you.</p>
 
-                        <p class="heading">SHIPPING:</p>
+                        <p class="heading" id="shipping">SHIPPING:</p>
                         <p class="bold">What if I didn't get an email confirming my shipping information?</p>
                         <p>Please check your email filters and/or blockers to ensure that Infinity is on the safe senders list in your address book. Feel free to contact Customer Care at customerservice@infinityscrubs.com during business hours to get your shipping information.</p>
 
@@ -97,7 +106,7 @@
                         <p class="bold">What if part of my order is backordered?</p>
                         <p>If you have ordered multiple items, in-stock items will be shipped immediately via your requested shipping method so as not to delay your entire order. Payment for any backordered items will be charged upon delivery. You will not be billed any additional shipping fees for backordered items.</p>
 
-                        <p class="heading">RETURNS/EXCHANGES:</p>
+                        <p class="heading" id="returns">RETURNS/EXCHANGES:</p>
                         <p class="bold">What is your return policy?</p>
                         <p>If you're not completely satisfied with any merchandise you have ordered you may return it within 90 days of receipt for a full refund of the purchase price, no questions asked! Please contact us at customerservice@infinityscrubs.com. All items must be in their original condition with their original packaging, instruction manuals, warranties and tags. Laundered garments and footwear showing visible wear are not returnable unless they are defective. If an item was ordered as a set, it must be returned as a set. Please allow 14 business days to process your return.</p>
 
@@ -107,7 +116,7 @@
                         <p class="bold">What if my item is defective?</p>
                         <p>On rare occasions, a product can have a defect that we did not detect or that becomes apparent during use. If a product you've purchased has a manufacturing defect, please contact Customer Care at customerservice@infinityscrubs.com.</p>
 
-                        <p class="heading">PRODUCT INFO:</p>
+                        <p class="heading" id="product">PRODUCT INFO:</p>
 
                         <p class="bold">What's my size?</p>
                         <p>See the chart below to find your size. Infinity's fabric is designed to not shrink, so you don't need to worry about that. Feel free to contact Customer Care if you have any questions about the fit.</p>
@@ -135,7 +144,7 @@
                         <p>At this time we are unable to offer embroidery, but plan to do so in the future. Please make sure you sign up for our mailing list so you can be among the first to know when we do start offering embroidery. Your local retailer may offer embroidery services.</p>
 
 
-                        <p class="heading">PROMOTIONS AND GIFT CARDS:</p>
+                        <p class="heading" id="promotions">PROMOTIONS AND GIFT CARDS:</p>
                         <p class="bold">Do you offer gift cards/certificates?</p>
                         <p>At this time we are not offering gift cards/certificates, but you are welcome to purchase an item as a gift. Make sure you sign up for an account on our site so we can let you know as soon as we offer gift cards.</p>
 
@@ -148,7 +157,7 @@
                         <p class="bold">Can promo codes/coupons be applied to sale items?</p>
                         <p>Promo codes/coupons are not applicable to sale items.</p>
 
-                        <p class="heading">CONTACTING US</p>
+                        <p class="heading" id="contact">CONTACTING US</p>
                         <p class="bold">How do I reach Customer Care?</p>
                         <p>Our representatives are available to help you place an order, find the perfect outfit or tell you more about Infinity.</p>
                         <p><b>Hours:</b><br>Monday - Friday (9am – 9pm ET), Saturday (9am – 5pm ET)</p>
@@ -164,6 +173,7 @@
 
                     </div>
                 </div>
+
 
                 <!-- Privacy -->
                 <div class="item title" data-role="collapsible">
@@ -287,13 +297,13 @@
                     </div>
                 </div>
 
+
                 <!-- Terms -->
                 <div class="item title" data-role="collapsible">
                     <a class="switch" data-toggle="trigger" href="#tab-Terms">Terms of Use</a>
                 </div>
                 <div id="tab-Terms" class="item content" data-role="content">
                     <div class="left-help-page">
-
                         <div class="static-block">
                             <p class="title">CONTACT US</p>
                             <p class="bold">Hours:</p>
@@ -304,7 +314,6 @@
                             <p class="bold">Email:</p>
                             <p><a href="mailto:CustomerService@infinityscrubs.com" class="email">CustomerService@infinityscrubs.com</a></p>
                         </div>
-
                         <div class="static-block">
                             <p class="title">QUICK LINKS</p>
                             <p><a href="https://mcprod.infinityscrubs.com/faqs#ship" target="_blank">How much does shipping cost?</a></p>
@@ -312,64 +321,118 @@
                             <p><a href="https://mcprod.infinityscrubs.com/faqs#return" target="_blank">How do I exchange an item?</a></p>
                             <p class="bold"><a href="https://mcprod.infinityscrubs.com/faqs#territories" target="_blank">Do you ship to APO, FPO and Puerto Rico?</a></p>
                         </div>
-
                     </div>
 
                     <div class="right-help-page">
-                        TERMS OF USE
-                        Welcome to the Infinity by Cherokee Uniforms ("Infinity") web site (the "Site"). Cherokee Uniforms ("Cherokee Uniforms") is a division of Strategic Partners, Inc. ("SPI") (collectively "We"). We are pleased to give you access to this Site. Your use of this Site, and all information, products and services on this Site (collectively, the "Services") are subject to the binding legal terms set forth below ("Terms"). You understand we may update these Terms from time to time without giving you any notice. Unless we let you know by giving you notice, any new features or updated Services that we put on this Site will be subject to these Terms. BY USING THE SITE, YOU AGREE TO EACH OF THESE TERMS OF USE AND OUR PRIVACY POLICY WHETHER OR NOT YOU HAVE READ THEM. IF YOU DO NOT AGREE WITH ANY TERM OR CONDITION SET FORTH BELOW, YOU ARE NOT AUTHORIZED TO USE THE SERVICES FOR ANY PURPOSE.
+                        <p class="heading">TERMS OF USE</p>
 
-                        In order to use this Site and the Services, you need Internet access. You also need certain equipment to access this Site and the Services, including a computer, modem mobile phone and other devices. You agree to pay for Internet access and the equipment needed, and we are not responsible for any of these costs. These Terms of Use govern your use of our Site and your conduct, regardless of the means of access.
+                        <p>Welcome to the Infinity by Cherokee Uniforms ("Infinity") web site (the "Site"). Cherokee Uniforms ("Cherokee Uniforms") is a division of Strategic Partners, Inc. ("SPI") (collectively "We"). We are pleased to give you access to this Site. Your use of this Site, and all information, products and services on this Site (collectively, the "Services") are subject to the binding legal terms set forth below ("Terms"). You understand we may update these Terms from time to time without giving you any notice. Unless we let you know by giving you notice, any new features or updated Services that we put on this Site will be subject to these Terms. BY USING THE SITE, YOU AGREE TO EACH OF THESE TERMS OF USE AND OUR PRIVACY POLICY WHETHER OR NOT YOU HAVE READ THEM. IF YOU DO NOT AGREE WITH ANY TERM OR CONDITION SET FORTH BELOW, YOU ARE NOT AUTHORIZED TO USE THE SERVICES FOR ANY PURPOSE.</p>
 
-                        While we try to support most browsers, the Site may require users to keep their browsers and operating systems up-to-date. We are not responsible of the Site does not work on your browser and/or computer.
+                        <p>In order to use this Site and the Services, you need Internet access. You also need certain equipment to access this Site and the Services, including a computer, modem mobile phone and other devices. You agree to pay for Internet access and the equipment needed, and we are not responsible for any of these costs. These Terms of Use govern your use of our Site and your conduct, regardless of the means of access.</p>
 
-                        You are only eligible to use this Site if you are of legal age in your country or you have consent from your parent or guardian.
+                        <p>While we try to support most browsers, the Site may require users to keep their browsers and operating systems up-to-date. We are not responsible of the Site does not work on your browser and/or computer.</p>
 
-                        Site Contents
-                        All content, graphics, code and software used on or incorporated into this Site, and the arrangement or integration of all such content, graphics, code and software, are subject to copyrights held by or licensed to Cherokee Uniforms and/or SPI, and all rights thereto are specifically reserved.This Site may contain typographical errors or inaccuracies and may not be complete or current. We therefore reserve the right to correct any errors, inaccuracies or omissions (including after an order has been submitted) and to change or update information at any time without prior notice. Please note that such errors, inaccuracies or omissions may relate to pricing and availability. We apologize for any inconvenience.
+                        <p>You are only eligible to use this Site if you are of legal age in your country or you have consent from your parent or guardian.</p>
 
-                        Copyright and Trademarks"Infinity by Cherokee" as well as page headers, custom graphics, buttons, images and other content on this Site, are subject to trademark, service mark, trade dress, copyright and or other proprietary or intellectual property rights or licenses held by SPI. Other trademarks, product names and company names or logos used on this Site are the property of their respective owners. Except as expressly authorized, the use or misuse of any trademarks, trade names, logos, images, graphics or content from this Site is strictly prohibited.You may download, copy or share content, graphics, code and software from this Site for your personal use only. No right, title or interest in any downloaded content, graphics, code or software is transferred to you as a result of any such downloading or copying. You may not reproduce (except as noted above), publish, transmit, distribute, display, modify, create derivative works from, sell or participate in
-                        any sale of or exploit in any way, in whole or in part, any of the content, graphics, code or software without permission.
+                        <p class="bold">Site Contents</p>
 
-                        Product InformationThe products displayed on the Site can be ordered and delivered only within the U.S.. Products displayed on the Site may be available in select retail stores in the U.S. and certain foreign markets. All prices displayed on InfinityScrubs.com are quoted in U.S. Dollars and are valid and effective only in the U.S.. Reference to any products, services, processes or other information by trade name, trademark, manufacturer, supplier or otherwise does not constitute or imply endorsement, sponsorship or recommendation thereof by us. All prices displayed are real-time pricing and are subject to change at our sole discretion. The products available on the Site and the Services, including any gifts with purchase we may provide to you, are for your personal use only. You may not sell or resell any products you purchase or otherwise receive from us. We reserve the right, with or without notice, to cancel or reduce the quantity of any order to be filled
-                        or products to be provided to you that may result in a violation of these Terms of Use, as determined by us in our sole discretion.Given the popularity of our products, and except where prohibited by law, we may limit the number available for purchase, so that as many clients as possible may enjoy our merchandise.
+                        <p>All content, graphics, code and software used on or incorporated into this Site, and the arrangement or integration of all such content, graphics, code and software, are subject to copyrights held by or licensed to Cherokee Uniforms and/or SPI, and all rights thereto are specifically reserved.</p>
 
-                        ColorsWe have made every effort to display as accurately as possible the colors of our products that appear on this Site. However, as the actual colors you see will depend on your monitor, we cannot guarantee that your monitor's display of any color will be accurate.
+                        <p>This Site may contain typographical errors or inaccuracies and may not be complete or current. We therefore reserve the right to correct any errors, inaccuracies or omissions (including after an order has been submitted) and to change or update information at any time without prior notice. Please note that such errors, inaccuracies or omissions may relate to pricing and availability. We apologize for any inconvenience.</p>
 
-                        Your Postings to this SitWe may permit you to transmit or post comments, feedback, suggestions, ideas and information or content (collectively "Content"). If you transmit or post any Content, on or through this Site, you guarantee to us that you have legal rights to post the Content and it will not violate any law or the rights of any person. You further agree that Content posted or transmitted by you will not be and will not contain libelous or otherwise unlawful, abusive or obscene material. You are and shall remain solely responsible for any Content you post or transmit.All Content is subject to the following terms: by posting Content you give us the royalty-free, irrevocable, perpetual, worldwide right to: allow other people to use the Content as described in these Terms; and to use, distribute, display and create derivative works from the Content, in any and all media, in any manner, in whole or in part, without any restriction or responsibilities to
-                        you; you understand that we are not responsible for the truth, completeness, objectivity or usefulness of any Content, nor do we endorse any Content; we do not verify the identity of people using our Site, and you assume the risk of believing any Content you read; we do not screen, monitor, edit or review Content; we do have the right to monitor or remove any Content at any time and without notice if we believe it will improve our Site; and we can also suspend or terminate use of this Site or the Services by anyone who does not follow these Terms.We are and shall be under no obligation: to maintain any Content in confidence; to pay to user any compensation for any Content; or to respond to any Content.
+                        <p class="bold">Copyright and Trademarks</p>
 
-                        Third Party Content and Third Party SitesWe may provide content of third parties ("Third Party Content") or links to Third Party Sites as a service to those interested in this information. We do not monitor, approve or have any control over any Third Party Content or the Third Party Sites and the inclusion of links to Third Party Content or Third Party Sites does not imply any association or relationship between us and such third party. We do not guarantee, endorse or adopt the accuracy or completeness of any Third Party Content or any Third Party Site. We are not responsible for updating or reviewing Third-party Content or Third Party Sites. You use Third Party Content and Third Party Sites at your own risk. Third Party Content, including comments from third party users submitted to us through the Services, do not necessarily reflect our views.
+                        <p>"Infinity by Cherokee" as well as page headers, custom graphics, buttons, images and other content on this Site, are subject to trademark, service mark, trade dress, copyright and or other proprietary or intellectual property rights or licenses held by SPI. Other trademarks, product names and company names or logos used on this Site are the property of their respective owners. Except as expressly authorized, the use or misuse of any trademarks, trade names, logos, images, graphics or content from this Site is strictly prohibited.</p>
 
-                        Mobile ServicesIf you access the Site via your mobile phone (through an iPhone application, for example), we do not currently charge for this access. Please be aware that your carrier's normal rates and fees, such as text messaging fees or data charges, will still apply
+                        <p>You may download, copy or share content, graphics, code and software from this Site for your personal use only. No right, title or interest in any downloaded content, graphics, code or software is transferred to you as a result of any such downloading or copying. You may not reproduce (except as noted above), publish, transmit, distribute, display, modify, create derivative works from, sell or participate in any sale of or exploit in any way, in whole or in part, any of the content, graphics, code or software without permission.</p>
 
-                        Disclosure of Your IdentityFrom time to time we may receive requests to disclose the identities of our users. We do not disclose the identities of our users unless we are legally required to do so.If a governmental agency (for example, the Securities and Exchange Commission, law enforcement agencies, U.S. Attorneys' offices or similar governmental agencies) sends us a subpoena, we will comply with it. If we receive a subpoena by a third party that is not a governmental agency (for example, a subpoena in connection with civil litigation), we will contact the user whose identity has been requested using the contact information the user provided during the registration process. We will wait 10 days after notifying the user before complying with the subpoena, unless the subpoena requires us to disclose this information before then. If we cannot wait 10 days because of the deadline in the subpoena, we will let the user know the deadline included in the subpoena
-                        when we provide notice that we received it.DMCAIf you believe that your work has been copied in a way that constitutes copyright infringement, please provide our copyright agent the written information specified below. Please note that this procedure is exclusively for notifying us and our affiliates and its affiliates that your copyrighted material has been infringed.An electronic or physical signature of the person authorized to act on behalf of the owner of the copyright interest;
-                        A description of the copyrighted work that you claim has been infringed upon;
-                        A description of where the material that you claim is infringing is located on the site;
-                        Your address, telephone number, and e-mail address;
-                        A statement by you that you have a good-faith belief that the disputed use is not authorized by the copyright owner, its agent, or the law;
-                        A statement by you, made under penalty of perjury, that the above information in your notice is accurate and that you are the copyright owner or authorized to act on the copyright owner's behalf.
-                        Send here:
-                        Infinity by CherokeeAttn: Marketing Department9800 De Soto AvenueChatsworth, California 91311Fraud Protection ProgramAs part of our order processing procedures, we screen all received orders for fraud or other types of unauthorized or illegal activity. We reserve the right to refuse to process an order due to suspected fraud or unauthorized or illegal activity. If such is the case, we may reject your order or our Customer Service department may call you at the phone number you provided (or use your email address) to confirm your order. We also reserve the right to cancel any accounts or refuse to ship to certain addresses due to suspected fraud or unauthorized or illegal activity. We take these measures to protect our customers as well as ourselves from fraud or other unauthorized or illegal activity.
+                        <p class="bold">Product Information</p>
 
-                        IndemnityYou understand that you are personally responsible for your use of this Site and the Services and you agree to indemnify and hold SPI and its affiliates and their officers, directors, employees and agents harmless from and against any loss, damage, liability, cost or expense of any kind (including attorneys' fees) that we may incur in connection with a third party claim or otherwise, in relation to your use of this Site or the Services, or your violation of either these Terms or the rights of any third party.
+                        <p>The products displayed on the Site can be ordered and delivered only within the U.S.. Products displayed on the Site may be available in select retail stores in the U.S. and certain foreign markets. All prices displayed on InfinityScrubs.com are quoted in U.S. Dollars and are valid and effective only in the U.S.. Reference to any products, services, processes or other information by trade name, trademark, manufacturer, supplier or otherwise does not constitute or imply endorsement, sponsorship or recommendation thereof by us. All prices displayed are real-time pricing and are subject to change at our sole discretion.</p>
 
-                        Disclaimer of WarrantiesYOU UNDERSTAND THAT YOUR USE OF THIS SITE OR THE SERVICES (INCLUDING ANY DOWNLOAD FROM THIS SITE AND ANY LOSS OF DATA OR OTHER DAMAGE TO YOUR COMPUTER SYSTEM YOU EXPERIENCE FROM USING THIS SITE OR THE SERVICES) IS AT YOUR SOLE RISK. YOU UNDERSTAND THAT THIS SITE AND THE SERVICES AND ALL INFORMATION, PRODUCTS AND OTHER CONTENT (INCLUDING THIRD PARTY INFORMATION, PRODUCTS AND CONTENT) ACCESSIBLE ON OR THROUGH THIS SITE, ARE PROVIDED ON AN "AS IS" "WHERE-IS" AND "WHEN AVAILABLE" BASIS, AND ARE SUBJECT TO CHANGE AT ANY TIME WITHOUT NOTICE TO YOU. YOU ACKNOWLEDGE THAT SPI MAKES NO REPRESENTATION OR WARRANTY THAT THIS SITE OR THE SERVICES WILL BE UNINTERRUPTED, TIMELY, SECURE OR ERROR-FREE. YOU UNDERSTAND THAT SPI DOES NOT REPRESENT OR WARRANT THAT THE RESULTS OBTAINED FROM YOUR USE OF THE SERVICES WILL MEET YOUR EXPECTATIONS. NO WARRANTY OF ANY KIND, WHETHER ORAL OR WRITTEN, CAN MODIFY THE TERMS OF THE DISCLAIMER SET FORTH IN THIS PARAGRAPH.
+                        <p>The products available on the Site and the Services, including any gifts with purchase we may provide to you, are for your personal use only. You may not sell or resell any products you purchase or otherwise receive from us. We reserve the right, with or without notice, to cancel or reduce the quantity of any order to be
+                            filled or products to be provided to you that may result in a violation of these Terms of Use, as determined by us in our sole discretion.</p>
 
-                        TO THE FULLEST EXTENT PERMITTED BY LAW, SPI DISCLAIMS ALL REPRESENTATIONS, WARRANTIES AND CONDITIONS OF ANY KIND (EXPRESS, IMPLIED, STATUTORY OR OTHERWISE, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE, TITLE AND NON-INFRINGEMENT OF PROPRIETARY RIGHTS) AS TO THE SERVICES AND ALL INFORMATION, PRODUCTS AND OTHER CONTENT (INCLUDING THIRD PARTY INFORMATION, PRODUCTS AND CONTENT) INCLUDED IN OR ACCESSIBLE FROM THIS SITE.
+                        <p>Given the popularity of our products, and except where prohibited by law, we may limit the number available for purchase, so that as many clients as possible may enjoy our merchandise.</p>
 
-                        Liability DisclaimerTO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT WILL SPI OR ITS AFFILIATES BE LIABLE TO YOU (OR ANY THIRD PARTY MAKING CLAIMS THROUGH YOU) FOR ANY DAMAGES WHATSOEVER, INCLUDING BUT NOT LIMITED TO ANY DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, PUNITIVE OR INCIDENTAL DAMAGES, OR DAMAGES FOR LOSS OF USE, PROFITS, DATA OR OTHER INTANGIBLES, OR THE COST OF PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES, UNAUTHORIZED ACCESS TO AND TAMPERING WITH YOUR PERSONAL INFORMATION OR TRANSMISSIONS, ARISING OUT OF OR RELATED TO THE USE, INABILITY TO USE, UNAUTHORIZED USE, PERFORMANCE OR NON-PERFORMANCE OF THIS SITE OR THE SERVICES, EVEN IF SPI HAS BEEN ADVISED PREVIOUSLY OF THE POSSIBILITY OF SUCH DAMAGES AND WHETHER SUCH DAMAGES ARISE IN CONTRACT, NEGLIGENCE, TORT, UNDER STATUTE, IN EQUITY, AT LAW OR OTHERWISE.
+                        <p class="bold">Colors</p>
 
-                        Access Restrictions; TerminationWe can terminate your access to this Site or the Services at any time, without cause and without notice to you.We can also change these Terms at any time, without notice to you, and your continued use of the Services after any change we make will mean that you have agreed with the changes. IN THE EVENT THAT YOU DO NOT AGREE TO ANY CHANGE, YOU ARE NOT AUTHORIZED TO ACCESS THIS SITE OR USE THE SERVICES IN ANY MANNER FOR ANY PURPOSE.Upon any termination of these Terms you must promptly destroy all materials downloaded or otherwise obtained from this Site, as well as all copies of such materials.
+                        <p>We have made every effort to display as accurately as possible the colors of our products that appear on this Site. However, as the actual colors you see will depend on your monitor, we cannot guarantee that your monitor's display of any color will be accurate.</p>
 
-                        Miscellaneous
-                        These Terms are the entire agreement between you and SPI. They supersede any and all prior or contemporaneous agreements between you and SPI relating to your use of this Site or the Services. If any part of these Terms is determined to be invalid or unenforceable, it will not impact any other provision of these Terms, all of which will remain in full force and effect. These Terms are governed by, and will be interpreted in accordance with, the laws of the State of California, without regard to any choice of law provisions. You agree that, with the exception of injunctive relief sought by SPI for any violation of SPI proprietary or other rights, any and all disputes relating to these Terms, your use of this Site or the Services shall be resolved by arbitration in accordance with the then-current rules of JAMS/Endispute, Inc. ("JAMS") before an independent arbitrator designated by the JAMS. The location of arbitration shall be Los Angeles, California, USA. You may
-                        direct any questions concerning these Terms to:
+                        <p class="bold">Your Postings to this Sit</p>
 
-                        Infinity by CherokeeAttention: Legal Department 9800 De Soto AvenueChatsworth, California 91311CustomerService@infinityscrubs.com
+                        <p>We may permit you to transmit or post comments, feedback, suggestions, ideas and information or content (collectively "Content"). If you transmit or post any Content, on or through this Site, you guarantee to us that you have legal rights to post the Content and it will not violate any law or the rights of any person. You further agree that Content posted or transmitted by you will not be and will not contain libelous or otherwise unlawful, abusive or obscene material. You are and shall remain solely responsible for any Content you post or transmit.</p>
+
+                        <p>All Content is subject to the following terms: by posting Content you give us the royalty-free, irrevocable, perpetual, worldwide right to: allow other people to use the Content as described in these Terms; and to use, distribute, display and create derivative works from the Content, in any and all media, in any manner, in whole or in part, without any restriction or responsibilities to you; you understand that we are not responsible for the truth, completeness, objectivity or usefulness of any Content, nor do we endorse any Content; we do not verify the identity of people using our Site, and you assume the risk of believing any Content you read; we do not screen, monitor, edit or review Content; we do have the right to monitor or remove any Content at any time and without notice if we believe it will improve our Site; and we can also suspend or terminate use of this Site or the Services by anyone who does not follow these Terms.</p>
+
+                        <p>We are and shall be under no obligation: to maintain any Content in confidence; to pay to user any compensation for any Content; or to respond to any Content.</p>
+
+                        <p class="bold">Third Party Content and Third Party Sites</p>
+
+                        <p>We may provide content of third parties ("Third Party Content") or links to Third Party Sites as a service to those interested in this information. We do not monitor, approve or have any control over any Third Party Content or the Third Party Sites and the inclusion of links to Third Party Content or Third Party Sites does not imply any association or relationship between us and such third party. We do not guarantee, endorse or adopt the accuracy or completeness of any Third Party Content or any Third Party Site. We are not responsible for updating or reviewing Third-party Content or Third Party Sites. You use Third Party Content and Third Party Sites at your own risk. Third Party Content, including comments from third party users submitted to us through the Services, do not necessarily reflect our views.</p>
+
+                        <p class="bold">Mobile Services</p>
+
+                        <p>If you access the Site via your mobile phone (through an iPhone application, for example), we do not currently charge for this access. Please be aware that your carrier's normal rates and fees, such as text messaging fees or data charges, will still apply.</p>
+
+                        <p class="bold">Disclosure of Your Identity</p>
+
+                        <p>From time to time we may receive requests to disclose the identities of our users. We do not disclose the identities of our users unless we are legally required to do so.</p>
+                        <p>If a governmental agency (for example, the Securities and Exchange Commission, law enforcement agencies, U.S. Attorneys' offices or similar governmental agencies) sends us a subpoena, we will comply with it. If we receive a subpoena by a third party that is not a governmental agency (for example, a subpoena in connection with civil litigation), we will contact the user whose identity has been requested using the contact information the user provided during the registration process. We will wait 10 days after notifying the user before complying with the subpoena, unless the subpoena requires us to disclose this information before then. If we cannot wait 10 days because of the deadline in the subpoena, we will let the user know the deadline included in the subpoena when we provide notice that we received it.</p>
+
+                        <p class="bold">DMCA</p>
+
+                        <p>If you believe that your work has been copied in a way that constitutes copyright infringement, please provide our copyright agent the written information specified below. Please note that this procedure is exclusively for notifying us and our affiliates and its affiliates that your copyrighted material has been infringed.</p>
+
+                        <p>An electronic or physical signature of the person authorized to act on behalf of the owner of the copyright interest;<br>
+                            A description of the copyrighted work that you claim has been infringed upon;<br>
+                            A description of where the material that you claim is infringing is located on the site;<br>
+                            Your address, telephone number, and e-mail address;<br>
+                            A statement by you that you have a good-faith belief that the disputed use is not authorized by the copyright owner, its agent, or the law;<br>
+                            A statement by you, made under penalty of perjury, that the above information in your notice is accurate and that you are the copyright owner or authorized to act on the copyright owner's behalf.</p>
+
+                        <p>Send here:</p>
+                        <p>Infinity by Cherokee<br>
+                            Attn: Marketing Department<br>
+                            9800 De Soto Avenue<br>
+                            Chatsworth, California 91311
+                        </p>
+
+                        <p class="bold">Fraud Protection Program</p>
+
+                        <p>As part of our order processing procedures, we screen all received orders for fraud or other types of unauthorized or illegal activity. We reserve the right to refuse to process an order due to suspected fraud or unauthorized or illegal activity. If such is the case, we may reject your order or our Customer Service department may call you at the phone number you provided (or use your email address) to confirm your order. We also reserve the right to cancel any accounts or refuse to ship to certain addresses due to suspected fraud or unauthorized or illegal activity. We take these measures to protect our customers as well as ourselves from fraud or other unauthorized or illegal activity.</p>
+
+                        <p class="bold">Indemnity</p>
+
+                        <p>You understand that you are personally responsible for your use of this Site and the Services and you agree to indemnify and hold SPI and its affiliates and their officers, directors, employees and agents harmless from and against any loss, damage, liability, cost or expense of any kind (including attorneys' fees) that we may incur in connection with a third party claim or otherwise, in relation to your use of this Site or the Services, or your violation of either these Terms or the rights of any third party.</p>
+
+                        <p class="bold">Disclaimer of Warranties</p>
+
+                        <p>YOU UNDERSTAND THAT YOUR USE OF THIS SITE OR THE SERVICES (INCLUDING ANY DOWNLOAD FROM THIS SITE AND ANY LOSS OF DATA OR OTHER DAMAGE TO YOUR COMPUTER SYSTEM YOU EXPERIENCE FROM USING THIS SITE OR THE SERVICES) IS AT YOUR SOLE RISK. YOU UNDERSTAND THAT THIS SITE AND THE SERVICES AND ALL INFORMATION, PRODUCTS AND OTHER CONTENT (INCLUDING THIRD PARTY INFORMATION, PRODUCTS AND CONTENT) ACCESSIBLE ON OR THROUGH THIS SITE, ARE PROVIDED ON AN "AS IS" "WHERE-IS" AND "WHEN AVAILABLE" BASIS, AND ARE SUBJECT TO CHANGE AT ANY TIME WITHOUT NOTICE TO YOU. YOU ACKNOWLEDGE THAT SPI MAKES NO REPRESENTATION OR WARRANTY THAT THIS SITE OR THE SERVICES WILL BE UNINTERRUPTED, TIMELY, SECURE OR ERROR-FREE. YOU UNDERSTAND THAT SPI DOES NOT REPRESENT OR WARRANT THAT THE RESULTS OBTAINED FROM YOUR USE OF THE SERVICES WILL MEET YOUR EXPECTATIONS. NO WARRANTY OF ANY KIND, WHETHER ORAL OR WRITTEN, CAN MODIFY THE TERMS OF THE DISCLAIMER SET FORTH IN THIS PARAGRAPH.</p>
+
+                        <p>TO THE FULLEST EXTENT PERMITTED BY LAW, SPI DISCLAIMS ALL REPRESENTATIONS, WARRANTIES AND CONDITIONS OF ANY KIND (EXPRESS, IMPLIED, STATUTORY OR OTHERWISE, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE, TITLE AND NON-INFRINGEMENT OF PROPRIETARY RIGHTS) AS TO THE SERVICES AND ALL INFORMATION, PRODUCTS AND OTHER CONTENT (INCLUDING THIRD PARTY INFORMATION, PRODUCTS AND CONTENT) INCLUDED IN OR ACCESSIBLE FROM THIS SITE.</p>
+
+                        <p class="bold">Liability Disclaimer</p>
+
+                        <p>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT WILL SPI OR ITS AFFILIATES BE LIABLE TO YOU (OR ANY THIRD PARTY MAKING CLAIMS THROUGH YOU) FOR ANY DAMAGES WHATSOEVER, INCLUDING BUT NOT LIMITED TO ANY DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, PUNITIVE OR INCIDENTAL DAMAGES, OR DAMAGES FOR LOSS OF USE, PROFITS, DATA OR OTHER INTANGIBLES, OR THE COST OF PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES, UNAUTHORIZED ACCESS TO AND TAMPERING WITH YOUR PERSONAL INFORMATION OR TRANSMISSIONS, ARISING OUT OF OR RELATED TO THE USE, INABILITY TO USE, UNAUTHORIZED USE, PERFORMANCE OR NON-PERFORMANCE OF THIS SITE OR THE SERVICES, EVEN IF SPI HAS BEEN ADVISED PREVIOUSLY OF THE POSSIBILITY OF SUCH DAMAGES AND WHETHER SUCH DAMAGES ARISE IN CONTRACT, NEGLIGENCE, TORT, UNDER STATUTE, IN EQUITY, AT LAW OR OTHERWISE.</p>
+
+                        <p class="bold">Access Restrictions; Termination</p>
+
+                        <p>We can terminate your access to this Site or the Services at any time, without cause and without notice to you.We can also change these Terms at any time, without notice to you, and your continued use of the Services after any change we make will mean that you have agreed with the changes. IN THE EVENT THAT YOU DO NOT AGREE TO ANY CHANGE, YOU ARE NOT AUTHORIZED TO ACCESS THIS SITE OR USE THE SERVICES IN ANY MANNER FOR ANY PURPOSE.Upon any termination of these Terms you must promptly destroy all materials downloaded or otherwise obtained from this Site, as well as all copies of such materials.</p>
+
+                        <p class="bold">Miscellaneous</p>
+                        <p>These Terms are the entire agreement between you and SPI. They supersede any and all prior or contemporaneous agreements between you and SPI relating to your use of this Site or the Services. If any part of these Terms is determined to be invalid or unenforceable, it will not impact any other provision of these Terms, all of which will remain in full force and effect. These Terms are governed by, and will be interpreted in accordance with, the laws of the State of California, without regard to any choice of law provisions. You agree that, with the exception of injunctive relief sought by SPI for any violation of SPI proprietary or other rights, any and all disputes relating to these Terms, your use of this Site or the Services shall be resolved by arbitration in accordance with the then-current rules of JAMS/Endispute, Inc. ("JAMS") before an independent arbitrator designated by the JAMS. The location of arbitration shall be Los Angeles, California, USA. You
+                            may direct any questions concerning these Terms to:</p>
+
+                        <p>Infinity by Cherokee<br>
+                            Attention: Legal Department <br>
+                            9800 De Soto Avenue<br>
+                            Chatsworth, California 91311<br>
+                            <a href="mailto:CustomerService@infinityscrubs.com" class="email">CustomerService@infinityscrubs.com</a>
+                        </p>
                     </div>
                 </div>
+
 
                 <!-- Supply -->
                 <div class="item title" data-role="collapsible">
@@ -399,15 +462,33 @@
                     </div>
 
                     <div class="right-help-page">
-                        California Transparency in Supply Chains Act of 2010 Disclosures*
+                        <p class="heading">California Transparency in Supply Chains Act of 2010 Disclosures*</p>
 
-                        At Strategic Partners, Inc. (SPI), we are committed to maintaining a standard of excellence in every aspect of our supply chain. We continually strive to achieve the goal of ensuring that the working conditions of SPI's supply chain are safe, that workers are treated with respect and dignity, and that manufacturing processes are environmentally responsible. SPI's suppliers must commit in all their activities to operate in full compliance with the local laws and regulations in the countries in which they operate.VERIFICATIONPrior to partnering with any new suppliers, and annually thereafter, we require suppliers to sign our Code of Conduct for Suppliers certifying that they do not engage in human trafficking and/or forced labor. Our process is managed by our own risk-management.SUPPLIER AUDITSEach year we conduct announced and unannounced audits of each supplier to determine if they are complying with our company standards aimed at ensuring human
-                        trafficking and/or forced labor is not tainting our products. Since we began auditing our suppliers, we have found all of them to be in compliance with our standards. Our risk-management team or 3rd party audit firms conduct the audits. Audits consist of reviewing time cards, going on an extensive facility tour and conducting individual interviews with employees.CERTIFICATIONAs a condition of doing business with SPI all suppliers must sign SPI's Code of Conduct for Suppliers and answer specific questions certifying that: (1) No employee is less than the legal minimum working age, but in no event is less than 15 years of age; (2) That all workers are there voluntarily; (3) That all employees are free to leave once their shift ends; (4) That the lowest hourly wage is at least the minimum required by government standards; (5) That no employee works more hours in a given week than the legal maximum; and (6) That employees are given adequate time for meals during
-                        each shift. Each supplier must sign SPI's Code of Conduct for Suppliers annually and records are maintained at SPI's offices in Chatsworth, CA.INTERNAL ACCOUNTABILITYNon-compliance with our company standards regarding slavery and trafficking will result in termination of a business relationship with an employee or contractor.TRAININGAlthough at this time SPI does not provide employees or contractors with formal training on human trafficking and slavery, it has devoted resources to providing supply chain oversight by hiring a Director of Social Compliance and empowering its EVP of Sourcing and Procurement to take all necessary steps with SPI's suppliers.
+                        <p>At Strategic Partners, Inc. (SPI), we are committed to maintaining a standard of excellence in every aspect of our supply chain. We continually strive to achieve the goal of ensuring that the working conditions of SPI's supply chain are safe, that workers are treated with respect and dignity, and that manufacturing processes are environmentally responsible. SPI's suppliers must commit in all their activities to operate in full compliance with the local laws and regulations in the countries in which they operate.</p>
 
-                        * The above disclosures only apply to the apparel products SPI designs, manufactures and distributes. SPI does not have policies or procedures in place for the other products it manufactures and/or purchases from vendors for the purpose of distributing such products (e.g., footwear, legwear, accessories and gift-with-purchase items (GWP)). This page will be updated when such policies and procedures have been finalized.
+                        <p class="bold">VERIFICATION</p>
 
-                        CTSCA Disclosure – 12/8/16
+                        <p>Prior to partnering with any new suppliers, and annually thereafter, we require suppliers to sign our Code of Conduct for Suppliers certifying that they do not engage in human trafficking and/or forced labor. Our process is managed by our own risk-management.</p>
+
+                        <p class="bold">SUPPLIER AUDITS</p>
+
+                        <p>Each year we conduct announced and unannounced audits of each supplier to determine if they are complying with our company standards aimed at ensuring human trafficking and/or forced labor is not tainting our products. Since we began auditing our suppliers, we have found all of them to be in compliance with our standards. Our risk-management team or 3rd party audit firms conduct the audits. Audits consist of reviewing time cards, going on an extensive facility tour and conducting individual interviews with employees.</p>
+
+                        <p class="bold">CERTIFICATION</p>
+
+                        <p>As a condition of doing business with SPI all suppliers must sign SPI's Code of Conduct for Suppliers and answer specific questions certifying that: (1) No employee is less than the legal minimum working age, but in no event is less than 15 years of age; (2) That all workers are there voluntarily; (3) That all employees are free to leave once their shift ends; (4) That the lowest hourly wage is at least the minimum required by government standards; (5) That no employee works more hours in a given week than the legal maximum; and (6) That employees are given adequate time for meals during each shift. Each supplier must sign SPI's Code of Conduct for Suppliers annually and records are maintained at SPI's offices in Chatsworth, CA.</p>
+
+                        <p class="bold">INTERNAL ACCOUNTABILITY</p>
+
+                        <p>Non-compliance with our company standards regarding slavery and trafficking will result in termination of a business relationship with an employee or contractor.</p>
+
+                        <p class="bold">TRAINING</p>
+
+                        <p>Although at this time SPI does not provide employees or contractors with formal training on human trafficking and slavery, it has devoted resources to providing supply chain oversight by hiring a Director of Social Compliance and empowering its EVP of Sourcing and Procurement to take all necessary steps with SPI's suppliers.</p>
+
+                        <p>* The above disclosures only apply to the apparel products SPI designs, manufactures and distributes. SPI does not have policies or procedures in place for the other products it manufactures and/or purchases from vendors for the purpose of distributing such products (e.g., footwear, legwear, accessories and gift-with-purchase items (GWP)). This page will be updated when such policies and procedures have been finalized.</p>
+
+                        <p>CTSCA Disclosure – 12/8/16</p>
                     </div>
                 </div>
 
@@ -416,3 +497,33 @@
         </div>
     </div>
 </div>
+
+<script>
+    require(['jquery', 'jquery/ui'], function ($) {
+        'use strict';
+        $(document).ready(function () {
+            let hash = window.location.hash;
+            let target = $(hash);
+
+            // Go to hash link when redirect
+            if (target.length > 0) {
+                $('html, body').stop().animate({
+                    scrollTop: target.offset().top - 200
+                }, 500);
+            }
+
+            $('.faqs-hash-link a').click(function () {
+                let id = $(this).attr('data-id');
+                target = $(id);
+
+                if (target.length > 0) {
+                    $('html, body').stop().animate({
+                        scrollTop: target.offset().top - 200
+                    }, 500);
+                }
+            })
+
+        });
+    });
+
+</script>
