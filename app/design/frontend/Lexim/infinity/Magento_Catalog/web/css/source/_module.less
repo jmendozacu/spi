@@ -191,6 +191,69 @@
         }
     }
 
+    .size-chart-html {
+        background: #fff;
+        padding: 40px;
+
+        h3 {
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            margin: 0;
+            padding: 0 0 20px;
+        }
+
+        h4 {
+            font-size: 14px;
+            text-align: center;
+            font-weight: bold;
+            margin: 0;
+            padding: 0 0 20px;
+        }
+
+
+        h5 {
+            font-size: 16px;
+            text-align: left;
+            font-weight: bold;
+            margin: 0;
+            padding: 0 0 20px;
+        }
+
+        .tr {
+            .display-flex();
+            .justify-content(center);
+
+            > div {
+                .flex(1);
+                padding: 10px 7px;
+            }
+
+            &.th {
+                font-weight: bold;
+                border-bottom: 1px solid;
+            }
+        }
+
+        .tr:not(.th):hover {
+            background: #3bc1cc;
+        }
+
+        p {
+            margin: 0;
+            padding: 0;
+        }
+
+        .ps {
+            text-align: left;
+            margin: 0;
+            font-size: 12px;
+            color: #a7a4a3;
+        }
+
+    }
+
+
     .product.media {
         .product.photo .photo.image {
         }

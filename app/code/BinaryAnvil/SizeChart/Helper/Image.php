@@ -113,10 +113,11 @@ class Image extends AbstractHelper
         }
     }
 
+
     /**
      * @param $product
-     *
      * @return bool|string
+     * @throws LocalizedException
      */
     public function getSizeChart($product)
     {

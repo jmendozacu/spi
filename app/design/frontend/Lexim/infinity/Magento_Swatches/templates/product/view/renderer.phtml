@@ -11,14 +11,20 @@
 
 $helper = $this->helper('BinaryAnvil\SizeChart\Helper\Image');
 $attributeName = $helper->showInAttribute();
+
+$product = $block->getProduct();
+$curCat = $product->getCategory();
+
 ?>
 <div class="swatch-opt" data-role="swatch-options"></div>
 
-<?php if ($sizeChar = $helper->getSizeChart($block->getProduct())): ?>
+<?php
+
+if ($curCat) { ?>
     <div class="size-chart" style="display: none">
-        <img src="<?= $sizeChar ?>"/>
+        <?= $curCat->getData('category_size_chart') ?>
     </div>
-<?php endif; ?>
+<?php }  ?>
 
 <script type="text/x-magento-init">
     {
