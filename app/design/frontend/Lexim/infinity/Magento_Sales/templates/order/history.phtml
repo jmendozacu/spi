@@ -73,9 +73,16 @@ $blockTotals = $objectManager->get('Magento\Sales\Block\Order\Totals');
                                     <span><?= /* @escapeNotVerified */ __('Reorder') ?></span>
                                 </a>
                             <?php endif ?>
-                            <a href="#" class="action track-order">
-                                <span><?= /* @escapeNotVerified */ __('Track Order') ?></span>
-                            </a>
+                            <?php foreach ($_order->getShipmentsCollection() as $_shipment): ?>
+                                <?php $tracks = $_shipment->getTracksCollection(); ?>
+                                <?php  if ($tracks->count()): ?>
+                                        <?php foreach ($tracks as $track): ?>
+                                        <a href="#" class="action track track-order"
+                                            data-mage-init='{"popupWindow": {"windowURL":"<?= /* @escapeNotVerified */ $this->helper('Magento\Shipping\Helper\Data')->getTrackingPopupUrlBySalesModel($track) ?>","windowName":"trackorder","width":800,"height":600,"left":0,"top":0,"resizable":1,"scrollbars":1}}'><span><?= /* @escapeNotVerified */ __('Track Order') ?></span>
+                                            </a>
+                                        <?php endforeach; ?>
+                                <?php  endif; ?>
+                            <?php endforeach; ?>
                         </td>
                     </tr>
                     <tr class="item-product">
@@ -197,7 +204,20 @@ $blockTotals = $objectManager->get('Magento\Sales\Block\Order\Totals');
                     $(this).parent().parent().addClass('focus');
                     $(this).parent().parent().next().addClass('active');
                 }
-                
+            });
+
+            $('#my-orders-table .number-id').click(function (e) {
+                if ($(this).prev().prev().hasClass("focus")) {
+                    $(this).prev().prev().removeClass('focus');
+                    $(this).prev().prev().text("+");
+                    $(this).parent().parent().removeClass('focus');
+                    $(this).parent().parent().next().removeClass('active');
+                } else {
+                    $(this).prev().prev().addClass('focus');
+                    $(this).prev().prev().text("-");
+                    $(this).parent().parent().addClass('focus');
+                    $(this).parent().parent().next().addClass('active');
+                }
             });
 
         });
