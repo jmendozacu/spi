@@ -49,11 +49,11 @@ $ccHelper = $this->helper(\ParadoxLabs\TokenBase\Helper\Data::class)
                                 <?php 
                                 $namePayment = $ccHelper->translateCardType($card->getAdditional('cc_type'));
                                 if($namePayment == 'Visa'): ?>
-                                    <img src="/pub/static/frontend/Lexim/infinity/en_US/images/checkout/payment-visa.png">
+                                    <img src="/static/frontend/Lexim/infinity/en_US/images/checkout/payment-visa.png">
                                 <?php elseif($namePayment == 'MasterCard'): ?>
-                                    <img src="/pub/static/frontend/Lexim/infinity/en_US/images/checkout/payment-master.png">
+                                    <img src="/static/frontend/Lexim/infinity/en_US/images/checkout/payment-master.png">
                                 <?php elseif($namePayment == 'American Express'): ?>
-                                    <img src="/pub/static/frontend/Lexim/infinity/en_US/images/checkout/payment-american.png">
+                                    <img src="/static/frontend/Lexim/infinity/en_US/images/checkout/payment-american.png">
                                 <?php endif; ?>
                             </li>
                             <li>
