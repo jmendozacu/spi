@@ -431,10 +431,11 @@ if ($parentCatKey === 'katie-duke') {
                     if (dataType === 'cat') {
                         let curLabel = _this.attr('data-label');
                         let hasSelected = _this.hasClass('selected');
+                        let bottomIsSelected = $('.swatch-option-a.category[data-label="Bottoms"]').hasClass('selected');
                         curLabel = curLabel.toLowerCase();
                         if (curLabel === 'bottoms' && !hasSelected) {
                             fitFilter.addClass('on');
-                        } else {
+                        } else if (!bottomIsSelected) {
                             fitFilter.removeClass('on');
                             clearFilterItemsBy('fit');
                         }
