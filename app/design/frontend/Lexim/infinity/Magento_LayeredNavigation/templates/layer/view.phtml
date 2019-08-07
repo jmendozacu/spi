@@ -105,18 +105,21 @@ if ($parentCatKey === 'katie-duke') {
                          * @var \Magento\Catalog\Model\Layer $filter
                          */
                         $filterName = $filter->getName();
+                        $oldName = $filterName;
                         $filterNameLower = strtolower($filterName);
 
                         if ($filterName != "Category") {
                             $off = ($curCatName === 'bottoms' && $filterNameLower === 'fit') ? 'on' : '';
 
-                            if( strtolower($categoryParentName) == 'footwear' ||  strtolower($curCatName) == 'footwear' ) {
-                                $filterName = 'Width';
+                            if (strtolower($categoryParentName) == 'footwear' || strtolower($curCatName) == 'footwear') {
+                                if ($filterNameLower === 'fit') {
+                                    $filterName = 'Width';
+                                }
                             }
                             ?>
 
                             <!-- <?= $filterName ?> column -->
-                            <div class="filter-options <?= $filterNameLower . ' ' . $off ?>" data-name="<?= $filterName ?>">
+                            <div class="filter-options <?= $filterNameLower . ' ' . $off ?>" data-name="<?= $filterName ?>" data-old-name="<?= $oldName ?>">
                                 <?php /** if ($filter->getRequestVar() == 'cat'): ?>
                                  * <?php $categoryFilter = $filter; ?>
                                  * <?php continue; ?>
