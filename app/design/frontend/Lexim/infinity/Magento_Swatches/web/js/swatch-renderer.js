@@ -499,13 +499,11 @@ define([
             {
                 let sizeChart = $('.size-chart');
                 let sizeChartImage = $('.size-chart .size-chart-html');
-
-                console.log(e);
-                console.log(sizeChartImage);
-
+                let closeButton = $('#closeSizeChart');
 
                 // if the target of the click isn't the container nor a descendant of the container
-                if (!sizeChartImage.is(e.target) && sizeChartImage.has(e.target).length === 0)
+                if ( (!sizeChartImage.is(e.target) && sizeChartImage.has(e.target).length === 0) ||
+                    closeButton.is(e.target) )
                 {
                     sizeChart.removeClass('open');
                 }
