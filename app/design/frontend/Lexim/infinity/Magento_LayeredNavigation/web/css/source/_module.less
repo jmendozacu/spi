@@ -136,6 +136,7 @@
 
         &.fit {
             display: none;
+
             &.on {
                 display: block;
             }
@@ -306,6 +307,7 @@
             display: block;
         }
     }
+
     .categorypath-thekatieduke #category-wrapper, .category-katie-duke #category-wrapper {
         display: none;
     }
@@ -401,6 +403,37 @@
             .swatch-option-a:not(.color) {
                 padding-left: 35px !important;
             }
+
+            // fix bug hover in mobile
+            .swatch-option-a:not(.color):hover {
+                &:before {
+                    content: '';
+                }
+
+                .swatch-option {
+                    text-shadow: none;
+                }
+            }
+
+            .swatch-option-a:not(.color).selected {
+                &:before {
+                    content: "\2714";
+                }
+
+                .swatch-option {
+                    text-shadow: 0 0 0.6px #3e3935, 0 0 0.6px #3e3935;
+                }
+            }
+
+            .swatch-option-a.color:hover .colorSquare {
+                border-color: transparent !important;
+            }
+
+            .swatch-option-a.color.selected .colorSquare {
+                border-color: @aqua !important;
+            }
+
+            // # fix bug hover in mobile
         }
 
         &:after {
