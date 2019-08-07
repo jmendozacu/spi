@@ -501,8 +501,8 @@ define([
                 let sizeChartImage = $('.size-chart .size-chart-inner');
                 let closeButton = $('#closeSizeChart');
 
-                console.log(e);
-                console.log(e.target);
+                // console.log(e);
+                // console.log(e.target);
 
                 // if the target of the click isn't the container nor a descendant of the container
                 if ( (!sizeChartImage.is(e.target) && sizeChartImage.has(e.target).length === 0) ||
