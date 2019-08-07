@@ -22,31 +22,31 @@
         }
 
         .flex-col {
-            flex: 1 0 auto;
+            .flex(1 0 auto);
         }
 
         .flex-col .flex-col {
-            flex: 1;
+            .flex(1);
         }
 
         .flex-30 {
-            flex: 30%;
+            .flex(30%);
         }
 
         .flex-40 {
-            flex: 40%;
+            .flex(40%);
         }
 
         .flex-50 {
-            flex: 50%;
+            .flex(50%);
         }
 
         .flex-60 {
-            flex: 60%;
+            .flex(60%);
         }
 
         .flex-70 {
-            flex: 70%;
+            .flex(70%);
         }
 
         .flex-col.has-child {
@@ -71,7 +71,7 @@
             }
         }
 
-        /*        Hero        */
+        /* Hero */
 
         .hero {
             background-repeat: no-repeat;
@@ -125,6 +125,10 @@
             position: absolute;
             top: 50%;
             left: 100px;
+            -moz-transform: translateY(-50%);
+            -webkit-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            -o-transform: translateY(-50%);
             transform: translateY(-50%);
         }
 
@@ -147,7 +151,7 @@
         .men-row,
         .limited-row,
         .footwear-row {
-            display: flex;
+            .display-flex();
         }
 
         .men-row .flex-30 img {
@@ -183,8 +187,8 @@
         }
 
         .limited-row .flex-30 {
-            align-items: center;
-            display: flex;
+            .align-items(center);
+            .display-flex();
         }
 
         .limited-row .txt-col {
@@ -330,10 +334,125 @@
 }
 
 // 767px
-.media-width(@extremum, @break) when (@extremum = 'view_max') and (@break = @screen__m) {
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
     .cms-lookbook {
 
+        .column.main {
+            h1, h2 {
+                font-size: 20px;
+            }
+        }
+
+        .hero, .women-row, .men-row, .limited-row {
+            margin-bottom: 30px;
+        }
+
+        .column.main {
+            p {
+                font-size: 14px;
+            }
+
+            .women-txt p {
+                padding: 0 0 15px;
+            }
+        }
+
+        .hero-txt.mobile {
+            display: block !important;
+            padding: 0;
+            max-width: 100%;
+        }
+
+        .hero {
+            .flex-direction(column);
+            padding: 0;
+            margin-top: 10vw;
+
+            .flex-col.has-child {
+                margin-top: -8vw;
+                padding: 0 20px 20px;
+
+                &:last-child {
+                    margin: 0;
+                }
+            }
+
+            .hero-txt {
+                max-width: 88%;
+                padding: 20px 10px;
+
+                br {
+                    display: none;
+                }
+
+                .desktop {
+                    display: none;
+                }
+            }
+        }
+
+        .women-row {
+            h2 {
+                font-weight: 800;
+                margin: 10px 0;
+            }
+        }
+
+        .men-row, .limited-row, .footwear-row {
+            position: relative;
+            .flex-wrap(wrap);
+        }
+
+        .men-row {
+            .flex-30 {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                width: 50%;
+                margin: 45% auto auto;
+
+                img {
+                    margin-top: 0;
+                }
+            }
+
+            .flex-70 {
+                .flex(100%);
+                margin-right: 0;
+
+                .video-container {
+                    padding-bottom: 65%;
+                }
+            }
+        }
+
+        .limited-row .flex-70 {
+            margin-right: 0;
+        }
+
+        .footwear-row {
+            .flex-direction(column-reverse);
+            padding: 5% 0;
+
+            &:before {
+                width: 75%;
+                height: 62vw;
+                left: 0;
+            }
+
+            .flex-40 {
+                padding-top: 5%;
+            }
+
+            .flex-60 {
+                padding: 0 0 0 16%;
+            }
+        }
+
     }
+
 }
 
 //
