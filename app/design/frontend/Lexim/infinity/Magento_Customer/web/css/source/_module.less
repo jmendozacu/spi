@@ -25,6 +25,7 @@
 @_password-very-strong: #81b562;
 
 @hind-font: 'Hind', Proxima Nova, sans-serif;
+@proxima-font: 'Proxima Nova', Hind, sans-serif; // same @main-font
 
 //
 //  Common
@@ -34,15 +35,32 @@
     // Social login
     .social-login-authentication-channel.account-social-login {
         width: 100% !important;
+        margin: 0 0 20px;
 
         .actions-toolbar.social-btn {
             width: 100%;
+            margin: 0;
+        }
+
+        .btn-social > .fa-google {
+            width: 63px;
+            border-right: 2px solid #ffffff;
+            height: 50px;
+            background-position: center;
+            background-color: #ffffff;
         }
 
         .social-btn .btn-social {
+            font-family: @main-font;
             border: 1px solid transparent !important;
             .border-radius(0);
             text-align: center;
+            height: 50px;
+            line-height: 50px;
+            padding: 0 0 0 65px;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin: 0;
         }
     }
 
@@ -657,7 +675,7 @@
                 margin: auto;
 
                 h1 {
-                    font-family: 'ProximaNova';
+                    font-family: @main-font;
                     font-size: 22px;
                     font-weight: bold;
                     color: #3e3935;
@@ -669,7 +687,7 @@
 
                 p {
                     .email {
-                        font-family: 'ProximaNova';
+                        font-family: @main-font;
                         font-size: 16px;
                         color: #3e3935;
                         text-align: left;
@@ -678,7 +696,7 @@
                     }
 
                     a {
-                        font-family: 'ProximaNova';
+                        font-family: @main-font;
                         font-size: 16px;
                         color: #3e3935;
                         text-align: left;
@@ -708,7 +726,7 @@
                         margin-bottom: 0;
 
                         li {
-                            background-color: #fff;
+                            background-color: #ffffff;
                             display: inline-block;
                             width: 47%;
                             margin-top: 0;
@@ -716,7 +734,7 @@
                             border: 1px solid #3ac1cc;
 
                             a {
-                                font-family: 'ProximaNova';
+                                font-family: @main-font;
                                 font-size: 16px;
                                 font-weight: bold;
                                 color: #3ac1cc;
@@ -751,7 +769,7 @@
                             background-color: #3ac1cc;
 
                             strong {
-                                font-family: 'ProximaNova';
+                                font-family: @main-font;
                                 font-size: 16px;
                                 font-weight: bold;
                                 color: #ffffff;
@@ -774,7 +792,7 @@
                 padding-bottom: 10px;
 
                 strong {
-                    font-family: 'ProximaNova';
+                    font-family: @main-font;
                     font-size: 16px;
                     font-weight: bold;
                     color: #3e3935;
@@ -794,7 +812,7 @@
                     border-bottom: 1px dotted #a7a4a3;
 
                     td {
-                        font-family: 'ProximaNova';
+                        font-family: @main-font;
                         font-size: 16px;
                         color: #3e3935;
                         text-align: left;
@@ -812,7 +830,7 @@
                     td.actions {
                         a {
                             span {
-                                font-family: 'ProximaNova';
+                                font-family: @main-font;
                                 font-size: 16px;
                                 font-weight: bold;
                                 color: #a7a4a3;
@@ -847,7 +865,7 @@
                     }
 
                     span {
-                        font-family: 'ProximaNova';
+                        font-family: @main-font;
                         font-size: 16px;
                         font-weight: bold;
                         color: #3e3935;
@@ -865,7 +883,7 @@
 
                     .header-name {
                         span {
-                            font-family: 'ProximaNova';
+                            font-family: @main-font;
                             font-size: 16px;
                             font-weight: bold;
                             color: #3e3935;
@@ -885,7 +903,7 @@
                     }
 
                     .content {
-                        font-family: 'ProximaNova';
+                        font-family: @main-font;
                         font-size: 16px;
                         color: #3e3935;
                         text-align: left;
@@ -900,7 +918,7 @@
                                 margin-bottom: 5px;
 
                                 span {
-                                    font-family: 'ProximaNova';
+                                    font-family: @main-font;
                                     font-size: 16px;
                                     color: #3e3935;
                                     text-align: left;
@@ -920,7 +938,7 @@
 
                     .buttom {
                         a {
-                            font-family: 'ProximaNova';
+                            font-family: @main-font;
                             font-size: 16px;
                             font-weight: bold;
                             color: #3ac1cc;
@@ -992,7 +1010,7 @@
                 padding-bottom: 30px;
 
                 h3 {
-                    font-family: 'ProximaNova';
+                    font-family: @main-font;
                     font-size: 16px;
                     font-weight: bold;
                     color: #3e3935;
@@ -1005,7 +1023,6 @@
 
                 .product-items {
                     .product-item {
-                        display: inline-block;
                         width: 48%;
                         display: none;
 
@@ -1017,7 +1034,7 @@
                             .primary-wishlist {
                                 background: transparent;
                                 border-color: transparent;
-                                font-family: 'ProximaNova';
+                                font-family: @main-font;
                                 font-size: 12px;
                                 font-weight: bold;
                                 color: #3e3935;
@@ -1046,7 +1063,7 @@
                     padding: 7px 14px;
 
                     span {
-                        font-family: 'ProximaNova';
+                        font-family: @main-font;
                         font-size: 16px;
                         font-weight: bold;
                         color: #ffffff;
@@ -1057,11 +1074,11 @@
                 }
 
                 .message.empty {
-                    background: #fff;
+                    background: #ffffff;
                     padding: 0;
 
                     span {
-                        font-family: 'ProximaNova';
+                        font-family: @main-font;
                         font-size: 16px;
                         color: #3e3935;
                         text-align: left;
@@ -1080,7 +1097,7 @@
                         padding-top: 10px;
 
                         span {
-                            font-family: 'ProximaNova';
+                            font-family: @main-font;
                             font-size: 16px;
                             font-weight: bold;
                             color: #ffffff;
@@ -1124,7 +1141,7 @@
                 margin-left: 5px;
 
                 span {
-                    font-family: 'ProximaNova';
+                    font-family: @main-font;
                     font-size: 16px;
                     font-weight: bold;
                     color: #3e3935;
@@ -1141,7 +1158,7 @@
             margin: 0;
 
             span.emty-cart {
-                font-family: 'ProximaNova';
+                font-family: @main-font;
                 font-size: 16px;
                 color: #3e3935;
                 text-align: left;
@@ -1160,7 +1177,7 @@
                 display: inline-block;
 
                 a {
-                    font-family: 'ProximaNova';
+                    font-family: @main-font;
                     font-size: 16px;
                     font-weight: bold;
                     color: #ffffff;
@@ -1199,7 +1216,7 @@
                             margin-left: 0;
 
                             .product-item-link {
-                                font-family: 'Hind';
+                                font-family: @hind-font;
                                 font-size: 12px;
                                 color: #3e3935;
                                 text-align: center;
@@ -1212,7 +1229,7 @@
                                 .tocart.primary {
                                     background: transparent;
                                     border: none;
-                                    font-family: 'Hind';
+                                    font-family: @hind-font;
                                     font-size: 12px;
                                     color: #3e3935;
                                     text-align: center;
@@ -1259,7 +1276,7 @@
                 padding-bottom: 15px;
 
                 .base {
-                    font-family: 'ProximaNova';
+                    font-family: @main-font;
                     font-size: 16px !important;
                     font-weight: bold;
                     color: #3e3935;
@@ -1283,7 +1300,7 @@
                         border-bottom: 1px solid #a6a3a1;
 
                         td:before {
-                            font-family: 'ProximaNova';
+                            font-family: @main-font;
                             font-size: 16px;
                             font-weight: bold;
                             color: #3e3935;
@@ -1292,7 +1309,7 @@
                         }
 
                         td {
-                            font-family: 'ProximaNova';
+                            font-family: @main-font;
                             font-size: 16px;
                             color: #3e3935;
                             text-align: left;
@@ -1303,7 +1320,7 @@
                                 position: absolute;
                                 bottom: 10px;
                                 left: 0;
-                                font-family: 'ProximaNova';
+                                font-family: @main-font;
                                 font-size: 14px;
                                 color: #3bc1cc;
                                 text-align: left;
@@ -1316,7 +1333,7 @@
                                 position: absolute;
                                 bottom: 10px;
                                 left: 15px;
-                                font-family: 'ProximaNova';
+                                font-family: @main-font;
                                 font-size: 14px;
                                 color: #3bc1cc;
                                 text-align: left;
@@ -1337,7 +1354,7 @@
                                 border: 1px solid #3ac1cc;
 
                                 span {
-                                    font-family: 'ProximaNova';
+                                    font-family: @main-font;
                                     font-size: 12px;
                                     font-weight: bold;
                                     color: #3ac1cc;
@@ -1354,10 +1371,10 @@
                                 border: 1px solid #dbd9d6;
 
                                 span {
-                                    font-family: 'ProximaNova';
+                                    font-family: @main-font;
                                     font-size: 12px;
                                     font-weight: bold;
-                                    color: #fff;
+                                    color: #ffffff;
                                     text-align: left;
                                     letter-spacing: 0.02em;
                                     line-height: 16px;
@@ -1398,7 +1415,7 @@
                                 margin: 10px 0;
 
                                 .title {
-                                    font-family: 'ProximaNova';
+                                    font-family: @main-font;
                                     font-size: 14px;
                                     font-weight: bold;
                                     color: #3e3935;
@@ -1472,7 +1489,7 @@
     .account.customer-paymentinfo-index .columns {
         .page-title-wrapper {
             .page-title {
-                font-family: 'ProximaNova';
+                font-family: @main-font;
                 font-size: 16px !important;
                 font-weight: bold;
                 color: #3e3935;
@@ -1522,14 +1539,14 @@
                         }
 
                         .primary .save {
-                            max-width: 100px;                
+                            max-width: 100px;
                         }
                     }
                 }
             }
-            
+
             .add-payment.active {
-                .add-payment-form  {
+                .add-payment-form {
                     display: block;
                 }
             }
@@ -1554,7 +1571,7 @@
                 margin-bottom: 0;
 
                 .wrap {
-                    font-family: ProximaNova;
+                    font-family: @main-font;
                     font-size: 16px;
                     color: rgb(62, 57, 53);
                     text-align: left;
@@ -1568,7 +1585,7 @@
                         right: 0;
 
                         a {
-                            font-family: 'ProximaNova';
+                            font-family: @main-font;
                             font-size: 16px;
                             font-weight: bold;
                             color: #3bc1cc;
@@ -1618,7 +1635,7 @@
 
                     .wrap {
                         position: relative;
-                        font-family: 'ProximaNova';
+                        font-family: @main-font;
                         font-size: 16px;
                         color: #3e3935;
                         text-align: left;
@@ -1630,8 +1647,8 @@
                             top: 0;
                             right: 0;
 
-                            a{
-                                font-family: 'ProximaNova';
+                            a {
+                                font-family: @main-font;
                                 font-size: 16px;
                                 font-weight: bold;
                                 color: #3bc1cc;
@@ -1676,11 +1693,11 @@
                             position: relative;
 
                             .password.current {
-                                padding-bottom: 10px;      
+                                padding-bottom: 10px;
                             }
 
                             .new.password {
-                                position: relative;  
+                                position: relative;
                             }
                         }
                     }
@@ -1695,7 +1712,7 @@
                 padding-bottom: 10px;
 
                 span {
-                    font-family: 'ProximaNova';
+                    font-family: @main-font;
                     font-size: 16px;
                     font-weight: bold;
                     color: #3e3935;
@@ -1708,7 +1725,7 @@
                     position: absolute;
                     right: 0;
                     top: 40px;
-                    font-family: 'ProximaNova';
+                    font-family: @main-font;
                     font-size: 16px;
                     font-weight: bold;
                     color: #3bc1cc;
@@ -1722,7 +1739,7 @@
 
                 .content-address {
                     p {
-                        font-family: 'ProximaNova';
+                        font-family: @main-font;
                         color: #3e3935;
                         letter-spacing: 0.02em;
                         line-height: 22px;
@@ -1757,7 +1774,7 @@
                                     font-weight: normal;
                                     line-height: 1;
                                     height: 12px;
-                                    background: #fff;
+                                    background: #ffffff;
                                     font-size: 12px;
                                     text-transform: lowercase;
                                 }
@@ -1790,7 +1807,7 @@
                                     font-weight: normal;
                                     line-height: 1;
                                     height: 12px;
-                                    background: #fff;
+                                    background: #ffffff;
                                     font-size: 12px;
                                     text-transform: lowercase;
                                 }
@@ -1814,7 +1831,7 @@
         #retailer-store {
             .header-retailer {
                 .title {
-                    font-family: 'ProximaNova';
+                    font-family: @main-font;
                     font-size: 16px;
                     font-weight: bold;
                     color: #3e3935;
@@ -1826,7 +1843,7 @@
 
                 .text-retails {
                     margin-top: 10px;
-                    font-family: 'ProximaNova';
+                    font-family: @main-font;
                     font-size: 16px;
                     color: #3e3935;
                     text-align: left;
@@ -1838,7 +1855,7 @@
                 padding-bottom: 10px;
 
                 .find {
-                    font-family: 'ProximaNova';
+                    font-family: @main-font;
                     font-size: 16px;
                     font-weight: bold;
                     color: #3e3935;
@@ -1864,11 +1881,11 @@
                             font-weight: normal;
                             line-height: 1;
                             height: 12px;
-                            background: #fff;
+                            background: #ffffff;
                             font-size: 12px;
                             text-transform: lowercase;
                         }
-                    }                   
+                    }
                 }
 
                 .join-text {
@@ -1916,7 +1933,7 @@
                 .location {
                     .label {
                         display: none;
-                        font-family: 'ProximaNova';
+                        font-family: @main-font;
                         font-size: 16px;
                         font-weight: bold;
                         color: #3ac1cc;
@@ -1925,22 +1942,22 @@
                     }
 
                     .location-body {
-                        font-family: 'Hind';
+                        font-family: @hind-font;
                         font-size: 16px;
                         color: #3e3935;
                         text-align: left;
                         line-height: 22px;
 
                         .name-store {
-                            font-family: 'Hind';
+                            font-family: @hind-font;
                             font-size: 16px;
                             font-weight: bold;
                             color: #3e3935;
                             text-align: left;
                             line-height: 22px;
-                        } 
+                        }
                     }
-                    
+
                 }
 
                 .make-this-store {
@@ -1951,7 +1968,7 @@
                     }
 
                     span {
-                        font-family: 'ProximaNova';
+                        font-family: @main-font;
                         font-size: 16px;
                         font-weight: bold;
                         color: #3ac1cc;
@@ -1962,7 +1979,7 @@
                         border: 1px solid #3ac1cc;
                         padding: 2px 5px;
                     }
-                    
+
                 }
             }
         }
@@ -1985,9 +2002,16 @@
     //  ---------------------------------------------
     .pop-up-container {
         width: 300px;
+        padding: 20px;
     }
+
     #PopupRegister .form.create.account {
         min-width: 200px;
+    }
+
+    .pop-up-container #closePopupLogin {
+        top: 6px;
+        right: 17px;
     }
 
 }
@@ -2116,22 +2140,6 @@
     //  Welcome block
     //  ---------------------------------------------
 
-}
-
-//
-// DASHBOARD
-//  ______________________________________________
-
-.customer-account-index {
-
-}
-
-//
-//  Desktop
-//  _____________________________________________
-
-// min 768px
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
     .account {
         .columns {
             display: -webkit-flex;
@@ -2624,13 +2632,10 @@
                 width: auto;
                 height: auto;
                 position: relative;
-                margin-: 0 0 10px;
-                margin-right: 0;
-                margin-left: 5px;
-
+                margin: 0 0 10px 5px;
 
                 span {
-                    font-family: 'ProximaNova';
+                    font-family: @main-font;
                     font-size: 20px;
                     font-weight: bold;
                     color: #3e3935;
@@ -2860,7 +2865,7 @@
                             width: 10px;
                             margin: 0 20px;
                             display: inline-block;
-                            font-family: 'ProximaNova';
+                            font-family: @main-font;
                             font-size: 16px;
                             color: #3e3935;
                             text-align: left;
@@ -2927,7 +2932,7 @@
                             padding-bottom: 15px;
 
                             .title {
-                                font-family: 'ProximaNova';
+                                font-family: @main-font;
                                 font-size: 14px;
                                 font-weight: bold;
                                 color: #3e3935;
@@ -3021,7 +3026,7 @@
                                     span.label {
                                         min-width: 300px;
                                         display: inline-block;
-                                        font-family: 'ProximaNova';
+                                        font-family: @main-font;
                                         font-size: 14px;
                                         font-weight: bold;
                                         color: #74706d;
@@ -3602,7 +3607,7 @@
             margin-bottom: 0;
 
             span {
-                font-family: 'ProximaNova';
+                font-family: @main-font;
                 font-size: 20px;
                 font-weight: bold;
                 color: #3e3935;
@@ -3629,7 +3634,7 @@
                 max-width: 300px;
 
                 .add-payment-title {
-                    font-family: 'ProximaNova';
+                    font-family: @main-font;
                     font-size: 14px;
                     font-weight: bold;
                     color: #3e3935;
@@ -3653,16 +3658,6 @@
             }
         }
     }
-}
-
-// min 992px
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
-
-}
-
-// min 1440px
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
-
 }
 
 //
@@ -3936,11 +3931,6 @@
 //
 //  Mobile
 //  _____________________________________________
-
-// max 767px
-.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
-
-}
 
 //
 //  Desktop
