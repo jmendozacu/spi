@@ -192,9 +192,10 @@
     }
 
     .size-chart-html {
-        background: #fff;
+        background: #ffffff;
         padding: 40px;
         max-width: 92%;
+        width: 625px;
 
         h3 {
             font-size: 20px;
@@ -211,7 +212,6 @@
             margin: 0;
             padding: 0 0 20px;
         }
-
 
         h5 {
             font-size: 16px;
@@ -252,8 +252,31 @@
             color: #a7a4a3;
         }
 
-    }
+        .chart-how-to {
+            padding: 20px 0;
+            .display-flex();
 
+            img {
+                .flex(1);
+                margin-right: 25px;
+                width: 170px;
+                height: 220px;
+            }
+
+            p {
+                margin: 15px 0 0;
+
+                span {
+                    font-weight: bold;
+                    color: @aqua-text;
+                }
+            }
+
+            h5 {
+                padding: 0;
+            }
+        }
+    }
 
     .product.media {
         .product.photo .photo.image {
@@ -669,7 +692,7 @@
 
         .fotorama__nav--thumbs {
             width: 100% !important;
-			max-height: 725px;
+            max-height: 725px;
         }
 
         .fotorama__nav--thumbs .fotorama__nav__frame {
@@ -962,6 +985,41 @@
         }
     }
 
+    .size-chart-html {
+        padding: 20px 10px;
+
+        h3 {
+            padding-bottom: 15px;
+        }
+
+        h5 {
+            font-size: 14px;
+            padding-bottom: 15px;
+        }
+
+        .tr > div {
+            padding: 5px 0;
+            font-size: 12px;
+        }
+
+        .chart-how-to {
+            img {
+                width: 120px;
+                height: 155px;
+                margin-right: 10px;
+            }
+
+            p {
+                margin: 10px 0 0;
+                font-size: 12px;
+            }
+        }
+
+        .ps {
+            font-size: 10px;
+        }
+    }
+
     //
     //  Related products - Product Detail
     //  ---------------------------------------------
@@ -1070,11 +1128,10 @@
     .product-info-main .product-options-bottom .box-tocart .actions {
         padding: 0 15px;
     }
-	.product.media {
-		padding-left: 30px;
+    .product.media {
+        padding-left: 30px;
         max-height: 850px;
-		}
-		
+    }
 
 }
 
@@ -1100,9 +1157,9 @@
 
 // min 1440px
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
-        .fotorama__nav--thumbs {
-            width: 100% !important;
-			max-height: 800px!important;
-        }
+    .fotorama__nav--thumbs {
+        width: 100% !important;
+        max-height: 800px !important;
+    }
 
 }
