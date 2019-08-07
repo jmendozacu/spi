@@ -23,6 +23,9 @@ $curCat = $product->getCategory();
 if ($curCat) { ?>
     <div class="size-chart" style="display: none">
         <?= $curCat->getData('category_size_chart') ?>
+        <div class="size-chart-close">
+            <i class="far fa-times" id="closeSizeChart"></i>
+        </div>
     </div>
 <?php }  ?>
 

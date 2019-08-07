@@ -498,7 +498,7 @@ define([
             $(document).mouseup(function(e)
             {
                 let sizeChart = $('.size-chart');
-                let sizeChartImage = $('.size-chart > img');
+                let sizeChartImage = $('.size-chart .size-chart-html');
 
                 // if the target of the click isn't the container nor a descendant of the container
                 if (!sizeChartImage.is(e.target) && sizeChartImage.has(e.target).length === 0)
