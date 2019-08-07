@@ -17,6 +17,12 @@
                 font-size: 18px;
             }
         }
+
+        &[data-parent-cat="men"], &[data-parent-cat="women"] {
+            .filter-options.fit {
+                display: none;
+            }
+        }
     }
 
     .block-subtitle {
@@ -135,8 +141,6 @@
         .flex(1 1 20%);
 
         &.fit {
-            display: none;
-
             &.on {
                 display: block;
             }

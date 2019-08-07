@@ -26,7 +26,7 @@ if ($parentCatKey === 'katie-duke') {
 ?>
 
 <?php if ($block->canShowBlock()): ?>
-    <div class="block filter" id="layered-filter-block">
+    <div class="block filter" id="layered-filter-block" data-parent-cat="<?= $parentCatKey ?>">
         <?php $filtered = count($block->getLayer()->getState()->getFilters()) ?>
 
         <div class="block-content filter-content">
