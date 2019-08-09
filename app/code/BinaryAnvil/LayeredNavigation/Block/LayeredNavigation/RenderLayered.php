@@ -1,30 +1,4 @@
 <?php
-/**
- * Binary Anvil, Inc.
- *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the Binary Anvil, Inc. Software Agreement
- * that is bundled with this package in the file LICENSE_BAS.txt.
- * It is also available through the world-wide-web at this URL:
- * http://www.binaryanvil.com/software/license/
- *
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@binaryanvil.com so we can send you a copy immediately.
- *
- * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade this software to
- * newer versions in the future. If you wish to customize this software for
- * your needs please refer to http://www.binaryanvil.com/software for more
- * information.
- *
- * @category    BinaryAnvil
- * @package     LayeredNavigation
- * @copyright   Copyright (c) 2018-2019 Binary Anvil,Inc. (http://www.binaryanvil.com)
- * @license     http://www.binaryanvil.com/software/license
- */
 
 /**
  * @codingStandardsIgnoreFile
@@ -45,16 +19,11 @@ use BinaryAnvil\LayeredNavigation\Model\ResourceModel\Attribute\Option\Value;
 
 class RenderLayered extends OriginClass
 {
-    /**
-     * @var \BinaryAnvil\LayeredNavigation\Model\Url\Builder $urlBuilder
-     */
+
+    /** @var Builder $urlBuilder */
     protected $urlBuilder;
 
-    /**
-     * Path to template file.
-     *
-     * @var string
-     */
+    /** @var string Path to template file. */
     protected $_template = 'BinaryAnvil_LayeredNavigation::product/layered/renderer.phtml';
 
     /**
@@ -62,21 +31,27 @@ class RenderLayered extends OriginClass
      */
     protected $value;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $customViewOptions;
+
+    /** @var \Magento\Catalog\Api\ProductAttributeRepositoryInterface */
+    protected $productAttributeRepositoryInterface;
+
+    /** @var \Magento\Swatches\Model\ResourceModel\Swatch\Collection */
+    protected $swatchCollection;
+
 
     /**
      * RenderLayered constructor.
-     *
-     * @param \Magento\Framework\View\Element\Template\Context $context
-     * @param \Magento\Eav\Model\Entity\Attribute $eavAttribute
-     * @param \Magento\Catalog\Model\ResourceModel\Layer\Filter\AttributeFactory $layerAttribute
-     * @param \Magento\Swatches\Helper\Data $swatchHelper
-     * @param \Magento\Swatches\Helper\Media $mediaHelper
-     * @param \BinaryAnvil\LayeredNavigation\Model\Url\Builder $urlBuilder
-     * @param \BinaryAnvil\LayeredNavigation\Model\ResourceModel\Attribute\Option\Value $value
+     * @param Context $context
+     * @param Attribute $eavAttribute
+     * @param AttributeFactory $layerAttribute
+     * @param Data $swatchHelper
+     * @param Media $mediaHelper
+     * @param Builder $urlBuilder
+     * @param Value $value
+     * @param \Magento\Catalog\Api\ProductAttributeRepositoryInterface $productAttributeRepositoryInterface
+     * @param \Magento\Swatches\Model\ResourceModel\Swatch\Collection $swatchCollection
      * @param array $data
      */
     public function __construct(
@@ -87,10 +62,16 @@ class RenderLayered extends OriginClass
         Media $mediaHelper,
         Builder $urlBuilder,
         Value $value,
+        \Magento\Catalog\Api\ProductAttributeRepositoryInterface $productAttributeRepositoryInterface,
+        \Magento\Swatches\Model\ResourceModel\Swatch\CollectionFactory $swatchCollection,
         array $data = []
-    ) {
+    )
+    {
         $this->urlBuilder = $urlBuilder;
         $this->value = $value;
+        $this->productAttributeRepositoryInterface = $productAttributeRepositoryInterface;
+        $this->swatchCollection = $swatchCollection;
+
         parent::__construct(
             $context,
             $eavAttribute,
@@ -101,8 +82,10 @@ class RenderLayered extends OriginClass
         );
     }
 
+
     /**
      * @return array
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function getSwatchData()
     {
@@ -137,11 +120,11 @@ class RenderLayered extends OriginClass
         $customStyle = '';
         $attributeCode = $this->eavAttribute->getAttributeCode();
         $isActive = false;
-        
-        if(in_array($filterItem->getValue(), $this->urlBuilder->getValuesFromUrl($attributeCode))) {
+
+        if (in_array($filterItem->getValue(), $this->urlBuilder->getValuesFromUrl($attributeCode))) {
             $isActive = true;
         }
-        
+
         $linkToOption = $this->buildOptionUrl($this->eavAttribute->getAttributeCode(), $filterItem->getValue(), $isActive);
         if ($this->isOptionDisabled($filterItem)) {
             $customStyle = 'disabled';
@@ -172,7 +155,6 @@ class RenderLayered extends OriginClass
 
     /**
      * Get data for all print filter
-     *
      * @return array
      */
     public function getAllPrintLink()
@@ -193,7 +175,13 @@ class RenderLayered extends OriginClass
         ];
     }
 
-    public function searchIdByValue($value, $array) {
+    /**
+     * @param $value
+     * @param $array
+     * @return array
+     */
+    public function searchIdByValue($value, $array)
+    {
         $result = [];
         foreach ($array as $key => $val) {
             if (in_array($value, $val)) {
@@ -202,4 +190,58 @@ class RenderLayered extends OriginClass
         }
         return $result;
     }
+
+    /**
+     * @param string $key
+     * @return array
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     */
+    public function getOptionsOfColorAttribute($key = 'color')
+    {
+        $colorArray = [];
+
+        $attribute = $this->productAttributeRepositoryInterface->get('color');
+
+        // Get Store label
+        foreach ($attribute->getOptions() as $option) {
+            /** @var Magento\Eav\Model\Entity\Attribute\Option $option */
+            $name = $option->getLabel();
+            $colorId = $option->getValue();
+
+            if ($colorId && $colorId !== '') {
+                // Get color code
+                $swatchCollection = $this->swatchCollection->create();
+                $swatchCollection->addFieldtoFilter('option_id', $colorId);
+                /** @var Magento\Swatches\Model\Swatch $item */
+                $item = $swatchCollection->getFirstItem();
+                $colorCode = $item->getValue();
+
+                // convert colors string to colors array
+                $name = trim($name);
+                $name = str_replace(" ", "", $name);
+                $name = explode(',', $name);
+
+                $colorArray[$colorId] = [
+                    'label' => '',
+                    'lower_label' => '',
+                    "hex" => $colorCode,
+                    "list" => $name
+                ];
+            }
+        }
+
+        // Get admin label
+        $attribute->setStoreId(0)->getFrontend();
+        foreach ($attribute->getOptions() as $option) {
+            $colorId = $option->getValue();
+            if (isset($colorArray[$colorId])) {
+                $label = $option->getLabel();
+                $colorArray[$colorId]['lower_label'] = strtolower($label);
+                $colorArray[$colorId]['label'] = ucfirst($label);
+            }
+        }
+
+        return $colorArray;
+    }
+
 }

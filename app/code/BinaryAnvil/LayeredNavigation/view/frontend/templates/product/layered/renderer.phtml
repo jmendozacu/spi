@@ -16,8 +16,32 @@ $currentAction = $block->getRequest()->getActionName();
 
     <div class="swatch-attribute-options">
 
-        <?php if ($swatchData['attribute_code'] == "is_manufacturer_color") { ?>
-            <?php
+
+        <?php if ($swatchData['attribute_code'] == "is_manufacturer_color") {
+
+            $colorArray = $block->getOptionsOfColorAttribute();
+            ?>
+
+            <!-- Show Color group -->
+            <?php if ($colorArray && is_array($colorArray) && count($colorArray) > 0) { ?>
+                <?php foreach ($colorArray as $colorKey => $colorVal) { ?>
+                    <?php if (isset($colorVal["list"]) && count($colorVal["list"]) > 0) { ?>
+                        <a href="javascript:void(0)" data-label="<?= $colorVal['lower_label'] ?>" class="swatch-option-a color"
+                           data-type="<?= $swatchData['attribute_code'] ?>"
+                           data-value="<?= implode(",", $colorVal["list"]) ?>">
+                            <div class="swatch-option">
+                                <div class="colorSquare">
+                                    <span class="<?= $colorVal['lower_label'] ?>" style="background: <?= $colorVal["hex"] ?>"></span>
+                                </div>
+                                <div class="colorGroupText"><?= $colorVal['label'] ?></div>
+                            </div>
+                        </a>
+                    <?php } ?>
+                <?php } ?>
+            <?php } ?>
+
+
+            <?php /**
             $colorGroup = [
                 "black" => [41, 56, 78, 177, 179, 189],
                 "blue" => [45, 47, 60, 74, 86, 91, 96, 291],
@@ -69,16 +93,18 @@ $currentAction = $block->getRequest()->getActionName();
                 ]
             ];
 
-            foreach ($swatchData['options'] as $option => $label) {
-                $findGroup = $block->searchIdByValue($option, $colorGroup);
+            // Push color to Color group
+            foreach ($swatchData['options'] as $optionId => $label) {
+                $findGroup = $block->searchIdByValue($optionId, $colorGroup);
                 foreach ($findGroup as $key => $val) {
                     if (isset($colorArray[$val])) {
-                        array_push($colorArray[$val]["list"], $option);
+                        array_push($colorArray[$val]["list"], $optionId);
                     }
                 }
             }
             ?>
 
+            <!-- Show Color group -->
             <?php foreach ($colorArray as $colorKey => $colorVal) { ?>
                 <?php if (isset($colorVal["list"]) && count($colorVal["list"]) > 0) { ?>
                     <a href="javascript:void(0)" data-label="<?= $colorKey ?>" class="swatch-option-a color"
@@ -92,7 +118,7 @@ $currentAction = $block->getRequest()->getActionName();
                         </div>
                     </a>
                 <?php } ?>
-            <?php } ?>
+            <?php } */ ?>
 
             <a href="javascript:void(0)" data-label="All Prints" class="swatch-option-a color"
                data-type="<?= $swatchData['attribute_code'] ?>" data-value="all_print">
