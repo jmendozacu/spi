@@ -807,6 +807,27 @@ if (!empty($array_customer)) {
             echo $retailerId;
         } ?>">
             <div class="products list items product-items the-bottom-slider">
+            <?php 
+            if (!empty($array_customer)){
+                foreach ($array_customer as $key) {
+                    $storeName = $key['store_name'];
+                    $street = $key['street'];
+                    $city = $key['city'];
+                    $state = $key['state'];
+                    $zip = $key['zip'];
+                    break;
+                } ?>
+                <div class="location" style="width: 252px;" id="main-local-retails">  
+                    <div class="location-radio">    
+                        <label class="label" style="display: block;">MY LOCAL RETAILER</label>
+                    </div>  
+                    <div class="location-body">
+                
+                        <div class="name-store"><?= $storeName; ?></div>
+                    <?= $street; ?>,<br><?= $city; ?>, <?= $state; ?>, <?= $zip; ?><br>
+                    </div>
+                </div>
+            <?php } ?>
             </div>
         </div>
     </div>
