@@ -83,11 +83,11 @@ define([
 
                     setTimeout(function () {
                         newsClick();
-                    }, 500);
+                    }, 30000);
 
                     setTimeout(function () {
                         createCookie('newsletter_viewed', 'true', now.toUTCString());
-                    }, 1000)
+                    }, 30000)
                 }
             } else {
                 if (!readCookie('newsletter_viewed')) {

@@ -86,6 +86,22 @@
     }
 }
 
+// max 480px
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
+    .newsletter-sign-up {
+        .content .form.subscribe .field.newsletter {
+            width: calc(~'100% - 90px');
+            padding-right: 10px;
+        }
+        .content .form.subscribe .actions {
+            width: 85px;
+        }
+        .content .form.subscribe .actions button {
+            width: auto;
+        }
+    }
+}
+
 //
 //  Desktop
 //  _____________________________________________
