@@ -72,41 +72,41 @@ define([
 
 
         // Newsletter pop up
-        if (body.hasClass('cms-home') || body.hasClass('cms-lookbook')) {
-            // Checking for Newsletter Cookie
-            if (document.documentMode || /Edge/.test(navigator.userAgent) || is_safari) {
-                if (!readCookie('newsletter_viewed')) {
-                    let now = new Date();
-                    let time = now.getTime();
-                    time += 3600 * 1000;
-                    now.setTime(time);
+        // if (body.hasClass('cms-home') || body.hasClass('cms-lookbook')) {
+        // Checking for Newsletter Cookie
+        if (document.documentMode || /Edge/.test(navigator.userAgent) || is_safari) {
+            if (!readCookie('newsletter_viewed')) {
+                let now = new Date();
+                let time = now.getTime();
+                time += 3600 * 1000;
+                now.setTime(time);
 
-                    setTimeout(function () {
-                        newsClick();
-                    }, 30000);
+                setTimeout(function () {
+                    newsClick();
+                }, 30000);
 
-                    setTimeout(function () {
-                        createCookie('newsletter_viewed', 'true', now.toUTCString());
-                    }, 30000)
-                }
-            } else {
-                if (!readCookie('newsletter_viewed')) {
-                    setTimeout(function () {
-                        $('.header-newsletter a').click();
-                        createCookie('newsletter_viewed', 'true')
-                    }, 30000);
-                }
+                setTimeout(function () {
+                    createCookie('newsletter_viewed', 'true', now.toUTCString());
+                }, 30000)
             }
-
-            /*
-            * rwdImageMaps jQuery plugin v1.6
-            * Licensed under the MIT license
-            */
-            // jQuery(function() {
-            //     ;(function(a){a.fn.rwdImageMaps=function(){let c=this;let b=function(){c.each(function(){if(typeof(a(this).attr("usemap"))=="undefined"){return}let e=this,d=a(e);a("<img />").on('load',function(){let g="width",m="height",n=d.attr(g),j=d.attr(m);if(!n||!j){let o=new Image();o.src=d.attr("src");if(!n){n=o.width}if(!j){j=o.height}}let f=d.width()/100,k=d.height()/100,i=d.attr("usemap").replace("#",""),l="coords";a('map[name="'+i+'"]').find("area").each(function(){let r=a(this);if(!r.data(l)){r.data(l,r.attr(l))}let q=r.data(l).split(","),p=new Array(q.length);for(let h=0;h<p.length;++h){if(h%2===0){p[h]=parseInt(((q[h]/n)*100)*f)}else{p[h]=parseInt(((q[h]/j)*100)*k)}}r.attr(l,p.toString())})}).attr("src",d.attr("src"))})};a(window).resize(b).trigger("resize");return this}})(jQuery);
-            //
-            //     jQuery('img[usemap]').rwdImageMaps();
-            // });
+        } else {
+            if (!readCookie('newsletter_viewed')) {
+                setTimeout(function () {
+                    $('.header-newsletter a').click();
+                    createCookie('newsletter_viewed', 'true')
+                }, 30000);
+            }
         }
+
+        /*
+        * rwdImageMaps jQuery plugin v1.6
+        * Licensed under the MIT license
+        */
+        // jQuery(function() {
+        //     ;(function(a){a.fn.rwdImageMaps=function(){let c=this;let b=function(){c.each(function(){if(typeof(a(this).attr("usemap"))=="undefined"){return}let e=this,d=a(e);a("<img />").on('load',function(){let g="width",m="height",n=d.attr(g),j=d.attr(m);if(!n||!j){let o=new Image();o.src=d.attr("src");if(!n){n=o.width}if(!j){j=o.height}}let f=d.width()/100,k=d.height()/100,i=d.attr("usemap").replace("#",""),l="coords";a('map[name="'+i+'"]').find("area").each(function(){let r=a(this);if(!r.data(l)){r.data(l,r.attr(l))}let q=r.data(l).split(","),p=new Array(q.length);for(let h=0;h<p.length;++h){if(h%2===0){p[h]=parseInt(((q[h]/n)*100)*f)}else{p[h]=parseInt(((q[h]/j)*100)*k)}}r.attr(l,p.toString())})}).attr("src",d.attr("src"))})};a(window).resize(b).trigger("resize");return this}})(jQuery);
+        //
+        //     jQuery('img[usemap]').rwdImageMaps();
+        // });
+        // }
     });
 });
