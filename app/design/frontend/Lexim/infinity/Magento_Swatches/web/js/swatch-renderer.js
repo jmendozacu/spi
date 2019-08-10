@@ -1309,7 +1309,7 @@ define([
         _EmulateSelected: function (selectedAttributes) {
             $.each(selectedAttributes, $.proxy(function (attributeCode, optionId) {
                 this.element.find('.' + this.options.classes.attributeClass +
-                    '[attribute-code="' + attributeCode + '"] [option-id="' + optionId + '"]').trigger('click');
+                    '[attribute-code="' + attributeCode + '"] [option-id="' + optionId + '"]').trigger('emulateClick');
             }, this));
         },
 
