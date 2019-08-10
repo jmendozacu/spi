@@ -94,7 +94,7 @@ define([
                     setTimeout(function () {
                         $('.header-newsletter a').click();
                         createCookie('newsletter_viewed', 'true')
-                    }, 800);
+                    }, 30000);
                 }
             }
 
