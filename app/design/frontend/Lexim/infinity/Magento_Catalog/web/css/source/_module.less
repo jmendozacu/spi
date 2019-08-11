@@ -1208,9 +1208,19 @@
                 display: inline-flex;
 
                 .data.switch {
-                    padding: 0;
                     border: none;
                     background: #ffffff;
+                    border-bottom: 5px solid transparent;
+                    padding: 0 0 7px;
+                    line-height: 1;
+                    display: block;
+                    height: auto;
+                    color: @gray;
+                }
+
+                &.active .data.switch {
+                    color: @aqua-text;
+                    border-color: @aqua-text;
                 }
             }
 
@@ -1267,7 +1277,6 @@
         padding: 0 15px;
     }
     .product.media {
-        padding-left: 30px;
         max-height: 850px;
     }
 
@@ -1289,6 +1298,10 @@
     .product-info-main {
         width: 550px;
         padding-left: 50px;
+    }
+
+    .product.attribute.description, .additional-attributes-wrapper.table-wrapper {
+        padding: 0 12%;
     }
 
 }
