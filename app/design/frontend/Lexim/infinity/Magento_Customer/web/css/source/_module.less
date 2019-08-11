@@ -746,8 +746,6 @@
 
                             &:hover a,
                             a:hover, a:focus, a.active {
-                                border-bottom: 5px solid #3bc1cc;
-                                padding-bottom: 6px;
                                 text-decoration: none;
                                 color: #3ac1cc;
                             }
@@ -2566,6 +2564,8 @@
                                     border-color: transparent;
                                     padding-left: 0;
                                     text-transform: uppercase;
+                                    color: #000;
+                                    border: none;
 
                                     span {
 
@@ -3631,9 +3631,14 @@
                 .box-address-billing {
                     border-bottom: 1px solid #74706d;
                     padding: 20px 0;
+                    margin: 0;
 
                     &:first-child {
                         border-top: 1px solid #74706d;
+                    }
+
+                    &:last-child {
+                        margin-bottom: 40px;
                     }
                 }
             }
