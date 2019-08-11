@@ -86,6 +86,14 @@
     }
 }
 
+
+// max 767px
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .newsletter-sign-up .head {
+        padding-top: 0;
+    }
+}
+
 // max 480px
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
     .newsletter-sign-up {

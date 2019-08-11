@@ -558,7 +558,7 @@
 //  _____________________________________________
 
 // max 767px
-@media only screen and (max-width: 767px) {
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
     // Header
     .page-header {
         position: relative;
@@ -579,10 +579,41 @@
         }
     }
 
+    // modal
+    .modal-popup.modal-slide._inner-scroll {
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+    }
+
+    .modal-popup.modal-slide._inner-scroll .modal-inner-wrap {
+        background: #ffffff;
+        margin: auto auto;
+        min-height: auto;
+        width: 95%;
+        position: relative;
+        top: 50%;
+        -moz-transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        -o-transform: translateY(-50%);
+        transform: translateY(-50%);
+    }
+    .modal-popup .modal-header, .modal-popup .modal-content, .modal-popup .modal-footer {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .modal-slide .action-close {
+        padding: 10px;
+    }
+
 }
 
 // max 480px
-@media only screen and (max-width: 480px) {
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
 
     .on-top-header {
         .on-top-header-inner {
