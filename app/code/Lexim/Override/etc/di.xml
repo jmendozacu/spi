@@ -12,4 +12,7 @@
     <preference for="Magento\Reports\Model\ResourceModel\Quote\Collection"
                 type="Lexim\Override\Model\ReportQuoteCollection"/>
 
+    <!-- Sort -->
+    <preference for="Magento\Catalog\Block\Product\ProductList\Toolbar" type="Lexim\Override\Block\Toolbar" />
+
 </config>

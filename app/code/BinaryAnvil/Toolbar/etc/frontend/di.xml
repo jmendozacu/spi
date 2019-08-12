@@ -40,9 +40,9 @@
                 type="BinaryAnvil\Toolbar\Plugin\Catalog\Model\Category" />
     </type>
 
-    <type name="Magento\Catalog\Block\Product\ProductList\Toolbar">
-        <plugin name="binaryanvilDecendingFilterInToolbar"
-                type="BinaryAnvil\Toolbar\Plugin\Catalog\Block\Product\ProductList\Toolbar" />
-    </type>
+<!--    <type name="Magento\Catalog\Block\Product\ProductList\Toolbar">-->
+<!--        <plugin name="binaryanvilDecendingFilterInToolbar"-->
+<!--                type="BinaryAnvil\Toolbar\Plugin\Catalog\Block\Product\ProductList\Toolbar" />-->
+<!--    </type>-->
 
 </config>
