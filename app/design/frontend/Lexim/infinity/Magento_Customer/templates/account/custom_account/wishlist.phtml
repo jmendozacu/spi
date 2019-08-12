@@ -73,9 +73,11 @@ $countBreak = 0;
                         <?php if ($_product->isSaleable()): ?>
                             <div class="product-item-actions">
                                 <div class="actions-primary-wishlist">
-                                    <button type="button" data-role="tocart" data-post='<?= /* @noEscape */ $block->getItemAddToCartParams($item) ?>' title="<?= $block->escapeHtmlAttr(__('Add to Cart')) ?>" data-item-id="<?= $block->escapeHtmlAttr($item->getId()) ?>" class="action tocart primary-wishlist">
+                                    <a href="<?php /* @escapeNotVerified */ echo $_product->getProductUrl() ?>">
+                                    <button type="button" data-role="tocart" title="<?= $block->escapeHtmlAttr(__('Add to Cart')) ?>" class="action tocart primary-wishlist">
                                         + <span><?= $block->escapeHtml(__('Add to Cart')) ?></span>
                                     </button>
+                                    </a>
                                 </div>
                             </div>
                         <?php else: ?>

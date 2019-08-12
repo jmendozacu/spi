@@ -1029,15 +1029,19 @@
                         }
 
                         .product-item-actions {
-                            .primary-wishlist {
-                                background: transparent;
-                                border-color: transparent;
-                                font-family: @main-font;
-                                font-size: 12px;
-                                font-weight: bold;
-                                color: #3e3935;
-                                text-align: center;
-                                line-height: 16px;
+                            a {
+                                display: inline-block;
+
+                                .primary-wishlist {
+                                    background: transparent;
+                                    border-color: transparent;
+                                    font-family: @main-font;
+                                    font-size: 12px;
+                                    font-weight: bold;
+                                    color: #3e3935;
+                                    text-align: center;
+                                    line-height: 16px;
+                                }
                             }
                         }
                     }
@@ -1984,6 +1988,43 @@
     }
 
     // END MOBILE - MY ACCOUNT - MY PROFILE
+
+    // MOBILE - ORDER DETAILS
+
+    .sales-order-view {
+        .order-date, .order-status, .order-actions-toolbar {
+            margin-bottom: 10px;
+        }
+
+        .order-links {
+            .nav.item {
+                margin-right: 0;
+                margin-bottom: 10px;
+
+                strong {
+                    font-family: 'Proxima Nova', Hind, sans-serif;
+                    font-size: 16px;
+                    font-weight: bold;
+                    color: #3e3935;
+                    text-transform: uppercase;
+                }
+            }
+        }
+        
+        .order-actions-toolbar a {
+            font-family: 'Proxima Nova', Hind, sans-serif;
+            color: #3e3935;
+        }
+
+        .order-details-items {
+            a.action.back {
+                font-family: 'Proxima Nova', Hind, sans-serif;
+                color: #3e3935;
+            }
+        }
+    }
+
+    // END MOBILE - ORDER DETAILS
 }
 
 // max 640px
@@ -2559,24 +2600,28 @@
                             }
 
                             .actions-primary-wishlist {
-                                .primary-wishlist {
-                                    background: transparent;
-                                    border-color: transparent;
-                                    padding-left: 0;
-                                    text-transform: uppercase;
-                                    color: #000;
-                                    border: none;
+                                a {
+                                    display: inline-block;
 
-                                    span {
+                                    .primary-wishlist {
+                                        background: transparent;
+                                        border-color: transparent;
+                                        padding-left: 0;
+                                        text-transform: uppercase;
+                                        color: #000;
+                                        border: none;
 
-                                        font-size: 14px;
-                                        font-weight: bold;
-                                        color: #3e3935;
-                                        text-align: left;
-                                        line-height: 18px;
-                                        -webkit-transform: scale(0.92, 0.94);
-                                        -ms-transform: scale(0.92, 0.94);
-                                        transform: scale(0.92, 0.94);
+                                        span {
+
+                                            font-size: 14px;
+                                            font-weight: bold;
+                                            color: #3e3935;
+                                            text-align: left;
+                                            line-height: 18px;
+                                            -webkit-transform: scale(0.92, 0.94);
+                                            -ms-transform: scale(0.92, 0.94);
+                                            transform: scale(0.92, 0.94);
+                                        }
                                     }
                                 }
                             }
@@ -3671,6 +3716,118 @@
             }
         }
     }
+
+    // Order details page
+    .sales-order-view {
+        #maincontent {
+            #account-nav {
+                ul li {
+                    a {
+                        padding-bottom: 11px;
+
+                    }
+
+                    &:hover a,
+                    a:hover, a:focus, a.active {
+                        padding-bottom: 6px;
+                    }
+                }
+            }
+
+            .page-title-wrapper {
+                font-family: @hind-font;
+                font-size: 14px;
+                color: #3e3935;
+                text-align: left;
+
+                .page-title {
+                    margin-bottom: 10px;
+                    margin-right: 0;
+                }
+
+                .order-date {
+                    margin-bottom: 10px;
+                }
+
+                .order-actions-toolbar {
+                    a {
+                        color: #3e3935;
+                    }
+                }
+            }
+
+            .order-links {
+                li.nav.item {
+                    font-size: 16px;
+                    font-weight: bold;
+                    color: #3e3935;
+                    text-transform: uppercase;
+                    margin-right: 0;
+                    margin-bottom: 15px;
+                }
+            }
+
+            .order-details-items {
+                .order-title {
+                    margin: 5px 0;
+                }
+
+                .actions-toolbar {
+                    a {
+                        color: #3e3935;
+                    }
+                }
+
+                #my-orders-table {
+                    thead tr {
+                        font-size: 16px;
+                        font-weight: bold;
+                        color: #74706d;
+                        text-align: left;
+                        line-height: 35px;
+                        text-transform: uppercase;
+                        padding: 8px 0;
+
+                        th {
+                            padding-left: 0;
+                        }
+                    }
+
+                    tbody tr {
+                        .item-options {
+                            margin-bottom: 0px;
+                        }
+
+                        td {
+                            padding-left: 0;
+                        }
+                    }
+
+                    tfoot tr {
+                        th {
+                            padding: 10px 0;
+                        }
+
+                        td {
+                            padding-top: 10px;
+                        }
+                    }
+                }
+            }
+
+            .block-order-details-view {
+                .box-title {
+                    span {
+                        font-size: 16px;
+                        font-weight: bold;
+                        color: #74706d;
+                        text-transform: uppercase;
+                    }
+                }
+            }
+        }
+    }
+    // End order details page
 }
 
 //
