@@ -173,38 +173,53 @@ if (isStaging) {
         }
 
         var zipCode,
+            selectedRadius,
             radiusInput = jQuery('#storeSelector'),
+            finderSubmit = jQuery('#finder-submit'),
             zipInput = jQuery('.input-zip');
-        zipInput.keyup(function (e) {
-            var inputVal = jQuery(this).val();
-            jQuery('.the-bottom-slider .location').remove();
-            jQuery('.the-bottom-slider .slick-arrow').remove();
-            jQuery('.the-bottom-slider .slick-list').remove();
-            jQuery('.the-bottom-slider').removeClass('slick-initialized');
-            jQuery('.the-bottom-slider').removeClass('slick-slider');
+        // zipInput.keyup(function (e) {
+        //     var inputVal = jQuery(this).val();
+        //     jQuery('.the-bottom-slider .location').remove();
+        //     jQuery('.the-bottom-slider .slick-arrow').remove();
+        //     jQuery('.the-bottom-slider .slick-list').remove();
+        //     jQuery('.the-bottom-slider').removeClass('slick-initialized');
+        //     jQuery('.the-bottom-slider').removeClass('slick-slider');
 
-            // If zip code is 5 characters and is numeric value gather results
-            if (inputVal.length === 5 && $.isNumeric(inputVal)) {
-                var radius = radiusInput.val();
-                zipCode = jQuery(this).val();
+        //     // If zip code is 5 characters and is numeric value gather results
+        //     if (inputVal.length === 5 && $.isNumeric(inputVal)) {
+        //         var radius = radiusInput.val();
+        //         zipCode = jQuery(this).val();
 
-                loadLocations(zipCode, radius);
-            }
+        //         loadLocations(zipCode, radius);
+        //     }
             
-        });
+        // });
 
-        radiusInput.on('change', function () {
+        // radiusInput.on('change', function () {
+        //     jQuery('.the-bottom-slider .location').remove();
+        //     jQuery('.the-bottom-slider .slick-arrow').remove();
+        //     jQuery('.the-bottom-slider .slick-list').remove();
+        //     jQuery('.the-bottom-slider').removeClass('slick-initialized');
+        //     jQuery('.the-bottom-slider').removeClass('slick-slider');
+        //     var selectedRadius = jQuery(this).val();
+
+        //     zipCode = jQuery('.input-zip').val();
+
+        //     loadLocations(zipCode, selectedRadius);
+        // });
+
+        finderSubmit.on('click', function () {
             jQuery('.the-bottom-slider .location').remove();
             jQuery('.the-bottom-slider .slick-arrow').remove();
             jQuery('.the-bottom-slider .slick-list').remove();
             jQuery('.the-bottom-slider').removeClass('slick-initialized');
             jQuery('.the-bottom-slider').removeClass('slick-slider');
-            var selectedRadius = jQuery(this).val();
 
-            zipCode = jQuery('.input-zip').val();
-
+            zipCode = zipInput.val();
+            selectedRadius = radiusInput.val();
             loadLocations(zipCode, selectedRadius);
         });
+
     });
 })();
 

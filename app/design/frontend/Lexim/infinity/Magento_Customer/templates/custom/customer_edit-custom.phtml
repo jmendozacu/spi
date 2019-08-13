@@ -802,6 +802,7 @@ if (!empty($array_customer)) {
                     </select>
                 </div>
             </div>
+            <a href="javascript:void(0)" id="finder-submit"><span class="join-text"><?php echo __('Sunmit') ?></span></a>
         </div>
         <div class="footer-retailer" id="<?php if (isset($retailerId)) {
             echo $retailerId;
@@ -822,7 +823,6 @@ if (!empty($array_customer)) {
                         <label class="label" style="display: block;">MY LOCAL RETAILER</label>
                     </div>  
                     <div class="location-body">
-                
                         <div class="name-store"><?= $storeName; ?></div>
                     <?= $street; ?>,<br><?= $city; ?>, <?= $state; ?>, <?= $zip; ?><br>
                     </div>
