@@ -107,13 +107,14 @@ if ($parentCatKey === 'katie-duke') {
                         $filterName = $filter->getName();
                         $oldName = $filterName;
                         $filterNameLower = strtolower($filterName);
+                        $attributeCode = $filter->getRequestVar();
 
                         if ($filterName != "Category") {
                             $off = ($curCatName === 'bottoms' && $filterNameLower === 'fit') ? 'on' : '';
 
                             if (strtolower($categoryParentName) == 'footwear' || strtolower($curCatName) == 'footwear') {
-                                if ($filterNameLower === 'fit') {
-                                    $filterName = 'Width';
+                                if ($attributeCode === 'is_apparel_rise_length') {
+                                    continue;
                                 }
                             }
                             ?>
@@ -292,6 +293,7 @@ if ($parentCatKey === 'katie-duke') {
                 let color = getUrlParam("is_manufacturer_color");
                 let size = getUrlParam("is_size");
                 let fit = getUrlParam("is_apparel_rise_length");
+                let width = getUrlParam("is_footwear_width");
                 let sort = getUrlParam("product_list_order");
 
                 let q = getUrlParam("q");
@@ -316,6 +318,9 @@ if ($parentCatKey === 'katie-duke') {
                 }
                 if (fit) {
                     detectSelectedOptionsFromUri("is_apparel_rise_length", fit);
+                }
+                if (width) {
+                    detectSelectedOptionsFromUri("is_footwear_width", width);
                 }
                 if (sort) {
                     let tmpSort = $('.swatch-option-a[data-type="product_list_order"][data-value="' + sort + '"]');
@@ -477,6 +482,7 @@ if ($parentCatKey === 'katie-duke') {
                     let size = {name: 'is_size', value: ""};
                     let sort = {name: 'product_list_order', value: ""};
                     let fit = {name: 'is_apparel_rise_length', value: ""};
+                    let width = {name: 'is_footwear_width', value: ""};
                     let cat = {name: 'cat', value: ""};
 
                     // Get all selected options
@@ -503,6 +509,12 @@ if ($parentCatKey === 'katie-duke') {
                                 fit.value = fit.value + "," + value;
                             } else {
                                 fit.value = value;
+                            }
+                        } else if (type === "is_footwear_width") {
+                            if (width.value) {
+                                width.value = width.value + "," + value;
+                            } else {
+                                width.value = value;
                             }
                         } else if (type === "cat") {
                             if (cat.value) {
@@ -535,6 +547,9 @@ if ($parentCatKey === 'katie-duke') {
                     if (fit.value !== "") {
                         data.push(fit);
                     }
+                    if (width.value !== "") {
+                        data.push(width);
+                    }
 
                     // Init new url
                     uri = decodeURIComponent($.param(data));
@@ -559,7 +574,7 @@ if ($parentCatKey === 'katie-duke') {
                         console.log(url);
                         window.location.replace(url);
                     } else { // category page
-                        catKey = catKey;
+                        // catKey = catKey;
                         console.log(protocol + '//' + hostName + '/' + catKey + '?' + uri);
                         window.location.replace(protocol + '//' + hostName + '/' + catKey + '?' + uri);
                     }
