@@ -83,12 +83,32 @@ class Toolbar extends \Magento\Catalog\Block\Product\ProductList\Toolbar
             switch ($this->getCurrentOrder()) {
                 // Lowest Price
                 case 'price_asc':
-                    $this->_collection->getSelect()->order('price_index.price asc');
+                    $this->_collection->getSelect()->joinLeft(
+                        'catalog_product_relation',
+                        'catalog_product_relation.parent_id = e.row_id'
+                    )
+                        ->joinLeft(
+                            'catalog_product_index_price',
+                            'catalog_product_index_price.entity_id = catalog_product_relation.child_id',
+                            'sum(catalog_product_index_price.final_price) as sumTotal'
+                        )
+                        ->group('e.entity_id')
+                        ->order('sumTotal asc');
                     break;
 
                 // Highest Price
                 case 'price_desc':
-                    $this->_collection->getSelect()->order('.price_index.price desc');
+                    $this->_collection->getSelect()->joinLeft(
+                        'catalog_product_relation',
+                        'catalog_product_relation.parent_id = e.row_id'
+                    )
+                        ->joinLeft(
+                            'catalog_product_index_price',
+                            'catalog_product_index_price.entity_id = catalog_product_relation.child_id',
+                            'sum(catalog_product_index_price.final_price) as sumTotal'
+                        )
+                        ->group('e.entity_id')
+                        ->order('sumTotal desc');
                     break;
 
                 // Newest
@@ -103,16 +123,21 @@ class Toolbar extends \Magento\Catalog\Block\Product\ProductList\Toolbar
 
                 // On Sale
                 case 'on_sale':
-                    $this->_collection->getSelect()->order('e.created_at desc');
-
-//                    $this->_collection->getSelect()->joinLeft(
-//                        'catalog_product_index_price',
-//                        'e.entity_id = catalog_product_index_price.entity_id',
-//                        array('has_special_price' => '(catalog_product_index_price.final_price < catalog_product_index_price.price)')
-//                    )
-//                        ->group('e.entity_id')
-//                        ->order('has_special_price desc');
-
+                    $this->_collection->getSelect()->joinLeft(
+                        'catalog_product_relation',
+                        'catalog_product_relation.parent_id = e.row_id'
+                    )
+                        ->joinLeft(
+                            'catalog_product_index_price',
+                            'catalog_product_index_price.entity_id = catalog_product_relation.child_id ' .
+                            ' AND catalog_product_index_price.final_price < catalog_product_index_price.price AND catalog_product_index_price.final_price > 0',
+                            [
+                                'sum(catalog_product_index_price.final_price) as sumFinalPrice',
+                                'sum(catalog_product_index_price.price) as sumPrice'
+                            ]
+                        )
+                        ->group('e.entity_id')
+                        ->order('sumFinalPrice desc');
                     break;
 
 
