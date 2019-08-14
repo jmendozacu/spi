@@ -15,12 +15,21 @@ $attributeName = $helper->showInAttribute();
 $product = $block->getProduct();
 $curCat = $product->getCategory();
 
+if (!$curCat) {
+    $catIds = $product->getCategoryIds();
+    if (is_array($catIds)) {
+        $catIds = reset($catIds);
+    }
+    if ($catIds) {
+        $curCat = $helper->getCategoryById($catIds);
+    }
+}
+
 ?>
 <div class="swatch-opt" data-role="swatch-options"></div>
 
-<?php
-
-if ($curCat) { ?>
+<!-- category object: <?= get_class($curCat); ?> -->
+<?php if ($curCat) { ?>
     <div class="size-chart" style="display: none">
         <div class="size-chart-inner">
             <?= $curCat->getData('category_size_chart') ?>
@@ -29,7 +38,7 @@ if ($curCat) { ?>
             </div>
         </div>
     </div>
-<?php }  ?>
+<?php } ?>
 
 <script type="text/x-magento-init">
     {
@@ -46,6 +55,7 @@ if ($curCat) { ?>
             }
         }
     }
+
 
 </script>
 

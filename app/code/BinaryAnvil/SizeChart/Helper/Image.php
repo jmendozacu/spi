@@ -1,30 +1,5 @@
 <?php
-/**
- * Binary Anvil, Inc.
- *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the Binary Anvil, Inc. Software Agreement
- * that is bundled with this package in the file LICENSE_BAS.txt.
- * It is also available through the world-wide-web at this URL:
- * http://www.binaryanvil.com/software/license/
- *
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@binaryanvil.com so we can send you a copy immediately.
- *
- * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade this software to
- * newer versions in the future. If you wish to customize this software for
- * your needs please refer to http://www.binaryanvil.com/software for more
- * information.
- *
- * @category BinaryAnvil
- * @package SizeChart
- * @copyright Copyright (c) 2018-2019 Binary Anvil,Inc. (http://www.binaryanvil.com)
- * @license http://www.binaryanvil.com/software/license
- */
+
 namespace BinaryAnvil\SizeChart\Helper;
 
 use Magento\Framework\UrlInterface;
@@ -56,7 +31,8 @@ class Image extends AbstractHelper
         Context $context,
         CategoryRepository $categoryRepository,
         Config $config
-    ) {
+    )
+    {
         $this->categoryRepository = $categoryRepository;
         $this->configHelper = $config;
         parent::__construct($context);
@@ -65,20 +41,20 @@ class Image extends AbstractHelper
     /**
      * @const size chart category attribute
      */
-    const SIZE_CHART_CATEGORY_IMAGE_ATTRIBUTE      = 'ba_size_chart';
+    const SIZE_CHART_CATEGORY_IMAGE_ATTRIBUTE = 'ba_size_chart';
 
     /**
      * @const size chart image paths
      */
-    const SIZE_CHART_CATEGORY_BASE_IMAGE_PATH      = 'catalog/category/sizechart';
-    const SIZE_CHART_CATEGORY_BASE_IMAGE_TMP_PATH  = 'catalog/category/sizechart/tmp';
-    
+    const SIZE_CHART_CATEGORY_BASE_IMAGE_PATH = 'catalog/category/sizechart';
+    const SIZE_CHART_CATEGORY_BASE_IMAGE_TMP_PATH = 'catalog/category/sizechart/tmp';
+
     /**
      * Retrieve image URL
      *
      * @param string $image
-     * @throws \Magento\Framework\Exception\LocalizedException
      * @return string
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function getImageUrl($image)
     {
@@ -124,7 +100,7 @@ class Image extends AbstractHelper
         if (!$this->configHelper->isEnabled() || !$this->showInAttribute()) {
             return false;
         }
-        
+
         $categoryIds = $product->getCategoryIds();
         try {
             $category = $this->categoryRepository->get($categoryIds[0]);
@@ -142,5 +118,19 @@ class Image extends AbstractHelper
     public function showInAttribute()
     {
         return $this->configHelper->getShowInAttribute();
+    }
+
+
+    /**
+     * @param $catId
+     * @return bool|\Magento\Catalog\Api\Data\CategoryInterface|mixed
+     * @throws \Magento\Framework\Exception\NoSuchEntityException
+     */
+    public function getCategoryById($catId)
+    {
+        if ($catId && intval($catId) > 0) {
+            return $this->categoryRepository->get($catId);
+        }
+        return false;
     }
 }
