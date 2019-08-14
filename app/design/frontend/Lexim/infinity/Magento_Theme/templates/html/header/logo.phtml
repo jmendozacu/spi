@@ -40,19 +40,23 @@
     require(['jquery'], function ($) {
         $(document).ready(function () {
             let navInMobile = ".customer-welcome>#PopupLogin>.pop-up-container";
-            let navToggle = '.action.nav-toggle';
 
             // click search in mobile
             $('#ic-search-mobi').click(function () {
                 $('.block-search .block-content').toggle();
             });
 
+            $(document).mouseup(function (e) {
+                let container = $(navInMobile);
+                let toggleButton = $('.action.nav-toggle');
 
-            $(document).click(function (e) {
-                // popup login or popup register hide when click anywhere except area div of popup.
-                if (!($(e.target).closest(navInMobile).length > 0) && !($(e.target).closest(navToggle).length > 0)) {
+                // if the target of the click isn't the container nor a descendant of the container
+                if (!container.is(e.target) && container.has(e.target).length === 0
+                    && !toggleButton.is(e.target) && toggleButton.has(e.target).length === 0 ) {
                     $('html').removeClass('nav-before-open nav-open');
                 }
             });
+
+        })
     });
 </script>
