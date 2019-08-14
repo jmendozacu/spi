@@ -39,10 +39,20 @@
 <script type="text/javascript">
     require(['jquery'], function ($) {
         $(document).ready(function () {
+            let navInMobile = ".customer-welcome>#PopupLogin>.pop-up-container";
+            let navToggle = '.action.nav-toggle';
+
             // click search in mobile
             $('#ic-search-mobi').click(function () {
                 $('.block-search .block-content').toggle();
             });
-        });
+
+
+            $(document).click(function (e) {
+                // popup login or popup register hide when click anywhere except area div of popup.
+                if (!($(e.target).closest(navInMobile).length > 0) && !($(e.target).closest(navToggle).length > 0)) {
+                    $('.block-search .block-content').hide();
+                }
+            });
     });
 </script>
