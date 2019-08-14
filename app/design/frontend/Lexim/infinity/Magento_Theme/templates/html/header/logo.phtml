@@ -51,7 +51,7 @@
             $(document).click(function (e) {
                 // popup login or popup register hide when click anywhere except area div of popup.
                 if (!($(e.target).closest(navInMobile).length > 0) && !($(e.target).closest(navToggle).length > 0)) {
-                    $('.block-search .block-content').hide();
+                    $('html').removeClass('nav-before-open nav-open');
                 }
             });
     });
