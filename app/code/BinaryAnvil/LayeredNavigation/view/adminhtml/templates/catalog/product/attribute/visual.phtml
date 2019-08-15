@@ -41,6 +41,7 @@ $stores = $block->getStoresSortedBySortOrder();
             <thead>
             <tr id="swatch-visual-options-table">
                 <th class="col-draggable"></th>
+                <th><span>Id</span></th>
                 <th class="col-default"><span><?= $block->escapeHtml(__('Is Default')) ?></span></th>
                 <th class="col-default"><span><?= $block->escapeHtml(__('Custom View')) ?></span></th>
                 <th><span><?= $block->escapeHtml(__('Swatch')) ?></span></th>
@@ -86,6 +87,7 @@ $stores = $block->getStoresSortedBySortOrder();
                 <?php endif; ?>
                 <input data-role="order" type="hidden" name="optionvisual[order][<%- data.id %>]"  value="<%- data.sort_order %>" <?php if ($block->getReadOnly() || $block->canManageOptionDefaultOnly()): ?> disabled="disabled"<?php endif; ?>/>
             </td>
+            <td><span><%- data.id %></span></td>
             <td class="col-default">
                 <input class="input-radio" type="<%- data.intype %>" name="defaultvisual[]" value="<%- data.id %>" <%- data.checked %><?php if ($block->getReadOnly()):?>disabled="disabled"<?php endif;?>/>
             </td>
