@@ -87,7 +87,7 @@ class ItemCollectionProvider
     public function afterGetCollection($subject, $collection)
     {
         if ($subject instanceof ItemCollectionProviderInterface && count($this->newProducts)) {
-            $collection->addAttributeToFilter('entity_id', ['nin' => $this->newProducts]);
+            // $collection->addAttributeToFilter('entity_id', ['nin' => $this->newProducts]);
             return $collection;
         }
         return $collection;
