@@ -113,12 +113,14 @@ class Toolbar extends \Magento\Catalog\Block\Product\ProductList\Toolbar
 
                 // Newest
                 case 'created_at_desc':
-                    $this->_collection->getSelect()->order('e.created_at desc');
+                    // $this->_collection->getSelect()->order('e.created_at desc');
+
+                    $this->_collection->addAttributeToSort('news_from_date', 'desc')->getSelect()->order('e.created_at desc');
                     break;
 
                 // Oldest
                 case 'created_at_asc':
-                    $this->_collection->getSelect()->order('e.created_at asc');
+                    $this->_collection->addAttributeToSort('news_from_date', 'asc')->getSelect()->order('e.created_at asc');
                     break;
 
                 // On Sale
