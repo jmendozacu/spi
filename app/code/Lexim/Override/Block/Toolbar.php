@@ -90,7 +90,7 @@ class Toolbar extends \Magento\Catalog\Block\Product\ProductList\Toolbar
                         ->joinLeft(
                             'catalog_product_index_price',
                             'catalog_product_index_price.entity_id = catalog_product_relation.child_id',
-                            'min(catalog_product_index_price.min_price) as sumTotal'
+                            'min(catalog_product_index_price.final_price) as sumTotal'
                         )
                         ->group('e.entity_id')
                         ->order('sumTotal asc');
@@ -105,7 +105,7 @@ class Toolbar extends \Magento\Catalog\Block\Product\ProductList\Toolbar
                         ->joinLeft(
                             'catalog_product_index_price',
                             'catalog_product_index_price.entity_id = catalog_product_relation.child_id',
-                            'max(catalog_product_index_price.max_price) as sumTotal'
+                            'max(catalog_product_index_price.final_price) as sumTotal'
                         )
                         ->group('e.entity_id')
                         ->order('sumTotal desc');
