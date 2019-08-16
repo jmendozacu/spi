@@ -115,20 +115,20 @@
 
 .swatch-option.disabled {
     cursor: default;
-    color: #ddd!important;
+    color: #ddd !important;
     text-decoration: line-through;
 
 }
 
 .swatch-option.image.disabled {
-    background: #ddd !important;
-	color: #ddd!important;
+    background: #d5d4d3 !important;
+    color: #ddd !important;
     text-decoration: line-through;
-	background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' preserveAspectRatio='none' viewBox='0 0 100 100'><path d='M1 0 L0 1 L99 100 L100 99' fill='black' /><path d='M0 99 L99 0 L100 1 L1 100' fill='black' /></svg>")!important;
-    background-repeat:no-repeat;
-    background-position:center center;
-    background-size: 100% 100%, auto;
-	border: 1px solid #d5d4d3;
+    /*background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' preserveAspectRatio='none' viewBox='0 0 100 100'><path d='M1 0 L0 1 L99 100 L100 99' fill='black' /><path d='M0 99 L99 0 L100 1 L1 100' fill='black' /></svg>")!important;*/
+    /*background-repeat:no-repeat;*/
+    /*background-position:center center;*/
+    /*background-size: 100% 100%, auto;*/
+    border: 1px solid #d5d4d3;
 }
 
 .swatch-option.disabled:after {
