@@ -587,9 +587,10 @@ if ($parentCatKey === 'katie-duke') {
                     let curWidth = $(window).width();
                     if (curWidth < 768) {
                         let parent = $(this).parent();
-                        if (parent.hasClass("opened")) {
-                            parent.removeClass("opened");
-                        } else {
+                        let isOpened = parent.hasClass("opened");
+                        parent.removeClass("opened");
+                        $('.filter-options').removeClass("opened");
+                        if (!isOpened) {
                             parent.addClass("opened");
                         }
                     } else {

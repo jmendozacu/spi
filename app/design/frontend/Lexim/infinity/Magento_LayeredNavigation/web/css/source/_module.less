@@ -381,6 +381,18 @@
 
         .filter-options-title {
             padding: 0;
+
+            &:after {
+                content: '\e622';
+                font-family: 'icons-blank-theme';
+                position: absolute;
+                right: 0;
+                top: 0;
+                font-size: 30px;
+                font-weight: normal;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
         }
 
         .filter-options-content {
@@ -392,7 +404,7 @@
                 display: block;
             }
 
-            &:after {
+            .filter-options-title:after {
                 content: '\e621';
             }
         }
@@ -439,17 +451,6 @@
             }
 
             // # fix bug hover in mobile
-        }
-
-        &:after {
-            content: '\e622';
-            font-family: 'icons-blank-theme';
-            position: absolute;
-            right: 0;
-            top: 0;
-            font-size: 30px;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
 
         .swatch-attribute {
