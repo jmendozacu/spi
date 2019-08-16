@@ -22,6 +22,7 @@
     </div>
 </div>
 
+<?php /**
 <!--Fix for jumping content. Loader must be the same size as gallery.-->
 <script>
     var config = {
@@ -40,6 +41,7 @@
 
     loader.style.paddingBottom = (config.height / config.width * 50) + "%";
 </script>
+ */ ?>
 
 <script type="text/x-magento-init">
     {
@@ -56,14 +58,14 @@
                     <?php if (($block->getVar("gallery/keyboard"))): ?>
                         "keyboard": <?= $block->getVar("gallery/keyboard") ?>,
                     <?php endif; ?>
-                    <?php if (($block->getVar("gallery/arrows"))): ?>
+                    <?php /** if (($block->getVar("gallery/arrows"))): ?>
                         "arrows": <?= $block->getVar("gallery/arrows") ?>,
-                    <?php endif; ?>
+                    <?php endif; */ ?>
                     <?php if (($block->getVar("gallery/allowfullscreen"))): ?>
                         "allowfullscreen": <?= $block->getVar("gallery/allowfullscreen") ?>,
                     <?php endif; ?>
                     "showCaption": false,
-					"arrows":false,
+                    "arrows" : true,
 
                     <?php if ($block->getVar("gallery/transition/duration")): ?>
                         "transitionduration": <?= $block->getVar("gallery/transition/duration") ?>,
