@@ -8,5 +8,12 @@
         <referenceBlock name="head.additional">
             <block class="Magento\Framework\View\Element\Template" name="opengraph.home" template="Magento_Cms::opengraph/general.phtml"/>
         </referenceBlock>
+
+        <!-- Remove sidebar -->
+        <referenceBlock name="catalog.compare.sidebar" remove="true"/>
+        <referenceBlock name="multiple-wishlist_sidebar" remove="true"/>
+        <referenceBlock name="sale.reorder.sidebar" remove="true"/>
+        <referenceBlock name="wishlist_sidebar" remove="true"/>
+        <referenceContainer name="div.sidebar.additional" remove="true"/>
     </body>
 </page>
