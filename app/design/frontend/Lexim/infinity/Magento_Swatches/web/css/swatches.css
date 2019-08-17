@@ -128,8 +128,40 @@
     /*background-repeat:no-repeat;*/
     /*background-position:center center;*/
     /*background-size: 100% 100%, auto;*/
-    border: 1px solid #d5d4d3;
+    /*border: 1px solid #d5d4d3;*/
 }
+
+.swatch-option.image.disabled:before {
+    content: '';
+    width: 60px;
+    height: 1px;
+    background: #000;
+    position: absolute;
+    left: -10px;
+    top: 19px;
+    -moz-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.swatch-option.image.disabled:after {
+    content: '';
+    width: 60px;
+    height: 1px;
+    background: #000;
+    position: absolute;
+    left: -10px;
+    top: 19px;
+    -moz-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+
 
 .swatch-option.disabled:after {
     /*content: '';*/
