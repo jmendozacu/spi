@@ -283,7 +283,7 @@ if (isset($shippingAddress)) {
 }
 ?>
 
-<div class="save-address">
+<div class="save-address" id="defaultshipping">
     <div class="title-address">
         <span>Save addresses</span>
         <a href="javascript:void(0)" class="link-edit-address"><?= __('Edit'); ?></a>
@@ -835,6 +835,12 @@ if (!empty($array_customer)) {
 <script>
     require(['jquery'], function ($) {
         $(function () {
+            var hash = window.location.hash;
+            if(hash == "#defaultshipping"){
+                $('#defaultshipping .link-edit-address').addClass('focus');
+                $('#defaultshipping').addClass('active');
+            }
+
             $('.link-edit-address').click(function (i) {
                 if ($(this).hasClass("focus")) {
                     $(this).removeClass('focus');

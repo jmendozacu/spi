@@ -63,7 +63,7 @@
         <referenceBlock  name="customer-account-navigation-orders-link">
             <arguments>
                 <argument name="path" xsi:type="string">sales/order/history</argument>
-                <argument name="label" xsi:type="string" translate="true">Recent Order</argument>
+                <argument name="label" xsi:type="string" translate="true">Recent Orders</argument>
                 <argument name="sortOrder" xsi:type="number">210</argument>
             </arguments>
         </referenceBlock>
