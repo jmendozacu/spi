@@ -137,11 +137,23 @@ $helper = $this->helper(\BinaryAnvil\Ratings\Helper\Data::class);
                                       data-bind="value: review().detail"></textarea>
                         </div>
                     </div>
+
+                    <?php /**
                     <div class="field review-field-nickname required">
                         <label for="nickname_field" class="label"><span><?= $block->escapeHtml(__('Email Address')) ?></span></label>
                         <div class="control">
                             <input type="email" name="nickname" id="nickname_field" class="input-text"
                                    placeholder="Email Address"
+                                   data-validate="{required:true}" data-bind="value: nickname()"/>
+                        </div>
+                    </div>
+                    */ ?>
+
+                    <div class="field review-field-nickname required">
+                        <label for="nickname_field" class="label"><span><?= $block->escapeHtml(__('Your Name')) ?></span></label>
+                        <div class="control">
+                            <input type="text" name="nickname" id="nickname_field" class="input-text"
+                                   placeholder="Your Name"
                                    data-validate="{required:true}" data-bind="value: nickname()"/>
                         </div>
                     </div>

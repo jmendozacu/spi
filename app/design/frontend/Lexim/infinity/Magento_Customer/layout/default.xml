@@ -26,7 +26,7 @@
                 <block class="Magento\Customer\Block\Form\Login" name="customer_form_login" template="Magento_Customer::form/login.phtml">
                     <container name="form.additional.info" as="form_additional_info"/>
                 </block>
-                <block class="Magento\Customer\Block\Form\Register" name="customer_form_register" template="Magento_Customer::form/register.phtml"/>
+<!--                <block class="Magento\Customer\Block\Form\Register" name="customer_form_register" template="Magento_Customer::form/register.phtml"/>-->
             </block>
         </referenceBlock>
 
@@ -37,15 +37,6 @@
                name="social-login-popup-authentication-social-login" template="Mageplaza_SocialLogin::form/social.phtml"/>
         <move element="social-login-popup-authentication-social-login" destination="customer_form_login"/>
 
-
-        <!--        <block class="Magento\Theme\Block\Html\Header" name="header" as="header">-->
-        <!--            <arguments>-->
-        <!--                <argument name="show_part" xsi:type="string">welcome</argument>-->
-        <!--            </arguments>-->
-        <!--        </block>-->
-        <!--        <move element="header" destination="top.links" before="-"/>-->
-        <!--        <move element="register-link" destination="top.links"/>-->
-        <!--        <move element="top.links" destination="customer"/>-->
 
         <!-- wrapper -->
         <container name="right.header.wrapper" htmlTag="div" htmlClass="rightHeader"/>

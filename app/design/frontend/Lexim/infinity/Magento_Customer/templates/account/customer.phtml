@@ -89,21 +89,22 @@
         </div>
         <!-- </div>-->
 
+        <?php /**
+         * <div id="PopupRegister" class="fixed-pop-up" style="display: none">
+         * <div class="pop-up-container">
+         * <i class="far fa-times" id="closePopupLogin"></i>
+         * <?php // $block->getChildHtml('customer_form_register'); ?>
+         * <div class="register">
+         * <div class="register-inner">
+         * <div class="dercor-line-black"></div>
+         * <div class="field header">ALREADY HAVE AN ACCOUNT?</div>
+         * <a id="btn-login-account" class="create-an-account" title="Sign in" href="javascript:void(0);">SIGN IN</a>
+         * </div>
+         * </div>
+         * </div>
+         * </div>
+         **/ ?>
 
-        <div id="PopupRegister" class="fixed-pop-up" style="display: none">
-
-            <div class="pop-up-container">
-                <i class="far fa-times" id="closePopupLogin"></i>
-                <?php // $block->getChildHtml('customer_form_register'); ?>
-                <div class="register">
-                    <div class="register-inner">
-                        <div class="dercor-line-black"></div>
-                        <div class="field header">ALREADY HAVE AN ACCOUNT?</div>
-                        <a id="btn-login-account" class="create-an-account" title="Sign in" href="javascript:void(0);">SIGN IN</a>
-                    </div>
-                </div>
-            </div>
-        </div>
 
     </li>
 
@@ -128,7 +129,7 @@
 
 
             /**
-             *   func click show popup login
+             * click show popup login
              */
             $('body').on('click', '.customer-welcome>.customer-name', function () {
                 $(popupLogin).show();
@@ -136,7 +137,7 @@
             });
 
             /**
-             *   func click close Popup Login, Register
+             * click close Popup Login, Register
              */
             $('body').on('click', '#closePopupLogin', function () {
                 $(popupLogin).hide();
@@ -146,7 +147,7 @@
             });
 
             /**
-             *    func click show popup register and close popup login
+             * click show popup register and close popup login
              */
             $('body').on('click', '#btn-create-account', function () {
                 $(popupRegister).show();
@@ -156,7 +157,7 @@
             });
 
             /**
-             *    func click show popup login and close popup register
+             * click show popup login and close popup register
              */
             $('body').on('click', '#btn-login-account', function () {
                 $(popupLogin).show();
@@ -166,7 +167,7 @@
             });
 
             /**
-             *  func click in or out area div to show or hide popup.
+             * click in or out area div to show or hide popup.
              */
             $(document).click(function (e) {
 
