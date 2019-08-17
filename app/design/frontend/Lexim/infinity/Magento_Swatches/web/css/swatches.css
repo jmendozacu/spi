@@ -161,8 +161,6 @@
     transform: rotate(-45deg);
 }
 
-
-
 .swatch-option.disabled:after {
     /*content: '';*/
     /*position: absolute;*/
