@@ -43,9 +43,14 @@
                     </div>
                 </div>
 
-                <?= $block->getChildHtml('form_additional_info') ?>
+                <?php // echo $block->getChildHtml('form_additional_info') ?>
 
                 <div class="actions-toolbar">
+                    <div class="third checkbox-field">
+                        <input type="checkbox" name="remember_me" id="Login_Remember_Me"/>
+                        <label for="Login_Remember_Me"><span>Remember me.</span></label>
+                    </div>
+
                     <div class="secondary">
                         <a class="action remind" href="<?= $block->escapeUrl($block->getForgotPasswordUrl()) ?>">
                             <span><?= $block->escapeHtml(__('Forgot Your Password?')) ?></span>
@@ -54,11 +59,6 @@
                     <div class="primary">
                         <button type="submit" class="action login primary" name="send" id="send2">
                             <span><?= $block->escapeHtml(__('Login')) ?></span></button>
-                    </div>
-
-                    <div class="third checkbox-field">
-                        <input type="checkbox" name="remember_me" id="Login_Remember_Me"/>
-                        <label for="Login_Remember_Me"><span>Remember me.</span></label>
                     </div>
                 </div>
 

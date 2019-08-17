@@ -379,8 +379,11 @@
             font-size: 16px;
         }
 
+        .block-customer-login {
+            margin: 0;
+        }
+
         .third.checkbox-field {
-            display: none;
         }
 
         button {
@@ -4016,7 +4019,7 @@
             }
 
             .third {
-                margin: 0 0 20px;
+                margin: 0 0 12px;
             }
         }
     }
@@ -4092,6 +4095,7 @@
             max-width: 380px;
             min-height: 50vh;
             margin: 0 auto;
+
             .fieldset {
                 margin: 0;
             }
@@ -4123,18 +4127,20 @@
         // Login form
         .block-customer-login {
             width: 100%;
+            margin-bottom: 0;
 
             .actions-toolbar {
-                .secondary {
-                    order: 2;
-                }
 
                 .primary {
+                    order: 0;
+                }
+
+                .secondary {
                     order: 1;
                 }
 
                 .third {
-                    order: 3;
+                    order: 1;
                 }
             }
         }
