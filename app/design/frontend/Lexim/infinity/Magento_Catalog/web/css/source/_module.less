@@ -105,6 +105,13 @@
     }
 
     .category-image {
+        position: relative;
+        width: 100%;
+        padding-bottom: 300px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+
         .image {
             width: 100%;
             display: block;
@@ -1124,6 +1131,13 @@
 
 // min 768px
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+    // Listing page
+    .category-image {
+        padding-bottom: 40%;
+    }
+
+    // Detail Page
     .product.media {
         float: left;
         width: 53%;
