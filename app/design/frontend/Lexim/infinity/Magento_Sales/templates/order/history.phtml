@@ -53,7 +53,7 @@ $blockTotals = $objectManager->get('Magento\Sales\Block\Order\Totals');
             </thead>
             <tbody>
                 <?php foreach ($_orders as $_order): ?>
-                    <tr>
+                    <tr id="<?= /* @escapeNotVerified */ $_order->getRealOrderId() ?>">
                         <?php //TODO: change data format ?>
                         <td data-th="<?= $block->escapeHtml(__('Order number')) ?>" class="col id"><span class="plus-open">+</span><span class="see-more">See more</span><span class="number-id"><?= /* @escapeNotVerified */ $_order->getRealOrderId() ?></span></td>
                         <td data-th="<?= $block->escapeHtml(__('Order date')) ?>" class="col date"><?= /* @escapeNotVerified */ $block->formatDate($_order->getCreatedAt(), IntlDateFormatter::LONG) ?></td>
@@ -177,6 +177,14 @@ $blockTotals = $objectManager->get('Magento\Sales\Block\Order\Totals');
 <script>
     require(['jquery'], function ($) {
         $(function () {
+
+            var hash = window.location.hash;
+            if(hash !== null) {
+                $(''+hash+'').addClass('focus');
+                $(''+hash+' .plus-open').text("-");
+                $(''+hash+'').next().addClass('active');
+            }
+
             $('#my-orders-table .plus-open').click(function (e) {
                 if ($(this).hasClass("focus")) {
                     $(this).removeClass('focus');

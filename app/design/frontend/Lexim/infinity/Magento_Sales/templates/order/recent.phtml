@@ -36,7 +36,7 @@
                             <td data-th="<?= $block->escapeHtml(__('Date Ordered')) ?>" class="col date"><?= /* @escapeNotVerified */ $block->formatDate($_order->getCreatedAt()) ?></td>
                             <td data-th="<?= $block->escapeHtml(__('Status')) ?>" class="col status"><?= /* @escapeNotVerified */ $_order->getStatusLabel() ?></td>
                             <td data-th="<?= $block->escapeHtml(__('Details')) ?>" class="col actions">
-                                <a href="<?= /* @escapeNotVerified */ $block->getViewUrl($_order) ?>" class="action view">
+                                <a href="/sales/order/history#<?= /* @escapeNotVerified */ $_order->getRealOrderId() ?>" class="action view">
                                     <span><?= /* @escapeNotVerified */ __('View Order') ?></span>
                                 </a>
                             </td>

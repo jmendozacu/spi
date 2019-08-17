@@ -293,6 +293,7 @@ if (isset($shippingAddress)) {
             <p>
                 <?php if ($getAddres): ?>
                     <?= $getAddres ?>
+                    <label for="set_shipping_address" class="defaul-shipping"><span>Default address</span></label>
                 <?php else: ?>
                     <span>None</span>
                 <?php endif; ?>
@@ -406,12 +407,12 @@ if (isset($shippingAddress)) {
                         </div>
                         <div class="content-details country">
                             <div class="checkbox-field-default">
-                                <label for="set_shipping_address"><span>This is your default shipping address.</span></label>
+                                <label for="set_shipping_address"><span>Default address</span></label>
                             </div>
                         </div>
 
 
-                        <div class="primary">
+                        <div class="primary saved-box">
                             <button type="submit" class="action primary" title="<?= /* @escapeNotVerified */
                             __('Save') ?>"><span><?= /* @escapeNotVerified */
                                     __('Save Changes') ?></span></button>
@@ -584,12 +585,12 @@ $addressBook = $_objectManager->get('Magento\Customer\Block\Address\Book');
                             <div class="content-details edit_shipping_address">
                                 <div class="checkbox-field">
                                     <input type="checkbox" id="primary_shipping" name="default_shipping" value="1" class="checkbox">
-                                    <label for="primary_shipping"><span>Set as shipping address</span></label>
+                                    <label for="primary_shipping"><span>Set as default address</span></label>
                                 </div>
                             </div>
 
 
-                            <div class="primary">
+                            <div class="primary saved-box">
                                 <button type="submit" class="action primary" title="<?= /* @escapeNotVerified */
                                 __('Save') ?>"><span><?= /* @escapeNotVerified */
                                         __('Save Changes') ?></span></button>
@@ -729,7 +730,7 @@ $addressBook = $_objectManager->get('Magento\Customer\Block\Address\Book');
                 <div class="content-details add_shipping_address">
                     <div class="checkbox-field">
                         <input type="checkbox" id="add_shipping" name="default_shipping" value="" class="checkbox">
-                        <label for="add_shipping"><span>Set as shipping address</span></label>
+                        <label for="add_shipping"><span>Set as default address</span></label>
                     </div>
                 </div>
                 <div class="primary">

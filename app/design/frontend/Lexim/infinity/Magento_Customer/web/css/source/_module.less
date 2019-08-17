@@ -1532,10 +1532,20 @@
                         .label {
                             z-index: 1;
                         }
+
+                        .month {
+                            padding-bottom: 20px;
+                        }
                     }
 
                     select {
                         height: 40px;
+                    }
+
+                    .fieldset.address-information {
+                        .nested {
+                            padding-top: 20px;
+                        }
                     }
 
                     .actions-toolbar {
@@ -1752,6 +1762,19 @@
                         line-height: 22px;
                         font-size: 14px;
                         text-align: left;
+                        
+                        .defaul-shipping {
+                            display: block;
+                            padding-top: 10px;
+                        }
+
+                        .defaul-shipping::before {
+                            font-family: "FontAwesomePro", FontAwesome, sans-serif;
+                            content: '\f00c';
+                            color: #000;
+                            font-weight: bold;
+                            padding: 10px 5px 0 0;
+                        }
                     }
 
                     input {
@@ -1763,7 +1786,7 @@
                     display: none;
 
                     .form-address-edit {
-                        .primary {
+                        .primary.saved-box {
                             padding: 15px 0 30px;
                         }
 
@@ -1788,6 +1811,16 @@
 
                                 select {
                                     height: 40px;
+                                }
+                            }
+
+                            .checkbox-field-default {
+                                label::before {
+                                    font-family: "FontAwesomePro", FontAwesome, sans-serif;
+                                    content: '\f00c';
+                                    color: #000;
+                                    font-weight: bold;
+                                    padding-right: 5px;
                                 }
                             }
                         }
@@ -3219,7 +3252,7 @@
 
                     .field {
                         display: block !important;
-                        margin: 10px 0;
+                        margin: 15px 0;
                         position: relative;
 
                         .wrap {
@@ -3310,15 +3343,15 @@
                                         top: -11px;
                                     }
 
-                                    .field.choice {
-                                        .label {
-                                            top: -3px;
-                                            background: transparent;
-                                        }
-                                    }
-
                                     input {
                                         max-width: 300px;
+                                    }
+                                }
+
+                                .field.choice {
+                                    .label {
+                                        top: -3px;
+                                        background: transparent;
                                     }
                                 }
                             }
@@ -3382,6 +3415,19 @@
                             line-height: 18px;
                             margin-bottom: 0;
                         }
+                        
+                        .defaul-shipping {
+                            display: block;
+                            padding-top: 10px;
+                        }
+
+                        .defaul-shipping::before {
+                            font-family: "FontAwesomePro", FontAwesome, sans-serif;
+                            content: '\f00c';
+                            color: #000;
+                            font-weight: bold;
+                            padding-right: 5px;
+                        }
                     }
 
                     .content-edit-address {
@@ -3432,6 +3478,16 @@
                         .content-details.country {
                             float: left;
                             width: 100%;
+
+                            .checkbox-field-default {
+                                label::before {
+                                    font-family: "FontAwesomePro", FontAwesome, sans-serif;
+                                    content: '\f00c';
+                                    color: #000;
+                                    font-weight: bold;
+                                    padding-right: 5px;
+                                }
+                            }
                         }
 
                         .content-details.edit_shipping_address {
@@ -3723,6 +3779,7 @@
             }
         }
     }
+
     .manage-payment-method {
         padding-bottom: 40px;
 
@@ -3730,8 +3787,27 @@
             .label {
                 z-index: 1;
             }
+
+            .month {
+                padding-bottom: 20px;
+            }
         }
 
+        .address-information {
+            .street {
+                .nested {
+                    padding-top: 10px;
+                }
+            }
+        }
+
+        select {
+            height: 40px;
+        }
+        
+        .fieldset.address-information {
+            margin-bottom: 20px;
+        }
         .actions-toolbar {
             .secondary {
                 .action.back {
