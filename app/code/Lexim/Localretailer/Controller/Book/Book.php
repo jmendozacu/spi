@@ -26,6 +26,8 @@ class Book extends Action
         $name = $this->getRequest()->getParam('name');
         $lastname = $this->getRequest()->getParam('lastname');
         $address = $this->getRequest()->getParam('address');
+        $address2 = $this->getRequest()->getParam('address2');
+
         $city = $this->getRequest()->getParam('city');
         $phone = $this->getRequest()->getParam('phone');
         $zipcode = $this->getRequest()->getParam('zipcode');
@@ -37,38 +39,77 @@ class Book extends Action
             $set_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
             $object_addres = $set_objectManager->get('\Magento\Customer\Model\AddressFactory');
             $set_address = $object_addres->create();
-            if($add_shipping_default == 1){
-                $set_address->setCustomerId($customer_id)
-                ->setFirstname($name)
-                ->setLastname($lastname)
-                ->setCountryId($country)
-                // if Customer country is USA then need add state / province 
-                ->setRegionId($state) 
-                ->setPostcode($zipcode)
-                ->setCity($city)
-                ->setTelephone($phone)
-                // ->setCompany('GMI')
-                ->setStreet($address)
-                // ->setIsDefaultBilling('1')
-                ->setIsDefaultShipping('1')
-                ->setSaveInAddressBook('1');
-            }else {
-                $set_address->setCustomerId($customer_id)
-                ->setFirstname($name)
-                ->setLastname($lastname)
-                ->setCountryId($country)
-                ->setRegionId($state) 
-                ->setPostcode($zipcode)
-                ->setCity($city)
-                ->setTelephone($phone)
-                // ->setCompany('GMI')
-                ->setStreet($address)
-                // ->setIsDefaultBilling('1')
-                // ->setIsDefaultShipping('1')
-                
-                ->setSaveInAddressBook('1');
+
+            if($address2 ==""){
+                if($add_shipping_default == 1){
+                    $set_address->setCustomerId($customer_id)
+                    ->setFirstname($name)
+                    ->setLastname($lastname)
+                    ->setCountryId($country)
+                    // if Customer country is USA then need add state / province 
+                    ->setRegionId($state) 
+                    ->setPostcode($zipcode)
+                    ->setCity($city)
+                    ->setTelephone($phone)
+                    // ->setCompany('GMI')
+                    ->setStreet($address)
+                    // ->setIsDefaultBilling('1')
+                    ->setIsDefaultShipping('1')
+                    ->setSaveInAddressBook('1');
+                }else {
+                    $set_address->setCustomerId($customer_id)
+                    ->setFirstname($name)
+                    ->setLastname($lastname)
+                    ->setCountryId($country)
+                    ->setRegionId($state) 
+                    ->setPostcode($zipcode)
+                    ->setCity($city)
+                    ->setTelephone($phone)
+                    // ->setCompany('GMI')
+                    ->setStreet($address)
+                    // ->setIsDefaultBilling('1')
+                    // ->setIsDefaultShipping('1')
+                    
+                    ->setSaveInAddressBook('1');
+                }
+            }else{
+                $address_full = array();
+                array_push($address_full, $address, $address2);
+
+                // $address_full[] = $data['address']['street'];
+
+                if($add_shipping_default == 1){
+                    $set_address->setCustomerId($customer_id)
+                    ->setFirstname($name)
+                    ->setLastname($lastname)
+                    ->setCountryId($country)
+                    // if Customer country is USA then need add state / province 
+                    ->setRegionId($state) 
+                    ->setPostcode($zipcode)
+                    ->setCity($city)
+                    ->setTelephone($phone)
+                    // ->setCompany('GMI')
+                    ->setStreet($address_full)
+                    // ->setIsDefaultBilling('1')
+                    ->setIsDefaultShipping('1')
+                    ->setSaveInAddressBook('1');
+                }else {
+                    $set_address->setCustomerId($customer_id)
+                    ->setFirstname($name)
+                    ->setLastname($lastname)
+                    ->setCountryId($country)
+                    ->setRegionId($state) 
+                    ->setPostcode($zipcode)
+                    ->setCity($city)
+                    ->setTelephone($phone)
+                    // ->setCompany('GMI')
+                    ->setStreet($address_full)
+                    // ->setIsDefaultBilling('1')
+                    // ->setIsDefaultShipping('1')
+                    
+                    ->setSaveInAddressBook('1');
+                }
             }
-            
             try{
             $set_address->save();
             // save Customer address

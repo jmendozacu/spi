@@ -1812,6 +1812,10 @@
                                 select {
                                     height: 40px;
                                 }
+
+                                .paddingtop {
+                                    padding-top: 10px;
+                                }
                             }
 
                             .checkbox-field-default {
@@ -2464,11 +2468,20 @@
         .customer-short-info {
             position: relative;
             padding-bottom: 80px;
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
             display: flex;
             justify-content: space-around;
 
             .container-box {
-                flex: 0;
+                -webkit-box-flex: 0;
+                -moz-box-flex: 0;
+                -webkit-flex: 0;
+                -ms-flex: 0;
+                flex: 0;    
+                -webkit-flex-basis: calc(~'25% - 10px');
                 flex-basis: calc(~'25% - 10px');
                 padding: 0;
                 margin: 0;
@@ -3459,6 +3472,10 @@
 
                                 select {
                                     height: 40px;
+                                }
+
+                                .paddingtop {
+                                    padding-top: 10px;
                                 }
                             }
                         }

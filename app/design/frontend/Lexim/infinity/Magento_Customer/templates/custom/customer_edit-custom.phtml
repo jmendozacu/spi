@@ -274,6 +274,9 @@ if (isset($shippingAddress)) {
     $firstname = $changeArray['firstname'];
     $lastname = $changeArray['lastname'];
     $street = $changeArray['street'][0];
+    if (isset($changeArray['street'][1])) {
+        $street2 = $changeArray['street'][1];
+    }
     $city = $changeArray['city'];
     $country_id = $changeArray['country_id'];
     $region_id = $changeArray['region_id'];
@@ -340,10 +343,25 @@ if (isset($shippingAddress)) {
                                 </label>
                                 <div class="control">
                                     <input type="text" id="street_1" name="street[]" value="<?= $street; ?>"
-                                           title="Address"
+                                           title="Street Address 1"
                                            class="input-text required-entry" data-validate="{required:true}"
                                            aria-required="true">
                                 </div>
+                                <?php if (isset($street2)):?>
+                                <div class="control paddingtop">
+                                    <input type="text" id="street_2" name="street[]" value="<?= $street2; ?>"
+                                           title="Street Address 2"
+                                           class="input-text required-entry" data-validate="{required:true}"
+                                           aria-required="true">
+                                </div>
+                                <?php else: ?>
+                                <div class="control paddingtop">
+                                    <input type="text" id="street_2" name="street[]" value=""
+                                           title="Street Address 2"
+                                           class="input-text" data-validate="{required:fales}"
+                                           aria-required="fales">
+                                </div>
+                                <?php endif; ?>
                             </div>
                         </div>
                         <div class="content-details">
@@ -458,6 +476,9 @@ $addressBook = $_objectManager->get('Magento\Customer\Block\Address\Book');
         $firstname = $changeArray['firstname'];
         $lastname = $changeArray['lastname'];
         $street = $changeArray['street'][0];
+        if (isset($changeArray['street'][1])) {
+            $street3 = $changeArray['street'][1];
+        }
         $city = $changeArray['city'];
         $country_id = $changeArray['country_id'];
         $region_id = $changeArray['region_id'];
@@ -520,6 +541,21 @@ $addressBook = $_objectManager->get('Magento\Customer\Block\Address\Book');
                                                class="input-text required-entry" data-validate="{required:true}"
                                                aria-required="true">
                                     </div>
+                                    <?php if (isset($street3)):?>
+                                    <div class="control paddingtop">
+                                        <input type="text" id="street_2" name="street[]" value="<?= $street3; ?>"
+                                               title="Street Address 2"
+                                               class="input-text required-entry" data-validate="{required:true}"
+                                               aria-required="true">
+                                    </div>
+                                    <?php else: ?>
+                                    <div class="control paddingtop">
+                                        <input type="text" id="street_2" name="street[]" value=""
+                                               title="Street Address 2"
+                                               class="input-text" data-validate="{required:fales}"
+                                               aria-required="fales">
+                                    </div>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                             <div class="content-details">
@@ -667,6 +703,11 @@ $addressBook = $_objectManager->get('Magento\Customer\Block\Address\Book');
                             <input type="text" id="address" name="address" value="" title="Address"
                                    class="input-text required-entry" data-validate="{required:true}"
                                    aria-required="true">
+                        </div>
+                        <div class="control paddingtop">
+                            <input type="text" id="address2" name="address2" value=""
+                                   title="Street Address 2"
+                                   class="input-text">
                         </div>
                     </div>
                 </div>
@@ -930,11 +971,13 @@ if (!empty($array_customer)) {
                 var name = $('.add-shipping-address .box-edit-address #name').val();
                 var lastname = $('.add-shipping-address .box-edit-address #lastname').val();
                 var address = $('.add-shipping-address .box-edit-address #address').val();
+                var address2 = $('.add-shipping-address .box-edit-address #address2').val();
                 var city = $('.add-shipping-address .box-edit-address #city').val();
                 var phone = $('.add-shipping-address .box-edit-address #phone').val();
                 var zipcode = $('.add-shipping-address .box-edit-address #zipcode').val();
                 var state = $(".add-shipping-address .box-edit-address #state").val();
                 var country = $(".add-shipping-address .box-edit-address #country").val();
+                console.log('aa '+address2);
                 var getidcus = <?= $getIdcus ?>;
                 if(state != ''){
                     jQuery.ajax({
@@ -946,6 +989,7 @@ if (!empty($array_customer)) {
                             name: name,
                             lastname: lastname,
                             address: address,
+                            address2: address2,
                             city: city,
                             phone: phone,
                             zipcode: zipcode,
@@ -955,7 +999,7 @@ if (!empty($array_customer)) {
                             add_shipping_default: add_shipping_default
                         },
                         success: function (data) {
-                            location.reload();
+                            // location.reload();
                         }
                     });
                 }
