@@ -113,11 +113,11 @@ define([
         $('.checkbox-field label').click(function () {
             let _this = $(this);
             let _for = _this.prop('for');
-            let name = _this.prop('data-name');
+            let name = _this.attr('data-name');
 
             if (_for && name) {
                 $('input[name="' + name + '"]').trigger('click');
             }
-        })
+        });
     });
 });
