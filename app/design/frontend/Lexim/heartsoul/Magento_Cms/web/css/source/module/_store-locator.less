@@ -1,0 +1,45 @@
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    .cms-store-locator {
+        .columns .column.main {
+            iframe {
+                width: 100%;
+                padding-bottom: 3%;
+            }
+        }
+
+    }
+
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+// 767px
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+// Min 768px
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+}
+
+// Min 992px
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+
+}
+
+// Min 1440px
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+
+}

@@ -1,0 +1,120 @@
+<?php
+/**
+ * Binary Anvil, Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Binary Anvil, Inc. Software Agreement
+ * that is bundled with this package in the file LICENSE_BAS.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.binaryanvil.com/software/license/
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@binaryanvil.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this software to
+ * newer versions in the future. If you wish to customize this software for
+ * your needs please refer to http://www.binaryanvil.com/software for more
+ * information.
+ *
+ * @category    BinaryAnvil
+ * @package     Infinity
+ * @copyright   Copyright (c) 2018-2019 Binary Anvil,Inc. (http://www.binaryanvil.com)
+ * @license     http://www.binaryanvil.com/software/license
+ */
+?>
+<?php
+/** @var Magento\Catalog\Block\Product\ListProduct $block */
+$wishlistHelper = $this->helper('Magento\Wishlist\Helper\Data');
+$helper = $this->helper('Magento\Catalog\Helper\Output');
+$collection = $wishlistHelper->getWishlistItemCollection();
+
+$image = 'category_page_grid';
+$countBreak = 0;
+?>
+
+<div class="container-wishlist container">
+    <h3><?= __('Wishlist')?></h3>
+    <?php if (count($collection)) :?>
+    <ol class="products list items product-items">
+        <?php foreach ($collection as $item) : ?>
+            <?php
+            $_product = $item->getProduct();
+            ?>
+            <li class="item product product-item <?php if (!$_product->isSaleable()): ?>hidden<?php endif; ?>">
+                <div class="product-item-info" data-container="product-grid">
+                    <?php
+                    $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
+                    $productImage = $_imagehelper->init($_product, $image)->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->getUrl();
+                    ?>
+
+                    <?php // Product Image ?>
+                    <a title="<?php /* @escapeNotVerified */ echo __('Go to') ?> <?php /* @escapeNotVerified */ echo $helper->productAttribute($_product, $_product->getName(), 'name'); ?>"
+                       href="<?php /* @escapeNotVerified */ echo $_product->getProductUrl() ?>"
+                       class="product photo product-item-photo"
+                    >
+                        <img class="photo image" src="<?= $productImage ?>" alt="<?php /* @escapeNotVerified */ echo $helper->productAttribute($_product, $_product->getName(), 'name'); ?>" />
+                    </a>
+
+                    <div class="product details product-item-details">
+                        <strong class="product name product-item-name">
+                            <a class="product-item-link"
+                               href="<?php /* @escapeNotVerified */ echo $_product->getProductUrl() ?>"
+                               title="<?php /* @escapeNotVerified */ echo $helper->productAttribute($_product, $_product->getName(), 'name'); ?>"
+                            >
+                                <?php /* @escapeNotVerified */ echo $helper->productAttribute($_product, $_product->getName(), 'name'); ?>
+                            </a>
+                        </strong>
+                        <?= $block->getProductPrice($_product)?>
+
+                        <?php if ($_product->isSaleable()): ?>
+                            <div class="product-item-actions">
+                                <div class="actions-primary-wishlist">
+                                    <a href="<?php /* @escapeNotVerified */ echo $_product->getProductUrl() ?>">
+                                    <button type="button" data-role="tocart" title="<?= $block->escapeHtmlAttr(__('Add to Cart')) ?>" class="action tocart primary-wishlist">
+                                        + <span><?= $block->escapeHtml(__('Add to Cart')) ?></span>
+                                    </button>
+                                    </a>
+                                </div>
+                            </div>
+                        <?php else: ?>
+                            <?php if ($_product->getIsSalable()): ?>
+                                <p class="available stock" title="<?= $block->escapeHtmlAttr(__('Availability')) ?>">
+                                    <span><?= $block->escapeHtml(__('In stock')) ?></span>
+                                </p>
+                            <?php else: ?>
+                                <p class="unavailable stock" title="<?= $block->escapeHtmlAttr(__('Availability')) ?>">
+                                    <span><?= $block->escapeHtml(__('no longer available')) ?></span>
+                                </p>
+                            <?php endif; ?>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </li>
+        <?php $countBreak = $countBreak +1; if($countBreak == 6 ) { break;} ?>    
+        <?php endforeach; ?>
+    </ol>
+    <a href="<?= $block->getBaseUrl(); ?>wishlist" class="view-wishlist"><span><?= __('View wishlist')?></span></a>
+<?php else: ?>
+    <div class="message info empty">
+        <span class="emty-wishlist"><?= $block->escapeHtml(__('Engage in retail therapy. Go buy something.')) ?></span>
+        <a href="<?= $block->getBaseUrl(); ?>"><span><?= __('Fill your wishlist')?></span></a>
+    </div>
+<?php endif; ?>
+</div>
+
+
+<!-- <script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Customer/js/wishlist-height": {
+                "imageContainer": ".container-wishlist .product-item .product-item-photo",
+                "productName": ".container-wishlist .product-item .product-item-name"
+            }
+        }
+    }
+</script>
+ -->

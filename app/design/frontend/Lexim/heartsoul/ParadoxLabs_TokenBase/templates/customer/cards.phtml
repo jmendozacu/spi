@@ -1,0 +1,84 @@
+<?php
+/**
+ * Binary Anvil, Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Binary Anvil, Inc. Software Agreement
+ * that is bundled with this package in the file LICENSE_BAS.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.binaryanvil.com/software/license/
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@binaryanvil.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this software to
+ * newer versions in the future. If you wish to customize this software for
+ * your needs please refer to http://www.binaryanvil.com/software for more
+ * information.
+ *
+ * @category    BinaryAnvil
+ * @package     Infinity
+ * @copyright   Copyright (c) 2018-2019 Binary Anvil,Inc. (http://www.binaryanvil.com)
+ * @license     http://www.binaryanvil.com/software/license
+ */
+?>
+
+<?php
+/** @var \ParadoxLabs\TokenBase\Block\Customer\Cards $block */
+// @codingStandardsIgnoreFile
+?>
+<?php
+/** @var \ParadoxLabs\TokenBase\Helper\Data $ccHelper */
+$ccHelper = $this->helper(\ParadoxLabs\TokenBase\Helper\Data::class)
+?>
+<div class="block block-addresses-list">
+    <div class="block-content items addresses">
+        <?php $cards = $block->getCards(); ?>
+        <?php if (!empty($cards)): ?>
+            <?php /** @var \ParadoxLabs\TokenBase\Model\Card $card */ ?>
+            <?php foreach ($cards as $card): ?>
+                <?php $card = $card->getTypeInstance(); ?>
+                <fieldset class="box-address-billing fieldset<?php if ($card->getExpires() != '' && strtotime($card->getExpires()) < time()): ?> expired<?php endif; ?>">
+                    <div class="save-payment-box">
+                        <ul class="item-payment <?php echo $block->escapeHtml($card->getAdditional('cc_type')); ?>">
+                            <li>
+                                <?php 
+                                $namePayment = $ccHelper->translateCardType($card->getAdditional('cc_type'));
+                                if($namePayment == 'Visa'): ?>
+                                    <img src="/static/frontend/Lexim/infinity/en_US/images/checkout/payment-visa.png">
+                                <?php elseif($namePayment == 'MasterCard'): ?>
+                                    <img src="/static/frontend/Lexim/infinity/en_US/images/checkout/payment-master.png">
+                                <?php elseif($namePayment == 'American Express'): ?>
+                                    <img src="/static/frontend/Lexim/infinity/en_US/images/checkout/payment-american.png">
+                                <?php endif; ?>
+                            </li>
+                            <li>
+                            <p class="card-type">
+                                <span class="card"><?= $namePayment; ?></span>
+                                <span>ending in <?php echo $block->escapeHtml($card->getAdditional('cc_last4')); ?></span>
+                            </p>
+                            <?php if ($card->getExpires() != ''): ?>
+                                <p><?php echo $block->escapeHtml(__('Expires: %1', date('m/Y', strtotime($card->getExpires())))); ?></p>
+                            <?php endif; ?>
+                            </li>
+                        </ul>
+                        <div class="item actions">
+                            <?php if ($card->isInUse()): ?>
+                 
+                            <?php else: ?>
+                                <a class="action edit" href="<?php echo $block->escapeUrl($block->getUrl('*/*', ['_secure' => true, 'form_key' => $block->getFormKey(), 'method' => $card->getMethod(), 'id' => $card->getHash()])) ?>"><span><?php echo $block->escapeHtml(__('Edit')) ?></span></a>
+                                <a class="action delete" href="<?php echo $block->escapeUrl($block->getUrl('*/*/delete', ['_secure' => true, 'form_key' => $block->getFormKey(), 'method' => $card->getMethod(), 'id' => $card->getHash()])) ?>"><span><?php echo $block->escapeHtml(__('Delete')) ?></span></a>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </fieldset>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p><?php echo $block->escapeHtml(__('You do not have any payment data saved yet.')) ?></p>
+        <?php endif; ?>
+    </div>
+</div>

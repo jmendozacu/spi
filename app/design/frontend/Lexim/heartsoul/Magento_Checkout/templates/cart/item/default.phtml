@@ -1,0 +1,157 @@
+<?php
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Checkout\Block\Cart\Item\Renderer */
+
+$_item = $block->getItem();
+$product = $_item->getProduct();
+$isVisibleProduct = $product->isVisibleInSiteVisibility();
+
+/** @var \Magento\Msrp\Helper\Data $helper */
+$helper = $this->helper('Magento\Msrp\Helper\Data');
+$canApplyMsrp = $helper->isShowBeforeOrderConfirm($product) && $helper->isMinimalPriceLessMsrp($product);
+
+$productName = $block->getProductName();
+$qty = $block->getQty();
+?>
+
+<!--<tbody class="cart item">-->
+<tr class="item-info" data-id="<?= $product->getId() ?>" data-item-id="<?= $_item->getId() ?>">
+
+    <!-- IMAGE + INFO -->
+    <td class="cart-item-td image-info">
+        <!-- IMAGE -->
+        <div class="product-item-image">
+            <a href="<?= $block->getProductUrl() ?>" class="product-item-photo"
+               title="<?= $block->escapeHtml($block->getProductName()) ?>">
+                <?= $block->getImage($block->getProductForThumbnail(), 'cart_page_product_thumbnail')->toHtml() ?>
+            </a>
+        </div>
+
+        <!-- RIGHT CONTENT -->
+        <div class="product-item-details">
+
+            <!-- PRODUCT TITLE -->
+            <?php if ($block->hasProductUrl()) { ?>
+            <a href="<?= $block->getProductUrl() ?>">
+                <?php } ?>
+                <p class="product-item-name"><?= $productName ?></p>
+                <?php if ($block->hasProductUrl()) { ?>
+            </a>
+        <?php } ?>
+
+            <!-- SKU -->
+            <p class="sku">SKU: <?= $product->getSku() ?></p>
+
+            <!-- Price -->
+            <p class="cart-item-td-price"><?= $block->getUnitPriceHtml($_item) ?></p>
+
+            <!-- OPTIONS -->
+            <?php if ($_options = $block->getOptionList()): ?>
+                <?php foreach ($_options as $_option) : ?>
+                    <?php $_formatedOptionValue = $block->getFormatedOptionValue($_option) ?>
+                    <p><?= $block->escapeHtml($_option['label']) ?>:
+                        <?php if (isset($_formatedOptionValue['full_view'])): ?>
+                            <?= $_formatedOptionValue['full_view'] ?>
+                        <?php else: ?>
+                            <?= $_formatedOptionValue['value'] ?>
+                        <?php endif; ?>
+                    </p>
+                <?php endforeach; ?>
+            <?php endif; ?>
+
+            <!-- QUANTITY -->
+            <p>Quantity: <?= $qty ?></p>
+
+            <!-- Action: Remove + Edit -->
+            <div class="actions-toolbar">
+                <?= $block->getActions($_item) ?>
+            </div>
+
+
+            <?php if ($messages = $block->getMessages()): ?>
+                <?php foreach ($messages as $message): ?>
+                    <div class="cart item message <?= $message['type'] ?>">
+                        <div><?= $block->escapeHtml($message['text']) ?></div>
+                    </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
+
+            <?php $addInfoBlock = $block->getProductAdditionalInformationBlock(); ?>
+            <?php if ($addInfoBlock): ?>
+                <?= $addInfoBlock->setItem($_item)->toHtml() ?>
+            <?php endif; ?>
+
+        </div>
+    </td>
+
+    <!-- QTY -->
+    <td class="cart-item-td quantity">
+        <div class="control qty">
+            <span class="product-cart-control product-cart-control-minus-qty minus"
+                  title="<?= __('Decrease Quantity') ?>"><?= __('-') ?></span>
+            <input id="cart-<?= $_item->getId() ?>-qty"
+                   name='cart[<?= $_item->getId() ?>][qty]'
+                   data-cart-item-id="<?= $block->escapeHtml($_item->getSku()) ?>"
+                   value="<?= $block->getQty() ?>"
+                   type="number"
+                   size="4"
+                   title="<?= $block->escapeHtml(__('Qty')) ?>"
+                   class="input-text qty"
+                   data-validate="{required:true,'validate-greater-than-zero':true}"
+                   data-role="cart-item-qty"
+                   max="9999"/>
+            <span class="product-cart-control product-cart-control-add-qty plus"
+                  title="<?= __('Increase Quantity') ?>"><?= __('+') ?></span>
+        </div>
+        <br>
+        <!-- Update -->
+        <button type="submit" name="update_cart_action" data-cart-item-update=""
+                value="update_qty" title="Update Shopping Bag" class="action update">
+            <span><?= __('Update') ?></span>
+        </button>
+    </td>
+
+    <!-- PRICE -->
+    <td class="cart-item-td price">
+        <span><?= $block->getUnitPriceHtml($_item) ?></span>
+    </td>
+
+    <!-- ACTION -->
+    <td class="cart-item-td actions">
+        <!-- Action: Remove + Edit  -->
+        <div class="actions-toolbar">
+            <?= $block->getActions($_item) ?>
+        </div>
+    </td>
+
+    <?php /** if ($canApplyMsrp) { ?>
+     * <td class="col msrp" data-th="<?= $block->escapeHtml(__('Price')) ?>">
+     * <span class="pricing msrp">
+     * <span class="msrp notice"><?= __('See price before order confirmation.') ?></span>
+     * <?php $helpLinkId = 'cart-msrp-help-' . $_item->getId(); ?>
+     * <a href="#" class="action help map" id="<?= ($helpLinkId) ?>"
+     * data-mage-init='{"addToCart":{"helpLinkId": "#<?= $helpLinkId ?>","productName": "<?= $product->getName() ?>","showAddToCart": false}}'>
+     * <span><?= __("What's this?") ?></span>
+     * </a>
+     * </span>
+     * </td>
+     * <?php } else { ?>
+     * <td class="col price" data-th="<?= $block->escapeHtml(__('Each')) ?>">
+     * <?= $block->getUnitPriceHtml($_item) ?>
+     * </td>
+     * <?php }  */ ?>
+
+    <?php /**
+     * <td class="col subtotal" data-th="<?= $block->escapeHtml(__('Total')) ?>">
+     * <?php if ($canApplyMsrp): ?>
+     * <span class="cart msrp subtotal">--</span>
+     * <?php else: ?>
+     * <?= $block->getRowTotalHtml($_item) ?>
+     * <?php endif; ?>
+     * </td>
+     **/ ?>
+
+</tr>
+
+<!--</tbody>-->

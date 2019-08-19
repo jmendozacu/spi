@@ -1,0 +1,9 @@
+
+<div class="review-custom<?= !$block->checkCountReviews() ? ' first-review' : '' ?>" >
+    <?php if($block->checkCountReviews()): ?>
+        <?php // echo $block->getChildHtml('product.item.review.custom'); ?>
+        <?php echo $block->getChildHtml('product.info.review.custom'); ?>
+    <?php endif; ?>
+    <?php echo $block->getChildHtml('review-wrapper'); ?>
+</div>
+

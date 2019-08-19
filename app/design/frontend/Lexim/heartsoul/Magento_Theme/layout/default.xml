@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="3columns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="default_head_blocks"/>
+    <body>
+
+        <!-- remove breadcrumbs -->
+        <referenceBlock name="breadcrumbs" remove="true" />
+
+        <!-- Logo -->
+        <referenceBlock name="logo">
+            <arguments>
+                <argument name="logo_img_width" xsi:type="number">127</argument>
+                <argument name="logo_img_height" xsi:type="number">55</argument>
+            </arguments>
+        </referenceBlock>
+
+        <!-- Move message "Sale off" in top header  -->
+        <referenceContainer name="header.container">
+            <block class="Magento\Framework\View\Element\Template" name="content-in-top-header" template="Magento_Theme::message-in-top-header.phtml" before="-" />
+        </referenceContainer>
+
+        <!-- Move the menu to the middle of header -->
+        <move element="navigation.sections" destination="header-wrapper" after="logo" />
+
+
+        <!-- Footer -->
+        <referenceContainer name="footer">
+            <container name="footer.inner" htmlTag="div" htmlClass="footer-inner" before="-">
+                <!-- WE ARE -->
+                <container name="footer.we-are" htmlTag="div" htmlClass="block" before="-">
+                    <block class="Magento\Cms\Block\Block" name="footer-block.we-are">
+                        <arguments>
+                            <argument name="block_id" xsi:type="string">footer_we_are</argument>
+                        </arguments>
+                    </block>
+                </container>
+                <!-- HELP -->
+                <container name="footer.help" htmlTag="div" htmlClass="block" after="footer.we-are">
+                    <block class="Magento\Cms\Block\Block" name="footer-block.help">
+                        <arguments>
+                            <argument name="block_id" xsi:type="string">footer_help</argument>
+                        </arguments>
+                    </block>
+                </container>
+                <!-- FOLLOW US -->
+                <container name="footer.social" htmlTag="div" htmlClass="block social" after="-">
+                    <block class="Magento\Cms\Block\Block" name="footer-block.social">
+                        <arguments>
+                            <argument name="block_id" xsi:type="string">footer_social</argument>
+                        </arguments>
+                    </block>
+                </container>
+            </container>
+        </referenceContainer>
+        <referenceBlock name="footer_links" remove="true" />
+        <referenceBlock name="report.bugs" remove="true" />
+        <referenceBlock name="store_switcher" remove="true" />
+        <move element="form.subscribe" destination="footer.inner" after="footer.help" />
+
+        <!-- Remove compare  -->
+        <referenceBlock name="compare" remove="true" />
+
+    </body>
+</page>

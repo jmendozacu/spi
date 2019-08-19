@@ -1,0 +1,52 @@
+<?php
+/**
+ * Category layered navigation state
+ *
+ * @var $block \Magento\LayeredNavigation\Block\Navigation\State
+ */
+?>
+<?php
+$_filters = $block->getActiveFilters();
+$helper = $this->helper('BinaryAnvil\LayeredNavigation\Helper\State');
+$sortedFilters = $helper->getSortedFilterArray($_filters);
+?>
+
+<?php if (!empty($_filters) && !empty($sortedFilters)): ?>
+    <div class="filter-current">
+        <strong class="filter-current-subtitle">FILTER</strong>
+        <ol class="items">
+            <?php foreach ($sortedFilters as $filterGroup) : ?>
+                <li class="item">
+                    <?php /** <span class="filter-label"><?= $block->escapeHtml(__($filterGroup['label'])) ?></span> **/ ?>
+
+                    <?php foreach ($filterGroup['filters'] as $_filter): ?>
+                        <?php
+                        $clearLinkUrl = $_filter->getClearLinkUrl();
+                        $currentFilterName = $block->escapeHtml(__($_filter->getName())) . " " . $block->stripTags($_filter->getLabel());
+                        ?>
+
+                        <?php /**
+                         * if ($clearLinkUrl):
+                         * ?>
+                         * <a class="action previous" href="<?= $_filter->getRemoveUrl() ?>"
+                         * title="Previous">
+                         * <span>Previous</span>
+                         * </a>
+                         * <a class="action remove"
+                         * title="<?= $block->escapeHtml($_filter->getFilter()->getClearLinkText()) ?>"
+                         * href="<?= $clearLinkUrl ?>">
+                         * <span><?= $block->escapeHtml($_filter->getFilter()->getClearLinkText()) ?></span>
+                         * </a>
+                         **/ ?>
+
+                        <a class="action remove" href="<?= $helper->getRemoveFilterUrl($_filter) ?>"
+                           title="Remove <?= $currentFilterName ?>">
+                            <span class="far fa-times"></span>
+                        </a>
+                        <span class="filter-value"><?= $block->stripTags($_filter->getLabel()) ?></span>
+                    <?php endforeach; ?>
+                </li>
+            <?php endforeach; ?>
+        </ol>
+    </div>
+<?php endif; ?>

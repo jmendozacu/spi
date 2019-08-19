@@ -1,0 +1,74 @@
+
+<?php
+/** @var \BinaryAnvil\Ratings\Block\RatingList $block */
+
+/** @var int $activeLineMaxLeft */
+$activeLineMaxLeft = 86;
+
+/** @var array $starsCountList */
+$starsCountList = $block->getStarsCountList();
+
+/** @var \Magento\Review\Model\ResourceModel\Rating\Collection $splitSummaryRating */
+$splitSummaryRating = $block->getSplitSummaryRating();
+?>
+<?php if($block->checkCountReviews()): ?>
+    <div class="rating-statistics">
+        <div class="block-title">
+            <strong><?= __('Rating breakdown') ?></strong>
+        </div>
+        <div class="stars-count">
+            <ul class="count">
+                <?php for ($i = 5; $i > 0; $i--): ?>
+                    <li><?= $i . ' ' . ($i == 1 ? __('Star') : __('Stars')); ?></li>
+                <?php endfor ?>
+            </ul>
+            <ul class="line">
+                <?php for ($i = 5; $i > 0; $i--): ?>
+                    <li>
+                        <div class="default">
+                            <div class="active"
+                                 <?php
+                                    $starsPercent = $starsCountList['summary'] == 0 ?
+                                        0 : $starsCountList[$i] / $starsCountList['summary'] * 100;
+                                 ?>
+                                 style="width: <?= $starsPercent ?>%">
+                            </div>
+                        </div>
+                    </li>
+                <?php endfor ?>
+            </ul>
+            <ul class="total-count">
+                <?php for ($i = 5; $i > 0; $i--): ?>
+                    <li> <?= $starsCountList[$i] ?></li>
+                <?php endfor ?>
+            </ul>
+        </div>
+        <div class="recommend">
+            <span><?= $block->getRecommendPercent() ?>%</span>
+            <p><?= $block->escapeHtml(__('of customers recommend this product')) ?></p>
+        </div>
+    
+        <div class="statistic-rating">
+            <?php foreach ($splitSummaryRating as $rating): ?>
+                <div>
+                    <span><?= $block->escapeHtml(__($rating->getRatingCode())) ?></span>
+                    <ul>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li class="active"
+                            style="left: <?= $rating->getValue() / 5 * $activeLineMaxLeft ?>%" >
+                        </li>
+                    </ul>
+                    <div class="characteristic">
+                        <span><?= __($rating->getLabelMin()) ?></span>
+                        <span><?= __($rating->getLabelPerfect()) ?></span>
+                        <span><?= __($rating->getLabelMax()) ?></span>
+                    </div>
+                </div>
+            <?php endforeach ?>
+        </div>
+    </div>
+<?php endif; ?>
+

@@ -1,0 +1,601 @@
+<?php
+/**
+ * Category layered navigation
+ *
+ * @var $block \Magento\LayeredNavigation\Block\Navigation
+ */
+$categoryFilter = false;
+$category = $block->getLayer()->getCurrentCategory();
+$categoryRootID = $block->getLayer()->getCurrentStore()->getRootCategoryId();
+$categoryCurrentID = $category->getId();
+$categoryParentID = $category->getParentCategory()->getId();
+$categoryParentName = $category->getParentCategory()->getName();
+
+$parentCategory = ($categoryRootID === $categoryParentID) ? $category : $category->getParentCategory();
+$parentCatKey = $parentCategory->getUrlKey();
+
+$currentPage = $block->getRequest()->getFullActionName();
+
+$curCatName = strtolower($category->getName());
+
+// Fix bug get url key
+if ($parentCatKey === 'katie-duke') {
+    $parentCatKey = 'thekatieduke';
+}
+
+?>
+
+<?php if ($block->canShowBlock()): ?>
+    <div class="block filter" id="layered-filter-block" data-parent-cat="<?= $parentCatKey ?>">
+        <?php $filtered = count($block->getLayer()->getState()->getFilters()) ?>
+
+        <div class="block-content filter-content">
+
+            <div class="filter-options-wrapper">
+
+                <!-- <div class="filter-wrapper">-->
+                <?php /** $block->getChildHtml('state'); */ ?>
+                <?php /**
+                 * if ($block->getLayer()->getState()->getFilters()): ?>
+                 * <div class="block-actions filter-actions">
+                 * <a href="<?= $block->getClearUrl() ?>"
+                 * class="action clear filter-clear"><span><?= __('Clear All') ?></span></a>
+                 * </div>
+                 * <?php endif; **/ ?>
+                <!-- </div>-->
+
+                <div class="filter-heading-wrap">
+                    <div class="filter-heading">FILTER</div>
+                    <div class="filtered-label-wrap"></div>
+                </div>
+
+                <div class="filter-content-wrapper">
+
+                    <!-- CATEGORY -->
+                    <div class="filter-options" id="category-wrapper">
+                        <div class="filter-options-title">
+                            <span>CATEGORY</span>
+                        </div>
+                        <div class="filter-options-item">
+                            <div class="filter-options-content">
+                                <div class="swatch-attribute-options">
+                                    <?php
+                                    if ($currentPage === 'catalogsearch_result_index') { // search page
+                                        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+                                        $categoryHelper = $objectManager->get('\Magento\Catalog\Helper\Category');
+                                        $categories = $categoryHelper->getStoreCategories();
+
+                                        /** @var Magento\Catalog\Model\Category $catItem */
+                                        foreach ($categories as $catItem) {
+                                            $parentId = $catItem->getId();
+                                            $parentCatName = $catItem->getName();
+
+                                            // parent cat
+                                            printf('<a href="javascript:void(0)" data-label="%s" data-type="cat" data-value="%s" class="swatch-option-a category"><div class="swatch-option text">%s</div></a>', $parentCatName, $parentId, $parentCatName);
+
+                                            $subCategories = $catItem->getChildrenCategories();
+                                            if ($subCategories && is_array($subCategories) && count($subCategories) > 0) {
+                                                foreach ($subCategories as $subItem) {
+                                                    $subCatId = $subItem->getId();
+                                                    $subCatName = $subItem->getName();
+                                                    // sub cat
+                                                    printf('<a href="javascript:void(0)" data-label="%s" data-type="cat" data-value="%s" class="swatch-option-a category sub"><div class="swatch-option text">%s</div></a>', $subCatName, $subCatId, $subCatName);
+                                                }
+                                            }
+                                        }
+
+                                    } else {
+                                        foreach ($parentCategory->getChildrenCategories() as $subCategory) { ?>
+                                            <?php $catName = $subCategory->getName(); ?>
+                                            <a href="javascript:void(0)" data-label="<?= $catName ?>" data-type="cat" data-value="<?= $subCategory->getId() ?>" class="swatch-option-a category">
+                                                <div class="swatch-option text"><?= $catName ?></div>
+                                            </a>
+                                        <?php } ?>
+                                    <?php } ?>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- COLOR - SIZE - FIT -->
+                    <?php foreach ($block->getFilters() as $filter) {
+                        /**
+                         * @var \Magento\Catalog\Model\Layer $filter
+                         */
+                        $filterName = $filter->getName();
+                        $oldName = $filterName;
+                        $filterNameLower = strtolower($filterName);
+                        $attributeCode = $filter->getRequestVar();
+
+                        if ($filterName != "Category") {
+                            $off = ($curCatName === 'bottoms' && $filterNameLower === 'fit') ? 'on' : '';
+
+                            if (strtolower($categoryParentName) == 'footwear' || strtolower($curCatName) == 'footwear') {
+                                if ($attributeCode === 'is_apparel_rise_length') {
+                                    continue;
+                                }
+                            }
+                            ?>
+
+                            <!-- <?= $filterName ?> column -->
+                            <div class="filter-options <?= $filterNameLower . ' ' . $off ?>" data-name="<?= $filterName ?>" data-old-name="<?= $oldName ?>">
+                                <?php /** if ($filter->getRequestVar() == 'cat'): ?>
+                                 * <?php $categoryFilter = $filter; ?>
+                                 * <?php continue; ?>
+                                 * <?php endif; **/ ?>
+
+                                <div class="filter-options-title">
+                                    <span><?= $filterName ?></span>
+                                </div>
+                                <div class="filter-options-item">
+                                    <div class="filter-options-content">
+                                        <?= $block->getChildBlock('renderer')->render($filter) ?>
+                                    </div>
+                                </div>
+                            </div>
+
+                        <?php } ?>
+
+                    <?php } ?>
+
+
+                    <!-- SORT column -->
+                    <div class="filter-options" id="sort-by-wrapper">
+                        <div class="filter-options-title">
+                            <span>SORT</span>
+                        </div>
+                        <div class="filter-options-item">
+                            <div class="filter-options-content">
+                                <div class="swatch-attribute sort">
+                                    <div class="swatch-attribute-options">
+                                        <a href="javascript:void(0)" data-label="Lowest Price"
+                                           data-type="product_list_order" data-value="price_asc"
+                                           class="swatch-option-a sort">
+                                            <div class="swatch-option text">Lowest Price</div>
+                                        </a>
+                                        <a href="javascript:void(0)" data-label="Highest Price"
+                                           data-type="product_list_order" data-value="price_desc"
+                                           class="swatch-option-a sort">
+                                            <div class="swatch-option text">Highest Price</div>
+                                        </a>
+                                        <a href="javascript:void(0)" data-label="Newest"
+                                           data-type="product_list_order" data-value="created_at_desc"
+                                           class="swatch-option-a sort">
+                                            <div class="swatch-option text">Newest</div>
+                                        </a>
+                                        <a href="javascript:void(0)" data-label="Best Selling"
+                                           data-type="product_list_order" data-value="best_selling"
+                                           class="swatch-option-a sort">
+                                            <div class="swatch-option text">Best Selling</div>
+                                        </a>
+                                        <a href="javascript:void(0)" data-label="Top Rated"
+                                           data-type="product_list_order" data-value="top_rated"
+                                           class="swatch-option-a sort">
+                                            <div class="swatch-option text">Top Rated</div>
+                                        </a>
+                                        <a href="javascript:void(0)" data-label="On Sale"
+                                           data-type="product_list_order" data-value="on_sale"
+                                           class="swatch-option-a sort">
+                                            <div class="swatch-option text onSale">On Sale</div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="filter-button-wrap">
+                        <div class="filter-button" id="applyButton" data-cat="<?= $parentCatKey ?>">APPLY</div>
+                        <div class="filter-button" id="clearButton">CLEAR</div>
+                    </div>
+
+                    <?php /**
+                     * if ($category && $categoryRootID === $categoryParentID): ?>
+                     * <div id="category-wrapper" class="filter-options filter-title category-wrapper"
+                     * data-mage-init='{"accordion":{"openedState": "active", "collapsible": true, "active": false, "multipleCollapsible": false}}'>
+                     * <div data-role="title" class="filter-options-title filter-category">
+                     * <span class="filters-name"><?= $category->getName() ?></span>
+                     * </div>
+                     * <div data-role="collapsible" class="filter-options-item">
+                     * <div data-role="content" class="filter-options-content">
+                     * <div id="category-filter" class="filter-options-content-inner">
+                     * <div class="filter-category-title">
+                     * <span><?= $category->getName() ?></span>
+                     * </div>
+                     * <ul class="items">
+                     * <?php foreach ($category->getChildrenCategories() as $subCategory) : ?>
+                     * <li class="item">
+                     * <a href="<?= $subCategory->getRequestPath() ?>">
+                     * <span><?= $subCategory->getName() ?></span>
+                     * </a>
+                     * </li>
+                     * <?php endforeach; ?>
+                     * </ul>
+                     * </div>
+                     * </div>
+                     * </div>
+                     * </div>
+                     * <?php else: ?>
+                     * <div id="category-wrapper" class="filter-options filter-title category-wrapper"
+                     * data-mage-init='{"accordion":{"openedState": "active", "collapsible": true, "active": false, "multipleCollapsible": false}}'>
+                     * <?php
+                     * $category = $category->getParentCategory();
+                     * $baseUrl = $block->escapeUrl($block->getBaseUrl());
+                     * ?>
+                     * <div data-role="title" class="filter-options-title filter-category">
+                     * <span class="filters-name"><?= $category->getName() ?></span>
+                     * </div>
+                     * <div data-role="collapsible" class="filter-options-item">
+                     * <div data-role="content" class="filter-options-content">
+                     * <div id="category-filter" class="filter-options-content-inner">
+                     * <div class="filter-category-title">
+                     * <a href="<?= $category->getUrl() ?>">
+                     * <span><?= $category->getName() ?></span>
+                     * </a>
+                     * </div>
+                     * <ul class="items">
+                     * <?php foreach ($category->getChildrenCategories() as $subCategory) : ?>
+                     * <?php if ($categoryCurrentID === $subCategory->getId()): ?>
+                     * <li class="item active">
+                     * <a href="<?= $category->getUrl() ?>">
+                     * <span><?= $subCategory->getName() ?></span>
+                     * </a>
+                     * </li>
+                     * <?php else: ?>
+                     * <li class="item">
+                     * <a href="<?= $subCategory->getUrl() ?>">
+                     * <span><?= $subCategory->getName() ?></span>
+                     * </a>
+                     * </li>
+                     * <?php endif; ?>
+                     * <?php endforeach; ?>
+                     * </ul>
+                     * </div>
+                     * </div>
+                     * </div>
+                     * </div>
+                     * <?php endif; **/ ?>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        require(['jquery'], function ($) {
+            'use strict';
+
+            /**
+             * Get URL Param by name
+             */
+            function getUrlParam(name) {
+                let results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+                if (!results) return false;
+                return decodeURIComponent(results[1]) || 0;
+            }
+
+            function escapeRegExp(string) {
+                return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+            }
+
+            function replaceAll(str, term, replacement) {
+                return str.replace(new RegExp(escapeRegExp(term), 'g'), replacement);
+            }
+
+            /**
+             * Show filtered options
+             */
+            function showFilteredOptions() {
+                let cat = getUrlParam("cat");
+                let color = getUrlParam("is_manufacturer_color");
+                let size = getUrlParam("is_size");
+                let fit = getUrlParam("is_apparel_rise_length");
+                let width = getUrlParam("is_footwear_width");
+                let sort = getUrlParam("product_list_order");
+
+                let q = getUrlParam("q");
+                // Search page
+                if (q && q !== "") {
+                    q = replaceAll(q, "+", " ");
+                    $('.search-query-txt').text(q);
+                }
+
+                // Check selected options and show them into filter board
+                if (cat) {
+                    // let tmpCat = $('.swatch-option-a[data-type="cat"][data-value="' + cat + '"]');
+                    // tmpCat.addClass("selected");
+                    // makeOneFilterLabel("cat", cat, tmpCat.attr("data-label"));
+                    detectSelectedOptionsFromUri("cat", cat);
+                }
+                if (color) {
+                    detectSelectedOptionsFromUri("is_manufacturer_color", color);
+                }
+                if (size) {
+                    detectSelectedOptionsFromUri("is_size", size);
+                }
+                if (fit) {
+                    detectSelectedOptionsFromUri("is_apparel_rise_length", fit);
+                }
+                if (width) {
+                    detectSelectedOptionsFromUri("is_footwear_width", width);
+                }
+                if (sort) {
+                    let tmpSort = $('.swatch-option-a[data-type="product_list_order"][data-value="' + sort + '"]');
+                    tmpSort.addClass("selected");
+                    makeOneFilterLabel("product_list_order", sort, tmpSort.attr("data-label"));
+                }
+
+                // Check if the page has selected options
+                let selected = $('.swatch-option-a.selected');
+                if (selected.length > 0) {
+                    $('.filter-heading-wrap').addClass("after");
+                }
+
+                // Register event click x button
+                clickClearOption();
+            }
+
+            /**
+             * Check selected options and show in filter board
+             * @param optionKey
+             * @param valueFromUri
+             */
+            function detectSelectedOptionsFromUri(optionKey, valueFromUri) {
+                if (!valueFromUri) {
+                    valueFromUri = getUrlParam(optionKey);
+                }
+                $('.swatch-option-a[data-type="' + optionKey + '"]').each(function (i, item) {
+                    item = $(item);
+                    let curVal = item.attr("data-value");
+                    let index = valueFromUri.indexOf(curVal);
+                    if (index >= 0) {
+                        item.addClass("selected");
+                        makeOneFilterLabel(optionKey, curVal, item.attr("data-label"));
+                    }
+                })
+            }
+
+            /**
+             * Init filter label after click apply
+             * @param type
+             * @param value
+             * @param label
+             * @returns {number}
+             */
+            function makeOneFilterLabel(type, value, label) {
+                let html = "";
+                if (!type || !value || !label) {
+                    return 0;
+                }
+                html += '<div class="filtered-label">';
+                html += '<span class="far fa-times clearOneFilter" data-type="' + type + '" data-value="' + value + '"></span>';
+                html += '<span>' + label + '</span>';
+                html += '</div>';
+                $('.filtered-label-wrap').append(html);
+            }
+
+            /**
+             * Click x icon and clear one option, then reload filter
+             */
+            function clickClearOption() {
+                $('.clearOneFilter').click(function () {
+                    let _this = $(this);
+                    let type = _this.attr("data-type");
+                    let value = _this.attr("data-value");
+                    $('.swatch-option-a[data-type="' + type + '"][data-value="' + value + '"]').removeClass("selected");
+                    _this.parent().remove(); // remove label
+                    $("#applyButton").trigger("click"); // trigger click apply button
+                });
+            }
+
+            $(document).ready(function () {
+                let filters = $('.swatch-option-a');
+                let curUrl = window.location.href.split("?");
+                let filterBoard = $('.filter-content-wrapper');
+
+                showFilteredOptions();
+
+                // Clear filter items by label
+                function clearFilterItemsBy(label) {
+                    if (label && label !== '') {
+                        let _filter = $('.filter-options' + '.' + label);
+                        _filter.find('.swatch-option-a').removeClass('selected');
+                    }
+                }
+
+                // Toggle when click filter button
+                $('.filter-heading').click(function () {
+                    let isHidden = filterBoard.css('visibility');
+                    if (isHidden === 'hidden') {
+                        filterBoard.css('visibility', 'visible');
+                        $(this).addClass("open");
+                    } else {
+                        filterBoard.css('visibility', 'hidden');
+                        $(this).removeClass("open");
+                    }
+                });
+
+                // Close filter board when click ESC button
+                $(document).keyup(function (e) {
+                    // press esc
+                    if (e.keyCode === 27) {
+                        filterBoard.css('visibility', 'hidden');
+                    }
+                });
+
+                // Click filter options
+                filters.click(function () {
+                    let _this = $(this);
+
+                    // START - On/Off Fit filter
+                    let fitFilter = $('.filter-options.fit');
+                    let dataType = _this.attr('data-type');
+                    if (dataType === 'cat') {
+                        let curLabel = _this.attr('data-label');
+                        let hasSelected = _this.hasClass('selected');
+                        let bottomIsSelected = $('.swatch-option-a.category[data-label="Bottoms"]').hasClass('selected');
+                        curLabel = curLabel.toLowerCase();
+
+                        if (curLabel === 'bottoms') { // click bottoms
+                            if (hasSelected) {
+                                fitFilter.removeClass('on');
+                                clearFilterItemsBy('fit');
+                            } else {
+                                fitFilter.addClass('on');
+                            }
+                        } else if (!bottomIsSelected) {
+                            fitFilter.removeClass('on');
+                            clearFilterItemsBy('fit');
+                        }
+                    }
+                    // END - On/Off Fit filter
+
+                    if (_this.hasClass("selected")) {
+                        if (_this.hasClass("sort")) {
+                            $('.swatch-option-a.sort').removeClass("selected");
+                        }
+                        _this.removeClass("selected")
+                    } else {
+                        if (_this.hasClass("sort")) {
+                            $('.swatch-option-a.sort').removeClass("selected");
+                        }
+                        _this.addClass("selected")
+                    }
+                });
+
+                // Click Clear button
+                $('#clearButton').click(function () {
+                    filters.removeClass("selected"); // remove selected options in board
+                    $('.filtered-label').remove(); // remove option label in heading
+                    $('.filter-heading-wrap').removeClass("after");
+                });
+
+                // Click Apply button
+                $('#applyButton').click(function () {
+                    let selectedOptions = $('.swatch-option-a.selected');
+                    let catKey = $(this).attr("data-cat");
+                    let data = [], uri;
+                    let color = {name: 'is_manufacturer_color', value: ""};
+                    let size = {name: 'is_size', value: ""};
+                    let sort = {name: 'product_list_order', value: ""};
+                    let fit = {name: 'is_apparel_rise_length', value: ""};
+                    let width = {name: 'is_footwear_width', value: ""};
+                    let cat = {name: 'cat', value: ""};
+
+                    // Get all selected options
+                    selectedOptions.each(function (i, item) {
+                        let type = $(item).attr("data-type");
+                        let value = $(item).attr("data-value");
+
+                        if (type === "is_manufacturer_color") {
+                            if (color.value) {
+                                color.value = color.value + "," + value;
+                            } else {
+                                color.value = value;
+                            }
+                        } else if (type === "is_size") {
+                            if (size.value) {
+                                size.value = size.value + "," + value;
+                            } else {
+                                size.value = value;
+                            }
+                        } else if (type === "product_list_order") {
+                            sort.value = value;
+                        } else if (type === "is_apparel_rise_length") {
+                            if (fit.value) {
+                                fit.value = fit.value + "," + value;
+                            } else {
+                                fit.value = value;
+                            }
+                        } else if (type === "is_footwear_width") {
+                            if (width.value) {
+                                width.value = width.value + "," + value;
+                            } else {
+                                width.value = value;
+                            }
+                        } else if (type === "cat") {
+                            if (cat.value) {
+                                cat.value = cat.value + "," + value;
+                            } else {
+                                cat.value = value;
+                            }
+                        } else if (type === "fit") {
+                            if (fit.value) {
+                                fit.value = fit.value + "," + value;
+                            } else {
+                                fit.value = value;
+                            }
+                        }
+                    });
+
+                    // Push data to URI
+                    if (color.value !== "") {
+                        data.push(color);
+                    }
+                    if (size.value !== "") {
+                        data.push(size);
+                    }
+                    if (sort.value !== "") {
+                        data.push(sort);
+                    }
+                    if (cat.value !== "") {
+                        data.push(cat);
+                    }
+                    if (fit.value !== "") {
+                        data.push(fit);
+                    }
+                    if (width.value !== "") {
+                        data.push(width);
+                    }
+
+                    // Init new url
+                    uri = decodeURIComponent($.param(data));
+                    let protocol = window.location.protocol;
+                    let hostName = window.location.hostname;
+
+                    if (!catKey) { // search page
+                        let q = getUrlParam('q');
+                        let currentUrl = $(location).attr('href');
+                        let urlArray = currentUrl.split('?');
+                        let url = '';
+                        if (urlArray[0] && urlArray[0] !== '') {
+                            url = urlArray[0];
+                        }
+                        if (q) {
+                            url += '?q=' + q + '&';
+                        }
+                        url += uri;
+
+                        console.log(urlArray);
+                        console.log(uri);
+                        console.log(url);
+                        window.location.replace(url);
+                    } else { // category page
+                        // catKey = catKey;
+                        console.log(protocol + '//' + hostName + '/' + catKey + '?' + uri);
+                        window.location.replace(protocol + '//' + hostName + '/' + catKey + '?' + uri);
+                    }
+                });
+
+                // Click filter menu on mobile
+                $('.filter-options-title').click(function () {
+                    let curWidth = $(window).width();
+                    if (curWidth < 768) {
+                        let parent = $(this).parent();
+                        if (parent.hasClass("opened")) {
+                            parent.removeClass("opened");
+                        } else {
+                            parent.addClass("opened");
+                        }
+                    } else {
+                        $('.filter-options').removeClass("opened");
+                    }
+                });
+            })
+
+        });
+    </script>
+<?php endif; ?>

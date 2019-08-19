@@ -1,0 +1,67 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    //  Using buttons mixins
+    button,
+    a.action.primary {
+        .lib-css(border-radius, @button__border-radius);
+        background: @aqua;
+        border-color: @aqua;
+        color: #ffffff;
+        font-family: @main-font;
+        -moz-border-radius: 0;
+        -webkit-border-radius: 0;
+        border-radius: 0;
+        text-transform: uppercase;
+    }
+
+    button {
+        &:active {
+            background: @aqua;
+            border-color: @aqua;
+            color: #ffffff;
+        }
+
+        &:hover {
+            background: #ffffff;
+            border: 2px solid @aqua;
+            color: @aqua;
+        }
+    }
+
+    a.action.primary {
+        .lib-link-as-button();
+        background: @aqua;
+        border-color: @aqua;
+    }
+
+    .action.primary {
+        .lib-button-primary();
+        background: @aqua;
+        font-family: @main-font;
+        border: 2px solid @aqua;
+        -moz-border-radius: 0;
+        -webkit-border-radius: 0;
+        border-radius: 0;
+    }
+
+    .action.primary:focus, .action.primary:active {
+        background: @aqua;
+        border-color: @aqua;
+        color: #ffffff;
+    }
+
+    .action.primary:hover {
+        background: #ffffff;
+        border: 2px solid @aqua;
+        color: @aqua;
+    }
+}

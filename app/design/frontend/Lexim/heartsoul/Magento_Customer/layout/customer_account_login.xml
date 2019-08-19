@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="head.components">
+            <block class="Magento\Framework\View\Element\Js\Components" name="customer_account_create_head_components" template="Magento_Customer::js/components.phtml"/>
+        </referenceBlock>
+        <referenceBlock name="page.main.title">
+            <action method="setPageTitle">
+                <argument translate="true" name="title" xsi:type="string">My Account</argument>
+            </action>
+        </referenceBlock>
+
+        <referenceBlock name="customer.new" remove="true"/>
+
+        <!-- Remove login popup in header -->
+        <referenceBlock name="customer_in_header" remove="true"/>
+
+        <referenceBlock name="customer_form_login_popup" remove="true"/>
+
+
+        <referenceContainer name="customer.login.container">
+            <block class="Magento\Customer\Block\Form\Register" name="customer_form_register-2" template="Magento_Customer::form/register.phtml">
+                <block class="BinaryAnvil\FederationFacebook\Block\Facebook" name="federation.facebook.button.register"
+                       template="BinaryAnvil_FederationFacebook::facebook.phtml"/>
+            </block>
+        </referenceContainer>
+        <move element="federation.facebook.button" destination="customer_form_login"/>
+        <move element="social-login-popup-authentication-social-login" destination="customer_form_login" />
+
+    </body>
+</page>

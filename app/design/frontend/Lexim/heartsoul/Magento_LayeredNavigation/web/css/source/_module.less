@@ -1,0 +1,479 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    .block.filter {
+        margin: 0;
+
+        .filter-title {
+            strong {
+                font-size: 18px;
+            }
+        }
+
+        &[data-parent-cat="men"], &[data-parent-cat="women"] {
+            .filter-options.fit {
+                display: none;
+            }
+        }
+    }
+
+    .block-subtitle {
+        display: inline-block;
+    }
+
+    .filter-current {
+        .filter-label {
+            display: block;
+            font-weight: bold;
+
+            &:after {
+                content: ':';
+            }
+        }
+    }
+
+    .filter-heading-wrap {
+        .display-flex();
+        .justify-content(center);
+        .flex-wrap(nowrap);
+        text-align: center;
+        padding: 15px 0;
+
+        .filter-heading {
+            .display-flex();
+            .align-items(center);
+            .justify-content(center);
+            cursor: pointer;
+            font-weight: bold;
+            width: 120px;
+            height: auto;
+            min-height: 40px;
+            line-height: 40px;
+            font-size: 16px;
+            padding: 0 10px;
+            margin: 0;
+            color: #ffffff;
+            background: @aqua;
+            border-right: 1px solid #ffffff;
+
+            &:hover, &.open {
+                background: @gray;
+            }
+        }
+
+        .filtered-label-wrap {
+            .display-flex();
+            .align-items(center);
+            .flex-wrap(wrap);
+            .justify-content(center);
+            background: @aqua;
+            min-height: 40px;
+        }
+
+        .filtered-label {
+            padding: 0 7px;
+            font-size: 16px;
+            text-transform: capitalize;
+            line-height: 1;
+            color: #ffffff;
+
+            span {
+                padding-right: 7px;
+            }
+
+            .clearOneFilter {
+                cursor: pointer;
+                padding: 5px 7px;
+            }
+        }
+    }
+
+    .filter-content-wrapper {
+        visibility: hidden;
+        position: absolute;
+        left: 0;
+        right: 0;
+        width: 100%;
+        max-width: 840px;
+        margin: 0 auto;
+        .display-flex();
+        .flex-wrap(wrap);
+        z-index: 9999;
+        background: rgba(255, 255, 255, 0.9);
+        padding: 20px;
+
+        .filter-button-wrap {
+            padding: 0;
+        }
+
+        .filter-button {
+            width: 145px;
+            height: 50px;
+            line-height: 50px;
+            padding: 0 10px;
+            display: inline-block;
+            margin-bottom: 15px;
+            margin-right: 20px;
+            background: #3e3935;
+            text-align: center;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #applyButton {
+            background: @aqua;
+        }
+    }
+
+    .filter-options {
+        margin: 0;
+        padding: 20px;
+        .flex(1 1 20%);
+
+        &.fit {
+            &.on {
+                display: block !important;
+            }
+        }
+
+        .filter-options-title {
+            text-transform: uppercase;
+            font-weight: bold;
+            margin: 0;
+            padding: 0 0 10px;
+            font-size: 14px;
+        }
+
+        .swatch-attribute-options {
+            .display-flex();
+            .flex-wrap(wrap);
+            .flex-direction(column);
+            margin: 10px 0;
+
+            .swatch-option-a {
+                position: relative;
+                text-decoration: none !important;
+                border: none !important;
+                outline: 0 !important;
+                .box-shadow(none);
+
+                &.category.sub {
+                    margin-left: 15px;
+                }
+
+                &:not(.color).selected, &:not(.color):hover {
+                    &:before {
+                        content: "\2714";
+                        position: absolute;
+                        left: -15px;
+                        top: 6px;
+                        color: @gray;
+                        font-size: 12px;
+                        text-shadow: 0 0 0.6px @gray, 0 0 0.6px @gray;
+                    }
+
+                    .swatch-option {
+                        text-shadow: 0 0 0.6px @gray, 0 0 0.6px @gray;
+                    }
+                }
+
+                &.color:hover, &.color.selected {
+                    .colorSquare {
+                        border-color: @aqua !important;
+                    }
+
+                    .colorGroupText {
+                        text-shadow: 0 0 0.6px @gray, 0 0 0.6px @gray;
+                    }
+                }
+            }
+
+            .swatch-option {
+                outline: 0 !important;
+                border: none !important;
+                text-decoration: none !important;
+                .box-shadow(none);
+                float: none;
+                width: auto;
+                background: transparent;
+                color: @gray;
+                min-width: 0;
+                max-width: 100%;
+                height: auto;
+                min-height: 25px;
+                position: relative;
+                .display-flex();
+                .align-items(center);
+                margin: 2px 0;
+                padding: 0;
+                line-height: 1;
+                font-weight: normal;
+                font-size: 14px;
+                text-align: left;
+
+                .colorGroupText {
+                    text-transform: capitalize;
+                }
+
+                &.onSale {
+                    color: #ff0000;
+                }
+            }
+
+            .colorSquare {
+                width: 25px;
+                height: 25px;
+                position: relative;
+                border: 3px solid transparent;
+                margin-right: 10px;
+
+                span {
+                    width: 15px;
+                    height: 15px;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    margin: auto;
+
+                    &.white {
+                        border: 1px solid #999999
+                    }
+                }
+            }
+
+            .swatch-option-link-layered {
+                text-decoration: none;
+            }
+
+        }
+
+        .filter-options-content {
+            margin: 0;
+
+            .item {
+            }
+        }
+
+        .count {
+            &:before {
+                content: '(';
+            }
+
+            &:after {
+                content: ')';
+            }
+        }
+    }
+
+    .items {
+        &:extend(.abs-reset-list all);
+    }
+
+    .filtered {
+        .items {
+            margin: 15px 0;
+        }
+
+        .item {
+            margin-bottom: 6px;
+            padding-left: 22px;
+            position: relative;
+
+            .label {
+                font-weight: bold;
+            }
+
+            .action.remove {
+                position: absolute;
+                top: 0;
+            }
+        }
+
+        & + .actions {
+            margin-bottom: 35px;
+        }
+    }
+
+    // fix bug footwear
+    .categorypath-footwear, .categorypath-footwear-women, .categorypath-footwear-men {
+        .filter-options.fit {
+            display: block;
+        }
+    }
+
+    .categorypath-thekatieduke #category-wrapper, .category-katie-duke #category-wrapper {
+        display: none;
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+// max 767px
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .filter-content-wrapper {
+        display: block;
+        padding: 0 0 15px;
+
+        .filter-button-wrap {
+            clear: both;
+            text-align: center;
+        }
+
+        .filter-button {
+            width: 120px;
+            height: 40px;
+            line-height: 40px;
+            font-size: 14px;
+            margin: 5px;
+        }
+    }
+
+    .filter-heading-wrap {
+        .filtered-label {
+            font-size: 12px;
+            padding: 2px 7px;
+        }
+
+        .filter-heading {
+            font-size: 12px;
+            width: auto;
+
+            &:hover {
+                background: @aqua;
+            }
+
+            &.open:hover {
+                background: @gray;
+            }
+        }
+
+        &.after {
+            .filter-heading {
+                background: @aqua;
+                margin-right: 0;
+            }
+        }
+    }
+
+    .filter-options {
+        position: relative;
+        width: 100%;
+        float: left;
+        padding: 10px 0;
+        border-bottom: 1px solid #dddddd;
+
+        &#sort-by-wrapper {
+            border: none;
+        }
+
+        .filter-options-title {
+            padding: 0;
+        }
+
+        .filter-options-content {
+            display: none;
+        }
+
+        &.opened {
+            .filter-options-content {
+                display: block;
+            }
+
+            &:after {
+                content: '\e621';
+            }
+        }
+
+        .swatch-attribute-options {
+            margin: 0;
+
+            .swatch-option-a:not(.color).selected:before,
+            .swatch-option-a:not(.color):hover:before {
+                left: 20px;
+            }
+
+            .swatch-option-a:not(.color) {
+                padding-left: 35px !important;
+            }
+
+            // fix bug hover in mobile
+            .swatch-option-a:not(.color):hover {
+                &:before {
+                    content: '';
+                }
+
+                .swatch-option {
+                    text-shadow: none;
+                }
+            }
+
+            .swatch-option-a:not(.color).selected {
+                &:before {
+                    content: "\2714";
+                }
+
+                .swatch-option {
+                    text-shadow: 0 0 0.6px #3e3935, 0 0 0.6px #3e3935;
+                }
+            }
+
+            .swatch-option-a.color:hover .colorSquare {
+                border-color: transparent !important;
+            }
+
+            .swatch-option-a.color.selected .colorSquare {
+                border-color: @aqua !important;
+            }
+
+            // # fix bug hover in mobile
+        }
+
+        &:after {
+            content: '\e622';
+            font-family: 'icons-blank-theme';
+            position: absolute;
+            right: 0;
+            top: 0;
+            font-size: 30px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .swatch-attribute {
+            &.is_manufacturer_color, &.is_size, &.sort {
+                .swatch-attribute-options {
+                    .flex-wrap(wrap);
+                    .flex-direction(row);
+                }
+
+                .swatch-option-a {
+                    width: 50%;
+                }
+            }
+        }
+
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+// min 768px
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .filter-heading-wrap {
+        padding: 20px 0;
+    }
+}

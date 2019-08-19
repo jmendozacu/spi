@@ -1,0 +1,165 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="checkout_cart_item_renderers"/>
+    <body>
+
+        <!-- Rename title -->
+        <referenceBlock name="page.main.title">
+            <action method="setPageTitle">
+                <argument translate="true" name="title" xsi:type="string">My Shopping Bag</argument>
+            </action>
+        </referenceBlock>
+
+        <!-- Rename summary title -->
+        <referenceBlock name="checkout.cart.summary.title">
+            <arguments>
+                <argument translate="true" name="text" xsi:type="string">Summary</argument>
+            </arguments>
+        </referenceBlock>
+
+        <!--  Cart container -->
+        <referenceContainer name="checkout.cart.container">
+            <!--            <block class="Magento\Framework\View\Element\Template" name="checkout.cart.estimation" template="Magento_Checkout::cart/estimation.phtml">-->
+            <!--                <arguments>-->
+            <!--                    <argument name="jsLayout" xsi:type="array">-->
+            <!--                        <item name="types" xsi:type="array"/>-->
+            <!--                        <item name="components" xsi:type="array">-->
+            <!--                            <item name="estimation" xsi:type="array">-->
+            <!--                                <item name="sortOrder" xsi:type="string">10</item>-->
+            <!--                                <item name="component" xsi:type="string">Magento_Checkout/js/view/estimation</item>-->
+            <!--                                <item name="displayArea" xsi:type="string">estimation</item>-->
+            <!--                                <item name="config" xsi:type="array">-->
+            <!--                                    <item name="template" xsi:type="string">Magento_Checkout/estimation</item>-->
+            <!--                                </item>-->
+            <!--                            </item>-->
+            <!--                        </item>-->
+            <!--                    </argument>-->
+            <!--                </arguments>-->
+            <!--            </block>-->
+            <!--            <block class="Magento\Checkout\Block\Onepage\Link" name="checkout.cart.methods.onepage.top.mobile" template="Magento_Checkout::onepage/link.phtml" after="checkout.cart.estimation"/>-->
+
+
+            <!-- Check free shipping  Magento\Framework\View\Element\Template -->
+            <container name="cart_page.left_column" htmlTag="div" htmlClass="leftColumnCartPage" before="-">
+                <block class="Lexim\Override\Block\Magento\Customer\Customer" name="cart.check.free.ship" template="Magento_Checkout::cart/check-free-shipping.phtml"/>
+            </container>
+
+
+            <container name="checkout.cart.right.column" htmlTag="div" htmlClass="cart-summary-wrapper"
+                       after="cart_page.left_column">
+                <!-- Add contact_us_block block -->
+                <block class="Magento\Cms\Block\Block" name="contact_us_block" before="-">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">contact_us_block</argument>
+                    </arguments>
+                </block>
+
+                <!-- Add quick_link_block block -->
+                <block class="Magento\Cms\Block\Block" name="quick_link_block" after="-">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">quick_link_block</argument>
+                    </arguments>
+                </block>
+            </container>
+        </referenceContainer>
+
+        <referenceBlock name="checkout.cart.order.actions">
+            <block class="Magento\GiftMessage\Block\Cart\GiftOptions" name="checkout.cart.order.actions.gift_options"
+                   template="Magento_GiftMessage::cart/gift_options.phtml" cacheable="false">
+                <arguments>
+                    <argument name="jsLayout" xsi:type="array">
+                        <item name="types" xsi:type="array"/>
+                        <item name="components" xsi:type="array">
+                            <item name="giftOptionsCart" xsi:type="array">
+                                <item name="component" xsi:type="string">Magento_GiftMessage/js/view/gift-message</item>
+                                <item name="config" xsi:type="array">
+                                    <item name="componentDisabled" xsi:type="boolean">true</item>
+                                </item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+
+        <!-- change tax text -->
+        <referenceBlock name="checkout.cart.totals">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="block-totals" xsi:type="array">
+                            <item name="children" xsi:type="array">
+                                <item name="subtotal" xsi:type="array">
+                                    <item name="component" xsi:type="string">Magento_Tax/js/view/checkout/summary/subtotal</item>
+                                    <item name="config" xsi:type="array">
+                                        <item name="template" xsi:type="string">Magento_Tax/checkout/summary/subtotal</item>
+                                        <item name="excludingTaxMessage" xsi:type="string" translate="true">(Excl. Tax)</item>
+                                        <item name="includingTaxMessage" xsi:type="string" translate="true">(Incl. Tax)</item>
+                                    </item>
+                                </item>
+                                <item name="shipping" xsi:type="array">
+                                    <item name="component" xsi:type="string">Magento_Tax/js/view/checkout/cart/totals/shipping</item>
+                                    <item name="sortOrder" xsi:type="string">20</item>
+                                    <item name="config" xsi:type="array">
+                                        <item name="template" xsi:type="string">
+                                            Magento_Tax/checkout/cart/totals/shipping
+                                        </item>
+                                        <item name="excludingTaxMessage" xsi:type="string" translate="true">Excl. Tax</item>
+                                        <item name="includingTaxMessage" xsi:type="string" translate="true">Incl. Tax</item>
+                                    </item>
+                                </item>
+                                <item name="before_grandtotal" xsi:type="array">
+                                    <item name="component" xsi:type="string">uiComponent</item>
+                                    <item name="sortOrder" xsi:type="string">30</item>
+                                    <item name="children" xsi:type="array">
+                                        <!-- merge your components here -->
+                                    </item>
+                                </item>
+                                <item name="tax" xsi:type="array">
+                                    <item name="component" xsi:type="string">Magento_Tax/js/view/checkout/cart/totals/tax</item>
+                                    <item name="config" xsi:type="array">
+                                        <item name="template" xsi:type="string">Magento_Tax/checkout/cart/totals/tax</item>
+                                        <item name="title" xsi:type="string" translate="true">Sales Tax</item>
+                                    </item>
+                                </item>
+                                <item name="grand-total" xsi:type="array">
+                                    <item name="component" xsi:type="string">Magento_Tax/js/view/checkout/cart/totals/grand-total</item>
+                                    <item name="config" xsi:type="array">
+                                        <item name="template" xsi:type="string">Magento_Tax/checkout/cart/totals/grand-total</item>
+                                        <item name="exclTaxLabel" xsi:type="string" translate="true">Total Excl. Tax</item>
+                                        <item name="inclTaxLabel" xsi:type="string" translate="true">Total Incl. Tax</item>
+                                        <item name="title" xsi:type="string" translate="true">Estimated Total</item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+
+        <!-- Remove gift card account -->
+        <referenceBlock name="checkout.cart.giftcardaccount" remove="true"/>
+
+        <!-- Move title in top cart page -->
+        <move element="page.main.title" destination="checkout.cart.items" before="checkout.cart.container"/>
+
+        <!-- Move products table to left column in cart page -->
+        <move element="checkout.cart.form" destination="cart_page.left_column" after="-"/>
+
+        <!-- Move discount to cart summary -->
+        <move element="cart.discount" destination="cart.summary" after="checkout.cart.summary.title"/>
+
+        <!-- Create continue shopping to cart summary -->
+        <block class="Magento\Framework\View\Element\Template" name="cart.continue.shopping"
+               template="Magento_Checkout::cart/continue-shipping.phtml"/>
+        <move element="cart.continue.shopping" destination="cart.summary" after="-"/>
+
+        <!-- Move cart summary to right column in cart page -->
+        <move element="cart.summary" destination="checkout.cart.right.column" before="-"/>
+
+
+    </body>
+</page>

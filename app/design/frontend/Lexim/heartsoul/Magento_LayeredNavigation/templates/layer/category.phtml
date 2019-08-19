@@ -1,0 +1,13 @@
+
+
+<ul class="items">
+    <?php foreach ($filterItems as $filterItem): ?>
+        <li class="item">
+            <a href="<?= $block->escapeUrl($filterItem->getUrl()) ?>">
+                <span>
+                    <?= $filterItem->getLabel() ?>
+                </span>
+            </a>
+        </li>
+    <?php endforeach; ?>
+</ul>

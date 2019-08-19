@@ -1,0 +1,43 @@
+<?php
+
+/** @var BinaryAnvil\InfinityTheme\Helper\CheckoutHelper $orderHelper */
+$orderHelper = $this->helper('BinaryAnvil\InfinityTheme\Helper\CheckoutHelper');
+/** @var $order \Magento\Sales\Model\Order */
+$order = $orderHelper->getOrder();
+?>
+
+<div class="order-totals-wrapper">
+    <div class="table-wrapper">
+        <table class="data table totals">
+            <tbody>
+            <tr class="totals sub">
+                <th class="mark" scope="row"><?= __('Subtotal') ?></th>
+                <td class="amount">
+                    <span class="price" data-th="Subtotal"><?= $orderHelper->getFormatedPrice($order->getSubtotal()) ?></span>
+                </td>
+            </tr>
+
+            <tr class="shipping-day">
+                <th class="mark" colspan="1" scope="row"><?= __('Shipping Method') ?></th>
+                <td class="amount" data-th="Shipping">
+                    <span class="price"><?= $orderHelper->getFormatedPrice($order->getShippingAmount()) ?></span>
+                </td>
+            </tr>
+
+            <tr class="totals-tax">
+                <th class="mark" colspan="1" scope="row"><?= __('Sale Tax') ?></th>
+                <td class="amount" data-th="Tax">
+                    <span class="price"><?= $orderHelper->getFormatedPrice($order->getTaxAmount()) ?></span>
+                </td>
+            </tr>
+
+            <tr class="grand totals">
+                <th class="mark" scope="row"><strong><?= __('Total') ?></strong></th>
+                <td class="amount" data-th="Total">
+                    <strong><span class="price"><?= $orderHelper->getFormatedPrice($order->getGrandTotal()) ?></span></strong>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,139 @@
+<?php
+
+/** @var \Magento\Framework\View\Element\Template $block */
+
+/** @var \BinaryAnvil\Ratings\Block\ReviewList $itemsBlock */
+$itemsBlock = $block->getChildBlock('review_items');
+
+if ($itemsBlock) {
+    $reviewCollectionSize = $itemsBlock->getReviewsCollection()->getSize();
+}
+//echo $block->getChildHtml();
+?>
+<?php if (isset($reviewCollectionSize) && $reviewCollectionSize) { ?>
+    <div class="block review-list" id="customer-reviews">
+        <div class="block-content">
+            <ol id="review_list" class="items review-items">
+                <?= $block->getChildHtml('review_items') ?>
+            </ol>
+        </div>
+        <div class="custom-buttons">
+            <div class="actions">
+                <?php if ($reviewCollectionSize > 3): ?>
+                    <button id="load_more_reviews" class="load-more"><?= __('Load more') ?></button>
+                <?php endif ?>
+                <button class="write-review"><?= __('Write a review') ?> </button>
+            </div>
+        </div>
+
+    </div>
+<?php } else { ?>
+    <div class="block review-list" id="customer-reviews">
+        <h2>Be First to review this product</h2>
+        <div class="custom-buttons">
+            <div class="actions">
+                <button class="write-first-review"><?= __('Write the first review') ?> </button>
+            </div>
+        </div>
+
+    </div>
+<?php } ?>
+
+<script>
+    require(['jquery', 'collapsible'], function ($, collapsible) {
+        $(function () {
+            $('.write-review').on('click', function () {
+                $(".block.review-add").slideToggle().closest('#customer-reviews').hide();
+            });
+
+            // Click write review button
+            $('.write-first-review').on('click', function () {
+
+                // if ($(".block.review-add").is(':visible')) {
+                $('.write-first-review').closest('#customer-reviews').animate({
+                    opacity: 1
+                }, 100, function () {
+                    $(".block.review-add").slideToggle('slow', function () {
+                    });
+                });
+                // }
+                // else {
+                //     $('.write-first-review').closest('#customer-reviews').animate({
+                //         opacity: 0.1
+                //     }, 100, function () {
+                //         $(".block.review-add").slideToggle('slow', function () {
+                //
+                //         });
+                //     });
+                // }
+            });
+
+            $('.reviews-actions-link').on('click', function () {
+                $(".block.review-add").slideDown();
+            });
+
+            // Click 'be first review'
+            $('.product-reviews-summary .reviews-actions .action.add').click(function () {
+                $('.write-first-review').trigger('click');
+            });
+        });
+    });
+</script>
+
+<script>
+    require(['jquery'], function ($) {
+        $(function () {
+            $('body').on('click', '.vote', function () {
+                let reviewId = $(this).data('review-id');
+                let isHelpful = $(this).data('value');
+                let element = $(this);
+                $.ajax({
+                    method: "POST",
+                    url: "<?= $block->getUrl('ratings/ajax/helpful') ?>",
+                    data: {review_id: reviewId, is_helpful: isHelpful},
+                    dataType: "json"
+                }).done(function (data) {
+                    if (data) {
+                        if ($(element).data('value')) {
+                            $(element).children().text('(' + data.positive + ')');
+                            $(element).next().children().text('(' + data.negative + ')');
+                            $(element).next().prop("disabled", false);
+                        } else {
+                            $(element).children().text('(' + data.negative + ')');
+                            $(element).prev().children().text('(' + data.positive + ')');
+                            $(element).prev().prop("disabled", false);
+                        }
+                        $(element).prop("disabled", true);
+                    }
+                });
+            });
+        });
+    });
+
+    require(['jquery'], function ($) {
+        $(function () {
+            let currentPage = 2;
+            let pageSize = 3;
+            let reviewCollectionSize = <?= $reviewCollectionSize ?>;
+            let productId = <?= $itemsBlock->getProduct()->getId() ?>;
+            $('#load_more_reviews').click(function () {
+                $(this).prop("disabled", true);
+                $.ajax({
+                    method: "POST",
+                    url: "<?= $block->getUrl('ratings/ajax/morereviews') ?>",
+                    data: {productId: productId, pageSize: pageSize, currentPage: currentPage},
+                    dataType: "json"
+                }).done(function (data) {
+                    console.log(data.output);
+                    $('#review_list').append(data.output);
+                    if (currentPage * pageSize >= reviewCollectionSize) {
+                        $('#load_more_reviews').remove();
+                    } else {
+                        $('#load_more_reviews').prop("disabled", false);
+                    }
+                    currentPage++;
+                });
+            });
+        });
+    });
+</script>

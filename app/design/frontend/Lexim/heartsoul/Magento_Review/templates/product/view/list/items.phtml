@@ -1,0 +1,63 @@
+<?php
+
+/** @codingStandardsIgnoreFile */
+/** @var \BinaryAnvil\Ratings\Block\ReviewList $block */
+
+/** @var \BinaryAnvil\Ratings\Preference\Magento\Review\Model\ResourceModel\Review[] $items */
+$items = $block->getPageReviewsCollection()->getItems();
+$format = \IntlDateFormatter::MEDIUM;
+/** @var \BinaryAnvil\Ratings\Helper\Data $helper */
+$helper = $this->helper(\BinaryAnvil\Ratings\Helper\Data::class);
+$customerId = $block->getCustomerId();
+?>
+
+<?php foreach ($items as $review):?>
+    <li class="item review-item" itemscope itemprop="review" itemtype="http://schema.org/Review">
+        <?php if (count($review->getRatingVotes())): ?>
+            <div class="review-ratings">
+                <?php foreach ($review->getRatingVotes() as $vote): ?>
+                    <?php if ($vote->getIsUsedInSummary()): ?>
+                        <div class="rating-summary item" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+                            <div class="rating-result" title="<?= $block->escapeHtmlAttr($vote->getPercent()) ?>%">
+                                <meta itemprop="worstRating" content = "1"/>
+                                <meta itemprop="bestRating" content = "100"/>
+                                <span style="width:<?= $block->escapeHtmlAttr($vote->getPercent()) ?>%">
+                                <span itemprop="ratingValue"><?= $block->escapeHtml($vote->getPercent()) ?>%</span>
+                            </span>
+                            </div>
+                            <div class="review-date"><?= $helper->getFormattedDate($review->getCreatedAt(), $format) ?></div>
+                        </div>
+                    <?php endif ?>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
+        <div class="review-title" itemprop="name"><?= $block->escapeHtml($review->getTitle()) ?></div>
+        <div class="review-content" itemprop="description">
+            <?= nl2br($block->escapeHtml($review->getDetail())) ?>
+        </div>
+        <?php if ($review->isRecommendProduct()): ?>
+            <div class="review-recommend">
+                <p><i class="fa fa-check"> </i> <?= __('I recommend this product')?> </p>
+            </div>
+        <?php endif ?>
+
+        <div class="review-details">
+            <p class="review-author">
+                <strong class="review-details-value" itemprop="author"><?= $block->escapeHtml($review->getNickname()) ?></strong>
+            </p>
+            <div class="actions">
+                <?php
+                $helpfulVotes = $block->getCustomerHelpfulVotes();
+                $customerHelpful = $helper->getCustomerHelpfulByReviewId($review->getId(), $customerId, $helpfulVotes);
+                $customerIsHelpful = $customerHelpful->isHelpful();
+                ?>
+                <button class="vote" data-value="1" data-review-id="<?= $review->getId() ?>"<?php if ($customerIsHelpful === '1') { echo ' disabled'; } ?>>
+                    <?= __('Helpful') ?> <span>(<?= $review->getPositiveHelpfulVoteCount() ?>)</span>
+                </button>
+                <button class="vote" data-value="0" data-review-id="<?= $review->getId() ?>"<?php if ($customerIsHelpful === '0') { echo ' disabled'; } ?>>
+                    <?= __('Not helpful') ?> <span>(<?= $review->getNegativeHelpfulVoteCount() ?>)</span>
+                </button>
+            </div>
+        </div>
+    </li>
+<?php endforeach; ?>

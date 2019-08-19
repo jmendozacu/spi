@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <move element="logo" destination="header-wrapper" before="-"/>
+        <referenceBlock name="catalog.compare.link" remove="false" />
+        <referenceBlock name="catalog.topnav" remove="true"/>
+        <referenceBlock name="minicart" remove="false" />
+        <referenceBlock name="top.search" remove="false" />
+        <referenceContainer name="header.panel" remove="false" />
+        <referenceContainer name="footer-container" remove="false"/>
+        <referenceContainer name="head.container" remove="true" />
+        <referenceBlock name="copyright" remove="true" />
+
+        <referenceBlock name="checkout.root">
+            <block class="BinaryAnvil\FederationFacebook\Block\Facebook" name="federation.facebook.button"
+                   template="BinaryAnvil_FederationFacebook::facebook.phtml"/>
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="checkout" xsi:type="array">
+                            <item name="children" xsi:type="array">
+                                <item name="authentication" xsi:type="array">
+                                    <item name="componentDisabled" xsi:type="boolean">true</item>
+                                </item>
+                                <item name="progressBar" xsi:type="array">
+                                    <item name="componentDisabled" xsi:type="boolean">true</item>
+                                </item>
+                                <item name="steps" xsi:type="array">
+                                    <item name="children" xsi:type="array">
+                                        <item name="shipping-step" xsi:type="array">
+                                            <item name="children" xsi:type="array">
+                                                <item name="shippingAddress" xsi:type="array">
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="customer-email" xsi:type="array">
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="authentication" xsi:type="array">
+                                                                    <item name="sortOrder" xsi:type="string">1</item>
+                                                                    <item name="component" xsi:type="string">Magento_Checkout/js/view/authentication</item>
+                                                                    <item name="displayArea" xsi:type="string">before-login-form</item>
+                                                                    <item name="children" xsi:type="array">
+                                                                        <item name="errors" xsi:type="array">
+                                                                            <item name="sortOrder" xsi:type="string">0</item>
+                                                                            <item name="component" xsi:type="string">Magento_Checkout/js/view/authentication-messages</item>
+                                                                            <item name="displayArea" xsi:type="string">messages</item>
+                                                                        </item>
+                                                                    </item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                        <item name="shipping-address-fieldset" xsi:type="array">
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="region_id" xsi:type="array">
+                                                                    <item name="config" xsi:type="array">
+                                                                        <item name="label" xsi:type="string" translate="true">State</item>
+                                                                        <item name="caption" xsi:type="string" translate="true">select your state</item>
+                                                                    </item>
+                                                                </item>
+                                                                <item name="postcode" xsi:type="array">
+                                                                    <item name="sortOrder" xsi:type="string">85</item>
+                                                                    <item name="config" xsi:type="array">
+                                                                        <item name="label" xsi:type="string" translate="true">Zip Code</item>
+                                                                    </item>
+                                                                </item>
+                                                                <item name="telephone" xsi:type="array">
+                                                                    <item name="config" xsi:type="array">
+                                                                        <item name="label" xsi:type="string" translate="true">Phone</item>
+                                                                        <item name="placeholder" xsi:type="string" translate="true">best number to reach you</item>
+                                                                        <item name="tooltip" xsi:type="boolean">false</item>
+                                                                    </item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                        <item name="billing-step" xsi:type="array">
+                                            <item name="children" xsi:type="array">
+                                                <item name="payment" xsi:type="array">
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="shipping-information" xsi:type="array">
+                                                            <item name="component" xsi:type="string">Magento_Checkout/js/view/shipping-information</item>
+                                                            <item name="config" xsi:type="array">
+                                                                <item name="deps" xsi:type="string">checkout.steps.shipping-step.shippingAddress</item>
+                                                            </item>
+                                                            <item name="displayArea" xsi:type="string">shipping-information</item>
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="ship-to" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">Magento_Checkout/js/view/shipping-information/list</item>
+                                                                    <item name="displayArea" xsi:type="string">ship-to</item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                        <item name="afterMethods" xsi:type="array">
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="discount" xsi:type="array">
+                                                                    <item name="config" xsi:type="array">
+                                                                        <item name="componentDisabled" xsi:type="boolean">true</item>
+                                                                    </item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                                <item name="sidebar" xsi:type="array">
+                                    <item name="children" xsi:type="array">
+                                        <item name="summary" xsi:type="array">
+                                            <item name="children" xsi:type="array">
+                                                <item name="totals" xsi:type="array">
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="subtotal" xsi:type="array">
+                                                            <item name="config" xsi:type="array">
+                                                                <item name="title" xsi:type="string" translate="true">Subtotal</item>
+                                                            </item>
+                                                        </item>
+                                                        <item name="shipping" xsi:type="array">
+                                                            <item name="config" xsi:type="array">
+                                                                <item name="title" xsi:type="string" translate="true">Shipping Method</item>
+                                                            </item>
+                                                        </item>
+                                                        <item name="grand-total" xsi:type="array">
+                                                            <item name="config" xsi:type="array">
+                                                                <item name="title" xsi:type="string" translate="true">Total</item>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                        <item name="shipping-information" xsi:type="array">
+                                            <item name="componentDisabled" xsi:type="boolean">true</item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>

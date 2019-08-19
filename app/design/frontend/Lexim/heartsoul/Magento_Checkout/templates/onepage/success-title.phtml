@@ -1,0 +1,29 @@
+<?php
+/** @var $block \Magento\Checkout\Block\Onepage\Success */
+
+/** @var BinaryAnvil\InfinityTheme\Helper\CheckoutHelper $orderHelper */
+$orderHelper = $this->helper('BinaryAnvil\InfinityTheme\Helper\CheckoutHelper');
+
+/** @var \Magento\Sales\Model\Order $order */
+$order = $orderHelper->getOrder();
+
+// data
+$customerEmail = $order->getCustomerEmail();
+$customerFirstName = $order->getCustomerFirstname();
+$orderId = $block->getOrderId();
+
+?>
+
+<?php if ($orderId): ?>
+    <!-- SUCCESS - THANK YOU TEXT -->
+    <div class="success-thank-you">
+        <?php if ($block->getCanViewOrder()) : ?>
+            <h2 class="checkout-success-title"><?= __('%1, Thanks for your order.', $customerFirstName) ?></h2>
+        <?php else : ?>
+            <h2 class="checkout-success-title"><?= __('Thank you for your order.') ?></h2>
+        <?php endif; ?>
+
+        <p>You will soon receive an email at <?= $customerEmail ?> confirming your purchase and with a link to access order tracking.</p>
+        <p>We will also send you an email when your order leaves our warehouse. Thank you for your order and we hope you love your latest purchase!</p>
+    </div>
+<?php endif; ?>

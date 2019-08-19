@@ -1,0 +1,164 @@
+<?php
+/** @var $block \Magento\Checkout\Block\Onepage\Success */
+
+/** @var BinaryAnvil\InfinityTheme\Helper\CheckoutHelper $orderHelper */
+$orderHelper = $this->helper('BinaryAnvil\InfinityTheme\Helper\CheckoutHelper');
+
+/** @var \Magento\Sales\Model\Order $order */
+$order = $orderHelper->getOrder();
+
+/** @var \Magento\Sales\Model\Order\Address $shippingAddress */
+$shippingAddress = $order->getShippingAddress();
+
+/** @var \Magento\Sales\Model\Order\Address $billingAddress */
+$billingAddress = $order->getBillingAddress();
+
+// data
+$items = $order->getAllVisibleItems();
+$payment = $order->getPayment();
+$customerEmail = $order->getCustomerEmail();
+$customerFirstName = $order->getCustomerFirstname();
+$orderId = $block->getOrderId();
+$orderUrl = $block->getViewOrderUrl();
+$grandTotal = $order->getGrandTotal();
+
+?>
+
+<div class="checkout-success">
+
+    <?php if (!$block->getCanViewOrder()) : ?>
+        <!-- Create Account Form -->
+        <?php echo $block->getChildHtml('create.account.form') ?>
+    <?php endif; ?>
+
+
+    <!-- SUCCESS - ORDER ID -->
+    <div class="success-order-id"><b>Order Number:</b> <?= $orderId ?></div>
+
+
+    <!-- SUCCESS - CART TABLE -->
+    <div class="success-cart-wrapper">
+        <h3 class="success-heading"><?= __('Order Summary') ?></h3>
+        <table class="success-cart-table">
+            <thead>
+            <tr>
+                <th class="col item" scope="col"><span><?= __('ITEM DESCRIPTION') ?></span></th>
+                <th class="col qty" scope="col"><span><?= __('QUANTITY') ?></span></th>
+                <th class="col price" scope="col"><span><?= __('PRICE') ?></span></th>
+            </tr>
+            </thead>
+
+            <tbody class="success-cart-items">
+            <?php /** @var Magento\Sales\Model\Order\Item $item */ ?>
+            <?php foreach ($items as $item) {
+                $qty = $item->getQtyOrdered();
+                $price = $item->getPrice();
+                ?>
+
+                <tr class="item-tr">
+                    <td class="col item" data-th="Item">
+                        <div class="product-img">
+                            <img width="200" height="200" class="photo image"
+                                 src="<?= $orderHelper->getProductImage($item->getProduct()) ?>"
+                                 alt="<?= $item->getName() ?>">
+                        </div>
+                        <div class="product-item-details">
+                            <strong class="product-item-name"><?= $item->getName() ?></strong>
+                            <p class="sku">SKU: <?= $item->getSku() ?></p>
+                            <p class="m-price"><?= $orderHelper->getFormatedPrice($price) ?></p>
+
+                            <?php if ($options = $item->getProductOptions()): ?>
+                                <div class="item-options">
+                                    <?php if (isset($options['attributes_info'])): ?>
+                                        <?php foreach ($options['attributes_info'] as $option): ?>
+                                            <p><b><?= $option['label'] ?>: </b><?= $option['value'] ?></p>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
+                                </div>
+                            <?php endif; ?>
+                            <p class="m-qty"><b>Quantity: </b><?= (int)$qty ?></p>
+                        </div>
+                    </td>
+
+                    <td class="col qty" data-th="Qty">
+                        <span class="qty"><?= (int)$qty ?></span>
+                    </td>
+
+                    <td class="col price" data-th="Price">
+                        <span class="price-excluding-tax" data-label="Excl. Tax">
+                            <span class="cart-price">
+                                <span class="price"><?= $orderHelper->getFormatedPrice($price) ?></span>
+                            </span>
+                        </span>
+                    </td>
+
+                    <?php /**
+                     * <td class="col subtotal" data-th="Subtotal">
+                     * <span class="price-excluding-tax" data-label="Excl. Tax">
+                     * <span class="cart-price">
+                     * <span class="price"><?= $orderHelper->getFormatedPrice($item->getRowTotal()) ?></span>
+                     * </span>
+                     * </span>
+                     * </td>
+                     */ ?>
+                </tr>
+            <?php } ?>
+            </tbody>
+        </table>
+    </div>
+
+
+    <!-- Success Total -->
+    <?php echo $block->getChildHtml('success.order.total') ?>
+
+
+    <!-- Shipping Details -->
+    <div class="shipping-details">
+        <h3 class="success-heading">Shipping Details</h3>
+        <div class="shipping-details-inner">
+            <!-- Shipping address -->
+            <div class="shipping address-block">
+                <p><strong>Delivery Address:</strong></p>
+                <p><?= $shippingAddress->getFirstname() . ' ' . $shippingAddress->getLastname() ?></p>
+                <?php foreach ($shippingAddress->getStreet() as $street): ?>
+                    <p><?= $street ?></p>
+                <?php endforeach; ?>
+                <p><?= $shippingAddress->getCity() . ', ' . $shippingAddress->getRegion() . ' ' . $shippingAddress->getPostcode() ?></p>
+                <p><?= $shippingAddress->getTelephone() ?></p>
+            </div>
+
+            <?php if (isset($billingAddress) && $billingAddress) { ?>
+                <!-- Billing address -->
+                <div class="billing address-block">
+                    <p><strong>Billing Address:</strong></p>
+                    <p><?= $billingAddress->getFirstname() . ' ' . $billingAddress->getLastname() ?></p>
+                    <?php foreach ($billingAddress->getStreet() as $street): ?>
+                        <p><?= $street ?></p>
+                    <?php endforeach; ?>
+                    <p><?= $billingAddress->getCity() . ', ' . $billingAddress->getRegion() . ' ' . $billingAddress->getPostcode() ?></p>
+                    <p><?= $billingAddress->getTelephone() ?></p>
+                </div>
+            <?php } ?>
+        </div>
+    </div>
+
+
+    <!-- Payment Details -->
+    <div class="payment-details">
+        <h3 class="success-heading">Payment Details</h3>
+        <div class="payment-details-inner">
+            <p><strong>Payment Method:</strong></p>
+            <?php if (($additionalInfo = $payment->getAdditionalInformation()) && isset($additionalInfo['card_type'])): ?>
+                <p><?= $additionalInfo['card_type'] ?></p>
+                <p><?= 'XXXXXXXXXXXX-' . $payment->getCcLast4() ?></p>
+                <p><b><?= __('exp:') ?></b> <?= $payment->getCcExpMonth() . '/' . $payment->getCcExpYear() ?></p>
+                <?php $cvc = $payment->getCcSecureVerify() ? $payment->getCcSecureVerify() : 'xxx'; ?>
+                <p><b>CVC: </b><?= $cvc ?></p>
+            <?php endif; ?>
+        </div>
+    </div>
+
+
+    <!-- getAdditionalInfoHtml -->
+    <?= $block->getAdditionalInfoHtml() ?>
+</div>

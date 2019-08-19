@@ -1,0 +1,225 @@
+<?php
+/**
+ * Binary Anvil, Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Binary Anvil, Inc. Software Agreement
+ * that is bundled with this package in the file LICENSE_BAS.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.binaryanvil.com/software/license/
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@binaryanvil.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this software to
+ * newer versions in the future. If you wish to customize this software for
+ * your needs please refer to http://www.binaryanvil.com/software for more
+ * information.
+ *
+ * @category    BinaryAnvil
+ * @package     Infinity
+ * @copyright   Copyright (c) 2018-2019 Binary Anvil,Inc. (http://www.binaryanvil.com)
+ * @license     http://www.binaryanvil.com/software/license
+ */
+
+// @codingStandardsIgnoreFile
+$objectManager  = \Magento\Framework\App\ObjectManager::getInstance();
+$store = $objectManager->get('Magento\Store\Model\StoreManagerInterface')->getStore();
+$currencysymbol = $objectManager->get('Magento\Directory\Model\Currency');
+$currencysbol = $currencysymbol->getCurrencySymbol();
+$blockInfo = $objectManager->get('Magento\Sales\Block\Order\Info');
+
+$blockTotals = $objectManager->get('Magento\Sales\Block\Order\Totals');
+
+?>
+<?php $_orders = $block->getOrders(); ?>
+<?php $block->getChildHtml('info') ?>
+<?php if ($_orders && count($_orders)): ?>
+    <div class="table-wrapper orders-history">
+        <table class="data table table-order-items history" id="my-orders-table">
+            <caption class="table-caption"><?= /* @escapeNotVerified */ __('Orders') ?></caption>
+            <thead>
+                <tr>
+                    <th scope="col" class="col id"><?= /* @escapeNotVerified */ __('Order number') ?>:</th>
+                    <th scope="col" class="col date"><?= /* @escapeNotVerified */ __('Order date') ?>:</th>
+                    <?= /* @noEscape */ $block->getChildHtml('extra.column.header') ?>
+                    <th scope="col" class="col status"><?= /* @escapeNotVerified */ __('Orders status') ?>:</th>
+                    <th scope="col" class="col actions"><?= /* @escapeNotVerified */ __('Details') ?>:</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($_orders as $_order): ?>
+                    <tr>
+                        <?php //TODO: change data format ?>
+                        <td data-th="<?= $block->escapeHtml(__('Order number')) ?>" class="col id"><span class="plus-open">+</span><span class="see-more">See more</span><span class="number-id"><?= /* @escapeNotVerified */ $_order->getRealOrderId() ?></span></td>
+                        <td data-th="<?= $block->escapeHtml(__('Order date')) ?>" class="col date"><?= /* @escapeNotVerified */ $block->formatDate($_order->getCreatedAt(), IntlDateFormatter::LONG) ?></td>
+                        <?php $extra = $block->getChildBlock('extra.container'); ?>
+                        <?php if ($extra): ?>
+                            <?php $extra->setOrder($_order); ?>
+                            <?= /* @noEscape */ $extra->getChildHtml() ?>
+                        <?php endif; ?>
+                        <td data-th="<?= $block->escapeHtml(__('Orders status')) ?>" class="col status"><?= /* @escapeNotVerified */ $_order->getStatusLabel() ?></td>
+                        <td data-th="<?= $block->escapeHtml(__('Details')) ?>" class="col actions">
+                            
+                            <?php if ($this->helper('Magento\Sales\Helper\Reorder')->canReorder($_order->getEntityId())) : ?>
+                                <a href="#" data-post='<?php /* @escapeNotVerified */ echo
+                                $this->helper(\Magento\Framework\Data\Helper\PostHelper::class)
+                                    ->getPostData($block->getReorderUrl($_order))
+                                ?>' class="action order">
+                                    <span><?= /* @escapeNotVerified */ __('Reorder') ?></span>
+                                </a>
+                            <?php endif ?>
+                            <?php foreach ($_order->getShipmentsCollection() as $_shipment): ?>
+                                <?php $tracks = $_shipment->getTracksCollection(); ?>
+                                <?php  if ($tracks->count()): ?>
+                                        <?php foreach ($tracks as $track): ?>
+                                        <a href="#" class="action track track-order"
+                                            data-mage-init='{"popupWindow": {"windowURL":"<?= /* @escapeNotVerified */ $this->helper('Magento\Shipping\Helper\Data')->getTrackingPopupUrlBySalesModel($track) ?>","windowName":"trackorder","width":800,"height":600,"left":0,"top":0,"resizable":1,"scrollbars":1}}'><span><?= /* @escapeNotVerified */ __('Track Order') ?></span>
+                                            </a>
+                                        <?php endforeach; ?>
+                                <?php  endif; ?>
+                            <?php endforeach; ?>
+                        </td>
+                    </tr>
+                    <tr class="item-product">
+                        <td></td>
+                        <td colspan="3" class="content">
+                            <div class="section-details details">
+                                <div class="title"><?= /* @escapeNotVerified */ __('Item description') ?></div>
+                                <div class="content-details">
+                                    <ol>
+                                    <?php 
+                                    $incrementId = $_order->getRealOrderId();
+                                    $order = $objectManager->create('Magento\Sales\Model\Order')->loadByIncrementId($incrementId);
+                                    $_orderAllVisibleItems = $order->getAllVisibleItems();
+                                    foreach($_orderAllVisibleItems as $_item ) {
+                                    $idProduct = $_item['product_id'];
+                                    $product = $objectManager->get('Magento\Catalog\Model\Product')->load($idProduct);
+                                    $imageUrl = $store->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA) . 'catalog/product' . $product->getImage(); ?>
+                                        <li>
+                                            <div class="images">
+                                                <img src="<?= $imageUrl; ?>">
+                                            </div>
+                                            <div class="box-conten">
+                                                <p><?= $_item['name']; ?></p>
+                                                <p class="sku-item"><?= /* @escapeNotVerified */ __('Sku') ?>: <?= $_item->getSku(); ?></p>
+                                                <p class="price-item"><?=$currencysbol; ?><?= round($_item['price'], 2); ?></p>
+                                                <?php 
+                                                $getOptions =  $_item['product_options']['attributes_info']; 
+                                                foreach($getOptions as $keys ) {?>
+                                                <p class="option-product"><span><?= $keys['label']; ?>: </span><span><?= $keys['value']; ?></span></p>
+                                               <?php } ?>
+                                                <p class="quantity-item"><?= /* @escapeNotVerified */ __('Quantity') ?>: <?= intval($_item->getQtyOrdered());?></p>
+                                            </div>
+                                        </li>
+                                    <?php  } ?>
+                                    </ol>
+                                </div>
+                            </div>
+                            <div class="section-details">
+                                <div class="title"><?= /* @escapeNotVerified */ __('Delivery') ?></div>
+                                <div class="content-details-shipping">
+                                    <span>
+                                    <?php if ($order->getShippingDescription()): ?>
+                                        <?= $blockInfo->escapeHtml($order->getShippingDescription()) ?>
+                                    <?php else: ?>
+                                        <?= /* @escapeNotVerified */ __('No shipping information available') ?>
+                                    <?php endif; ?>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="section-details">
+                                <div class="title"><?= /* @escapeNotVerified */ __('Payment method') ?></div>
+                                <div class="content-details-method">
+                                    <span><?php $payment = $order->getPayment();
+                                    echo $payment->getAdditionalInformation()['method_title'];?></span>
+                                </div>
+                            </div>
+                            <div class="address-order">
+                                <div class="section-details">
+                                    <div class="title"><?= /* @escapeNotVerified */ __('Shipping address') ?></div>
+                                    <div class="content-details-method">
+                                        <address><?= /* @escapeNotVerified */ $blockInfo->getFormattedAddress($order->getShippingAddress()) ?></address>
+                                    </div>
+                                </div>
+                                <div class="section-details">
+                                    <div class="title"><?= /* @escapeNotVerified */ __('Billing address') ?></div>
+                                    <div class="content-details-method">
+                                        <address><?= /* @escapeNotVerified */ $blockInfo->getFormattedAddress($order->getBillingAddress()) ?></address>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="section-details">
+                                <div class="title"><?= /* @escapeNotVerified */ __('Order summary') ?></div>
+                                <div class="content-details-summary">
+                                     <p class="price-product"><span class="label"><?= /* @escapeNotVerified */ __('Subtotal') ?></span><span class="value"><?=$currencysbol; ?><?= round($order->getSubtotal(), 2); ?></span></p>
+                                     <p class="price-product"><span class="label"><?= /* @escapeNotVerified */ __('Shipping') ?></span><span class="value"><?=$currencysbol; ?><?= round($order->getShippingAmount(), 2); ?></span></p>
+                                     <p class="price-product"><span class="label"><?= /* @escapeNotVerified */ __('Tax') ?></span><span class="value"><?=$currencysbol; ?><?= round($order->getTaxAmount(), 2); ?></span></p>
+                                     <p class="price-product total"><span class="label"><?= /* @escapeNotVerified */ __('Total') ?></span><span class="value"><?=$currencysbol; ?><?= round($order->getGrandTotal(), 2); ?></span></p>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+    <?php if ($block->getPagerHtml()): ?>
+        <div class="order-products-toolbar toolbar bottom"><?= $block->getPagerHtml() ?></div>
+    <?php endif ?>
+<?php else: ?>
+    <div class="message info empty"><span><?= /* @escapeNotVerified */ __('You have placed no orders.') ?></span></div>
+<?php endif ?>
+<script>
+    require(['jquery'], function ($) {
+        $(function () {
+            $('#my-orders-table .plus-open').click(function (e) {
+                if ($(this).hasClass("focus")) {
+                    $(this).removeClass('focus');
+                    $(this).text("+");
+                    $(this).parent().parent().removeClass('focus');
+                    $(this).parent().parent().next().removeClass('active');
+                } else {
+                    $(this).addClass('focus');
+                    $(this).text("-");
+                    $(this).parent().parent().addClass('focus');
+                    $(this).parent().parent().next().addClass('active');
+                }
+                
+            });
+
+            $('#my-orders-table .see-more').click(function (e) {
+                if ($(this).prev().hasClass("focus")) {
+                    $(this).prev().removeClass('focus');
+                    $(this).prev().text("+");
+                    $(this).parent().parent().removeClass('focus');
+                    $(this).parent().parent().next().removeClass('active');
+                } else {
+                    $(this).prev().addClass('focus');
+                    $(this).prev().text("-");
+                    $(this).parent().parent().addClass('focus');
+                    $(this).parent().parent().next().addClass('active');
+                }
+            });
+
+            $('#my-orders-table .number-id').click(function (e) {
+                if ($(this).prev().prev().hasClass("focus")) {
+                    $(this).prev().prev().removeClass('focus');
+                    $(this).prev().prev().text("+");
+                    $(this).parent().parent().removeClass('focus');
+                    $(this).parent().parent().next().removeClass('active');
+                } else {
+                    $(this).prev().prev().addClass('focus');
+                    $(this).prev().prev().text("-");
+                    $(this).parent().parent().addClass('focus');
+                    $(this).parent().parent().next().addClass('active');
+                }
+            });
+
+        });
+    });
+</script>

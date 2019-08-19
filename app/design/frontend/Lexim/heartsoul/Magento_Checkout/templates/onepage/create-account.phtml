@@ -1,0 +1,75 @@
+<?php
+
+/** @var \BinaryAnvil\InfinityTheme\Block\Customer\Form\Login $block */
+/** @var \BinaryAnvil\InfinityTheme\Helper\CheckoutHelper $orderHelper */
+?>
+<?php
+$orderHelper = $this->helper('BinaryAnvil\InfinityTheme\Helper\CheckoutHelper');
+$order = $orderHelper->getOrder();
+$billingAddress = $order->getBillingAddress();
+?>
+<?php if (!$block->isCustomerLoggedIn()): ?>
+    <div class="register-form-container">
+        <div class="register-form-title">
+            <h4>NEW BEST FRIEND, ONE CLICK AWAY</h4>
+            <p>Since you are here, won't you join us? You are one click away from emails, special offers on all things Infinity by Cherokee.<br>
+                What are you waiting for. We even prefilled it with your email. That's how much we love you. </p>
+        </div>
+        <form class="form create account form-create-account" action="<?= $block->getUrl('customer/account/createpost') ?>"
+              method="post" id="form-validate" enctype="multipart/form-data" autocomplete="off">
+            <?= $block->getBlockHtml('formkey')?>
+            <input type="hidden" name="firstname" value="<?= $billingAddress->getFirstname() ?>">
+            <input type="hidden" name="lastname" value="<?= $billingAddress->getLastname() ?>">
+            <fieldset class="fieldset create account">
+                <div class="field required">
+                    <label for="email_address" class="label"><span><?= __('Email') ?></span></label>
+                    <div class="control">
+                        <input type="email" name="email" id="email_address" autocomplete="off" title="<?= __('Email') ?>" class="input-text" data-validate="{required:true, 'validate-email':true}"/>
+                    </div>
+                </div>
+                <div class="field password required">
+                    <label for="password" class="label"><span><?= __('Password') ?></span></label>
+                    <div class="control">
+                        <input type="password" name="password" id="password"
+                               title="<?= __('Password') ?>"
+                               class="input-text"
+                               data-password-min-length="<?= $block->escapeHtml($block->getMinimumPasswordLength()) ?>"
+                               data-password-min-character-sets="<?= $block->escapeHtml($block->getRequiredCharacterClassesNumber()) ?>"
+                               data-validate="{required:true, 'validate-customer-password':true}"
+                               autocomplete="off">
+                    </div>
+                </div>
+                <div class="field confirmation required">
+                    <label for="password-confirmation" class="label"><span><?= __('Re-enter Password') ?></span></label>
+                    <div class="control">
+                        <input type="password" name="password_confirmation" title="<?= __('Confirm Password') ?>" id="password-confirmation" class="input-text"
+                               data-validate="{required:true, equalTo:'#password'}"/>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="actions-toolbar">
+                <div class="primary">
+                    <button type="submit" class="action submit primary" title="<?= __('Create an Account') ?>"><span><?= __('Join Us') ?></span></button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!--TODO: Need backend assist for check this resolve "Magento_CustomerCustomAttributes/validation".-->
+    <script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_CustomerCustomAttributes/validation": {
+                "ignore": false,
+                "hasUserDefinedAttributes": false,
+                "isDobEnabled": false,
+                "disableAutoComplete": true,
+                "mixins": [
+                    "Magento_CustomerCustomAttributes/error-placement",
+                    "Magento_CustomerCustomAttributes/validation-ignore"
+                ]
+            }
+        }
+    }
+    </script>
+<?php endif ?>

@@ -1,0 +1,202 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+use Magento\Framework\App\Action\Action;
+
+// @codingStandardsIgnoreFile
+?>
+<?php
+/**
+ * Product list template
+ *
+ * @var $block \Magento\Catalog\Block\Product\ListProduct
+ */
+?>
+
+<?php
+$_productCollection = $block->getLoadedProductCollection();
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
+
+/** @var \BinaryAnvil\InfinityTheme\Helper\Catalog $catalogHelper */
+$catalogHelper = $this->helper('BinaryAnvil\InfinityTheme\Helper\Catalog');
+
+$params = [];
+$colorParam = $block->getRequest()->getParam('is_manufacturer_color');
+if ($colorParam && $colorParam !== '') {
+    $params['is_manufacturer_color'] = explode(',', $colorParam);
+}
+$sizeParam = $block->getRequest()->getParam('is_size');
+if ($sizeParam && $sizeParam !== '') {
+    $params['is_size'] = explode(',', $sizeParam);
+}
+$fitParam = $block->getRequest()->getParam('is_apparel_rise_length');
+if ($fitParam && $fitParam !== '') {
+    $params['is_apparel_rise_length'] = explode(',', $fitParam);
+}
+
+?>
+<?php if (!$_productCollection->count()): ?>
+    <div class="message info empty">
+        <div><?= __('We can\'t find products matching the selection.') ?></div>
+    </div>
+<?php else: ?>
+    <?= $block->getToolbarHtml() ?>
+    <?= $block->getAdditionalHtml() ?>
+
+    <?php
+//    if ($block->getMode() == 'grid') {
+//    $viewMode = 'grid';
+//    $image = 'category_page_grid';
+//    $showDescription = false;
+//    $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+//    } else {
+//        $viewMode = 'list';
+//        $image = 'category_page_list';
+//        $showDescription = true;
+//        $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::FULL_VIEW;
+//    }
+
+    $viewMode = 'grid';
+    $image = 'category_page_grid';
+    $showDescription = false;
+    $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+
+    /**
+     * Position for actions regarding image size changing in vde if needed
+     */
+    $pos = $block->getPositioned();
+    ?>
+
+    <div class="products wrapper <?= $viewMode ?> products-<?= $viewMode ?>">
+        <?php $iterator = 1; ?>
+        <ol class="products list items product-items">
+            <?php /** @var Magento\ConfigurableProduct\Model\ResourceModel\Product\Type\Configurable $_product */ ?>
+            <?php foreach ($_productCollection as $_product): ?>
+
+                <li class="item product product-item" data-id="<?= $_product->getId() ?>">
+                    <div class="product-item-info" data-container="product-grid">
+                        <?php $productImage = $block->getImage($_product, $image);
+
+                        // Get image for configurable product
+                        if ($_product->getTypeId() == "configurable") {
+                            /** @var Magento\Catalog\Model\Product $singleProduct */
+                            $singleProduct = $block->getAssociatedProductsByConfigurableProduct($_product, $params);
+                            if ($singleProduct) {
+                                if (is_array($singleProduct) && count($singleProduct) > 0) {
+                                    $singleProduct = reset($singleProduct);
+                                }
+                                $productImage = $block->getImage($singleProduct, $image);
+                            }
+                        }
+                        ?>
+
+                        <?php // Product Image ?>
+                        <a href="<?= $_product->getProductUrl() ?>" class="product photo product-item-photo"
+                           tabindex="-1">
+                            <?= $productImage->toHtml() ?>
+                        </a>
+
+                        <!-- Add to Wish-list  -->
+                        <?php if ($addToBlock = $block->getChildBlock('addto')): ?>
+                            <?= $addToBlock->setProduct($_product)->getChildHtml(); ?>
+                        <?php endif; ?>
+
+                        <div class="product details product-item-details">
+                            <?php
+                            $_productNameStripped = $block->stripTags($_product->getName(), null, true);
+                            $labels = $catalogHelper->getProductLabels($_product);
+                            ?>
+
+                            <div class="product name product-item-name">
+                                <a class="product-item-link" href="<?= $_product->getProductUrl() ?>">
+                                    <?php foreach ($labels as $label): ?>
+                                        <span class="<?= $label ?>"><?= $label . "!" ?></span>
+                                    <?php endforeach; ?>
+                                    <?= $_helper->productAttribute($_product, $_product->getName(), 'name') ?>
+                                </a>
+                            </div>
+
+                            <?php // echo $block->getReviewsSummaryHtml($_product, $templateType); ?>
+
+                            <?= $block->getProductPrice($_product) ?>
+
+                            <!-- Count Color -->
+                            <?php
+                            $colorAttributeId = $_product->getResource()->getAttribute('is_manufacturer_color')->getId();
+                            $configurableAttrs = $_product->getTypeInstance()->getConfigurableAttributesAsArray($_product); // Get Used Attributes with its values
+                            if (isset($configurableAttrs[$colorAttributeId]['values'])) {
+                                $countColor = count($configurableAttrs[$colorAttributeId]['values']);
+                                $textForCountColor = $countColor > 1 ? $countColor . " colors" : $countColor . " color"; ?>
+                                <p class="countColor"><?= $textForCountColor ?></p>
+                            <?php } ?>
+
+                            <?php // echo $block->getProductDetailsHtml($_product); ?>
+
+                            <?php /**
+                             * <div class="product-item-inner">
+                             * <div class="product actions product-item-actions">
+                             * <div class="actions-primary">
+                             * <?php if ($_product->isSaleable()): ?>
+                             * <?php $postParams = $block->getAddToCartPostParams($_product); ?>
+                             * <form data-role="tocart-form" data-product-sku="<?= $block->escapeHtml($_product->getSku()) ?>" action="<?=  $postParams['action'] ?>" method="post">
+                             * <input type="hidden" name="product" value="<?= $postParams['data']['product'] ?>">
+                             * <input type="hidden" name="<?= Action::PARAM_NAME_URL_ENCODED ?>" value="<?= $postParams['data'][Action::PARAM_NAME_URL_ENCODED] ?>">
+                             * <?= $block->getBlockHtml('formkey') ?>
+                             * <button type="submit"
+                             * title="<?= $block->escapeHtml(__('Add to Cart')) ?>"
+                             * class="action tocart primary">
+                             * <span><?= __('Add to Cart') ?></span>
+                             * </button>
+                             * </form>
+                             * <?php else: ?>
+                             * <?php if ($_product->isAvailable()): ?>
+                             * <div class="stock available"><span><?= __('In stock') ?></span></div>
+                             * <?php else: ?>
+                             * <div class="stock unavailable"><span><?= __('Out of stock') ?></span></div>
+                             * <?php endif; ?>
+                             * <?php endif; ?>
+                             * </div>
+                             * <div data-role="add-to-links" class="actions-secondary">
+                             * <?php if ($addToBlock = $block->getChildBlock('addto')): ?>
+                             * <?= $addToBlock->setProduct($_product)->getChildHtml() ?>
+                             * <?php endif; ?>
+                             * </div>
+                             * </div>
+                             *
+                             * <?php if ($showDescription):?>
+                             * <div class="product description product-item-description">
+                             * <?= $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?>
+                             * <a href="<?= $_product->getProductUrl() ?>" title="<?= $_productNameStripped ?>"
+                             * class="action more"><?= __('Learn More') ?></a>
+                             * </div>
+                             * <?php endif; ?>
+                             * </div>
+                             **/ ?>
+
+                        </div>
+                    </div>
+                </li>
+
+            <?php endforeach; ?>
+        </ol>
+    </div>
+
+    <?= $block->getToolbarHtml() ?>
+
+    <?php if (!$block->isRedirectToCartEnabled()) : ?>
+        <script type="text/x-magento-init">
+        {
+            "[data-role=tocart-form], .form.map.checkout": {
+                "catalogAddToCart": {
+                    "product_sku": "<?= $_product->getSku() ?>"
+                }
+            }
+        }
+
+
+        </script>
+    <?php endif; ?>
+<?php endif; ?>

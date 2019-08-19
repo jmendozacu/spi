@@ -1,0 +1,91 @@
+<?php
+// @codingStandardsIgnoreFile
+
+/**  @var $block \Magento\Checkout\Block\Cart\Grid */
+?>
+<?php // $mergedCells = ($this->helper('Magento\Tax\Helper\Data')->displayCartBothPrices() ? 2 : 1); ?>
+<?= $block->getChildHtml('form_before') ?>
+<form action="<?=  $block->getUrl('checkout/cart/updatePost') ?>"
+          method="post"
+          id="form-validate"
+          data-mage-init='{"validation":{}}'
+          class="form form-cart">
+    <?= $block->getBlockHtml('formkey') ?>
+    
+    <div class="cart table-wrapper <?php // echo $mergedCells == 2 ? ' detailed' : '' ?>">
+        <?php /** if ($block->getPagerHtml()): ?>
+            <div class="cart-products-toolbar cart-products-toolbar-top toolbar" data-attribute="cart-products-toolbar-top"><?= $block->getPagerHtml() ?></div>
+        <?php endif */ ?>
+        
+        <table id="shopping-cart-table"
+               class="cart items data table"
+               data-th="<?=  __('Product') ?>"
+               data-mage-init='{"shoppingCart":{"emptyCartButton": "action.clear",
+               "updateCartActionContainer": "#update_cart_action_container"}}'>
+
+            <?= $block->getChildHtml('checkout.cart.item.renderers.configurable.actions') ?>
+
+            <thead>
+                <tr>
+                    <th class="col item" scope="col"><span><?=  __('Item Description') ?></span></th>
+                    <th class="col qty" scope="col"><span><?=  __('Quantity') ?></span></th>
+                    <th class="col price" scope="col"><span><?=  __('Price') ?></span></th>
+                    <th class="col action" scope="col"><span></span></th>
+                </tr>
+            </thead>
+
+            <tbody>
+            <?php foreach ($block->getItems() as $_item): ?>
+                <?= $block->getItemHtml($_item) ?>
+            <?php endforeach ?>
+            </tbody>
+        </table>
+        
+        <?php if ($block->getPagerHtml()): ?>
+            <div class="cart-products-toolbar cart-products-toolbar-bottom toolbar" data-attribute="cart-products-toolbar-bottom"><?= $block->getPagerHtml() ?></div>
+        <?php endif ?>
+    </div>
+
+    <?php /**
+    <div class="cart main actions">
+        <?php if ($block->getContinueShoppingUrl()): ?>
+            <a class="action continue"
+               href="<?= $block->escapeUrl($block->getContinueShoppingUrl()) ?>"
+               title="<?= $block->escapeHtml(__('Continue Shopping')) ?>">
+                <span><?=  __('Continue Shopping') ?></span>
+            </a>
+        <?php endif; ?>
+        <button type="submit"
+                name="update_cart_action"
+                data-cart-empty=""
+                value="empty_cart"
+                title="<?= $block->escapeHtml(__('Clear Shopping Cart')) ?>"
+                class="action clear" id="empty_cart_button">
+            <span><?=  __('Clear Shopping Cart') ?></span>
+        </button>
+        <button type="submit"
+                name="update_cart_action"
+                data-cart-item-update=""
+                value="update_qty"
+                title="<?= $block->escapeHtml(__('Update Shopping Bag')) ?>"
+                class="action update">
+            <span><?=  __('Update Shopping Bag') ?></span>
+        </button>
+        <input type="hidden" value="" id="update_cart_action_container" data-cart-item-update=""/>
+    </div>
+    **/ ?>
+    <input type="hidden" value="" id="update_cart_action_container" data-cart-item-update=""/>
+
+
+</form>
+
+<?= $block->getChildHtml('checkout.cart.order.actions') ?>
+<?= $block->getChildHtml('shopping.cart.table.after') ?>
+
+<script>
+    require(['jquery', 'qtyHandler'], function($) {
+        $(function() {
+            qtyHandler(".checkout-cart-index", ".product-cart-control-minus-qty", ".product-cart-control-add-qty");
+        });
+    });
+</script>

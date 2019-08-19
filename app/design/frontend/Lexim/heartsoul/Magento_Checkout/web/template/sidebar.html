@@ -1,0 +1,21 @@
+
+<div id="opc-sidebar" class="opc-sidebar opc-summary-wrapper">
+
+    <!-- ko foreach: getRegion('summary') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+    <!--/ko-->
+
+    <div class="opc-block-shipping-information">
+        <!-- ko foreach: getRegion('shipping-information') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!--/ko-->
+    </div>
+
+    <!-- ko if: (isVisible()) -->
+    <div class="primary cart-link-wrapper">
+        <a class="action primary" data-bind="attr: {href: getShoppingCartUrl()}"><span data-bind="i18n: 'Return to bag'"></span></a>
+    </div>
+    <!--/ko-->
+
+    <div data-bind="html: window.checkoutConfig.checkout_page_block_need_help"></div>
+</div>

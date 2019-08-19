@@ -1,0 +1,332 @@
+//
+//  Primary colors
+//  ---------------------------------------------
+
+@color-alizarin-crimson: #d92732;
+@color-jambalaya: #562312;
+
+//
+//  Accent colors
+//  ---------------------------------------------
+@color-graphite: #2d1108;
+@color-brandy: #ddc699;
+
+//
+//  Tags colors
+//  ---------------------------------------------
+@color-roof-terracotta: #b21e28;
+
+//
+//  Gray colors
+//  ---------------------------------------------
+@color-mine-shaft: #3e3e3e;
+@color-gray: #74706d;
+@color-mercury: #e3e3e3;
+@color_alabaster: #fafafa;
+
+//
+//  Own colors
+//  ---------------------------------------------
+@medium-turquoise: #3bc1cc;
+@dove-grey: #74706d;
+@mountain-mist: #a6a3a1;
+@cloudy: #a6a4a2;
+@nobel: #b7b7b7;
+@kilamanjaro: #3e3935;
+@infnt-border-color: #d0d0d0;
+@facebook-color: #21538d;
+@google-color: #f14336;
+@fire-engine-red: #c41230;
+
+//
+//  Weights
+//  ---------------------------------------------
+@font-weight__bolder: 900;
+
+//
+//  Modal
+//  ---------------------------------------------
+
+@modal-popup__width: 50%;
+
+// Break points
+@screen__xxs: 320px;
+@screen__xs: 480px;
+@screen__s: 640px;
+@screen__m: 768px;
+@screen__l: 992px;
+@screen__1200: 1200px;
+@screen__xl: 1440px;
+
+// layout
+@layout__max-width: 100%;
+
+// Color
+@aqua: #48c1cb;
+@aqua-text : #3bc1cc;
+@light-aqua: #d6eef1;
+@gray: #3e3935;
+
+// Fonts
+@main-font-path: '@{baseDir}fonts/';
+@font-elo: '@{baseDir}fontello/';
+@main-font: 'Proxima Nova', Hind, sans-serif;
+
+// ACS icon
+@icon-acs-heart: '\e805';
+@icon-acs-mail: '\e806';
+@icon-acs-search: '\e807';
+@icon-acs-bag: '\e808';
+@icon-acs-star-empty: '\e800';
+@icon-acs-star: '\e801';
+@icon-acs-arrow-left: '';
+
+& when (@media-common = true) {
+
+    @font-face {
+        font-family: 'ProximaNova';
+        src: url('@{main-font-path}ProximaNovaRegular.eot');
+        src: url('@{main-font-path}ProximaNovaRegular.eot?#iefix') format('embedded-opentype'),
+        url('@{main-font-path}ProximaNovaRegular.woff2') format('woff2'),
+        url('@{main-font-path}ProximaNovaRegular.woff') format('woff'),
+        url('@{main-font-path}ProximaNovaRegular.ttf') format('truetype'),
+        url('@{main-font-path}ProximaNovaRegular.svg#wf') format('svg');
+        font-weight: 400;
+    }
+
+    @font-face {
+        font-family: 'ProximaNova';
+        src: url('@{main-font-path}ProximaNovaRegular.eot');
+        src: url('@{main-font-path}ProximaNovaRegular.eot?#iefix') format('embedded-opentype'),
+        url('@{main-font-path}ProximaNovaRegular.woff2') format('woff2'),
+        url('@{main-font-path}ProximaNovaRegular.woff') format('woff'),
+        url('@{main-font-path}ProximaNovaRegular.ttf') format('truetype'),
+        url('@{main-font-path}ProximaNovaRegular.svg#wf') format('svg');
+        font-weight: normal;
+    }
+
+    @font-face {
+        font-family: 'ProximaNova';
+        src: url('@{main-font-path}ProximaNovaBold.eot');
+        src: url('@{main-font-path}ProximaNovaBold.eot?#iefix') format('embedded-opentype'),
+        url('@{main-font-path}ProximaNovaBold.woff2') format('woff2'),
+        url('@{main-font-path}ProximaNovaBold.woff') format('woff'),
+        url('@{main-font-path}ProximaNovaBold.ttf') format('truetype'),
+        url('@{main-font-path}ProximaNovaBold.svg#wf') format('svg');
+        font-weight: 700;
+    }
+
+    @font-face {
+        font-family: 'ProximaNova';
+        src: url('@{main-font-path}ProximaNovaBold.eot');
+        src: url('@{main-font-path}ProximaNovaBold.eot?#iefix') format('embedded-opentype'),
+        url('@{main-font-path}ProximaNovaBold.woff2') format('woff2'),
+        url('@{main-font-path}ProximaNovaBold.woff') format('woff'),
+        url('@{main-font-path}ProximaNovaBold.ttf') format('truetype'),
+        url('@{main-font-path}ProximaNovaBold.svg#wf') format('svg');
+        font-weight: bold;
+    }
+
+    @font-face {
+        font-family: 'ProximaNova';
+        src: url('@{main-font-path}ProximaNovaBold.eot');
+        src: url('@{main-font-path}ProximaNovaBold.eot?#iefix') format('embedded-opentype'),
+        url('@{main-font-path}ProximaNovaBlack.woff2') format('woff2'),
+        url('@{main-font-path}ProximaNovaBlack.woff') format('woff'),
+        url('@{main-font-path}ProximaNovaBlack.ttf') format('truetype'),
+        url('@{main-font-path}ProximaNovaBlack.svg#wf') format('svg');
+        font-weight: 900;
+    }
+
+    @font-face {
+        font-family: 'Hind';
+        src: url('@{main-font-path}HindRegular.eot');
+        src: url('@{main-font-path}HindRegular.eot?#iefix') format('embedded-opentype'),
+        url('@{main-font-path}HindRegular.woff2') format('woff2'),
+        url('@{main-font-path}HindRegular.woff') format('woff'),
+        url('@{main-font-path}HindRegular.ttf') format('truetype'),
+        url('@{main-font-path}HindRegular.svg#wf') format('svg');
+        font-weight: 400;
+    }
+
+    @font-face {
+        font-family: 'Hind';
+        src: url('@{main-font-path}HindRegular.eot');
+        src: url('@{main-font-path}HindRegular.eot?#iefix') format('embedded-opentype'),
+        url('@{main-font-path}HindRegular.woff2') format('woff2'),
+        url('@{main-font-path}HindRegular.woff') format('woff'),
+        url('@{main-font-path}HindRegular.ttf') format('truetype'),
+        url('@{main-font-path}HindRegular.svg#wf') format('svg');
+        font-weight: normal;
+    }
+
+    @font-face {
+        font-family: 'Hind';
+        src: url('@{main-font-path}HindBold.eot');
+        src: url('@{main-font-path}HindBold.eot?#iefix') format('embedded-opentype'),
+        url('@{main-font-path}HindBold.woff2') format('woff2'),
+        url('@{main-font-path}HindBold.woff') format('woff'),
+        url('@{main-font-path}HindBold.ttf') format('truetype'),
+        url('@{main-font-path}HindBold.svg#wf') format('svg');
+        font-weight: 900;
+    }
+
+    @import '_font_awesome.less';
+
+    @font-face {
+        font-family: 'acs-icon-font';
+        src: url('@{font-elo}font/acs-icon-font.eot');
+        src: url('@{font-elo}font/acs-icon-font.eot#iefix') format('embedded-opentype'),
+        url('@{font-elo}font/acs-icon-font.woff2') format('woff2'),
+        url('@{font-elo}font/acs-icon-font.woff') format('woff'),
+        url('@{font-elo}font/acs-icon-font.ttf') format('truetype'),
+        url('@{font-elo}font/acs-icon-font.svg#acs-icon-font') format('svg');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    [class^="icon-elo-"]:before, [class*="icon-elo-"]:before {
+        font-family: "acs-icon-font";
+        font-style: normal;
+        font-weight: normal;
+        speak: none;
+        display: inline-block;
+        text-decoration: inherit;
+        font-size: 20px;
+        color: @gray;
+        text-align: center;
+        font-variant: normal;
+        text-transform: none;
+        line-height: 1;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    .icon-elo-star-empty:before {
+        content: '\e800';
+    }
+
+    .icon-elo-star:before {
+        content: '\e801';
+    }
+
+    .icon-elo-heart:before {
+        content: '\e805';
+    }
+
+    .icon-elo-mail:before {
+        content: '\e806';
+    }
+
+    .icon-elo-search:before {
+        content: '\e807';
+    }
+
+    .icon-elo-bag:before {
+        content: '\e808';
+    }
+
+    /* Slick */
+    @font-face {
+        font-family: 'slick';
+        font-weight: normal;
+        font-style: normal;
+        src: url('@{main-font-path}slick.eot');
+        src: url('@{main-font-path}slick.eot?#iefix') format('embedded-opentype'),
+        url('@{main-font-path}slick.woff') format('woff'),
+        url('@{main-font-path}slick.ttf') format('truetype'),
+        url('@{main-font-path}slick.svg#slick') format('svg');
+    }
+}
+
+// function
+.display-flex() {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+}
+
+.display-flex-important() {
+    display: -webkit-flex !important;
+    display: -moz-flex !important;
+    display: -ms-flex !important;
+    display: -o-flex !important;
+    display: flex !important;
+}
+
+.flex-wrap(@flex_wrap) {
+    -webkit-flex-wrap: @flex_wrap;
+    -ms-flex-wrap: @flex_wrap;
+    flex-wrap: @flex_wrap;
+}
+
+.flex-direction(@flex_direction) {
+    -webkit-flex-direction: @flex_direction;
+    -ms-flex-direction: @flex_direction;
+    flex-direction: @flex_direction;
+}
+
+.justify-content(@justify_content) {
+    -webkit-justify-content: @justify_content;
+    justify-content: @justify_content;
+}
+
+.align-items(@align_item) {
+    -webkit-align-items: @align_item;
+    align-items: @align_item;
+}
+
+.box-sizing(@box_sizing) {
+    -webkit-box-sizing: @box_sizing;
+    -moz-box-sizing: @box_sizing;
+    box-sizing: @box_sizing;
+}
+
+.box-shadow(@box-shadow) {
+    -webkit-box-shadow: @box-shadow;
+    -moz-box-shadow: @box-shadow;
+    -o-box-shadow: @box-shadow;
+    box-shadow: @box-shadow;
+}
+
+.flex(@flex_content) {
+    -ms-flex: @flex_content;
+    -webkit-flex: @flex_content;
+    flex: @flex_content;
+}
+
+.flex-grow(@flex-grow) {
+    -webkit-flex-grow: @flex-grow;
+    flex-grow: @flex-grow;
+}
+
+.transform(@value) {
+    -moz-transform: @value;
+    -webkit-transform: @value;
+    -ms-transform: @value;
+    -o-transform: @value;
+    transform: @value;
+}
+
+.border-radius(@border-value) {
+    -webkit-border-radius: @border-value;
+    -moz-border-radius: @border-value;
+    border-radius: @border-value;
+}
+
+* {
+    .box-sizing(border-box);
+}
+
+body {
+    font-family: @main-font;
+    line-height: 1.4;
+    font-size: 14px;
+    color: @gray;
+    max-width: 2000px;
+    margin: 0 auto;
+    padding: 0;
+}
+

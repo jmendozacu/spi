@@ -1,0 +1,13 @@
+<div class="aw-onestep-sidebar-block aw-sidebar-product-list"
+     data-bind="mageInit: {'collapsible':{'openedState': 'active', 'active': isExpanded}}">
+    <div class="aw-onestep-sidebar-block_title" data-role="title">
+        <span>MY BAG</span> (<span data-bind="text: itemsQty"></span>)
+    </div>
+    <div class="aw-onestep-sidebar-block_content" data-role="content">
+        <!-- ko foreach: items() -->
+            <!-- ko foreach: $parent.elems() -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!-- /ko -->
+        <!-- /ko -->
+    </div>
+</div>

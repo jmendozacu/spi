@@ -1,0 +1,170 @@
+<?php
+/**
+ * Binary Anvil, Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Binary Anvil, Inc. Software Agreement
+ * that is bundled with this package in the file LICENSE_BAS.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.binaryanvil.com/software/license/
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@binaryanvil.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this software to
+ * newer versions in the future. If you wish to customize this software for
+ * your needs please refer to http://www.binaryanvil.com/software for more
+ * information.
+ *
+ * @category    BinaryAnvil
+ * @package     Infinity
+ * @copyright   Copyright (c) 2018-2019 Binary Anvil,Inc. (http://www.binaryanvil.com)
+ * @license     http://www.binaryanvil.com/software/license
+ */
+
+/** @var \BinaryAnvil\Customer\Block\AccountData $block */
+
+$savedAddress = $block->getSavedAddress();
+$savedAddressUrl = $block->getAddressEditUrl();
+$recentOrderData = $block->getRecentOrderData();
+
+$customerData = $block->getCustomerData();
+$editUrl = $block->getCustomerEditUrl();
+?>
+
+<?php // TODO: work for backend - insert right edit redirect ?>
+
+<?php if(!$recentOrderData): ?>
+<div class="block block-dashboard-orders">
+    <div class="block-title order">
+        <strong><?= /* @escapeNotVerified */ __('Recent Orders') ?></strong>
+    </div>
+    <div class="block-content">
+        <div class="table-wrapper orders-recent bk">
+            <table class="data table table-order-items recent" id="my-orders-table">
+                <caption class="table-caption"><?= /* @escapeNotVerified */ __('Recent Orders') ?></caption>
+                <thead>
+                    <tr>
+                        <th scope="col" class="col id"><?= /* @escapeNotVerified */ __('Order Number:') ?></th>
+                        <th scope="col" class="col date"><?= /* @escapeNotVerified */ __('Date Ordered:') ?></th>
+                        <th scope="col" class="col status"><?= /* @escapeNotVerified */ __('Status:') ?></th>
+                        <th scope="col" class="col actions"><?= /* @escapeNotVerified */ __('Details:') ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <tr>
+                            <td data-th="<?= $block->escapeHtml(__('None')) ?>" class="col id"><?= /* @escapeNotVerified */ __('None') ?>.</td>
+                            
+                        </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<?php endif; ?>
+
+<div class="container-box">
+    <div class="wrap">
+        <div class="header-items">
+            <span><?= /* @escapeNotVerified */ __('My Profile') ?></span>
+        </div>
+        <div class="box-function">
+            <div class="header-name"><span><?= /* @escapeNotVerified */ __('Account Info') ?></span></div>
+            <div class="content">
+                <ul>
+                    <li><span class="title"><?= /* @escapeNotVerified */ __('Name') ?>: </span> 
+                        <span class="value"><?= $customerData['name'] ?></span>
+                    </li>
+                    <li><span class="title"><?= /* @escapeNotVerified */ __('Email') ?>: </span> 
+                        <span class="value"><?= $customerData['email'] ?></span>
+                    </li>
+                </ul>
+            </div>
+            <div class="buttom">
+                <a href="<?= $editUrl ?>"><?= /* @escapeNotVerified */ __('Edit') ?></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-box">
+    <div class="wrap">
+        <div class="header-items">
+            <span class="hidden"><?= /* @escapeNotVerified */ __('Saved Address') ?></span>
+        </div>
+        <div class="box-function">
+            <div class="header-name"><span><?= /* @escapeNotVerified */ __('Saved Address') ?></span></div>
+            <div class="content">
+                <?php if ($savedAddress): ?>
+                <?= $savedAddress ?>
+                <?php else: ?>
+                    <span>None</span>
+                <?php endif; ?>
+            </div>
+            <div class="buttom">
+                <a href="<?= $savedAddressUrl; ?>"><?= /* @escapeNotVerified */ __('Edit') ?></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-box">
+    <div class="wrap">
+        <div class="header-items">
+            <span class="hidden"><?= /* @escapeNotVerified */ __('My local retailer') ?></span>
+        </div>
+        <div class="box-function">
+            <div class="header-name"><span><?= /* @escapeNotVerified */ __('My local retailer') ?></span></div>
+            <div class="content">
+            <?php
+                $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+                $resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
+                $connection = $resource->getConnection();
+                $tableName = $resource->getTableName('local_retailer_store');
+                
+                $customerSession = $objectManager->create('Magento\Customer\Model\Session');
+                $getIdcus = $customerSession->getCustomerId();
+
+                $sql = "Select * FROM " . $tableName. " WHERE id_customer_use =". $getIdcus;
+                $array_customer = $connection->fetchAll($sql);
+                if (!empty($array_customer)){
+                    foreach ($array_customer as $key) {
+                        $storeName = $key['store_name'];
+                        $street = $key['street'];
+                        $city = $key['city'];
+                        $state = $key['state'];
+                        $zip = $key['zip'];
+                        break;
+                    } ?>
+                <?= $storeName; ?></br>
+                <?= $street; ?></br>
+                <?= $city; ?>, <?= $state; ?>, <?= $zip; ?>
+                <?php }else{  ?>
+                    <span>None</span>
+            <?php   }   ?>
+            </div>
+            <div class="buttom">
+                <a href="/customer/account/edit#main-local-retails"><?= /* @escapeNotVerified */ __('Edit') ?></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-box">
+    <div class="wrap">
+        <div class="header-items">
+            <span><?= /* @escapeNotVerified */ __('Payments') ?></span>
+        </div>
+        <div class="box-function">
+            <div class="header-name save-payment-mobile"><span><?= /* @escapeNotVerified */ __('Saved Payments') ?></span></div>
+            <?= $block->getChildHtml('my_account_payments_data') ?>
+            <div class="buttom">
+                <a href="<?= $block->getUrl('customer/paymentinfo') ?>"><?= /* @escapeNotVerified */ __('Edit') ?></a>
+            </div>
+        </div>
+    </div>
+</div>

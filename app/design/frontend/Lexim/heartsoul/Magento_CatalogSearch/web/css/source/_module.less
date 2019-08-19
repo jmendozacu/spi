@@ -1,0 +1,385 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Variables
+//  _____________________________________________
+
+@autocomplete__background-color: @color-white;
+@autocomplete__border: 1px solid @gray;
+@autocomplete-item__border: 1px solid @gray;
+@autocomplete-item__hover__color: @gray;
+@autocomplete-item-amount__color: @gray;
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    //
+    //  Block search
+    //  ---------------------------------------------
+
+    #ic-search-mobi {
+        display: block;
+        padding-left: 15px;
+    }
+
+    .block-search {
+
+        margin-bottom: 0;
+
+        .block {
+            &-title {
+                display: none;
+            }
+        }
+
+        .block-content {
+            position: absolute;
+            right: 0;
+            top: 37px;
+            margin-bottom: 0;
+            z-index: 9;
+            width: 400px;
+            max-width: 100vw;
+        }
+
+        .label {
+            display: inline-block;
+            float: right;
+
+            &.active {
+                + .control {
+                    input {
+                        position: static;
+                    }
+                }
+            }
+        }
+
+        .action.search {
+            display: none;
+        }
+
+        .control {
+            clear: both;
+            margin: 0;
+            padding: 0;
+        }
+
+        input {
+        }
+
+        .nested {
+            display: none;
+        }
+    }
+
+    .search-autocomplete {
+        display: none;
+        margin-top: 0;
+        overflow: hidden;
+        position: absolute;
+        z-index: 3;
+
+        ul {
+
+            li {
+                cursor: pointer;
+                margin: 0;
+                padding: 0;
+                position: relative;
+                text-align: left;
+                white-space: normal;
+
+                &:not(:empty) {
+                    border-top: 0;
+                }
+
+                &:first-child {
+                    border-top: none;
+                }
+
+                &:hover,
+                &.selected {
+                }
+
+                .amount {
+                    position: absolute;
+                    right: 7px;
+                    top: 0;
+                }
+            }
+        }
+    }
+
+    .form.search.advanced {
+        .fields.range {
+            .field {
+                &:first-child {
+                    position: relative;
+
+                    .control {
+                        padding-right: 25px;
+
+                        &:after {
+                            content: ' \2013 ';
+                            display: inline-block;
+                            position: absolute;
+                            right: 0;
+                            text-align: center;
+                            top: 6px;
+                            width: 25px;
+                        }
+                    }
+                }
+
+                &:last-child {
+                    position: relative;
+
+                    div.mage-error[generated] {
+                        left: 0;
+                        position: absolute;
+                        top: 32px;
+                    }
+                }
+
+                &.with-addon {
+                    .control {
+                        padding-right: 45px;
+                    }
+                }
+            }
+        }
+
+        .group.price {
+            .addon {
+                .addafter {
+                    background: none;
+                    border: 0;
+                    padding-top: 6px;
+                    position: absolute;
+                    right: 0;
+                    top: 0;
+                }
+            }
+        }
+    }
+
+    .search.summary {
+        margin-bottom: 0;
+    }
+
+    //
+    //  search page
+    //  ---------------------------------------------
+    .catalogsearch-result-index {
+        .columns .column.main {
+            .display-flex();
+            .flex-wrap(wrap);
+        }
+
+        .search.results {
+            width: 100%;
+        }
+
+        #layered-filter-block {
+            .flex(0 100%);
+        }
+
+        .toolbar-products {
+            .pages, .toolbar-sorter {
+                display: none;
+            }
+        }
+
+        .search-page-title {
+            order: -1;
+        }
+
+        .toolbar-amount {
+            float: none;
+            text-align: left;
+            padding: 0 0 20px;
+        }
+
+        .products + .toolbar-products {
+            .pages {
+                display: block;
+            }
+        }
+
+        .products {
+            clear: both;
+            margin-left: -10px;
+            margin-right: -10px;
+
+            .product-items {
+                margin: 0 !important;
+            }
+        }
+
+        .sidebar, .sidebar-additional, .action.tocompare {
+            display: none;
+        }
+
+        // Filter
+        .swatch-attribute.swatch-layered.is_size {
+            .swatch-attribute-options {
+                .flex-direction(row);
+            }
+
+            .swatch-attribute-options {
+                .size-col {
+                    .flex(0 50%);
+
+                    .swatch-option-a {
+                        display: block;
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+//
+//  Mobile
+//  _____________________________________________
+// max 767px
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+    //
+    //  Block search
+    //  ---------------------------------------------
+    .block-search {
+        input {
+            top: 35px;
+            left: -92px;
+            z-index: 99;
+        }
+
+        .block-content {
+            left: 15px;
+            top: 90px;
+        }
+
+        .search-icon.icon-elo-search {
+            display: none;
+        }
+    }
+
+    .sticky .block-search {
+        input {
+            top: -2px;
+        }
+
+        .block-content {
+            top: 50px;
+        }
+    }
+}
+
+// max 640px
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+
+}
+
+// max 480px
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
+    .block-search .block-content {
+        width: calc(~'100% - 30px');
+        max-width: 100%;
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+// min 768px
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    #ic-search-mobi {
+        display: none;
+    }
+
+    .block-search {
+        float: right;
+        padding-left: 15px;
+        position: relative;
+        z-index: 4;
+
+        .search-icon {
+            cursor: pointer;
+        }
+
+        .label {
+            &:extend(.abs-visually-hidden-desktop all);
+        }
+
+        .control {
+            border-top: 0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nested {
+            display: block;
+            padding-top: 5px;
+            position: absolute;
+        }
+
+        input {
+            margin: 0;
+            //padding-right: 35px;
+            position: static;
+        }
+
+        .action.search {
+            display: none;
+            padding: 0;
+            position: absolute;
+            right: 10px;
+            top: 0;
+            z-index: 1;
+
+            &:focus {
+                &:before {
+                }
+            }
+        }
+    }
+
+    .search-autocomplete {
+        margin-top: 0;
+        width: 400px !important;
+        right: 0;
+        background: #ffffff;
+    }
+
+    //
+    //  search page
+    //  ---------------------------------------------
+    .catalogsearch-result-index {
+        .products {
+        }
+    }
+}
+
+// min 992px
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+
+    //
+    //  search page
+    //  ---------------------------------------------
+    .catalogsearch-result-index {
+        .products {
+            .product-item {
+                width: 25%;
+            }
+        }
+    }
+}

@@ -1,0 +1,64 @@
+<div class="on-top-header one-col" style="display: none">
+    <div class="on-top-header-inner">
+        <?= $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('on_top_header')->toHtml(); ?>
+        <i class="far fa-times" id="closeTopHeader"></i>
+    </div>
+</div>
+
+<script type="text/javascript">
+    // Cookie Functions
+    function readCookie(name) {
+        let nameEQ = name + "=";
+        let ca = document.cookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) === ' ') {
+                c = c.substring(1, c.length);
+            }
+            if (c.indexOf(nameEQ) === 0) {
+                return c.substring(nameEQ.length, c.length);
+            }
+        }
+    }
+
+    function createCookie(name, value, days) {
+        let expires = "";
+        if (days) {
+            let date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toGMTString();
+        }
+        document.cookie = name + "=" + value + expires + "; path=/";
+    }
+
+    require(['jquery', 'jquery/ui'], function ($) {
+        $(document).ready(function () {
+            // sticky menu
+            function checkSticky() {
+                let header = $('header.page-header');
+                let currentTop = jQuery(window).scrollTop();
+                if (currentTop > 40) {
+                    header.addClass("sticky");
+                } else {
+                    header.removeClass("sticky");
+                }
+            }
+
+            $(window).scroll(function () {
+                checkSticky();
+            });
+
+            checkSticky();
+
+            // close top header
+            $('#closeTopHeader').click(function () {
+                $('.on-top-header').hide();
+                let now = new Date();
+                let time = now.getTime();
+                time += 3600 * 1000;
+                now.setTime(time);
+                createCookie('top_header_closed', 'true', now.toUTCString());
+            });
+        });
+    });
+</script>

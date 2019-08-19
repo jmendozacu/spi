@@ -1,0 +1,101 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+
+<?php
+/** @var \Magento\ConfigurableProduct\Pricing\Render\FinalPriceBox $block */
+
+/** @var \Magento\Framework\Pricing\Price\PriceInterface $priceModel */
+$priceModel = $block->getPriceType('regular_price');
+
+/** @var \Magento\Framework\Pricing\Price\PriceInterface $finalPriceModel */
+$finalPriceModel = $block->getPriceType('final_price');
+$idSuffix = $block->getIdSuffix() ? $block->getIdSuffix() : '';
+$schema = ($block->getZone() == 'item_view') ? true : false;
+
+$minRegular = $priceModel->getMinRegularAmount()->getValue();
+$minRegular = number_format($minRegular, 2, '.', '');
+
+$maxRegular = $priceModel->getMaxRegularAmount()->getValue();
+$maxRegular = number_format($maxRegular, 2, '.', '');
+?>
+
+<!-- <?= $minRegular . " - " . $maxRegular ?> -->
+
+<span class="normal-price">
+    <?php
+    $arguments = [
+        'display_label' => '',
+        'price_id' => $block->getPriceId('product-price-' . $idSuffix),
+        'price_type' => 'finalPrice',
+        'include_container' => true,
+        'schema' => $schema
+    ];
+
+    echo $block->renderAmount($finalPriceModel->getAmount(), $arguments);
+    ?>
+</span>
+
+<?php if ($block->hasSpecialPrice()) { ?>
+
+    <span class="sale-ranger-price ranger-price">
+
+    <?php
+    $product = $block->getSaleableItem();
+    $childList = $product->getTypeInstance()->getUsedProducts($product);
+    $specialChildProductPrice = [];
+
+    foreach ($childList as $child) {
+        $specialPrice = $child->getSpecialPrice();
+        if ($specialPrice != 0 and !is_null($specialPrice)) {
+            $specialPrice = number_format($specialPrice, 2, '.', '');
+        } else {
+            $specialPrice = number_format($child->getPrice(), 2, '.', '');
+        }
+        $specialChildProductPrice[] = $specialPrice;
+    }
+    $min = min($specialChildProductPrice);
+    $max = max($specialChildProductPrice);
+
+
+    // Show regular price with line-through
+    if ($minRegular != $min || $maxRegular != $max) {
+        echo '<span class="line-through">';
+        if ($minRegular == $maxRegular) {
+            echo '$' . $minRegular;
+        } else if ($minRegular < $maxRegular) {
+            echo '$' . $minRegular . " - " . '$' . $maxRegular;
+        }
+        echo '</span> ';
+    }
+
+    // Show sale price
+    if ($min == $max) {
+        echo '$' . $min;
+    } else if ($min < $max) {
+        echo '$' . $min . " - " . '$' . $max;
+    }
+    ?>
+
+    </span>
+
+<?php } else { ?>
+
+    <span class="ranger-price">
+    <?php
+    if ($minRegular == $maxRegular) {
+        echo '$' . $minRegular;
+    } else if ($minRegular < $maxRegular) {
+        echo '$' . $minRegular . " - " . '$' . $maxRegular;
+    }
+    ?>
+    </span>
+
+<?php } ?>
+

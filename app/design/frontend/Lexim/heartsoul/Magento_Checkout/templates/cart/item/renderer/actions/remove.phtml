@@ -1,0 +1,11 @@
+<?php
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Checkout\Block\Cart\Item\Renderer\Actions\Remove */
+?>
+
+<a href="#" title="<?= $block->escapeHtml(__('Remove from bag')) ?>"
+   class="action action-delete" data-post='<?= $block->getDeletePostJson() ?>'>
+   <span><?= __('Remove') ?></span>
+<!--<div class="clearItemInCart">&#10005;</div>-->
+</a>

@@ -1,0 +1,104 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * Product media data template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\Gallery
+ */
+?>
+
+<div class="gallery-placeholder _block-content-loading" data-gallery-role="gallery-placeholder">
+    <div data-role="loader" class="loading-mask">
+        <div class="loader">
+            <img src="<?= $block->getViewFileUrl('images/loader-1.gif') ?>"
+                 alt="<?= __('Loading...') ?>">
+        </div>
+    </div>
+</div>
+
+<!--Fix for jumping content. Loader must be the same size as gallery.-->
+<script>
+    var config = {
+            "width": <?= $block->getImageAttribute('product_page_image_medium', 'width') ?>,
+            "thumbheight": <?php echo $block->getImageAttribute('product_page_image_small', 'height')
+                ?: $block->getImageAttribute('product_page_image_small', 'width'); ?>,
+            "navtype": "<?= $block->getVar("gallery/navtype") ?>",
+            "height": <?= $block->getImageAttribute('product_page_image_medium', 'height') ?>
+        },
+        thumbBarHeight = 0,
+        loader = document.querySelectorAll('[data-gallery-role="gallery-placeholder"] [data-role="loader"]')[0];
+
+    if (config.navtype === 'horizontal') {
+        thumbBarHeight = config.thumbheight;
+    }
+
+    loader.style.paddingBottom = (config.height / config.width * 50) + "%";
+</script>
+
+<script type="text/x-magento-init">
+    {
+        "[data-gallery-role=gallery-placeholder]": {
+            "mage/gallery/gallery": {
+                "mixins":["magnifier/magnify"],
+                "magnifierOpts": <?= $block->getMagnifier() ?>,
+                "data": <?= $block->getGalleryImagesJson() ?>,
+                "options": {
+                    "nav": "<?= $block->getVar("gallery/nav") ?>",
+                    <?php if (($block->getVar("gallery/loop"))): ?>
+                        "loop": <?= $block->getVar("gallery/loop") ?>,
+                    <?php endif; ?>
+                    <?php if (($block->getVar("gallery/keyboard"))): ?>
+                        "keyboard": <?= $block->getVar("gallery/keyboard") ?>,
+                    <?php endif; ?>
+                    <?php if (($block->getVar("gallery/arrows"))): ?>
+                        "arrows": <?= $block->getVar("gallery/arrows") ?>,
+                    <?php endif; ?>
+                    <?php if (($block->getVar("gallery/allowfullscreen"))): ?>
+                        "allowfullscreen": <?= $block->getVar("gallery/allowfullscreen") ?>,
+                    <?php endif; ?>
+                    "showCaption": false,
+					"arrows":false,
+
+                    <?php if ($block->getVar("gallery/transition/duration")): ?>
+                        "transitionduration": <?= $block->getVar("gallery/transition/duration") ?>,
+                    <?php endif; ?>
+                    "transition": "<?= $block->getVar("gallery/transition/effect") ?>",
+                    <?php if (($block->getVar("gallery/navarrows"))): ?>
+                        "navarrows": <?= $block->getVar("gallery/navarrows") ?>,
+                    <?php endif; ?>
+                    "navtype": "<?= $block->getVar("gallery/navtype") ?>",
+                    "navdir": "<?= $block->getVar("gallery/navdir") ?>"
+                },
+                "fullscreen": {
+                    "nav": "<?= $block->getVar("gallery/fullscreen/nav") ?>",
+                    <?php if ($block->getVar("gallery/fullscreen/loop")): ?>
+                        "loop": <?= $block->getVar("gallery/fullscreen/loop") ?>,
+                    <?php endif; ?>
+                    "navdir": "<?= $block->getVar("gallery/fullscreen/navdir") ?>",
+                    <?php if ($block->getVar("gallery/transition/navarrows")): ?>
+                        "navarrows": <?= $block->getVar("gallery/fullscreen/navarrows") ?>,
+                    <?php endif; ?>
+                    "navtype": "<?= $block->getVar("gallery/fullscreen/navtype") ?>",
+                    <?php if ($block->getVar("gallery/fullscreen/arrows")): ?>
+                        "arrows": <?= $block->getVar("gallery/fullscreen/arrows") ?>,
+                    <?php endif; ?>
+                    <?php if ($block->getVar("gallery/fullscreen/caption")): ?>
+                        "showCaption": <?= $block->getVar("gallery/fullscreen/caption") ?>,
+                    <?php endif; ?>
+                    <?php if ($block->getVar("gallery/fullscreen/transition/duration")): ?>
+                        "transitionduration": <?= $block->getVar("gallery/fullscreen/transition/duration") ?>,
+                    <?php endif; ?>
+                    "transition": "<?= $block->getVar("gallery/fullscreen/transition/effect") ?>"
+                },
+                "breakpoints": <?= $block->getBreakpoints() ?>
+            }
+        }
+    }
+
+</script>

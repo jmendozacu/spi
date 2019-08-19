@@ -1,0 +1,73 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+
+<div class="block-title">
+    <strong>
+        <span class="text" translate="'Your shopping bag'"/>
+    </strong>
+</div>
+
+<div class="block-content">
+
+    <!-- cart items -->
+    <if args="getCartParam('summary_count')">
+        <div data-action="scroll" class="minicart-items-wrapper">
+            <ol id="mini-cart" class="minicart-items" data-bind="foreach: { data: getCartItems(), as: 'item' }">
+                <each args="$parent.getRegion($parent.getItemRenderer(item.product_type))"
+                      render="{name: getTemplate(), data: item, afterRender: function() {$parents[1].initSidebar()}}"
+                />
+            </ol>
+        </div>
+    </if>
+
+
+    <!-- no items -->
+    <ifnot args="getCartParam('summary_count')">
+        <strong class="subtitle empty"
+                data-bind="visible: closeSidebar()"
+                translate="'You have no items in your shopping cart.'"
+        />
+        <if args="getCartParam('cart_empty_message')">
+            <p class="minicart empty text" text="getCartParam('cart_empty_message')"/>
+            <div class="actions">
+                <div class="secondary">
+                    <a class="action viewcart" data-bind="attr: {href: shoppingCartUrl}">
+                        <span translate="'View and Edit Cart'"/>
+                    </a>
+                </div>
+            </div>
+        </if>
+    </ifnot>
+
+
+    <!-- sub total -->
+    <if args="getCartParam('summary_count')">
+        <each args="getRegion('subtotalContainer')" render=""/>
+        <each args="getRegion('extraInfo')" render=""/>
+    </if>
+
+
+    <!-- button -->
+    <div class="actions" if="getCartParam('summary_count')">
+        <div class="primary viewBagButton">
+            <a class="action viewcart primary" data-bind="attr: {href: shoppingCartUrl}">
+                <span>View Bag (<!-- ko text: getCartParam('summary_count') --><!-- /ko -->)</span>
+            </a>
+        </div>
+        <div class="primary checkOutButton">
+            <a class="action viewcart primary" href="/checkout/">
+                <span translate="'Checkout'"/>
+            </a>
+        </div>
+    </div>
+
+
+    <div id="minicart-widgets" class="minicart-widgets">
+        <each args="getRegion('promotion')" render=""/>
+    </div>
+</div>
+<each args="getRegion('sign-in-popup')" render=""/>

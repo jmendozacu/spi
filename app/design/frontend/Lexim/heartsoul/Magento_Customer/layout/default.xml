@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+
+        <referenceBlock name="my-account-link" remove="true"/>
+        <referenceBlock name="multiple-wish-list-link" remove="true"/>
+        <referenceBlock name="register-link" remove="true"/>
+        <referenceBlock name="authorization-link" remove="true"/>
+        <referenceBlock name="invitation_link_top" remove="true"/>
+
+        <referenceBlock name="catalog.compare.link" remove="true"/>
+        <referenceBlock name="skip_to_content" remove="true"/>
+
+
+        <!-- My account in header -->
+        <referenceBlock name="top.links">
+            <block class="Magento\Customer\Block\Account\Customer" name="customer_in_header"
+                   template="Magento_Customer::account/customer.phtml" after="-">
+                <block class="Magento\Customer\Block\Form\Login" name="customer_form_login" template="Magento_Customer::form/login.phtml">
+                    <container name="form.additional.info" as="form_additional_info"/>
+                </block>
+                <block class="Magento\Customer\Block\Form\Register" name="customer_form_register" template="Magento_Customer::form/register.phtml"/>
+            </block>
+        </referenceBlock>
+
+        <block class="BinaryAnvil\FederationFacebook\Block\Facebook" name="federation.facebook.button" template="BinaryAnvil_FederationFacebook::facebook.phtml"/>
+        <move element="federation.facebook.button" destination="customer_form_login"/>
+
+        <block class="Mageplaza\SocialLogin\Block\Popup\Social" before="customer.login.container" ifconfig="sociallogin/general/enabled"
+               name="social-login-popup-authentication-social-login" template="Mageplaza_SocialLogin::form/social.phtml"/>
+        <move element="social-login-popup-authentication-social-login" destination="customer_form_login"/>
+
+
+        <!--        <block class="Magento\Theme\Block\Html\Header" name="header" as="header">-->
+        <!--            <arguments>-->
+        <!--                <argument name="show_part" xsi:type="string">welcome</argument>-->
+        <!--            </arguments>-->
+        <!--        </block>-->
+        <!--        <move element="header" destination="top.links" before="-"/>-->
+        <!--        <move element="register-link" destination="top.links"/>-->
+        <!--        <move element="top.links" destination="customer"/>-->
+
+        <!-- wrapper -->
+        <container name="right.header.wrapper" htmlTag="div" htmlClass="rightHeader"/>
+        <move element="right.header.wrapper" destination="header-wrapper" after="-"/>
+
+        <!-- account -->
+        <move element="header.panel" destination="right.header.wrapper" before="-"/>
+
+        <!-- search -->
+        <move element="top.search" destination="right.header.wrapper" after="header.panel"/>
+
+        <!-- Wish-list -->
+        <block class="Magento\Framework\View\Element\Template" name="header.wishlist"
+               template="Magento_Customer::header-wishlist.phtml"/>
+        <move element="header.wishlist" destination="right.header.wrapper" after="top.search"/>
+
+        <!-- mini-cart -->
+        <move element="minicart" destination="right.header.wrapper" after="-"/>
+
+        <!-- Newsletter -->
+        <block class="BinaryAnvil\Newsletter\Block\Newsletter" name="header.newsletter" template="Magento_Newsletter::header-newsletter.phtml"/>
+        <move element="header.newsletter" destination="content" after="-"/>
+    </body>
+</page>
