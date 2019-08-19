@@ -108,5 +108,16 @@ define([
         //     jQuery('img[usemap]').rwdImageMaps();
         // });
         // }
+
+        // Click label and check/uncheck radio or checkbox
+        $('.checkbox-field label').click(function () {
+            let _this = $(this);
+            let _for = _this.prop('for');
+            let name = _this.prop('data-name');
+
+            if (_for && name) {
+                $('input[name="' + name + '"]').trigger('click');
+            }
+        })
     });
 });
