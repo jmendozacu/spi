@@ -1,0 +1,149 @@
+
+    <div class="login-button-wrapper">
+        <!--
+        <span data-bind="i18n: 'Continue as guest or '"></span>
+        <span class="login-button" data-trigger="authentication">
+            <span data-bind="i18n: 'login'"></span>
+        </span>
+        <span data-bind="i18n: ' into account.'"></span>
+        -->
+    </div>
+    <div class="block-authentication"
+         style="display: none"
+         data-bind="mageInit: {
+            'Magento_Ui/js/modal/modal':{
+                'type': 'popup',
+                'modalClass': 'dropdown authentication-modal',
+                'trigger': '[data-trigger=authentication]',
+                'parentModalClass': '_has-modal',
+                'responsive': true,
+                'buttons': []
+            }}">
+        <!-- ko foreach: getRegion('before') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!-- /ko -->
+        <div class="block block-customer-login"
+             data-bind="attr: {'data-label': $t('or')}">
+            <div class="block-title">
+                <strong id="block-customer-login-heading"
+                        role="heading"
+                        aria-level="2"
+                        data-bind="i18n: 'Sign In'"></strong>
+            </div>
+            <!-- ko foreach: getRegion('messages') -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+            <div class="block-content" aria-labelledby="block-customer-login-heading">
+                <form data-role="login"
+                      data-bind="submit:login"
+                      method="post">
+                    <div class="fieldset"
+                              data-bind="attr: {'data-hasrequired': $t('* Required Fields')}">
+                        <div class="field field-email required">
+                            <label class="label" for="login-email"><span data-bind="i18n: 'Email Address'"></span></label>
+                            <div class="control">
+                                <input type="email"
+                                       class="input-text"
+                                       id="login-email"
+                                       name="username"
+                                       data-bind="attr: {autocomplete: autocomplete}"
+                                       data-validate="{required:true, 'validate-email':true}" />
+                            </div>
+                        </div>
+                        <div class="field field-password required">
+                            <label for="login-password" class="label"><span data-bind="i18n: 'Password'"></span></label>
+                            <div class="control">
+                                <input type="password"
+                                       class="input-text"
+                                       id="login-password"
+                                       name="password"
+                                       data-bind="attr: {autocomplete: autocomplete}"
+                                       data-validate="{required:true}"
+                                       autocomplete="off"/>
+                            </div>
+                        </div>
+                        <!-- ko foreach: getRegion('additional-login-form-fields') -->
+                        <!-- ko template: getTemplate() --><!-- /ko -->
+                        <!-- /ko -->
+                    </div>
+                    <div class="actions-toolbar">
+                        <input name="context" type="hidden" value="checkout" />
+                        <div class="primary">
+                            <button type="submit" class="action action-login secondary"><span data-bind="i18n: 'Sign In'"></span></button>
+                        </div>
+                        <div class="secondary">
+                            <a class="action action-remind" data-bind="attr: { href: forgotPasswordUrl }">
+                                <span data-bind="i18n: 'Forgot My Password?'"></span>
+                            </a>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="sign-social">
+                    <p data-bind="i18n: 'You can also log in with one of these accounts'"></p>
+                    <div class="social-wrap">
+                        <div data-bind="html: window.facebookbutton"></div>
+                    </div>
+                </div>
+
+                <form class="form form-create-account" data-bind="submit:login">
+                    <h5 class="create-account-title" data-bind="i18n: 'Create an Account'"></h5>
+
+                    <div class="fieldset"
+                         data-bind="attr: {'data-hasrequired': $t('* Required Fields')}">
+                        <div class="field field-firstname required">
+                            <label class="label" for="firstname"><span data-bind="i18n: 'First Name'"></span></label>
+                            <div class="control">
+                                <input type="text"
+                                       class="input-text"
+                                       id="firstname"
+                                       name="firstname"
+                                       data-bind="attr: {autocomplete: autocomplete}"
+                                       data-validate="{required:true}" />
+                            </div>
+                        </div>
+                        <div class="field field-lastname required">
+                            <label class="label" for="firstname"><span data-bind="i18n: 'Last Name'"></span></label>
+                            <div class="control">
+                                <input type="text"
+                                       class="input-text"
+                                       id="lastname"
+                                       name="lastname"
+                                       data-bind="attr: {autocomplete: autocomplete}"
+                                       data-validate="{required:true}" />
+                            </div>
+                        </div>
+                        <div class="field field-email required">
+                            <label class="label" for="new-customer-email"><span data-bind="i18n: 'Email Address'"></span></label>
+                            <div class="control">
+                                <input type="email"
+                                       class="input-text"
+                                       id="new-customer-email"
+                                       name="username"
+                                       data-bind="attr: {autocomplete: autocomplete}"
+                                       data-validate="{required:true, 'validate-email':true}" />
+                            </div>
+                        </div>
+                        <div class="field field-password required">
+                            <label for="new-customer-password" class="label"><span data-bind="i18n: 'Password'"></span></label>
+                            <div class="control">
+                                <input type="password"
+                                       class="input-text"
+                                       id="new-customer-password"
+                                       name="password"
+                                       data-bind="attr: {autocomplete: autocomplete}"
+                                       data-validate="{required:true}"
+                                       autocomplete="off"/>
+                            </div>
+                        </div>
+                        <div class="actions-toolbar">
+                            <input name="context" type="hidden" value="checkout-registration" />
+                            <div class="primary">
+                                <button type="submit" class="action action-login secondary"><span data-bind="i18n: 'Sign Up'"></span></button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
