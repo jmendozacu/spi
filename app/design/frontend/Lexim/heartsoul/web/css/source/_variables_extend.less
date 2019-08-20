@@ -66,12 +66,15 @@
 @aqua-text : #3bc1cc;
 @light-aqua: #d6eef1;
 @gray: #3e3935;
+
 @pink: #cf4986;
+@davy-gray: #53565a;
+@taupe: #363636;
 
 // Fonts
 @main-font-path: '@{baseDir}fonts/';
 @font-elo: '@{baseDir}fontello/';
-@main-font: 'Proxima Nova', Hind, sans-serif;
+@main-font: 'Magallanes', 'Proxima Nova', Hind, sans-serif;
 
 // ACS icon
 @icon-acs-heart: '\e805';
@@ -170,6 +173,97 @@
         url('@{main-font-path}HindBold.ttf') format('truetype'),
         url('@{main-font-path}HindBold.svg#wf') format('svg');
         font-weight: 900;
+    }
+
+    @font-face {
+        font-family: 'Magallanes';
+        src: url('@{main-font-path}MagallancesUltraLight.otf');
+        font-weight: 100;
+    }
+
+    @font-face {
+        font-family: 'Magallanes';
+        src: url('@{main-font-path}MagallancesUltraLight-Italic.otf');
+        font-weight: 100;
+        font-style: italic;
+    }
+
+    @font-face {
+        font-family: 'Magallanes';
+        src: url('@{main-font-path}MagallancesExtraLight.otf');
+        font-weight: 200;
+    }
+
+    @font-face {
+        font-family: 'Magallanes';
+        src: url('@{main-font-path}MagallancesExtraLight-Italic.otf');
+        font-weight: 200;
+        font-style: italic;
+    }
+
+    @font-face {
+        font-family: 'Magallanes';
+        src: url('@{main-font-path}MagallancesLight.otf');
+        font-weight: 300;
+    }
+
+    @font-face {
+        font-family: 'Magallanes';
+        src: url('@{main-font-path}MagallancesLight-Italic.otf');
+        font-weight: 300;
+        font-style: italic;
+    }
+
+    @font-face {
+        font-family: 'Magallanes';
+        src: url('@{main-font-path}MagallancesRegular.otf');
+        font-weight: normal;
+    }
+
+    @font-face {
+        font-family: 'Magallanes';
+        src: url('@{main-font-path}MagallancesRegular-Italic.otf');
+        font-weight: normal;
+        font-style: italic;
+    }
+
+    @font-face {
+        font-family: 'Magallanes';
+        src: url('@{main-font-path}MagallancesBold.otf');
+        font-weight: bold;
+    }
+
+    @font-face {
+        font-family: 'Magallanes';
+        src: url('@{main-font-path}MagallancesBold-Italic.otf');
+        font-weight: bold;
+        font-style: italic;
+    }
+
+    @font-face {
+        font-family: 'Magallanes';
+        src: url('@{main-font-path}MagallancesBold.otf');
+        font-weight: 700;
+    }
+
+    @font-face {
+        font-family: 'Magallanes';
+        src: url('@{main-font-path}MagallancesBold-Italic.otf');
+        font-weight: 700;
+        font-style: italic;
+    }
+
+    @font-face {
+        font-family: 'Magallanes';
+        src: url('@{main-font-path}MagallancesBlack.otf');
+        font-weight: 900;
+    }
+
+    @font-face {
+        font-family: 'Magallanes';
+        src: url('@{main-font-path}MagallancesBlack-Italic.otf');
+        font-weight: 900;
+        font-style: italic;
     }
 
     @import '_font_awesome.less';
