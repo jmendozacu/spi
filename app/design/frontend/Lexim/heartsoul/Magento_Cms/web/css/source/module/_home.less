@@ -14,7 +14,7 @@
         }
 
         .home-section {
-            padding-bottom: 30px;
+            padding-bottom: 15px;
         }
 
         .home-img-bg {
@@ -36,7 +36,7 @@
             line-height: 40px;
             color: #363636;
             position: absolute;
-            bottom: 10%;
+            bottom: 15%;
             left: 0;
             right: 0;
             font-size: 14px;
@@ -62,6 +62,12 @@
 // Min 768px
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
 
+    .cms-home {
+
+        .home-section {
+            padding-bottom: 2%;
+        }
+    }
 }
 
 
