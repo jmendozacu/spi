@@ -30,8 +30,10 @@
 
 
         <!-- Footer -->
+        <block class="Magento\Framework\View\Element\Template" name="instagram-footer" template="Magento_Theme::html/top-footer.phtml" />
+        <move element="instagram-footer" destination="page.wrapper" before="footer-container" />
+
         <referenceContainer name="footer">
-            <block class="Magento\Framework\View\Element\Template" name="instagram-footer" template="Magento_Theme::html/top-footer.phtml" before="footer.inner" />
             <container name="footer.inner" htmlTag="div" htmlClass="footer-inner" before="-">
                 <!-- WE ARE -->
                 <container name="footer.we-are" htmlTag="div" htmlClass="block" before="-">
