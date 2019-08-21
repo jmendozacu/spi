@@ -1,22 +1,42 @@
-
-<div id="instafeed"></div>
+<div class="footer-slick" id="instafeed"></div>
 
 
 <script type="text/javascript">
     require(
         [
             'jquery',
-            'instafeed'
+            'instafeed',
+            'slick'
         ],
-        function ($) {
-            var feed = new Instafeed({
-                get: 'tagged',
+        function ($, Instafeed) {
+            'use strict';
+
+            let feed = new Instafeed({
+                get: 'user',
+                userId: '5633655524',
                 target: 'instafeed',
-                tagName: 'awesome',
                 sortBy: 'most-recent',
-                limit: 20,
+                limit: 15,
                 clientId: '1be1e53e07304bf49e6b0982b31775af',
-                template: '<a href="{{link}}"><img src="{{image}}" /></a>'
+                accessToken: '5633655524.1be1e53.77bda5f42fab44f09cdb67ed2a92eadf',
+                template: '<div class="ins-item"><a href="{{link}}"><img src="{{image}}" /></a></div>',
+                success: function () {
+                    $('.footer-slick').slick({
+                        infinite: true,
+                        dots: false,
+                        slidesToShow: 5,
+                        slidesToScroll: 5,
+                        responsive: [
+                            {
+                                breakpoint: 767,
+                                settings: {
+                                    slidesToShow: 3,
+                                    slidesToScroll: 3
+                                }
+                            }
+                        ]
+                    });
+                }
             });
             feed.run();
         }
