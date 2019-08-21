@@ -17,6 +17,7 @@ $parentCatKey = $parentCategory->getUrlKey();
 $currentPage = $block->getRequest()->getFullActionName();
 
 $curCatName = strtolower($category->getName());
+$curCatKey = $category->getUrlKey();
 
 // Fix bug get url key
 if ($parentCatKey === 'katie-duke') {
@@ -69,25 +70,33 @@ if ($parentCatKey === 'katie-duke') {
                                         foreach ($categories as $catItem) {
                                             $parentId = $catItem->getId();
                                             $parentCatName = $catItem->getName();
+                                            $parentCategoryKey = $catItem->getUrlKey();
 
                                             // parent cat
-                                            printf('<a href="javascript:void(0)" data-label="%s" data-type="cat" data-value="%s" class="swatch-option-a category"><div class="swatch-option text">%s</div></a>', $parentCatName, $parentId, $parentCatName);
+                                            printf('<a href="javascript:void(0)" data-label="%s" data-cat-key="%s" data-type="cat" data-value="%s" class="swatch-option-a category"><div class="swatch-option text">%s</div></a>', $parentCatName, $parentCategoryKey, $parentId, $parentCatName);
 
                                             $subCategories = $catItem->getChildrenCategories();
                                             if ($subCategories && is_array($subCategories) && count($subCategories) > 0) {
                                                 foreach ($subCategories as $subItem) {
                                                     $subCatId = $subItem->getId();
                                                     $subCatName = $subItem->getName();
+                                                    $subCatKey = $subItem->getUrlKey();
                                                     // sub cat
-                                                    printf('<a href="javascript:void(0)" data-label="%s" data-type="cat" data-value="%s" class="swatch-option-a category sub"><div class="swatch-option text">%s</div></a>', $subCatName, $subCatId, $subCatName);
+                                                    printf('<a href="javascript:void(0)" data-label="%s" data-cat-key="%s" data-type="cat" data-value="%s" class="swatch-option-a category sub"><div class="swatch-option text">%s</div></a>', $subCatName, $subCatKey, $subCatId, $subCatName);
                                                 }
                                             }
                                         }
 
                                     } else {
                                         foreach ($parentCategory->getChildrenCategories() as $subCategory) { ?>
-                                            <?php $catName = $subCategory->getName(); ?>
-                                            <a href="javascript:void(0)" data-label="<?= $catName ?>" data-type="cat" data-value="<?= $subCategory->getId() ?>" class="swatch-option-a category">
+                                            <?php
+                                            $catName = $subCategory->getName();
+                                            // $catKey = $subCategory->getUrlKey(); // not work
+                                            $catKey = trim(strtolower($catName));
+                                            $catKey = str_replace(' ', "-", $catKey);
+                                            ?>
+                                            <a href="javascript:void(0)" data-label="<?= $catName ?>" data-cat-key="<?= $catKey ?>" data-type="cat" data-value="<?= $subCategory->getId() ?>"
+                                               class="swatch-option-a category <?= $catKey === $curCatKey ? 'selected' : '' ?>">
                                                 <div class="swatch-option text"><?= $catName ?></div>
                                             </a>
                                         <?php } ?>
@@ -116,6 +125,8 @@ if ($parentCatKey === 'katie-duke') {
                                 if ($attributeCode === 'is_apparel_rise_length') {
                                     continue;
                                 }
+                            } else if ($attributeCode === 'is_footwear_width') {
+                                continue;
                             }
                             ?>
 
@@ -585,9 +596,10 @@ if ($parentCatKey === 'katie-duke') {
                     let curWidth = $(window).width();
                     if (curWidth < 768) {
                         let parent = $(this).parent();
-                        if (parent.hasClass("opened")) {
-                            parent.removeClass("opened");
-                        } else {
+                        let isOpened = parent.hasClass("opened");
+                        parent.removeClass("opened");
+                        $('.filter-options').removeClass("opened");
+                        if (!isOpened) {
                             parent.addClass("opened");
                         }
                     } else {

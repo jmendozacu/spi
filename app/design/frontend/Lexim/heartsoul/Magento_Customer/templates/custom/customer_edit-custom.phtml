@@ -274,6 +274,9 @@ if (isset($shippingAddress)) {
     $firstname = $changeArray['firstname'];
     $lastname = $changeArray['lastname'];
     $street = $changeArray['street'][0];
+    if (isset($changeArray['street'][1])) {
+        $street2 = $changeArray['street'][1];
+    }
     $city = $changeArray['city'];
     $country_id = $changeArray['country_id'];
     $region_id = $changeArray['region_id'];
@@ -283,7 +286,7 @@ if (isset($shippingAddress)) {
 }
 ?>
 
-<div class="save-address">
+<div class="save-address" id="defaultshipping">
     <div class="title-address">
         <span>Save addresses</span>
         <a href="javascript:void(0)" class="link-edit-address"><?= __('Edit'); ?></a>
@@ -293,6 +296,7 @@ if (isset($shippingAddress)) {
             <p>
                 <?php if ($getAddres): ?>
                     <?= $getAddres ?>
+                    <label for="set_shipping_address" class="defaul-shipping"><span>Default address</span></label>
                 <?php else: ?>
                     <span>None</span>
                 <?php endif; ?>
@@ -301,7 +305,7 @@ if (isset($shippingAddress)) {
         <?php if ($getAddres): ?>
             <div class="content-edit-address">
                 <div class="box-edit-address">
-                    <form class="form-address-edit" id="<?= $idAddress; ?>" 
+                    <form class="form-address-edit" id="<?= $idAddress; ?>"
                           action="<?= $this->getBaseUrl(); ?>customer/address/formPost/id/<?= $idAddress; ?>/"
                           method="post" id="form-validate" enctype="multipart/form-data"
                           data-hasrequired="* Required Fields" novalidate="novalidate">
@@ -339,10 +343,25 @@ if (isset($shippingAddress)) {
                                 </label>
                                 <div class="control">
                                     <input type="text" id="street_1" name="street[]" value="<?= $street; ?>"
-                                           title="Address"
+                                           title="Street Address 1"
                                            class="input-text required-entry" data-validate="{required:true}"
                                            aria-required="true">
                                 </div>
+                                <?php if (isset($street2)):?>
+                                    <div class="control paddingtop">
+                                        <input type="text" id="street_2" name="street[]" value="<?= $street2; ?>"
+                                               title="Street Address 2"
+                                               class="input-text required-entry" data-validate="{required:true}"
+                                               aria-required="true">
+                                    </div>
+                                <?php else: ?>
+                                    <div class="control paddingtop">
+                                        <input type="text" id="street_2" name="street[]" value=""
+                                               title="Street Address 2"
+                                               class="input-text" data-validate="{required:fales}"
+                                               aria-required="fales">
+                                    </div>
+                                <?php endif; ?>
                             </div>
                         </div>
                         <div class="content-details">
@@ -406,12 +425,12 @@ if (isset($shippingAddress)) {
                         </div>
                         <div class="content-details country">
                             <div class="checkbox-field-default">
-                                <label for="set_shipping_address"><span>This is your default shipping address.</span></label>
+                                <label for="set_shipping_address"><span>Default address</span></label>
                             </div>
                         </div>
 
 
-                        <div class="primary">
+                        <div class="primary saved-box">
                             <button type="submit" class="action primary" title="<?= /* @escapeNotVerified */
                             __('Save') ?>"><span><?= /* @escapeNotVerified */
                                     __('Save Changes') ?></span></button>
@@ -431,15 +450,15 @@ if (isset($shippingAddress)) {
             </script>
             <!-- require for edit default shipping -->
             <script type="text/javascript">
-            require([
-                'jquery',
-                'mage/mage'
-            ], function($){
+                require([
+                    'jquery',
+                    'mage/mage'
+                ], function($){
 
-               var dataForm = $('.form-address-edit#<?= $idAddress; ?>');
-               dataForm.mage('validation', {});
+                    var dataForm = $('.form-address-edit#<?= $idAddress; ?>');
+                    dataForm.mage('validation', {});
 
-            });
+                });
             </script>
         <?php endif; ?>
     </div>
@@ -457,6 +476,9 @@ $addressBook = $_objectManager->get('Magento\Customer\Block\Address\Book');
         $firstname = $changeArray['firstname'];
         $lastname = $changeArray['lastname'];
         $street = $changeArray['street'][0];
+        if (isset($changeArray['street'][1])) {
+            $street3 = $changeArray['street'][1];
+        }
         $city = $changeArray['city'];
         $country_id = $changeArray['country_id'];
         $region_id = $changeArray['region_id'];
@@ -477,7 +499,7 @@ $addressBook = $_objectManager->get('Magento\Customer\Block\Address\Book');
                 </div>
                 <div class="content-edit-address">
                     <div class="box-edit-address">
-                        <form class="form-address-edit" id="<?= $idAddress; ?>" 
+                        <form class="form-address-edit" id="<?= $idAddress; ?>"
                               action="<?= $this->getBaseUrl(); ?>customer/address/formPost/id/<?= $idAddress; ?>/"
                               method="post" id="form-validate" enctype="multipart/form-data"
                               data-hasrequired="* Required Fields" novalidate="novalidate">
@@ -519,6 +541,21 @@ $addressBook = $_objectManager->get('Magento\Customer\Block\Address\Book');
                                                class="input-text required-entry" data-validate="{required:true}"
                                                aria-required="true">
                                     </div>
+                                    <?php if (isset($street3)):?>
+                                        <div class="control paddingtop">
+                                            <input type="text" id="street_2" name="street[]" value="<?= $street3; ?>"
+                                                   title="Street Address 2"
+                                                   class="input-text required-entry" data-validate="{required:true}"
+                                                   aria-required="true">
+                                        </div>
+                                    <?php else: ?>
+                                        <div class="control paddingtop">
+                                            <input type="text" id="street_2" name="street[]" value=""
+                                                   title="Street Address 2"
+                                                   class="input-text" data-validate="{required:fales}"
+                                                   aria-required="fales">
+                                        </div>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                             <div class="content-details">
@@ -584,12 +621,12 @@ $addressBook = $_objectManager->get('Magento\Customer\Block\Address\Book');
                             <div class="content-details edit_shipping_address">
                                 <div class="checkbox-field">
                                     <input type="checkbox" id="primary_shipping" name="default_shipping" value="1" class="checkbox">
-                                    <label for="primary_shipping"><span>Set as shipping address</span></label>
+                                    <label for="primary_shipping"><span>Set as default address</span></label>
                                 </div>
                             </div>
 
 
-                            <div class="primary">
+                            <div class="primary saved-box">
                                 <button type="submit" class="action primary" title="<?= /* @escapeNotVerified */
                                 __('Save') ?>"><span><?= /* @escapeNotVerified */
                                         __('Save Changes') ?></span></button>
@@ -610,15 +647,15 @@ $addressBook = $_objectManager->get('Magento\Customer\Block\Address\Book');
         </script>
         <!-- require for edit book shipping -->
         <script type="text/javascript">
-        require([
-            'jquery',
-            'mage/mage'
-        ], function($){
+            require([
+                'jquery',
+                'mage/mage'
+            ], function($){
 
-           var dataForm = $('.form-address-edit#<?= $idAddress; ?>');
-           dataForm.mage('validation', {});
+                var dataForm = $('.form-address-edit#<?= $idAddress; ?>');
+                dataForm.mage('validation', {});
 
-        });
+            });
         </script>
     <?php endforeach; ?>
 <?php endif; ?>
@@ -633,110 +670,115 @@ $addressBook = $_objectManager->get('Magento\Customer\Block\Address\Book');
         <div class="content-edit-address">
             <div class="box-edit-address">
                 <form class="form" id="add-custom-form" method="post" autocomplete="off">
-                <div class="content-details">
-                    <div class="field field-firstname required">
-                        <label class="label" for="name">
-                            <span><?php echo __('name') ?></span>
-                        </label>
-                        <div class="control">
-                            <input type="text" id="name" name="firstname" value="" title="Name"
-                                   class="input-text required-entry" data-validate="{required:true}"
-                                   aria-required="true">
+                    <div class="content-details">
+                        <div class="field field-firstname required">
+                            <label class="label" for="name">
+                                <span><?php echo __('name') ?></span>
+                            </label>
+                            <div class="control">
+                                <input type="text" id="name" name="firstname" value="" title="Name"
+                                       class="input-text required-entry" data-validate="{required:true}"
+                                       aria-required="true">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="content-details">
-                    <div class="field field-lastname required">
-                        <label class="label" for="lastname">
-                            <span><?php echo __('last name') ?></span>
-                        </label>
-                        <div class="control">
-                            <input type="text" id="lastname" name="lastname" value="" title="Last Name"
-                                   class="input-text required-entry" data-validate="{required:true}"
-                                   aria-required="true">
+                    <div class="content-details">
+                        <div class="field field-lastname required">
+                            <label class="label" for="lastname">
+                                <span><?php echo __('last name') ?></span>
+                            </label>
+                            <div class="control">
+                                <input type="text" id="lastname" name="lastname" value="" title="Last Name"
+                                       class="input-text required-entry" data-validate="{required:true}"
+                                       aria-required="true">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="content-details">
-                    <div class="field field-address required">
-                        <label class="label" for="address">
-                            <span><?php echo __('address') ?></span>
-                        </label>
-                        <div class="control">
-                            <input type="text" id="address" name="address" value="" title="Address"
-                                   class="input-text required-entry" data-validate="{required:true}"
-                                   aria-required="true">
+                    <div class="content-details">
+                        <div class="field field-address required">
+                            <label class="label" for="address">
+                                <span><?php echo __('address') ?></span>
+                            </label>
+                            <div class="control">
+                                <input type="text" id="address" name="address" value="" title="Address"
+                                       class="input-text required-entry" data-validate="{required:true}"
+                                       aria-required="true">
+                            </div>
+                            <div class="control paddingtop">
+                                <input type="text" id="address2" name="address2" value=""
+                                       title="Street Address 2"
+                                       class="input-text">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="content-details">
-                    <div class="field field-city required">
-                        <label class="label" for="city">
-                            <span><?php echo __('city') ?></span>
-                        </label>
-                        <div class="control">
-                            <input type="text" id="city" name="city" value=""
-                                   title="City" class="input-text required-entry" data-validate="{required:true}"
-                                   aria-required="true">
+                    <div class="content-details">
+                        <div class="field field-city required">
+                            <label class="label" for="city">
+                                <span><?php echo __('city') ?></span>
+                            </label>
+                            <div class="control">
+                                <input type="text" id="city" name="city" value=""
+                                       title="City" class="input-text required-entry" data-validate="{required:true}"
+                                       aria-required="true">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="content-details">
-                    <div class="field state">
-                        <label class="label" for="state">
-                            <span><?php echo __('state') ?></span>
-                        </label>
-                        <div class="control">
-                            <?php echo $regionList; ?>
+                    <div class="content-details">
+                        <div class="field state">
+                            <label class="label" for="state">
+                                <span><?php echo __('state') ?></span>
+                            </label>
+                            <div class="control">
+                                <?php echo $regionList; ?>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="content-details zip-code">
-                    <div class="field field-zip-code required">
-                        <label class="label" for="zipcode">
-                            <span><?php echo __('zip code') ?></span>
-                        </label>
-                        <div class="control">
-                            <input type="text" id="zipcode" name="zipcode"
-                                   value="" title="zipcode"
-                                   class="input-text required-entry" data-validate="{required:true}"
-                                   aria-required="true">
+                    <div class="content-details zip-code">
+                        <div class="field field-zip-code required">
+                            <label class="label" for="zipcode">
+                                <span><?php echo __('zip code') ?></span>
+                            </label>
+                            <div class="control">
+                                <input type="text" id="zipcode" name="zipcode"
+                                       value="" title="zipcode"
+                                       class="input-text required-entry" data-validate="{required:true}"
+                                       aria-required="true">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="content-details phone">
-                    <div class="field field-phone required">
-                        <label class="label" for="phone">
-                            <span><?php echo __('phone') ?></span>
-                        </label>
-                        <div class="control">
-                            <input type="text" id="phone" name="phone" value=""
-                                   title="phone" class="input-text required-entry" data-validate="{required:true}"
-                                   aria-required="true">
+                    <div class="content-details phone">
+                        <div class="field field-phone required">
+                            <label class="label" for="phone">
+                                <span><?php echo __('phone') ?></span>
+                            </label>
+                            <div class="control">
+                                <input type="text" id="phone" name="phone" value=""
+                                       title="phone" class="input-text required-entry" data-validate="{required:true}"
+                                       aria-required="true">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="content-details country">
-                    <div class="field country">
-                        <label class="label" for="country">
-                            <span><?php echo __('country') ?></span>
-                        </label>
-                        <div class="control">
-                            <?php echo $countryList; ?>
+                    <div class="content-details country">
+                        <div class="field country">
+                            <label class="label" for="country">
+                                <span><?php echo __('country') ?></span>
+                            </label>
+                            <div class="control">
+                                <?php echo $countryList; ?>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="content-details add_shipping_address">
-                    <div class="checkbox-field">
-                        <input type="checkbox" id="add_shipping" name="default_shipping" value="" class="checkbox">
-                        <label for="add_shipping"><span>Set as shipping address</span></label>
+                    <div class="content-details add_shipping_address">
+                        <div class="checkbox-field">
+                            <input type="checkbox" id="add_shipping" name="default_shipping" value="" class="checkbox">
+                            <label for="add_shipping"><span>Set as default address</span></label>
+                        </div>
                     </div>
-                </div>
-                <div class="primary">
-                    <button type="submit" class="action save primary" title="<?= /* @escapeNotVerified */
-                    __('Save') ?>"><span><?= /* @escapeNotVerified */
-                            __('Save Changes') ?></span></button>
-                </div>
+                    <div class="primary">
+                        <button type="submit" class="action save primary" title="<?= /* @escapeNotVerified */
+                        __('Save') ?>"><span><?= /* @escapeNotVerified */
+                                __('Save Changes') ?></span></button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -761,8 +803,8 @@ if (!empty($array_customer)) {
         }
 
         #<?= $retailerId; ?> .product-items .<?= $retailerId; ?> .location-radio .label {
-            display: block !important;
-        }
+                                 display: block !important;
+                             }
     </style>
 <?php }
 ?>
@@ -802,32 +844,32 @@ if (!empty($array_customer)) {
                     </select>
                 </div>
             </div>
-            <a href="javascript:void(0)" id="finder-submit"><span class="join-text"><?php echo __('Sunmit') ?></span></a>
+            <a href="javascript:void(0)" id="finder-submit"><span class="join-text"><?php echo __('Submit') ?></span></a>
         </div>
         <div class="footer-retailer" id="<?php if (isset($retailerId)) {
             echo $retailerId;
         } ?>">
             <div class="products list items product-items the-bottom-slider">
-            <?php 
-            if (!empty($array_customer)){
-                foreach ($array_customer as $key) {
-                    $storeName = $key['store_name'];
-                    $street = $key['street'];
-                    $city = $key['city'];
-                    $state = $key['state'];
-                    $zip = $key['zip'];
-                    break;
-                } ?>
-                <div class="location" style="width: 252px;" id="main-local-retails">  
-                    <div class="location-radio">    
-                        <label class="label" style="display: block;">MY LOCAL RETAILER</label>
-                    </div>  
-                    <div class="location-body">
-                        <div class="name-store"><?= $storeName; ?></div>
-                    <?= $street; ?>,<br><?= $city; ?>, <?= $state; ?>, <?= $zip; ?><br>
+                <?php
+                if (!empty($array_customer)){
+                    foreach ($array_customer as $key) {
+                        $storeName = $key['store_name'];
+                        $street = $key['street'];
+                        $city = $key['city'];
+                        $state = $key['state'];
+                        $zip = $key['zip'];
+                        break;
+                    } ?>
+                    <div class="location" style="width: 252px;" id="main-local-retails">
+                        <div class="location-radio">
+                            <label class="label" style="display: block;">MY LOCAL RETAILER</label>
+                        </div>
+                        <div class="location-body">
+                            <div class="name-store"><?= $storeName; ?></div>
+                            <?= $street; ?>,<br><?= $city; ?>, <?= $state; ?>, <?= $zip; ?><br>
+                        </div>
                     </div>
-                </div>
-            <?php } ?>
+                <?php } ?>
             </div>
         </div>
     </div>
@@ -835,6 +877,12 @@ if (!empty($array_customer)) {
 <script>
     require(['jquery'], function ($) {
         $(function () {
+            var hash = window.location.hash;
+            if(hash == "#defaultshipping"){
+                $('#defaultshipping .link-edit-address').addClass('focus');
+                $('#defaultshipping').addClass('active');
+            }
+
             $('.link-edit-address').click(function (i) {
                 if ($(this).hasClass("focus")) {
                     $(this).removeClass('focus');
@@ -918,16 +966,18 @@ if (!empty($array_customer)) {
             $(".add-shipping-address .action.save.primary").click(function (e) {
                 var add_shipping_default = 0;
                 if ($('#add_shipping').is(":checked")) {
-                   add_shipping_default = 1;
+                    add_shipping_default = 1;
                 }
                 var name = $('.add-shipping-address .box-edit-address #name').val();
                 var lastname = $('.add-shipping-address .box-edit-address #lastname').val();
                 var address = $('.add-shipping-address .box-edit-address #address').val();
+                var address2 = $('.add-shipping-address .box-edit-address #address2').val();
                 var city = $('.add-shipping-address .box-edit-address #city').val();
                 var phone = $('.add-shipping-address .box-edit-address #phone').val();
                 var zipcode = $('.add-shipping-address .box-edit-address #zipcode').val();
                 var state = $(".add-shipping-address .box-edit-address #state").val();
                 var country = $(".add-shipping-address .box-edit-address #country").val();
+                console.log('aa '+address2);
                 var getidcus = <?= $getIdcus ?>;
                 if(state != ''){
                     jQuery.ajax({
@@ -939,6 +989,7 @@ if (!empty($array_customer)) {
                             name: name,
                             lastname: lastname,
                             address: address,
+                            address2: address2,
                             city: city,
                             phone: phone,
                             zipcode: zipcode,
@@ -948,7 +999,7 @@ if (!empty($array_customer)) {
                             add_shipping_default: add_shipping_default
                         },
                         success: function (data) {
-                            location.reload();
+                            // location.reload();
                         }
                     });
                 }
@@ -958,13 +1009,13 @@ if (!empty($array_customer)) {
 </script>
 <!-- require for add address shipping -->
 <script type="text/javascript">
-require([
-    'jquery',
-    'mage/mage'
-], function($){
+    require([
+        'jquery',
+        'mage/mage'
+    ], function($){
 
-   var dataForm = $('#add-custom-form');
-   dataForm.mage('validation', {});
+        var dataForm = $('#add-custom-form');
+        dataForm.mage('validation', {});
 
-});
+    });
 </script>

@@ -60,6 +60,7 @@
             text-transform: uppercase;
             font-weight: bold;
             margin: 0;
+            color: #ffffff;
         }
     }
 
@@ -377,8 +378,11 @@
             font-size: 16px;
         }
 
+        .block-customer-login {
+            margin: 0;
+        }
+
         .third.checkbox-field {
-            display: none;
         }
 
         button {
@@ -458,6 +462,7 @@
             position: absolute;
             top: 20px;
             right: 30px;
+            z-index: 1;
         }
 
     }
@@ -469,7 +474,7 @@
         white-space: nowrap;
 
         &.active {
-            color: #48c1cb;
+            color: @pink;
         }
     }
 
@@ -535,7 +540,7 @@
             }
 
             &:hover a {
-                color: #48c1cb;
+                color: @pink;
             }
         }
     }
@@ -729,13 +734,13 @@
                             width: 47%;
                             margin-top: 0;
                             margin-bottom: 14px;
-                            border: 1px solid #3ac1cc;
+                            border: 1px solid @pink;
 
                             a {
                                 font-family: @main-font;
                                 font-size: 16px;
                                 font-weight: bold;
-                                color: #3ac1cc;
+                                color: @pink;
                                 letter-spacing: 0.02em;
                                 text-transform: uppercase;
                                 text-align: center;
@@ -745,7 +750,7 @@
                             &:hover a,
                             a:hover, a:focus, a.active {
                                 text-decoration: none;
-                                color: #3ac1cc;
+                                color: @pink;
                             }
                         }
 
@@ -762,7 +767,7 @@
                         }
 
                         li.current {
-                            background-color: #3ac1cc;
+                            background-color: @pink;
 
                             strong {
                                 font-family: @main-font;
@@ -937,7 +942,7 @@
                             font-family: @main-font;
                             font-size: 16px;
                             font-weight: bold;
-                            color: #3ac1cc;
+                            color: @pink;
                             text-align: left;
                             letter-spacing: 0.02em;
                             line-height: 28px;
@@ -1059,7 +1064,7 @@
                 }
 
                 .view-wishlist {
-                    background-color: #3ac1cc;
+                    background-color: @pink;
                     padding: 7px 14px;
 
                     span {
@@ -1105,7 +1110,7 @@
                             letter-spacing: 0.02em;
                             line-height: 28px;
                             text-transform: uppercase;
-                            background-color: #3ac1cc;
+                            background-color: @pink;
                             padding: 5px 10px;
                             display: block;
                         }
@@ -1119,7 +1124,7 @@
 
     .wishlist-index-index {
         .sidebar-main .account-nav #account-nav ul li:first-child {
-            background-color: #3ac1cc;
+            background-color: @pink;
 
             a {
                 color: #ffffff;
@@ -1322,7 +1327,7 @@
                                 left: 0;
                                 font-family: @main-font;
                                 font-size: 14px;
-                                color: #3bc1cc;
+                                color: @pink;
                                 text-align: left;
                                 letter-spacing: 0.02em;
                                 line-height: 11px;
@@ -1335,7 +1340,7 @@
                                 left: 15px;
                                 font-family: @main-font;
                                 font-size: 14px;
-                                color: #3bc1cc;
+                                color: @pink;
                                 text-align: left;
                                 letter-spacing: 0.02em;
                                 line-height: 11px;
@@ -1351,13 +1356,13 @@
 
                             a.order {
                                 padding: 5px 30px;
-                                border: 1px solid #3ac1cc;
+                                border: 1px solid @pink;
 
                                 span {
                                     font-family: @main-font;
                                     font-size: 12px;
                                     font-weight: bold;
-                                    color: #3ac1cc;
+                                    color: @pink;
                                     text-align: left;
                                     letter-spacing: 0.02em;
                                     line-height: 16px;
@@ -1383,7 +1388,7 @@
                             }
 
                             a.track-order:hover, a.track-order:active, a.track-order:focus {
-                                background-color: #48c1cb;
+                                background-color: @pink;
                             }
                         }
 
@@ -1525,10 +1530,20 @@
                         .label {
                             z-index: 1;
                         }
+
+                        .month {
+                            margin-bottom: 5px;
+                        }
                     }
 
                     select {
                         height: 40px;
+                    }
+
+                    .fieldset.address-information {
+                        .nested {
+                            padding-top: 20px;
+                        }
                     }
 
                     .actions-toolbar {
@@ -1588,7 +1603,7 @@
                             font-family: @main-font;
                             font-size: 16px;
                             font-weight: bold;
-                            color: #3bc1cc;
+                            color: @pink;
                             text-align: right;
                             line-height: 11px;
                         }
@@ -1651,7 +1666,7 @@
                                 font-family: @main-font;
                                 font-size: 16px;
                                 font-weight: bold;
-                                color: #3bc1cc;
+                                color: @pink;
                                 text-align: right;
                                 line-height: 11px;
                             }
@@ -1728,7 +1743,7 @@
                     font-family: @main-font;
                     font-size: 16px;
                     font-weight: bold;
-                    color: #3bc1cc;
+                    color: @pink;
                     text-align: right;
                     line-height: 11px;
                 }
@@ -1745,6 +1760,19 @@
                         line-height: 22px;
                         font-size: 14px;
                         text-align: left;
+
+                        .defaul-shipping {
+                            display: block;
+                            padding-top: 10px;
+                        }
+
+                        .defaul-shipping::before {
+                            font-family: "FontAwesomePro", FontAwesome, sans-serif;
+                            content: '\f00c';
+                            color: #000;
+                            font-weight: bold;
+                            padding: 10px 5px 0 0;
+                        }
                     }
 
                     input {
@@ -1756,7 +1784,7 @@
                     display: none;
 
                     .form-address-edit {
-                        .primary {
+                        .primary.saved-box {
                             padding: 15px 0 30px;
                         }
 
@@ -1781,6 +1809,20 @@
 
                                 select {
                                     height: 40px;
+                                }
+
+                                .paddingtop {
+                                    padding-top: 10px;
+                                }
+                            }
+
+                            .checkbox-field-default {
+                                label::before {
+                                    font-family: "FontAwesomePro", FontAwesome, sans-serif;
+                                    content: '\f00c';
+                                    color: #000;
+                                    font-weight: bold;
+                                    padding-right: 5px;
                                 }
                             }
                         }
@@ -1930,16 +1972,16 @@
                         font-size: 14px;
                         box-sizing: border-box;
                         vertical-align: middle;
-                        background: #48c1cb;
-                        font-family: @main-font;
+                        background: @pink;
+                        font-family: 'Proxima Nova', Hind, sans-serif;
                         padding: 0 5px;
                         text-transform: uppercase;
-                        border: 2px solid #48c1cb;
+                        border: 2px solid @pink;
                     }
 
                     .join-text:hover {
                         background: #ffffff;
-                        color: #48c1cb;
+                        color: @pink;
                     }
                 }
             }
@@ -1967,7 +2009,7 @@
                         font-family: @main-font;
                         font-size: 16px;
                         font-weight: bold;
-                        color: #3ac1cc;
+                        color: @pink;
                         text-align: left;
                         line-height: 22px;
                     }
@@ -2002,12 +2044,12 @@
                         font-family: @main-font;
                         font-size: 16px;
                         font-weight: bold;
-                        color: #3ac1cc;
+                        color: @pink;
                         text-align: left;
                         letter-spacing: 0.02em;
                         line-height: 28px;
                         text-transform: uppercase;
-                        border: 1px solid #3ac1cc;
+                        border: 1px solid @pink;
                         padding: 2px 5px;
                     }
 
@@ -2031,7 +2073,7 @@
                 margin-bottom: 10px;
 
                 strong {
-                    font-family: @main-font;
+                    font-family: 'Proxima Nova', Hind, sans-serif;
                     font-size: 16px;
                     font-weight: bold;
                     color: #3e3935;
@@ -2041,13 +2083,13 @@
         }
 
         .order-actions-toolbar a {
-            font-family: @main-font;
+            font-family: 'Proxima Nova', Hind, sans-serif;
             color: #3e3935;
         }
 
         .order-details-items {
             a.action.back {
-                font-family: @main-font;
+                font-family: 'Proxima Nova', Hind, sans-serif;
                 color: #3e3935;
             }
         }
@@ -2069,7 +2111,7 @@
     //  Pop up login form
     //  ---------------------------------------------
     .pop-up-container {
-        width: 300px;
+        width: 335px;
         padding: 20px;
     }
 
@@ -2339,19 +2381,19 @@
 
                             &:hover a,
                             a:hover, a:focus, a.active {
-                                border-bottom: 5px solid #3bc1cc;
+                                border-bottom: 5px solid @pink;
                                 padding-bottom: 6px;
                                 text-decoration: none;
-                                color: #3ac1cc;
+                                color: @pink;
                             }
                         }
 
                         li.current strong {
-                            border-bottom: 5px solid #3bc1cc;
+                            border-bottom: 5px solid @pink;
                             border-left: none;
                             padding-bottom: 7px;
                             text-decoration: none;
-                            color: #3ac1cc;
+                            color: @pink;
                         }
                     }
                 }
@@ -2422,18 +2464,30 @@
         }
 
         .customer-short-info {
-            padding-bottom: 40px;
-            border-bottom: 1px solid #74706d;
+            position: relative;
+            padding-bottom: 80px;
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            justify-content: space-around;
 
             .container-box {
-                display: inline-block;
-                width: 24.7%;
-                padding-right: 1%;
+                -webkit-box-flex: 0;
+                -moz-box-flex: 0;
+                -webkit-flex: 0;
+                -ms-flex: 0;
+                flex: 0;
+                -webkit-flex-basis: calc(~'25% - 10px');
+                flex-basis: calc(~'25% - 10px');
+                padding: 0;
+                margin: 0;
+                position: relative;
 
                 .wrap {
-                    min-height: 280px;
-                    float: left;
                     width: 100%;
+                    height: 100%;
 
                     .header-items span {
 
@@ -2455,12 +2509,12 @@
                     .box-function {
                         border: 5px solid #d6eef1;
                         padding: 15px 10px;
+                        height: 100%;
 
                         .header-name {
                             border-bottom: 1px solid #3e3935;
 
                             span {
-
                                 font-size: 16px;
                                 font-weight: bold;
                                 color: #74706d;
@@ -2475,7 +2529,7 @@
 
                         .content {
                             padding: 15px 0;
-                            min-height: 115px;
+                            width: 100%;
 
                             ul {
                                 margin: 0;
@@ -2513,23 +2567,29 @@
                         }
 
                         .buttom {
-                            background-color: #3bc1cc;
-                            max-width: 130px;
-                            margin: auto;
+                            margin: 0 auto;
                             text-align: center;
+                            height: 40px;
+                            position: absolute;
+                            bottom: -20px;
+                            width: 100%;
+                            left: 0;
 
                             a {
-
+                                display: block;
                                 font-size: 14px;
                                 font-weight: bold;
                                 color: #ffffff;
                                 text-align: center;
-                                line-height: 42px;
+                                line-height: 40px;
+                                height: 40px;
                                 text-transform: uppercase;
                                 -webkit-transform: scale(0.92, 0.94);
                                 -ms-transform: scale(0.92, 0.94);
                                 transform: scale(0.92, 0.94);
                                 margin: auto;
+                                background-color: @pink;
+                                max-width: 130px;
                             }
 
                             a:hover {
@@ -2540,8 +2600,12 @@
                 }
             }
 
+            .container-box:first-child {
+                margin-left: -10px;
+            }
+
             .container-box:last-child {
-                padding-right: 0;
+                margin-right: -10px;
             }
         }
 
@@ -2549,6 +2613,7 @@
 
         .container-wrapper.wishlist {
             padding-bottom: 60px;
+            border-top: 1px solid #74706d;
 
             .container-wishlist.container {
                 h3 {
@@ -2582,7 +2647,7 @@
                     }
 
                     a {
-                        background-color: #3bc1cc;
+                        background-color: @pink;
                         padding: 10px 20px;
                         display: inline-block;
 
@@ -2634,11 +2699,10 @@
 
                                     .primary-wishlist {
                                         background: transparent;
-                                        border-color: transparent;
                                         padding-left: 0;
                                         text-transform: uppercase;
                                         color: #000000;
-                                        border: none;
+                                        border: none transparent;
 
                                         span {
 
@@ -2675,7 +2739,7 @@
                 }
 
                 a.view-wishlist {
-                    background-color: #3ac1cc;
+                    background-color: @pink;
                     padding: 10px 30px;
 
                     span {
@@ -2948,7 +3012,7 @@
                         }
 
                         .plus-open.focus {
-                            color: #3bc1cc;
+                            color: @pink;
                         }
 
                         .see-more {
@@ -2963,11 +3027,11 @@
 
                             font-size: 14px;
                             font-weight: bold;
-                            color: #3bc1cc;
+                            color: @pink;
                             text-align: center;
                             line-height: 38px;
                             text-transform: uppercase;
-                            border: 2px solid #3bc1cc;
+                            border: 2px solid @pink;
                             width: 48%;
                             display: inline-block;
                             margin-right: 0;
@@ -2998,8 +3062,8 @@
 
                         .action.track-order:hover {
                             text-decoration: none;
-                            background-color: #3ac1cc;
-                            border: 2px solid #3ac1cc;
+                            background-color: @pink;
+                            border: 2px solid @pink;
                         }
 
                         .section-details {
@@ -3199,7 +3263,7 @@
 
                     .field {
                         display: block !important;
-                        margin: 10px 0;
+                        margin: 15px 0;
                         position: relative;
 
                         .wrap {
@@ -3272,7 +3336,7 @@
                                 border: none;
                                 text-transform: uppercase;
                                 padding: 0 55px 0 0;
-                                color: #3ac1cc;
+                                color: @pink;
                             }
 
                             .content-details {
@@ -3292,6 +3356,13 @@
 
                                     input {
                                         max-width: 300px;
+                                    }
+                                }
+
+                                .field.choice {
+                                    .label {
+                                        top: -3px;
+                                        background: transparent;
                                     }
                                 }
                             }
@@ -3355,6 +3426,19 @@
                             line-height: 18px;
                             margin-bottom: 0;
                         }
+
+                        .defaul-shipping {
+                            display: block;
+                            padding-top: 10px;
+                        }
+
+                        .defaul-shipping::before {
+                            font-family: "FontAwesomePro", FontAwesome, sans-serif;
+                            content: '\f00c';
+                            color: #000;
+                            font-weight: bold;
+                            padding-right: 5px;
+                        }
                     }
 
                     .content-edit-address {
@@ -3387,6 +3471,10 @@
                                 select {
                                     height: 40px;
                                 }
+
+                                .paddingtop {
+                                    padding-top: 10px;
+                                }
                             }
                         }
 
@@ -3405,6 +3493,16 @@
                         .content-details.country {
                             float: left;
                             width: 100%;
+
+                            .checkbox-field-default {
+                                label::before {
+                                    font-family: "FontAwesomePro", FontAwesome, sans-serif;
+                                    content: '\f00c';
+                                    color: #000;
+                                    font-weight: bold;
+                                    padding-right: 5px;
+                                }
+                            }
                         }
 
                         .content-details.edit_shipping_address {
@@ -3563,16 +3661,16 @@
                                 font-size: 14px;
                                 box-sizing: border-box;
                                 vertical-align: middle;
-                                background: #48c1cb;
-                                font-family: @main-font;
+                                background: @pink;
+                                font-family: 'Proxima Nova', Hind, sans-serif;
                                 padding: 0;
                                 text-transform: uppercase;
-                                border: 2px solid #48c1cb;
+                                border: 2px solid @pink;
                             }
 
                             .join-text:hover {
                                 background: #ffffff;
-                                color: #48c1cb;
+                                color: @pink;
                             }
                         }
                     }
@@ -3601,7 +3699,7 @@
                                 font-family: @hind-font;
                                 font-size: 14px;
                                 font-weight: bold;
-                                color: #3ac1cc;
+                                color: @pink;
                                 text-align: left;
                                 line-height: 18px;
                             }
@@ -3634,11 +3732,11 @@
                                     cursor: pointer;
                                     font-size: 14px;
                                     font-weight: bold;
-                                    color: #3bc1cc;
+                                    color: @pink;
                                     text-align: center;
                                     line-height: 42px;
                                     text-transform: uppercase;
-                                    border: 2px solid #48c1cb;
+                                    border: 2px solid @pink;
                                     padding: 8px 10px;
                                 }
                             }
@@ -3696,6 +3794,7 @@
             }
         }
     }
+
     .manage-payment-method {
         padding-bottom: 40px;
 
@@ -3703,8 +3802,27 @@
             .label {
                 z-index: 1;
             }
+
+            .month {
+                margin-bottom: 5px;
+            }
         }
 
+        .address-information {
+            .street {
+                .nested {
+                    padding-top: 10px;
+                }
+            }
+        }
+
+        select {
+            height: 40px;
+        }
+
+        .fieldset.address-information {
+            margin-bottom: 20px;
+        }
         .actions-toolbar {
             .secondary {
                 .action.back {
@@ -3854,7 +3972,7 @@
 
                     tbody tr {
                         .item-options {
-                            margin-bottom: 0px;
+                            margin-bottom: 0;
                         }
 
                         td {
@@ -3903,6 +4021,7 @@
             left: -9999px;
             top: -9999px;
 
+            &:checked ~ label:before,
             &:checked + label:before {
                 content: 'x';
             }
@@ -3937,7 +4056,7 @@
             border-bottom: 1px solid;
 
             &:hover {
-                color: @pink;
+                color: @aqua;
             }
         }
     }
@@ -4013,7 +4132,7 @@
             }
 
             .third {
-                margin: 0 0 20px;
+                margin: 0 0 12px;
             }
         }
     }
@@ -4058,14 +4177,14 @@
                 border-bottom: 1px solid;
 
                 &:hover {
-                    color: @pink;
+                    color: @aqua;
                 }
             }
         }
 
         .action.primary:focus, .action.primary:active {
-            background: @pink;
-            border: 2px solid @pink;
+            background: @aqua;
+            border: 2px solid @aqua;
             color: #ffffff;
         }
     }
@@ -4080,9 +4199,15 @@
             margin: 0 0 20px;
         }
 
+        .page-title-wrapper {
+            max-width: 380px;
+            margin: 0 auto;
+        }
+
         .form.password.forget {
-            max-width: 680px;
+            max-width: 380px;
             min-height: 50vh;
+            margin: 0 auto;
 
             .fieldset {
                 margin: 0;
@@ -4108,25 +4233,37 @@
             display: block;
 
             .checkbox-field {
+                .display-flex();
+                .flex-wrap(wrap);
                 padding: 10px 0;
+
+                > * {
+                    order: 0
+                }
+
+                > .mage-error {
+                    order: 1;
+                }
             }
         }
 
         // Login form
         .block-customer-login {
             width: 100%;
+            margin-bottom: 0;
 
             .actions-toolbar {
-                .secondary {
-                    order: 2;
-                }
 
                 .primary {
+                    order: 0;
+                }
+
+                .secondary {
                     order: 1;
                 }
 
                 .third {
-                    order: 3;
+                    order: 1;
                 }
             }
         }

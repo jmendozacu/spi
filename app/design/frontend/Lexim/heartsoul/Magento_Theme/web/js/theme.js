@@ -108,5 +108,6 @@ define([
         //     jQuery('img[usemap]').rwdImageMaps();
         // });
         // }
+
     });
 });
