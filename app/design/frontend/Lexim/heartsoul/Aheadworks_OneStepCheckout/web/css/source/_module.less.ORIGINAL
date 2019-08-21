@@ -345,7 +345,7 @@
                             h2 {
                                 .lib-font-size(@aw-osc-h2__font-size);
                                 font-weight: 600;
-                                text-transform: uppercase;
+
                             }
 
                             .mark {
@@ -1011,7 +1011,7 @@
                     &-header {
                         font-size: 20px;
                         font-weight: 600;
-                        text-transform: uppercase;
+
                         padding-left: @aw-osc-supplementary__padding;
                         position: relative;
 
@@ -1559,7 +1559,7 @@
 
                             .action.checkout {
                                 height: 50px;
-                                text-transform: uppercase;
+
                             }
                         }
                     }
