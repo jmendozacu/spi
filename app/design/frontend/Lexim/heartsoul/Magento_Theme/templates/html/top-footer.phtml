@@ -1,0 +1,25 @@
+
+<div id="instafeed"></div>
+
+
+<script type="text/javascript">
+    require(
+        [
+            'jquery',
+            'instafeed'
+        ],
+        function ($) {
+            var feed = new Instafeed({
+                get: 'tagged',
+                target: 'instafeed',
+                tagName: 'awesome',
+                sortBy: 'most-recent',
+                limit: 20,
+                clientId: '1be1e53e07304bf49e6b0982b31775af',
+                template: '<a href="{{link}}"><img src="{{image}}" /></a>'
+            });
+            feed.run();
+        }
+    )
+
+</script>
