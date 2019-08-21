@@ -98,18 +98,18 @@
 }
 
 .swatch-option:not(.disabled):hover {
-    outline: 2px solid #48c1cb;
+    outline: 2px solid #cf4986;
 }
 
 .swatch-option.selected {
-    outline: 2px solid #48c1cb !important;
+    outline: 2px solid #cf4986 !important;
 }
 
 .swatch-option.image:not(.disabled):hover,
 .swatch-option.color:not(.disabled):hover,
 .swatch-option.image.selected,
 .swatch-option.color.selected {
-    outline: 2px solid #48c1cb;
+    outline: 2px solid #cf4986;
     border: 1px solid #fff;
 }
 
@@ -236,7 +236,7 @@
 }
 
 .swatch-option-link-layered:focus > div {
-    box-shadow: 0 0 3px 1px #48c1cb;
+    box-shadow: 0 0 3px 1px #cf4986;
 }
 
 .swatch-option-tooltip-layered {
