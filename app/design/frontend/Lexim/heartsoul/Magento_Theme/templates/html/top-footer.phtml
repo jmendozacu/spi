@@ -2,15 +2,14 @@
 
 
 <script type="text/javascript">
-    require(
-        [
-            'jquery',
-            'instafeed',
-            'slick'
-        ],
-        function ($, Instafeed) {
-            'use strict';
+    require([
+        'jquery',
+        'instafeed',
+        'slick'
+    ], function ($, Instafeed) {
+        'use strict';
 
+        $(document).ready(function () {
             let feed = new Instafeed({
                 get: 'user',
                 userId: '5633655524',
@@ -20,7 +19,7 @@
                 clientId: '1be1e53e07304bf49e6b0982b31775af',
                 accessToken: '5633655524.1be1e53.77bda5f42fab44f09cdb67ed2a92eadf',
                 template: '<div class="ins-item"><a href="{{link}}"><img src="{{image}}" /></a></div>',
-                success: function () {
+                after: function () {
                     $('.footer-slick').slick({
                         infinite: true,
                         dots: false,
@@ -39,7 +38,7 @@
                 }
             });
             feed.run();
-        }
-    )
+        });
+    });
 
 </script>
