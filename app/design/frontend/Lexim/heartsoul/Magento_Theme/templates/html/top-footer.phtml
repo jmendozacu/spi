@@ -1,51 +1,51 @@
 <!-- Follow On Instagram -->
-<div class="footer-slick-wrap">
-    <p style="display: none" id="followIns">Be our new BFF. Follow us on Instagram</p>
-    <div class="footer-slick" id="instafeed"></div>
-</div>
-
-<script type="text/javascript">
-    require([
-        'jquery',
-        'instafeed',
-        'slick'
-    ], function ($, Instafeed) {
-        'use strict';
-
-        $(document).ready(function () {
-            let feed = new Instafeed({
-                get: 'user',
-                userId: '5633655524',
-                target: 'instafeed',
-                sortBy: 'most-recent',
-                limit: 15,
-                clientId: '1be1e53e07304bf49e6b0982b31775af',
-                accessToken: '5633655524.1be1e53.77bda5f42fab44f09cdb67ed2a92eadf',
-                template: '<div class="ins-item"><a href="{{link}}"><img src="{{image}}" /></a></div>',
-                after: function () {
-                    $('.footer-slick').slick({
-                        infinite: true,
-                        dots: false,
-                        arrows: false,
-                        slidesToShow: 5,
-                        slidesToScroll: 5,
-                        responsive: [
-                            {
-                                breakpoint: 767,
-                                settings: {
-                                    slidesToShow: 3,
-                                    slidesToScroll: 3
-                                }
-                            }
-                        ]
-                    });
-
-                    $('#followIns').show();
-                }
-            });
-
-            feed.run();
-
-        });
-    });
-</script>
+<!--<div class="footer-slick-wrap">-->
+<!--    <p style="display: none" id="followIns">Be our new BFF. Follow us on Instagram</p>-->
+<!--    <div class="footer-slick" id="instafeed"></div>-->
+<!--</div>-->
+<!---->
+<!--<script type="text/javascript">-->
+<!--    require([-->
+<!--        'jquery',-->
+<!--        'instafeed',-->
+<!--        'slick'-->
+<!--    ], function ($, Instafeed) {-->
+<!--        'use strict';-->
+<!---->
+<!--        $(document).ready(function () {-->
+<!--            let feed = new Instafeed({-->
+<!--                get: 'user',-->
+<!--                userId: '5633655524',-->
+<!--                target: 'instafeed',-->
+<!--                sortBy: 'most-recent',-->
+<!--                limit: 15,-->
+<!--                clientId: '1be1e53e07304bf49e6b0982b31775af',-->
+<!--                accessToken: '5633655524.1be1e53.77bda5f42fab44f09cdb67ed2a92eadf',-->
+<!--                template: '<div class="ins-item"><a href="{{link}}"><img src="{{image}}" /></a></div>',-->
+<!--                after: function () {-->
+<!--                    $('.footer-slick').slick({-->
+<!--                        infinite: true,-->
+<!--                        dots: false,-->
+<!--                        arrows: false,-->
+<!--                        slidesToShow: 5,-->
+<!--                        slidesToScroll: 5,-->
+<!--                        responsive: [-->
+<!--                            {-->
+<!--                                breakpoint: 767,-->
+<!--                                settings: {-->
+<!--                                    slidesToShow: 3,-->
+<!--                                    slidesToScroll: 3-->
+<!--                                }-->
+<!--                            }-->
+<!--                        ]-->
+<!--                    });-->
+<!---->
+<!--                    $('#followIns').show();-->
+<!--                }-->
+<!--            });-->
+<!---->
+<!--            feed.run();-->
+<!---->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
