@@ -321,6 +321,10 @@
                         display: inline-block;
                         padding: 0 10px 0 0;
                         margin: 0;
+
+                        &:last-child {
+                            padding-right: 0;
+                        }
                     }
 
                     a {
@@ -589,12 +593,13 @@
                     }
 
                     input {
-                        width: 350px;
+                        width: 300px;
                         height: 50px;
                     }
                 }
 
                 .block.social {
+                    width: auto;
                     padding: 0;
                     margin-left: auto;
 
@@ -627,6 +632,10 @@
     .page-footer .footer.content .footer-inner {
         padding-left: 12%;
         padding-right: 12%;
+    }
+
+    .page-footer .footer.content .footer-inner .block {
+        width: 23%;
     }
 
 }
