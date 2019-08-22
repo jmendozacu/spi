@@ -1,0 +1,227 @@
+/**
+ * @license
+ * MyFonts Webfont Build ID 3793388, 2019-08-05T05:56:01-0400
+ * 
+ * The fonts listed in this notice are subject to the End User License
+ * Agreement(s) entered into by the website owner. All other parties are 
+ * explicitly restricted from using the Licensed Webfonts(s).
+ * 
+ * You may obtain a valid license at the URLs below.
+ * 
+ * Webfont: MagallanesExtraBold-Italic by Latinotype
+ * URL: https://www.myfonts.com/fonts/latinotype/magallanes/extra-bold-italic/
+ * 
+ * Webfont: MagallanesUltraLight by Latinotype
+ * URL: https://www.myfonts.com/fonts/latinotype/magallanes/ultra-light/
+ * 
+ * Webfont: MagallanesRegular by Latinotype
+ * URL: https://www.myfonts.com/fonts/latinotype/magallanes/regular/
+ * 
+ * Webfont: MagallanesRegular-Italic by Latinotype
+ * URL: https://www.myfonts.com/fonts/latinotype/magallanes/italic/
+ * 
+ * Webfont: MagallanesBold by Latinotype
+ * URL: https://www.myfonts.com/fonts/latinotype/magallanes/bold/
+ * 
+ * Webfont: MagallanesBlack-Italic by Latinotype
+ * URL: https://www.myfonts.com/fonts/latinotype/magallanes/black-italic/
+ * 
+ * Webfont: MagallanesBlack by Latinotype
+ * URL: https://www.myfonts.com/fonts/latinotype/magallanes/black/
+ * 
+ * Webfont: MagallanesBold-Italic by Latinotype
+ * URL: https://www.myfonts.com/fonts/latinotype/magallanes/bold-italic/
+ * 
+ * Webfont: MagallanesExtraBold by Latinotype
+ * URL: https://www.myfonts.com/fonts/latinotype/magallanes/extra-bold/
+ * 
+ * Webfont: MagallanesExtraLight-Italic by Latinotype
+ * URL: https://www.myfonts.com/fonts/latinotype/magallanes/extra-light-italic/
+ * 
+ * Webfont: MagallanesExtraLight by Latinotype
+ * URL: https://www.myfonts.com/fonts/latinotype/magallanes/extra-light/
+ * 
+ * Webfont: MagallanesLight-Italic by Latinotype
+ * URL: https://www.myfonts.com/fonts/latinotype/magallanes/light-italic/
+ * 
+ * Webfont: MagallanesLight by Latinotype
+ * URL: https://www.myfonts.com/fonts/latinotype/magallanes/light/
+ * 
+ * Webfont: MagallanesMedium-Italic by Latinotype
+ * URL: https://www.myfonts.com/fonts/latinotype/magallanes/medium-italic/
+ * 
+ * Webfont: MagallanesMedium by Latinotype
+ * URL: https://www.myfonts.com/fonts/latinotype/magallanes/medium/
+ * 
+ * Webfont: Magallanes-UltraLightItalic by Latinotype
+ * URL: https://www.myfonts.com/fonts/latinotype/magallanes/ultra-light-italic/
+ * 
+ * 
+ * License: https://www.myfonts.com/viewlicense?type=web&buildid=3793388
+ * Licensed pageviews: 20,000
+ * Webfonts copyright: Copyright (c) 2012 by Daniel Hernandez. All rights reserved.
+ * 
+ * © 2019 MyFonts Inc
+*/
+/* @import must be at top of file, otherwise CSS will not work */
+
+
+@font-face {
+    font-family: 'MagallanesExtraBold-Italic';
+    src: url('webfonts/39E1EC_0_0.eot');
+    src: url('webfonts/39E1EC_0_0.eot?#iefix') format('embedded-opentype'),
+    url('webfonts/39E1EC_0_0.woff2') format('woff2'),
+    url('webfonts/39E1EC_0_0.woff') format('woff'),
+    url('webfonts/39E1EC_0_0.ttf') format('truetype');
+}
+
+
+@font-face {
+    font-family: 'MagallanesUltraLight';
+    src: url('webfonts/39E1EC_1_0.eot');
+    src: url('webfonts/39E1EC_1_0.eot?#iefix') format('embedded-opentype'),
+    url('webfonts/39E1EC_1_0.woff2') format('woff2'),
+    url('webfonts/39E1EC_1_0.woff') format('woff'),
+    url('webfonts/39E1EC_1_0.ttf') format('truetype');
+}
+
+
+@font-face {
+    font-family: 'MagallanesRegular';
+    src: url('webfonts/39E1EC_2_0.eot');
+    src: url('webfonts/39E1EC_2_0.eot?#iefix') format('embedded-opentype'),
+    url('webfonts/39E1EC_2_0.woff2') format('woff2'),
+    url('webfonts/39E1EC_2_0.woff') format('woff'),
+    url('webfonts/39E1EC_2_0.ttf') format('truetype');
+}
+
+
+@font-face {
+    font-family: 'MagallanesRegular-Italic';
+    src: url('webfonts/39E1EC_3_0.eot');
+    src: url('webfonts/39E1EC_3_0.eot?#iefix') format('embedded-opentype'),
+    url('webfonts/39E1EC_3_0.woff2') format('woff2'),
+    url('webfonts/39E1EC_3_0.woff') format('woff'),
+    url('webfonts/39E1EC_3_0.ttf') format('truetype');
+}
+
+
+@font-face {
+    font-family: 'MagallanesBold';
+    src: url('webfonts/39E1EC_4_0.eot');
+    src: url('webfonts/39E1EC_4_0.eot?#iefix') format('embedded-opentype'),
+    url('webfonts/39E1EC_4_0.woff2') format('woff2'),
+    url('webfonts/39E1EC_4_0.woff') format('woff'),
+    url('webfonts/39E1EC_4_0.ttf') format('truetype');
+}
+
+
+@font-face {
+    font-family: 'MagallanesBlack-Italic';
+    src: url('webfonts/39E1EC_5_0.eot');
+    src: url('webfonts/39E1EC_5_0.eot?#iefix') format('embedded-opentype'),
+    url('webfonts/39E1EC_5_0.woff2') format('woff2'),
+    url('webfonts/39E1EC_5_0.woff') format('woff'),
+    url('webfonts/39E1EC_5_0.ttf') format('truetype');
+}
+
+
+@font-face {
+    font-family: 'MagallanesBlack';
+    src: url('webfonts/39E1EC_6_0.eot');
+    src: url('webfonts/39E1EC_6_0.eot?#iefix') format('embedded-opentype'),
+    url('webfonts/39E1EC_6_0.woff2') format('woff2'),
+    url('webfonts/39E1EC_6_0.woff') format('woff'),
+    url('webfonts/39E1EC_6_0.ttf') format('truetype');
+}
+
+
+@font-face {
+    font-family: 'MagallanesBold-Italic';
+    src: url('webfonts/39E1EC_7_0.eot');
+    src: url('webfonts/39E1EC_7_0.eot?#iefix') format('embedded-opentype'),
+    url('webfonts/39E1EC_7_0.woff2') format('woff2'),
+    url('webfonts/39E1EC_7_0.woff') format('woff'),
+    url('webfonts/39E1EC_7_0.ttf') format('truetype');
+}
+
+
+@font-face {
+    font-family: 'MagallanesExtraBold';
+    src: url('webfonts/39E1EC_8_0.eot');
+    src: url('webfonts/39E1EC_8_0.eot?#iefix') format('embedded-opentype'),
+    url('webfonts/39E1EC_8_0.woff2') format('woff2'),
+    url('webfonts/39E1EC_8_0.woff') format('woff'),
+    url('webfonts/39E1EC_8_0.ttf') format('truetype');
+}
+
+
+@font-face {
+    font-family: 'MagallanesExtraLight-Italic';
+    src: url('webfonts/39E1EC_9_0.eot');
+    src: url('webfonts/39E1EC_9_0.eot?#iefix') format('embedded-opentype'),
+    url('webfonts/39E1EC_9_0.woff2') format('woff2'),
+    url('webfonts/39E1EC_9_0.woff') format('woff'),
+    url('webfonts/39E1EC_9_0.ttf') format('truetype');
+}
+
+
+@font-face {
+    font-family: 'MagallanesExtraLight';
+    src: url('webfonts/39E1EC_A_0.eot');
+    src: url('webfonts/39E1EC_A_0.eot?#iefix') format('embedded-opentype'),
+    url('webfonts/39E1EC_A_0.woff2') format('woff2'),
+    url('webfonts/39E1EC_A_0.woff') format('woff'),
+    url('webfonts/39E1EC_A_0.ttf') format('truetype');
+}
+
+
+@font-face {
+    font-family: 'MagallanesLight-Italic';
+    src: url('webfonts/39E1EC_B_0.eot');
+    src: url('webfonts/39E1EC_B_0.eot?#iefix') format('embedded-opentype'),
+    url('webfonts/39E1EC_B_0.woff2') format('woff2'),
+    url('webfonts/39E1EC_B_0.woff') format('woff'),
+    url('webfonts/39E1EC_B_0.ttf') format('truetype');
+}
+
+
+@font-face {
+    font-family: 'MagallanesLight';
+    src: url('webfonts/39E1EC_C_0.eot');
+    src: url('webfonts/39E1EC_C_0.eot?#iefix') format('embedded-opentype'),
+    url('webfonts/39E1EC_C_0.woff2') format('woff2'),
+    url('webfonts/39E1EC_C_0.woff') format('woff'),
+    url('webfonts/39E1EC_C_0.ttf') format('truetype');
+}
+
+
+@font-face {
+    font-family: 'MagallanesMedium-Italic';
+    src: url('webfonts/39E1EC_D_0.eot');
+    src: url('webfonts/39E1EC_D_0.eot?#iefix') format('embedded-opentype'),
+    url('webfonts/39E1EC_D_0.woff2') format('woff2'),
+    url('webfonts/39E1EC_D_0.woff') format('woff'),
+    url('webfonts/39E1EC_D_0.ttf') format('truetype');
+}
+
+
+@font-face {
+    font-family: 'MagallanesMedium';
+    src: url('webfonts/39E1EC_E_0.eot');
+    src: url('webfonts/39E1EC_E_0.eot?#iefix') format('embedded-opentype'),
+    url('webfonts/39E1EC_E_0.woff2') format('woff2'),
+    url('webfonts/39E1EC_E_0.woff') format('woff'),
+    url('webfonts/39E1EC_E_0.ttf') format('truetype');
+}
+
+
+@font-face {
+    font-family: 'Magallanes-UltraLightItalic';
+    src: url('webfonts/39E1EC_F_0.eot');
+    src: url('webfonts/39E1EC_F_0.eot?#iefix') format('embedded-opentype'),
+    url('webfonts/39E1EC_F_0.woff2') format('woff2'),
+    url('webfonts/39E1EC_F_0.woff') format('woff'),
+    url('webfonts/39E1EC_F_0.ttf') format('truetype');
+}
+ 
