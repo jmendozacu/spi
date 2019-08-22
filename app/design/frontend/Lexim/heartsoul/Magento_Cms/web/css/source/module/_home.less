@@ -72,10 +72,10 @@
 
         .home-section {
             padding-bottom: 15px;
-        }
 
-        .home_jackets {
-            padding-bottom: 0;
+            &.home_jackets {
+                padding-bottom: 0;
+            }
         }
 
         .home-art-text {
@@ -141,9 +141,22 @@
 //  Mobile
 //  _____________________________________________
 
-// 767px
+// Max 767px
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
 
+}
+
+// max 480px
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs) {
+    .cms-home {
+        .home-button {
+            width: 110px;
+            height: 30px;
+            line-height: 30px;
+            font-size: 12px;
+            bottom: 15px;
+        }
+    }
 }
 
 //
