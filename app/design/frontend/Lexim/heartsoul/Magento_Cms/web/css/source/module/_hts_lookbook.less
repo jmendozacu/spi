@@ -1,0 +1,57 @@
+
+& when (@media-common = true) {
+    .cms-lookbook {
+
+        .lb-slogan {
+            padding: 30px;
+            background: #fafafa;
+        }
+
+        .lb-flex {
+            .display-flex();
+            .flex-wrap(wrap);
+        }
+
+        .lb-item {
+
+        }
+
+        .lb-item-bg {
+            position: relative;
+            width: 100%;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .pad56 .lb-item-bg {
+            padding-bottom: 56%;
+        }
+
+        .pad115 .lb-item-bg {
+            padding-bottom: 115%;
+        }
+
+    }
+
+}
+
+// max 767px
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+}
+
+// min 768px
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+}
+
+// Min 992px
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+
+}
+
+// Min 1440px
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+
+}
