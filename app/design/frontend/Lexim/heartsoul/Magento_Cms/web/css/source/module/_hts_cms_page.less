@@ -1,0 +1,25 @@
+
+& when (@media-common = true) {
+    .cms-page-view {
+        .page-header .header.content {
+            margin-bottom: 0;
+        }
+
+        .page-main {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    }
+
+}
+
+// Max 767px
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+
+}
+
+
+// Min 767px
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+}
