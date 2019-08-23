@@ -4,8 +4,14 @@
 
 & when (@media-common = true) {
     .cms-sitemap {
-        .static-page-content-inner .help-content {
-            padding: 0;
+
+        .static-page-content-inner {
+            padding-top: 3.7%;
+            padding-bottom: 3.7%;
+
+            .help-content {
+                padding: 0;
+            }
         }
 
         .help-tab-list {
@@ -28,6 +34,15 @@
         .sitemap-heading {
             font-size: 20px;
             font-weight: bold;
+            padding: 0 0 20px;
+            clear: both;
+        }
+
+        .sitemap-menu {
+            margin-bottom: 20px;
+            a {
+                float: left;
+            }
         }
 
         .sitemap-help {
