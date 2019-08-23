@@ -5,9 +5,21 @@
 & when (@media-common = true) {
     .cms-sitemap {
 
+        .static-page-content {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
         .static-page-content-inner {
-            padding-top: 3.7%;
-            padding-bottom: 3.7%;
+            padding: 30px 15px;
+
+            > p {
+                margin: 0;
+            }
+
+            .title {
+                font-size: 20px;
+            }
 
             .help-content {
                 padding: 0;
@@ -34,14 +46,18 @@
         .sitemap-heading {
             font-size: 20px;
             font-weight: bold;
-            padding: 0 0 20px;
+            padding: 0 0 15px;
             clear: both;
+            margin: 0 !important;
         }
 
         .sitemap-menu {
             margin-bottom: 20px;
+
             a {
                 float: left;
+                clear: both;
+                line-height: 2;
             }
         }
 
