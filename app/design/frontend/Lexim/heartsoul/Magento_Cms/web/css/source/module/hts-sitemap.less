@@ -11,7 +11,7 @@
         }
 
         .static-page-content-inner {
-            padding: 30px 15px;
+            padding: 30px 0;
 
             > p {
                 margin: 0;
@@ -48,10 +48,13 @@
             font-weight: bold;
             padding: 0 0 15px;
             clear: both;
-            margin: 0 !important;
+            margin: 0 0 15px !important;
+            border-bottom: 1px solid;
         }
 
         .sitemap-menu {
+            position: relative;
+            overflow: hidden;
             margin-bottom: 20px;
 
             a {
@@ -78,7 +81,19 @@
 
 // 767px
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .cms-sitemap {
+        .sitemap-help a {
+            margin-right: 0;
+            float: left;
+            clear: both;
+            line-height: 2;
+        }
 
+        .sitemap-heading {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+    }
 }
 
 //
