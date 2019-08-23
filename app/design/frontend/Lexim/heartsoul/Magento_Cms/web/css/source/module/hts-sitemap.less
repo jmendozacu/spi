@@ -17,7 +17,7 @@
                 margin: 0;
             }
 
-            .title {
+            > .title {
                 font-size: 20px;
             }
 
@@ -27,6 +27,11 @@
         }
 
         .help-tab-list {
+            .left-help-page .static-block {
+                padding: 0 0 30px;
+                border: none;
+            }
+
             .item.content {
                 border: none;
                 padding-top: 30px;
@@ -55,7 +60,7 @@
         .sitemap-menu {
             position: relative;
             overflow: hidden;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
 
             a {
                 float: left;
@@ -84,12 +89,7 @@
 
 // 767px
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
-    .cms-sitemap {
-        .sitemap-heading {
-            border-bottom: none;
-            padding-bottom: 0;
-        }
-    }
+
 }
 
 //
@@ -102,6 +102,10 @@
         .static-page-content {
             padding-left: 3.7%;
             padding-right: 3.7%;
+        }
+
+        .static-page-content-inner > .title {
+            font-size: 30px;
         }
     }
 }
