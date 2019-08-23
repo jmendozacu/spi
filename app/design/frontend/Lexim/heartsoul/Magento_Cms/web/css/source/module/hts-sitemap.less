@@ -67,7 +67,10 @@
         .sitemap-help {
             a {
                 font-weight: normal;
-                margin-right: 30px;
+                margin-right: 28px;
+                line-height: 2;
+                float: left;
+                clear: both;
             }
         }
 
@@ -82,13 +85,6 @@
 // 767px
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
     .cms-sitemap {
-        .sitemap-help a {
-            margin-right: 0;
-            float: left;
-            clear: both;
-            line-height: 2;
-        }
-
         .sitemap-heading {
             border-bottom: none;
             padding-bottom: 0;
@@ -102,12 +98,25 @@
 
 // Min 768px
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
-
+    .cms-sitemap {
+        .static-page-content {
+            padding-left: 3.7%;
+            padding-right: 3.7%;
+        }
+    }
 }
 
 // Min 992px
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    .cms-sitemap {
+        .sitemap-help a {
+            float: none;
 
+            &:not(las-child) {
+                margin-right: 30px;
+            }
+        }
+    }
 }
 
 // Min 1440px
