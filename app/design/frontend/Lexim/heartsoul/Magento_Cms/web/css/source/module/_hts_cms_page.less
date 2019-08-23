@@ -11,6 +11,17 @@
         }
     }
 
+    .page-heading-wrap {
+        margin: 0;
+        background: #fafafa;
+        padding: 30px 15px;
+
+        h1 {
+            margin: 0;
+            font-size: 18px;
+        }
+    }
+
 }
 
 // Max 767px
@@ -18,8 +29,9 @@
 
 }
 
-
 // Min 767px
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
-
+    .page-heading-wrap {
+        padding: 30px 3.7%;
+    }
 }
