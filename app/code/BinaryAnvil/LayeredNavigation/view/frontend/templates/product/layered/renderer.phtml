@@ -17,7 +17,7 @@ $currentAction = $block->getRequest()->getActionName();
     <div class="swatch-attribute-options">
 
 
-        <?php if ($swatchData['attribute_code'] == "is_manufacturer_color") {
+        <?php if ($swatchData['attribute_code'] == "is_manufacturer_color" || $swatchData['attribute_code'] == "hts_swatch") {
 
             $colorArray = $block->getOptionsOfColorAttribute();
             ?>
