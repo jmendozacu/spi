@@ -301,7 +301,7 @@ if ($parentCatKey === 'katie-duke') {
              */
             function showFilteredOptions() {
                 let cat = getUrlParam("cat");
-                let color = getUrlParam("is_manufacturer_color");
+                let color = getUrlParam("hts_swatch");
                 let size = getUrlParam("is_size");
                 let fit = getUrlParam("is_apparel_rise_length");
                 let width = getUrlParam("is_footwear_width");
@@ -322,7 +322,7 @@ if ($parentCatKey === 'katie-duke') {
                     detectSelectedOptionsFromUri("cat", cat);
                 }
                 if (color) {
-                    detectSelectedOptionsFromUri("is_manufacturer_color", color);
+                    detectSelectedOptionsFromUri("hts_swatch", color);
                 }
                 if (size) {
                     detectSelectedOptionsFromUri("is_size", size);
@@ -489,7 +489,7 @@ if ($parentCatKey === 'katie-duke') {
                     let selectedOptions = $('.swatch-option-a.selected');
                     let catKey = $(this).attr("data-cat");
                     let data = [], uri;
-                    let color = {name: 'is_manufacturer_color', value: ""};
+                    let color = {name: 'hts_swatch', value: ""};
                     let size = {name: 'is_size', value: ""};
                     let sort = {name: 'product_list_order', value: ""};
                     let fit = {name: 'is_apparel_rise_length', value: ""};
@@ -501,7 +501,7 @@ if ($parentCatKey === 'katie-duke') {
                         let type = $(item).attr("data-type");
                         let value = $(item).attr("data-value");
 
-                        if (type === "is_manufacturer_color") {
+                        if (type === "hts_swatch") {
                             if (color.value) {
                                 color.value = color.value + "," + value;
                             } else {

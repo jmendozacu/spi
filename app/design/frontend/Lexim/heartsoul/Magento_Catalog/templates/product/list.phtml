@@ -24,9 +24,9 @@ $_helper = $this->helper('Magento\Catalog\Helper\Output');
 $catalogHelper = $this->helper('BinaryAnvil\InfinityTheme\Helper\Catalog');
 
 $params = [];
-$colorParam = $block->getRequest()->getParam('is_manufacturer_color');
+$colorParam = $block->getRequest()->getParam('hts_swatch');
 if ($colorParam && $colorParam !== '') {
-    $params['is_manufacturer_color'] = explode(',', $colorParam);
+    $params['hts_swatch'] = explode(',', $colorParam);
 }
 $sizeParam = $block->getRequest()->getParam('is_size');
 if ($sizeParam && $sizeParam !== '') {
@@ -125,7 +125,7 @@ if ($fitParam && $fitParam !== '') {
 
                             <!-- Count Color -->
                             <?php
-                            $colorAttributeId = $_product->getResource()->getAttribute('is_manufacturer_color')->getId();
+                            $colorAttributeId = $_product->getResource()->getAttribute('hts_swatch')->getId();
                             $configurableAttrs = $_product->getTypeInstance()->getConfigurableAttributesAsArray($_product); // Get Used Attributes with its values
                             if (isset($configurableAttrs[$colorAttributeId]['values'])) {
                                 $countColor = count($configurableAttrs[$colorAttributeId]['values']);
