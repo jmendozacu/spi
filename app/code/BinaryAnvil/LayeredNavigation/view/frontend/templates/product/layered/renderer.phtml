@@ -18,8 +18,11 @@ $currentAction = $block->getRequest()->getActionName();
 
 
         <?php if ($swatchData['attribute_code'] == "is_manufacturer_color" || $swatchData['attribute_code'] == "hts_swatch") {
-
-            $colorArray = $block->getOptionsOfColorAttribute();
+            $key = 'color'; // for is_manufacturer_color
+            if ($swatchData['attribute_code'] == "hts_swatch") {
+                $key = 'hts_color_group';
+            }
+            $colorArray = $block->getOptionsOfColorAttribute($key);
             ?>
 
             <!-- Show Color group -->

@@ -200,7 +200,7 @@ class RenderLayered extends OriginClass
     {
         $colorArray = [];
 
-        $attribute = $this->productAttributeRepositoryInterface->get('color');
+        $attribute = $this->productAttributeRepositoryInterface->get($key);
 
         // Get Store label
         foreach ($attribute->getOptions() as $option) {
