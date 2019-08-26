@@ -46,7 +46,7 @@ if ($parentCatKey === 'katie-duke') {
                 <!-- </div>-->
 
                 <div class="filter-heading-wrap">
-                    <div class="filter-heading">FILTER</div>
+                    <div class="filter-heading">Filter</div>
                     <div class="filtered-label-wrap"></div>
                 </div>
 
@@ -55,39 +55,41 @@ if ($parentCatKey === 'katie-duke') {
                     <!-- CATEGORY -->
                     <div class="filter-options" id="category-wrapper">
                         <div class="filter-options-title">
-                            <span>CATEGORY</span>
+                            <span>Category</span>
                         </div>
                         <div class="filter-options-item">
                             <div class="filter-options-content">
                                 <div class="swatch-attribute-options">
                                     <?php
-                                    if ($currentPage === 'catalogsearch_result_index') { // search page
-                                        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-                                        $categoryHelper = $objectManager->get('\Magento\Catalog\Helper\Category');
-                                        $categories = $categoryHelper->getStoreCategories();
+                                    // if ($currentPage === 'catalogsearch_result_index') { // search page
 
-                                        /** @var Magento\Catalog\Model\Category $catItem */
-                                        foreach ($categories as $catItem) {
-                                            $parentId = $catItem->getId();
-                                            $parentCatName = $catItem->getName();
-                                            $parentCategoryKey = $catItem->getUrlKey();
+                                    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+                                    $categoryHelper = $objectManager->get('\Magento\Catalog\Helper\Category');
+                                    $categories = $categoryHelper->getStoreCategories();
 
-                                            // parent cat
-                                            printf('<a href="javascript:void(0)" data-label="%s" data-cat-key="%s" data-type="cat" data-value="%s" class="swatch-option-a category"><div class="swatch-option text">%s</div></a>', $parentCatName, $parentCategoryKey, $parentId, $parentCatName);
+                                    /** @var Magento\Catalog\Model\Category $catItem */
+                                    foreach ($categories as $catItem) {
+                                        $parentId = $catItem->getId();
+                                        $parentCatName = $catItem->getName();
+                                        $parentCategoryKey = $catItem->getUrlKey();
 
-                                            $subCategories = $catItem->getChildrenCategories();
-                                            if ($subCategories && is_array($subCategories) && count($subCategories) > 0) {
-                                                foreach ($subCategories as $subItem) {
-                                                    $subCatId = $subItem->getId();
-                                                    $subCatName = $subItem->getName();
-                                                    $subCatKey = $subItem->getUrlKey();
-                                                    // sub cat
-                                                    printf('<a href="javascript:void(0)" data-label="%s" data-cat-key="%s" data-type="cat" data-value="%s" class="swatch-option-a category sub"><div class="swatch-option text">%s</div></a>', $subCatName, $subCatKey, $subCatId, $subCatName);
-                                                }
+                                        // parent cat
+                                        printf('<a href="javascript:void(0)" data-label="%s" data-cat-key="%s" data-type="cat" data-value="%s" class="swatch-option-a category"><div class="swatch-option text">%s</div></a>', $parentCatName, $parentCategoryKey, $parentId, $parentCatName);
+
+                                        // sub categories
+                                        /** $subCategories = $catItem->getChildrenCategories();
+                                        if ($subCategories && is_array($subCategories) && count($subCategories) > 0) {
+                                            foreach ($subCategories as $subItem) {
+                                                $subCatId = $subItem->getId();
+                                                $subCatName = $subItem->getName();
+                                                $subCatKey = $subItem->getUrlKey();
+                                                // sub cat
+                                                printf('<a href="javascript:void(0)" data-label="%s" data-cat-key="%s" data-type="cat" data-value="%s" class="swatch-option-a category sub"><div class="swatch-option text">%s</div></a>', $subCatName, $subCatKey, $subCatId, $subCatName);
                                             }
-                                        }
+                                        } */
+                                    }
 
-                                    } else {
+                                    /**  } else { // listing page: get sub categories
                                         foreach ($parentCategory->getChildrenCategories() as $subCategory) { ?>
                                             <?php
                                             $catName = $subCategory->getName();
@@ -100,7 +102,7 @@ if ($parentCatKey === 'katie-duke') {
                                                 <div class="swatch-option text"><?= $catName ?></div>
                                             </a>
                                         <?php } ?>
-                                    <?php } ?>
+                                    <?php } */ ?>
 
                                 </div>
                             </div>
@@ -155,7 +157,7 @@ if ($parentCatKey === 'katie-duke') {
                     <!-- SORT column -->
                     <div class="filter-options" id="sort-by-wrapper">
                         <div class="filter-options-title">
-                            <span>SORT</span>
+                            <span>Sort</span>
                         </div>
                         <div class="filter-options-item">
                             <div class="filter-options-content">
