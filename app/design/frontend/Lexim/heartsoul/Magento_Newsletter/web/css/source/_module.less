@@ -8,7 +8,7 @@
     .newsletter-sign-up {
         .head {
             text-align: center;
-            padding-top: 40px;
+
             .title {
                 margin: 0;
                 font-size: 24px;
@@ -18,6 +18,30 @@
 
             .description {
                 margin: 0 0 30px;
+            }
+
+            .fa-smile {
+                position: relative;
+                width: 50px;
+                height: 50px;
+                margin: 0 auto;
+                text-align: center;
+                display: block;
+                opacity: 0.5;
+
+                &:after {
+                    content: '';
+                    background-image: url('@{baseDir}images/wishlist2.png');
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: contain;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    margin: auto;
+                }
             }
         }
 
@@ -86,7 +110,6 @@
     }
 }
 
-
 // max 767px
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
     .newsletter-sign-up .head {
@@ -101,9 +124,11 @@
             width: calc(~'100% - 90px');
             padding-right: 10px;
         }
+
         .content .form.subscribe .actions {
             width: 85px;
         }
+
         .content .form.subscribe .actions button {
             width: auto;
         }
