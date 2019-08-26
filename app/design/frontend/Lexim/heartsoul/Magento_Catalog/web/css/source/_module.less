@@ -428,12 +428,19 @@
                 border: 2px solid @pink;
 
                 &:before {
+                    content: '';
                     position: absolute;
+                    top: 0;
                     right: 0;
                     left: 0;
+                    bottom: 0;
                     margin: auto;
                     line-height: 40px;
                     color: @pink;
+                    background-image: url('@{baseDir}images/wishlist2.png');
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: 16px;
                 }
             }
 
@@ -443,6 +450,7 @@
 
                     &:before {
                         color: #ffffff;
+                        background-image: url('@{baseDir}images/wishlist-white.png');
                     }
                 }
             }
