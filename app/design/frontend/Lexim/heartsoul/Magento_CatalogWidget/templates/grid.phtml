@@ -37,7 +37,7 @@
  */
 ?>
 <?php if ($exist = ($block->getProductCollection() && $block->getProductCollection()->getSize())):?>
-<?php
+    <?php
     $type = 'widget-product-grid';
 
     $mode = 'grid';
@@ -51,12 +51,12 @@
     $showCart = true;
     $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::DEFAULT_VIEW;
     $description = false;
-?>
+    ?>
     <div class="block widget block-products-list <?php /* @escapeNotVerified */ echo $mode; ?>">
         <?php if ($title):?>
-        <div class="block-title">
-            <strong><?php /* @escapeNotVerified */ echo $title; ?></strong>
-        </div>
+            <div class="block-title">
+                <strong><?php /* @escapeNotVerified */ echo $title; ?></strong>
+            </div>
         <?php endif ?>
         <div class="block-content">
             <?php /* @escapeNotVerified */ echo '<!-- ' . $image . '-->' ?>
@@ -67,8 +67,8 @@
                         <?php /* @escapeNotVerified */ echo($iterator++ == 1) ? '<li class="product-item">' : '</li><li class="product-item">' ?>
                         <div class="product-item-info">
                             <?php
-                                $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
-                                $productImage = $_imagehelper->init($_product, $image)->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->getUrl();
+                            $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
+                            $productImage = $_imagehelper->init($_product, $image)->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->getUrl();
                             ?>
 
                             <?php // Product Image ?>
@@ -105,8 +105,8 @@
                                                         </button>
                                                     <?php else: ?>
                                                         <?php
-                                                            $postDataHelper = $this->helper('Magento\Framework\Data\Helper\PostHelper');
-                                                            $postData = $postDataHelper->getPostData($block->getAddToCartUrl($_item), ['product' => $_item->getEntityId()])
+                                                        $postDataHelper = $this->helper('Magento\Framework\Data\Helper\PostHelper');
+                                                        $postData = $postDataHelper->getPostData($block->getAddToCartUrl($_item), ['product' => $_item->getEntityId()])
                                                         ?>
                                                         <button class="action tocart primary"
                                                                 data-post='<?php /* @escapeNotVerified */ echo $postData; ?>'

@@ -320,6 +320,13 @@ switch ($type = $block->getType()) {
                     slidesToScroll: <?= $slidesToShow ?>,
                     responsive: [
                         {
+                            breakpoint: 1280,
+                            settings: {
+                                slidesToShow: 3,
+                                slidesToScroll: 3
+                            }
+                        },
+                        {
                             breakpoint: 767,
                             settings: {
                                 slidesToShow: 2,
