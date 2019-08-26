@@ -171,6 +171,27 @@
             // wish-list
             .header-wishlist {
                 padding: 0 15px;
+
+                .icon-elo-heart {
+                    position: relative;
+                    width: 22px;
+                    height: 30px;
+                    display: block;
+
+                    :before {
+                        background-image: url('@{baseDir}images/wishlist.png');
+                        background-repeat: no-repeat;
+                        background-position: center;
+                        background-size: 22px;
+                        position: absolute;
+                        width: 22px;
+                        height: 100%;
+                    }
+                }
+
+                > a:hover .icon-elo-heart:before {
+                    background-image: url('@{baseDir}images/wishlist2.png');
+                }
             }
         }
 
