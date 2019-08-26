@@ -71,22 +71,26 @@
                     -moz-osx-font-smoothing: grayscale;
                 }
 
+                &:hover:before {
+                    background-image: url('@{baseDir}images/icon/hts-bag-pink.png');
+                }
+
                 .counter.qty {
                     display: inline-block;
                     overflow: hidden;
                     margin: 0;
                     min-width: 0;
-                    padding: 3px 5px;
+                    padding: 3px;
                     text-align: center;
                     white-space: normal;
                     background: @pink;
                     color: #ffffff;
-                    font-size: 10px;
-                    font-weight: bold;
+                    font-size: 8px;
                     line-height: 1;
                     position: absolute;
-                    right: 0;
+                    right: -4px;
                     top: 15px;
+                    letter-spacing: 1px;
 
                     &.empty {
                         display: none;
