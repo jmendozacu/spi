@@ -1,30 +1,5 @@
 <?php
-/**
- * Binary Anvil, Inc.
- *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the Binary Anvil, Inc. Software Agreement
- * that is bundled with this package in the file LICENSE_BAS.txt.
- * It is also available through the world-wide-web at this URL:
- * http://www.binaryanvil.com/software/license/
- *
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@binaryanvil.com so we can send you a copy immediately.
- *
- * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade this software to
- * newer versions in the future. If you wish to customize this software for
- * your needs please refer to http://www.binaryanvil.com/software for more
- * information.
- *
- * @category    BinaryAnvil
- * @package     Infinity
- * @copyright   Copyright (c) 2018-2019 Binary Anvil,Inc. (http://www.binaryanvil.com)
- * @license     http://www.binaryanvil.com/software/license
- */
+
 ?>
 <?php
 /** @var Magento\Catalog\Block\Product\ListProduct $block */
@@ -52,20 +27,20 @@ $countBreak = 0;
                     ?>
 
                     <?php // Product Image ?>
-                    <a title="<?php /* @escapeNotVerified */ echo __('Go to') ?> <?php /* @escapeNotVerified */ echo $helper->productAttribute($_product, $_product->getName(), 'name'); ?>"
-                       href="<?php /* @escapeNotVerified */ echo $_product->getProductUrl() ?>"
+                    <a title="<?= __('Go to') ?> <?= $helper->productAttribute($_product, $_product->getName(), 'name'); ?>"
+                       href="<?= $_product->getProductUrl() ?>"
                        class="product photo product-item-photo"
                     >
-                        <img class="photo image" src="<?= $productImage ?>" alt="<?php /* @escapeNotVerified */ echo $helper->productAttribute($_product, $_product->getName(), 'name'); ?>" />
+                        <img class="photo image" src="<?= $productImage ?>" alt="<?= $helper->productAttribute($_product, $_product->getName(), 'name'); ?>" />
                     </a>
 
                     <div class="product details product-item-details">
                         <strong class="product name product-item-name">
                             <a class="product-item-link"
-                               href="<?php /* @escapeNotVerified */ echo $_product->getProductUrl() ?>"
-                               title="<?php /* @escapeNotVerified */ echo $helper->productAttribute($_product, $_product->getName(), 'name'); ?>"
+                               href="<?= $_product->getProductUrl() ?>"
+                               title="<?= $helper->productAttribute($_product, $_product->getName(), 'name'); ?>"
                             >
-                                <?php /* @escapeNotVerified */ echo $helper->productAttribute($_product, $_product->getName(), 'name'); ?>
+                                <?= $helper->productAttribute($_product, $_product->getName(), 'name'); ?>
                             </a>
                         </strong>
                         <?= $block->getProductPrice($_product)?>
@@ -73,7 +48,7 @@ $countBreak = 0;
                         <?php if ($_product->isSaleable()): ?>
                             <div class="product-item-actions">
                                 <div class="actions-primary-wishlist">
-                                    <a href="<?php /* @escapeNotVerified */ echo $_product->getProductUrl() ?>">
+                                    <a href="<?= $_product->getProductUrl() ?>">
                                     <button type="button" data-role="tocart" title="<?= $block->escapeHtmlAttr(__('Add to Cart')) ?>" class="action tocart primary-wishlist">
                                         + <span><?= $block->escapeHtml(__('Add to Cart')) ?></span>
                                     </button>
