@@ -65,7 +65,8 @@
             border-right: 1px solid #ffffff;
 
             &:hover, &.open {
-                background: @gray;
+                background: @light-pink;
+                color: @gray;
             }
         }
 
@@ -74,7 +75,7 @@
             .align-items(center);
             .flex-wrap(wrap);
             .justify-content(center);
-            background: @pink;
+            background: @light-pink;
             min-height: 40px;
         }
 
@@ -83,7 +84,7 @@
             font-size: 16px;
             text-transform: capitalize;
             line-height: 1;
-            color: #ffffff;
+            color: @gray;
 
             span {
                 padding-right: 7px;
@@ -122,9 +123,10 @@
             display: inline-block;
             margin-bottom: 15px;
             margin-right: 20px;
-            background: #3e3935;
+            background: transparent;
             text-align: center;
-            color: #ffffff;
+            color: @pink;
+            border: 1px solid;
             font-weight: bold;
             font-size: 16px;
             cursor: pointer;
@@ -132,6 +134,7 @@
 
         #applyButton {
             background: @pink;
+            color: #ffffff;
         }
     }
 
