@@ -73,8 +73,10 @@ if ($parentCatKey === 'katie-duke') {
                                         $parentCatName = $catItem->getName();
                                         $parentCategoryKey = $catItem->getUrlKey();
 
+                                        $selected = $parentCategoryKey === $curCatKey ? 'selected' : '';
+
                                         // parent cat
-                                        printf('<a href="javascript:void(0)" data-label="%s" data-cat-key="%s" data-type="cat" data-value="%s" class="swatch-option-a category"><div class="swatch-option text">%s</div></a>', $parentCatName, $parentCategoryKey, $parentId, $parentCatName);
+                                        printf('<a href="javascript:void(0)" data-label="%s" data-cat-key="%s" data-type="cat" data-value="%s" class="swatch-option-a category %s"><div class="swatch-option text">%s</div></a>', $parentCatName, $parentCategoryKey, $parentId, $selected, $parentCatName);
 
                                         // sub categories
                                         /** $subCategories = $catItem->getChildrenCategories();
