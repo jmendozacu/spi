@@ -162,7 +162,7 @@ define([
          * @param {String} form
          */
         enableAddToCartButton: function (form) {
-            var addToCartButtonTextAdded = this.options.addToCartButtonTextAdded || $t('Added'),
+            var addToCartButtonTextAdded = this.options.addToCartButtonTextAdded || $t('added'),
                 self = this,
                 addToCartButton = $(form).find(this.options.addToCartButtonSelector);
 
@@ -170,7 +170,7 @@ define([
             addToCartButton.attr('title', addToCartButtonTextAdded);
 
             setTimeout(function () {
-                var addToCartButtonTextDefault = self.options.addToCartButtonTextDefault || $t('Add to shopping bag');
+                var addToCartButtonTextDefault = self.options.addToCartButtonTextDefault || $t('add to shopping bag');
 
                 addToCartButton.removeClass(self.options.addToCartButtonDisabledClass);
                 addToCartButton.find('span').text(addToCartButtonTextDefault);
