@@ -125,13 +125,16 @@ if ($fitParam && $fitParam !== '') {
 
                             <!-- Count Color -->
                             <?php
-                            $colorAttributeId = $_product->getResource()->getAttribute('is_manufacturer_color')->getId();
-                            $configurableAttrs = $_product->getTypeInstance()->getConfigurableAttributesAsArray($_product); // Get Used Attributes with its values
-                            if (isset($configurableAttrs[$colorAttributeId]['values'])) {
-                                $countColor = count($configurableAttrs[$colorAttributeId]['values']);
-                                $textForCountColor = $countColor > 1 ? $countColor . " colors" : $countColor . " color"; ?>
-                                <p class="countColor"><?= $textForCountColor ?></p>
+                            if ($_product->getTypeId() == "configurable") {
+                                $colorAttributeId = $_product->getResource()->getAttribute('is_manufacturer_color')->getId();
+                                $configurableAttrs = $_product->getTypeInstance()->getConfigurableAttributesAsArray($_product); // Get Used Attributes with its values
+                                if (isset($configurableAttrs[$colorAttributeId]['values'])) {
+                                    $countColor = count($configurableAttrs[$colorAttributeId]['values']);
+                                    $textForCountColor = $countColor > 1 ? $countColor . " colors" : $countColor . " color"; ?>
+                                    <p class="countColor"><?= $textForCountColor ?></p>
+                                <?php } ?>
                             <?php } ?>
+
 
                             <?php // echo $block->getProductDetailsHtml($_product); ?>
 
