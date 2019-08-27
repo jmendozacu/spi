@@ -19,7 +19,6 @@
         <referenceBlock name="product.info.type" remove="true"/>
 
 
-
         <referenceBlock name="product.info.details">
             <!-- Change name of Details Tab -->
             <referenceBlock name="product.info.description">
@@ -36,8 +35,7 @@
         </referenceBlock>
 
         <!-- Move social after "add to cart" button -->
-        <move element="product.info.social" destination="product.info.options.wrapper.bottom"
-              after="product.info.addtocart.additional"/>
+        <move element="product.info.social" destination="product.info.options.wrapper.bottom" after="product.info.addtocart.additional"/>
 
 
         <!-- Move Gallery before the main info -->
@@ -45,8 +43,7 @@
 
 
         <!-- Create New wish list next to title on mobile -->
-        <block class="Magento\Wishlist\Block\Catalog\Product\View\AddTo\Wishlist" name="title.addto.wishlist"
-               template="Magento_Wishlist::catalog/product/view/addto/wishlist.phtml"/>
+        <block class="Magento\Wishlist\Block\Catalog\Product\View\AddTo\Wishlist" name="title.addto.wishlist" template="Magento_Wishlist::catalog/product/view/addto/wishlist.phtml"/>
         <move element="title.addto.wishlist" destination="product.info.price" after="-"/>
 
         <!-- Move product title after review -->
@@ -61,34 +58,37 @@
 
         <!-- Review -->
         <referenceBlock name="product.info.details">
-            <block class="BinaryAnvil\Ratings\Block\RatingList" name="review.custom"
-                   template="Magento_Catalog::product/view/review-custom.phtml">
-                <block class="Magento\Framework\View\Element\Template" name="product.item.review.custom"
-                       template="Magento_Catalog::product/view/review-title.phtml"/>
-                <block class="Magento\Catalog\Block\Product\View" name="product.info.review.custom"
-                       template="Magento_Catalog::product/view/review.phtml"/>
+            <block class="BinaryAnvil\Ratings\Block\RatingList" name="review.custom" template="Magento_Catalog::product/view/review-custom.phtml">
+                <block class="Magento\Framework\View\Element\Template" name="product.item.review.custom" template="Magento_Catalog::product/view/review-title.phtml"/>
+                <block class="Magento\Catalog\Block\Product\View" name="product.info.review.custom" template="Magento_Catalog::product/view/review.phtml"/>
 
                 <container name="review-wrapper" htmlTag="div" htmlClass="review-wrapper">
-                    <block class="BinaryAnvil\Ratings\Block\RatingList" name="product.item.review.statistic"
-                           template="Magento_Catalog::product/view/rating-statistics.phtml"/>
+                    <block class="BinaryAnvil\Ratings\Block\RatingList" name="product.item.review.statistic" template="Magento_Catalog::product/view/rating-statistics.phtml"/>
 
                     <container name="review.list.custom" htmlTag="div" htmlClass="review-list">
-                        <block class="Magento\Framework\View\Element\Template"
-                               name="product.info.product_additional_data" as="product_additional_data"
+                        <block class="Magento\Framework\View\Element\Template" name="product.info.product_additional_data" as="product_additional_data"
                                template="Magento_Review::product/view/list.phtml" cacheable="false">
-                            <block class="BinaryAnvil\Ratings\Block\ReviewList"
-                                   name="product.info.product_additional_data.items" as="review_items"
+                            <block class="BinaryAnvil\Ratings\Block\ReviewList" name="product.info.product_additional_data.items" as="review_items"
                                    template="Magento_Review::product/view/list/items.phtml"/>
                         </block>
 
-                        <block class="Magento\Review\Block\Form" name="product.review.form.custom"
-                               as="review_form_custom" template="Magento_Review::form.phtml">
-                        </block>
+                        <block class="Magento\Review\Block\Form" name="product.review.form.custom" as="review_form_custom" template="Magento_Review::form.phtml"/>
                     </container>
                 </container>
             </block>
         </referenceBlock>
-        <referenceBlock name="product.review.form" remove="true" />
+
+        <referenceBlock name="product.review.form" remove="true">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="review-form" xsi:type="array">
+                            <item name="component" xsi:type="string">Magento_Review/js/view/review</item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
 
     </body>
 </page>

@@ -78,7 +78,7 @@
             </block>
         </referenceBlock>
 
-        <referenceBlock name="product.review.form">
+        <referenceBlock name="product.review.form" remove="true">
             <arguments>
                 <argument name="jsLayout" xsi:type="array">
                     <item name="components" xsi:type="array">
