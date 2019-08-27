@@ -53,10 +53,10 @@
             .justify-content(center);
             cursor: pointer;
             font-weight: bold;
-            width: 120px;
+            width: 145px;
             height: auto;
-            min-height: 40px;
-            line-height: 40px;
+            min-height: 50px;
+            line-height: 50px;
             font-size: 16px;
             padding: 0 10px;
             margin: 0;
@@ -357,14 +357,18 @@
 
         .filter-heading {
             font-size: 12px;
-            width: auto;
+            width: 120px;
+            min-height: 40px;
+            line-height: 40px;
 
             &:hover {
-                background: @light-pink;
+                background: @pink;
+                color: #ffffff;
             }
 
-            &.open:hover {
+            &.open {
                 background: @light-pink;
+                color: @gray;
             }
         }
 
