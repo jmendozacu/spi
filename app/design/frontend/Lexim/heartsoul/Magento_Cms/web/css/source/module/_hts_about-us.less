@@ -42,11 +42,28 @@
         //
         // Bottom Content
         // ________________________________________
+        .about-description {
+            position: relative;
+            width: 100%;
+            clear: both;
+            padding-top: 30px;
+            padding-bottom: 30px;
+
+            p {
+                margin: 10px 0;
+            }
+
+            p.about-description-tittle {
+                font-size: 16px;
+                font-weight: bold;
+                margin-bottom: 20px;
+            }
+        }
+
         .about-flex-content {
             .display-flex();
             .justify-content(space-between);
             .flex-wrap(wrap);
-            background: #fafafa;
             padding: 35px 15px;
 
             .about-item {
@@ -91,6 +108,18 @@
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
 
     .cms-about-us {
+
+        .about-description {
+            max-width: 60%;
+            padding-top: 3%;
+            padding-bottom: 3%;
+
+            p.about-description-tittle {
+                font-size: 18px;
+            }
+        }
+
+
         .about-flex-content {
             padding: 30px 3.7%;
 
