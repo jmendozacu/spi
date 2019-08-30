@@ -10,22 +10,22 @@
             padding-bottom: 30px;
 
             ::-webkit-input-placeholder {
-                color: @dim-gray;
+                color: #999999;
                 background: transparent;
             }
 
             :-moz-placeholder {
-                color: @dim-gray;
+                color: #999999;
                 background: transparent;
             }
 
             ::-moz-placeholder {
-                color: @dim-gray;
+                color: #999999;
                 background: transparent;
             }
 
             :-ms-input-placeholder {
-                color: @dim-gray;
+                color: #999999;
                 background: transparent;
             }
         }
@@ -39,7 +39,7 @@
             width: calc(~'100% - 30px');
             padding: 20px;
             margin: auto;
-            background: rgba(244, 244, 244, 0.8);
+            background: rgba(244, 244, 244, 0.9);
 
             input {
                 border: none;
@@ -53,6 +53,7 @@
                 padding-top: 40px;
 
                 button.action {
+                    width: 200px;
                     height: 40px;
                     margin: 0 auto 20px;
                     display: block;
@@ -114,6 +115,7 @@
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
     .cms-newsletter-sign-up {
         .newsletter-pg {
+            margin-top: 3.7%;
             margin-bottom: 0;
         }
 
