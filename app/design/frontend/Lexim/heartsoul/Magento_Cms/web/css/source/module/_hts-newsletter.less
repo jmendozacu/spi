@@ -10,19 +10,22 @@
             padding-bottom: 30px;
 
             ::-webkit-input-placeholder {
-                color: @gray;
+                color: @dim-gray;
                 background: transparent;
             }
+
             :-moz-placeholder {
-                color: @gray;
+                color: @dim-gray;
                 background: transparent;
             }
+
             ::-moz-placeholder {
-                color: @gray;
+                color: @dim-gray;
                 background: transparent;
             }
+
             :-ms-input-placeholder {
-                color: @gray;
+                color: @dim-gray;
                 background: transparent;
             }
         }
@@ -42,23 +45,29 @@
                 border: none;
                 padding: 0;
                 background: transparent;
+                color: @gray;
+                border-bottom: 1px solid;
             }
 
             .actions {
+                padding-top: 40px;
+
                 button.action {
                     height: 40px;
-                    margin: 20px auto;
+                    margin: 0 auto 20px;
                     display: block;
                 }
 
                 p {
+                    color: #999999;
                     margin: 0;
                     text-align: center;
                 }
 
                 a {
-                    color: @gray;
+                    color: #999999;
                     text-decoration: none;
+
                     &:hover {
                         color: @pink;
                     }
@@ -71,6 +80,7 @@
             font-size: 18px;
             margin: 0;
             padding: 0 0 20px;
+            font-weight: bold;
         }
 
         .news-sub-tit {
@@ -87,7 +97,13 @@
 
 // 767px
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
-
+    .cms-newsletter-sign-up {
+        .newsletter-pg {
+            br {
+                display: none;
+            }
+        }
+    }
 }
 
 //
@@ -96,9 +112,29 @@
 
 // Min 768px
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
- .cms-newsletter-sign-up {
+    .cms-newsletter-sign-up {
+        .newsletter-pg {
+            margin-bottom: 0;
+        }
 
- }
+        .signup-box {
+            position: absolute;
+            top: 0;
+            left: 3.8%;
+            right: auto;
+            max-width: 550px;
+            padding: 60px;
+        }
+
+        .pg-title {
+            font-size: 32px;
+        }
+
+        .news-sub-tit {
+            font-size: 16px;
+        }
+
+    }
 }
 
 // Min 992px
