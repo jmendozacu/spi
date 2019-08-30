@@ -1,4 +1,5 @@
 <div class="newsletter-pg">
+    <img class="news-bg" src="{{view url='images/newsletter.jpg'}}" />
     <div class="signup-box">
         <div class="signup-inner">
             <div class="pg-title">join the heartsoul sisterhood</div>
@@ -27,7 +28,7 @@
                     return regex.test(email);
                 }
 
-                $('.action.subscribe.teal').on('click', function () {
+                $('.action.subscribe').on('click', function () {
                     var messageHTML = '',
                         newsletterVal = $('#newsletter-3').val(),
                         postURL = 'https://spi-functions.azurewebsites.net/api/InfinitySalesForceNewsletterSignUp';
@@ -47,7 +48,7 @@
                             type: 'POST',
                             contentType: 'application/json;charset=utf-8',
                             success: function (data) {
-                                jQuery('button.action.subscribe.teal').fadeOut();
+                                jQuery('button.action.subscribe').fadeOut();
                                 jQuery('#newsletter-3').fadeOut();
                                 jQuery('<p>Thank you. You\'re signed up!</p>').insertBefore('.actions p');
                             },

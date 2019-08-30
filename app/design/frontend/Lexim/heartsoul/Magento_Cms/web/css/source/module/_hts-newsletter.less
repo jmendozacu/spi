@@ -4,6 +4,62 @@
 
 & when (@media-common = true) {
     .cms-newsletter-sign-up {
+        .newsletter-pg {
+            position: relative;
+            margin-bottom: -30vw;
+            padding-bottom: 30px;
+        }
+
+        .signup-box {
+            position: relative;
+            top: -30vw;
+            left: 0;
+            right: 0;
+            max-width: 100%;
+            width: calc(100% - 30px);
+            padding: 20px;
+            margin: auto;
+            background: rgba(244, 244, 244, 0.8);
+
+            input {
+                border: none;
+                padding: 0;
+                background: transparent;
+            }
+
+            .actions {
+                button.action {
+                    height: 40px;
+                    margin: 20px auto;
+                    display: block;
+                }
+
+                p {
+                    margin: 0;
+                    text-align: center;
+                }
+
+                a {
+                    color: @gray;
+                    text-decoration: none;
+                    &:hover {
+                        color: @pink;
+                    }
+                }
+            }
+        }
+
+        .pg-title {
+            color: @pink;
+            font-size: 18px;
+            margin: 0;
+            padding: 0 0 20px;
+        }
+
+        .news-sub-tit {
+            margin: 0;
+            padding: 0 0 20px;
+        }
 
     }
 }
