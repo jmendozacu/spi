@@ -1,0 +1,299 @@
+<style xml="space"><!--
+/*
+====================
+Global styles
+====================
+*/
+.txt-teal {
+    color: #3ac1cc;
+}
+.pg-title {
+    font-family: 'ProximaNova','Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-weight: 900;
+    color: #74706d;
+    font-size: 8rem;
+}
+.pg-title.txt-teal {
+    color: #3ac1cc;
+}
+.footer .newsletter {
+    display: none;
+}
+/*
+====================
+Heading / Main Img
+====================
+*/
+.pg-title:first-child {
+    margin-bottom: -50px;
+}
+.pg-title:nth-child(2) {
+    margin-left: 50px;
+}
+.pg-title:nth-child(3) {
+    margin-top: -50px;
+}
+.newsletter-pg {
+    position: relative;
+    height: 123vh;
+    background: url(https://i.infinityscrubs.com/infinity/images/newsletter/newsletter-bg.png) no-repeat center top;
+    background-size: cover;
+}
+.newsletter-pg img {
+    max-width: 95%;
+    width: 100%;
+    margin: 0 0 0 auto;
+    display: block;
+}
+/*
+====================
+Signup Box / Content
+====================
+*/
+.signup-box {
+    max-width: 33%;
+    min-width: 500px;
+    width: 100%;
+    background: rgba(255,255,255, 0.75);
+    position: absolute;
+    top: 0;
+    left: 12%;
+    padding-top: 60px;
+}
+.signup-inner {
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 0 0 50px;
+}
+.signup-inner p {
+    color: #000000;
+    font-size: 2.3rem;
+}
+.newsletter-pg .actions p {
+    color: #8a8a8a;
+    font-size: 2rem;
+    text-align: center;
+    max-width: 80%;
+    display: block;
+    margin: 15px auto 0;
+}
+.actions p:nth-child(2) {
+    color: #000000;
+}
+/*
+====================
+Input / Input Bars
+====================
+*/
+.bar  { position:relative; display:block; width:100%; }
+.bar:before, .bar:after   {
+    content:'';
+    height:2px;
+    width:0;
+    bottom: 0;
+    position:absolute;
+    background:#3ac1cc;
+    transition:0.2s ease all;
+    -moz-transition:0.2s ease all;
+    -webkit-transition:0.2s ease all;
+}
+.bar:before {
+    left:50%;
+}
+.bar:after {
+    right:50%;
+}
+.highlight {
+    position:absolute;
+    height:60%;
+    width:100px;
+    top:25%;
+    left:0;
+    pointer-events:none;
+    opacity:0.5;
+}
+#newsletter-3 {
+    font-size:18px;
+    padding:10px 10px 10px 5px;
+    display:block;
+    width: 100%;
+    border:none;
+    border-bottom: 2px solid #8a8a8a;
+    background: transparent;
+}
+#newsletter-3:focus{ outline:none; }
+/* active state */
+#newsletter-3:focus ~ .bar:before, input:focus ~ .bar:after {
+    width:50%;
+}
+#newsletter-3:focus ~ .highlight {
+    -webkit-animation:inputHighlighter 0.3s ease;
+    -moz-animation:inputHighlighter 0.3s ease;
+    animation:inputHighlighter 0.3s ease;
+}
+.newsletter-pg .control {
+    margin-bottom: 30px;
+}
+/*
+====================
+Buttons
+====================
+*/
+button.action.subscribe.teal {
+    background: #3bc1cc;
+    color: #fff;
+    font-family: 'ProximaNova', Helvetica, Arial, sans-serif;
+    font-size: 2rem;
+    padding: 30px 50px;
+    display: block;
+    margin: 0 auto;
+}
+/*
+====================
+Input Animations
+====================
+*/
+@-webkit-keyframes inputHighlighter {
+    from { background:#3ac1cc; }
+    to  { width:0; background:transparent; }
+}
+@-moz-keyframes inputHighlighter {
+    from { background:#3ac1cc; }
+    to  { width:0; background:transparent; }
+}
+@keyframes inputHighlighter {
+    from { background:#3ac1cc; }
+    to  { width:0; background:transparent; }
+}
+/*
+====================
+Media Breakpoints
+====================
+*/
+@media screen and (max-width: 768px) {
+    .newsletter-pg {
+        background-size: contain;
+        background-position: top;
+        height: auto;
+        padding-top: 35%;
+    }
+    .newsletter-pg .actions p {
+        font-size: 16px;
+    }
+    .signup-box {
+        max-width: 80%;
+        min-width: initial;
+        position: relative;
+        display: block;
+        margin: 0 auto;
+        top: auto;
+        left: auto;
+        padding-top: 20px;
+    }
+    .signup-inner {
+        padding: 0;
+    }
+    .signup-inner p {
+        font-size: 2rem;
+    }
+    .pg-title {
+        font-size: 8vw;
+    }
+    .pg-title:first-child {
+        margin-bottom: -8%;
+    }
+    .pg-title:nth-child(2) {
+        margin-left: 8%;
+    }
+    .pg-title:nth-child(3) {
+        margin-top: -8%;
+    }
+    button.action.subscribe.teal {
+        width: 100%;
+    }
+
+}
+@media screen and (max-width: 425px) {
+    button.action.subscribe.teal {
+        font-size: 1.5rem;
+    }
+    .signup-inner p,
+    .newsletter-pg .actions p {
+        font-size: 1.6rem;
+    }
+}
+--></style>
+<div class="newsletter-pg"><!-- <img src="https://i.infinityscrubs.com/infinity/images/newsletter/newsletter-bg.png" alt="Newsletter Background"> -->
+    <div class="signup-box">
+        <div class="signup-inner">
+            <div class="txt-teal pg-title">Join Us.</div>
+            <div class="pg-title">Subscribe</div>
+            <div class="txt-teal pg-title">Today.</div>
+            <p>Get a first look at new arrivals, exclusive collections and style inspiration. Join the ultimate scrubs community. With Infinity, the possibilities for fashion and comfort are endless. There are so many ways to shop Infinity. Local and online. We believe in local business.  We believe in touching and feeling great products and trying them on. Infinity is your story. Welcome to Infinity.</p>
+            <div class="field newsletter-container">
+                <div class="control"><input id="newsletter-3" class="email" name="email" type="email" placeholder="enter email" data-validate="{required:true, 'validate-email':true}" /> <span class="highlight"></span> <span class="bar"></span></div>
+            </div>
+            <div class="actions"><button class="action subscribe teal" title="Subscribe" type="submit"> <span>Sign up Today</span> </button>
+                <p>By signing up, you agree to Infinity’s <a href="https://mcstaging.infinityscrubs.com/privacy-policy">Privacy Policy</a> and <a href="https://mcstaging.infinityscrubs.com/term-of-use">Terms of Use</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+<p>
+    <script type="text/javascript" xml="space">// <![CDATA[
+    (function () {
+        require(["jquery"], function ($) {
+            $(document).ready(function () {
+                function emailValidation(email) {
+                    var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+                    return regex.test(email);
+                }
+
+                $('.action.subscribe.teal').on('click', function() {
+                    var messageHTML = '',
+                        newsletterVal = $('#newsletter-3').val(),
+                        postURL = 'https://spi-functions.azurewebsites.net/api/InfinitySalesForceNewsletterSignUp';
+
+                    if (newsletterVal.length > 5 && emailValidation(newsletterVal)) {
+                        imgPath = 'https://app.bronto.com/public/?q=direct_add&fn=Public_DirectAddForm&id=bchvssyhsxzpaymxatxcjqxxqepvbdk&email=' + encodeURIComponent(newsletterVal) + '&list1=0bd703ec00000000000000000000001a6e62';
+                        jQuery('<img src="' + imgPath + '">').load(function () {
+                            jQuery(this).css('display', 'none').appendTo('body');
+                        });
+
+                        $.ajax({
+                            url: postURL,
+                            data: JSON.stringify({
+                                'source': 'InfinityWeb_subscriber',
+                                'emailAddress': newsletterVal
+                            }),
+                            type: 'POST',
+                            contentType: 'application/json;charset=utf-8',
+                            success: function(data) {
+                                jQuery('button.action.subscribe.teal').fadeOut();
+                                jQuery('#newsletter-3').fadeOut();
+                                jQuery('<p>Thank you. You\'re signed up!</p>').insertBefore('.actions p');
+                            },
+                            error: function(err) {console.log('Error occured:', err)}
+                        });
+
+                        // messageHTML += '<div role="alert" data-bind="foreach: { data. messages().messages, as: \'message\' }" class="messages">';
+                        // messageHTML += '<div data-bind="attr: { class: \'message-\' + message.type + \' \' + message.type + \' message\', \'data-ui-id\': \'message-\' + message.type }" class="message-success success message" data-ui-id="message-success"> <div data-bind="html: message.text">Thank you. You will receive your account confirmation shortly.</div></div>';
+                    } else if (newsletterVal.length <= 5) {
+                        messageHTML += '<div role="alert" data-bind="foreach: { data. messages().messages, as: \'message\' }" class="messages">';
+                        messageHTML += '<div data-bind="attr: { class: \'message-\' + message.type + \' \' + message.type + \' message\', \'data-ui-id\': \'message-\' + message.type }" class="message-error error message" data-ui-id="message-error"> <div data-bind="html: message.text">Email cannot be less than 5 characters. Please try again.</div></div>';
+                        jQuery('.page.messages').html(messageHTML);
+                        jQuery("html, body").animate({scrollTop: 0}, 'slow');
+                    } else if (!emailValidation(newsletterVal)) {
+                        messageHTML += '<div role="alert" data-bind="foreach: { data. messages().messages, as: \'message\' }" class="messages">';
+                        messageHTML += '<div data-bind="attr: { class: \'message-\' + message.type + \' \' + message.type + \' message\', \'data-ui-id\': \'message-\' + message.type }" class="message-error error message" data-ui-id="message-error"> <div data-bind="html: message.text">Email format is invalid. Please try again.</div></div>';
+                        jQuery('.page.messages').html(messageHTML);
+                        jQuery("html, body").animate({scrollTop: 0}, 'slow');
+                    }
+
+                    $('#newsletter-3').val('');
+                });
+            });
+        });
+    })();
+    // ]]></script>
+</p>
