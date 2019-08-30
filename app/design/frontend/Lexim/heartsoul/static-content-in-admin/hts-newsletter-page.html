@@ -30,7 +30,10 @@
 
                 $('.action.subscribe').on('click', function () {
                     var messageHTML = '',
+                        newsletterFirstName = $('#newsletter-1').val(),
+                        newsletterLastName = $('#newsletter2').val(),
                         newsletterVal = $('#newsletter-3').val(),
+
                         postURL = 'https://spi-functions.azurewebsites.net/api/InfinitySalesForceNewsletterSignUp';
 
                     if (newsletterVal.length > 5 && emailValidation(newsletterVal)) {
@@ -43,6 +46,8 @@
                             url: postURL,
                             data: JSON.stringify({
                                 'source': 'InfinityWeb_subscriber',
+                                'firstName': newsletterFirstName,
+                                'lastName': newsletterLastName,
                                 'emailAddress': newsletterVal
                             }),
                             type: 'POST',
