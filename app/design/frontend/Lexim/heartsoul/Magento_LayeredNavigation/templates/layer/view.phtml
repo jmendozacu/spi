@@ -122,6 +122,10 @@ if ($parentCatKey === 'katie-duke') {
                         $filterNameLower = strtolower($filterName);
                         $attributeCode = $filter->getRequestVar();
 
+                        if ($attributeCode === 'is_manufacturer_color') {
+                            continue;
+                        }
+
                         if ($filterName != "Category") {
                             $off = ($curCatName === 'bottoms' && $filterNameLower === 'fit') ? 'on' : '';
 

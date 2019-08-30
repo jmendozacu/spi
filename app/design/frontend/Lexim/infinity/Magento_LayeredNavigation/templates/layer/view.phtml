@@ -118,6 +118,10 @@ if ($parentCatKey === 'katie-duke') {
                         $filterNameLower = strtolower($filterName);
                         $attributeCode = $filter->getRequestVar();
 
+                        if ($attributeCode === 'hts_swatch') {
+                            continue;
+                        }
+
                         if ($filterName != "Category") {
                             $off = ($curCatName === 'bottoms' && $filterNameLower === 'fit') ? 'on' : '';
 
