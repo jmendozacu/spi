@@ -5,10 +5,20 @@
 //    $_SERVER["MAGE_RUN_CODE"] = "default";
 //    $_SERVER["MAGE_RUN_TYPE"] = "store";
 //}
+
+<?php
 function isHttpHost($host)
 {
     if (!isset($_SERVER['HTTP_HOST'])) {
-        return false;
+    return false;
     }
-    return strpos(str_replace('---', '.', $_SERVER['HTTP_HOST']), $host) === 0;
+    return $_SERVER['HTTP_HOST'] ===  $host;
+}
+
+if (isHttpHost("heartsoulscrubs.lexim.net")) {
+    $_SERVER["MAGE_RUN_CODE"] = "hts";
+    $_SERVER["MAGE_RUN_TYPE"] = "website";
+}elseif (isHttpHost("infinityscrubsv2.lexim.net")){
+    $_SERVER["MAGE_RUN_CODE"] = "base";
+    $_SERVER["MAGE_RUN_TYPE"] = "website";
 }
