@@ -136,9 +136,16 @@ if ($parentCatKey === 'katie-duke') {
                             } else if ($attributeCode === 'is_footwear_width') {
                                 continue;
                             }
+
+                            // show rise length for bottoms
+                            if ($attributeCode === 'is_apparel_rise_length') {
+                                if ($curCatName !== 'bottoms') {
+                                    continue;
+                                }
+                            }
                             ?>
 
-                            <!-- <?= $filterName ?> column -->
+                            <!-- <?= $filterName ?> column , <?= $attributeCode ?> -->
                             <div class="filter-options <?= $filterNameLower . ' ' . $off ?>" data-name="<?= $filterName ?>" data-old-name="<?= $oldName ?>">
                                 <?php /** if ($filter->getRequestVar() == 'cat'): ?>
                                  * <?php $categoryFilter = $filter; ?>
