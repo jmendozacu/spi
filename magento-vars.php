@@ -1,14 +1,16 @@
 <?php
-// enable, adjust and copy this code for each store you run
-// Store #0, default one
-//if (isHttpHost("example.com")) {
-//    $_SERVER["MAGE_RUN_CODE"] = "default";
-//    $_SERVER["MAGE_RUN_TYPE"] = "store";
-//}
 function isHttpHost($host)
 {
     if (!isset($_SERVER['HTTP_HOST'])) {
         return false;
     }
-    return strpos(str_replace('---', '.', $_SERVER['HTTP_HOST']), $host) === 0;
+    return $_SERVER['HTTP_HOST'] ===  $host;
+}
+
+if (isHttpHost("mcstaging.heartsoulscrubs.com" || "beta.heartsoulscrubs.com" || "heartsoulscrubs.com" )) {
+    $_SERVER["MAGE_RUN_CODE"] = "hts";
+    $_SERVER["MAGE_RUN_TYPE"] = "website";
+}elseif (isHttpHost("mcstaging.infinityscrubs.com" || "infinityscrubs.com")){
+    $_SERVER["MAGE_RUN_CODE"] = "base";
+    $_SERVER["MAGE_RUN_TYPE"] = "website";
 }
