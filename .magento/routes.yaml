@@ -4,8 +4,4 @@
 
 "http://{default}/":
     type: upstream
-    upstream: "mymagento:http"
-
-"http://beta.heartsoulscrubs.com/":
-    type: upstream
-    upstream: "mymagento:http"
+    upstream: "mymagento:php"
