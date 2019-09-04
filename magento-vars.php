@@ -7,10 +7,10 @@ function isHttpHost($host)
     return $_SERVER['HTTP_HOST'] ===  $host;
 }
 
-if (isHttpHost("mcstaging.heartsoulscrubs.com" || "beta.heartsoulscrubs.com" || "heartsoulscrubs.com" )) {
+if (isHttpHost("beta.heartsoulscrubs.com")) {
     $_SERVER["MAGE_RUN_CODE"] = "hts";
     $_SERVER["MAGE_RUN_TYPE"] = "website";
-}elseif (isHttpHost("mcstaging.infinityscrubs.com" || "infinityscrubs.com")){
+}elseif (isHttpHost("infinityscrubs.com")){
     $_SERVER["MAGE_RUN_CODE"] = "base";
     $_SERVER["MAGE_RUN_TYPE"] = "website";
 }
