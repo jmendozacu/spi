@@ -95,6 +95,7 @@
     -webkit-flex: 1;
     -ms-flex: 1;
     flex: 1;
+    max-width: 33.33%;
 }
 
 .swatch-option:not(.disabled):hover {
