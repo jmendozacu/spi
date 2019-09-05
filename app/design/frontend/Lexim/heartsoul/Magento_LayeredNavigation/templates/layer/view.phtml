@@ -64,6 +64,7 @@ if ($parentCatKey === 'katie-duke') {
                                     // if ($currentPage === 'catalogsearch_result_index') { // search page
 
                                     $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+                                    /** @var Magento\Catalog\Helper\Category $categoryHelper */
                                     $categoryHelper = $objectManager->get('\Magento\Catalog\Helper\Category');
                                     $categories = $categoryHelper->getStoreCategories();
 
@@ -73,8 +74,15 @@ if ($parentCatKey === 'katie-duke') {
                                         $parentCatName = $catItem->getName();
                                         $parentCategoryKey = $catItem->getUrlKey();
 
+                                        if (!$parentCategoryKey || $parentCategoryKey === '') {
+                                            /** @var Magento\Catalog\Model\Category $categoryModel */
+                                            $categoryModel = $objectManager->create('\Magento\Catalog\Model\Category')->load($parentId);
+                                            $parentCategoryKey = $categoryModel->getUrlKey();
+                                        }
+
                                         $selected = $parentCategoryKey === $curCatKey ? 'selected' : '';
 
+                                        echo '<!-- 1 ' . $parentCategoryKey . " 2 " . $curCatKey . ' 2 -->';
                                         // parent cat
                                         printf('<a href="javascript:void(0)" data-label="%s" data-cat-key="%s" data-type="cat" data-value="%s" class="swatch-option-a category %s"><div class="swatch-option text">%s</div></a>', $parentCatName, $parentCategoryKey, $parentId, $selected, $parentCatName);
 
