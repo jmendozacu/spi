@@ -9,11 +9,22 @@
 
 <?php /** @var $block \Magento\Swatches\Block\Product\Renderer\Configurable */
 
+/** @var BinaryAnvil\SizeChart\Helper\Image $helper */
 $helper = $this->helper('BinaryAnvil\SizeChart\Helper\Image');
 $attributeName = $helper->showInAttribute();
 
 $product = $block->getProduct();
 $curCat = $product->getCategory();
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+/** @var Magento\Catalog\Model\Product $_product */
+$_product = $objectManager->create('\Magento\Catalog\Model\Product')->load($product->getId());
+
+$catIds = $_product->getCategoryIds();
+$catId = reset($catIds);
+if ($catId) {
+    $curCat = $helper->getCategoryById($catId);
+}
 
 ?>
 <div class="swatch-opt" data-role="swatch-options"></div>
