@@ -97,6 +97,7 @@ define([
 
         let quoteCartId = $('#checkout').prop('data-quote-id');
         if (quoteCartId && quoteCartId > 0) {
+            console.log(quoteCartId);
             $.ajax({
                 url: postURL,
                 data: {
@@ -106,7 +107,7 @@ define([
                 type: 'POST',
                 dataType: 'json',
                 beforeSend: function () {
-                    // show some loading icon
+                    console.log("abadoncart heartsoulscrubs api");
                 },
                 success: function (data) {
                     console.log(data);
