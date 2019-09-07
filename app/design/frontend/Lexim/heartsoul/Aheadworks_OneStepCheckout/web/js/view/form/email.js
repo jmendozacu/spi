@@ -95,9 +95,9 @@ define([
         // Production https://checkoutcarteventregistration.azurewebsites.net/api/v1/eventregistration
         // QA https://checkoutcarteventregistration-qa.azurewebsites.net/api/v1/eventregistration
 
-        let quoteCartId = $('#checkout').prop('data-quote-id');
+        let quoteCartId = $('#checkout').attr('data-quote-id');
+        console.log(quoteCartId);
         if (quoteCartId && quoteCartId > 0) {
-            console.log(quoteCartId);
             $.ajax({
                 url: postURL,
                 data: {
