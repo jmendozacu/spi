@@ -21,7 +21,7 @@ define([
 
         var modalWindow = $(config.NewsletterSignUp),
             popup = modal(options, modalWindow),
-            postURL = 'https://spi-functions.azurewebsites.net/api/InfinitySalesForceNewsletterSignUp';
+            postURL = 'https://infinitynewsletter.azurewebsites.net/api/v1/signup'; // prodcution
 
         $(".header-newsletter a").on('click',function(e){
             console.log("click");
@@ -30,7 +30,7 @@ define([
         });
 
         if (window.location.href.indexOf('local') > -1 || window.location.href.indexOf('mcstaging') > -1) {
-            postURL = 'https://spi-functions-dev.azurewebsites.net/api/InfinitySalesForceNewsletterSignUp';
+            postURL = 'https://infinitynewsletter-qa.azurewebsites.net/api/v1/signup'; // QA
         }
 
         $(config.FormClass).submit(function (e) {

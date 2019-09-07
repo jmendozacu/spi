@@ -34,7 +34,7 @@
                         newsletterLastName = $('#newsletter2').val(),
                         newsletterVal = $('#newsletter-3').val(),
 
-                        postURL = 'https://spi-functions.azurewebsites.net/api/InfinitySalesForceNewsletterSignUp';
+                        postURL = 'https://heartsoulnewsletter.azurewebsites.net/api/v1/signup';
 
                     if (newsletterVal.length > 5 && emailValidation(newsletterVal)) {
                         imgPath = 'https://app.bronto.com/public/?q=direct_add&fn=Public_DirectAddForm&id=bchvssyhsxzpaymxatxcjqxxqepvbdk&email=' + encodeURIComponent(newsletterVal) + '&list1=0bd703ec00000000000000000000001a6e62';
@@ -45,10 +45,10 @@
                         $.ajax({
                             url: postURL,
                             data: JSON.stringify({
-                                'source': 'InfinityWeb_subscriber',
+                                // 'source': 'InfinityWeb_subscriber',
+                                'emailAddress': newsletterVal,
                                 'firstName': newsletterFirstName,
                                 'lastName': newsletterLastName,
-                                'emailAddress': newsletterVal
                             }),
                             type: 'POST',
                             contentType: 'application/json;charset=utf-8',

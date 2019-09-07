@@ -223,7 +223,8 @@ Media Breakpoints
     }
 }
 --></style>
-<div class="newsletter-pg"><!-- <img src="https://i.infinityscrubs.com/infinity/images/newsletter/newsletter-bg.png" alt="Newsletter Background"> -->
+<div class="newsletter-pg">
+    <!-- <img src="https://i.infinityscrubs.com/infinity/images/newsletter/newsletter-bg.png" alt="Newsletter Background"> -->
     <div class="signup-box">
         <div class="signup-inner">
             <div class="txt-teal pg-title">Join Us.</div>
@@ -252,7 +253,7 @@ Media Breakpoints
                 $('.action.subscribe.teal').on('click', function() {
                     var messageHTML = '',
                         newsletterVal = $('#newsletter-3').val(),
-                        postURL = 'https://spi-functions.azurewebsites.net/api/InfinitySalesForceNewsletterSignUp';
+                        postURL = 'https://infinitynewsletter.azurewebsites.net/api/v1/signup';
 
                     if (newsletterVal.length > 5 && emailValidation(newsletterVal)) {
                         imgPath = 'https://app.bronto.com/public/?q=direct_add&fn=Public_DirectAddForm&id=bchvssyhsxzpaymxatxcjqxxqepvbdk&email=' + encodeURIComponent(newsletterVal) + '&list1=0bd703ec00000000000000000000001a6e62';
@@ -263,7 +264,7 @@ Media Breakpoints
                         $.ajax({
                             url: postURL,
                             data: JSON.stringify({
-                                'source': 'InfinityWeb_subscriber',
+                                // 'source': 'InfinityWeb_subscriber',
                                 'emailAddress': newsletterVal
                             }),
                             type: 'POST',

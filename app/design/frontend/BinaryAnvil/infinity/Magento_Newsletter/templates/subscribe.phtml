@@ -79,10 +79,10 @@
                     
                     var messageHTML = '',
                         newsletterVal = $('#newsletter').val(),
-                        postURL = 'https://spi-functions.azurewebsites.net/api/InfinitySalesForceNewsletterSignUp';
+                        postURL = 'https://infinitynewsletter.azurewebsites.net/api/v1/signup';
 
                     if (window.location.href.indexOf('local') > -1 || window.location.href.indexOf('mcstaging') > -1) {
-                        postURL = 'https://spi-functions-dev.azurewebsites.net/api/InfinitySalesForceNewsletterSignUp';
+                        postURL = 'https://infinitynewsletter-qa.azurewebsites.net/api/v1/signup';
                     }
 
                     if (newsletterVal.length > 5 && emailValidation(newsletterVal)) {
@@ -90,7 +90,7 @@
                         $.ajax({
                             url: postURL,
                             data: JSON.stringify({
-                                'source': 'InfinityWeb_subscriber',
+                                // 'source': 'InfinityWeb_subscriber',
                                 'emailAddress': newsletterVal
                             }),
                             type: 'POST',
