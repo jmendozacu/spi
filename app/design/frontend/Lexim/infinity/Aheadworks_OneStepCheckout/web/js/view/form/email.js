@@ -95,25 +95,28 @@ define([
         // Production https://checkoutcarteventregistration.azurewebsites.net/api/v1/eventregistration
         // QA https://checkoutcarteventregistration-qa.azurewebsites.net/api/v1/eventregistration
 
-        $.ajax({
-            url: postURL,
-            data: {
-                cartId: 1776,
-                source: 'infinityscrubs' // "infinityscrubs" or "heartsoulscrubs"
-            },
-            type: 'POST',
-            dataType: 'json',
-            beforeSend: function () {
-                // show some loading icon
-            },
-            success: function (data) {
-                console.log(data);
-            },
-            error: function (xhr, status, errorThrown) {
-                console.log('Error happens. Try again.');
-                console.log(errorThrown);
-            }
-        });
+        let quoteCartId = $('#checkout').prop('data-quote-id');
+        if (quoteCartId && quoteCartId > 0) {
+            $.ajax({
+                url: postURL,
+                data: {
+                    cartId: quoteCartId,
+                    source: 'infinityscrubs' // "infinityscrubs" or "heartsoulscrubs"
+                },
+                type: 'POST',
+                dataType: 'json',
+                beforeSend: function () {
+                    // show some loading icon
+                },
+                success: function (data) {
+                    console.log(data);
+                },
+                error: function (xhr, status, errorThrown) {
+                    console.log('Error happens. Try again.');
+                    console.log(errorThrown);
+                }
+            });
+        }
     }
 
     /**
