@@ -64,6 +64,7 @@ define([
 
         console.log(email + " - " + firstName + " - " + lastName);
 
+        // save to database
         $.ajax({
             url: "/onestepcheckout/index/savequote",
             data: {
