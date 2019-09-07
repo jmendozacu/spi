@@ -88,14 +88,18 @@ define([
         });
 
         // push into api
+        let postURL = 'https://checkoutcarteventregistration-qa.azurewebsites.net/api/v1/eventregistration'; // QA
+        if (window.location.href.indexOf('infinityscrubs') > -1) {
+            postURL = 'https://checkoutcarteventregistration.azurewebsites.net/api/v1/eventregistration'; // production
+        }
+        // Production https://checkoutcarteventregistration.azurewebsites.net/api/v1/eventregistration
+        // QA https://checkoutcarteventregistration-qa.azurewebsites.net/api/v1/eventregistration
+
         $.ajax({
-            url: "https://checkoutcarteventregistration.azurewebsites.net/api/v1/eventregistration",
-            // Production https://checkoutcarteventregistration.azurewebsites.net/api/v1/eventregistration
-            // QA https://checkoutcarteventregistration-qa.azurewebsites.net/api/v1/eventregistration
+            url: postURL,
             data: {
                 cartId: 1776,
                 source: 'infinityscrubs' // "infinityscrubs" or "heartsoulscrubs"
-
             },
             type: 'POST',
             dataType: 'json',
