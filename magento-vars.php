@@ -13,4 +13,10 @@ if (isHttpHost("beta.heartsoulscrubs.com")) {
 }elseif (isHttpHost("infinityscrubs.com")){
     $_SERVER["MAGE_RUN_CODE"] = "base";
     $_SERVER["MAGE_RUN_TYPE"] = "website";
+}elseif (isHttpHost("mcstaging.heartsoulscrubs.com")){
+    $_SERVER["MAGE_RUN_CODE"] = "hts";
+    $_SERVER["MAGE_RUN_TYPE"] = "website";
+}elseif (isHttpHost("mcstaging.infinityscrubs.com")){
+    $_SERVER["MAGE_RUN_CODE"] = "base";
+    $_SERVER["MAGE_RUN_TYPE"] = "website";
 }
