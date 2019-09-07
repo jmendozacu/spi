@@ -1770,7 +1770,7 @@
                         .defaul-shipping::before {
                             font-family: "FontAwesomePro", FontAwesome, sans-serif;
                             content: '\f00c';
-                            color: #000;
+                            color: #000000;
                             font-weight: bold;
                             padding: 10px 5px 0 0;
                         }
@@ -1821,7 +1821,7 @@
                                 label::before {
                                     font-family: "FontAwesomePro", FontAwesome, sans-serif;
                                     content: '\f00c';
-                                    color: #000;
+                                    color: #000000;
                                     font-weight: bold;
                                     padding-right: 5px;
                                 }
@@ -2402,6 +2402,8 @@
         }
 
         .block-dashboard-orders {
+            .flex(100%);
+
             .block-title.order {
                 strong {
 
@@ -2472,7 +2474,9 @@
             display: -ms-flexbox;
             display: -webkit-flex;
             display: flex;
+            -webkit-justify-content: space-around;
             justify-content: space-around;
+            .flex-wrap(wrap);
 
             .container-box {
                 -webkit-box-flex: 0;
@@ -3436,7 +3440,7 @@
                         .defaul-shipping::before {
                             font-family: "FontAwesomePro", FontAwesome, sans-serif;
                             content: '\f00c';
-                            color: #000;
+                            color: #000000;
                             font-weight: bold;
                             padding-right: 5px;
                         }
@@ -3499,7 +3503,7 @@
                                 label::before {
                                     font-family: "FontAwesomePro", FontAwesome, sans-serif;
                                     content: '\f00c';
-                                    color: #000;
+                                    color: #000000;
                                     font-weight: bold;
                                     padding-right: 5px;
                                 }
@@ -3824,6 +3828,7 @@
         .fieldset.address-information {
             margin-bottom: 20px;
         }
+
         .actions-toolbar {
             .secondary {
                 .action.back {
