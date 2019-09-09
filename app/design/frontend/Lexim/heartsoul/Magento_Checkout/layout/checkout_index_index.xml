@@ -115,17 +115,17 @@
                                                     <item name="children" xsi:type="array">
                                                         <item name="subtotal" xsi:type="array">
                                                             <item name="config" xsi:type="array">
-                                                                <item name="title" xsi:type="string" translate="true">Subtotal</item>
+                                                                <item name="title" xsi:type="string" translate="true">subtotal</item>
                                                             </item>
                                                         </item>
                                                         <item name="shipping" xsi:type="array">
                                                             <item name="config" xsi:type="array">
-                                                                <item name="title" xsi:type="string" translate="true">Shipping Method</item>
+                                                                <item name="title" xsi:type="string" translate="true">shipping method</item>
                                                             </item>
                                                         </item>
                                                         <item name="grand-total" xsi:type="array">
                                                             <item name="config" xsi:type="array">
-                                                                <item name="title" xsi:type="string" translate="true">Total</item>
+                                                                <item name="title" xsi:type="string" translate="true">total</item>
                                                             </item>
                                                         </item>
                                                     </item>

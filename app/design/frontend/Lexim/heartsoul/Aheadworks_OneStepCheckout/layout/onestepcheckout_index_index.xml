@@ -805,7 +805,7 @@
                                         <item name="children" xsi:type="array">
                                             <item name="subtotal" xsi:type="array">
                                                 <item name="config" xsi:type="array">
-                                                    <item name="title" xsi:type="string" translate="true">Subtotal</item>
+                                                    <item name="title" xsi:type="string" translate="true">subtotal</item>
                                                 </item>
                                             </item>
                                             <item name="shipping" xsi:type="array">

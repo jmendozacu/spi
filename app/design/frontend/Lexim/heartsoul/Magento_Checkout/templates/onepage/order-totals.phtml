@@ -13,13 +13,13 @@ $order = $orderHelper->getOrder();
             <tr class="totals sub">
                 <th class="mark" scope="row"><?= __('subtotal') ?></th>
                 <td class="amount">
-                    <span class="price" data-th="Subtotal"><?= $orderHelper->getFormatedPrice($order->getSubtotal()) ?></span>
+                    <span class="price" data-th="subtotal"><?= $orderHelper->getFormatedPrice($order->getSubtotal()) ?></span>
                 </td>
             </tr>
 
             <tr class="shipping-day">
                 <th class="mark" colspan="1" scope="row"><?= __('shipping method') ?></th>
-                <td class="amount" data-th="Shipping">
+                <td class="amount" data-th="shipping">
                     <span class="price"><?= $orderHelper->getFormatedPrice($order->getShippingAmount()) ?></span>
                 </td>
             </tr>
