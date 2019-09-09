@@ -41,36 +41,36 @@ $blockTotals = $objectManager->get('Magento\Sales\Block\Order\Totals');
 <?php if ($_orders && count($_orders)): ?>
     <div class="table-wrapper orders-history">
         <table class="data table table-order-items history" id="my-orders-table">
-            <caption class="table-caption"><?= /* @escapeNotVerified */ __('Orders') ?></caption>
+            <caption class="table-caption"><?= __('orders') ?></caption>
             <thead>
                 <tr>
-                    <th scope="col" class="col id"><?= /* @escapeNotVerified */ __('Order number') ?>:</th>
-                    <th scope="col" class="col date"><?= /* @escapeNotVerified */ __('Order date') ?>:</th>
-                    <?= /* @noEscape */ $block->getChildHtml('extra.column.header') ?>
-                    <th scope="col" class="col status"><?= /* @escapeNotVerified */ __('Orders status') ?>:</th>
-                    <th scope="col" class="col actions"><?= /* @escapeNotVerified */ __('Details') ?>:</th>
+                    <th scope="col" class="col id"><?= __('order number') ?>:</th>
+                    <th scope="col" class="col date"><?= __('order date') ?>:</th>
+                    <?= $block->getChildHtml('extra.column.header') ?>
+                    <th scope="col" class="col status"><?= __('orders status') ?>:</th>
+                    <th scope="col" class="col actions"><?= __('details') ?>:</th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($_orders as $_order): ?>
                     <tr>
                         <?php //TODO: change data format ?>
-                        <td data-th="<?= $block->escapeHtml(__('Order number')) ?>" class="col id"><span class="plus-open">+</span><span class="see-more">See more</span><span class="number-id"><?= /* @escapeNotVerified */ $_order->getRealOrderId() ?></span></td>
-                        <td data-th="<?= $block->escapeHtml(__('Order date')) ?>" class="col date"><?= /* @escapeNotVerified */ $block->formatDate($_order->getCreatedAt(), IntlDateFormatter::LONG) ?></td>
+                        <td data-th="<?= $block->escapeHtml(__('order number')) ?>" class="col id"><span class="plus-open">+</span><span class="see-more">see more</span><span class="number-id"><?= $_order->getRealOrderId() ?></span></td>
+                        <td data-th="<?= $block->escapeHtml(__('order date')) ?>" class="col date"><?= $block->formatDate($_order->getCreatedAt(), IntlDateFormatter::LONG) ?></td>
                         <?php $extra = $block->getChildBlock('extra.container'); ?>
                         <?php if ($extra): ?>
                             <?php $extra->setOrder($_order); ?>
-                            <?= /* @noEscape */ $extra->getChildHtml() ?>
+                            <?= $extra->getChildHtml() ?>
                         <?php endif; ?>
-                        <td data-th="<?= $block->escapeHtml(__('Orders status')) ?>" class="col status"><?= /* @escapeNotVerified */ $_order->getStatusLabel() ?></td>
-                        <td data-th="<?= $block->escapeHtml(__('Details')) ?>" class="col actions">
+                        <td data-th="<?= $block->escapeHtml(__('orders status')) ?>" class="col status"><?= $_order->getStatusLabel() ?></td>
+                        <td data-th="<?= $block->escapeHtml(__('details')) ?>" class="col actions">
                             
                             <?php if ($this->helper('Magento\Sales\Helper\Reorder')->canReorder($_order->getEntityId())) : ?>
-                                <a href="#" data-post='<?php /* @escapeNotVerified */ echo
+                                <a href="#" data-post='<?php echo
                                 $this->helper(\Magento\Framework\Data\Helper\PostHelper::class)
                                     ->getPostData($block->getReorderUrl($_order))
                                 ?>' class="action order">
-                                    <span><?= /* @escapeNotVerified */ __('Reorder') ?></span>
+                                    <span><?= __('reorder') ?></span>
                                 </a>
                             <?php endif ?>
                             <?php foreach ($_order->getShipmentsCollection() as $_shipment): ?>
@@ -78,7 +78,7 @@ $blockTotals = $objectManager->get('Magento\Sales\Block\Order\Totals');
                                 <?php  if ($tracks->count()): ?>
                                         <?php foreach ($tracks as $track): ?>
                                         <a href="#" class="action track track-order"
-                                            data-mage-init='{"popupWindow": {"windowURL":"<?= /* @escapeNotVerified */ $this->helper('Magento\Shipping\Helper\Data')->getTrackingPopupUrlBySalesModel($track) ?>","windowName":"trackorder","width":800,"height":600,"left":0,"top":0,"resizable":1,"scrollbars":1}}'><span><?= /* @escapeNotVerified */ __('Track Order') ?></span>
+                                            data-mage-init='{"popupWindow": {"windowURL":"<?= $this->helper('Magento\Shipping\Helper\Data')->getTrackingPopupUrlBySalesModel($track) ?>","windowName":"trackorder","width":800,"height":600,"left":0,"top":0,"resizable":1,"scrollbars":1}}'><span><?= __('track order') ?></span>
                                             </a>
                                         <?php endforeach; ?>
                                 <?php  endif; ?>
@@ -89,7 +89,7 @@ $blockTotals = $objectManager->get('Magento\Sales\Block\Order\Totals');
                         <td></td>
                         <td colspan="3" class="content">
                             <div class="section-details details">
-                                <div class="title"><?= /* @escapeNotVerified */ __('Item description') ?></div>
+                                <div class="title"><?= __('item description') ?></div>
                                 <div class="content-details">
                                     <ol>
                                     <?php 
@@ -106,14 +106,14 @@ $blockTotals = $objectManager->get('Magento\Sales\Block\Order\Totals');
                                             </div>
                                             <div class="box-conten">
                                                 <p><?= $_item['name']; ?></p>
-                                                <p class="sku-item"><?= /* @escapeNotVerified */ __('Sku') ?>: <?= $_item->getSku(); ?></p>
+                                                <p class="sku-item"><?= __('sku') ?>: <?= $_item->getSku(); ?></p>
                                                 <p class="price-item"><?=$currencysbol; ?><?= round($_item['price'], 2); ?></p>
                                                 <?php 
                                                 $getOptions =  $_item['product_options']['attributes_info']; 
                                                 foreach($getOptions as $keys ) {?>
                                                 <p class="option-product"><span><?= $keys['label']; ?>: </span><span><?= $keys['value']; ?></span></p>
                                                <?php } ?>
-                                                <p class="quantity-item"><?= /* @escapeNotVerified */ __('Quantity') ?>: <?= intval($_item->getQtyOrdered());?></p>
+                                                <p class="quantity-item"><?= __('quantity') ?>: <?= intval($_item->getQtyOrdered());?></p>
                                             </div>
                                         </li>
                                     <?php  } ?>
@@ -121,19 +121,19 @@ $blockTotals = $objectManager->get('Magento\Sales\Block\Order\Totals');
                                 </div>
                             </div>
                             <div class="section-details">
-                                <div class="title"><?= /* @escapeNotVerified */ __('Delivery') ?></div>
+                                <div class="title"><?= __('delivery') ?></div>
                                 <div class="content-details-shipping">
                                     <span>
                                     <?php if ($order->getShippingDescription()): ?>
                                         <?= $blockInfo->escapeHtml($order->getShippingDescription()) ?>
                                     <?php else: ?>
-                                        <?= /* @escapeNotVerified */ __('No shipping information available') ?>
+                                        <?= __('no shipping information available') ?>
                                     <?php endif; ?>
                                     </span>
                                 </div>
                             </div>
                             <div class="section-details">
-                                <div class="title"><?= /* @escapeNotVerified */ __('Payment method') ?></div>
+                                <div class="title"><?= __('payment method') ?></div>
                                 <div class="content-details-method">
                                     <span><?php $payment = $order->getPayment();
                                     echo $payment->getAdditionalInformation()['method_title'];?></span>
@@ -141,25 +141,25 @@ $blockTotals = $objectManager->get('Magento\Sales\Block\Order\Totals');
                             </div>
                             <div class="address-order">
                                 <div class="section-details">
-                                    <div class="title"><?= /* @escapeNotVerified */ __('Shipping address') ?></div>
+                                    <div class="title"><?= __('shipping address') ?></div>
                                     <div class="content-details-method">
-                                        <address><?= /* @escapeNotVerified */ $blockInfo->getFormattedAddress($order->getShippingAddress()) ?></address>
+                                        <address><?= $blockInfo->getFormattedAddress($order->getShippingAddress()) ?></address>
                                     </div>
                                 </div>
                                 <div class="section-details">
-                                    <div class="title"><?= /* @escapeNotVerified */ __('Billing address') ?></div>
+                                    <div class="title"><?= __('billing address') ?></div>
                                     <div class="content-details-method">
-                                        <address><?= /* @escapeNotVerified */ $blockInfo->getFormattedAddress($order->getBillingAddress()) ?></address>
+                                        <address><?= $blockInfo->getFormattedAddress($order->getBillingAddress()) ?></address>
                                     </div>
                                 </div>
                             </div>
                             <div class="section-details">
-                                <div class="title"><?= /* @escapeNotVerified */ __('Order summary') ?></div>
+                                <div class="title"><?= __('order summary') ?></div>
                                 <div class="content-details-summary">
-                                     <p class="price-product"><span class="label"><?= /* @escapeNotVerified */ __('Subtotal') ?></span><span class="value"><?=$currencysbol; ?><?= round($order->getSubtotal(), 2); ?></span></p>
-                                     <p class="price-product"><span class="label"><?= /* @escapeNotVerified */ __('Shipping') ?></span><span class="value"><?=$currencysbol; ?><?= round($order->getShippingAmount(), 2); ?></span></p>
-                                     <p class="price-product"><span class="label"><?= /* @escapeNotVerified */ __('Tax') ?></span><span class="value"><?=$currencysbol; ?><?= round($order->getTaxAmount(), 2); ?></span></p>
-                                     <p class="price-product total"><span class="label"><?= /* @escapeNotVerified */ __('Total') ?></span><span class="value"><?=$currencysbol; ?><?= round($order->getGrandTotal(), 2); ?></span></p>
+                                     <p class="price-product"><span class="label"><?= __('subtotal') ?></span><span class="value"><?=$currencysbol; ?><?= round($order->getSubtotal(), 2); ?></span></p>
+                                     <p class="price-product"><span class="label"><?= __('shipping') ?></span><span class="value"><?=$currencysbol; ?><?= round($order->getShippingAmount(), 2); ?></span></p>
+                                     <p class="price-product"><span class="label"><?= __('tax') ?></span><span class="value"><?=$currencysbol; ?><?= round($order->getTaxAmount(), 2); ?></span></p>
+                                     <p class="price-product total"><span class="label"><?= __('total') ?></span><span class="value"><?=$currencysbol; ?><?= round($order->getGrandTotal(), 2); ?></span></p>
                                 </div>
                             </div>
                         </td>
@@ -172,7 +172,7 @@ $blockTotals = $objectManager->get('Magento\Sales\Block\Order\Totals');
         <div class="order-products-toolbar toolbar bottom"><?= $block->getPagerHtml() ?></div>
     <?php endif ?>
 <?php else: ?>
-    <div class="message info empty"><span><?= /* @escapeNotVerified */ __('You have placed no orders.') ?></span></div>
+    <div class="message info empty"><span><?= __('you have placed no orders.') ?></span></div>
 <?php endif ?>
 <script>
     require(['jquery'], function ($) {

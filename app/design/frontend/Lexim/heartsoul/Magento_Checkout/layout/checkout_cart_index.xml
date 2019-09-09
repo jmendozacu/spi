@@ -8,14 +8,14 @@
         <!-- Rename title -->
         <referenceBlock name="page.main.title">
             <action method="setPageTitle">
-                <argument translate="true" name="title" xsi:type="string">My Shopping Bag</argument>
+                <argument translate="true" name="title" xsi:type="string">my shopping bag</argument>
             </action>
         </referenceBlock>
 
         <!-- Rename summary title -->
         <referenceBlock name="checkout.cart.summary.title">
             <arguments>
-                <argument translate="true" name="text" xsi:type="string">Summary</argument>
+                <argument translate="true" name="text" xsi:type="string">summary</argument>
             </arguments>
         </referenceBlock>
 

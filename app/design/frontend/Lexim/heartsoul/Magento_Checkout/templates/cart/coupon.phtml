@@ -10,7 +10,7 @@
 <div class="block discount" id="block-discount"
      data-mage-init22='{"collapsible":{"openedState": "active", "saveState": false}}'>
     <div class="title" data-role="title">
-        <strong id="block-discount-heading" role="heading" aria-level="2">ADD PROMO CODE </strong>(optional)
+        <strong id="block-discount-heading" role="heading" aria-level="2">add promo code </strong>(optional)
     </div>
     <div class="content" data-role="content" aria-labelledby="block-discount-heading">
         <form id="discount-coupon-form"
@@ -23,7 +23,7 @@
             <div class="fieldset coupon<?= strlen($block->getCouponCode()) ? ' applied' : '' ?>">
                 <input type="hidden" name="remove" id="remove-coupon" value="0"/>
                 <div class="field">
-                    <label for="coupon_code" class="label"><span><?= __('Enter discount code') ?></span></label>
+                    <label for="coupon_code" class="label"><span><?= __('enter discount code') ?></span></label>
                     <div class="control">
                         <input type="text" class="input-text" id="coupon_code" name="coupon_code"
                                value="<?= $block->escapeHtml($block->getCouponCode()) ?>"
@@ -34,13 +34,13 @@
                     <?php if (!strlen($block->getCouponCode())): ?>
                         <div class="primary">
                             <button class="action apply primary" type="button" value="<?= __('Apply') ?>">
-                                <span><?= __('Apply Code') ?></span>
+                                <span><?= __('apply code') ?></span>
                             </button>
                         </div>
                     <?php else: ?>
                         <div class="primary">
                             <button type="button" class="action cancel primary" value="<?= __('Cancel Coupon') ?>">
-                                <span><?= __('Cancel Coupon') ?></span></button>
+                                <span><?= __('cancel coupon') ?></span></button>
                         </div>
                     <?php endif; ?>
                 </div>
