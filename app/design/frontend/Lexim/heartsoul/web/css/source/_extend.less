@@ -1,14 +1,20 @@
-
 @import '_variables_extend.less';
 @import '_components_extend.less';
 @import 'slick.less';
 @import 'slick-theme.less';
-
 
 & when (@media-common = true) {
 
     .message.success {
         background: #f3f3f3;
         color: #cf4986;
+
+        > *:first-child:before {
+            color: #cf4986;
+        }
+
+        a, a:active, a:hover {
+            color: #cf4986;
+        }
     }
 }
