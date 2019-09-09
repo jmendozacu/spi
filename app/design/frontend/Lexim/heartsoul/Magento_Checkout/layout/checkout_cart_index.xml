@@ -95,8 +95,8 @@
                                     <item name="component" xsi:type="string">Magento_Tax/js/view/checkout/summary/subtotal</item>
                                     <item name="config" xsi:type="array">
                                         <item name="template" xsi:type="string">Magento_Tax/checkout/summary/subtotal</item>
-                                        <item name="excludingTaxMessage" xsi:type="string" translate="true">(Excl. Tax)</item>
-                                        <item name="includingTaxMessage" xsi:type="string" translate="true">(Incl. Tax)</item>
+                                        <item name="excludingTaxMessage" xsi:type="string" translate="true">(excl. tax)</item>
+                                        <item name="includingTaxMessage" xsi:type="string" translate="true">(incl. tax)</item>
                                     </item>
                                 </item>
                                 <item name="shipping" xsi:type="array">
@@ -106,8 +106,8 @@
                                         <item name="template" xsi:type="string">
                                             Magento_Tax/checkout/cart/totals/shipping
                                         </item>
-                                        <item name="excludingTaxMessage" xsi:type="string" translate="true">Excl. Tax</item>
-                                        <item name="includingTaxMessage" xsi:type="string" translate="true">Incl. Tax</item>
+                                        <item name="excludingTaxMessage" xsi:type="string" translate="true">excl. tax</item>
+                                        <item name="includingTaxMessage" xsi:type="string" translate="true">incl. tax</item>
                                     </item>
                                 </item>
                                 <item name="before_grandtotal" xsi:type="array">
@@ -121,16 +121,16 @@
                                     <item name="component" xsi:type="string">Magento_Tax/js/view/checkout/cart/totals/tax</item>
                                     <item name="config" xsi:type="array">
                                         <item name="template" xsi:type="string">Magento_Tax/checkout/cart/totals/tax</item>
-                                        <item name="title" xsi:type="string" translate="true">Sales Tax</item>
+                                        <item name="title" xsi:type="string" translate="true">sales tax</item>
                                     </item>
                                 </item>
                                 <item name="grand-total" xsi:type="array">
                                     <item name="component" xsi:type="string">Magento_Tax/js/view/checkout/cart/totals/grand-total</item>
                                     <item name="config" xsi:type="array">
                                         <item name="template" xsi:type="string">Magento_Tax/checkout/cart/totals/grand-total</item>
-                                        <item name="exclTaxLabel" xsi:type="string" translate="true">Total Excl. Tax</item>
-                                        <item name="inclTaxLabel" xsi:type="string" translate="true">Total Incl. Tax</item>
-                                        <item name="title" xsi:type="string" translate="true">Estimated Total</item>
+                                        <item name="exclTaxLabel" xsi:type="string" translate="true">total excl. tax</item>
+                                        <item name="inclTaxLabel" xsi:type="string" translate="true">total incl. tax</item>
+                                        <item name="title" xsi:type="string" translate="true">estimated total</item>
                                     </item>
                                 </item>
                             </item>
