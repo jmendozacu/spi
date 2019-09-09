@@ -150,7 +150,7 @@ define([
          * @param {String} form
          */
         disableAddToCartButton: function (form) {
-            var addToCartButtonTextWhileAdding = this.options.addToCartButtonTextWhileAdding || $t('Adding...'),
+            var addToCartButtonTextWhileAdding = this.options.addToCartButtonTextWhileAdding || $t('adding...'),
                 addToCartButton = $(form).find(this.options.addToCartButtonSelector);
 
             addToCartButton.addClass(this.options.addToCartButtonDisabledClass);
