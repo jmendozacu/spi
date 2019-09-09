@@ -11,7 +11,7 @@
         <move element="page.main.title" destination="columns" before="-"/>
         <referenceBlock name="page.main.title">
             <action method="setPageTitle">
-                <argument translate="true" name="title" xsi:type="string">Saved address</argument>
+                <argument translate="true" name="title" xsi:type="string">saved addresses</argument>
             </action>
         </referenceBlock>
     </body>

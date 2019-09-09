@@ -32,19 +32,7 @@
 
 & when (@media-common = true) {
 
-    body.account {
-        .greeting-wrapper {
-            text-transform: lowercase;
-        }
-
-        .page-main {
-            * {
-                text-transform: lowercase;
-            }
-        }
-    }
-
-        // Social login
+    // Social login
     .social-login-authentication-channel.account-social-login {
         width: 100% !important;
         margin: 0 0 20px;
@@ -168,9 +156,30 @@
     //
     //  My account
     //  ---------------------------------------------
+    body.account {
+        .greeting-wrapper {
+            text-transform: lowercase;
+        }
+
+        .page-main {
+            * {
+                text-transform: lowercase;
+            }
+        }
+    }
 
     .account {
+
+        &.customer-address-form {
+            .form-address-edit .field.street.required > .control > .nested {
+                margin: 20px 0 0;
+                position: relative;
+            }
+        }
+
         .column.main {
+            margin-bottom: 40px;
+
             h2 {
                 margin-top: 0;
             }
@@ -2802,7 +2811,7 @@
                 width: auto;
                 height: auto;
                 position: relative;
-                margin: 0 0 10px 5px;
+                margin: 0 0 10px;
 
                 span {
                     font-family: @main-font;
