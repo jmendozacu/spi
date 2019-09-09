@@ -26,14 +26,14 @@ $order = $orderHelper->getOrder();
 
             <tr class="totals-tax">
                 <th class="mark" colspan="1" scope="row"><?= __('sale tax') ?></th>
-                <td class="amount" data-th="Tax">
+                <td class="amount" data-th="tax">
                     <span class="price"><?= $orderHelper->getFormatedPrice($order->getTaxAmount()) ?></span>
                 </td>
             </tr>
 
             <tr class="grand totals">
                 <th class="mark" scope="row"><strong><?= __('total') ?></strong></th>
-                <td class="amount" data-th="Total">
+                <td class="amount" data-th="total">
                     <strong><span class="price"><?= $orderHelper->getFormatedPrice($order->getGrandTotal()) ?></span></strong>
                 </td>
             </tr>

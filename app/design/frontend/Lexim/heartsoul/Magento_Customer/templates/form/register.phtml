@@ -16,7 +16,7 @@
     <?= /* @noEscape */
     $block->getBlockHtml('formkey'); ?>
     <fieldset class="fieldset create info">
-        <div class="field header">I'm new to HeartSoul</div>
+        <div class="field header">I'm new to heartsoul</div>
         <input type="hidden" name="success_url" value="<?= $block->escapeUrl($block->getSuccessUrl()) ?>">
         <input type="hidden" name="error_url" value="<?= $block->escapeUrl($block->getErrorUrl()) ?>">
         <?= $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Name')->setObject($block->getFormData())->setForceUseCustomerAttributes(true)->toHtml() ?>
@@ -65,8 +65,8 @@
     <!-- Show for Pop up -->
     <div class="register">
         <div class="register-inner">
-            <p>You will be signed up to receive HeartSoul emails, offers and promotions. You can unsubscribe at anytime.</p>
-            <p>By creating an account you agree to HeartSoul <b>terms and conditions.</b></p>
+            <p>You will be signed up to receive heartsoul emails, offers and promotions. You can unsubscribe at anytime.</p>
+            <p>By creating an account you agree to heartsoul <b>terms and conditions.</b></p>
         </div>
     </div>
 
@@ -75,11 +75,11 @@
     <div class="show-in-login-page">
         <div class="checkbox-field">
             <input type="checkbox" name="register_form_remember_me" id="Register_Remember_Me"/>
-            <label for="Register_Remember_Me"><span>Remember me.</span></label>
+            <label for="Register_Remember_Me"><span>remember me.</span></label>
         </div>
         <div class="checkbox-field required">
             <input type="checkbox" name="register_form_subscriber" id="Register_Subscriber" data-validate="{required:true}"/>
-            <label for="Register_Subscriber"><span>I want to receive news, notifications and promotions from HeartSoul.</span></label>
+            <label for="Register_Subscriber"><span>I want to receive news, notifications and promotions from heartsoul.</span></label>
         </div>
         <div class="checkbox-field required">
             <input type="checkbox" name="register_form_accept_term" id="Register_Accept_Term" data-validate="{required:true}"/>
