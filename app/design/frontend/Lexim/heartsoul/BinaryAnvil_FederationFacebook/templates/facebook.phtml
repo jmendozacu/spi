@@ -5,17 +5,4 @@
  */
 ?>
 
-<?php if($block->isEnabled() && !$block->isLoggedIn()): ?>
-    <a href="<?= $block->getLoginUrl(); ?>">
-        <div class="brand-button fb">
-            <div class="c1"></div>
-            <div class="c2">SIGN UP WITH FACEBOOK</div>
-        </div>
-    </a>
-<?php endif ?>
 
-<script type="text/javascript">
-    if (window.location.hash && window.location.hash == '#_=_') {
-        window.location.hash = '';
-    }
-</script>
