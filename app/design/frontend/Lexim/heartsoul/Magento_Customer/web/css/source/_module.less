@@ -31,7 +31,20 @@
 //  _____________________________________________
 
 & when (@media-common = true) {
-    // Social login
+
+    body.account {
+        .greeting-wrapper {
+            text-transform: lowercase;
+        }
+
+        .page-main {
+            * {
+                text-transform: lowercase;
+            }
+        }
+    }
+
+        // Social login
     .social-login-authentication-channel.account-social-login {
         width: 100% !important;
         margin: 0 0 20px;
