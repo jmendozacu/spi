@@ -21,13 +21,17 @@ define([
 
         var modalWindow = $(config.NewsletterSignUp),
             popup = modal(options, modalWindow),
-            postURL = 'https://infinitynewsletter.azurewebsites.net/api/v1/signup'; // prodcution
+            postURL = 'https://infinitynewsletter.azurewebsites.net/api/v1/signup'; // infinity production
 
         $(".header-newsletter a").on('click',function(e){
             console.log("click");
             e.preventDefault();
             modalWindow.modal("openModal");
         });
+
+        if (window.location.href.indexOf('heartsoulscrubs') > -1) {
+            postURL = 'https://heartsoulnewsletter.azurewebsites.net/api/v1/signup'; // heart soul production
+        }
 
         if (window.location.href.indexOf('local') > -1 || window.location.href.indexOf('mcstaging') > -1) {
             postURL = 'https://infinitynewsletter-qa.azurewebsites.net/api/v1/signup'; // QA
@@ -43,7 +47,7 @@ define([
                     method: "POST",
                     url: postURL,
                     data: JSON.stringify({
-                        'source': 'InfinityWeb_subscriber',
+                        // 'source': 'InfinityWeb_subscriber',
                         'emailAddress': $(this).find('.email').val()
                     }),
                     contentType: 'application/json;charset=utf-8'
@@ -51,7 +55,7 @@ define([
                     modalWindow.modal("closeModal");
                     self.find('.action.subscribe').blur();
 
-                    if(jqXHR.status === 200) {
+                    if(jqXHR.status === 200 || jqXHR.status === 202) {
                         var successModalWindow = $(config.NewsletterSuccess),
                             popup = modal(options, successModalWindow);
                         $(config.NewsletterSuccess + ' .email').text(responce.email);

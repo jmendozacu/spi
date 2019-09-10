@@ -12,6 +12,10 @@
         <!-- remove breadcrumbs -->
         <referenceBlock name="breadcrumbs" remove="true" />
 
+        <referenceContainer name="right">
+            <referenceBlock name="catalog.compare.sidebar" remove="true" />
+        </referenceContainer>
+
         <!-- Logo -->
         <referenceBlock name="logo">
             <arguments>
