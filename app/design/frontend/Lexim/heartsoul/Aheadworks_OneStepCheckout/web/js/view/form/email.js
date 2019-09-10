@@ -97,14 +97,20 @@ define([
 
         let quoteCartId = $('#checkout').attr('data-quote-id');
         console.log(quoteCartId);
+        console.log(postURL);
+
         if (quoteCartId && quoteCartId > 0) {
             $.ajax({
                 url: postURL,
+                // headers: {
+                //     'Access-Control-Allow-Origin': '*'
+                // },
                 data: {
                     cartId: quoteCartId,
                     source: 'heartsoulscrubs' // "infinityscrubs" or "heartsoulscrubs"
                 },
                 type: 'POST',
+                // contentType: "application/json",
                 dataType: 'json',
                 beforeSend: function () {
                     console.log("abadoncart heartsoulscrubs api");
