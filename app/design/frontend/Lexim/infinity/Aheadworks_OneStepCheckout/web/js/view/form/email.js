@@ -105,9 +105,11 @@ define([
                     source: 'infinityscrubs' // "infinityscrubs" or "heartsoulscrubs"
                 },
                 type: 'POST',
+                contentType: "application/json; charset=UTF-8",
                 dataType: 'json',
-                beforeSend: function () {
-                    // show some loading icon
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader( "Content-type", "application/json" );
+                    console.log("abadoncart heartsoulscrubs api");
                 },
                 success: function (data) {
                     console.log(data);

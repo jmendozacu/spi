@@ -102,17 +102,15 @@ define([
         if (quoteCartId && quoteCartId > 0) {
             $.ajax({
                 url: postURL,
-                // headers: {
-                //     'Access-Control-Allow-Origin': '*'
-                // },
                 data: {
                     cartId: quoteCartId,
                     source: 'heartsoulscrubs' // "infinityscrubs" or "heartsoulscrubs"
                 },
                 type: 'POST',
-                // contentType: "application/json",
+                contentType: "application/json; charset=UTF-8",
                 dataType: 'json',
-                beforeSend: function () {
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader( "Content-type", "application/json" );
                     console.log("abadoncart heartsoulscrubs api");
                 },
                 success: function (data) {
