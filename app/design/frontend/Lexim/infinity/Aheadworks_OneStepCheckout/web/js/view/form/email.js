@@ -98,18 +98,19 @@ define([
         let quoteCartId = $('#checkout').attr('data-quote-id');
         console.log(quoteCartId);
         if (quoteCartId && quoteCartId > 0) {
+            let ajaxData = {
+                cartId: quoteCartId,
+                source: 'infinityscrubs' // "infinityscrubs" or "heartsoulscrubs"
+            };
+
             $.ajax({
                 url: postURL,
-                data: {
-                    cartId: quoteCartId,
-                    source: 'infinityscrubs' // "infinityscrubs" or "heartsoulscrubs"
-                },
+                data: JSON.stringify(ajaxData),
                 type: 'POST',
                 contentType: "application/json; charset=UTF-8",
                 dataType: 'json',
                 beforeSend: function (xhr) {
-                    xhr.setRequestHeader( "Content-type", "application/json" );
-                    console.log("abadoncart heartsoulscrubs api");
+                    console.log("abadoncart infinityscrubs api");
                 },
                 success: function (data) {
                     console.log(data);

@@ -100,17 +100,18 @@ define([
         console.log(postURL);
 
         if (quoteCartId && quoteCartId > 0) {
+            let ajaxData = {
+                cartId: quoteCartId,
+                source: 'heartsoulscrubs' // "infinityscrubs" or "heartsoulscrubs"
+            };
+
             $.ajax({
                 url: postURL,
-                data: {
-                    cartId: quoteCartId,
-                    source: 'heartsoulscrubs' // "infinityscrubs" or "heartsoulscrubs"
-                },
+                data: JSON.stringify(ajaxData),
                 type: 'POST',
                 contentType: "application/json; charset=UTF-8",
                 dataType: 'json',
                 beforeSend: function (xhr) {
-                    xhr.setRequestHeader( "Content-type", "application/json" );
                     console.log("abadoncart heartsoulscrubs api");
                 },
                 success: function (data) {
