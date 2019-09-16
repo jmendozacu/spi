@@ -156,7 +156,7 @@ define([
                 // confirmEmailFocused: 'validateConfirmEmail'
             }
         },
-        checkDelay: 2000,
+        checkDelay: 5000,
         checkAvailabilityRequest: null,
         checkIfSubscribedRequest: null,
         isCustomerLoggedIn: customer.isLoggedIn,
@@ -197,15 +197,13 @@ define([
 
             if (self.validateEmail()) {
                 quote.guestEmail = self.email();
-
-                // Save email guest for abandon cart
-                saveEmailToQuote(quote.guestEmail);
-
                 newsletterSubscriber.subscriberEmail = self.email();
                 checkoutData.setValidatedEmailValue(self.email());
             }
             this.emailCheckTimeout = setTimeout(function () {
                 if (self.validateEmail()) {
+                    // Save email guest for abandon cart
+                    saveEmailToQuote(quote.guestEmail);
                     self.checkEmailAvailability();
                     if (newsletterSubscribeConfig.isGuestSubscriptionsAllowed) {
                         self.checkIfSubscribedByEmail();
