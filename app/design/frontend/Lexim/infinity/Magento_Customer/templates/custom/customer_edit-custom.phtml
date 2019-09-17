@@ -151,7 +151,7 @@ $customAttributes = $customer->getCustomAttributes();
 
     <!-- Custom fields -->
     <fieldset class="fieldset custom-fields">
-        <div class="field name required" data-container="change-name">
+        <div class="field custom-fields-inner" data-container="change-name">
             <div class="wrap">
                 <div class="col lable"><span><?= __('Custom Fields'); ?></span></div>
                 <div class="col value"></div>
@@ -193,7 +193,6 @@ $customAttributes = $customer->getCustomAttributes();
                         $dataHelper::CUSTOMER_COLOR_CODE_WORKSPACE_ATTRIBUTE_CODE => "Color-coded Workplace",
                         $dataHelper::CUSTOMER_PREFER_WAY_OF_SHOP_ATTRIBUTE_CODE => "Preferred Way Of Shopping",
                         $dataHelper::CUSTOMER_DAISY_AWARD_WINNER_ATTRIBUTE_CODE => "Daisy Award Winner"
-                        // $dataHelper::CUSTOMER_PLACE_OF_WORK_ATTRIBUTE_CODE => "",
                     ];
                     ?>
 
@@ -216,9 +215,28 @@ $customAttributes = $customer->getCustomAttributes();
                         </div>
                         <?php } ?>
                     <?php } ?>
+                    <!-- # Select Fields -->
 
+                    <!-- Primary Place of Work -->
+                    <?php
+                        $placeOfWork = $customer->getCustomAttribute($dataHelper::CUSTOMER_PLACE_OF_WORK_ATTRIBUTE_CODE);
+                        $placeOfWorkVal = $placeOfWork ? $placeOfWork->getValue() : "";
+                    ?>
+                    <div class="field text">
+                        <label class="label" for="place_of_work"><span>Primary Place of Work</span></label>
+                        <input type="text" name="place_of_work" value="<?= $placeOfWorkVal ?>" />
+                    </div>
 
-                    <?= $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Dob')->setObject($block->getCustomer())->toHtml() ?>
+                    <!-- Date Of Bird -->
+                    <?php /**
+                    <div class="field dob">
+                        <div class="control">
+                            <?php $_dob = $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Dob') ?>
+                            <?php if ($_dob->isEnabled()): ?>
+                                <?= $_dob->setDate($block->getCustomer()->getDob())->toHtml() ?>
+                            <?php endif ?>
+                        </div>
+                    </div> */ ?>
 
                     <div class="primary">
                         <button type="submit" class="action save primary" title="<?= __('Save') ?>">
