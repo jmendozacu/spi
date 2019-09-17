@@ -43,6 +43,19 @@ class Data extends AbstractHelper
     const CUSTOMER_OCCUPATION_ATTRIBUTE_CODE = 'occupation';
     const CUSTOMER_NICKNAME_ATTRIBUTE_CODE = 'nickname';
 
+    const CUSTOMER_TOP_SIZE_ATTRIBUTE_CODE = 'top_size';
+    const CUSTOMER_BOTTOM_SIZE_ATTRIBUTE_CODE = 'bottom_size';
+    const CUSTOMER_SHOE_SIZE_ATTRIBUTE_CODE = 'shoe_size';
+    const CUSTOMER_UNDER_SCRUB_SIZE_ATTRIBUTE_CODE = 'underscrub_size';
+    const CUSTOMER_BOTTOM_LENGTH_ATTRIBUTE_CODE = 'bottom_length';
+    const CUSTOMER_COLOR_PREFERENCE_ATTRIBUTE_CODE = 'color_preference';
+    const CUSTOMER_SCRUB_HABITS_ATTRIBUTE_CODE = 'scrub_habits';
+    const CUSTOMER_JACKET_SIZE_ATTRIBUTE_CODE = 'jacket_size';
+    const CUSTOMER_COLOR_CODE_WORKSPACE_ATTRIBUTE_CODE = 'color_coded_workspace';
+    const CUSTOMER_PREFER_WAY_OF_SHOP_ATTRIBUTE_CODE = 'prefer_way_of_shop';
+    const CUSTOMER_DAISY_AWARD_WINNER_ATTRIBUTE_CODE = 'daisy_award_winner';
+    const CUSTOMER_PLACE_OF_WORK_ATTRIBUTE_CODE = 'place_of_work';
+
     const XML_PATH_ENABLED_AGE_RANGES = 'customer/account_information/enabled_age_ranges';
     const XML_PATH_ENABLED_OCCUPATIONS = 'customer/account_information/enabled_occupations';
 
@@ -73,7 +86,8 @@ class Data extends AbstractHelper
         EavConfig $eavConfig,
         Json $serializer,
         ScopeConfigInterface $scopeConfig
-    ) {
+    )
+    {
         $this->eavConfig = $eavConfig;
         $this->serializer = $serializer;
         $this->scopeConfig = $scopeConfig;
@@ -120,6 +134,20 @@ class Data extends AbstractHelper
     public function getCustomerOccupationOptions()
     {
         return $this->getCustomerOptions(self::CUSTOMER_OCCUPATION_ATTRIBUTE_CODE);
+    }
+
+    /**
+     * @param string $customerAttributeCode
+     * @return array|bool
+     * @throws \Magento\Framework\Exception\LocalizedException
+     */
+    public function getCustomerOptionsByAttributeCode($customerAttributeCode = "")
+    {
+        if (!$customerAttributeCode || $customerAttributeCode === "") {
+            return false;
+        }
+
+        return $this->getCustomerOptions($customerAttributeCode);
     }
 
     /**

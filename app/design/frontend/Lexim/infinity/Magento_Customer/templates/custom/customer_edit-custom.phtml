@@ -9,7 +9,9 @@
 /** @var BinaryAnvil\Customer\Helper\Data $dataHelper */
 $dataHelper = $this->helper(\BinaryAnvil\Customer\Helper\Data::class);
 
-$customAttributes = $block->getCustomer()->getCustomAttributes();
+$customer = $block->getCustomer();
+$customAttributes = $customer->getCustomAttributes();
+
 ?>
 <form class="form form-edit-account" action="<?= $block->getUrl('customer/account/editPost') ?>" method="post"
       id="form-validate" enctype="multipart/form-data"
@@ -20,7 +22,7 @@ $customAttributes = $block->getCustomer()->getCustomAttributes();
         <div class="field name required" data-container="change-name">
             <div class="wrap">
                 <div class="col lable"><span><?= __('Name'); ?></span></div>
-                <div class="col value"><?= $block->escapeHtml($block->getCustomer()->getFirstName() . ' ' . $block->getCustomer()->getLastName()) ?></div>
+                <div class="col value"><?= $block->escapeHtml($customer->getFirstName() . ' ' . $customer->getLastName()) ?></div>
                 <div class="col action"><a href="#"><?= __('Edit'); ?></a></div>
             </div>
             <div class="content">
@@ -43,7 +45,7 @@ $customAttributes = $block->getCustomer()->getCustomAttributes();
         <div class="field email required" data-container="change-email">
             <div class="wrap">
                 <div class="col lable"><span><?= __('Email'); ?></span></div>
-                <div class="col value"><?= $block->escapeHtml($block->getCustomer()->getEmail()) ?></div>
+                <div class="col value"><?= $block->escapeHtml($customer->getEmail()) ?></div>
                 <div class="col action"><a href="#"><?= __('Edit'); ?></a></div>
             </div>
             <div class="content">
@@ -54,15 +56,15 @@ $customAttributes = $block->getCustomer()->getCustomAttributes();
                     <label class="label" for="email"><span><?= __('Email') ?></span></label>
                     <div class="control">
                         <input type="email" autocomplete="email" name="email" id="email" data-input="change-email"
-                               value="<?= $block->escapeHtml($block->getCustomer()->getEmail()) ?>"
+                               value="<?= $block->escapeHtml($customer->getEmail()) ?>"
                                title="<?= __('Email') ?>"
                                class="input-text" data-validate="{required:true, 'validate-email':true}"/>
                     </div>
                     <div class="field choice">
                         <input type="checkbox" name="change_email" id="change-email" data-role="change-email" value="1"
-                               title="<?= $block->escapeHtmlAttr(__('Change Email')) ?>" class="checkbox"/>
+                               title="<?= $block->escapeHtmlAttr('Change Email') ?>" class="checkbox"/>
                         <label class="label"
-                               for="change-email"><span><?= $block->escapeHtml(__('Change Email')) ?></span></label>
+                               for="change-email"><span><?= $block->escapeHtml('Change Email') ?></span></label>
                     </div>
                     <div class="primary">
                         <button type="submit" class="action save primary" title="<?= __('Save') ?>">
@@ -146,6 +148,99 @@ $customAttributes = $block->getCustomer()->getCustomAttributes();
             <?= $block->getChildHtml('form_additional_info') ?>
         </div>
     </fieldset>
+
+    <!-- Custom fields -->
+    <fieldset class="fieldset custom-fields">
+        <div class="field name required" data-container="change-name">
+            <div class="wrap">
+                <div class="col lable"><span><?= __('Custom Fields'); ?></span></div>
+                <div class="col value"></div>
+                <div class="col action"><a href="#"><?= __('Edit'); ?></a></div>
+            </div>
+            <div class="content">
+                <div class="title"><span><?= __('Custom Fields'); ?></span>
+                    <button class="action cancel" title="<?= __('Edit') ?>">Edit</button>
+                </div>
+                <div class="content-details">
+
+                    <!-- Gender Field -->
+                    <div class="field">
+                        <?php $genders = $dataHelper->getCustomerGenderOptions() ?>
+                        <label class="label" for="gender"><span><?= __('Gender') ?></span></label>
+                        <select autocomplete="gender" name="gender" id="gender" data-input="change-gender"
+                                title="<?= __('Gender') ?>" class="select" data-validate="{required:true}">
+                            <?php foreach ($genders as $gender): ?>
+                                <option value="<?= $gender['value'] ?>"
+                                    <?php if ($gender['value'] == $customer->getGender()) echo ' selected' ?>>
+                                    <?= __($gender['label']) ?>
+                                </option>
+                            <?php endforeach ?>
+                        </select>
+                    </div>
+
+
+                    <!-- Select Fields -->
+                    <?php
+                    $selectFields = [
+                        $dataHelper::CUSTOMER_TOP_SIZE_ATTRIBUTE_CODE => "Top Size",
+                        $dataHelper::CUSTOMER_BOTTOM_SIZE_ATTRIBUTE_CODE => "Bottom Size",
+                        $dataHelper::CUSTOMER_SHOE_SIZE_ATTRIBUTE_CODE => "Shoe Size",
+                        $dataHelper::CUSTOMER_UNDER_SCRUB_SIZE_ATTRIBUTE_CODE => "Underscrub Size",
+                        $dataHelper::CUSTOMER_BOTTOM_LENGTH_ATTRIBUTE_CODE => "Bottom Length",
+                        $dataHelper::CUSTOMER_COLOR_PREFERENCE_ATTRIBUTE_CODE => "Color Preference",
+                        $dataHelper::CUSTOMER_SCRUB_HABITS_ATTRIBUTE_CODE => "Scrub Habits",
+                        $dataHelper::CUSTOMER_JACKET_SIZE_ATTRIBUTE_CODE => "Jacket Size",
+                        $dataHelper::CUSTOMER_COLOR_CODE_WORKSPACE_ATTRIBUTE_CODE => "Color-coded Workplace",
+                        $dataHelper::CUSTOMER_PREFER_WAY_OF_SHOP_ATTRIBUTE_CODE => "Preferred Way Of Shopping",
+                        $dataHelper::CUSTOMER_DAISY_AWARD_WINNER_ATTRIBUTE_CODE => "Daisy Award Winner"
+                        // $dataHelper::CUSTOMER_PLACE_OF_WORK_ATTRIBUTE_CODE => "",
+                    ];
+                    ?>
+
+                    <?php foreach ($selectFields as $optionKey => $optionName) {
+                        $customField = $dataHelper->getCustomerOptionsByAttributeCode($optionKey);
+                        $currentOption = $customAttributes[$optionKey];
+                        if ($customField && $optionKey) {
+                        ?>
+                        <div class="field select">
+                            <label class="label" for="<?= $optionKey ?>"><span><?= $optionName ?></span></label>
+                            <select autocomplete="<?= $optionKey ?>" name="<?= $optionKey ?>" id="<?= $optionKey ?>"
+                                    title="<?= $optionName ?>" class="select">
+                                <?php foreach ($customField as $option): ?>
+                                    <option value="<?= $option['value'] ?>"
+                                        <?php if ($option['value'] == $currentOption->getValue()) echo ' selected' ?>>
+                                        <?= $option['label'] ?>
+                                    </option>
+                                <?php endforeach ?>
+                            </select>
+                        </div>
+                        <?php } ?>
+                    <?php } ?>
+
+
+                    <?= $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Dob')->setObject($block->getCustomer())->toHtml() ?>
+
+                    <div class="primary">
+                        <button type="submit" class="action save primary" title="<?= __('Save') ?>">
+                            <span><?= __('Save Changes') ?></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+
+
+    <script type="text/javascript">
+        require([
+            "jquery",
+            "mage/mage"
+        ], function ($) {
+
+        });
+    </script>
+
+    <!-- # Custom fields -->
 </form>
 
 <script type="text/javascript">
@@ -167,9 +262,9 @@ $customAttributes = $block->getCustomer()->getCustomAttributes();
     {
         "[data-role=change-email], [data-role=change-password]": {
             "changeEmailPassword": {
-                "titleChangeEmail": "<?= __('Change Email') ?>",
-                "titleChangePassword": "<?= __('Change Password') ?>",
-                "titleChangeEmailAndPassword": "<?= __('Change Email and Password') ?>"
+                "titleChangeEmail": "Change Email",
+                "titleChangePassword": "Change Password",
+                "titleChangeEmailAndPassword": "Change Email and Password"
             }
         },
         "[data-container=new-password]": {
@@ -214,8 +309,10 @@ $customAttributes = $block->getCustomer()->getCustomAttributes();
     });
 </script>
 
+<!-- SHIPPING ADDRESS -->
 <?php
 $_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+
 /** @var BinaryAnvil\Customer\Block\AccountData $savedAddress */
 $savedAddress = $_objectManager->get('BinaryAnvil\Customer\Block\AccountData');
 $getAddress = $savedAddress->getSavedAddress();
@@ -229,6 +326,9 @@ $regionList = $savedAddress->getRegion();
 // get customer default
 $addressInfo = $_objectManager->get('BinaryAnvil\Customer\Block\Addressinfo');
 $shippingAddress = $addressInfo->getDefaultShippingAddress();
+
+$idAddress = $firstName = $lastName = $street = $street2 = $city = $country_id = $region_id = $postcode = $telephone = "";
+
 if (isset($shippingAddress)) {
     $changeArray = array();
     $changeArray = $shippingAddress->__toArray();
@@ -931,7 +1031,6 @@ if (!empty($array_customer)) {
              * @return null
              */
             $('.link-add-address').click(function () {
-
                 if ($(this).hasClass("focus")) {
                     $(this).removeClass('focus');
                     $(this).text("+  Add shipping address");
