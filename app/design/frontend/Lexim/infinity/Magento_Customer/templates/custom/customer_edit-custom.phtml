@@ -205,11 +205,14 @@ $customAttributes = $customer->getCustomAttributes();
                             <label class="label" for="<?= $optionKey ?>"><span><?= $optionName ?></span></label>
                             <select autocomplete="<?= $optionKey ?>" name="<?= $optionKey ?>" id="<?= $optionKey ?>"
                                     title="<?= $optionName ?>" class="select">
-                                <?php foreach ($customField as $option): ?>
+                                <?php foreach ($customField as $option):
+                                    echo '<!-- ' . $option['value'] . ' -->';
+                                    if ( $option['value'] ) { ?>
                                     <option value="<?= $option['value'] ?>"
                                         <?php if ($option['value'] == $currentOption->getValue()) echo ' selected' ?>>
                                         <?= $option['label'] ?>
                                     </option>
+                                    <?php } ?>
                                 <?php endforeach ?>
                             </select>
                         </div>
