@@ -89,7 +89,7 @@ define([
 
         // push into api
         let postURL = 'https://checkoutcarteventregistration-qa.azurewebsites.net/api/v1/eventregistration'; // QA
-        if (window.location.href.indexOf('heartsoulscrubs') > -1) {
+        if (window.location.href.indexOf('heartsoulscrubs.com') > -1) {
             postURL = 'https://checkoutcarteventregistration.azurewebsites.net/api/v1/eventregistration'; // production
         }
         // Production https://checkoutcarteventregistration.azurewebsites.net/api/v1/eventregistration
