@@ -50,7 +50,7 @@ if (isStaging) {
                         jQuery('.arrow_left').hide();
                     } else if (data.totalStores === 0) {
                         // jQuery(".nearest-location").html('<div class="locations-none">Sorry, no store found in this location, try searching a larger radius.</div>');
-                        jQuery(".the-bottom-slider").html('<div class="locations-none">Sorry, no store found in this location, try searching a larger radius.</div>');
+                        jQuery(".the-bottom-slider").html('<div class="locations-none" style="text-transform: initial;">Sorry, no store found in this location. Try searching a larger radius.</div>');
                         jQuery('.location-carousel').slideUp();
                     }
 
@@ -90,8 +90,7 @@ if (isStaging) {
 
                     // jQuery(".nearest-location").html('<div class="locations-none">Sorry, no store found in this location, try searching a larger radius.</div>');
                     // jQuery('.location-carousel').slideUp();
-                    jQuery(".the-bottom-slider").html('<div class="locations-none">Sorry, no store found in this location, try searching a larger radius.</div>');
-
+                    jQuery(".the-bottom-slider").html('<div class="locations-none" style="text-transform: initial;">Sorry, no store found in this location. Try searching a larger radius.</div>');
                 }
             });
         }
