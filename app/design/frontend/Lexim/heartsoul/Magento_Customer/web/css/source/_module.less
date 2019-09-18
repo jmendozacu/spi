@@ -386,6 +386,60 @@
     }
 
     //
+    // My Profile
+    //  ---------------------------------------------
+    .customer-account-edit .form-edit-account {
+
+        .fieldset {
+            .field {
+                position: relative;
+                margin-bottom: 15px;
+
+                .content {
+                    .title {
+                        margin-bottom: 20px;
+                        position: relative;
+                    }
+
+                    .action.cancel {
+                        position: absolute;
+                        right: 0;
+                    }
+                }
+
+                .label {
+                    color: @gray;
+                    z-index: 9;
+                }
+
+                select {
+                    height: 40px;
+                    border-color: #999999;
+                    outline: 0;
+                    -moz-box-shadow: none !important;
+                    -webkit-box-shadow: none !important;
+                    -o-box-shadow: none !important;
+                    box-shadow: none !important;
+                    width: 100%;
+                }
+
+                > .customer-dob {
+                    .display-flex();
+                }
+            }
+
+            .content-details {
+                .field.choice {
+                    > .label {
+                        top: 0;
+                        left: 15px;
+                    }
+                }
+            }
+        }
+    }
+
+    //
     //  Pop up login form
     //  ---------------------------------------------
     .fixed-pop-up {
@@ -1678,11 +1732,11 @@
                 }
             }
 
-            .fieldset.email, .fieldset.password {
+            .fieldset.email, .fieldset.password, .fieldset.custom-fields {
                 display: block;
                 margin-bottom: 0;
 
-                .email, .password {
+                .email, .password, .custom-fields-inner {
                     display: block !important;
 
                     .wrap {
@@ -2267,6 +2321,10 @@
 
             }
         }
+    }
+
+    .customer-account-edit .form-edit-account .fieldset .field select {
+        max-width: 300px;
     }
 
     //
@@ -3308,6 +3366,9 @@
                         position: relative;
 
                         .wrap {
+                            .display-flex();
+                            .justify-content(space-between);
+
                             .col {
                                 display: inline-block;
 
@@ -3393,6 +3454,7 @@
                                         letter-spacing: 0.02em;
                                         line-height: 21px;
                                         top: -11px;
+                                        z-index: 9;
                                     }
 
                                     input {
@@ -3438,7 +3500,7 @@
                     }
 
                     a {
-                        padding-right: 53px;
+                        padding-right: 50px;
 
                         font-size: 14px;
                         font-weight: bold;

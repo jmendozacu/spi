@@ -15,8 +15,7 @@ $customAttributes = $customer->getCustomAttributes();
 ?>
 <form class="form form-edit-account" action="<?= $block->getUrl('customer/account/editPost') ?>" method="post"
       id="form-validate" enctype="multipart/form-data"
-      data-hasrequired="<?=
-      __('* Required Fields') ?>" autocomplete="off">
+      data-hasrequired="<?= __('* Required Fields') ?>" autocomplete="off">
     <?= $block->getBlockHtml('formkey') ?>
     <fieldset class="fieldset name">
         <div class="field name required" data-container="change-name">
@@ -170,10 +169,12 @@ $customAttributes = $customer->getCustomAttributes();
                         <select autocomplete="gender" name="gender" id="gender" data-input="change-gender"
                                 title="<?= __('Gender') ?>" class="select" data-validate="{required:true}">
                             <?php foreach ($genders as $gender): ?>
-                                <option value="<?= $gender['value'] ?>"
-                                    <?php if ($gender['value'] == $customer->getGender()) echo ' selected' ?>>
-                                    <?= __($gender['label']) ?>
-                                </option>
+                                <?php if ($gender['value']) { ?>
+                                    <option value="<?= $gender['value'] ?>"
+                                        <?php if ($gender['value'] == $customer->getGender()) echo ' selected' ?>>
+                                        <?= __($gender['label']) ?>
+                                    </option>
+                                <?php } ?>
                             <?php endforeach ?>
                         </select>
                     </div>
@@ -200,46 +201,46 @@ $customAttributes = $customer->getCustomAttributes();
                         $customField = $dataHelper->getCustomerOptionsByAttributeCode($optionKey);
                         $currentOption = $customAttributes[$optionKey];
                         if ($customField && $optionKey) {
-                        ?>
-                        <div class="field select">
-                            <label class="label" for="<?= $optionKey ?>"><span><?= $optionName ?></span></label>
-                            <select autocomplete="<?= $optionKey ?>" name="<?= $optionKey ?>" id="<?= $optionKey ?>"
-                                    title="<?= $optionName ?>" class="select">
-                                <?php foreach ($customField as $option):
-                                    echo '<!-- ' . $option['value'] . ' -->';
-                                    if ( $option['value'] ) { ?>
-                                    <option value="<?= $option['value'] ?>"
-                                        <?php if ($option['value'] == $currentOption->getValue()) echo ' selected' ?>>
-                                        <?= $option['label'] ?>
-                                    </option>
-                                    <?php } ?>
-                                <?php endforeach ?>
-                            </select>
-                        </div>
+                            ?>
+                            <div class="field select">
+                                <label class="label" for="<?= $optionKey ?>"><span><?= $optionName ?></span></label>
+                                <select autocomplete="<?= $optionKey ?>" name="<?= $optionKey ?>" id="<?= $optionKey ?>"
+                                        title="<?= $optionName ?>" class="select">
+                                    <?php foreach ($customField as $option):
+                                        echo '<!-- ' . $option['value'] . ' -->';
+                                        if ($option['value']) { ?>
+                                            <option value="<?= $option['value'] ?>"
+                                                <?php if ($option['value'] == $currentOption->getValue()) echo ' selected' ?>>
+                                                <?= $option['label'] ?>
+                                            </option>
+                                        <?php } ?>
+                                    <?php endforeach ?>
+                                </select>
+                            </div>
                         <?php } ?>
                     <?php } ?>
                     <!-- # Select Fields -->
 
                     <!-- Primary Place of Work -->
                     <?php
-                        $placeOfWork = $customer->getCustomAttribute($dataHelper::CUSTOMER_PLACE_OF_WORK_ATTRIBUTE_CODE);
-                        $placeOfWorkVal = $placeOfWork ? $placeOfWork->getValue() : "";
+                    $placeOfWork = $customer->getCustomAttribute($dataHelper::CUSTOMER_PLACE_OF_WORK_ATTRIBUTE_CODE);
+                    $placeOfWorkVal = $placeOfWork ? $placeOfWork->getValue() : "";
                     ?>
                     <div class="field text">
                         <label class="label" for="place_of_work"><span>Primary Place of Work</span></label>
-                        <input type="text" name="place_of_work" value="<?= $placeOfWorkVal ?>" />
+                        <input type="text" name="place_of_work" value="<?= $placeOfWorkVal ?>"/>
                     </div>
 
                     <!-- Date Of Bird -->
                     <?php /**
-                    <div class="field dob">
-                        <div class="control">
-                            <?php $_dob = $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Dob') ?>
-                            <?php if ($_dob->isEnabled()): ?>
-                                <?= $_dob->setDate($block->getCustomer()->getDob())->toHtml() ?>
-                            <?php endif ?>
-                        </div>
-                    </div> */ ?>
+                     * <div class="field dob">
+                     * <div class="control">
+                     * <?php $_dob = $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Dob') ?>
+                     * <?php if ($_dob->isEnabled()): ?>
+                     * <?= $_dob->setDate($block->getCustomer()->getDob())->toHtml() ?>
+                     * <?php endif ?>
+                     * </div>
+                     * </div> */ ?>
 
                     <div class="primary">
                         <button type="submit" class="action save primary" title="<?= __('Save') ?>">
@@ -294,6 +295,8 @@ $customAttributes = $customer->getCustomAttributes();
             }
         }
     }
+
+
 </script>
 
 <script type="text/javascript">
@@ -900,9 +903,13 @@ if (!empty($array_customer)) {
     <div class="box-local-retailer">
         <div class="header-retailer">
             <span class="title"><?= __('My local retailer') ?></span>
+
+            <!-- Content for Infinity -->
             <p class="text-retails">We partner together with local infinity retailers to bring you this infinity site.
                 Please share below who is doing a great job in your community so we can recognize them. We hope you
                 visit your favorite infinity scrubs store soon!</p>
+
+            <!-- Content for Heart soul -->
             <!-- <p class="text-retails">
                 We partner with local scrubs retailers to provide the best experience for our Heartsoul customers.
                 Please share the name of your favorite Heartsoul retailer, or use our Store Locator to find the closest store in your area.
@@ -1110,6 +1117,109 @@ if (!empty($array_customer)) {
                 }
             });
         });
+
+        // Profile Center
+        console.log("Profile Center");
+
+        /**
+         * Send ajax POST when submit button is clicked
+         */
+        $('#form-validate.form-edit-account').submit(function (e) {
+            console.log("before");
+            let postUrl = 'https://profilecenter-infinity-qa.azurewebsites.net/api/v1/profile';
+            if (window.location.href.indexOf('infinityscrubs.com') > -1 || window.location.href.indexOf('heartsoulscrubs.com') > -1) {
+                postUrl = 'https://profilecenter-infinity.azurewebsites.net/api/v1/profile';
+            }
+
+            let postData = {
+                email: "",
+                firstName: "",
+                lastName: "",
+                gender: "",
+                address1: "",
+                city: "",
+                zipCode: "",
+                state: "",
+                birthdate: " ",
+                colorCoded: "",
+                jacketSize: "",
+                scrubHabits: "",
+                colorPreference: "",
+                bottomLength: "",
+                underscrubSize: "",
+                shoeSize: "",
+                bottomSize: "",
+                daisyNurse: "",
+                topSize: ""
+            };
+
+            let formData = [
+                {key: 'email', type: 'email', name: '#email'},
+                {key: 'firstName', type: 'text', name: '#firstname'},
+                {key: 'lastName', type: 'text', name: '#lastname'},
+                {key: 'gender', type: 'select', name: 'gender'},
+                {key: 'address1', type: 'text', name: '#street_1'},
+                {key: 'city', type: 'text', name: '#city'},
+                {key: 'zipCode', type: 'text', name: '#zip'},
+                {key: 'state', type: 'select', name: 'region'},
+                {key: 'birthdate', type: 'text', name: ''},
+                {key: 'colorCoded', type: 'select', name: 'color_coded_workspace'},
+                {key: 'jacketSize', type: 'select', name: 'jacket_size'},
+                {key: 'scrubHabits', type: 'select', name: 'scrub_habits'},
+                {key: 'colorPreference', type: 'select', name: 'color_preference'},
+                {key: 'bottomLength', type: 'select', name: 'bottom_length'},
+                {key: 'underscrubSize', type: 'select', name: 'underscrub_size'},
+                {key: 'shoeSize', type: 'select', name: 'shoe_size'},
+                {key: 'bottomSize', type: 'select', name: 'bottom_size'},
+                {key: 'daisyNurse', type: 'select', name: 'daisy_award_winner'},
+                {key: 'topSize', type: 'select', name: 'top_size'}
+                // prefer_way_of_shop
+                // place_of_work
+            ];
+
+            // init data
+            formData.forEach(function (obj, index) {
+                if (obj && obj.name !== '' && obj.key !== '') {
+                    let tmpVal = '';
+                    // get fields data
+                    if (obj.type === 'select') {
+                        tmpVal = $('select[name=' + obj.name + ']').children('option:selected').first().text();
+                    } else {
+                        tmpVal = $(obj.name).val();
+                    }
+                    // init post data
+                    tmpVal = $.trim(tmpVal);
+                    postData[obj.key] = tmpVal;
+                }
+            });
+
+
+            console.log(formData);
+            console.log(postData);
+
+            // "required": ["email","firstName","lastName","gender","address1","city","zipCode","state","birthdate"]
+            if (postData.email && postData.firstName && postData.lastName && postData.gender
+                && postData.address1 && postData.city && postData.zipCode && postData.state && postData.birthdate) {
+                // $.ajax({
+                //     type: "POST",
+                //     url: postUrl,
+                //     data: JSON.stringify(postData),
+                //     dataType: 'json',
+                //     contentType: 'application/json',
+                //     success: function (res) {
+                //         console.log(res);
+                //     },
+                //     error: function (res) {
+                //         console.log(res);
+                //     }
+                // });
+            }
+
+            e.preventDefault();
+
+        });
+        // # Profile Center
+
     });
 </script>
 
