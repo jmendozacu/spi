@@ -232,15 +232,33 @@ $customAttributes = $customer->getCustomAttributes();
                     </div>
 
                     <!-- Date Of Bird -->
-                    <?php /**
-                     * <div class="field dob">
-                     * <div class="control">
-                     * <?php $_dob = $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Dob') ?>
-                     * <?php if ($_dob->isEnabled()): ?>
-                     * <?= $_dob->setDate($block->getCustomer()->getDob())->toHtml() ?>
-                     * <?php endif ?>
-                     * </div>
-                     * </div> */ ?>
+                    <?php
+                    $d = $customer->getDob();
+                    $newDate = date("m-d-Y", strtotime($d));
+                    ?>
+
+                    <div class="field dob">
+                        <div class="control">
+                            <input type="text" name="dob" id="dob" value="<?= $newDate ?>" class=""
+                                   data-validate="{'validate-date':{'dateFormat':'mm/dd/Y'}}"
+                                   aria-invalid="true" aria-describedby=""/>
+                            <script type="text/javascript">
+                                require(["jquery", "mage/calendar"], function ($) {
+                                    $("#dob").calendar({
+                                        showsTime: false,
+                                        dateFormat: "mm/dd/Y",
+                                        buttonImage: "/static/frontend/Lexim/infinity/en_US/Magento_Theme/calendar.png",
+                                        yearRange: "-120y:c+nn",
+                                        buttonText: "Select Date",
+                                        maxDate: "-1d",
+                                        changeMonth: true,
+                                        changeYear: true,
+                                        showOn: "both"
+                                    })
+                                });
+                            </script>
+                        </div>
+                    </div>
 
                     <div class="primary">
                         <button type="submit" class="action save primary" title="<?= __('Save') ?>">
@@ -295,8 +313,6 @@ $customAttributes = $customer->getCustomAttributes();
             }
         }
     }
-
-
 </script>
 
 <script type="text/javascript">
@@ -1124,8 +1140,10 @@ if (!empty($array_customer)) {
         /**
          * Send ajax POST when submit button is clicked
          */
-        $('#form-validate.form-edit-account').submit(function (e) {
-            console.log("before");
+        $('#form-validate.form-edit-account').one('submit', function (e) {
+            let _this = $(this);
+            e.preventDefault(); // prevent submit
+
             let postUrl = 'https://profilecenter-infinity-qa.azurewebsites.net/api/v1/profile';
             if (window.location.href.indexOf('infinityscrubs.com') > -1 || window.location.href.indexOf('heartsoulscrubs.com') > -1) {
                 postUrl = 'https://profilecenter-infinity.azurewebsites.net/api/v1/profile';
@@ -1162,7 +1180,7 @@ if (!empty($array_customer)) {
                 {key: 'city', type: 'text', name: '#city'},
                 {key: 'zipCode', type: 'text', name: '#zip'},
                 {key: 'state', type: 'select', name: 'region'},
-                {key: 'birthdate', type: 'text', name: ''},
+                {key: 'birthdate', type: 'text', name: '#dob'},
                 {key: 'colorCoded', type: 'select', name: 'color_coded_workspace'},
                 {key: 'jacketSize', type: 'select', name: 'jacket_size'},
                 {key: 'scrubHabits', type: 'select', name: 'scrub_habits'},
@@ -1192,30 +1210,36 @@ if (!empty($array_customer)) {
                     postData[obj.key] = tmpVal;
                 }
             });
+            // console.log(postData);
 
-
-            console.log(formData);
-            console.log(postData);
-
-            // "required": ["email","firstName","lastName","gender","address1","city","zipCode","state","birthdate"]
+            // "required": ["email","firstName","lastName","gender","address1","city","zipCode","state","birth date"]
+            // Post data to API
             if (postData.email && postData.firstName && postData.lastName && postData.gender
                 && postData.address1 && postData.city && postData.zipCode && postData.state && postData.birthdate) {
-                // $.ajax({
-                //     type: "POST",
-                //     url: postUrl,
-                //     data: JSON.stringify(postData),
-                //     dataType: 'json',
-                //     contentType: 'application/json',
-                //     success: function (res) {
-                //         console.log(res);
-                //     },
-                //     error: function (res) {
-                //         console.log(res);
-                //     }
-                // });
+                $.ajax({
+                    type: "POST",
+                    url: postUrl,
+                    data: JSON.stringify(postData),
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    beforeSend: function() {
+                        console.log('send ajax to api server');
+                    },
+                    success: function (res) {
+                        console.log(res);
+                    },
+                    error: function (res) {
+                        console.log(res);
+                    },
+                    complete: function () {
+                        console.log('submit form');
+                        _this.submit();
+                    }
+                });
+            } else {
+                console.log('submit form');
+                _this.submit();
             }
-
-            e.preventDefault();
 
         });
         // # Profile Center

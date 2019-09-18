@@ -1,103 +1,74 @@
 <?php
-/**
- * Binary Anvil, Inc.
- *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the Binary Anvil, Inc. Software Agreement
- * that is bundled with this package in the file LICENSE_BAS.txt.
- * It is also available through the world-wide-web at this URL:
- * http://www.binaryanvil.com/software/license/
- *
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@binaryanvil.com so we can send you a copy immediately.
- *
- * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade this software to
- * newer versions in the future. If you wish to customize this software for
- * your needs please refer to http://www.binaryanvil.com/software for more
- * information.
- *
- * @category    BinaryAnvil
- * @package     Infinity
- * @copyright   Copyright (c) 2018-2019 Binary Anvil,Inc. (http://www.binaryanvil.com)
- * @license     http://www.binaryanvil.com/software/license
- */
+/** @noinspection PhpUnhandledExceptionInspection */
+/** @noinspection SqlNoDataSourceInspection */
+/** @noinspection PhpUndefinedMethodInspection */
 
 // @codingStandardsIgnoreFile
+/** @var Magento\Customer\Block\Form\Edit $block */
 
-/** @var \Magento\Customer\Block\Form\Edit $block */
-
-/** @var \BinaryAnvil\Customer\Helper\Data $dataHelper */
+/** @var BinaryAnvil\Customer\Helper\Data $dataHelper */
 $dataHelper = $this->helper(\BinaryAnvil\Customer\Helper\Data::class);
 
-$customAttributes = $block->getCustomer()->getCustomAttributes();
+$customer = $block->getCustomer();
+$customAttributes = $customer->getCustomAttributes();
+
 ?>
-<form class="form form-edit-account" action="<?= /* @escapeNotVerified */
-$block->getUrl('customer/account/editPost') ?>" method="post" id="form-validate" enctype="multipart/form-data"
-      data-hasrequired="<?= /* @escapeNotVerified */
-      __('* Required Fields') ?>" autocomplete="off">
+<form class="form form-edit-account" action="<?= $block->getUrl('customer/account/editPost') ?>" method="post"
+      id="form-validate" enctype="multipart/form-data"
+      data-hasrequired="<?= __('* Required Fields') ?>" autocomplete="off">
     <?= $block->getBlockHtml('formkey') ?>
     <fieldset class="fieldset name">
         <div class="field name required" data-container="change-name">
             <div class="wrap">
                 <div class="col lable"><span><?= __('Name'); ?></span></div>
-                <div class="col value"><?= $block->escapeHtml($block->getCustomer()->getFirstName() . ' ' . $block->getCustomer()->getLastName()) ?></div>
+                <div class="col value"><?= $block->escapeHtml($customer->getFirstName() . ' ' . $customer->getLastName()) ?></div>
                 <div class="col action"><a href="#"><?= __('Edit'); ?></a></div>
             </div>
             <div class="content">
                 <div class="title"><span><?= __('Name'); ?></span>
-                    <button class="action cancel" title="<?= /* @escapeNotVerified */
-                    __('Edit') ?>">Edit
-                    </button>
+                    <button class="action cancel" title="<?= __('Edit') ?>">Edit</button>
                 </div>
                 <div class="content-details">
                     <?= $block->getLayout()->createBlock('Magento\Customer\Block\Widget\Name')->setObject($block->getCustomer())->toHtml() ?>
                     <div class="primary">
-
-                        <button type="submit" class="action save primary" title="<?= /* @escapeNotVerified */
-                        __('Save') ?>"><span><?= /* @escapeNotVerified */
-                                __('Save Changes') ?></span></button>
+                        <button type="submit" class="action save primary" title="<?= __('Save') ?>">
+                            <span><?= __('Save Changes') ?></span>
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </fieldset>
+
     <fieldset class="fieldset email">
         <div class="field email required" data-container="change-email">
             <div class="wrap">
                 <div class="col lable"><span><?= __('Email'); ?></span></div>
-                <div class="col value"><?= $block->escapeHtml($block->getCustomer()->getEmail()) ?></div>
+                <div class="col value"><?= $block->escapeHtml($customer->getEmail()) ?></div>
                 <div class="col action"><a href="#"><?= __('Edit'); ?></a></div>
             </div>
             <div class="content">
                 <div class="title"><span><?= __('Email'); ?></span>
-                    <button class="action cancel" title="<?= /* @escapeNotVerified */
-                    __('Edit') ?>">Edit
-                    </button>
+                    <button class="action cancel" title="<?= __('Edit') ?>">Edit</button>
                 </div>
                 <div class="content-details">
-                    <label class="label" for="email"><span><?= /* @escapeNotVerified */
-                            __('Email') ?></span></label>
+                    <label class="label" for="email"><span><?= __('Email') ?></span></label>
                     <div class="control">
                         <input type="email" autocomplete="email" name="email" id="email" data-input="change-email"
-                               value="<?= $block->escapeHtml($block->getCustomer()->getEmail()) ?>"
-                               title="<?= /* @escapeNotVerified */
-                               __('Email') ?>" class="input-text"
-                               data-validate="{required:true, 'validate-email':true}"/>
+                               value="<?= $block->escapeHtml($customer->getEmail()) ?>"
+                               title="<?= __('Email') ?>"
+                               class="input-text" data-validate="{required:true, 'validate-email':true}"/>
                     </div>
                     <div class="field choice">
                         <input type="checkbox" name="change_email" id="change-email" data-role="change-email" value="1"
-                               title="<?= $block->escapeHtmlAttr(__('Change Email')) ?>" class="checkbox"/>
+                               title="<?= $block->escapeHtmlAttr('Change Email') ?>" class="checkbox"/>
                         <label class="label"
-                               for="change-email"><span><?= $block->escapeHtml(__('Change Email')) ?></span></label>
+                               for="change-email"><span><?= $block->escapeHtml('Change Email') ?></span></label>
                     </div>
                     <div class="primary">
-                        <button type="submit" class="action save primary" title="<?= /* @escapeNotVerified */
-                        __('Save') ?>"><span><?= /* @escapeNotVerified */
-                                __('Save Changes') ?></span></button>
+                        <button type="submit" class="action save primary" title="<?= __('Save') ?>">
+                            <span><?= __('Save Changes') ?></span>
+                        </button>
                     </div>
                 </div>
                 <div></div>
@@ -105,8 +76,7 @@ $block->getUrl('customer/account/editPost') ?>" method="post" id="form-validate"
         </div>
     </fieldset>
 
-    <?= /* @noEscape */
-    $block->getChildHtml('form_fields_before_in_form') ?>
+    <?= $block->getChildHtml('form_fields_before_in_form') ?>
     <fieldset class="fieldset password">
         <div class="field password" data-container="change-email-password">
             <div class="wrap">
@@ -116,22 +86,18 @@ $block->getUrl('customer/account/editPost') ?>" method="post" id="form-validate"
             </div>
             <div class="content">
                 <div class="title"><span><?= __('Password'); ?></span>
-                    <button class="action cancel" title="<?= /* @escapeNotVerified */
-                    __('Edit') ?>">Edit
-                    </button>
+                    <button class="action cancel" title="<?= __('Edit') ?>">Edit</button>
                 </div>
                 <div class="content-details">
                     <div class="field password current required">
-                        <label class="label" for="current-password"><span><?= /* @escapeNotVerified */
-                                __('Current Password') ?></span></label>
+                        <label class="label" for="current-password"><span><?= __('Current Password') ?></span></label>
                         <div class="control">
                             <input type="password" class="input-text" name="current_password" id="current-password"
                                    data-input="current-password" autocomplete="off"/>
                         </div>
                     </div>
                     <div class="field new password required" data-container="new-password">
-                        <label class="label" for="password"><span><?= /* @escapeNotVerified */
-                                __('New Password') ?></span></label>
+                        <label class="label" for="password"><span><?= __('New Password') ?></span></label>
                         <div class="control">
                             <input type="password" class="input-text" name="password" id="password"
                                    data-password-min-length="<?= $block->escapeHtml($block->getMinimumPasswordLength()) ?>"
@@ -142,18 +108,16 @@ $block->getUrl('customer/account/editPost') ?>" method="post" id="form-validate"
                             <div id="password-strength-meter-container" data-role="password-strength-meter"
                                  aria-live="polite">
                                 <div id="password-strength-meter" class="password-strength-meter">
-                                    <?= /* @escapeNotVerified */
-                                    __('Password Strength') ?>:
+                                    <?= __('Password Strength') ?>:
                                     <span id="password-strength-meter-label" data-role="password-strength-meter-label">
-                            <?= /* @escapeNotVerified */
-                            __('No Password') ?>
-                        </span>
+                                        <?= __('No Password') ?>
+                                    </span>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="field confirm password required" data-container="confirm-password">
-                        <label class="label" for="password-confirmation"><span><?= /* @escapeNotVerified */
+                        <label class="label" for="password-confirmation"><span><?=
                                 __('Confirm New Password') ?></span></label>
                         <div class="control">
                             <input type="password" class="input-text" name="password_confirmation"
@@ -165,15 +129,17 @@ $block->getUrl('customer/account/editPost') ?>" method="post" id="form-validate"
                     <div class="field choice">
                         <input type="checkbox" name="change_password" id="change-password" data-role="change-password"
                                value="1"
-                               title="<?= $block->escapeHtmlAttr(__('Change Password')) ?>"<?php if ($block->getChangePassword()): ?> checked="checked"<?php endif; ?>
+                               title="<?= $block->escapeHtmlAttr(__('Change Password')) ?>"
+                            <?php if ($block->getChangePassword()): ?> checked="checked"<?php endif; ?>
                                class="checkbox"/>
-                        <label class="label"
-                               for="change-password"><span><?= $block->escapeHtml(__('Change Password')) ?></span></label>
+                        <label class="label" for="change-password">
+                            <span><?= $block->escapeHtml(__('Change Password')) ?></span>
+                        </label>
                     </div>
                     <div class="primary">
-                        <button type="submit" class="action save primary" title="<?= /* @escapeNotVerified */
-                        __('Save') ?>"><span><?= /* @escapeNotVerified */
-                                __('Save Changes') ?></span></button>
+                        <button type="submit" class="action save primary" title="<?= __('Save') ?>">
+                            <span><?= __('Save Changes') ?></span>
+                        </button>
                     </div>
                 </div>
                 <div></div>
@@ -181,14 +147,149 @@ $block->getUrl('customer/account/editPost') ?>" method="post" id="form-validate"
             <?= $block->getChildHtml('form_additional_info') ?>
         </div>
     </fieldset>
+
+    <!-- Custom fields -->
+    <fieldset class="fieldset custom-fields">
+        <div class="field custom-fields-inner">
+            <div class="wrap">
+                <div class="col lable"><span><?= __('Custom Fields'); ?></span></div>
+                <div class="col value"></div>
+                <div class="col action"><a href="#"><?= __('Edit'); ?></a></div>
+            </div>
+            <div class="content">
+                <div class="title"><span><?= __('Custom Fields'); ?></span>
+                    <button class="action cancel" title="<?= __('Edit') ?>">Edit</button>
+                </div>
+                <div class="content-details">
+
+                    <!-- Gender Field -->
+                    <div class="field">
+                        <?php $genders = $dataHelper->getCustomerGenderOptions() ?>
+                        <label class="label" for="gender"><span><?= __('Gender') ?></span></label>
+                        <select autocomplete="gender" name="gender" id="gender" data-input="change-gender"
+                                title="<?= __('Gender') ?>" class="select" data-validate="{required:true}">
+                            <?php foreach ($genders as $gender): ?>
+                                <?php if ($gender['value']) { ?>
+                                    <option value="<?= $gender['value'] ?>"
+                                        <?php if ($gender['value'] == $customer->getGender()) echo ' selected' ?>>
+                                        <?= __($gender['label']) ?>
+                                    </option>
+                                <?php } ?>
+                            <?php endforeach ?>
+                        </select>
+                    </div>
+
+
+                    <!-- Select Fields -->
+                    <?php
+                    $selectFields = [
+                        $dataHelper::CUSTOMER_TOP_SIZE_ATTRIBUTE_CODE => "Top Size",
+                        $dataHelper::CUSTOMER_BOTTOM_SIZE_ATTRIBUTE_CODE => "Bottom Size",
+                        $dataHelper::CUSTOMER_SHOE_SIZE_ATTRIBUTE_CODE => "Shoe Size",
+                        $dataHelper::CUSTOMER_UNDER_SCRUB_SIZE_ATTRIBUTE_CODE => "Underscrub Size",
+                        $dataHelper::CUSTOMER_BOTTOM_LENGTH_ATTRIBUTE_CODE => "Bottom Length",
+                        $dataHelper::CUSTOMER_COLOR_PREFERENCE_ATTRIBUTE_CODE => "Color Preference",
+                        $dataHelper::CUSTOMER_SCRUB_HABITS_ATTRIBUTE_CODE => "Scrub Habits",
+                        $dataHelper::CUSTOMER_JACKET_SIZE_ATTRIBUTE_CODE => "Jacket Size",
+                        $dataHelper::CUSTOMER_COLOR_CODE_WORKSPACE_ATTRIBUTE_CODE => "Color-coded Workplace",
+                        $dataHelper::CUSTOMER_PREFER_WAY_OF_SHOP_ATTRIBUTE_CODE => "Preferred Way Of Shopping",
+                        $dataHelper::CUSTOMER_DAISY_AWARD_WINNER_ATTRIBUTE_CODE => "Daisy Award Winner"
+                    ];
+                    ?>
+
+                    <?php foreach ($selectFields as $optionKey => $optionName) {
+                        $customField = $dataHelper->getCustomerOptionsByAttributeCode($optionKey);
+                        $currentOption = $customAttributes[$optionKey];
+                        if ($customField && $optionKey) {
+                            ?>
+                            <div class="field select">
+                                <label class="label" for="<?= $optionKey ?>"><span><?= $optionName ?></span></label>
+                                <select autocomplete="<?= $optionKey ?>" name="<?= $optionKey ?>" id="<?= $optionKey ?>"
+                                        title="<?= $optionName ?>" class="select">
+                                    <?php foreach ($customField as $option):
+                                        echo '<!-- ' . $option['value'] . ' -->';
+                                        if ($option['value']) { ?>
+                                            <option value="<?= $option['value'] ?>"
+                                                <?php if ($option['value'] == $currentOption->getValue()) echo ' selected' ?>>
+                                                <?= $option['label'] ?>
+                                            </option>
+                                        <?php } ?>
+                                    <?php endforeach ?>
+                                </select>
+                            </div>
+                        <?php } ?>
+                    <?php } ?>
+                    <!-- # Select Fields -->
+
+                    <!-- Primary Place of Work -->
+                    <?php
+                    $placeOfWork = $customer->getCustomAttribute($dataHelper::CUSTOMER_PLACE_OF_WORK_ATTRIBUTE_CODE);
+                    $placeOfWorkVal = $placeOfWork ? $placeOfWork->getValue() : "";
+                    ?>
+                    <div class="field text">
+                        <label class="label" for="place_of_work"><span>Primary Place of Work</span></label>
+                        <input type="text" name="place_of_work" value="<?= $placeOfWorkVal ?>"/>
+                    </div>
+
+                    <!-- Date Of Bird -->
+                    <?php
+                    $d = $customer->getDob();
+                    $newDate = date("m-d-Y", strtotime($d));
+                    ?>
+
+                    <div class="field dob">
+                        <div class="control">
+                            <input type="text" name="dob" id="dob" value="<?= $newDate ?>" class=""
+                                   data-validate="{'validate-date':{'dateFormat':'mm/dd/Y'}}"
+                                   aria-invalid="true" aria-describedby=""/>
+                            <script type="text/javascript">
+                                require(["jquery", "mage/calendar"], function ($) {
+                                    $("#dob").calendar({
+                                        showsTime: false,
+                                        dateFormat: "mm/dd/Y",
+                                        buttonImage: "/static/frontend/Lexim/infinity/en_US/Magento_Theme/calendar.png",
+                                        yearRange: "-120y:c+nn",
+                                        buttonText: "Select Date",
+                                        maxDate: "-1d",
+                                        changeMonth: true,
+                                        changeYear: true,
+                                        showOn: "both"
+                                    })
+                                });
+                            </script>
+                        </div>
+                    </div>
+
+                    <div class="primary">
+                        <button type="submit" class="action save primary" title="<?= __('Save') ?>">
+                            <span><?= __('Save Changes') ?></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </fieldset>
+
+
+    <script type="text/javascript">
+        require([
+            "jquery",
+            "mage/mage"
+        ], function ($) {
+
+        });
+    </script>
+
+    <!-- # Custom fields -->
 </form>
-<script>
+
+<script type="text/javascript">
     require([
         "jquery",
         "mage/mage"
     ], function ($) {
-        var dataForm = $('#form-validate');
-        var ignore = null;
+        let dataForm = $('#form-validate');
+        let ignore = null;
 
         dataForm.mage('validation', {
             ignore: ignore ? ':hidden:not(' + ignore + ')' : ':hidden'
@@ -196,16 +297,14 @@ $block->getUrl('customer/account/editPost') ?>" method="post" id="form-validate"
 
     });
 </script>
+
 <script type="text/x-magento-init">
     {
         "[data-role=change-email], [data-role=change-password]": {
             "changeEmailPassword": {
-                "titleChangeEmail": "<?= /* @escapeNotVerified */
-    __('Change Email') ?>",
-                "titleChangePassword": "<?= /* @escapeNotVerified */
-    __('Change Password') ?>",
-                "titleChangeEmailAndPassword": "<?= /* @escapeNotVerified */
-    __('Change Email and Password') ?>"
+                "titleChangeEmail": "Change Email",
+                "titleChangePassword": "Change Password",
+                "titleChangeEmailAndPassword": "Change Email and Password"
             }
         },
         "[data-container=new-password]": {
@@ -214,16 +313,14 @@ $block->getUrl('customer/account/editPost') ?>" method="post" id="form-validate"
             }
         }
     }
-
-
 </script>
 
-<script>
+<script type="text/javascript">
     require(['jquery'], function ($) {
         $(function () {
             $('.wrap a').click(function (e) {
                 e.preventDefault();
-                var wrapParent = $(this).parent().parent().parent();
+                let wrapParent = $(this).parent().parent().parent();
 
                 if (wrapParent.hasClass('password')) {
                     $("#change-password").click();
@@ -237,7 +334,7 @@ $block->getUrl('customer/account/editPost') ?>" method="post" id="form-validate"
 
             $('.content .cancel').click(function (e) {
                 e.preventDefault();
-                var wrapParent = $(this).parent().parent().parent().parent();
+                let wrapParent = $(this).parent().parent().parent().parent();
 
                 if (wrapParent.hasClass('password')) {
                     $("#change-password").click();
@@ -251,28 +348,34 @@ $block->getUrl('customer/account/editPost') ?>" method="post" id="form-validate"
         });
     });
 </script>
+
+<!-- SHIPPING ADDRESS -->
 <?php
 $_objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-$savedAddres = $_objectManager->get('BinaryAnvil\Customer\Block\AccountData');
-$getAddres = $savedAddres->getSavedAddress();
+
+/** @var BinaryAnvil\Customer\Block\AccountData $savedAddress */
+$savedAddress = $_objectManager->get('BinaryAnvil\Customer\Block\AccountData');
+$getAddress = $savedAddress->getSavedAddress();
 
 $customerSession = $_objectManager->create('Magento\Customer\Model\Session');
-$getIdcus = $customerSession->getCustomerId();
+$getCustomerId = $customerSession->getCustomerId();
 
+$countryList = $savedAddress->getCountries();
+$regionList = $savedAddress->getRegion();
 
-$countryList = $savedAddres->getCountries();
-$regionList = $savedAddres->getRegion();
-
-// get customer default 
+// get customer default
 $addressInfo = $_objectManager->get('BinaryAnvil\Customer\Block\Addressinfo');
 $shippingAddress = $addressInfo->getDefaultShippingAddress();
+
+$idAddress = $firstName = $lastName = $street = $street2 = $city = $country_id = $region_id = $postcode = $telephone = "";
+
 if (isset($shippingAddress)) {
     $changeArray = array();
     $changeArray = $shippingAddress->__toArray();
     // echo "<pre>";print_r($changeArray);
     $idAddress = $changeArray['id'];
-    $firstname = $changeArray['firstname'];
-    $lastname = $changeArray['lastname'];
+    $firstName = $changeArray['firstname'];
+    $lastName = $changeArray['lastname'];
     $street = $changeArray['street'][0];
     if (isset($changeArray['street'][1])) {
         $street2 = $changeArray['street'][1];
@@ -294,15 +397,15 @@ if (isset($shippingAddress)) {
     <div class="box-address">
         <div class="content-address">
             <p>
-                <?php if ($getAddres): ?>
-                    <?= $getAddres ?>
+                <?php if ($getAddress): ?>
+                    <?= $getAddress ?>
                     <label for="set_shipping_address" class="defaul-shipping"><span>Default address</span></label>
                 <?php else: ?>
                     <span>None</span>
                 <?php endif; ?>
             </p>
         </div>
-        <?php if ($getAddres): ?>
+        <?php if ($getAddress): ?>
             <div class="content-edit-address">
                 <div class="box-edit-address">
                     <form class="form-address-edit" id="<?= $idAddress; ?>"
@@ -313,10 +416,10 @@ if (isset($shippingAddress)) {
                         <div class="content-details">
                             <div class="field field-firstname required">
                                 <label class="label" for="name">
-                                    <span><?php echo __('name') ?></span>
+                                    <span><?= __('name') ?></span>
                                 </label>
                                 <div class="control">
-                                    <input type="text" id="name" name="firstname" value="<?= $firstname; ?>"
+                                    <input type="text" id="name" name="firstname" value="<?= $firstName; ?>"
                                            title="Name"
                                            class="input-text required-entry" data-validate="{required:true}"
                                            aria-required="true">
@@ -326,10 +429,10 @@ if (isset($shippingAddress)) {
                         <div class="content-details">
                             <div class="field field-lastname required">
                                 <label class="label" for="lastname">
-                                    <span><?php echo __('last name') ?></span>
+                                    <span><?= __('last name') ?></span>
                                 </label>
                                 <div class="control">
-                                    <input type="text" id="lastname" name="lastname" value="<?= $lastname; ?>"
+                                    <input type="text" id="lastname" name="lastname" value="<?= $lastName; ?>"
                                            title="Last Name"
                                            class="input-text required-entry" data-validate="{required:true}"
                                            aria-required="true">
@@ -339,7 +442,7 @@ if (isset($shippingAddress)) {
                         <div class="content-details">
                             <div class="field field-address required">
                                 <label class="label" for="address">
-                                    <span><?php echo __('address') ?></span>
+                                    <span><?= __('address') ?></span>
                                 </label>
                                 <div class="control">
                                     <input type="text" id="street_1" name="street[]" value="<?= $street; ?>"
@@ -347,7 +450,7 @@ if (isset($shippingAddress)) {
                                            class="input-text required-entry" data-validate="{required:true}"
                                            aria-required="true">
                                 </div>
-                                <?php if (isset($street2)):?>
+                                <?php if (isset($street2)): ?>
                                     <div class="control paddingtop">
                                         <input type="text" id="street_2" name="street[]" value="<?= $street2; ?>"
                                                title="Street Address 2"
@@ -358,8 +461,8 @@ if (isset($shippingAddress)) {
                                     <div class="control paddingtop">
                                         <input type="text" id="street_2" name="street[]" value=""
                                                title="Street Address 2"
-                                               class="input-text" data-validate="{required:fales}"
-                                               aria-required="fales">
+                                               class="input-text" data-validate="{required:false}"
+                                               aria-required="false">
                                     </div>
                                 <?php endif; ?>
                             </div>
@@ -367,7 +470,7 @@ if (isset($shippingAddress)) {
                         <div class="content-details">
                             <div class="field field-city required">
                                 <label class="label" for="city">
-                                    <span><?php echo __('city') ?></span>
+                                    <span><?= __('city') ?></span>
                                 </label>
                                 <div class="control">
                                     <input type="text" id="city" name="city" value="<?= $city; ?>"
@@ -380,17 +483,17 @@ if (isset($shippingAddress)) {
                         <div class="default-state content-details lx-<?= $idAddress ?>">
                             <div class="field state">
                                 <label class="label" for="state">
-                                    <span><?php echo __('state') ?></span>
+                                    <span><?= __('state') ?></span>
                                 </label>
                                 <div class="control">
-                                    <?php echo $regionList; ?>
+                                    <?= $regionList; ?>
                                 </div>
                             </div>
                         </div>
                         <div class="content-details zip-code">
                             <div class="field field-zip-code required">
                                 <label class="label" for="zipcode">
-                                    <span><?php echo __('zip code') ?></span>
+                                    <span><?= __('zip code') ?></span>
                                 </label>
                                 <div class="control">
                                     <input type="text" id="zip" name="postcode"
@@ -403,7 +506,7 @@ if (isset($shippingAddress)) {
                         <div class="content-details phone">
                             <div class="field field-phone required">
                                 <label class="label" for="phone">
-                                    <span><?php echo __('phone') ?></span>
+                                    <span><?= __('phone') ?></span>
                                 </label>
                                 <div class="control">
                                     <input type="text" id="telephone" name="telephone" value="<?= $telephone; ?>"
@@ -416,10 +519,10 @@ if (isset($shippingAddress)) {
                         <div class="content-details country">
                             <div class="field country">
                                 <label class="label" for="country">
-                                    <span><?php echo __('country') ?></span>
+                                    <span><?= __('country') ?></span>
                                 </label>
                                 <div class="control">
-                                    <?php echo $countryList; ?>
+                                    <?= $countryList; ?>
                                 </div>
                             </div>
                         </div>
@@ -429,16 +532,16 @@ if (isset($shippingAddress)) {
                             </div>
                         </div>
 
-
                         <div class="primary saved-box">
-                            <button type="submit" class="action primary" title="<?= /* @escapeNotVerified */
-                            __('Save') ?>"><span><?= /* @escapeNotVerified */
-                                    __('Save Changes') ?></span></button>
+                            <button type="submit" class="action primary" title="<?= __('Save') ?>">
+                                <span><?= __('Save Changes') ?></span>
+                            </button>
                         </div>
                     </form>
                 </div>
             </div>
-            <script>
+
+            <script type="text/javascript">
                 require(['jquery'], function ($) {
                     $(function () {
                         // select state
@@ -448,33 +551,33 @@ if (isset($shippingAddress)) {
                     });
                 });
             </script>
+
             <!-- require for edit default shipping -->
             <script type="text/javascript">
                 require([
                     'jquery',
                     'mage/mage'
-                ], function($){
-
-                    var dataForm = $('.form-address-edit#<?= $idAddress; ?>');
+                ], function ($) {
+                    let dataForm = $('.form-address-edit#<?= $idAddress; ?>');
                     dataForm.mage('validation', {});
-
                 });
             </script>
         <?php endif; ?>
     </div>
 </div>
+
 <?php
 // address book
 $addressBook = $_objectManager->get('Magento\Customer\Block\Address\Book');
 ?>
-<?php if ($_pAddsses = $addressBook->getAdditionalAddresses()): ?>
-    <?php foreach ($_pAddsses as $_address): ?>
+<?php if ($_pAddresses = $addressBook->getAdditionalAddresses()): ?>
+    <?php foreach ($_pAddresses as $_address): ?>
         <?php $changeArray = array();
         $changeArray = $_address->__toArray();
         // echo "<pre>";print_r($changeArray);
         $idAddress = $changeArray['id'];
-        $firstname = $changeArray['firstname'];
-        $lastname = $changeArray['lastname'];
+        $firstName = $changeArray['firstname'];
+        $lastName = $changeArray['lastname'];
         $street = $changeArray['street'][0];
         if (isset($changeArray['street'][1])) {
             $street3 = $changeArray['street'][1];
@@ -493,9 +596,7 @@ $addressBook = $_objectManager->get('Magento\Customer\Block\Address\Book');
             </div>
             <div class="box-address">
                 <div class="content-address">
-                    <p>
-                        <?= $addressBook->getAddressHtml($_address) ?>
-                    </p>
+                    <p><?= $addressBook->getAddressHtml($_address) ?></p>
                 </div>
                 <div class="content-edit-address">
                     <div class="box-edit-address">
@@ -507,10 +608,10 @@ $addressBook = $_objectManager->get('Magento\Customer\Block\Address\Book');
                             <div class="content-details">
                                 <div class="field field-firstname required">
                                     <label class="label" for="name">
-                                        <span><?php echo __('name') ?></span>
+                                        <span><?= __('name') ?></span>
                                     </label>
                                     <div class="control">
-                                        <input type="text" id="name" name="firstname" value="<?= $firstname; ?>"
+                                        <input type="text" id="name" name="firstname" value="<?= $firstName; ?>"
                                                title="Name"
                                                class="input-text required-entry" data-validate="{required:true}"
                                                aria-required="true">
@@ -520,10 +621,10 @@ $addressBook = $_objectManager->get('Magento\Customer\Block\Address\Book');
                             <div class="content-details">
                                 <div class="field field-lastname required">
                                     <label class="label" for="lastname">
-                                        <span><?php echo __('last name') ?></span>
+                                        <span><?= __('last name') ?></span>
                                     </label>
                                     <div class="control">
-                                        <input type="text" id="lastname" name="lastname" value="<?= $lastname; ?>"
+                                        <input type="text" id="lastname" name="lastname" value="<?= $lastName; ?>"
                                                title="Last Name"
                                                class="input-text required-entry" data-validate="{required:true}"
                                                aria-required="true">
@@ -533,7 +634,7 @@ $addressBook = $_objectManager->get('Magento\Customer\Block\Address\Book');
                             <div class="content-details">
                                 <div class="field field-address required">
                                     <label class="label" for="address">
-                                        <span><?php echo __('address') ?></span>
+                                        <span><?= __('address') ?></span>
                                     </label>
                                     <div class="control">
                                         <input type="text" id="street_1" name="street[]" value="<?= $street; ?>"
@@ -541,7 +642,7 @@ $addressBook = $_objectManager->get('Magento\Customer\Block\Address\Book');
                                                class="input-text required-entry" data-validate="{required:true}"
                                                aria-required="true">
                                     </div>
-                                    <?php if (isset($street3)):?>
+                                    <?php if (isset($street3)): ?>
                                         <div class="control paddingtop">
                                             <input type="text" id="street_2" name="street[]" value="<?= $street3; ?>"
                                                    title="Street Address 2"
@@ -552,8 +653,8 @@ $addressBook = $_objectManager->get('Magento\Customer\Block\Address\Book');
                                         <div class="control paddingtop">
                                             <input type="text" id="street_2" name="street[]" value=""
                                                    title="Street Address 2"
-                                                   class="input-text" data-validate="{required:fales}"
-                                                   aria-required="fales">
+                                                   class="input-text" data-validate="{required:false}"
+                                                   aria-required="false">
                                         </div>
                                     <?php endif; ?>
                                 </div>
@@ -561,7 +662,7 @@ $addressBook = $_objectManager->get('Magento\Customer\Block\Address\Book');
                             <div class="content-details">
                                 <div class="field field-city required">
                                     <label class="label" for="city">
-                                        <span><?php echo __('city') ?></span>
+                                        <span><?= __('city') ?></span>
                                     </label>
                                     <div class="control">
                                         <input type="text" id="city" name="city" value="<?= $city; ?>"
@@ -574,17 +675,17 @@ $addressBook = $_objectManager->get('Magento\Customer\Block\Address\Book');
                             <div class="book-state content-details lx-<?= $idAddress ?>">
                                 <div class="field state">
                                     <label class="label" for="state">
-                                        <span><?php echo __('state') ?></span>
+                                        <span><?= __('state') ?></span>
                                     </label>
                                     <div class="control">
-                                        <?php echo $regionList; ?>
+                                        <?= $regionList; ?>
                                     </div>
                                 </div>
                             </div>
                             <div class="content-details zip-code">
                                 <div class="field field-zip-code required">
                                     <label class="label" for="zipcode">
-                                        <span><?php echo __('zip code') ?></span>
+                                        <span><?= __('zip code') ?></span>
                                     </label>
                                     <div class="control">
                                         <input type="text" id="zip" name="postcode"
@@ -598,7 +699,7 @@ $addressBook = $_objectManager->get('Magento\Customer\Block\Address\Book');
                             <div class="content-details phone">
                                 <div class="field field-phone required">
                                     <label class="label" for="phone">
-                                        <span><?php echo __('phone') ?></span>
+                                        <span><?= __('phone') ?></span>
                                     </label>
                                     <div class="control">
                                         <input type="text" id="telephone" name="telephone" value="<?= $telephone; ?>"
@@ -611,32 +712,33 @@ $addressBook = $_objectManager->get('Magento\Customer\Block\Address\Book');
                             <div class="content-details country">
                                 <div class="field country">
                                     <label class="label" for="country">
-                                        <span><?php echo __('country') ?></span>
+                                        <span><?= __('country') ?></span>
                                     </label>
                                     <div class="control">
-                                        <?php echo $countryList; ?>
+                                        <?= $countryList; ?>
                                     </div>
                                 </div>
                             </div>
                             <div class="content-details edit_shipping_address">
                                 <div class="checkbox-field">
-                                    <input type="checkbox" id="primary_shipping" name="default_shipping" value="1" class="checkbox">
+                                    <input type="checkbox" id="primary_shipping" name="default_shipping" value="1"
+                                           class="checkbox">
                                     <label for="primary_shipping"><span>Set as default address</span></label>
                                 </div>
                             </div>
 
-
                             <div class="primary saved-box">
-                                <button type="submit" class="action primary" title="<?= /* @escapeNotVerified */
-                                __('Save') ?>"><span><?= /* @escapeNotVerified */
-                                        __('Save Changes') ?></span></button>
+                                <button type="submit" class="action primary" title="<?= __('Save') ?>">
+                                    <span><?= __('Save Changes') ?></span>
+                                </button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-        <script>
+
+        <script type="text/javascript">
             require(['jquery'], function ($) {
                 $(function () {
                     // select state
@@ -645,14 +747,15 @@ $addressBook = $_objectManager->get('Magento\Customer\Block\Address\Book');
                 });
             });
         </script>
+
         <!-- require for edit book shipping -->
         <script type="text/javascript">
             require([
                 'jquery',
                 'mage/mage'
-            ], function($){
+            ], function ($) {
 
-                var dataForm = $('.form-address-edit#<?= $idAddress; ?>');
+                let dataForm = $('.form-address-edit#<?= $idAddress; ?>');
                 dataForm.mage('validation', {});
 
             });
@@ -673,7 +776,7 @@ $addressBook = $_objectManager->get('Magento\Customer\Block\Address\Book');
                     <div class="content-details">
                         <div class="field field-firstname required">
                             <label class="label" for="name">
-                                <span><?php echo __('name') ?></span>
+                                <span><?= __('name') ?></span>
                             </label>
                             <div class="control">
                                 <input type="text" id="name" name="firstname" value="" title="Name"
@@ -685,7 +788,7 @@ $addressBook = $_objectManager->get('Magento\Customer\Block\Address\Book');
                     <div class="content-details">
                         <div class="field field-lastname required">
                             <label class="label" for="lastname">
-                                <span><?php echo __('last name') ?></span>
+                                <span><?= __('last name') ?></span>
                             </label>
                             <div class="control">
                                 <input type="text" id="lastname" name="lastname" value="" title="Last Name"
@@ -697,7 +800,7 @@ $addressBook = $_objectManager->get('Magento\Customer\Block\Address\Book');
                     <div class="content-details">
                         <div class="field field-address required">
                             <label class="label" for="address">
-                                <span><?php echo __('address') ?></span>
+                                <span><?= __('address') ?></span>
                             </label>
                             <div class="control">
                                 <input type="text" id="address" name="address" value="" title="Address"
@@ -714,7 +817,7 @@ $addressBook = $_objectManager->get('Magento\Customer\Block\Address\Book');
                     <div class="content-details">
                         <div class="field field-city required">
                             <label class="label" for="city">
-                                <span><?php echo __('city') ?></span>
+                                <span><?= __('city') ?></span>
                             </label>
                             <div class="control">
                                 <input type="text" id="city" name="city" value=""
@@ -726,17 +829,17 @@ $addressBook = $_objectManager->get('Magento\Customer\Block\Address\Book');
                     <div class="content-details">
                         <div class="field state">
                             <label class="label" for="state">
-                                <span><?php echo __('state') ?></span>
+                                <span><?= __('state') ?></span>
                             </label>
                             <div class="control">
-                                <?php echo $regionList; ?>
+                                <?= $regionList; ?>
                             </div>
                         </div>
                     </div>
                     <div class="content-details zip-code">
                         <div class="field field-zip-code required">
                             <label class="label" for="zipcode">
-                                <span><?php echo __('zip code') ?></span>
+                                <span><?= __('zip code') ?></span>
                             </label>
                             <div class="control">
                                 <input type="text" id="zipcode" name="zipcode"
@@ -749,7 +852,7 @@ $addressBook = $_objectManager->get('Magento\Customer\Block\Address\Book');
                     <div class="content-details phone">
                         <div class="field field-phone required">
                             <label class="label" for="phone">
-                                <span><?php echo __('phone') ?></span>
+                                <span><?= __('phone') ?></span>
                             </label>
                             <div class="control">
                                 <input type="text" id="phone" name="phone" value=""
@@ -761,10 +864,10 @@ $addressBook = $_objectManager->get('Magento\Customer\Block\Address\Book');
                     <div class="content-details country">
                         <div class="field country">
                             <label class="label" for="country">
-                                <span><?php echo __('country') ?></span>
+                                <span><?= __('country') ?></span>
                             </label>
                             <div class="control">
-                                <?php echo $countryList; ?>
+                                <?= $countryList; ?>
                             </div>
                         </div>
                     </div>
@@ -775,9 +878,9 @@ $addressBook = $_objectManager->get('Magento\Customer\Block\Address\Book');
                         </div>
                     </div>
                     <div class="primary">
-                        <button type="submit" class="action save primary" title="<?= /* @escapeNotVerified */
-                        __('Save') ?>"><span><?= /* @escapeNotVerified */
-                                __('Save Changes') ?></span></button>
+                        <button type="submit" class="action save primary" title="<?= __('Save') ?>">
+                            <span><?= __('Save Changes') ?></span>
+                        </button>
                     </div>
                 </form>
             </div>
@@ -790,29 +893,39 @@ $resource = $_objectManager->get('Magento\Framework\App\ResourceConnection');
 $connection = $resource->getConnection();
 $tableName = $resource->getTableName('local_retailer_store');
 
-$sql = "Select * FROM " . $tableName . " WHERE id_customer_use =" . $getIdcus;
+$sql = "Select * FROM " . $tableName . " WHERE id_customer_use =" . $getCustomerId;
 $array_customer = $connection->fetchAll($sql);
 if (!empty($array_customer)) {
     foreach ($array_customer as $key) {
         $retailerId = $key['retailer_id'];
         break;
     } ?>
-    <style type="text/css">
-        #<?= $retailerId; ?> .product-items .<?= $retailerId; ?> .make-this-store span {
-            display: none;
-        }
 
-        #<?= $retailerId; ?> .product-items .<?= $retailerId; ?> .location-radio .label {
-                                 display: block !important;
-                             }
-    </style>
+    <?php /**
+     * <style type="text/css">
+     *
+     * <?= $retailerId; ?> .product-items .<?= $retailerId; ?> .make-this-store span {
+     * display: none;
+     * }
+     *
+     * <?= $retailerId; ?> .product-items .<?= $retailerId; ?> .location-radio .label {
+     * display: block !important;
+     * }
+     * </style>
+     **/ ?>
 <?php }
 ?>
 <div class="my-local-retailer" id="retailer-store">
     <div class="box-local-retailer">
         <div class="header-retailer">
-            <span class="title"><?= /* @escapeNotVerified */
-                __('My local retailer') ?></span>
+            <span class="title"><?= __('My local retailer') ?></span>
+
+            <!-- Content for Infinity -->
+            <!--<p class="text-retails">We partner together with local infinity retailers to bring you this infinity site.
+                Please share below who is doing a great job in your community so we can recognize them. We hope you
+                visit your favorite infinity scrubs store soon!</p>-->
+
+            <!-- Content for Heart soul -->
             <p class="text-retails">
                 We partner with local scrubs retailers to provide the best experience for our Heartsoul customers.
                 Please share the name of your favorite Heartsoul retailer, or use our Store Locator to find the closest store in your area.
@@ -823,7 +936,7 @@ if (!empty($array_customer)) {
             <div class="content-details zip">
                 <div class="field field-zip required">
                     <label class="label" for="zipcode">
-                        <span><?php echo __('zip code') ?></span>
+                        <span><?= __('zip code') ?></span>
                     </label>
                     <div class="control">
                         <input type="text" id="zip" name="zip" value="" title="zip" placeholder="Zip or City, State"
@@ -831,7 +944,7 @@ if (!empty($array_customer)) {
                     </div>
                 </div>
             </div>
-            <span class="join-text"><?php echo __('within') ?></span>
+            <span class="join-text"><?= __('within') ?></span>
             <div class="content-details distance">
                 <div class="control select-control">
                     <select id="storeSelector" class="select">
@@ -845,14 +958,20 @@ if (!empty($array_customer)) {
                     </select>
                 </div>
             </div>
-            <a href="javascript:void(0)" id="finder-submit"><span class="join-text"><?php echo __('Submit') ?></span></a>
+            <a href="javascript:void(0)" id="finder-submit">
+                <span class="join-text"><?= __('Submit') ?></span></a>
         </div>
         <div class="footer-retailer" id="<?php if (isset($retailerId)) {
             echo $retailerId;
         } ?>">
             <div class="products list items product-items the-bottom-slider">
                 <?php
-                if (!empty($array_customer)){
+                if (!empty($array_customer)) {
+                    $storeName = "";
+                    $street = "";
+                    $city = "";
+                    $state = "";
+                    $zip = "";
                     foreach ($array_customer as $key) {
                         $storeName = $key['store_name'];
                         $street = $key['street'];
@@ -875,11 +994,13 @@ if (!empty($array_customer)) {
         </div>
     </div>
 </div>
-<script>
+
+<script type="text/javascript">
     require(['jquery'], function ($) {
         $(function () {
-            var hash = window.location.hash;
-            if(hash == "#defaultshipping"){
+            let hash = window.location.hash;
+            if (hash === "#defaultshipping") {
+
                 $('#defaultshipping .link-edit-address').addClass('focus');
                 $('#defaultshipping').addClass('active');
             }
@@ -896,31 +1017,34 @@ if (!empty($array_customer)) {
         });
     });
 </script>
+
 <script type="text/javascript">
     require(['jquery'], function ($) {
-        $(document.body).on('click', '.make-this-store span', function (e) {
+        $(document.body).on('click', '.make-this-store span', function () {
             $('.make-this-store').removeClass('active');
             $(this).parent().addClass('active');
-            var monday = "no", saturday = "no";
-            var retailerid = $('.make-this-store.active .retailerid-retailer').val();
-            var storename = $('.make-this-store.active .storename-retailer').val();
-            var street = $('.make-this-store.active .street-retailer').val();
-            var city = $('.make-this-store.active .city-retailer').val();
-            var state = $('.make-this-store.active .state-retailer').val();
-            var zip = $('.make-this-store.active .zip-retailer').val();
-            var distance = $('.make-this-store.active .distance-retailer').val();
-            var phone = $('.make-this-store.active .phone-retailer').val();
+            let monday = "no", saturday = "no";
+            let retailerId = $('.make-this-store.active .retailerid-retailer').val();
+            let storeName = $('.make-this-store.active .storename-retailer').val();
+            let street = $('.make-this-store.active .street-retailer').val();
+            let city = $('.make-this-store.active .city-retailer').val();
+            let state = $('.make-this-store.active .state-retailer').val();
+            let zip = $('.make-this-store.active .zip-retailer').val();
+            let distance = $('.make-this-store.active .distance-retailer').val();
+            let phone = $('.make-this-store.active .phone-retailer').val();
             monday = $('.make-this-store.active .monday-retailer').val();
             saturday = $('.make-this-store.active .saturday-retailer').val();
-            var getidcus = <?= $getIdcus ?>;
+            let getCusId = "";
+            getCusId = <?= $getCustomerId ?>;
+
             jQuery.ajax({
-                url: '<?php echo $this->getBaseUrl() . 'localretailer/load/load'?>',
+                url: '<?= $this->getBaseUrl() . 'localretailer/load/load'?>',
                 type: "POST",
                 dataType: 'json',
                 showLoader: true,
                 data: {
-                    retailerid: retailerid,
-                    storename: storename,
+                    retailerid: retailerId,
+                    storename: storeName,
                     street: street,
                     city: city,
                     state: state,
@@ -929,14 +1053,15 @@ if (!empty($array_customer)) {
                     phone: phone,
                     monday: monday,
                     saturday: saturday,
-                    getidcus: getidcus
+                    getidcus: getCusId
                 },
                 success: function (data) {
                     // location.reload();
-                    $('.footer-retailer').removeAttr('id');
-                    $('.footer-retailer').attr('id', retailerid);
+                    let footerRetailer = $('.footer-retailer');
+                    footerRetailer.removeAttr('id');
+                    footerRetailer.attr('id', retailerId);
                     $(".customer-account-edit .column.main .my-local-retailer .box-local-retailer .footer-retailer .location .location-radio .label").removeAttr('style');
-                    $(".customer-account-edit .column.main .my-local-retailer .box-local-retailer .footer-retailer .location." + retailerid + " .location-radio .label").css("display", "block");
+                    $(".customer-account-edit .column.main .my-local-retailer .box-local-retailer .footer-retailer .location." + retailerId + " .location-radio .label").css("display", "block");
 
                     $(".make-this-store span").removeAttr('style');
                     $(".make-this-store.active span").css("display", "none");
@@ -947,11 +1072,13 @@ if (!empty($array_customer)) {
 </script>
 
 <!-- add new address -->
-<script>
+<script type="text/javascript">
     require(['jquery'], function ($) {
         $(function () {
-            $('.link-add-address').click(function (e) {
-
+            /**
+             * @return null
+             */
+            $('.link-add-address').click(function () {
                 if ($(this).hasClass("focus")) {
                     $(this).removeClass('focus');
                     $(this).text("+  Add shipping address");
@@ -964,39 +1091,39 @@ if (!empty($array_customer)) {
             });
 
 
-            $(".add-shipping-address .action.save.primary").click(function (e) {
-                var add_shipping_default = 0;
+            $(".add-shipping-address .action.save.primary").click(function () {
+                let add_shipping_default = 0;
                 if ($('#add_shipping').is(":checked")) {
                     add_shipping_default = 1;
                 }
-                var name = $('.add-shipping-address .box-edit-address #name').val();
-                var lastname = $('.add-shipping-address .box-edit-address #lastname').val();
-                var address = $('.add-shipping-address .box-edit-address #address').val();
-                var address2 = $('.add-shipping-address .box-edit-address #address2').val();
-                var city = $('.add-shipping-address .box-edit-address #city').val();
-                var phone = $('.add-shipping-address .box-edit-address #phone').val();
-                var zipcode = $('.add-shipping-address .box-edit-address #zipcode').val();
-                var state = $(".add-shipping-address .box-edit-address #state").val();
-                var country = $(".add-shipping-address .box-edit-address #country").val();
-                console.log('aa '+address2);
-                var getidcus = <?= $getIdcus ?>;
-                if(state != ''){
+                let name = $('.add-shipping-address .box-edit-address #name').val();
+                let lastName = $('.add-shipping-address .box-edit-address #lastname').val();
+                let address = $('.add-shipping-address .box-edit-address #address').val();
+                let address2 = $('.add-shipping-address .box-edit-address #address2').val();
+                let city = $('.add-shipping-address .box-edit-address #city').val();
+                let phone = $('.add-shipping-address .box-edit-address #phone').val();
+                let zipCode = $('.add-shipping-address .box-edit-address #zipcode').val();
+                let state = $(".add-shipping-address .box-edit-address #state").val();
+                let country = $(".add-shipping-address .box-edit-address #country").val();
+                let getCusId = "";
+                getCusId = <?= $getCustomerId ?>;
+                if (state !== '') {
                     jQuery.ajax({
-                        url: '<?php echo $this->getBaseUrl() . 'localretailer/book/book'?>',
+                        url: '<?= $this->getBaseUrl() . 'localretailer/book/book'?>',
                         type: "POST",
                         dataType: 'json',
                         showLoader: true,
                         data: {
                             name: name,
-                            lastname: lastname,
+                            lastname: lastName,
                             address: address,
                             address2: address2,
                             city: city,
                             phone: phone,
-                            zipcode: zipcode,
+                            zipcode: zipCode,
                             state: state,
                             country: country,
-                            customer_id: getidcus,
+                            customer_id: getCusId,
                             add_shipping_default: add_shipping_default
                         },
                         success: function (data) {
@@ -1006,16 +1133,128 @@ if (!empty($array_customer)) {
                 }
             });
         });
+
+        // Profile Center
+        console.log("Profile Center");
+
+        /**
+         * Send ajax POST when submit button is clicked
+         */
+        $('#form-validate.form-edit-account').one('submit', function (e) {
+            let _this = $(this);
+            e.preventDefault(); // prevent submit
+
+            let postUrl = 'https://profilecenter-infinity-qa.azurewebsites.net/api/v1/profile';
+            if (window.location.href.indexOf('infinityscrubs.com') > -1 || window.location.href.indexOf('heartsoulscrubs.com') > -1) {
+                postUrl = 'https://profilecenter-infinity.azurewebsites.net/api/v1/profile';
+            }
+
+            let postData = {
+                email: "",
+                firstName: "",
+                lastName: "",
+                gender: "",
+                address1: "",
+                city: "",
+                zipCode: "",
+                state: "",
+                birthdate: " ",
+                colorCoded: "",
+                jacketSize: "",
+                scrubHabits: "",
+                colorPreference: "",
+                bottomLength: "",
+                underscrubSize: "",
+                shoeSize: "",
+                bottomSize: "",
+                daisyNurse: "",
+                topSize: ""
+            };
+
+            let formData = [
+                {key: 'email', type: 'email', name: '#email'},
+                {key: 'firstName', type: 'text', name: '#firstname'},
+                {key: 'lastName', type: 'text', name: '#lastname'},
+                {key: 'gender', type: 'select', name: 'gender'},
+                {key: 'address1', type: 'text', name: '#street_1'},
+                {key: 'city', type: 'text', name: '#city'},
+                {key: 'zipCode', type: 'text', name: '#zip'},
+                {key: 'state', type: 'select', name: 'region'},
+                {key: 'birthdate', type: 'text', name: '#dob'},
+                {key: 'colorCoded', type: 'select', name: 'color_coded_workspace'},
+                {key: 'jacketSize', type: 'select', name: 'jacket_size'},
+                {key: 'scrubHabits', type: 'select', name: 'scrub_habits'},
+                {key: 'colorPreference', type: 'select', name: 'color_preference'},
+                {key: 'bottomLength', type: 'select', name: 'bottom_length'},
+                {key: 'underscrubSize', type: 'select', name: 'underscrub_size'},
+                {key: 'shoeSize', type: 'select', name: 'shoe_size'},
+                {key: 'bottomSize', type: 'select', name: 'bottom_size'},
+                {key: 'daisyNurse', type: 'select', name: 'daisy_award_winner'},
+                {key: 'topSize', type: 'select', name: 'top_size'}
+                // prefer_way_of_shop
+                // place_of_work
+            ];
+
+            // init data
+            formData.forEach(function (obj, index) {
+                if (obj && obj.name !== '' && obj.key !== '') {
+                    let tmpVal = '';
+                    // get fields data
+                    if (obj.type === 'select') {
+                        tmpVal = $('select[name=' + obj.name + ']').children('option:selected').first().text();
+                    } else {
+                        tmpVal = $(obj.name).val();
+                    }
+                    // init post data
+                    tmpVal = $.trim(tmpVal);
+                    postData[obj.key] = tmpVal;
+                }
+            });
+            // console.log(postData);
+
+            // "required": ["email","firstName","lastName","gender","address1","city","zipCode","state","birth date"]
+            // Post data to API
+            if (postData.email && postData.firstName && postData.lastName && postData.gender
+                && postData.address1 && postData.city && postData.zipCode && postData.state && postData.birthdate) {
+                $.ajax({
+                    type: "POST",
+                    url: postUrl,
+                    data: JSON.stringify(postData),
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    beforeSend: function() {
+                        console.log('send ajax to api server');
+                    },
+                    success: function (res) {
+                        console.log(res);
+                    },
+                    error: function (res) {
+                        console.log(res);
+                    },
+                    complete: function () {
+                        console.log('submit form');
+                        _this.submit();
+                    }
+                });
+            } else {
+                console.log('submit form');
+                _this.submit();
+            }
+
+        });
+        // # Profile Center
+
     });
 </script>
+
 <!-- require for add address shipping -->
 <script type="text/javascript">
     require([
         'jquery',
         'mage/mage'
-    ], function($){
+    ], function ($) {
 
-        var dataForm = $('#add-custom-form');
+        let dataForm = $('#add-custom-form');
         dataForm.mage('validation', {});
 
     });
