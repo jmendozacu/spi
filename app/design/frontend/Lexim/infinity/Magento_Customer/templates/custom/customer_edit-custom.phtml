@@ -199,7 +199,10 @@ $customAttributes = $customer->getCustomAttributes();
 
                     <?php foreach ($selectFields as $optionKey => $optionName) {
                         $customField = $dataHelper->getCustomerOptionsByAttributeCode($optionKey);
-                        $currentOption = $customAttributes[$optionKey];
+                        $currentOptionValue = '';
+                        if (isset($customAttributes[$optionKey])) {
+                            $currentOptionValue = $customAttributes[$optionKey]->getValue();
+                        }
                         if ($customField && $optionKey) {
                             ?>
                             <div class="field select">
@@ -210,7 +213,7 @@ $customAttributes = $customer->getCustomAttributes();
                                         echo '<!-- ' . $option['value'] . ' -->';
                                         if ($option['value']) { ?>
                                             <option value="<?= $option['value'] ?>"
-                                                <?php if ($option['value'] == $currentOption->getValue()) echo ' selected' ?>>
+                                                <?php if ($option['value'] == $currentOptionValue) echo ' selected' ?>>
                                                 <?= $option['label'] ?>
                                             </option>
                                         <?php } ?>
