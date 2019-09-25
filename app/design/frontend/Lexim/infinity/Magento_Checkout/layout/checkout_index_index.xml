@@ -96,7 +96,7 @@
                                                             <item name="children" xsi:type="array">
                                                                 <item name="discount" xsi:type="array">
                                                                     <item name="config" xsi:type="array">
-                                                                        <item name="componentDisabled" xsi:type="boolean">true</item>
+                                                                        <item name="componentDisabled" xsi:type="boolean">false</item>
                                                                     </item>
                                                                 </item>
                                                             </item>
