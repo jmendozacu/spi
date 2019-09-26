@@ -2121,6 +2121,38 @@
                             }
                         }
                     }
+
+                    form#discount-form {
+                        .display-flex();
+                        .align-items(center);
+
+                        > .payment-option-inner {
+                            width: calc(~'100% - 110px');
+
+                            input[name=discount_code] {
+                                height: 36px;
+                                min-height: 36px;
+                                border: 1px solid #dbd9d6;
+                            }
+                        }
+
+                        > .actions-toolbar {
+                            button[type=submit] {
+                                height: 36px;
+                                width: 110px;
+                                line-height: 1;
+                                background: #ffffff;
+                                color: @aqua;
+                                text-align: center;
+                                margin: 0;
+                                padding: 0;
+                                border: 1px solid;
+                                outline: 0;
+                                .box-shadow(none);
+                                text-transform: uppercase;
+                            }
+                        }
+                    }
                 }
 
                 .aw-mobile-hide {
