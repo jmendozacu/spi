@@ -23,25 +23,24 @@ class Rating extends OriginalClass
      */
     protected $_state;
 
-
     /**
      * Rating constructor.
-     * @param \Magento\Framework\Model\ResourceModel\Db\Context $context
+     * @param \Magento\Framework\Model\Context $context
      * @param \Psr\Log\LoggerInterface $logger
      * @param \Magento\Framework\Module\Manager $moduleManager
      * @param \Magento\Store\Model\StoreManagerInterface $storeManager
      * @param \Magento\Review\Model\ResourceModel\Review\Summary $reviewSummary
-     * @param \Magento\Framework\App\State $state
      * @param null $connectionName
+     * @param \Magento\Framework\App\State $state
      */
     public function __construct(
-        \Magento\Framework\Model\ResourceModel\Db\Context $context,
+        \Magento\Framework\Model\Context $context,
         \Psr\Log\LoggerInterface $logger,
         \Magento\Framework\Module\Manager $moduleManager,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Review\Model\ResourceModel\Review\Summary $reviewSummary,
-        \Magento\Framework\App\State $state,
-        $connectionName = null
+        $connectionName = null,
+        \Magento\Framework\App\State $state
     )
     {
         $this->_state = $state;
