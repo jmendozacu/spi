@@ -3,30 +3,36 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
-
 namespace Magento\Review\Model\ResourceModel;
 
+/**
+ * Rating resource model
+ *
+ * @api
+ *
+ * @author      Magento Core Team <core@magentocommerce.com>
+ * @since 100.0.2
+ */
 class Rating extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
 {
     const RATING_STATUS_APPROVED = 'Approved';
+
     /**
      * Store manager
      *
      * @var \Magento\Store\Model\StoreManagerInterface
      */
     protected $_storeManager;
+
     /**
      * @var \Magento\Framework\Module\Manager
      */
     protected $moduleManager;
+
     /**
      * @var \Psr\Log\LoggerInterface
      */
     protected $_logger;
-    /**
-     * @var \Magento\Framework\App\State
-     */
-    protected $_state;
 
     /**
      * @param \Magento\Framework\Model\ResourceModel\Db\Context $context
@@ -34,7 +40,6 @@ class Rating extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
      * @param \Magento\Framework\Module\Manager $moduleManager
      * @param \Magento\Store\Model\StoreManagerInterface $storeManager
      * @param \Magento\Review\Model\ResourceModel\Review\Summary $reviewSummary
-     * @param \Magento\Framework\App\State
      * @param string $connectionName
      */
     public function __construct(
@@ -43,15 +48,12 @@ class Rating extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
         \Magento\Framework\Module\Manager $moduleManager,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Review\Model\ResourceModel\Review\Summary $reviewSummary,
-        \Magento\Framework\App\State $state,
         $connectionName = null
-    )
-    {
+    ) {
         $this->moduleManager = $moduleManager;
         $this->_storeManager = $storeManager;
         $this->_logger = $logger;
         $this->_reviewSummary = $reviewSummary;
-        $this->_state = $state;
         parent::__construct($context, $connectionName);
     }
 
@@ -87,15 +89,18 @@ class Rating extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
     protected function _getLoadSelect($field, $value, $object)
     {
         $connection = $this->getConnection();
+
         $table = $this->getMainTable();
         $storeId = (int)$this->_storeManager->getStore(\Magento\Store\Model\Store::ADMIN_CODE)->getId();
         $select = parent::_getLoadSelect($field, $value, $object);
         $codeExpr = $connection->getIfNullSql('title.value', "{$table}.rating_code");
+
         $select->joinLeft(
             ['title' => $this->getTable('rating_title')],
             $connection->quoteInto("{$table}.rating_id = title.rating_id AND title.store_id = ?", $storeId),
             ['rating_code' => $codeExpr]
         );
+
         return $select;
     }
 
@@ -108,9 +113,11 @@ class Rating extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
     protected function _afterLoad(\Magento\Framework\Model\AbstractModel $object)
     {
         parent::_afterLoad($object);
+
         if (!$object->getId()) {
             return $this;
         }
+
         $connection = $this->getConnection();
         $bind = [':rating_id' => (int)$object->getId()];
         // load rating titles
@@ -120,19 +127,22 @@ class Rating extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
         )->where(
             'rating_id=:rating_id'
         );
+
         $result = $connection->fetchPairs($select, $bind);
         if ($result) {
             $object->setRatingCodes($result);
         }
+
         // load rating available in stores
         $object->setStores($this->getStores((int)$object->getId()));
+
         return $this;
     }
 
     /**
      * Retrieve store IDs related to given rating
      *
-     * @param int $ratingId
+     * @param  int $ratingId
      * @return array
      */
     public function getStores($ratingId)
@@ -159,9 +169,11 @@ class Rating extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
         if ($object->hasRatingCodes()) {
             $this->processRatingCodes($object);
         }
+
         if ($object->hasStores()) {
             $this->processRatingStores($object);
         }
+
         return $this;
     }
 
@@ -179,6 +191,7 @@ class Rating extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
         $old = $connection->fetchPairs($select, [':rating_id' => $ratingId]);
         $new = array_filter(array_map('trim', $object->getRatingCodes()));
         $this->deleteRatingData($ratingId, $table, array_keys(array_diff_assoc($old, $new)));
+
         $insert = [];
         foreach (array_diff_assoc($new, $old) as $storeId => $title) {
             $insert[] = ['rating_id' => $ratingId, 'store_id' => (int)$storeId, 'value' => $title];
@@ -201,6 +214,7 @@ class Rating extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
         $old = $connection->fetchCol($select, [':rating_id' => $ratingId]);
         $new = $object->getStores();
         $this->deleteRatingData($ratingId, $table, array_diff($old, $new));
+
         $insert = [];
         foreach (array_diff($new, $old) as $storeId) {
             $insert[] = ['rating_id' => $ratingId, 'store_id' => (int)$storeId];
@@ -287,6 +301,7 @@ class Rating extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
     public function getEntitySummary($object, $onlyForCurrentStore = true)
     {
         $data = $this->_getEntitySummaryData($object);
+
         if ($onlyForCurrentStore) {
             foreach ($data as $row) {
                 if ($row['store_id'] == $this->_storeManager->getStore()->getId()) {
@@ -295,13 +310,16 @@ class Rating extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
             }
             return $object;
         }
+
         $stores = $this->_storeManager->getStores();
+
         $result = [];
         foreach ($data as $row) {
             $clone = clone $object;
             $clone->addData($row);
             $result[$clone->getStoreId()] = $clone;
         }
+
         $usedStoresId = array_keys($result);
         foreach ($stores as $store) {
             if (!in_array($store->getId(), $usedStoresId)) {
@@ -324,8 +342,10 @@ class Rating extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
     protected function _getEntitySummaryData($object)
     {
         $connection = $this->getConnection();
+
         $sumColumn = new \Zend_Db_Expr("SUM(rating_vote.{$connection->quoteIdentifier('percent')})");
         $countColumn = new \Zend_Db_Expr("COUNT(*)");
+
         $select = $connection->select()->from(
             ['rating_vote' => $this->getTable('rating_option_vote')],
             ['entity_pk_value' => 'rating_vote.entity_pk_value', 'sum' => $sumColumn, 'count' => $countColumn]
@@ -357,11 +377,13 @@ class Rating extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
             'review_store.store_id'
         );
         $bind = [':status_code' => self::RATING_STATUS_APPROVED];
+
         $entityPkValue = $object->getEntityPkValue();
         if ($entityPkValue) {
             $select->where('rating_vote.entity_pk_value = :pk_value');
             $bind[':pk_value'] = $entityPkValue;
         }
+
         return $connection->fetchAll($select, $bind);
     }
 
@@ -375,6 +397,7 @@ class Rating extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
     public function getReviewSummary($object, $onlyForCurrentStore = true)
     {
         $connection = $this->getConnection();
+
         $sumColumn = new \Zend_Db_Expr("SUM(rating_vote.{$connection->quoteIdentifier('percent')})");
         $countColumn = new \Zend_Db_Expr('COUNT(*)');
         $select = $connection->select()->from(
@@ -399,32 +422,30 @@ class Rating extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
         )->group(
             'review_store.store_id'
         );
+
         $data = $connection->fetchAll($select, [':review_id' => $object->getReviewId()]);
 
-        // fix summary rating review
-        if ($this->_state->getAreaCode() == "adminhtml") {
-            $currentStore = false;
-        } else {
-            $currentStore = $this->_storeManager->getStore()->setId();
-        }
         if ($onlyForCurrentStore) {
             foreach ($data as $row) {
-                if ($row['store_id'] == $currentStore) {
+                if ($row['store_id'] == $this->_storeManager->getStore()->getId()) {
                     $object->addData($row);
                 }
             }
             return $object;
         }
-        // # fix summary rating review
 
         $result = [];
+
         $stores = $this->_storeManager->getStore()->getResourceCollection()->load();
+
         foreach ($data as $row) {
             $clone = clone $object;
             $clone->addData($row);
             $result[$clone->getStoreId()] = $clone;
         }
+
         $usedStoresId = array_keys($result);
+
         foreach ($stores as $store) {
             if (!in_array($store->getId(), $usedStoresId)) {
                 $clone = clone $object;
@@ -434,6 +455,7 @@ class Rating extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
                 $result[$store->getId()] = $clone;
             }
         }
+
         return array_values($result);
     }
 
@@ -451,6 +473,7 @@ class Rating extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
         )->where(
             'entity_code = :entity_code'
         );
+
         return $this->getConnection()->fetchOne($select, [':entity_code' => $entityCode]);
     }
 
@@ -466,10 +489,12 @@ class Rating extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
         $connection = $this->getConnection();
         $select = $connection->select()->from($this->getMainTable(), 'rating_id')->where('entity_id = :entity_id');
         $ratingIds = $connection->fetchCol($select, [':entity_id' => $entityId]);
+
         if ($ratingIds) {
             $where = ['entity_pk_value = ?' => (int)$productId, 'rating_id IN(?)' => $ratingIds];
             $connection->delete($this->getTable('rating_option_vote_aggregated'), $where);
         }
+
         return $this;
     }
 }
