@@ -211,7 +211,7 @@ $customAttributes = $customer->getCustomAttributes();
                                         title="<?= $optionName ?>" class="select">
                                     <?php foreach ($customField as $option):
                                         echo '<!-- ' . $option['value'] . ' -->';
-                                        if ($option['value']) { ?>
+                                        if ( $option['value'] !== "" ) { ?>
                                             <option value="<?= $option['value'] ?>"
                                                 <?php if ($option['value'] == $currentOptionValue) echo ' selected' ?>>
                                                 <?= $option['label'] ?>
