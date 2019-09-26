@@ -9,24 +9,20 @@ namespace Magento\Review\Model\ResourceModel;
 class Rating extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
 {
     const RATING_STATUS_APPROVED = 'Approved';
-
     /**
      * Store manager
      *
      * @var \Magento\Store\Model\StoreManagerInterface
      */
     protected $_storeManager;
-
     /**
      * @var \Magento\Framework\Module\Manager
      */
     protected $moduleManager;
-
     /**
      * @var \Psr\Log\LoggerInterface
      */
     protected $_logger;
-
     /**
      * @var \Magento\Framework\App\State
      */
@@ -404,6 +400,8 @@ class Rating extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
             'review_store.store_id'
         );
         $data = $connection->fetchAll($select, [':review_id' => $object->getReviewId()]);
+
+        // fix summary rating review
         if ($this->_state->getAreaCode() == "adminhtml") {
             $currentStore = false;
         } else {
@@ -411,13 +409,14 @@ class Rating extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
         }
         if ($onlyForCurrentStore) {
             foreach ($data as $row) {
-
                 if ($row['store_id'] == $currentStore) {
                     $object->addData($row);
                 }
             }
             return $object;
         }
+        // # fix summary rating review
+
         $result = [];
         $stores = $this->_storeManager->getStore()->getResourceCollection()->load();
         foreach ($data as $row) {
