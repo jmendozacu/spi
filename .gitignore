@@ -1,7 +1,3 @@
-#--------------------------#
-# Magento Default Files    #
-#--------------------------#
-
 *
 !/.blackfire.yml
 !/.gitignore
@@ -30,6 +26,8 @@
 !/README.md
 !/packages
 !/packages/**
-!/app
 
-
+!/vendor
+!/vendor/*/
+!/vendor/binaryanvil/**
+!/vendor/module-review/Model/ResourceModel/Rating.php
