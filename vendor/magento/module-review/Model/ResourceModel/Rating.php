@@ -3,29 +3,35 @@
  * Copyright © Magento, Inc. All rights reserved.
  * See COPYING.txt for license details.
  */
+
 namespace Magento\Review\Model\ResourceModel;
 
 class Rating extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
 {
     const RATING_STATUS_APPROVED = 'Approved';
+
     /**
      * Store manager
      *
      * @var \Magento\Store\Model\StoreManagerInterface
      */
     protected $_storeManager;
+
     /**
      * @var \Magento\Framework\Module\Manager
      */
     protected $moduleManager;
+
     /**
      * @var \Psr\Log\LoggerInterface
      */
     protected $_logger;
+
     /**
      * @var \Magento\Framework\App\State
      */
     protected $_state;
+
     /**
      * @param \Magento\Framework\Model\ResourceModel\Db\Context $context
      * @param \Psr\Log\LoggerInterface $logger
@@ -43,7 +49,8 @@ class Rating extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
         \Magento\Review\Model\ResourceModel\Review\Summary $reviewSummary,
         \Magento\Framework\App\State $state,
         $connectionName = null
-    ) {
+    )
+    {
         $this->moduleManager = $moduleManager;
         $this->_storeManager = $storeManager;
         $this->_logger = $logger;
@@ -51,6 +58,7 @@ class Rating extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
         $this->_state = $state;
         parent::__construct($context, $connectionName);
     }
+
     /**
      * Resource initialization
      *
@@ -60,6 +68,7 @@ class Rating extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
     {
         $this->_init('rating', 'rating_id');
     }
+
     /**
      * Initialize unique fields
      *
@@ -70,6 +79,7 @@ class Rating extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
         $this->_uniqueFields = [['field' => 'rating_code', 'title' => '']];
         return $this;
     }
+
     /**
      * Retrieve select object for load object data
      *
@@ -92,6 +102,7 @@ class Rating extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
         );
         return $select;
     }
+
     /**
      * Actions after load
      *
@@ -121,10 +132,11 @@ class Rating extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
         $object->setStores($this->getStores((int)$object->getId()));
         return $this;
     }
+
     /**
      * Retrieve store IDs related to given rating
      *
-     * @param  int $ratingId
+     * @param int $ratingId
      * @return array
      */
     public function getStores($ratingId)
@@ -138,6 +150,7 @@ class Rating extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
         );
         return $this->getConnection()->fetchCol($select);
     }
+
     /**
      * Actions after save
      *
@@ -155,6 +168,7 @@ class Rating extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
         }
         return $this;
     }
+
     /**
      * @param \Magento\Framework\Model\AbstractModel $object
      * @return $this
@@ -176,6 +190,7 @@ class Rating extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
         $this->insertRatingData($table, $insert);
         return $this;
     }
+
     /**
      * @param \Magento\Framework\Model\AbstractModel $object
      * @return $this
@@ -197,6 +212,7 @@ class Rating extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
         $this->insertRatingData($table, $insert);
         return $this;
     }
+
     /**
      * @param int $ratingId
      * @param string $table
@@ -219,6 +235,7 @@ class Rating extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
             $connection->rollBack();
         }
     }
+
     /**
      * @param string $table
      * @param array $data
@@ -239,6 +256,7 @@ class Rating extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
             $connection->rollBack();
         }
     }
+
     /**
      * Perform actions after object delete
      * Prepare rating data for reaggregate all data for reviews
@@ -262,6 +280,7 @@ class Rating extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
         $this->_reviewSummary->reAggregate($summary);
         return $this;
     }
+
     /**
      * Return array of rating summary
      *
@@ -299,6 +318,7 @@ class Rating extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
         }
         return array_values($result);
     }
+
     /**
      * Return data of rating summary
      *
@@ -348,6 +368,7 @@ class Rating extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
         }
         return $connection->fetchAll($select, $bind);
     }
+
     /**
      * Review summary
      *
@@ -416,6 +437,7 @@ class Rating extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
         }
         return array_values($result);
     }
+
     /**
      * Get rating entity type id by code
      *
@@ -432,6 +454,7 @@ class Rating extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
         );
         return $this->getConnection()->fetchOne($select, [':entity_code' => $entityCode]);
     }
+
     /**
      * Delete ratings by product id
      *
