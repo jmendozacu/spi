@@ -1,11 +1,11 @@
-<div class="aw-onestep-sidebar-block payment-option _collapsible discount-code"
-     data-role="aw-async-collapsible">
-    <div class="payment-option-title field choice" data-role="title">
-        <span class="action action-toggle" id="block-discount-heading" role="heading" aria-level="2">
-            <!-- ko i18n: 'Use Coupon Code'--><!-- /ko -->
-        </span>
-    </div>
-    <div class="payment-option-content" data-role="content">
+<div class="aw-onestep-sidebar-block payment-option _collapsible2 discount-code"
+     data-role="aw-async-collapsible2">
+    <!-- <div class="payment-option-title field choice" data-role="title"> -->
+        <!-- <span class="action action-toggle" id="block-discount-heading" role="heading" aria-level="2"> -->
+            <!-- ko2 i18n: 'Use Coupon Code'--><!-- /ko2 -->
+        <!-- </span> -->
+    <!-- </div> -->
+    <div class="payment-option-content" data-role="content2">
         <form class="form form-discount" id="discount-form">
             <div class="payment-option-inner">
                 <div class="field">
@@ -16,7 +16,7 @@
                                name="discount_code"
                                data-validate="{'required-entry':true}"
                                data-bind="value: couponCode,
-                                    attr: {placeholder: $t('Enter Coupon Code')},
+                                    attr: {placeholder: $t('enter coupon code')},
                                     mageInit: {'awOscValidationMock':{}}" />
                     </div>
                 </div>
