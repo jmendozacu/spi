@@ -1,4 +1,4 @@
-<div class="on-top-header one-col" style="display: none">
+<div class="on-top-header one-col" id="topPromotion">
     <div class="on-top-header-inner">
         <?= $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('on_top_header')->toHtml(); ?>
         <i class="far fa-times" id="closeTopHeader"></i>
@@ -29,6 +29,11 @@
             expires = "; expires=" + date.toGMTString();
         }
         document.cookie = name + "=" + value + expires + "; path=/";
+    }
+
+    // promotion in header
+    if (readCookie('top_header_closed')) {
+        document.getElementById("topPromotion").style.display = "none";
     }
 
     require(['jquery', 'jquery/ui'], function ($) {

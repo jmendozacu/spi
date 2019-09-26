@@ -66,9 +66,9 @@ define([
         let is_safari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
 
         // promotion in header
-        if (!readCookie('top_header_closed')) {
-            $('.on-top-header').show();
-        }
+        // if (!readCookie('top_header_closed')) {
+        //     $('.on-top-header').show();
+        // }
 
 
         // Newsletter pop up
