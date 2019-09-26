@@ -30,4 +30,3 @@
 !/vendor
 !/vendor/*/
 !/vendor/binaryanvil/**
-!/vendor/module-review/Model/ResourceModel/Rating.php
