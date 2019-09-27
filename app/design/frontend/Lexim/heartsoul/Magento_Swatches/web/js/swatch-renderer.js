@@ -522,7 +522,7 @@ define([
             let attributes = ['hts_swatch', 'is_size', 'is_manufacturer_color'];
 
             attributes.forEach(function (code, i) {
-                console.log('code : ' + code + ' - i : ' + i);
+                // console.log('code : ' + code + ' - i : ' + i);
                 let curSelect = $('.swatch-attribute[attribute-code="' + code + '"][data-count="1"] .swatch-attribute-options > div:first-child');
                 if (curSelect.length) {
                     curSelect.trigger('click');
