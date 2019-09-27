@@ -303,7 +303,6 @@ define([
                 this._sortAttributes();
                 this._RenderControls();
                 this.listenClickSizeChart();
-                this.autoClickOptions();
                 this._setPreSelectedGallery();
                 $(this.element).trigger('swatch.initialized');
             } else {
@@ -423,12 +422,11 @@ define([
                     listLabel = 'aria-labelledby="' + controlLabelId + '"';
                 }
 
-                console.log("test");
                 // Create new control
                 container.append(
                     '<div class="' + classes.attributeClass + ' ' + item.code + '" ' +
                     'attribute-code="' + item.code + '" ' +
-                    'attribute-id="' + item.id + '" data-count="22">' +
+                    'attribute-id="' + item.id + '" data-count="' + item.options.length + '">' +
                     label +
                     '<div aria-activedescendant="" ' +
                     'tabindex="0" ' +
@@ -474,6 +472,9 @@ define([
             //Emulate click on all swatches from Request
             $widget._EmulateSelected($.parseQuery());
             $widget._EmulateSelected($widget._getSelectedAttributes());
+
+            // auto click options
+            $widget.autoClickOptions();
         },
 
         /**
@@ -513,7 +514,25 @@ define([
             });
         },
 
-        autoClickOptions: function() {
+        /**
+         * Auto click size, color when the product just only one option.
+         * For shoe, auto click medium width option
+         */
+        autoClickOptions: function () {
+            let attributes = ['hts_swatch', 'is_size', 'is_manufacturer_color'];
+
+            attributes.forEach(function (code, i) {
+                console.log('code : ' + code + ' - i : ' + i);
+                let curSelect = $('.swatch-attribute[attribute-code="' + code + '"][data-count="1"] .swatch-attribute-options > div:first-child');
+                if (curSelect.length) {
+                    curSelect.trigger('click');
+                }
+            });
+
+            let mediumShoe = $('.swatch-option.text[data-code="is_footwear_width"][option-label="Medium"]');
+            if (mediumShoe.length) {
+                mediumShoe.first().trigger('click');
+            }
 
         },
 
@@ -1267,7 +1286,9 @@ define([
                     });
                 }
 
-                gallery.first();
+                if (gallery) {
+                    gallery.first();
+                }
 
             } else if (justAnImage && justAnImage.img) {
                 context.find('.product-image-photo').attr('src', justAnImage.img);

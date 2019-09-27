@@ -407,7 +407,7 @@ define([
                 }
 
                 // Get Size chart
-                if(item.code === 'is_size') {
+                if (item.code === 'is_size') {
                     label += '<a href="javascript:void(0)" class="size-chart-link" id="size-chart-link">' +
                         '<span>Size Guide</span></a>';
                 }
@@ -426,7 +426,7 @@ define([
                 container.append(
                     '<div class="' + classes.attributeClass + ' ' + item.code + '" ' +
                     'attribute-code="' + item.code + '" ' +
-                    'attribute-id="' + item.id + '">' +
+                    'attribute-id="' + item.id + '" data-count="' + item.options.length + '">' +
                     label +
                     '<div aria-activedescendant="" ' +
                     'tabindex="0" ' +
@@ -472,12 +472,15 @@ define([
             //Emulate click on all swatches from Request
             $widget._EmulateSelected($.parseQuery());
             $widget._EmulateSelected($widget._getSelectedAttributes());
+
+            // auto click options
+            $widget.autoClickOptions();
         },
 
         /**
          * Listen event when user click size chart in detail page
          */
-        listenClickSizeChart: function() {
+        listenClickSizeChart: function () {
 
             $('#size-chart-link').click(function () {
                 let sizeChart = $('.size-chart');
@@ -495,8 +498,7 @@ define([
                 }
             });
 
-            $(document).mouseup(function(e)
-            {
+            $(document).mouseup(function (e) {
                 let sizeChart = $('.size-chart');
                 let sizeChartImage = $('.size-chart .size-chart-inner');
                 let closeButton = $('#closeSizeChart');
@@ -505,12 +507,33 @@ define([
                 // console.log(e.target);
 
                 // if the target of the click isn't the container nor a descendant of the container
-                if ( (!sizeChartImage.is(e.target) && sizeChartImage.has(e.target).length === 0) ||
-                    closeButton.is(e.target) )
-                {
+                if ((!sizeChartImage.is(e.target) && sizeChartImage.has(e.target).length === 0) ||
+                    closeButton.is(e.target)) {
                     sizeChart.removeClass('open');
                 }
             });
+        },
+
+        /**
+         * Auto click size, color when the product just only one option.
+         * For shoe, auto click medium width option
+         */
+        autoClickOptions: function () {
+            let attributes = ['hts_swatch', 'is_size', 'is_manufacturer_color'];
+
+            attributes.forEach(function (code, i) {
+                console.log('code : ' + code + ' - i : ' + i);
+                let curSelect = $('.swatch-attribute[attribute-code="' + code + '"][data-count="1"] .swatch-attribute-options > div:first-child');
+                if (curSelect.length) {
+                    curSelect.trigger('click');
+                }
+            });
+
+            let mediumShoe = $('.swatch-option.text[data-code="is_footwear_width"][option-label="Medium"]');
+            if (mediumShoe.length) {
+                mediumShoe.first().trigger('click');
+            }
+
         },
 
         /**
@@ -1263,7 +1286,9 @@ define([
                     });
                 }
 
-                gallery.first();
+                if (gallery) {
+                    gallery.first();
+                }
 
             } else if (justAnImage && justAnImage.img) {
                 context.find('.product-image-photo').attr('src', justAnImage.img);
