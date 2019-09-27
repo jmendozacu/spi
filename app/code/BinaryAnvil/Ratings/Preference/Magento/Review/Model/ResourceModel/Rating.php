@@ -29,12 +29,11 @@ class Rating extends OriginalClass
         \Magento\Framework\Module\Manager $moduleManager,
         \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Review\Model\ResourceModel\Review\Summary $reviewSummary,
-        $connectionName = null,
         \Magento\Framework\App\State $state
     )
     {
         $this->_state = $state;
-        parent::__construct($context, $logger, $moduleManager, $storeManager, $reviewSummary, $connectionName);
+        parent::__construct($context, $logger, $moduleManager, $storeManager, $reviewSummary, null);
     }
 
 

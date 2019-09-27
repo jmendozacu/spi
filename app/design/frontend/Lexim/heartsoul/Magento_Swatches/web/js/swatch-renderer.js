@@ -303,6 +303,7 @@ define([
                 this._sortAttributes();
                 this._RenderControls();
                 this.listenClickSizeChart();
+                this.autoClickOptions();
                 this._setPreSelectedGallery();
                 $(this.element).trigger('swatch.initialized');
             } else {
@@ -407,7 +408,7 @@ define([
                 }
 
                 // Get Size chart
-                if(item.code === 'is_size') {
+                if (item.code === 'is_size') {
                     label += '<a href="javascript:void(0)" class="size-chart-link" id="size-chart-link">' +
                         '<span>Size Guide</span></a>';
                 }
@@ -422,11 +423,12 @@ define([
                     listLabel = 'aria-labelledby="' + controlLabelId + '"';
                 }
 
+                console.log("test");
                 // Create new control
                 container.append(
                     '<div class="' + classes.attributeClass + ' ' + item.code + '" ' +
                     'attribute-code="' + item.code + '" ' +
-                    'attribute-id="' + item.id + '">' +
+                    'attribute-id="' + item.id + '" data-count="22">' +
                     label +
                     '<div aria-activedescendant="" ' +
                     'tabindex="0" ' +
@@ -477,7 +479,7 @@ define([
         /**
          * Listen event when user click size chart in detail page
          */
-        listenClickSizeChart: function() {
+        listenClickSizeChart: function () {
 
             $('#size-chart-link').click(function () {
                 let sizeChart = $('.size-chart');
@@ -495,8 +497,7 @@ define([
                 }
             });
 
-            $(document).mouseup(function(e)
-            {
+            $(document).mouseup(function (e) {
                 let sizeChart = $('.size-chart');
                 let sizeChartImage = $('.size-chart .size-chart-inner');
                 let closeButton = $('#closeSizeChart');
@@ -505,12 +506,15 @@ define([
                 // console.log(e.target);
 
                 // if the target of the click isn't the container nor a descendant of the container
-                if ( (!sizeChartImage.is(e.target) && sizeChartImage.has(e.target).length === 0) ||
-                    closeButton.is(e.target) )
-                {
+                if ((!sizeChartImage.is(e.target) && sizeChartImage.has(e.target).length === 0) ||
+                    closeButton.is(e.target)) {
                     sizeChart.removeClass('open');
                 }
             });
+        },
+
+        autoClickOptions: function() {
+
         },
 
         /**
