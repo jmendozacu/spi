@@ -72,9 +72,9 @@ class Order
      * Order constructor.
      * @param \Magento\Sales\Api\OrderRepositoryInterface $orderRepository
      * @param \XMLWriter $writer
-     * @param \Magento\Directory\Model\RegionFactory $regionFactory
-     * @param \Magento\Framework\Logger\Monolog $logger
-     * @param \Magento\Framework\Stdlib\DateTime\TimezoneInterface $timezone
+     * @param \Magento\Directory\Model\RegionFactory  $regionFactory
+     * @param \Magento\Framework\Logger\Monolog  $logger
+     * @param \Magento\Framework\Stdlib\DateTime\TimezoneInterface  $timezone
      */
     public function __construct(
         OrderRepositoryInterface $orderRepository,
@@ -82,8 +82,7 @@ class Order
         RegionFactory $regionFactory,
         Logger $logger,
         TimezoneInterface $timezone
-    )
-    {
+    ) {
         $this->orderRepository = $orderRepository;
         $this->writer = $writer;
         $this->regionFactory = $regionFactory;
@@ -125,21 +124,6 @@ class Order
         $date = $this->timezone->date($order->getCreatedAt());
         $date->setTimezone(new \DateTimeZone('PST'));
         $orderCreatedAt = $date->format('m/d/Y H:i');
-        $shipOlx = $order->getShippingDescription();
-
-        if ($shipOlx == '2-Day Air') {
-            $shipVia = '2DAY';
-        } elseif ($shipOlx == 'Next Day') {
-            $shipVia = 'NEXTDAY';
-        } elseif ($shipOlx == 'Premium Ground') {
-            $shipVia = 'GND';
-        } elseif ($shipOlx == 'Economy') {
-            $shipVia = 'ECON';
-        } elseif ($shipOlx == 'Free Economy Shipping') {
-            $shipVia = 'ECON';
-        } else {
-            $shipVia = 'NA';
-        }
 
         $elements = [
             [
@@ -149,8 +133,7 @@ class Order
                     ['name' => 'CustomerType', 'value' => '', 'cdata' => true],
                     ['name' => 'BillingAddress', 'value' => $this->getBillingAddressData($billingAddress)],
                     ['name' => 'ShipToAddress', 'value' => $this->getShippingAddressData($shippingAddress)],
-                    /*['name' => 'ShippingCode', 'value' => 'ECON', 'cdata' => false],*/
-                    ['name' => 'ShippingCode', 'value' => $shipVia, 'cdata' => false],
+                    ['name' => 'ShippingCode', 'value' => 'ECON', 'cdata' => false],
                     ['name' => 'OrderType', 'value' => 'Y', 'cdata' => false],
                     ['name' => 'Email', 'value' => $order->getCustomerEmail(), 'cdata' => true],
                     ['name' => 'CcType', 'value' => strtoupper($ccType), 'cdata' => false],
@@ -224,13 +207,13 @@ class Order
             ['name' => 'BILL_ZIPCODE', 'value' => $billingAddress->getPostcode(), 'cdata' => true],
             ['name' => 'COUNTY', 'value' => '', 'cdata' => true],
             ['name' => 'COUNTRY', 'value' => $billingAddress->getCountryId(), 'cdata' => true],
-            ['name' => 'BILL_PHONE_NUMBER', 'value' => $billingAddress->getTelephone(), 'cdata' => true],
+            ['name' => 'BILL_PHONE_NUMBER', 'value' =>$billingAddress->getTelephone(), 'cdata' => true],
             ['name' => 'BILL_PHONE_2', 'value' => '', 'cdata' => true]
         ];
     }
 
     /**
-     * @param \Magento\Sales\Api\Data\OrderAddressInterface $shippingAddress
+     * @param \Magento\Sales\Api\Data\OrderAddressInterface  $shippingAddress
      * @return array
      */
     private function getShippingAddressData(OrderAddressInterface $shippingAddress)
