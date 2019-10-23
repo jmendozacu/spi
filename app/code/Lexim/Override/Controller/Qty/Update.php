@@ -40,14 +40,14 @@ class Update extends \Magento\Framework\App\Action\Action
     /**
      * Update qty
      *
-     * @return \Magento\Framework\Controller\ResultInterface
+     * @return int|\Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\ResultInterface
      */
     public function execute()
     {
-        $result = $this->_resultJsonFactory->create();
+        // $result = $this->_resultJsonFactory->create();
         $token = $this->getToken();
         $this->updateQty($token);
-        return $result->setData($this->getResultData());
+        return 1;
     }
 
     /**
@@ -115,45 +115,49 @@ class Update extends \Magento\Framework\App\Action\Action
         $headers = array("Authorization: Bearer $token", "Content-Type: application/json");
 
         // Get Json data
-        //$json = file_get_contents('http://s.allheart.com/inventory/mage.php');
+//        $json = '{
+//            "inv":  [
+//                {
+//                    "yid": "1",
+//                    "u": "",
+//                    "c": "",
+//                    "s": "CK-KCKSTRTAMR",
+//                    "w": "",
+//                    "d": 0,
+//                    "dd": "",
+//                    "rrp": 0,
+//                    "av": 24,
+//                    "sp": 0
+//                },
+//                {
+//                    "yid": "2",
+//                    "u": "",
+//                    "c": "",
+//                    "s": "CK-KCKSTRTDLT",
+//                    "w": "",
+//                    "d": 0,
+//                    "dd": "",
+//                    "rrp": 0,
+//                    "av": 36,
+//                    "sp": 0
+//                }
+//            ]
+//        }';
 
-        $json = '{
-            "inv":  [
-                {
-                    "yid": "1",
-                    "u": "",
-                    "c": "",
-                    "s": "CK-KCKSTRTAMR",
-                    "w": "",
-                    "d": 0,
-                    "dd": "",
-                    "rrp": 0,
-                    "av": 24,
-                    "sp": 0
-                },
-                {
-                    "yid": "2",
-                    "u": "",
-                    "c": "",
-                    "s": "CK-KCKSTRTDLT",
-                    "w": "",
-                    "d": 0,
-                    "dd": "",
-                    "rrp": 0,
-                    "av": 36,
-                    "sp": 0
-                } 
-            ]
-        }';
+        $json = file_get_contents('https://status.allheart.com/inventory/spi.php'); // All products
 
+//        $json = file_get_contents('http://s.allheart.com/inventory/mage.php?y=CK-KCKSTRTDTN');
         $data = json_decode($json);
 
-        if (isset($data->inv) && is_array($data->inv)) {
-            foreach ($data->inv as $item) {
-                if (isset($item->s) && $item->s !== '') {
-                    $requestUrl = $this->getBaseUrl() . 'rest/V1/products/' . $item->s . '/stockItems/1';
+        if (isset($data->product) && is_array($data->product)) {
+            $i = 1;
+            foreach ($data->product as $item) {
+                echo "================== " . $i . " ================== <br>";
+                echo "Id: " . $item->yid . "     SKU: " . $item->u . "     Qty: " . $item->av . " || Status: ";
+                if (isset($item->u) && $item->u !== '') {
+                    $requestUrl = $this->getBaseUrl() . 'rest/V1/products/' . $item->u . '/stockItems/1';
 
-                    if (isset($item->av) && intval($item->av) > 0) {
+                    if (isset($item->av) && $item->av !== '') {
                         $sampleProductData = array(
                             'stockItem' => [
                                 "qty" => $item->av
@@ -173,10 +177,15 @@ class Update extends \Magento\Framework\App\Action\Action
                         curl_close($ch);
                         unset($productData);
                         unset($sampleProductData);
-
-                        $this->_resultData['message'] .= "Updated qty = " . $item->av . " for Product_Sku = " . $item->s . ". ";
+                        echo "UPDATED";
+                    } else {
+                        echo "Error Qty";
                     }
+                } else {
+                    echo "No SKU";
                 }
+                echo "<br>";
+                $i++;
             }
         }
 
