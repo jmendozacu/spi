@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Binary Anvil, Inc.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Binary Anvil, Inc. Software Agreement
+ * that is bundled with this package in the file LICENSE_BAS.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.binaryanvil.com/software/license/
+ *
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@binaryanvil.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this software to
+ * newer versions in the future. If you wish to customize this software for
+ * your needs please refer to http://www.binaryanvil.com/software for more
+ * information.
+ *
+ * @category    BinaryAnvil
+ * @package     BinaryAnvil_Federation
+ * @copyright   Copyright (c) 2018-2019 Binary Anvil,Inc. (http://www.binaryanvil.com)
+ * @license     http://www.binaryanvil.com/software/license
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference for="BinaryAnvil\Federation\Api\Data\SocialFeedInterface" type="BinaryAnvil\Federation\Model\SocialFeed"/>
+    <preference for="BinaryAnvil\Federation\Api\Data\SocialFeedSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="BinaryAnvil\Federation\Api\SocialFeedRepositoryInterface" type="BinaryAnvil\Federation\Model\SocialFeedRepository"/>
+    <preference for="BinaryAnvil\Federation\Api\Data\SocialFeedItemInterface" type="BinaryAnvil\Federation\Model\SocialFeedItem"/>
+    <preference for="BinaryAnvil\Federation\Api\Data\SocialFeedItemSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+    <preference for="BinaryAnvil\Federation\Api\SocialFeedItemRepositoryInterface" type="BinaryAnvil\Federation\Model\SocialFeedItemRepository"/>
+    <preference for="BinaryAnvil\Federation\Api\SocialFeedManagementInterface" type="BinaryAnvil\Federation\Model\SocialFeedManagement"/>
+
+    <type name="BinaryAnvil\Federation\Logger\Handler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+
+    <type name="BinaryAnvil\Federation\Logger\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">federationLogger</argument>
+            <argument name="handlers"  xsi:type="array">
+                <item name="system" xsi:type="object">BinaryAnvil\Federation\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </type>
+
+</config>
