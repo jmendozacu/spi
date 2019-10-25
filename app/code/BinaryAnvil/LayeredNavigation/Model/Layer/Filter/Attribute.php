@@ -173,12 +173,17 @@ class Attribute extends OriginClass
         $collection = $this->collectionProvider->getCollection($this->getCurrentCategory());
         $collection->updateSearchCriteriaBuilder();
         $this->getLayer()->prepareProductCollection($collection);
-        foreach ($productCollection->getAddedFilters() as $field => $condition) {
-            if ($this->getAttributeModel()->getAttributeCode() == $field) {
-                continue;
-            }
-            $collection->addFieldToFilter($field, $condition);
-        }
+
+        // Fix blank page bug on listing page
+//        foreach ($productCollection->getAddedFilters() as $field => $condition) {
+//            if ($this->getAttributeModel()->getAttributeCode() == $field) {
+//                continue;
+//            }
+//            $collection->addFieldToFilter($field, $condition);
+//        }
+        // # Fix blank page bug on listing page
+
+
         $attribute = $this->getAttributeModel();
         $optionsFacetedData = $this->getFacetedData();
         $options = $attribute->getFrontend()->getSelectOptions();
