@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "050f0bec83bb969388100ee81437b69d",
+    "content-hash": "dc155fd4c1b2f8ccb5fd154dbdda58cb",
     "packages": [
         {
             "name": "amzn/amazon-pay-and-login-magento-2-module",

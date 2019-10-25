@@ -12,9 +12,9 @@
         "composer/composer": "@alpha",
         "binaryanvil/job-manager": "^1.1",
         "binaryanvil/module-federation-facebook": "^1.2",
-        "mageplaza/magento-2-social-login": "^2.7",
         "facebook/graph-sdk": "^5.7",
-        "magento/product-enterprise-edition": "2.3.2"
+        "magento/product-enterprise-edition": "2.3.2",
+        "mageplaza/magento-2-social-login": "^2.7"
     },
     "config": {
         "use-include-path": true
