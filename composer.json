@@ -8,28 +8,27 @@
         "AFL-3.0"
     ],
     "require": {
+        "magento/magento-cloud-metapackage": ">=2.3.3 <2.3.4",
+        "composer/composer": "@alpha",
         "binaryanvil/job-manager": "^1.1",
         "binaryanvil/module-federation-facebook": "^1.2",
-        "composer/composer": "@alpha",
         "facebook/graph-sdk": "^5.7",
-        "hybridauth/hybridauth": "^2.16",
-        "magento/magento-cloud-metapackage": ">=2.3.3 <2.3.4"
+        "magento/product-enterprise-edition": "2.3.3",
+        "hybridauth/hybridauth": "^3.0"
     },
     "config": {
-        "use-include-path": true,
-        "preferred-install": "dist",
-        "sort-packages": true
+        "use-include-path": true
     },
     "autoload": {
         "psr-4": {
+            "Magento\\Framework\\": "lib/internal/Magento/Framework/",
             "Magento\\Setup\\": "setup/src/Magento/Setup/",
             "Magento\\": "app/code/Magento/",
             "Zend\\Mvc\\Controller\\": "setup/src/Zend/Mvc/Controller/"
         },
         "psr-0": {
             "": [
-                "app/code/",
-                "generated/code/"
+                "app/code/"
             ]
         },
         "files": [
@@ -47,11 +46,11 @@
             "Magento\\Tools\\": "dev/tools/Magento/Tools/",
             "Magento\\Tools\\Sanity\\": "dev/build/publication/sanity/Magento/Tools/Sanity/",
             "Magento\\TestFramework\\Inspection\\": "dev/tests/static/framework/Magento/TestFramework/Inspection/",
-            "Magento\\TestFramework\\Utility\\": "dev/tests/static/framework/Magento/TestFramework/Utility/"
+            "Magento\\TestFramework\\Utility\\": "dev/tests/static/framework/Magento/TestFramework/Utility/",
+            "Magento\\ToolkitFramework\\": "dev/tools/performance-toolkit/framework/Magento/ToolkitFramework/"
         }
     },
-    "minimum-stability": "alpha",
-    "prefer-stable": true,
+    "minimum-stability": "stable",
     "repositories": [
         {
             "type": "composer",
@@ -62,29 +61,7 @@
             "url": "packages/*/*"
         }
     ],
-    "suggest": {
-        "ext-pcntl": "Need for run processes in parallel mode"
-    },
-    "conflict": {
-        "gene/bluefoot": "*"
-    },
     "extra": {
-        "component_paths": {
-            "trentrichardson/jquery-timepicker-addon": "lib/web/jquery/jquery-ui-timepicker-addon.js",
-            "components/jquery": [
-                "lib/web/jquery.js",
-                "lib/web/jquery/jquery.min.js",
-                "lib/web/jquery/jquery-migrate.js"
-            ],
-            "blueimp/jquery-file-upload": "lib/web/jquery/fileUploader",
-            "components/jqueryui": [
-                "lib/web/jquery/jquery-ui.js"
-            ],
-            "twbs/bootstrap": [
-                "lib/web/jquery/jquery.tabs.js"
-            ],
-            "tinymce/tinymce": "lib/web/tiny_mce_4"
-        },
         "magento-force": true,
         "magento-deploystrategy": "copy"
     }
