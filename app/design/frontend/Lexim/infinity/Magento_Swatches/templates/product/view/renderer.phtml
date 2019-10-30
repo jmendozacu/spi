@@ -9,8 +9,8 @@
 
 <?php /** @var $block \Magento\Swatches\Block\Product\Renderer\Configurable */
 
-$helper = $this->helper('BinaryAnvil\SizeChart\Helper\Image');
-$attributeName = $helper->showInAttribute();
+//$helper = $this->helper('BinaryAnvil\SizeChart\Helper\Image');
+//$attributeName = $helper->showInAttribute();
 
 $product = $block->getProduct();
 $curCat = $product->getCategory();
@@ -20,9 +20,9 @@ if (!$curCat) {
     if (is_array($catIds)) {
         $catIds = reset($catIds);
     }
-    if ($catIds) {
-        $curCat = $helper->getCategoryById($catIds);
-    }
+//    if ($catIds) {
+//        // $curCat = $helper->getCategoryById($catIds);
+//    }
 }
 
 ?>
