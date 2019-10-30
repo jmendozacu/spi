@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "062872588ebb76ceca9656f0d822c899",
+    "content-hash": "c8516ec895f21f0eaa226fdce62738f1",
     "packages": [
         {
             "name": "amzn/amazon-pay-and-login-magento-2-module",
@@ -15278,216 +15278,6 @@
             "time": "2019-07-26T16:43:11+00:00"
         },
         {
-            "name": "mageplaza/magento-2-social-login",
-            "version": "2.7.5",
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mageplaza/magento-2-social-login/zipball/4634aadcbd526bc2e7392c5ce0766e657738ee2f",
-                "reference": "4634aadcbd526bc2e7392c5ce0766e657738ee2f",
-                "shasum": ""
-            },
-            "require": {
-                "hybridauth/hybridauth": "^2.14.0",
-                "mageplaza/module-core": "^1.4.5",
-                "mageplaza/module-google-recaptcha": "^1.0.2",
-                "mageplaza/module-reports": "^1.1.1",
-                "mageplaza/module-smtp": "^1.2.6"
-            },
-            "type": "magento2-module",
-            "autoload": {
-                "files": [
-                    "registration.php"
-                ],
-                "psr-4": {
-                    "Mageplaza\\SocialLogin\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "proprietary"
-            ],
-            "authors": [
-                {
-                    "name": "Mageplaza",
-                    "email": "support@mageplaza.com",
-                    "homepage": "https://www.mageplaza.com",
-                    "role": "Technical Support"
-                }
-            ],
-            "description": "Magento 2 Social Login extension is designed for quick login to your Magento 2 store without procesing complex register steps",
-            "keywords": [
-                "Amazon Login",
-                "Facebook login",
-                "FourSquare Login",
-                "Google login",
-                "Instagram Login",
-                "LinkedIn Login",
-                "Microsoft Live Login",
-                "Social Login",
-                "Twitter login",
-                "Yahoo Login",
-                "facebook",
-                "google",
-                "login",
-                "magento 2",
-                "magento 2 social login",
-                "mageplaza",
-                "twitter"
-            ],
-            "time": "2019-09-10T04:43:14+00:00"
-        },
-        {
-            "name": "mageplaza/module-core",
-            "version": "1.4.6",
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mageplaza/module-core/zipball/85bfb6ef453471b2cef789dcf23525be8e7b881f",
-                "reference": "85bfb6ef453471b2cef789dcf23525be8e7b881f",
-                "shasum": ""
-            },
-            "type": "magento2-module",
-            "autoload": {
-                "files": [
-                    "registration.php"
-                ],
-                "psr-4": {
-                    "Mageplaza\\Core\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "proprietary"
-            ],
-            "authors": [
-                {
-                    "name": "Mageplaza",
-                    "email": "support@mageplaza.com",
-                    "homepage": "https://www.mageplaza.com",
-                    "role": "Technical Support"
-                }
-            ],
-            "description": "Mageplaza Core for Magento 2",
-            "time": "2019-08-16T08:51:45+00:00"
-        },
-        {
-            "name": "mageplaza/module-google-recaptcha",
-            "version": "1.1.0",
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mageplaza/magento-2-google-recaptcha/zipball/b43899b20a09e8ac1dde8493acc3c7f3a162fa1c",
-                "reference": "b43899b20a09e8ac1dde8493acc3c7f3a162fa1c",
-                "shasum": ""
-            },
-            "require": {
-                "google/recaptcha": "^1.2",
-                "mageplaza/module-core": "^1.4.5"
-            },
-            "type": "magento2-module",
-            "autoload": {
-                "files": [
-                    "registration.php"
-                ],
-                "psr-4": {
-                    "Mageplaza\\GoogleRecaptcha\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "proprietary"
-            ],
-            "authors": [
-                {
-                    "name": "Mageplaza",
-                    "email": "support@mageplaza.com",
-                    "homepage": "https://www.mageplaza.com",
-                    "role": "Technical Support"
-                }
-            ],
-            "description": "Magento 2 Google Recaptcha Extension",
-            "time": "2019-08-30T02:37:16+00:00"
-        },
-        {
-            "name": "mageplaza/module-reports",
-            "version": "1.2.2",
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mageplaza/magento-2-reports/zipball/20851688928a68de7c98f134da298a2877723d26",
-                "reference": "20851688928a68de7c98f134da298a2877723d26",
-                "shasum": ""
-            },
-            "require": {
-                "mageplaza/module-core": "^1.4.4"
-            },
-            "type": "magento2-module",
-            "autoload": {
-                "files": [
-                    "registration.php"
-                ],
-                "psr-4": {
-                    "Mageplaza\\Reports\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "proprietary"
-            ],
-            "authors": [
-                {
-                    "name": "Mageplaza",
-                    "email": "support@mageplaza.com",
-                    "homepage": "https://www.mageplaza.com",
-                    "role": "Technical Support"
-                }
-            ],
-            "description": "Magento 2 Reports Extension",
-            "time": "2019-06-05T10:10:23+00:00"
-        },
-        {
-            "name": "mageplaza/module-smtp",
-            "version": "1.2.10",
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mageplaza/magento-2-smtp/zipball/e4b561126c81dd5c923a834db58a4ac51e9f4007",
-                "reference": "e4b561126c81dd5c923a834db58a4ac51e9f4007",
-                "shasum": ""
-            },
-            "require": {
-                "mageplaza/module-core": "^1.4.0"
-            },
-            "type": "magento2-module",
-            "autoload": {
-                "files": [
-                    "registration.php"
-                ],
-                "psr-4": {
-                    "Mageplaza\\Smtp\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "proprietary"
-            ],
-            "authors": [
-                {
-                    "name": "Mageplaza",
-                    "email": "support@mageplaza.com",
-                    "homepage": "https://www.mageplaza.com",
-                    "role": "Technical Support"
-                }
-            ],
-            "description": "SMTP Extension for Magento 2 helps the owner of store simply install SMTP (Simple Mail Transfer Protocol) server which transmits the messages into codes or numbers",
-            "keywords": [
-                "email settings",
-                "gmail smtp",
-                "magento 2",
-                "magento 2 smtp",
-                "magento smtp",
-                "mageplaza",
-                "smtp"
-            ],
-            "time": "2019-04-16T11:15:23+00:00"
-        },
-        {
             "name": "monolog/monolog",
             "version": "1.25.1",
             "source": {
@@ -20342,16 +20132,16 @@
         },
         {
             "name": "zendframework/zend-validator",
-            "version": "2.12.1",
+            "version": "2.12.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-validator.git",
-                "reference": "7b870a7515f3a35afbecc39d63f34a861f40f58b"
+                "reference": "fd24920c2afcf2a70d11f67c3457f8f509453a62"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-validator/zipball/7b870a7515f3a35afbecc39d63f34a861f40f58b",
-                "reference": "7b870a7515f3a35afbecc39d63f34a861f40f58b",
+                "url": "https://api.github.com/repos/zendframework/zend-validator/zipball/fd24920c2afcf2a70d11f67c3457f8f509453a62",
+                "reference": "fd24920c2afcf2a70d11f67c3457f8f509453a62",
                 "shasum": ""
             },
             "require": {
@@ -20411,7 +20201,7 @@
                 "validator",
                 "zf"
             ],
-            "time": "2019-10-12T12:17:57+00:00"
+            "time": "2019-10-29T08:33:25+00:00"
         },
         {
             "name": "zendframework/zend-view",

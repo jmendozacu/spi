@@ -101,6 +101,39 @@ class Update extends \Magento\Framework\App\Action\Action
         return $token;
     }
 
+    public function getDemoData() {
+        // Get Json data
+        $json = '{
+            "inv":  [
+                {
+                    "yid": "1",
+                    "u": "",
+                    "c": "",
+                    "s": "CK-KCKSTRTAMR",
+                    "w": "",
+                    "d": 0,
+                    "dd": "",
+                    "rrp": 0,
+                    "av": 24,
+                    "sp": 0
+                },
+                {
+                    "yid": "2",
+                    "u": "",
+                    "c": "",
+                    "s": "CK-KCKSTRTDLT",
+                    "w": "",
+                    "d": 0,
+                    "dd": "",
+                    "rrp": 0,
+                    "av": 36,
+                    "sp": 0
+                }
+            ]
+        }';
+        return $json;
+    }
+
     /**
      * @param bool $token
      * @return bool
@@ -114,50 +147,22 @@ class Update extends \Magento\Framework\App\Action\Action
         //Use above token into header
         $headers = array("Authorization: Bearer $token", "Content-Type: application/json");
 
-        // Get Json data
-//        $json = '{
-//            "inv":  [
-//                {
-//                    "yid": "1",
-//                    "u": "",
-//                    "c": "",
-//                    "s": "CK-KCKSTRTAMR",
-//                    "w": "",
-//                    "d": 0,
-//                    "dd": "",
-//                    "rrp": 0,
-//                    "av": 24,
-//                    "sp": 0
-//                },
-//                {
-//                    "yid": "2",
-//                    "u": "",
-//                    "c": "",
-//                    "s": "CK-KCKSTRTDLT",
-//                    "w": "",
-//                    "d": 0,
-//                    "dd": "",
-//                    "rrp": 0,
-//                    "av": 36,
-//                    "sp": 0
-//                }
-//            ]
-//        }';
-
         $json = file_get_contents('https://status.allheart.com/inventory/spi.php'); // All products
-
-//        $json = file_get_contents('http://s.allheart.com/inventory/mage.php?y=CK-KCKSTRTDTN');
+        // $json = file_get_contents('http://s.allheart.com/inventory/mage.php?y=CK-KCKSTRTDTN');
+        // $json = $this->getDemoData();
         $data = json_decode($json);
 
         if (isset($data->product) && is_array($data->product)) {
             $i = 1;
             foreach ($data->product as $item) {
-                echo "================== " . $i . " ================== <br>";
-                echo "Id: " . $item->yid . "     SKU: " . $item->u . "     Qty: " . $item->av . " || Status: ";
-                if (isset($item->u) && $item->u !== '') {
-                    $requestUrl = $this->getBaseUrl() . 'rest/V1/products/' . $item->u . '/stockItems/1';
+                // check qty > 0
+                if (isset($item->av) && $item->av !== '' && $item->av > 0) {
 
-                    if (isset($item->av) && $item->av !== '') {
+                    echo "================== " . $i . " ================== <br>";
+                    echo "Id: " . $item->yid . "     SKU: " . $item->u . "     Qty: " . $item->av . " || Status: ";
+                    if (isset($item->u) && $item->u !== '') {
+                        $requestUrl = $this->getBaseUrl() . 'rest/V1/products/' . $item->u . '/stockItems/1';
+
                         $sampleProductData = array(
                             'stockItem' => [
                                 "qty" => $item->av
@@ -165,7 +170,6 @@ class Update extends \Magento\Framework\App\Action\Action
                         );
 
                         $productData = json_encode($sampleProductData);
-
                         $ch = curl_init();
                         curl_setopt($ch, CURLOPT_URL, $requestUrl);
                         curl_setopt($ch, CURLOPT_POSTFIELDS, $productData);
@@ -179,13 +183,11 @@ class Update extends \Magento\Framework\App\Action\Action
                         unset($sampleProductData);
                         echo "UPDATED";
                     } else {
-                        echo "Error Qty";
+                        echo "No SKU";
                     }
-                } else {
-                    echo "No SKU";
+                    echo "<br>";
+                    $i++;
                 }
-                echo "<br>";
-                $i++;
             }
         }
 
