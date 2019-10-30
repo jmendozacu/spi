@@ -27,7 +27,3 @@
 !/packages
 !/packages/**
 
-!/vendor
-!/vendor/*/
-!/vendor/binaryanvil/**
-
