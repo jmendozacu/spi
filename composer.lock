@@ -1492,16 +1492,16 @@
         },
         {
             "name": "fastly/magento2",
-            "version": "1.2.120",
+            "version": "1.2.121",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fastly/fastly-magento2.git",
-                "reference": "c2e1e9d3d8ef0d9ad2c738a2c94be0bb93eb8a25"
+                "reference": "b6166d5e1b4af0c1b939a62f689d0ebe6ceab6d4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fastly/fastly-magento2/zipball/c2e1e9d3d8ef0d9ad2c738a2c94be0bb93eb8a25",
-                "reference": "c2e1e9d3d8ef0d9ad2c738a2c94be0bb93eb8a25",
+                "url": "https://api.github.com/repos/fastly/fastly-magento2/zipball/b6166d5e1b4af0c1b939a62f689d0ebe6ceab6d4",
+                "reference": "b6166d5e1b4af0c1b939a62f689d0ebe6ceab6d4",
                 "shasum": ""
             },
             "require": {
@@ -1526,7 +1526,7 @@
                 "BSD-3-Clause"
             ],
             "description": "Fastly CDN Module for Magento 2.x",
-            "time": "2019-10-23T14:46:13+00:00"
+            "time": "2019-10-30T20:15:14+00:00"
         },
         {
             "name": "google/recaptcha",
