@@ -70,21 +70,20 @@ class Attribute extends OriginClass
      */
     protected $customViewOptions = [];
 
+
     /**
      * Attribute constructor.
-     *
-     * @param \Magento\Catalog\Model\Layer\Filter\ItemFactory $filterItemFactory
-     * @param \Magento\Store\Model\StoreManagerInterface $storeManager
-     * @param \Magento\Catalog\Model\Layer $layer
-     * @param \Magento\Catalog\Model\Layer\Filter\Item\DataBuilder $itemDataBuilder
-     * @param \Magento\Framework\Filter\StripTags $tagFilter
-     * @param \BinaryAnvil\LayeredNavigation\Model\Url\Builder $builder
-     * @param \BinaryAnvil\LayeredNavigation\Model\Layer\ItemCollectionProvider $collectionProvider
-     * @param \Magento\Framework\App\RequestInterface $requestInterface
-     * @param \BinaryAnvil\LayeredNavigation\Model\ResourceModel\Attribute\Option\Value $attributeValues
+     * @param ItemFactory $filterItemFactory
+     * @param StoreManagerInterface $storeManager
+     * @param Layer $layer
+     * @param DataBuilder $itemDataBuilder
+     * @param StripTags $tagFilter
+     * @param Builder $builder
+     * @param ItemCollectionProvider $collectionProvider
+     * @param RequestInterface $requestInterface
+     * @param AttributeValues $attributeValues
      * @param array $data
-     *
-     * @SuppressWarnings(PHPMD.ExcessiveParameterList)
+     * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function __construct(
         ItemFactory $filterItemFactory,
@@ -151,12 +150,12 @@ class Attribute extends OriginClass
     public function applyToCollection($collection, $attributeValue)
     {
         $attribute = $this->getAttributeModel();
-        
+
         if(in_array(AttributeValues::CUSTOM_VIEW_ATTRIBUTE_OPTIONS_LINK, $attributeValue)) {
             $attributeValue = array_diff($attributeValue, [AttributeValues::CUSTOM_VIEW_ATTRIBUTE_OPTIONS_LINK]);
             $attributeValue = array_merge($attributeValue, $this->customViewOptions);
         }
-        
+
         $collection->addFieldToFilter($attribute->getAttributeCode(), $attributeValue);
     }
 
@@ -174,15 +173,12 @@ class Attribute extends OriginClass
         $collection->updateSearchCriteriaBuilder();
         $this->getLayer()->prepareProductCollection($collection);
 
-        // Fix blank page bug on listing page
 //        foreach ($productCollection->getAddedFilters() as $field => $condition) {
 //            if ($this->getAttributeModel()->getAttributeCode() == $field) {
 //                continue;
 //            }
 //            $collection->addFieldToFilter($field, $condition);
 //        }
-        // # Fix blank page bug on listing page
-
 
         $attribute = $this->getAttributeModel();
         $optionsFacetedData = $this->getFacetedData();

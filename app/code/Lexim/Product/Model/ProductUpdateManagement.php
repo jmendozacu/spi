@@ -1,5 +1,4 @@
 <?php
-
 namespace Lexim\Product\Model;
 
 use Lexim\Product\Api\ProductUpdateManagementInterface as ProductApiInterface;
@@ -8,18 +7,8 @@ use Lexim\Product\Api\ProductUpdateManagementInterface as ProductApiInterface;
  * Class ProductUpdateManagement
  * @package Lexim\Product\Model
  */
-class ProductUpdateManagement implements ProductApiInterface
-{
+class ProductUpdateManagement implements ProductApiInterface {
 
-    /**
-     * @var \Psr\Log\LoggerInterface
-     */
-    protected $logger;
-
-    /**
-     * @var \Magento\Catalog\Api\ProductRepositoryInterface
-     */
-    protected $productRepository;
 
     /**
      * ProductUpdateManagement constructor.
@@ -29,8 +18,7 @@ class ProductUpdateManagement implements ProductApiInterface
     public function __construct(
         \Magento\Catalog\Api\ProductRepositoryInterface $productRepository,
         \Psr\Log\LoggerInterface $logger
-    )
-    {
+    ) {
         $this->productRepository = $productRepository;
         $this->logger = $logger;
     }
@@ -38,41 +26,40 @@ class ProductUpdateManagement implements ProductApiInterface
     /**
      * Updates the specified product from the request payload.
      *
+     * @api
      * @param mixed $products
      * @return boolean
      */
-    public function updateProduct($products)
-    {
+    public function updateProduct($products) {
         if (!empty($products)) {
-            $messages = "";
-            $error = false;
+        	$error = false;
             foreach ($products as $product) {
-                try {
-                    $sku = $product['sku'];
-                    $productObject = $this->productRepository->get($sku);
-                    $qty = $product['qty'];
-                    //$price = $product['price'];
-                    //$productObject->setPrice($price);
-                    $productObject->setStockData(
-                        [
-                            'is_in_stock' => 1,
-                            'qty' => $qty
-                        ]
-                    );
-                    try {
-                        $this->productRepository->save($productObject);
-                    } catch (\Exception $e) {
-                        throw new StateException(__('Cannot save product.'));
-                    }
-                } catch (\Magento\Framework\Exception\LocalizedException $e) {
-                    $messages[] = $product['sku'] . ' =>' . $e->getMessage();
-                    $error = true;
-                }
+        		try {
+        			$sku = $product['sku'];
+        	       	$productObject = $this->productRepository->get($sku);
+        	       	$qty = $product['qty'];
+        	       	//$price = $product['price'];
+        	       	//$productObject->setPrice($price);
+        	       	$productObject->setStockData(
+        	       		[
+				      'is_in_stock' => 1,
+				      'qty' => $qty
+				]
+			);
+        	try {
+			            $this->productRepository->save($productObject);
+			        } catch (\Exception $e) {
+			            throw new StateException(__('Cannot save product.'));
+			        }
+				} catch (\Magento\Framework\Exception\LocalizedException $e) {
+	                $messages[] = $product['sku'].' =>'.$e->getMessage();
+	                $error = true;
+	            }
             }
             if ($error) {
-                $this->writeLog(implode(" || ", $messages));
-                return false;
-            }
+	            $this->writeLog(implode(" || ",$messages));
+	            return false;
+	        }
         }
         return true;
     }

@@ -1,5 +1,4 @@
 <?php
-
 namespace Lexim\Product\Api;
 
 /**
@@ -11,8 +10,9 @@ interface ProductUpdateManagementInterface
     /**
      * Updates the specified products in item array.
      *
-     * @param $products
-     * @return mixed
+     * @api
+     * @param mixed $data
+     * @return boolean
      */
     public function updateProduct($products);
 }
