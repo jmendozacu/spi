@@ -58,7 +58,7 @@ interface ServiceInterface
     public function setUserAgent($product, $version, $mageInfo);
 
     /**
-     * @param string $header
+     * @param string      $header
      * @param string|null $value
      * @return mixed
      */
