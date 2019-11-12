@@ -31,7 +31,7 @@
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
         <add id="BinaryAnvil_Base::binaryanvil_base"
-             title="Binary Anvil"
+             title="Lexim Global"
              resource="BinaryAnvil_Base::binaryanvil_base_menu"
              module="BinaryAnvil_Base"
              sortOrder="15"/>

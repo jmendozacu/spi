@@ -134,6 +134,7 @@ class Service implements ServiceInterface
      * @param string $product
      * @param string $version
      * @param string $mageInfo
+     * @return mixed
      */
     public function setUserAgent($product, $version, $mageInfo)
     {
@@ -161,6 +162,7 @@ class Service implements ServiceInterface
     /**
      * @param string $header
      * @param string|null $value
+     * @return mixed
      */
     public function setHeader($header, $value = null)
     {

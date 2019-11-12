@@ -9,27 +9,29 @@
 
 <?php /** @var $block \Magento\Swatches\Block\Product\Renderer\Configurable */
 
-//$helper = $this->helper('BinaryAnvil\SizeChart\Helper\Image');
-//$attributeName = $helper->showInAttribute();
+/** @var BinaryAnvil\SizeChart\Helper\Image $helper */
+$helper = $this->helper('BinaryAnvil\SizeChart\Helper\Image');
+$attributeName = $helper->showInAttribute();
 
 $product = $block->getProduct();
 $curCat = $product->getCategory();
 
-if (!$curCat) {
-    $catIds = $product->getCategoryIds();
-    if (is_array($catIds)) {
-        $catIds = reset($catIds);
-    }
-//    if ($catIds) {
-//        // $curCat = $helper->getCategoryById($catIds);
-//    }
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+/** @var Magento\Catalog\Model\Product $_product */
+$_product = $objectManager->create('\Magento\Catalog\Model\Product')->load($product->getId());
+
+$catIds = $_product->getCategoryIds();
+$catId = reset($catIds);
+if ($catId) {
+    $curCat = $helper->getCategoryById($catId);
 }
 
 ?>
 <div class="swatch-opt" data-role="swatch-options"></div>
 
-<!-- category object: <?= get_class($curCat); ?> -->
-<?php if ($curCat) { ?>
+<?php
+
+if ($curCat) { ?>
     <div class="size-chart" style="display: none">
         <div class="size-chart-inner">
             <?= $curCat->getData('category_size_chart') ?>
@@ -38,7 +40,7 @@ if (!$curCat) {
             </div>
         </div>
     </div>
-<?php } ?>
+<?php }  ?>
 
 <script type="text/x-magento-init">
     {
@@ -55,7 +57,6 @@ if (!$curCat) {
             }
         }
     }
-
 
 </script>
 

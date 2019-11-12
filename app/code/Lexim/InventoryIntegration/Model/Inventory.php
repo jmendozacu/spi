@@ -85,7 +85,10 @@ class Inventory
                 foreach ($response['inv'] as $inv) {
                     $skuSource = strtoupper($inv['u']);
                     $qty = $inv['av'];
+
+                    // skip update qty if the qty < 0 or qty is empty
                     if (empty($skuSource) || ($qty < 0)) {
+                        $this->log->error('SKIP: The qty < 0 or sku is empty. Qty = ' . $qty . ' || Sku source = ' . $skuSource);
                         continue;
                     }
                     $product = $this->productFactory->create();
@@ -93,8 +96,17 @@ class Inventory
                     // For 2.2.5
                     if ($product->getId()) {
                         $stockItem = $this->stockRegistry->getStockItemBySku($sku);
+
+                        // skip update qty if the qty equal product qty
+                        if ($stockItem->getQty() == $qty) {
+                            $this->log->error('SKIP: The qty does not change. Qty = ' . $qty);
+                            continue;
+                        }
+
                         $stockItem->setQty($qty);
                         $this->stockRegistry->updateStockItemBySku($sku, $stockItem);
+                        $this->log->error('SUCCESS qty = ' . $qty);
+
                     } else {
                         $this->log->error(sprintf('Product id %s doesn\'t exist ', $sku));
                     }
@@ -119,12 +131,18 @@ class Inventory
         $collection->setPageSize(self::BATCH_SIZE);
         $totalsPage = $collection->getLastPageNumber();
         $currentPage = 1;
+        $i = 1;
         if ($collection->getSize() > 0) {
             do {
                 $collection->setCurPage($currentPage);
+                $this->log->error('================ CURRENT PAGE ' . $currentPage);
+
                 foreach ($collection->getItems() as $item) {
                     /** @var Product $item */
-                    $this->updateProduct($item->getSku());
+                    $sku = $item->getSku();
+                    $this->log->error($i. ' | sku = ' . $sku . ' | id = ' . $item->getId() );
+                    $this->updateProduct($sku);
+                    $i++;
                 };
                 $currentPage++;
                 $collection->clear();

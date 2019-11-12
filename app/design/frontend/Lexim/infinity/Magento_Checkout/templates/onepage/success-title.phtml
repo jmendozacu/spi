@@ -26,7 +26,18 @@ $link = '/customer/account/login/';
 
         <p>You will soon receive an email at <?= $customerEmail ?> confirming your purchase and with a link to access order tracking.</p>
         <p>We will also send you an email when your order leaves our warehouse. Thank you for your order and we hope you love your latest purchase!</p>
-
-        <a href="<?= $link ?>">Update your information now!</a>
+        <br>
+        <p>Local retailers are a vital part of the communities where we live. As a manufacturer, we recognize that local retailers provide many services which can’t be easily replicated online. Therefore, when you select a local retailer in your account profile, we will share all of the retail profits from your purchase with them. There is no extra charge for this step and if you don’t select a local retailer in your profile, we will still share all of the retail profits with the qualifying retailer nearest your shipping location</p>
+        <br>
+        <a href="<?= $link ?>"
+           style="height: 50px;
+                line-height: 50px;
+                text-decoration: none;
+                color: #fff;
+                background: #48c1cb;
+                padding: 0 20px;
+                font-size: 16px;
+                font-weight: bold;
+                display: inline-block;">Select your retailer</a>
     </div>
 <?php endif; ?>
