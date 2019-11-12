@@ -50,8 +50,8 @@
 
         <referenceBlock name="customer">
             <block class="BinaryAnvil\InfinityTheme\Block\Customer\Form\Login" name="customer_form_login_popup" template="Magento_Customer::form/login.phtml">
-                <block class="BinaryAnvil\FederationFacebook\Block\Facebook" name="federation.facebook.button.popup" as="federation.facebook.button"
-                       template="BinaryAnvil_FederationFacebook::facebook.phtml"/>
+<!--                <block class="BinaryAnvil\FederationFacebook\Block\Facebook" name="federation.facebook.button.popup" as="federation.facebook.button"-->
+<!--                       template="BinaryAnvil_FederationFacebook::facebook.phtml"/>-->
                 <container name="form.additional.info" as="form_additional_info"/>
             </block>
         </referenceBlock>

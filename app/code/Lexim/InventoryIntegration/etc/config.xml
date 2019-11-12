@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <lexim>
+            <inventory_integration>
+                <url>http://s.allheart.com/inventory/mage.php</url>
+                <url_list>http://s.allheart.com/inventory/mage.php</url_list>
+            </inventory_integration>
+        </lexim>
+    </default>
+</config>
