@@ -5,7 +5,7 @@
         <section id="localretailer_export" translate="label" type="text" sortOrder="120" showInDefault="1" showInWebsite="0" showInStore="0">
             <label>Local Retailer Export</label>
             <tab>binaryanvil</tab>
-            <resource>Lexim_Localretailer:ftp_configuration</resource>
+            <resource>Lexim_Localretailer:ftpconfiguration</resource>
             <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
                 <label>General Settings</label>
                 <field id="is_enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
