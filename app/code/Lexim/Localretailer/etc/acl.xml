@@ -7,7 +7,7 @@
                 <resource id="Magento_Backend::stores">
                     <resource id="Magento_Backend::stores_settings">
                         <resource id="Magento_Config::config">
-                            <resource id="Lexim_Localretailer:ftpconfiguration" title="Lexim Local Retailer FTP Configuration" sortOrder="102"/>
+                            <resource id="Lexim_Localretailer::ftp_configuration" title="Lexim Local Retailer FTP Configuration" sortOrder="102"/>
                         </resource>
                     </resource>
                 </resource>
