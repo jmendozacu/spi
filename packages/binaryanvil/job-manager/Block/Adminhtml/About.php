@@ -71,8 +71,7 @@ class About extends Fieldset
         $html .= '<div class="messages">
                     <div class="message message-error error">
                         <div data-ui-id="messages-message-error">
-                            Please do not make any changes to these settings, 
-                            <strong>all changes must be made by Binary Anvil</strong> team.
+                            Please do not make any changes to these settings, all changes must be made by Lexim team.
                          </div>
                      </div>
                  </div>';

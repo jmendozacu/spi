@@ -104,7 +104,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
                 [],
                 'Social Feed Package (Module)'
             )
-            ->setComment('Binary Anvil Social Feeds Instance');
+            ->setComment('Lexim Social Feeds Instance');
 
         $installer->getConnection()->createTable($table);
     }
@@ -207,7 +207,7 @@ class UpgradeSchema implements UpgradeSchemaInterface
                 $installer->getTable(SocialFeed::DB_SCHEMA_TABLE_ENTITY_NAME),
                 SocialFeedInterface::ENTITY_ID,
                 Table::ACTION_CASCADE
-            )->setComment('Binary Anvil Social Feeds Items');
+            )->setComment('Lexim Social Feeds Items');
 
         $installer->getConnection()->createTable($table);
     }

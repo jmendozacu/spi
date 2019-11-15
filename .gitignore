@@ -10,7 +10,7 @@
 !/app/*/
 !/app/code/**
 !/app/design/**
-!/app/etc/config.php
+
 !/app/i18n/**
 !/auth.json
 !/build_options.ini
@@ -26,8 +26,4 @@
 !/README.md
 !/packages
 !/packages/**
-
-!/vendor
-!/vendor/*/
-!/vendor/binaryanvil/**
 
