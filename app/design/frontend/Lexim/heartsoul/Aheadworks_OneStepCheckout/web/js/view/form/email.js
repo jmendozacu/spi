@@ -102,6 +102,7 @@ define([
         if (quoteCartId && quoteCartId > 0) {
             let ajaxData = {
                 cartId: quoteCartId,
+                emailAddress: email,
                 source: 'heartsoulscrubs' // "infinityscrubs" or "heartsoulscrubs"
             };
 
