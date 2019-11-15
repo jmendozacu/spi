@@ -1,5 +1,13 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
     <preference for="Magento\Customer\Controller\Address\FormPost" type="Lexim\Localretailer\Controller\Address\FormPost" />
+
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="lx_export_invoice_command" xsi:type="object">Lexim\Localretailer\Console\Command\ExportInvoice</item>
+            </argument>
+        </arguments>
+    </type>
 </config>
 
