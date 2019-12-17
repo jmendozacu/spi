@@ -20,11 +20,11 @@ if (isStaging) {
     require(["jquery", "slick"], function ($) {
 
         function loadLocations(address, radius) {
+            radius = radius || 10;
+
             // Development and Production API URL(s) - (change for different environments)
             var urlDev = "https://storelocator-dev.azurewebsites.net/api/v1/near/address/" + address + "/radius/" + radius,
                 urlProd = "https://storelocator.azurewebsites.net/api/v1/near/address/" + address + "/radius/" + radius;
-
-            radius = radius || 10;
 
             jQuery.ajax({
                 type: 'GET',

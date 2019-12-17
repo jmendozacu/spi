@@ -27,8 +27,8 @@
  */
 
 // @codingStandardsIgnoreFile
-//$helper = $this->helper('BinaryAnvil\SizeChart\Helper\Image');
-//$attributeName = $helper->showInAttribute();
+$helper = $this->helper('BinaryAnvil\SizeChart\Helper\Image');
+$attributeName = $helper->showInAttribute();
 ?>
 <?php /** @var $block \Magento\Swatches\Block\Product\Renderer\Configurable */ ?>
 <div class="swatch-opt" data-role="swatch-options"></div>
@@ -48,7 +48,7 @@
                 "mediaCallback": "<?= /* @escapeNotVerified */ $block->getMediaCallback() ?>",
                 "gallerySwitchStrategy": "<?php /* @escapeNotVerified */ echo $block->getVar('gallery_switch_strategy',
                     'Magento_ConfigurableProduct') ?: 'replace'; ?>",
-                "sizeChartAttribute": "<?= /* @escapeNotVerified */ /** $attributeName */ '' ?>",
+                "sizeChartAttribute": "<?= /* @escapeNotVerified */ $attributeName ?>",
                 "sizeChartLink": "<?= /* @escapeNotVerified */ $sizeChar ?>",
                 "sizeChartLabel": "<?= /* @escapeNotVerified */ __('Size Chart') ?>"
             },

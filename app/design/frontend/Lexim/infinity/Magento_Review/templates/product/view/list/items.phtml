@@ -10,14 +10,12 @@ $format = \IntlDateFormatter::MEDIUM;
 $helper = $this->helper(\BinaryAnvil\Ratings\Helper\Data::class);
 $customerId = $block->getCustomerId();
 ?>
-<?php if (is_array($items)) { ?>
+
 <?php foreach ($items as $review):?>
     <li class="item review-item" itemscope itemprop="review" itemtype="http://schema.org/Review">
-        <?php
-        $getRatingVotes = $review->getRatingVotes();
-        if (is_array($getRatingVotes) && count($getRatingVotes)): ?>
+        <?php if (count($review->getRatingVotes())): ?>
             <div class="review-ratings">
-                <?php foreach ($getRatingVotes as $vote): ?>
+                <?php foreach ($review->getRatingVotes() as $vote): ?>
                     <?php if ($vote->getIsUsedInSummary()): ?>
                         <div class="rating-summary item" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
                             <div class="rating-result" title="<?= $block->escapeHtmlAttr($vote->getPercent()) ?>%">
@@ -63,4 +61,3 @@ $customerId = $block->getCustomerId();
         </div>
     </li>
 <?php endforeach; ?>
-<?php } ?>

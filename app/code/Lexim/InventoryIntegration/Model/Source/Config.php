@@ -1,6 +1,4 @@
-<?php
-
-// declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace Lexim\InventoryIntegration\Model\Source;
 
@@ -20,8 +18,7 @@ class Config
      */
     public function __construct(
         ScopeConfigInterface $scopeConfig
-    )
-    {
+    ) {
         $this->scopeConfig = $scopeConfig;
     }
 

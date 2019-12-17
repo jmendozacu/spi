@@ -40,8 +40,8 @@
         <referenceBlock name="copyright" remove="true" />
 
         <referenceBlock name="checkout.root">
-<!--            <block class="BinaryAnvil\FederationFacebook\Block\Facebook" name="federation.facebook.button"-->
-<!--                   template="BinaryAnvil_FederationFacebook::facebook.phtml"/>-->
+            <block class="BinaryAnvil\FederationFacebook\Block\Facebook" name="federation.facebook.button"
+                   template="BinaryAnvil_FederationFacebook::facebook.phtml"/>
             <arguments>
                 <argument name="jsLayout" xsi:type="array">
                     <item name="components" xsi:type="array">

@@ -1,6 +1,4 @@
-<?php
-
-//declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace Lexim\InventoryIntegration\Model\Api\Rest;
 
@@ -61,8 +59,7 @@ class Service implements ServiceInterface
     public function __construct(
         LoggerInterface $log,
         Serializer $serializer
-    )
-    {
+    ) {
         $this->log = $log;
         $this->serializer = $serializer;
         $this->client = new Client();
@@ -83,7 +80,7 @@ class Service implements ServiceInterface
         try {
             $data = [
                 'headers' => $this->headers,
-                'json' => $body
+                'json'    => $body
             ];
             $data = $this->getAuth($data);
 
@@ -137,6 +134,7 @@ class Service implements ServiceInterface
      * @param string $product
      * @param string $version
      * @param string $mageInfo
+     * @return mixed
      */
     public function setUserAgent($product, $version, $mageInfo)
     {
@@ -164,6 +162,7 @@ class Service implements ServiceInterface
     /**
      * @param string $header
      * @param string|null $value
+     * @return mixed
      */
     public function setHeader($header, $value = null)
     {
@@ -198,7 +197,7 @@ class Service implements ServiceInterface
         }
         $data['response_object'] = [
             'headers' => $response->getHeaders(),
-            'body' => $response->getBody()->getContents()
+            'body'    => $response->getBody()->getContents()
         ];
         $data['response_status_code'] = $response->getStatusCode();
         $data['response_status_message'] = $response->getReasonPhrase();
@@ -214,7 +213,7 @@ class Service implements ServiceInterface
     {
         $req = [
             'headers' => $this->headers,
-            'body' => $request
+            'body'    => $request
         ];
         $this->log->debug("Request Body", array($req));
         $this->log->debug("Response Body", array($response));
